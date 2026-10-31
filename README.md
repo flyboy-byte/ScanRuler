@@ -1,3 +1,62 @@
+# ScanRuler in pure Rust
+
+A personal side project: porting [ScanRuler](https://github.com/CNCKitchen/ScanRuler), CNC Kitchen's
+in-browser tool for checking 3D scans against CAD, to **pure Rust**, geometry kernels included, so
+it runs natively and in the browser through WebAssembly. A faithful port, not a redesign: the
+original TypeScript stays in this repository and is the judge of every result.
+
+> [!IMPORTANT]
+> **Nothing is ported yet.** The workspace builds and passes its own gate, and no comparison with
+> the original has been run. This fork is **not** the official ScanRuler, is not endorsed by its
+> author, is AGPL-derived, and is **not** a clean-room reimplementation. The product name is the
+> author's; this fork will need different branding before any release.
+
+## Status (2026-10-31)
+
+| Area | State |
+| --- | --- |
+| Plan | 40 work units (P00 to P39), gates G0 to G7, in [`docs/port-plan/`](docs/port-plan/HANDOFF.md) |
+| Workspace | [`rust/`](rust/README.md): `port-core` (units, ids, transforms), empty `port-engine` / `port-io`, banner CLI, `xtask` |
+| Fast gate | `cd rust && cargo xtask ci`: pin check, plan checks, fmt, clippy, tests, wasm32 check. Passing. **Not a parity check** |
+| Parity harness | Not built. `cargo xtask diff` is planned (P36 to P39) |
+| Original baseline | Upstream CI passes on this fork; local baseline with its skip list not yet recorded (P01) |
+| Next | Capture the original's baseline and command catalogs, then the first slice: binary STL read and a plane fit, compared with the original natively and in WebAssembly |
+
+## How it is done
+
+1. **The original is the oracle.** Pinned at upstream `2cd89c6` (app 0.9.2), tag `reference/2cd89c6`.
+   Same input to both, compare the answers, keep the record.
+2. **Gates, not dates.** Milestones G0 to G7 are passed by doing the thing, with no delivery date.
+3. **Pure Rust is the end goal**, including the exact CAD kernel, STEP and mesh code. A Rust wrapper
+   around C or C++ does not count.
+4. **One status record per work item**, in `docs/port-plan/plan/units/`, with decisions and
+   findings as separate dated files.
+
+## Where to look
+
+| You want | Go to |
+| --- | --- |
+| The story and the ideas, in order | [Guide](docs/guide/README.md) |
+| What to do next | [`HANDOFF.md`](docs/port-plan/HANDOFF.md), [`SESSION-2026-10-31.md`](docs/port-plan/SESSION-2026-10-31.md) |
+| How results are proven | [`CI-AND-REGRESSIONS.md`](docs/port-plan/CI-AND-REGRESSIONS.md), [`VALIDATION.md`](docs/port-plan/VALIDATION.md) |
+| Helping out | [`CONTRIBUTING-RUST.md`](CONTRIBUTING-RUST.md) |
+| Branches and upstream updates | [`UPSTREAM-SYNC.md`](docs/port-plan/UPSTREAM-SYNC.md) |
+| Agent instructions | [`AGENTS.md`](AGENTS.md), [`CLAUDE.md`](CLAUDE.md) |
+
+```bash
+cd rust
+cargo xtask env   # toolchain versions to record with any result
+cargo xtask ci    # the fast gate
+```
+
+Toolchain: the system Rust (no rustup needed). Node 22 is only required to run the original.
+
+---
+
+## Upstream README (unchanged below)
+
+Everything from here on describes the original app, which this repository still contains.
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/brand/scanruler-logo-horizontal-on-dark.svg" />
   <img src="docs/brand/scanruler-logo-horizontal.svg" alt="ScanRuler by CNC Kitchen" width="420" />
@@ -11,15 +70,6 @@
 > build ScanRuler into closed-source software, or host a modified version
 > without publishing its source? Write to <stefan@cnckitchen.com>, see
 > [COMMERCIAL.md](COMMERCIAL.md).
-
-> **About this fork.** This is a personal fork, [flyboy-byte/ScanRuler](https://github.com/flyboy-byte/ScanRuler),
-> where the whole app is being ported to **pure Rust**, geometry kernels included, as a side project.
-> It is a faithful port of upstream commit `2cd89c6` (0.9.2) and is **not clean-room**; the original
-> TypeScript stays here as the reference it is compared against. **Nothing is ported yet**: the
-> workspace in [`rust/`](rust/README.md) builds and passes its own gate, and no comparison with the
-> original has been run. Start with the [guide](docs/guide/README.md) or the
-> [plan](docs/port-plan/HANDOFF.md). Everything below describes the upstream app, which is unchanged.
-> This fork is not endorsed by the upstream author and is not the official ScanRuler.
 
 Check a 3D scan against what it should have been, entirely in your browser:
 fit spheres, cylinders and planes to the scan and measure between them, paint
