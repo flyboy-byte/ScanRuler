@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Pure-Rust port of the pinned ScanRuler baseline (see ../docs/port-plan/).
+# No third-party dependencies yet: every one must pass the purity audit (P35)
+# and the licence policy in ../CONTRIBUTING.md before it lands.
+[workspace]
+resolver = "3"
+members = ["crates/port-core", "crates/port-engine", "crates/port-io", "crates/port-cli", "xtask"]
+
+[workspace.package]
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.88"
+license = "AGPL-3.0-only"
+repository = "https://github.com/flyboy-byte/ScanRuler"
+publish = false
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+
+[workspace.lints.clippy]
+unwrap_used = "warn"
+expect_used = "warn"
+panic = "warn"
