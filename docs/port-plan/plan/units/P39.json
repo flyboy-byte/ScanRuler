@@ -1,0 +1,26 @@
+{
+  "id": "P39",
+  "title": "Maintain and refine canonical porting docs and task state",
+  "gate": "contributor-harness-ci",
+  "status": "planned",
+  "depends_on": [
+    "P05",
+    "P38"
+  ],
+  "scope": "Canonical per-unit task files, scoped contribution templates, evidence-backed transitions, findings/decisions, generated summaries and Rust replacement for bootstrap checker.",
+  "acceptance": [
+    "Plan changes accompany evidence; accepted units have real commit/reports and no unresolved scope; aggregate status generated; active Python tooling retired by whole-port completion."
+  ],
+  "owner": null,
+  "branch": null,
+  "evidence": [],
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "source_mapping": "initial path rules; manual contract/symbol audit pending",
+  "symbols": [],
+  "rust_paths": [],
+  "soft_depends_on": [],
+  "open_items": [],
+  "claim_pr": null
+}

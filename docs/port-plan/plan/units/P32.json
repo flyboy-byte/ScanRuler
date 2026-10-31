@@ -1,0 +1,25 @@
+{
+  "id": "P32",
+  "title": "Complete robust Rust modelling operations",
+  "gate": "required-geometry",
+  "status": "planned",
+  "depends_on": [
+    "P31"
+  ],
+  "scope": "Boolean/fillet/chamfer/shell/offset/draft/sweep/loft/healing and persistent operation history; reuse/improve suitable Rust kernel code with provenance.",
+  "acceptance": [
+    "Capability corpus validates geometry/topology and edit-reference behavior; no OCCT fallback for missing operations."
+  ],
+  "owner": null,
+  "branch": null,
+  "evidence": [],
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "source_mapping": "initial path rules; manual contract/symbol audit pending",
+  "symbols": [],
+  "rust_paths": [],
+  "soft_depends_on": [],
+  "open_items": [],
+  "claim_pr": null
+}

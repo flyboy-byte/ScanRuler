@@ -1,0 +1,27 @@
+{
+  "id": "P34",
+  "title": "Implement or validate Rust mesh algorithms",
+  "gate": "required-geometry",
+  "status": "planned",
+  "depends_on": [
+    "P04",
+    "P05",
+    "P06"
+  ],
+  "scope": "Triangle-mesh booleans, simplification, repair/fill/offset/shell and error measurement with pure-Rust dependencies.",
+  "acceptance": [
+    "Adversarial scan and analytic corpora pass, including bidirectional reduction error; no Manifold/meshoptimizer foreign runtime."
+  ],
+  "owner": null,
+  "branch": null,
+  "evidence": [],
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "source_mapping": "initial path rules; manual contract/symbol audit pending",
+  "symbols": [],
+  "rust_paths": [],
+  "soft_depends_on": [],
+  "open_items": [],
+  "claim_pr": null
+}

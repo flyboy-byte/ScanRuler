@@ -1,0 +1,26 @@
+{
+  "id": "P09",
+  "title": "Integrate first browser/native measurement slice",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": [
+    "P07",
+    "P08"
+  ],
+  "scope": "Old UI calls Rust Wasm for plane operation; native CLI comparison; minimal project save/reopen.",
+  "acceptance": [
+    "Real browser overlay/selection/result and cancel/retry verified; same fixture native/Wasm; JS view lifetime/copy counts measured."
+  ],
+  "owner": null,
+  "branch": null,
+  "evidence": [],
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "source_mapping": "initial path rules; manual contract/symbol audit pending",
+  "symbols": [],
+  "rust_paths": [],
+  "soft_depends_on": [],
+  "open_items": [],
+  "claim_pr": null
+}

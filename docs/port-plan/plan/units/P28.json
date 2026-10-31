@@ -1,0 +1,30 @@
+{
+  "id": "P28",
+  "title": "Audit internal application-parity checkpoint",
+  "gate": "G6",
+  "status": "planned",
+  "depends_on": [
+    "P27",
+    "P37",
+    "P38",
+    "P39"
+  ],
+  "scope": "Reconcile every file/command/feature/format/UI row; retire feature switches and temporary paths; review upstream drift.",
+  "acceptance": [
+    "All required rows accepted, no runtime TS/Node dependency, exceptions and development-tooling debt explicit; rollback/release handoff complete.",
+    "Whole-repository completion also requires active JS/Node development tooling retired or replaced; an R1 application release with tooling debt is labelled intermediate. Frozen upstream oracle code is reference-only.",
+    "This checkpoint alone does not complete the request: required pure-Rust gate P29 must also pass."
+  ],
+  "owner": null,
+  "branch": null,
+  "evidence": [],
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "source_mapping": "initial path rules; manual contract/symbol audit pending",
+  "symbols": [],
+  "rust_paths": [],
+  "soft_depends_on": [],
+  "open_items": [],
+  "claim_pr": null
+}

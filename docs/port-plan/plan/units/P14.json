@@ -1,0 +1,31 @@
+{
+  "id": "P14",
+  "title": "Port sections, shadows and curve reconstruction",
+  "gate": "G3",
+  "status": "planned",
+  "depends_on": [
+    "P10"
+  ],
+  "scope": "Section frames/cuts, chains, curves, projected shadow geometry and measurement links.",
+  "acceptance": [
+    "Known holes/closed outlines and degenerate cuts pass; coordinate frame and selection IDs survive edits."
+  ],
+  "owner": null,
+  "branch": null,
+  "evidence": [],
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/section/frame.ts",
+    "src/core/section/lift.ts",
+    "src/core/section/shadow.ts",
+    "src/core/section/skin.ts",
+    "src/core/section/slice.ts"
+  ],
+  "source_mapping": "initial path rules; manual contract/symbol audit pending",
+  "symbols": [],
+  "rust_paths": [],
+  "soft_depends_on": [],
+  "open_items": [],
+  "claim_pr": null
+}

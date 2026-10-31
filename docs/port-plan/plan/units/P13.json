@@ -1,0 +1,28 @@
+{
+  "id": "P13",
+  "title": "Port thickness and measurement tolerances",
+  "gate": "G3",
+  "status": "planned",
+  "depends_on": [
+    "P10"
+  ],
+  "scope": "Ray/sphere methods, parameters, probes, dimensions and supported GD&T semantics.",
+  "acceptance": [
+    "Parallel/wedge/corner fixtures and source comparator pass; methods and Gaussian/minimum-zone qualifications preserved."
+  ],
+  "owner": null,
+  "branch": null,
+  "evidence": [],
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/thickness/report.ts",
+    "src/core/thickness/thickness.ts"
+  ],
+  "source_mapping": "initial path rules; manual contract/symbol audit pending",
+  "symbols": [],
+  "rust_paths": [],
+  "soft_depends_on": [],
+  "open_items": [],
+  "claim_pr": null
+}

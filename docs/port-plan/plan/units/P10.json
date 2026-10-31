@@ -1,0 +1,48 @@
+{
+  "id": "P10",
+  "title": "Complete primitive fits and region selection",
+  "gate": "G3",
+  "status": "planned",
+  "depends_on": [
+    "P09"
+  ],
+  "scope": "Remaining Gaussian fits, RANSAC/clip rules, settings, seed/marked/window selections and geometry guides.",
+  "acceptance": [
+    "All element kinds/fit variants have positive/negative fixture coverage; selected-region changes and noisy boundaries explained."
+  ],
+  "owner": null,
+  "branch": null,
+  "evidence": [],
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/fit/circle.ts",
+    "src/core/fit/circle2d.ts",
+    "src/core/fit/clip.ts",
+    "src/core/fit/cone.ts",
+    "src/core/fit/draft.ts",
+    "src/core/fit/errors.ts",
+    "src/core/fit/extents.ts",
+    "src/core/fit/fitConeFromSeed.ts",
+    "src/core/fit/fitCylinderFromSeed.ts",
+    "src/core/fit/fitPlaneFromSeed.ts",
+    "src/core/fit/fitSphereFromSeed.ts",
+    "src/core/fit/fitTorusFromSeed.ts",
+    "src/core/fit/guide.ts",
+    "src/core/fit/heightSurface.ts",
+    "src/core/fit/ransac.ts",
+    "src/core/fit/regionGrow.ts",
+    "src/core/fit/seedOff.ts",
+    "src/core/fit/segment.ts",
+    "src/core/fit/selection.ts",
+    "src/core/fit/sparse.ts",
+    "src/core/fit/sphere.ts",
+    "src/core/fit/torus.ts"
+  ],
+  "source_mapping": "initial path rules; manual contract/symbol audit pending",
+  "symbols": [],
+  "rust_paths": [],
+  "soft_depends_on": [],
+  "open_items": [],
+  "claim_pr": null
+}

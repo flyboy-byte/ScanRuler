@@ -1,0 +1,25 @@
+{
+  "id": "P01",
+  "title": "Capture complete upstream baseline",
+  "gate": "G0",
+  "status": "planned",
+  "depends_on": [
+    "P00"
+  ],
+  "scope": "Run root and MCP unit tests, build, plugin/unit checks, selected browser and headless build.",
+  "acceptance": [
+    "Every command has exit/log evidence; skips and pre-existing failures listed; private fixtures never reported as passed."
+  ],
+  "owner": null,
+  "branch": null,
+  "evidence": [],
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "source_mapping": "initial path rules; manual contract/symbol audit pending",
+  "symbols": [],
+  "rust_paths": [],
+  "soft_depends_on": [],
+  "open_items": [],
+  "claim_pr": null
+}

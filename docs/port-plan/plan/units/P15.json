@@ -1,0 +1,52 @@
+{
+  "id": "P15",
+  "title": "Port complete calibrated 2D workflow",
+  "gate": "G3",
+  "status": "planned",
+  "depends_on": [
+    "P14"
+  ],
+  "scope": "Image decoding/metadata, calibration, anisotropy, edge detection, fitting, sheets, annotations and exports.",
+  "acceptance": [
+    "Uncalibrated alarm preserved; turn/mirror/save/reopen and true-scale SVG/DXF/CSV checked against independent dimensions."
+  ],
+  "owner": null,
+  "branch": null,
+  "evidence": [],
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/flat/calibration.ts",
+    "src/core/flat/chains.ts",
+    "src/core/flat/construct.ts",
+    "src/core/flat/datum.ts",
+    "src/core/flat/dimStrokes.ts",
+    "src/core/flat/dimensions.ts",
+    "src/core/flat/drawing.ts",
+    "src/core/flat/dxf.ts",
+    "src/core/flat/edgeClient.ts",
+    "src/core/flat/edgeWorker.ts",
+    "src/core/flat/edges.ts",
+    "src/core/flat/elements.ts",
+    "src/core/flat/fit.ts",
+    "src/core/flat/grow.ts",
+    "src/core/flat/image.ts",
+    "src/core/flat/objects.ts",
+    "src/core/flat/profile.ts",
+    "src/core/flat/refs.ts",
+    "src/core/flat/report.ts",
+    "src/core/flat/simplify.ts",
+    "src/core/flat/snap.ts",
+    "src/core/flat/spline.ts",
+    "src/core/flat/summary.ts",
+    "src/core/flat/svg.ts",
+    "src/core/flat/types.ts",
+    "src/core/flat/vec2.ts"
+  ],
+  "source_mapping": "initial path rules; manual contract/symbol audit pending",
+  "symbols": [],
+  "rust_paths": [],
+  "soft_depends_on": [],
+  "open_items": [],
+  "claim_pr": null
+}

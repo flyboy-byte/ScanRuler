@@ -1,0 +1,21 @@
+{
+  "id": "fit.plane.residuals",
+  "parent": "P07",
+  "title": "Port plane residual calculation",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": ["P05", "P06"],
+  "soft_depends_on": [],
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": ["src/core/fit/plane.ts"],
+  "symbols": [],
+  "rust_paths": [],
+  "scope": "EXAMPLE ONLY: replace with inspected source symbols, intended module and exact edit boundary before claiming.",
+  "acceptance": ["Original/Rust residual values and selected-point identities agree for named exact/noisy/boundary cases under predeclared tolerances."],
+  "open_items": ["Inspect exact source symbols and capture reference cases."],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "evidence": []
+}

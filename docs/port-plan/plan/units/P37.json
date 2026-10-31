@@ -1,0 +1,25 @@
+{
+  "id": "P37",
+  "title": "Implement exact-base ratchet and harness regression tests",
+  "gate": "contributor-harness-ci",
+  "status": "planned",
+  "depends_on": [
+    "P36"
+  ],
+  "scope": "Stable case/seed/key identity, real-value success coverage, exact base artifacts, comparator tests and targeted mutation campaigns.",
+  "acceptance": [
+    "Previously passing cases and compared values cannot vanish or become skipped/deferred; missing/incompatible baselines fail closed; same pinned reference enforced."
+  ],
+  "owner": null,
+  "branch": null,
+  "evidence": [],
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "source_mapping": "initial path rules; manual contract/symbol audit pending",
+  "symbols": [],
+  "rust_paths": [],
+  "soft_depends_on": [],
+  "open_items": [],
+  "claim_pr": null
+}

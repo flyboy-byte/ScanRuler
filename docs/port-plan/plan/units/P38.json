@@ -1,0 +1,28 @@
+{
+  "id": "P38",
+  "title": "Activate our contributor CI gates",
+  "gate": "contributor-harness-ci",
+  "status": "planned",
+  "depends_on": [
+    "P00",
+    "P05",
+    "P36",
+    "P37"
+  ],
+  "scope": "Install reviewed templates; implement same local/CI xtask gate, native/Wasm/browser jobs, artifact reporting and main/PR separation.",
+  "acceptance": [
+    "Real port tests and paired comparisons execute, never a plan-only substitute; main reports bind exact landed SHA; no missing runner/artifact passes."
+  ],
+  "owner": null,
+  "branch": null,
+  "evidence": [],
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "source_mapping": "initial path rules; manual contract/symbol audit pending",
+  "symbols": [],
+  "rust_paths": [],
+  "soft_depends_on": [],
+  "open_items": [],
+  "claim_pr": null
+}
