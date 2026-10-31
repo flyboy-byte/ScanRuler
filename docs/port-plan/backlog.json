@@ -72,7 +72,11 @@
       "symbols": [],
       "rust_paths": [],
       "soft_depends_on": [],
-      "open_items": [],
+      "open_items": [
+        "Partial 2026-10-31 (record: evidence/2026-10-31-hosted-ci-baseline.md, run 41243336713 at fabc28e): hosted Node 22 run of the unchanged original is green (371/384 files, 3084 tests, 24 skipped; mcp 123/123; build; e2e:ci). Status stays planned: not a local run, no implemented commit.",
+        "Open: npm run build:engine (headless) not run; per-skip reasons not individually verified; browser/OS/CPU details and lockfile hashes not recorded; raw log not archived.",
+        "Open: reproduce locally once Node 22 is installed (use the .oracle worktree, UPSTREAM-SYNC.md)."
+      ],
       "claim_pr": null
     },
     {

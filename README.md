@@ -19,8 +19,8 @@ original TypeScript stays in this repository and is the judge of every result.
 | Workspace | [`rust/`](rust/README.md): `port-core` (units, ids, transforms), empty `port-engine` / `port-io`, banner CLI, `xtask` |
 | Fast gate | `cd rust && cargo xtask ci`: pin check, plan checks, fmt, clippy, tests, wasm32 check. Passing. **Not a parity check** |
 | Parity harness | Not built. `cargo xtask diff` is planned (P36 to P39) |
-| Original baseline | Upstream CI passes on this fork; local baseline with its skip list not yet recorded (P01) |
-| Next | Capture the original's baseline and command catalogs, then the first slice: binary STL read and a plane fit, compared with the original natively and in WebAssembly |
+| Original baseline | Hosted Node 22 CI run of the unchanged original is green (3084 tests, 24 skipped; [record](docs/port-plan/evidence/2026-10-31-hosted-ci-baseline.md)). Local run and catalogs not yet done (P01, P02) |
+| Next | Capture the original's command catalogs (P02), then the first slice: binary STL read and a plane fit, compared with the original natively and in WebAssembly |
 
 ## How it is done
 
