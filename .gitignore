@@ -19,3 +19,6 @@ dist/
 # Rust port build output
 /rust/target/
 /scanruler-rust-port-handoff.zip
+
+# Frozen oracle worktree (docs/port-plan/UPSTREAM-SYNC.md)
+/.oracle/

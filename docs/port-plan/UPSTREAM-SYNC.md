@@ -12,11 +12,11 @@ Decided 2026-10-31. The fork's purpose is the full port, so `main` is the port t
 
 ## Running the oracle
 
-Run the original from a worktree of the tag, not from `main`, so merging upstream can never change
+Run the original from a worktree of the tag in `.oracle/` (inside the repo, so no extra folders), not from `main`, so merging upstream can never change
 what the Rust is compared against:
 
 ```bash
-git worktree add ../scanruler-ref reference/2cd89c6   # once; needs Node 22 there for npm ci
+git worktree add .oracle reference/2cd89c6   # once, inside the repo (gitignored); needs Node 22 there for npm ci
 ```
 
 Record the oracle's commit in every result (`reference-pin.json` names it).
