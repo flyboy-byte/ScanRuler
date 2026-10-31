@@ -1,0 +1,29 @@
+name: Port task or parity gap
+description: Propose bounded work with a checkable result.
+body:
+  - type: textarea
+    id: scope
+    attributes:
+      label: Unit, operation and source symbols
+      description: Include current main SHA, pinned reference and relevant files.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Evidence and reproduction
+      description: Commands/case IDs, original behavior, current Rust result or missing implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Edit boundary and related work
+      description: Dependencies, overlapping claims and independent follow-ups.
+  - type: textarea
+    id: done
+    attributes:
+      label: Acceptance
+      description: Which original-versus-Rust comparison and successful values/state prove this task complete?
+    validations:
+      required: true

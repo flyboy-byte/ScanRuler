@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Fast product gate for the Rust port: fmt, clippy, tests, wasm32 check and the plan
+# checks, all through `cargo xtask ci`. This is NOT the parity gate: the differential
+# suites against the original (`cargo xtask diff-ci`) do not exist yet, so a green run
+# here proves the scaffold builds and nothing about numerical parity. See
+# docs/port-plan/CI-AND-REGRESSIONS.md and repo-bootstrap/.github/workflows/port-gate.yml.example.
+name: Rust port (fast gate)
+on:
+  pull_request:
+    paths: ['rust/**', 'docs/port-plan/**', '.github/workflows/rust-port.yml']
+  push:
+    branches: [main]
+    paths: ['rust/**', 'docs/port-plan/**', '.github/workflows/rust-port.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: rust-port-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Toolchain and wasm32 target
+        run: |
+          rustup toolchain install stable --profile minimal --component rustfmt,clippy --target wasm32-unknown-unknown
+          rustup default stable
+      - name: Environment record
+        working-directory: rust
+        run: cargo xtask env
+      - name: Fast gate
+        working-directory: rust
+        run: cargo xtask ci

@@ -12,6 +12,15 @@
 > without publishing its source? Write to <stefan@cnckitchen.com>, see
 > [COMMERCIAL.md](COMMERCIAL.md).
 
+> **About this fork.** This is a personal fork, [flyboy-byte/ScanRuler](https://github.com/flyboy-byte/ScanRuler),
+> where the whole app is being ported to **pure Rust**, geometry kernels included, as a side project.
+> It is a faithful port of upstream commit `2cd89c6` (0.9.2) and is **not clean-room**; the original
+> TypeScript stays here as the reference it is compared against. **Nothing is ported yet**: the
+> workspace in [`rust/`](rust/README.md) builds and passes its own gate, and no comparison with the
+> original has been run. Start with the [guide](docs/guide/README.md) or the
+> [plan](docs/port-plan/HANDOFF.md). Everything below describes the upstream app, which is unchanged.
+> This fork is not endorsed by the upstream author and is not the official ScanRuler.
+
 Check a 3D scan against what it should have been, entirely in your browser:
 fit spheres, cylinders and planes to the scan and measure between them, paint
 its deviation from the CAD part, map its wall thickness, or measure a flatbed
@@ -346,6 +355,9 @@ npm test          # unit tests, plus acceptance tests on the local scans if pres
 npm run build     # type-check + production build to dist/
 npm run e2e:ci    # browser tests on generated fixtures; run after building
 ```
+
+The Rust port lives in [`rust/`](rust/README.md) (`cd rust && cargo xtask ci`); its contributor
+process is [CONTRIBUTING-RUST.md](CONTRIBUTING-RUST.md).
 
 The app is a static Vite + React + three.js build, with heavy geometry in a
 Web Worker. Tests, the browser checks, releases and deployment are described
