@@ -1,6 +1,6 @@
 # Rust port handoff — start here
 
-Updated 2026-10-31. This packet supersedes the preliminary migration phases in `../context/TANGENCY-RUST-ASSESSMENT.md`. It is a plan and evidence inventory, not a port implementation.
+Updated 2026-11-01. This packet supersedes the preliminary migration phases in `../context/TANGENCY-RUST-ASSESSMENT.md`. It is the entry point to the plan and evidence inventory; the Rust scaffold is in `../../rust/`.
 
 ## User intent and current decisions
 
@@ -32,19 +32,21 @@ An AGPL port can proceed while the licensing enquiry is pending. Source-informed
 
 ## What exists and what does not
 
-This directory contains plans, ledgers, source references and a verifier. No Rust workspace, port branch, prototype or application benchmark exists. Nothing was pushed or published. The earlier documentation snapshots in `/workspace/context` are not Git checkouts.
+The repository now contains a Rust workspace with `port-core`, `port-engine`, `port-io`, `port-cli` and `xtask`. Core scaffolding includes units, identifiers and rigid transforms; the engine and IO crates are empty and the CLI prints a banner. See `../../rust/README.md`. No original-versus-Rust comparison has been established, so these modules do not establish numerical parity.
 
-Environment observations: shell clone requests failed connecting to the configured `proxy:8080`; GitHub connector reads worked. Node 24.19.0, npm 11.9.0 and Chromium 154 are on PATH. `cargo`, `rustc`, `wasm-pack` and `trunk` were not found on PATH. Upstream CI uses Node 22. Local Node 24 is not an exact CI reproduction. No upstream tests, Rust tests or application sessions have been run. Planning artifact consistency and the live-plan checker's negative self-tests are verified. These are not application or numerical-parity checks.
+`cd rust && cargo xtask ci` exists: it checks the reference pin, live plan and checker self-tests, formatting, clippy, workspace tests and compilation of the library crates for wasm32. `.github/workflows/rust-port.yml` runs this fast gate. `cargo xtask diff` and `diff-ci` remain unimplemented. A Wasm compile check is not a browser execution check.
 
-## First implementation session
+A hosted Node 22 baseline of the unchanged original is recorded in [evidence/2026-10-31-hosted-ci-baseline.md](evidence/2026-10-31-hosted-ci-baseline.md). It includes original unit/MCP tests, build and browser suites, with skips retained. It is partial P01 evidence, not a local baseline or a Rust comparison. Headless build, live catalogs, lockfile verification and environment details remain open as specified in P00–P03. Historical environment observations in that evidence are not a current machine inventory.
 
-1. Read the current environment skill/status and network policy; use the configured proxy normally. Restore supported network access if it is still unavailable. Do not unset/bypass the proxy as a workaround. Missing network is an environment prerequisite, not a reason to fabricate a baseline result.
-2. Obtain the full fork checkout, including assets, both lockfiles and test fixtures present in Git; verify its baseline commit. Inspect applicable AGENTS.md and contribution rules in that checkout. Set `origin` to the user's fork and `upstream` to CNC Kitchen; work on a local `port/rust-baseline` branch. Do not push merely because this plan names a branch.
-3. Establish Node 22 for the upstream oracle and a pinned stable Rust toolchain with native and wasm32 targets. Record compiler, OS and browser versions. Complete P00–P03 in `backlog.json` before choosing numerical tolerances or selecting pure-Rust geometry implementations.
-4. Run the complete upstream baseline from VALIDATION.md and capture all-plugin/page/headless catalogs. Generate the first redistributable fixtures. Missing private scans must appear as skips, never passes.
-5. Prove pure-Rust kernel capabilities and missing operations early and separately, then implement the plane-fitting slice with native and browser-Wasm comparison. The upstream headless engine cannot open scans; use a browser oracle or direct pure-core harness for measurement comparisons.
+## Next implementation session
 
-The already-authorized next work is local planning, source inspection and implementation toward the port. This turn did not authorize sending messages, signing legal terms, deployment or publishing. Follow later explicit user instructions if they expand that scope.
+1. Read `UPSTREAM-SYNC.md` and inspect current branch, worktree status, open PR claims and the relevant canonical unit files. Use an isolated branch from `main` for a bounded contribution to the fork. Do not recreate the workspace or change the frozen reference.
+2. Inspect the current environment rather than assuming the planning host's tools or network failures still apply. Use the system Rust toolchain on Logan's Arch machine; do not install rustup (decision `plan/decisions/2026-10-31-no-rustup.md`). Record `cd rust && cargo xtask env`; the reported known Wasm target still needs `cargo xtask wasm` to prove compilation. CI uses its own runner toolchain.
+3. Finish the remaining P00 prerequisites: Node 22 for the original oracle, recorded browser/tool versions, and lock hashes checked against `reference-pin.json`. Run the original from the frozen `reference/2cd89c6` worktree in `.oracle/`, following `UPSTREAM-SYNC.md`; the root TypeScript source remains untouched.
+4. Complete P01's missing baseline evidence, then P02's live core-only/all-plugin/headless catalogs and P03's fixture/dependency audit. Preserve hosted evidence and individual failures/skips. Do not count private scans as passing. Keep unit files authoritative and regenerate `backlog.json` after status edits.
+5. With G0 evidence in place, prove pure-Rust kernel capabilities separately and implement the plane-fitting slice with independent original/native/browser-Wasm comparisons. The original headless engine cannot open scans; use a browser oracle or direct pure-core harness for measurement comparisons. Do not select tolerances from observed Rust discrepancies.
+
+Local source inspection, planning and implementation are authorized. Public actions require the owner's explicit instruction for that session; instructions to open a PR authorize that PR, not deployment, legal signatures or contact with the upstream author.
 
 ## Completion and handoff discipline
 
@@ -52,4 +54,4 @@ Update a canonical unit file only with the actual achieved state, tested commit,
 
 For living plan validation, run `python tools/port_plan.py --root . check` from this packet, plus `python tools/port_plan.py selftest`. Per-unit files are canonical and support future status changes. The separate packet verifier checks this frozen all-planned export only; do not use its snapshot expectations as the living implementation CI.
 
-For this packet's integrity, run `python /workspace/port-plan/verify.py`. After moving the packet, run `python <new-path>/verify.py`. The archive is portable; the verifier uses paths relative to itself.
+For the historical frozen packet's integrity, run `python docs/port-plan/verify.py` from the repository root. Its snapshot assumptions may no longer hold after living-plan changes; use the live checker for current work. The archive is portable; the verifier uses paths relative to itself.

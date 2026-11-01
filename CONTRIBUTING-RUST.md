@@ -14,4 +14,4 @@ Before requesting review:
 - Update the unit's evidence/open items and identify follow-up work. Use actual screenshots for visible behavior.
 - Record both tested SHAs, reference/fixture/comparator identities and known skips or blockers. Missing required evidence means partial work, even when compilation passes.
 
-Plan-only CI exists before the Rust harness. Product commands are proposed until implemented. A passing planning check is not completion. Maintainers review and merge contributor PRs; each approval is for a particular commit. Keep active scoped claims updated and release unrelated blocked scope so others can help.
+The live plan checks and Rust scaffold fast gate (`cd rust && cargo xtask ci`) exist. Differential commands (`diff`, `diff-ci`) remain proposed. A passing fast gate proves scaffold checks, not original-versus-Rust parity or completion. Maintainers review and merge contributor PRs; each approval is for a particular commit. Keep active scoped claims updated and release unrelated blocked scope so others can help.
