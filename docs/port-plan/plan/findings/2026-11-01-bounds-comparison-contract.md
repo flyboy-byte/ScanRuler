@@ -1,0 +1,3 @@
+# Bounds comparison contract — pre-registered 2026-11-01
+
+Port complete extentOf/extentOfIndexed/boundsOf from frozen bounds.ts. Exact min/max and center bits, including empty/signed-zero identities; radius within fixed 1e-12*(1+abs(original)), the same pre-existing f64 norm portability budget. No sign normalization or threshold relaxation. Move existing compensated norm to one internal numeric helper and reuse the full extent function in orientation; retain all previous plane/clipping/orientation suites as changed-caller regressions. No broad centroid API claim. Browser-Wasm runtime and broad nonfinite corpus remain open.
