@@ -63,3 +63,23 @@ test('captured source snapshots retain full data/hash/partition identities', asy
   }
   assert.ok(modes.core.commands.every(c => modes.all.commands.some(a => a.name === c.name)))
 })
+
+test('actual built-engine proof retains source/module/partition identities', async () => {
+  const { readFileSync } = await import('node:fs')
+  const { digest } = await import('./catalog-contract.mjs')
+  const base = new URL('../evidence/headless-2026-11-01/', import.meta.url)
+  const manifest = JSON.parse(readFileSync(new URL('manifest.json', base), 'utf8'))
+  for (const [mode, file] of Object.entries(manifest.builtEngineVerification.files)) {
+    const bytes = readFileSync(new URL(file.path, base))
+    assert.equal(digest(bytes), file.sha256)
+    const d = JSON.parse(bytes)
+    assert.equal(d.status, 'verified')
+    assert.equal(d.referenceSha, manifest.referenceSha)
+    assert.equal(d.candidateSha, manifest.builtEngineVerification.candidateSha)
+    assert.equal(d.engineSha256, manifest.builtEngineVerification.engineSha256)
+    assert.equal(d.offered, manifest.files[mode].headless)
+    assert.equal(d.pageOnly, manifest.files[mode].pageOnly)
+    assert.equal(d.startupViewport, false)
+    assert.equal(d.scanEmpty, true)
+  }
+})

@@ -27,7 +27,7 @@ The independent original-catalog.yml workflow checks out the exact frozen ref se
 Successful Node 22 run and complete schemas are saved under
 [headless-2026-11-01](../evidence/headless-2026-11-01/README.md): core 72/6/66 and
 all-plugin 140/36/104 (registered/headless/page-only). All 140 static command
-names reconcile exactly. Twelve validator/snapshot tests now guard full hashes
+names reconcile exactly. Thirteen validator/snapshot tests now guard full hashes
 and optional-field/schema loss. After capture, run:
 
 ```bash

@@ -21,3 +21,15 @@ Canonical command hashes:
 Ten original validator tests passed hosted with the capture; the follow-up now has twelve local tests, adding full snapshot/hash validation and optional-field/schema-loss rejection. The workflow recaptures the pinned source and compares these command metadata hashes; changing a run timestamp/compiled context is permitted, losing an original command/property is not. This is an original metadata guard, not the unbuilt Rust numerical exact-base ratchet.
 
 Reproduction and original API adapter boundaries: ../../oracle/HEADLESS-CATALOG.md. Outputs and negative tests are real original/capture-tool evidence only. No Rust command implementation or whole-app parity is claimed, and parent P00/P01/P02 stay incomplete. The generic Rust coordinator/tooling endpoint remains required.
+
+## Actual original production bundle cross-check
+
+[Run 41353681379](https://github.com/flyboy-byte/ScanRuler/actions/runs/41353681379)
+also passed both fresh starts of the actual original dist-engine/engine.mjs.
+Its complete offered schemas, page-only names, plugins and source startup state
+match the adapter captures in core/all modes. built-core.json/built-all.json
+retain the verification. The original engine byte hash is identical to the
+initial snapshot's module: 03e98e13651d7de9f734526876de0f70163bc35ab69d6ad06d303954a29eac33.
+This links the captured metadata to the actual built original public API, not
+only the API re-export entry. Canonical schema fingerprints also matched the
+frozen snapshots on recapture. No Rust engine was substituted.
