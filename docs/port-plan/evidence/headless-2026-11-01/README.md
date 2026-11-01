@@ -18,7 +18,7 @@ Canonical command hashes:
 - Core: af1cf3d58378bebcf46d75c36ee9043a5d9c2b63cee697e24cd3d3f7e4248f13
 - All: 19a2cd59faded4b4b6f0447d2aaeede556d410acaa62ab607b30c06eab22a2aa
 
-Ten original validator tests passed hosted with the capture; the follow-up now has twelve local tests, adding full snapshot/hash validation and optional-field/schema-loss rejection. The workflow recaptures the pinned source and compares these command metadata hashes; changing a run timestamp/compiled context is permitted, losing an original command/property is not. This is an original metadata guard, not the unbuilt Rust numerical exact-base ratchet.
+Ten original validator tests passed hosted with the capture; the follow-up now has thirteen local tests, adding full snapshot/hash validation and optional-field/schema-loss rejection. The workflow recaptures the pinned source and compares these command metadata hashes; changing a run timestamp/compiled context is permitted, losing an original command/property is not. This is an original metadata guard, not the unbuilt Rust numerical exact-base ratchet.
 
 Reproduction and original API adapter boundaries: ../../oracle/HEADLESS-CATALOG.md. Outputs and negative tests are real original/capture-tool evidence only. No Rust command implementation or whole-app parity is claimed, and parent P00/P01/P02 stay incomplete. The generic Rust coordinator/tooling endpoint remains required.
 
