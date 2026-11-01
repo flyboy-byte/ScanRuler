@@ -21,26 +21,7 @@ pub struct InvalidPlaneInput;
 
 // Pure-Rust scaled compensated norm at the source Math.hypot boundary.
 fn normalize_or_z(v: [f64; 3]) -> [f64; 3] {
-    let abs = v.map(f64::abs);
-    let max = abs[0].max(abs[1]).max(abs[2]);
-    let len = if max == 0. {
-        0.
-    } else if max.is_infinite() {
-        f64::INFINITY
-    } else if abs.iter().any(|x| x.is_nan()) {
-        f64::NAN
-    } else {
-        let mut sum = 0.;
-        let mut compensation = 0.;
-        for x in abs {
-            let scaled = x / max;
-            let summand = scaled * scaled - compensation;
-            let preliminary = sum + summand;
-            compensation = (preliminary - sum) - summand;
-            sum = preliminary;
-        }
-        sum.sqrt() * max
-    };
+    let len = crate::numeric::norm3(v);
     if len.partial_cmp(&1e-20) != Some(std::cmp::Ordering::Greater) {
         return [0., 0., 1.];
     }
