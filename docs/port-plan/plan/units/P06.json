@@ -46,7 +46,8 @@
   "rust_paths": [],
   "soft_depends_on": [],
   "open_items": [
-    "Partial 2026-11-01: io.stl.binary implements the parseBinary helper with native bit/progress comparisons; parent remains planned. io.stl.dispatch tracks format detection/ASCII continuation; welding/indexing/session integration remain open."
+    "Partial 2026-11-01: io.stl.binary implements the parseBinary helper with native bit/progress comparisons; parent remains planned. io.stl.dispatch tracks format detection/ASCII continuation; welding/indexing/session integration remain open.",
+    "Partial 2026-11-01 at 77683bf: io.stl.dispatch implements full binary/ASCII dispatch with 82 native source comparisons. Welding/indexing is the next bounded unit (io.mesh.weld); session integration and browser-Wasm runtime comparisons remain open."
   ],
   "claim_pr": null
 }
