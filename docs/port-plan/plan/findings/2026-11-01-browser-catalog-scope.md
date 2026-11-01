@@ -5,3 +5,14 @@ Unit catalog.browser (P02), based on original headless capture PR #13. The headl
 The launcher is a separate inspectable source-oracle file copied untracked into the frozen checkout; there is no nested source-string serialization or schema substitution. Its output is canonicalized and validated outside the page, with exact original sources/locks/version. Command schemas, capability flags, browser/version/language context and source helper console outcome are retained. Source/UI failures cannot become zero-command passing captures.
 
 Eight local validator tests and launcher syntax checks pass. Actual Chrome output is still pending; no browser baseline captured/accepted state is claimed yet. Production page/MCP equivalence and nested feature variants remain open.
+
+## First hosted attempt and harness correction
+
+Run 41354991898 failed the fixed 120-second readiness budget with no original
+console errors; no browser capture was claimed. Puppeteer's waitForFunction
+used its isolated world, so dynamically importing the original registry there
+did not observe the App's main-world module state. Readiness now probes via
+page.evaluate in the actual main world, retaining the same timeout and all
+viewport/scan/registry invariants. Failures explicitly mark the original helper
+failed and retain readiness JSON plus screenshots/HTML. Actual fixed capture is
+still pending; no source or numerical expectation was changed.

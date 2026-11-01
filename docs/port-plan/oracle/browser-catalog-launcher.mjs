@@ -9,26 +9,40 @@ process.env.OUT_DIR = resolve(outputDir, mode + '-diagnostics')
 process.env.SHOT_DIR = process.env.OUT_DIR
 mkdirSync(process.env.OUT_DIR, { recursive: true })
 const server = await createServer({ root, configFile: root + '/vite.config.ts', server: { host: '127.0.0.1', port: 0, strictPort: false, open: false } })
-let browser, consoleErrors = [], finish
+let browser, consoleErrors = [], finish, fail
 try {
   await server.listen()
   const url = new URL(server.resolvedUrls.local[0])
   if (mode === 'core') url.searchParams.set('plugins', 'none')
   const helpers = await import('./scripts/e2e-lib.mjs')
   finish = helpers.finish
+  fail = helpers.fail
   const launched = await helpers.launchApp({ url: url.href, agentDataOk: false, protocolTimeout: 120000 })
   browser = launched.browser
   const page = launched.page
   consoleErrors = launched.consoleErrors
-  await page.waitForFunction(async (expectedPlugins) => {
-    try {
-      const reg = await import('/src/commands/registry.ts')
-      const plugins = await import('/src/plugins/registry.ts')
-      if (!reg.listCommands().some(c => c.name === 'session.state') || plugins.plugins().length !== expectedPlugins) return false
-      const state = await reg.runCommand('session.state', {})
-      return state?.app?.viewport === true && state.scan === null
-    } catch { return false }
-  }, { timeout: 120000 }, mode === 'core' ? 0 : 2)
+  // waitForFunction uses Puppeteer's isolated world; importing the registry
+  // there observes a different module state. Probe the actual page main world.
+  const deadline = Date.now() + 120000
+  let readiness
+  while (Date.now() < deadline) {
+    readiness = await page.evaluate(async (expectedPlugins) => {
+      try {
+        const reg = await import('/src/commands/registry.ts')
+        const plugins = await import('/src/plugins/registry.ts')
+        const names = reg.listCommands().map(c => c.name)
+        if (!names.includes('session.state') || plugins.plugins().length !== expectedPlugins) return { ready: false, names, plugins: plugins.plugins().map(p => p.id) }
+        const state = await reg.runCommand('session.state', {})
+        return { ready: state?.app?.viewport === true && state.scan === null, viewport: state?.app?.viewport, scanEmpty: state.scan === null, names }
+      } catch (e) { return { ready: false, error: String(e) } }
+    }, mode === 'core' ? 0 : 2)
+    if (readiness.ready) break
+    await new Promise(resolve => setTimeout(resolve, 200))
+  }
+  if (!readiness?.ready) {
+    writeFileSync(resolve(process.env.OUT_DIR, 'readiness.json'), JSON.stringify(readiness, null, 2))
+    throw Error('Actual page registry/session did not become ready in the fixed startup budget')
+  }
   const data = await page.evaluate(async () => {
     const reg = await import('/src/commands/registry.ts')
     const plugins = await import('/src/plugins/registry.ts')
@@ -48,6 +62,9 @@ try {
   if (process.exitCode) throw Error('Original browser console/page errors failed source helper')
   data.consoleStatus = 'source-helper-pass'
   writeFileSync(resolve(outputDir, mode + '-raw.json'), JSON.stringify(data, null, 2))
+} catch (error) {
+  fail?.('Browser catalog capture failed: ' + error.message)
+  throw error
 } finally {
   if (browser && finish) await finish(browser, consoleErrors)
   await server.close()
