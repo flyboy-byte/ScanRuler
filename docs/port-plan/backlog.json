@@ -2377,7 +2377,7 @@
       ],
       "owner": "Codex",
       "branch": "codex/port-binary-stl",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/2",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [
         "src/core/parsers/stl.ts"
