@@ -15,6 +15,8 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 | 8 | #9 (base #8 branch) | Shared clipping and clipped plane fits | evidence/2026-11-01-clip.md; 19 value/selection cases |
 | 9 | #10 (base #9 branch) | Complete extents/bounds, shared helpers | evidence/2026-11-01-bounds.md; 12 cases + 106 core regressions |
 
+| 10 | centroid follow-on (base #10 branch) | Area, surface/volume centroids and closure | evidence/2026-11-01-centroid.md; 23 paired cases |
+
 Audit/merge in dependency order. After a parent merges, retarget the child to main and inspect the resulting diff before review; preserve each unit's tested SHA/evidence. Never merge a child against an unmerged parent branch as a substitute for landing on main. Regenerate backlog.json from canonical units when resolving generated-index conflicts; preserve independent P39 documentation updates from #1.
 
 For each code PR: cargo xtask ci plus its explicit ignored oracle test(s), and inspect raw paired outputs. Node is oracle-only, system Rust on Logan's host, no rustup. Browser-Wasm runtime and P36 general harness remain missing; units stay implemented, not accepted. No new dependencies or upstream source changes.
@@ -33,4 +35,6 @@ cargo test -p port-core --tests -- --ignored --nocapture
 cargo test -p port-io --tests -- --ignored --nocapture
 ```
 
-Oracle tests require Node and the frozen Git object. Inspect each raw target/*-diff run and its candidate identity, not only test counts. Shared-helper changes in #10 refresh plane/clipping/orientation evidence while retaining historical unit evidence. The next bounded implementation is mesh surface/volume centroid and closure behavior; no engine/session or browser-Wasm runtime feature exists yet.
+Oracle tests require Node and the frozen Git object. Inspect each raw target/*-diff run and its candidate identity, not only test counts. Shared-helper changes in #10 refresh plane/clipping/orientation evidence while retaining historical unit evidence. Mesh surface/volume centroid and closure behavior are now implemented in the follow-on unit; no engine/session or browser-Wasm runtime feature exists yet.
+
+Hosted Rust gates observed passing: #9 run 41349387428; #10 run 41349751575. Targeted native source comparisons are distinct from unresolved original-app timing CI and browser-Wasm execution.

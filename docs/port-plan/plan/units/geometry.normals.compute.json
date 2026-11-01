@@ -54,7 +54,9 @@
   "open_items": [
     "Browser-Wasm runtime and generic P36 ratchet remain open; native finite fixture corpus and wasm32 compilation only.",
     "Non-finite/extreme overflow geometry corpus is not yet verified; do not claim all numeric inputs accepted.",
-    "Outward orientation and its centroid/extent dependencies remain unported.",
     "Shared P05/G0 contracts and session/engine integration remain open."
+  ],
+  "resolved_items": [
+    "2026-11-01: orientation and minimal volume/extent dependencies implemented separately as geometry.normals.orient; no browser-Wasm acceptance implied."
   ]
 }

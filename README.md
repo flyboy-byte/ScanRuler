@@ -6,21 +6,21 @@ it runs natively and in the browser through WebAssembly. A faithful port, not a 
 original TypeScript stays in this repository and is the judge of every result.
 
 > [!IMPORTANT]
-> **Nothing is ported yet.** The workspace builds and passes its own gate, and no comparison with
-> the original has been run. This fork is **not** the official ScanRuler, is not endorsed by its
+> **Partial Rust operations are implemented and compared natively.** There is no complete Rust app
+> or browser-Wasm runtime parity yet; see the [audit queue](docs/port-plan/AUDIT-QUEUE.md). This fork is **not** the official ScanRuler, is not endorsed by its
 > author, is AGPL-derived, and is **not** a clean-room reimplementation. The product name is the
 > author's; this fork will need different branding before any release.
 
-## Status (2026-10-31)
+## Status (2026-11-01)
 
 | Area | State |
 | --- | --- |
-| Plan | 40 work units (P00 to P39), gates G0 to G7, in [`docs/port-plan/`](docs/port-plan/HANDOFF.md) |
-| Workspace | [`rust/`](rust/README.md): `port-core` (units, ids, transforms), empty `port-engine` / `port-io`, banner CLI, `xtask` |
+| Plan | P00 to P39 roadmap and bounded child units, gates G0 to G7, in [`docs/port-plan/`](docs/port-plan/HANDOFF.md) |
+| Workspace | [`rust/`](rust/README.md): `port-core` geometry/fitting primitives, `port-io` STL reader, empty `port-engine`, banner CLI, `xtask` |
 | Fast gate | `cd rust && cargo xtask ci`: pin check, plan checks, fmt, clippy, tests, wasm32 check. Passing. **Not a parity check** |
-| Parity harness | Not built. `cargo xtask diff` is planned (P36 to P39) |
-| Original baseline | Hosted Node 22 CI run of the unchanged original is green (3084 tests, 24 skipped; [record](docs/port-plan/evidence/2026-10-31-hosted-ci-baseline.md)). Local run and catalogs not yet done (P01, P02) |
-| Next | Capture the original's command catalogs (P02), then the first slice: binary STL read and a plane fit, compared with the original natively and in WebAssembly |
+| Comparisons | Targeted original/native suites exist; browser-Wasm runtime and generic `cargo xtask diff` / coverage ratchet remain unbuilt (P36 to P39) |
+| Original baseline | Historical hosted Node 22 green run: 3084 tests, 24 skipped ([record](docs/port-plan/evidence/2026-10-31-hosted-ci-baseline.md)). Current original-app timing failures and missing local/catalog evidence are tracked in the [audit queue](docs/port-plan/AUDIT-QUEUE.md) |
+| Next | Audit/land bounded PRs in [dependency order](docs/port-plan/AUDIT-QUEUE.md); complete G0 catalogs and browser-Wasm comparisons before acceptance, then integrate the measurement engine |
 
 ## How it is done
 
