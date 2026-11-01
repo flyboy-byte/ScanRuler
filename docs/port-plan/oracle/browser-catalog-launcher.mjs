@@ -9,20 +9,28 @@ process.env.OUT_DIR = resolve(outputDir, mode + '-diagnostics')
 process.env.SHOT_DIR = process.env.OUT_DIR
 mkdirSync(process.env.OUT_DIR, { recursive: true })
 const server = await createServer({ root, configFile: root + '/vite.config.ts', server: { host: '127.0.0.1', port: 0, strictPort: false, open: false } })
-let browser, consoleErrors = [], finish, fail
+let browser, agent, consoleErrors = [], finish, fail
 try {
   await server.listen()
   const url = new URL(server.resolvedUrls.local[0])
   if (mode === 'core') url.searchParams.set('plugins', 'none')
+  process.env.APP_URL = url.href
   const helpers = await import('./scripts/e2e-lib.mjs')
   finish = helpers.finish
   fail = helpers.fail
-  const launched = await helpers.launchApp({ url: url.href, agentDataOk: false, protocolTimeout: 120000 })
+  // Original core commands register lazily when the real agent bridge connects.
+  // Pair the original SDK/server and browser using the original E2E helpers.
+  const { startAgent } = await import('./mcp/tests/client.js')
+  const started = await helpers.launchAgent(startAgent)
+  agent = started.agent
+  url.hash = `agent=${started.port}:${started.token}`
+  const launched = await helpers.launchApp({ url: url.href, agentDataOk: true, protocolTimeout: 120000 })
   browser = launched.browser
   const page = launched.page
   consoleErrors = launched.consoleErrors
-  // waitForFunction uses Puppeteer's isolated world; importing the registry
-  // there observes a different module state. Probe the actual page main world.
+  const paired = await agent.call('scanruler_wait', { for: 'page', timeoutSeconds: 60 })
+  if (paired.error || paired.json?.connected !== true) throw Error('Original MCP bridge did not connect')
+  // Probe registry and real viewport state in the page main world.
   const deadline = Date.now() + 120000
   let readiness
   while (Date.now() < deadline) {
@@ -67,5 +75,6 @@ try {
   throw error
 } finally {
   if (browser && finish) await finish(browser, consoleErrors)
+  if (agent) await agent.close()
   await server.close()
 }

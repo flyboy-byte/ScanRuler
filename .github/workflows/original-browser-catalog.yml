@@ -34,6 +34,9 @@ jobs:
       - name: Install frozen original dependencies
         working-directory: .oracle
         run: npm ci
+      - name: Install frozen original MCP dependencies
+        working-directory: .oracle/mcp
+        run: npm ci
       - name: Core-only actual original app (fresh Chrome)
         run: node docs/port-plan/oracle/capture-browser-catalog.mjs .oracle core rust/target/original-browser-catalog
       - name: All-plugin actual original app (fresh Chrome)
