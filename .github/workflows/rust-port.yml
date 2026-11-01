@@ -2,7 +2,8 @@
 # Fast product gate for the Rust port: fmt, clippy, tests, wasm32 check and the plan
 # checks, all through `cargo xtask ci`. This is NOT the parity gate: the differential
 # suites against the original (`cargo xtask diff-ci`) do not exist yet, so a green run
-# here proves the scaffold builds and nothing about numerical parity. See
+# here proves the fast checks only. A separate step compares the binary STL helper
+# against the frozen original; it does not establish whole-product parity. See
 # docs/port-plan/CI-AND-REGRESSIONS.md and repo-bootstrap/.github/workflows/port-gate.yml.example.
 name: Rust port (fast gate)
 on:

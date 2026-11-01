@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust binary STL decoder** (2026-11-01): port triangle coordinate decoding and progress callbacks with bounded resource errors, seeded comparisons against the frozen original, and retained raw CI evidence. Full STL dispatch and scan loading remain in progress.
+
 - **Ask your agent to update its connector** (2026-10-31). The banner that says
   your ScanRuler connector is out of date now starts with a sentence to copy and
   paste into your AI agent's chat, and the agent changes the setting for you. All

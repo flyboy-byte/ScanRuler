@@ -1,0 +1,67 @@
+{
+  "id": "io.stl.binary",
+  "parent": "P06",
+  "title": "Port binary STL triangle decoding",
+  "gate": "G2",
+  "status": "implemented",
+  "depends_on": [
+    "P05"
+  ],
+  "soft_depends_on": [
+    "P36"
+  ],
+  "scope": "The complete parseBinary helper body only: explicit count, Float32 triangle soup and progress. No parseSTL dispatcher or ASCII parser, no welding or session command. Caller resource guards are explicit Rust API boundaries.",
+  "acceptance": [
+    "Original/native coordinate bits, ordering and progress compare on stable seeded inputs and IEEE edge cases.",
+    "Successful branches and original byte-access boundaries preserved; resource errors bounded.",
+    "Native and browser-Wasm runtime comparison required before accepting the unit."
+  ],
+  "owner": "Codex",
+  "branch": "codex/port-binary-stl",
+  "claim_pr": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/parsers/stl.ts"
+  ],
+  "source_mapping": "parseBinary full helper body; parseSTL and parseAscii remain unported",
+  "symbols": [
+    "parseBinary"
+  ],
+  "rust_paths": [
+    "rust/crates/port-io/src/stl.rs",
+    "rust/crates/port-io/tests/binary_stl.rs"
+  ],
+  "implemented_commit": "5ee3881d887a4720c6a7cf5ca7a675333e6e8e62",
+  "evidence": [
+    {
+      "kind": "differential",
+      "location": "evidence/2026-11-01-binary-stl-cases.json",
+      "candidate_sha": "5ee3881d887a4720c6a7cf5ca7a675333e6e8e62",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "case_ids": [
+        "empty",
+        "empty_no_header",
+        "ieee754",
+        "missing_final_attributes",
+        "one",
+        "progress",
+        "progress_twice",
+        "seed_7",
+        "seed_99",
+        "trailer",
+        "truncated"
+      ]
+    },
+    {
+      "kind": "report",
+      "location": "evidence/2026-11-01-binary-stl.md",
+      "candidate_sha": "5ee3881d887a4720c6a7cf5ca7a675333e6e8e62"
+    }
+  ],
+  "open_items": [
+    "Native exact comparisons pass locally using Node 20.20.2; hosted Node 22 comparison configured but not yet observed.",
+    "Browser-Wasm runtime comparison is not built; only wasm32 compile check passes. P36 general paired harness/coverage ratchet remains open.",
+    "P05 shared buffer/frame contracts and G0 prerequisites remain unaccepted; no promotion of parent P06 or whole scan import.",
+    "Dispatcher and ASCII continuation tracked separately as io.stl.dispatch."
+  ]
+}

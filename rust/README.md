@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # rust/: the pure-Rust port
 
-Work in progress, 2026-10-31. The binary STL triangle decoder is the first bounded port; see [the guide](../docs/guide/README.md)
+Work in progress, 2026-11-01. The binary STL triangle decoder is the first bounded port; see [the guide](../docs/guide/README.md)
 and [the plan](../docs/port-plan/HANDOFF.md).
 
 | Crate | Role | Contents today |
