@@ -34,10 +34,12 @@ fn cases() -> Vec<Case> {
             });
         }
     }
-    for mode in 1..=4 {
+    for mode in 1..=6 {
         let mut p = vec![0.; 60];
         for i in 0..20 {
-            p[i * 3] = if mode == 3 {
+            p[i * 3] = if mode == 5 {
+                1.
+            } else if mode == 3 {
                 if i == 19 { -1. } else { 1. }
             } else if i == 19 {
                 100.
@@ -49,7 +51,13 @@ fn cases() -> Vec<Case> {
             id: format!("generic_{mode}"),
             p,
             idx: (0..20).collect(),
-            k: 1.,
+            k: if mode == 5 {
+                0.01
+            } else if mode == 6 {
+                f64::NAN
+            } else {
+                1.
+            },
             mode,
         });
     }
@@ -92,7 +100,7 @@ fn pinned_clip_comparison() {
         .unwrap();
     std::fs::write(dir.join("candidate.txt"), sha.stdout).unwrap();
     let fixtures = cases();
-    assert_eq!(fixtures.len(), 17);
+    assert_eq!(fixtures.len(), 19);
     for c in fixtures {
         let calls = Cell::new(0u32);
         let result = if c.mode == 0 {
