@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust dense linear solvers** (2026-11-01): port Cholesky and partial-pivot elimination with exact solution and mutated-matrix comparisons, explicit shape/resource errors and unchanged source thresholds.
+
 - **Rust winding correction** (2026-11-01): port the source signed-volume orientation heuristic, flipping normals and triangle winding together; fifteen independent full-state comparisons.
 
 - **Rust vertex normals** (2026-11-01): port area-weighted normal computation with source float32 accumulation, fallback behavior, explicit mesh guards and ten independent source comparisons. Outward orientation remains open.
