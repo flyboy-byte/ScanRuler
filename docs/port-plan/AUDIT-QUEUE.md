@@ -16,7 +16,7 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 
 | 7 | #8 (base #7 branch) | Fixed-selection plane fitting | evidence/2026-11-01-plane.md; 13 paired cases |
 
-| 8 | clipping follow-on (base #8 branch) | Shared clipping and clipped plane fits | evidence/2026-11-01-clip.md; 19 value/selection cases |
+| 8 | #9 (base #8 branch) | Shared clipping and clipped plane fits | evidence/2026-11-01-clip.md; 19 value/selection cases |
 
 Audit/merge in dependency order. After a parent merges, retarget the child to main and inspect the resulting diff before review; preserve each unit's tested SHA/evidence. Never merge a child against an unmerged parent branch as a substitute for landing on main. Regenerate backlog.json from canonical units when resolving generated-index conflicts; preserve independent P39 documentation updates from #1.
 

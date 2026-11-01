@@ -2461,7 +2461,7 @@
       ],
       "owner": "Codex",
       "branch": "codex/port-plane-clipping",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/9",
       "implemented_commit": "1c0ff45cb57eefa2b8f03c585c8c8da6d4209270",
       "evidence": [
         {
