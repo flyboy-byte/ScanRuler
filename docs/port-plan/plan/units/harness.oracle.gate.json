@@ -1,0 +1,37 @@
+{
+  "id": "harness.oracle.gate",
+  "parent": "P36",
+  "title": "Run all existing native oracle suites with guarded discovery",
+  "gate": "contributor-harness-ci",
+  "status": "implemented",
+  "depends_on": [],
+  "soft_depends_on": [
+    "P05"
+  ],
+  "scope": "One native runner for existing ignored core/IO suites, retaining their independent adapters, inputs and evidence. Not the general paired harness.",
+  "acceptance": [
+    "All eleven required entrypoints discovered; missing/duplicate or empty discovery fails. All ignored core/IO suites run and failures propagate."
+  ],
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "symbols": [],
+  "rust_paths": [
+    "rust/xtask/src/main.rs",
+    ".github/workflows/rust-port.yml"
+  ],
+  "owner": "Codex",
+  "branch": "codex/native-oracle-gate",
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/15",
+  "implemented_commit": "eeb21367b4bb0c7a27dd02910cba10201dd5a9e1",
+  "evidence": [
+    {
+      "kind": "test",
+      "location": "evidence/2026-11-01-native-oracle-gate.md",
+      "candidate_sha": "eeb21367b4bb0c7a27dd02910cba10201dd5a9e1"
+    }
+  ],
+  "open_items": [
+    "General P36 independent adapter protocol, browser-Wasm execution, accepted-unit exact-base ratchet and G0/P05 remain open.",
+    "Discovery guard freezes entrypoint names, not all case identities; individual suites enforce their own case/value contracts."
+  ]
+}
