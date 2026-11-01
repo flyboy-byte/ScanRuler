@@ -17,7 +17,7 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 
 | 10 | #11 (base #10 branch) | Area, surface/volume centroids and closure | evidence/2026-11-01-centroid.md; 23 paired cases |
 
-| 11 | robust-plane follow-on (base #11 branch) | PRNG, median consensus and robust plane fit | evidence/2026-11-01-ransac.md; 50 draw/value/state cases |
+| 11 | #12 (base #11 branch) | PRNG, median consensus and robust plane fit | evidence/2026-11-01-ransac.md; 50 draw/value/state cases |
 
 Audit/merge in dependency order. After a parent merges, retarget the child to main and inspect the resulting diff before review; preserve each unit's tested SHA/evidence. Never merge a child against an unmerged parent branch as a substitute for landing on main. Regenerate backlog.json from canonical units when resolving generated-index conflicts; preserve independent P39 documentation updates from #1.
 

@@ -32,7 +32,7 @@
   ],
   "owner": "Codex",
   "branch": "codex/port-ransac-plane",
-  "claim_pr": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/12",
   "implemented_commit": "2490952aa3edce0e889e5fe4f36246466df9cd4a",
   "evidence": [
     {
