@@ -29,7 +29,7 @@
   ],
   "owner": "Codex",
   "branch": "codex/port-stl-dispatch",
-  "claim_pr": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/3",
   "evidence": [
     {
       "kind": "differential",
