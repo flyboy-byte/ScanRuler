@@ -2595,11 +2595,11 @@
       "implemented_commit": "77683bf515590ac3f5cb8a9c3552ec64700ce44a",
       "open_items": [
         "Browser-Wasm runtime comparisons remain unbuilt; wasm32 library compilation passes only.",
-        "Native source comparison passes locally on Node 20.20.2; CI provisions Node 22 but hosted result for this unit is not yet recorded.",
         "P05/G0 contracts and general P36 paired harness/coverage ratchet remain open; no promotion to accepted or full scan import."
       ],
       "resolved_items": [
-        "2026-11-01: complete parseSTL/parseAscii bodies ported, including binary precedence, fallback, ECMAScript whitespace/parseFloat prefix handling and UTF-8 replacement/BOM behavior. No missing dispatcher continuation."
+        "2026-11-01: complete parseSTL/parseAscii bodies ported, including binary precedence, fallback, ECMAScript whitespace/parseFloat prefix handling and UTF-8 replacement/BOM behavior. No missing dispatcher continuation.",
+        "2026-11-01: hosted Rust gate and both native source suites pass on Node 22.23.4 at PR head 458d9d8 (run 41346035132); browser-Wasm runtime remains unverified."
       ]
     }
   ],

@@ -42,10 +42,14 @@ cargo test -p port-io --test binary_stl pinned_original_comparison -- --ignored 
 cargo test -p port-io --test stl_dispatch pinned_stl_dispatch_comparison -- --ignored --nocapture
 ```
 
-Fast gate: fmt/clippy, eight ordinary workspace tests, live-plan checks, nine invalid-state checker mutations and wasm32 library compilation. Both oracle tests are explicitly ignored by the ordinary gate and then executed separately. Hosted CI provisions Node 22; its result for this new unit is pending.
+Fast gate: fmt/clippy, eight ordinary workspace tests, live-plan checks, nine invalid-state checker mutations and wasm32 library compilation. Both oracle tests are explicitly ignored by the ordinary gate and then executed separately. Hosted CI also passes: [run 41346035132](https://github.com/flyboy-byte/ScanRuler/actions/runs/41346035132), PR head `458d9d8e10c30c55feb66532649976e5629ef7b3` merged with base `a8c0bb1` for testing. Node 22.23.4 ran both native suites, including all 82 dispatcher cases. The uploaded dispatcher artifact zip SHA-256 is `6ab2896e854928b9c8db07ba6116b60fa3e70da9f49e0f98510aba90989e481e`.
 
 A temporary implementation mutation added 1.0 to decoded ASCII coordinates. The live comparator rejected `ascii_triangle` for changed coordinate bytes (exit 101). The original implementation was restored before the implementation commit and the clean successful run. Failure raw outputs remain under `rust/target/stl-dispatch-diff/run-1793563963998136844/`; its identity records the dirty pre-commit tree. This is one focused comparator sensitivity check, not a claim that the general P36 mutation/coverage harness is complete.
 
 ## Open work
 
 Status stays **implemented**, not accepted. Browser-Wasm runtime comparison, G0/P05 prerequisites and the general P36 harness/ratchet remain open. No welding, topology, normals, engine command, project or UI integration is included. Next bounded source operation: `io.mesh.weld` (`weldTriangleSoup`/`hash3`/`filterDegenerateTriangles`), preserving pinned exact-bit vertex identity and order.
+
+## Separate original-app CI failure
+
+PR #2's unchanged original-app suite failed `plugins/reverse/tests/reNetworkCreases.test.ts:209` on the 1,500 ms wall-time threshold: 1,516.53 ms initially, 1,894.01 ms on one rerun ([run 41340398062](https://github.com/flyboy-byte/ScanRuler/actions/runs/41340398062)). The original source/tests are unchanged in either parser PR. These are observed timing failures, not proven harmless flakes; no test budget, comparison or source expectation was loosened. The new PR's general original-app CI is still separate from the passing Rust gate.
