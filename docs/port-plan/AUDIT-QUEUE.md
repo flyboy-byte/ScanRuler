@@ -16,6 +16,9 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 | 9 | #10 (base #9 branch) | Complete extents/bounds, shared helpers | evidence/2026-11-01-bounds.md; 12 cases + 106 core regressions |
 | 10 | #11 (base #10 branch) | Area, surface/volume centroids and closure | evidence/2026-11-01-centroid.md; 23 paired cases |
 | 11 | #12 (base #11 branch) | PRNG, median consensus and robust plane fit | evidence/2026-11-01-ransac.md; 50 draw/value/state cases |
+| 12 | #15 (base #12 branch) | Discovery-guarded native oracle gate | evidence/2026-11-01-native-oracle-gate.md |
+| independent | [#13](https://github.com/flyboy-byte/ScanRuler/pull/13) | Frozen original headless catalog | Actual built-engine core/all evidence; hosted capture passed |
+| after #13 | [#14](https://github.com/flyboy-byte/ScanRuler/pull/14) | Browser catalog capture | Harness submitted; readiness failure under investigation; no captured baseline |
 
 Audit/merge in dependency order. After a parent merges, retarget the child to main and inspect the resulting diff before review; preserve each unit's tested SHA/evidence. Never merge a child against an unmerged parent branch as a substitute for landing on main. Regenerate backlog.json from canonical units when resolving generated-index conflicts; preserve independent P39 documentation updates from #1.
 
@@ -31,8 +34,7 @@ Run the current complete local audit gate from rust/:
 
 ```bash
 cargo xtask ci
-cargo test -p port-core --tests -- --ignored --nocapture
-cargo test -p port-io --tests -- --ignored --nocapture
+cargo xtask oracle
 ```
 
 Oracle tests require Node and the frozen Git object. Inspect each raw target/*-diff run and its candidate identity, not only test counts. Shared-helper changes in #10 refresh plane/clipping/orientation evidence while retaining historical unit evidence. Mesh surface/volume centroid and closure behavior are now implemented in the follow-on unit; no engine/session or browser-Wasm runtime feature exists yet.

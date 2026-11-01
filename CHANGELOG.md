@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust native regression gate** (2026-11-01): one discovery-guarded command runs all eleven existing source suites; CI retains all raw evidence and fails if a required suite disappears.
+
 - **Rust robust plane estimation** (2026-11-01): port deterministic mulberry32 sampling, shared median consensus and clipped robust planes, with fifty independent PRNG/value/inlier comparisons and unchanged source thresholds.
 
 - **Rust mesh centroids** (2026-11-01): port surface-area sums, area/volume centroids and the original two-origin closure heuristic, with twenty-three independent value/state comparisons and updated partial-port orientation docs.
