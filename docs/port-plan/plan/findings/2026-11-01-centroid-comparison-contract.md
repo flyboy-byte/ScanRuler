@@ -1,0 +1,3 @@
+# Mesh centroid contract — pre-registered 2026-11-01
+
+Port complete triangleAreaSum/meshCentroid using existing full indexed extents, pure-Rust norm and tetraVolume6. Compare closure/volume-presence and lengths exactly; all area/centroid/volume values under the existing fixed 1e-12*(1+abs(original)) f64 norm boundary budget. Keep signed tetra sums, repeated tetraVolume calls, area-weighted origin, second-origin offsets and CLOSED_TOLERANCE=0.01. Open-mesh volumeMm3 remains reported even when volume centroid is null. No topological closure substitution. Finite seeded/scaled/translated closed and open meshes, empty/zero-area fallbacks required; broader nonfinite and browser-Wasm remain open.
