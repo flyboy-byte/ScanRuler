@@ -2666,7 +2666,7 @@
       ],
       "owner": "Codex",
       "branch": "codex/port-mesh-bounds",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/10",
       "implemented_commit": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
       "evidence": [
         {
