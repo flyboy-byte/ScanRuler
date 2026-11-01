@@ -1,0 +1,60 @@
+{
+  "id": "geometry.normals.compute",
+  "parent": "P06",
+  "title": "Port area-weighted per-vertex normal computation",
+  "gate": "G2",
+  "status": "implemented",
+  "depends_on": [
+    "P05"
+  ],
+  "soft_depends_on": [
+    "P36",
+    "io.mesh.weld"
+  ],
+  "scope": "Complete computeVertexNormals body only; preserve float32 accumulator assignment order and fallback. orientNormalsOutward remains a separate missing continuation.",
+  "acceptance": [
+    "Independent original/native/browser-Wasm output values on fixed seeded geometry and boundary meshes.",
+    "Safe explicit host guards, bounded allocation and stable winding semantics."
+  ],
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/geometry/normals.ts"
+  ],
+  "symbols": [
+    "computeVertexNormals"
+  ],
+  "rust_paths": [
+    "rust/crates/port-core/src/normals.rs",
+    "rust/crates/port-core/tests/normals.rs"
+  ],
+  "owner": "Codex",
+  "branch": "codex/port-vertex-normals",
+  "claim_pr": null,
+  "implemented_commit": "4a5aac469e5fafc4b3689aeb593df860990cbce9",
+  "evidence": [
+    {
+      "kind": "differential",
+      "location": "evidence/2026-11-01-normal-cases.csv",
+      "candidate_sha": "4a5aac469e5fafc4b3689aeb593df860990cbce9",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "case_ids": [
+        "collapsed",
+        "empty",
+        "isolated",
+        "repeated_indices",
+        "seed_1",
+        "seed_1039",
+        "seed_7",
+        "seed_99",
+        "tiny_fallback",
+        "triangle"
+      ]
+    }
+  ],
+  "open_items": [
+    "Browser-Wasm runtime and generic P36 ratchet remain open; native finite fixture corpus and wasm32 compilation only.",
+    "Non-finite/extreme overflow geometry corpus is not yet verified; do not claim all numeric inputs accepted.",
+    "Outward orientation and its centroid/extent dependencies remain unported.",
+    "Shared P05/G0 contracts and session/engine integration remain open."
+  ]
+}

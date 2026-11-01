@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust vertex normals** (2026-11-01): port area-weighted normal computation with source float32 accumulation, fallback behavior, explicit mesh guards and ten independent source comparisons. Outward orientation remains open.
+
 - **Rust mesh welding** (2026-11-01): preserve exact-bit vertex identity, stable indices and index-degenerate filtering, with 15 live original/native comparisons including the two-million-vertex progress boundary.
 
 - **Rust STL format reader** (2026-11-01): add binary/ASCII format detection, ASCII numeric-prefix and Unicode handling, explicit resource limits, and 82 comparisons against the pinned original. Mesh welding and session loading remain open.
