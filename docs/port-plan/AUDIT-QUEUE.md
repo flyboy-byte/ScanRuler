@@ -12,7 +12,7 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 
 | 5 | #6 (base #5 branch) | Outward normal/winding correction | evidence/2026-11-01-orientation.md; 15 state comparisons |
 
-| 6 | linear solver follow-on (base #6 branch) | Cholesky and elimination | evidence/2026-11-01-linear.md; 22 value/state cases |
+| 6 | #7 (base #6 branch) | Cholesky and elimination | evidence/2026-11-01-linear.md; 22 value/state cases |
 
 Audit/merge in dependency order. After a parent merges, retarget the child to main and inspect the resulting diff before review; preserve each unit's tested SHA/evidence. Never merge a child against an unmerged parent branch as a substitute for landing on main. Regenerate backlog.json from canonical units when resolving generated-index conflicts; preserve independent P39 documentation updates from #1.
 
