@@ -18,7 +18,7 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 | 11 | #12 (base #11 branch) | PRNG, median consensus and robust plane fit | evidence/2026-11-01-ransac.md; 50 draw/value/state cases |
 | 12 | #15 (base #12 branch) | Discovery-guarded native oracle gate | evidence/2026-11-01-native-oracle-gate.md |
 | independent | [#13](https://github.com/flyboy-byte/ScanRuler/pull/13) | Frozen original headless catalog | Actual built-engine core/all evidence; hosted capture passed |
-| after #13 | [#14](https://github.com/flyboy-byte/ScanRuler/pull/14) | Browser catalog capture | Harness submitted; readiness failure under investigation; no captured baseline |
+| after #13 | [#14](https://github.com/flyboy-byte/ScanRuler/pull/14) | Browser catalog capture | Actual original Chrome core/all captured; evidence and immutable schema guards on #14 |
 
 Audit/merge in dependency order. After a parent merges, retarget the child to main and inspect the resulting diff before review; preserve each unit's tested SHA/evidence. Never merge a child against an unmerged parent branch as a substitute for landing on main. Regenerate backlog.json from canonical units when resolving generated-index conflicts; preserve independent P39 documentation updates from #1.
 
@@ -42,3 +42,5 @@ Oracle tests require Node and the frozen Git object. Inspect each raw target/*-d
 Hosted Rust gates observed passing: #9 run 41349387428; #10 run 41349751575. Targeted native source comparisons are distinct from unresolved original-app timing CI and browser-Wasm execution.
 
 Hosted Rust gate observed passing: #11 run 41350575050. Confirmed #6 original-app failure is the same unchanged reNetworkCreases.test.ts:209 timing gate, 1996.27 ms vs 1500 ms (run 41348317870); no source expectation was relaxed.
+
+Submission checkpoint 2026-11-01: #13 current-head checks all passed (original-app CI 41354547773 and headless capture 41354547806). #14 actual Chrome capture passed run 41356099428 after real original MCP pairing; snapshots committed and current recapture pending. #15 hosted Rust gate passed 41356040853 (all eleven native suites); original-app CI still running at this checkpoint. #12 Rust gate passed 41351565751; its separate original-app failure is confirmed reNetworkCreases.test.ts:209, 1872.05 ms vs 1500 ms (41351565764). #9 has the same failure at 1536.11 ms (41349387418). No thresholds changed and no merges performed.
