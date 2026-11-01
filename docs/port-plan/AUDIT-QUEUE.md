@@ -10,7 +10,7 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 | 4 | #5 (base #4 branch) | Area-weighted normals | evidence/2026-11-01-normals.md; ten native cases |
 | 3 | #4 (base #3 branch) | Exact-bit welding/filtering | evidence/2026-11-01-weld.md; 15 native cases |
 
-| 5 | orientation follow-on (base #5 branch) | Outward normal/winding correction | evidence/2026-11-01-orientation.md; 15 state comparisons |
+| 5 | #6 (base #5 branch) | Outward normal/winding correction | evidence/2026-11-01-orientation.md; 15 state comparisons |
 
 Audit/merge in dependency order. After a parent merges, retarget the child to main and inspect the resulting diff before review; preserve each unit's tested SHA/evidence. Never merge a child against an unmerged parent branch as a substitute for landing on main. Regenerate backlog.json from canonical units when resolving generated-index conflicts; preserve independent P39 documentation updates from #1.
 

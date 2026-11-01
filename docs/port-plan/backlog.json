@@ -2453,7 +2453,7 @@
       ],
       "owner": "Codex",
       "branch": "codex/port-mesh-orientation",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/6",
       "implemented_commit": "60115e832f9b28c2322d0ec3dc3681e0495c139b",
       "evidence": [
         {
