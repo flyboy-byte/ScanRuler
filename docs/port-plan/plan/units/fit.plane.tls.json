@@ -5,7 +5,8 @@
   "gate": "G2",
   "status": "implemented",
   "depends_on": [
-    "P05"
+    "P05",
+    "geometry.bounds"
   ],
   "soft_depends_on": [
     "P36",
@@ -30,17 +31,18 @@
   ],
   "rust_paths": [
     "rust/crates/port-core/src/plane.rs",
-    "rust/crates/port-core/tests/plane.rs"
+    "rust/crates/port-core/tests/plane.rs",
+    "rust/crates/port-core/src/numeric.rs"
   ],
   "owner": "Codex",
   "branch": "codex/port-plane-tls",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/8",
-  "implemented_commit": "8ce7bb8b0112f64cda772a30724b81ce8977efa3",
+  "implemented_commit": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
   "evidence": [
     {
       "kind": "differential",
-      "location": "evidence/2026-11-01-plane-cases.csv",
-      "candidate_sha": "8ce7bb8b0112f64cda772a30724b81ce8977efa3",
+      "location": "evidence/2026-11-01-bounds-callers.csv",
+      "candidate_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "case_ids": [
         "coincident",
@@ -64,5 +66,34 @@
     "G0/P05 and general P36 exact-base ratchet remain incomplete.",
     "Clipping, robust starts, splitting, selection growth and engine/session integration are missing continuations tracked by parent P07.",
     "The compensated norm is the explicit Math.hypot portability boundary; further platforms must satisfy the frozen tolerance without relaxation."
+  ],
+  "history": [
+    {
+      "reason": "2026-11-01 shared norm/extent extraction; original implementation evidence retained",
+      "implemented_commit": "8ce7bb8b0112f64cda772a30724b81ce8977efa3",
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-01-plane-cases.csv",
+          "candidate_sha": "8ce7bb8b0112f64cda772a30724b81ce8977efa3",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "coincident",
+            "collinear",
+            "empty",
+            "horizontal",
+            "insufficient",
+            "tilted_1039_false",
+            "tilted_1039_true",
+            "tilted_1_false",
+            "tilted_1_true",
+            "tilted_7_false",
+            "tilted_7_true",
+            "tilted_99_false",
+            "tilted_99_true"
+          ]
+        }
+      ]
+    }
   ]
 }

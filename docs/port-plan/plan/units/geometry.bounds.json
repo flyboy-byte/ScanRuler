@@ -1,0 +1,62 @@
+{
+  "id": "geometry.bounds",
+  "parent": "P06",
+  "title": "Port complete extents and mesh bounds",
+  "gate": "G2",
+  "status": "implemented",
+  "depends_on": [
+    "P05"
+  ],
+  "soft_depends_on": [
+    "P36"
+  ],
+  "scope": "Complete extentOf/extentOfIndexed/boundsOf plus shared pure-Rust norm primitive extracted without formula change from the private plane co-port. Orientation now calls the full extent primitive.",
+  "acceptance": [
+    "Independent original/native/browser-Wasm extents/center identities and radius under pre-registered contract.",
+    "Preserve empty distinctions, signed-zero comparison order, explicit count/indices and changed-caller regression coverage."
+  ],
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/geometry/bounds.ts"
+  ],
+  "symbols": [
+    "extentOf",
+    "extentOfIndexed",
+    "boundsOf"
+  ],
+  "rust_paths": [
+    "rust/crates/port-core/src/bounds.rs",
+    "rust/crates/port-core/src/numeric.rs",
+    "rust/crates/port-core/tests/bounds.rs"
+  ],
+  "owner": "Codex",
+  "branch": "codex/port-mesh-bounds",
+  "claim_pr": null,
+  "implemented_commit": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
+  "evidence": [
+    {
+      "kind": "differential",
+      "location": "evidence/2026-11-01-bounds-cases.csv",
+      "candidate_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "case_ids": [
+        "empty",
+        "huge",
+        "point",
+        "prefix",
+        "seed_1",
+        "seed_1039",
+        "seed_7",
+        "seed_99",
+        "tiny_radius",
+        "triangle",
+        "zero_00000000",
+        "zero_80000000"
+      ]
+    }
+  ],
+  "open_items": [
+    "Browser-Wasm runtime, broad nonfinite corpus, G0/P05 and generic P36 ratchet remain open.",
+    "No broad centroid, scene or engine integration is claimed."
+  ]
+}

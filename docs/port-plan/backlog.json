@@ -2462,12 +2462,12 @@
       "owner": "Codex",
       "branch": "codex/port-plane-clipping",
       "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/9",
-      "implemented_commit": "1c0ff45cb57eefa2b8f03c585c8c8da6d4209270",
+      "implemented_commit": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
       "evidence": [
         {
           "kind": "differential",
-          "location": "evidence/2026-11-01-clip-cases.csv",
-          "candidate_sha": "1c0ff45cb57eefa2b8f03c585c8c8da6d4209270",
+          "location": "evidence/2026-11-01-bounds-callers.csv",
+          "candidate_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
           "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
           "case_ids": [
             "generic_1",
@@ -2497,6 +2497,41 @@
         "P05/G0 and generic P36 exact-base ratchet remain open.",
         "No robust starts, two-plane split, region growth or engine/session integration.",
         "Other fitted shapes must reuse this shared generic body and add model-specific comparison evidence."
+      ],
+      "history": [
+        {
+          "reason": "2026-11-01 shared norm/extent extraction; original implementation evidence retained",
+          "implemented_commit": "1c0ff45cb57eefa2b8f03c585c8c8da6d4209270",
+          "evidence": [
+            {
+              "kind": "differential",
+              "location": "evidence/2026-11-01-clip-cases.csv",
+              "candidate_sha": "1c0ff45cb57eefa2b8f03c585c8c8da6d4209270",
+              "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+              "case_ids": [
+                "generic_1",
+                "generic_2",
+                "generic_3",
+                "generic_4",
+                "generic_5",
+                "generic_6",
+                "insufficient",
+                "seed_1039_k0",
+                "seed_1039_k1",
+                "seed_1039_k3",
+                "seed_1_k0",
+                "seed_1_k1",
+                "seed_1_k3",
+                "seed_7_k0",
+                "seed_7_k1",
+                "seed_7_k3",
+                "seed_99_k0",
+                "seed_99_k1",
+                "seed_99_k3"
+              ]
+            }
+          ]
+        }
       ]
     },
     {
@@ -2506,7 +2541,8 @@
       "gate": "G2",
       "status": "implemented",
       "depends_on": [
-        "P05"
+        "P05",
+        "geometry.bounds"
       ],
       "soft_depends_on": [
         "P36",
@@ -2531,17 +2567,18 @@
       ],
       "rust_paths": [
         "rust/crates/port-core/src/plane.rs",
-        "rust/crates/port-core/tests/plane.rs"
+        "rust/crates/port-core/tests/plane.rs",
+        "rust/crates/port-core/src/numeric.rs"
       ],
       "owner": "Codex",
       "branch": "codex/port-plane-tls",
       "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/8",
-      "implemented_commit": "8ce7bb8b0112f64cda772a30724b81ce8977efa3",
+      "implemented_commit": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
       "evidence": [
         {
           "kind": "differential",
-          "location": "evidence/2026-11-01-plane-cases.csv",
-          "candidate_sha": "8ce7bb8b0112f64cda772a30724b81ce8977efa3",
+          "location": "evidence/2026-11-01-bounds-callers.csv",
+          "candidate_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
           "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
           "case_ids": [
             "coincident",
@@ -2565,6 +2602,97 @@
         "G0/P05 and general P36 exact-base ratchet remain incomplete.",
         "Clipping, robust starts, splitting, selection growth and engine/session integration are missing continuations tracked by parent P07.",
         "The compensated norm is the explicit Math.hypot portability boundary; further platforms must satisfy the frozen tolerance without relaxation."
+      ],
+      "history": [
+        {
+          "reason": "2026-11-01 shared norm/extent extraction; original implementation evidence retained",
+          "implemented_commit": "8ce7bb8b0112f64cda772a30724b81ce8977efa3",
+          "evidence": [
+            {
+              "kind": "differential",
+              "location": "evidence/2026-11-01-plane-cases.csv",
+              "candidate_sha": "8ce7bb8b0112f64cda772a30724b81ce8977efa3",
+              "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+              "case_ids": [
+                "coincident",
+                "collinear",
+                "empty",
+                "horizontal",
+                "insufficient",
+                "tilted_1039_false",
+                "tilted_1039_true",
+                "tilted_1_false",
+                "tilted_1_true",
+                "tilted_7_false",
+                "tilted_7_true",
+                "tilted_99_false",
+                "tilted_99_true"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geometry.bounds",
+      "parent": "P06",
+      "title": "Port complete extents and mesh bounds",
+      "gate": "G2",
+      "status": "implemented",
+      "depends_on": [
+        "P05"
+      ],
+      "soft_depends_on": [
+        "P36"
+      ],
+      "scope": "Complete extentOf/extentOfIndexed/boundsOf plus shared pure-Rust norm primitive extracted without formula change from the private plane co-port. Orientation now calls the full extent primitive.",
+      "acceptance": [
+        "Independent original/native/browser-Wasm extents/center identities and radius under pre-registered contract.",
+        "Preserve empty distinctions, signed-zero comparison order, explicit count/indices and changed-caller regression coverage."
+      ],
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/geometry/bounds.ts"
+      ],
+      "symbols": [
+        "extentOf",
+        "extentOfIndexed",
+        "boundsOf"
+      ],
+      "rust_paths": [
+        "rust/crates/port-core/src/bounds.rs",
+        "rust/crates/port-core/src/numeric.rs",
+        "rust/crates/port-core/tests/bounds.rs"
+      ],
+      "owner": "Codex",
+      "branch": "codex/port-mesh-bounds",
+      "claim_pr": null,
+      "implemented_commit": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-01-bounds-cases.csv",
+          "candidate_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "empty",
+            "huge",
+            "point",
+            "prefix",
+            "seed_1",
+            "seed_1039",
+            "seed_7",
+            "seed_99",
+            "tiny_radius",
+            "triangle",
+            "zero_00000000",
+            "zero_80000000"
+          ]
+        }
+      ],
+      "open_items": [
+        "Browser-Wasm runtime, broad nonfinite corpus, G0/P05 and generic P36 ratchet remain open.",
+        "No broad centroid, scene or engine integration is claimed."
       ]
     },
     {
@@ -2634,7 +2762,8 @@
       "gate": "G2",
       "status": "implemented",
       "depends_on": [
-        "P05"
+        "P05",
+        "geometry.bounds"
       ],
       "soft_depends_on": [
         "P36",
@@ -2658,17 +2787,18 @@
       ],
       "rust_paths": [
         "rust/crates/port-core/src/orientation.rs",
-        "rust/crates/port-core/tests/orientation.rs"
+        "rust/crates/port-core/tests/orientation.rs",
+        "rust/crates/port-core/src/bounds.rs"
       ],
       "owner": "Codex",
       "branch": "codex/port-mesh-orientation",
       "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/6",
-      "implemented_commit": "60115e832f9b28c2322d0ec3dc3681e0495c139b",
+      "implemented_commit": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
       "evidence": [
         {
           "kind": "differential",
-          "location": "evidence/2026-11-01-orientation-cases.csv",
-          "candidate_sha": "60115e832f9b28c2322d0ec3dc3681e0495c139b",
+          "location": "evidence/2026-11-01-bounds-callers.csv",
+          "candidate_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
           "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
           "case_ids": [
             "empty",
@@ -2694,6 +2824,37 @@
         "Open/non-finite meshes and threshold-adjacent fuzz corpus remain to be compared; implemented, not accepted.",
         "No automatic pipeline/session integration; a file with settled winding must retain its source caller bypass.",
         "Future bounds/centroid work should reuse/audit these co-ported reductions rather than silently duplicating them."
+      ],
+      "history": [
+        {
+          "reason": "2026-11-01 shared norm/extent extraction; original implementation evidence retained",
+          "implemented_commit": "60115e832f9b28c2322d0ec3dc3681e0495c139b",
+          "evidence": [
+            {
+              "kind": "differential",
+              "location": "evidence/2026-11-01-orientation-cases.csv",
+              "candidate_sha": "60115e832f9b28c2322d0ec3dc3681e0495c139b",
+              "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+              "case_ids": [
+                "empty",
+                "point",
+                "sheet",
+                "tetra_0.001_0_false",
+                "tetra_0.001_0_true",
+                "tetra_0.001_1039_false",
+                "tetra_0.001_1039_true",
+                "tetra_10000_0_false",
+                "tetra_10000_0_true",
+                "tetra_10000_1039_false",
+                "tetra_10000_1039_true",
+                "tetra_1_0_false",
+                "tetra_1_0_true",
+                "tetra_1_1039_false",
+                "tetra_1_1039_true"
+              ]
+            }
+          ]
+        }
       ]
     },
     {

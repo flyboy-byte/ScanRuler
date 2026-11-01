@@ -18,6 +18,8 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 
 | 8 | #9 (base #8 branch) | Shared clipping and clipped plane fits | evidence/2026-11-01-clip.md; 19 value/selection cases |
 
+| 9 | bounds follow-on (base #9 branch) | Complete extents/bounds, shared helpers | evidence/2026-11-01-bounds.md; 12 cases + 106 core regressions |
+
 Audit/merge in dependency order. After a parent merges, retarget the child to main and inspect the resulting diff before review; preserve each unit's tested SHA/evidence. Never merge a child against an unmerged parent branch as a substitute for landing on main. Regenerate backlog.json from canonical units when resolving generated-index conflicts; preserve independent P39 documentation updates from #1.
 
 For each code PR: cargo xtask ci plus its explicit ignored oracle test(s), and inspect raw paired outputs. Node is oracle-only, system Rust on Logan's host, no rustup. Browser-Wasm runtime and P36 general harness remain missing; units stay implemented, not accepted. No new dependencies or upstream source changes.

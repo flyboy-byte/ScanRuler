@@ -5,7 +5,8 @@
   "gate": "G2",
   "status": "implemented",
   "depends_on": [
-    "P05"
+    "P05",
+    "geometry.bounds"
   ],
   "soft_depends_on": [
     "P36",
@@ -29,17 +30,18 @@
   ],
   "rust_paths": [
     "rust/crates/port-core/src/orientation.rs",
-    "rust/crates/port-core/tests/orientation.rs"
+    "rust/crates/port-core/tests/orientation.rs",
+    "rust/crates/port-core/src/bounds.rs"
   ],
   "owner": "Codex",
   "branch": "codex/port-mesh-orientation",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/6",
-  "implemented_commit": "60115e832f9b28c2322d0ec3dc3681e0495c139b",
+  "implemented_commit": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
   "evidence": [
     {
       "kind": "differential",
-      "location": "evidence/2026-11-01-orientation-cases.csv",
-      "candidate_sha": "60115e832f9b28c2322d0ec3dc3681e0495c139b",
+      "location": "evidence/2026-11-01-bounds-callers.csv",
+      "candidate_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "case_ids": [
         "empty",
@@ -65,5 +67,36 @@
     "Open/non-finite meshes and threshold-adjacent fuzz corpus remain to be compared; implemented, not accepted.",
     "No automatic pipeline/session integration; a file with settled winding must retain its source caller bypass.",
     "Future bounds/centroid work should reuse/audit these co-ported reductions rather than silently duplicating them."
+  ],
+  "history": [
+    {
+      "reason": "2026-11-01 shared norm/extent extraction; original implementation evidence retained",
+      "implemented_commit": "60115e832f9b28c2322d0ec3dc3681e0495c139b",
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-01-orientation-cases.csv",
+          "candidate_sha": "60115e832f9b28c2322d0ec3dc3681e0495c139b",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "empty",
+            "point",
+            "sheet",
+            "tetra_0.001_0_false",
+            "tetra_0.001_0_true",
+            "tetra_0.001_1039_false",
+            "tetra_0.001_1039_true",
+            "tetra_10000_0_false",
+            "tetra_10000_0_true",
+            "tetra_10000_1039_false",
+            "tetra_10000_1039_true",
+            "tetra_1_0_false",
+            "tetra_1_0_true",
+            "tetra_1_1039_false",
+            "tetra_1_1039_true"
+          ]
+        }
+      ]
+    }
   ]
 }
