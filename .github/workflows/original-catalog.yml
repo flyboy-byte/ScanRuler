@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+name: Frozen original headless catalogs (not Rust parity)
+on:
+  pull_request:
+    paths: ['docs/port-plan/oracle/*catalog*.mjs', 'docs/port-plan/reference-pin.json', '.github/workflows/original-catalog.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: original-catalog-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 2cd89c6769a10c27ee7754b477ada521c9ef5cb7
+          path: .oracle
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: .oracle/package-lock.json
+      - name: Validator negative tests
+        run: node --test docs/port-plan/oracle/catalog-contract.test.mjs
+      - name: Prepare raw evidence directory
+        run: mkdir -p rust/target/original-catalog
+      - name: Install frozen original dependencies
+        working-directory: .oracle
+        run: npm ci
+      - name: Build the original headless engine
+        working-directory: .oracle
+        run: npm run build:engine > ../rust/target/original-catalog/build-engine.log 2>&1
+      - name: Build annotation-free API re-export adapter with original Vite config
+        run: node docs/port-plan/oracle/build-catalog-adapter.mjs .oracle > rust/target/original-catalog/build-adapter.log 2>&1
+      - name: Core-only live original headless registry
+        run: node docs/port-plan/oracle/capture-headless-catalog.mjs .oracle core rust/target/original-catalog/core.json
+      - name: All-plugin live original headless registry (fresh process)
+        run: node docs/port-plan/oracle/capture-headless-catalog.mjs .oracle all rust/target/original-catalog/all.json
+      - name: Preserve raw captures and failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frozen-original-headless-catalogs
+          path: rust/target/original-catalog/
+          if-no-files-found: warn
+          retention-days: 30
