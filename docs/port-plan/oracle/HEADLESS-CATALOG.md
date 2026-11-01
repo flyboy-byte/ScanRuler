@@ -38,3 +38,8 @@ This hashes complete command metadata with only object-key canonicalization,
 retaining all array order and values. Run context can differ, source metadata
 cannot silently shrink. A new pin or changed baseline requires separate source
 evidence/review, not blessing Rust-produced outputs.
+
+The workflow also starts the actual original dist-engine/engine.mjs bundle in
+fresh core/all processes and compares every offered schema, every unavailable
+name, installed plugins and startup state to the adapter capture. This checks
+the adapter does not alter the original public API; it is not Rust parity.
