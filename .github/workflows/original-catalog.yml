@@ -2,7 +2,7 @@
 name: Frozen original headless catalogs (not Rust parity)
 on:
   pull_request:
-    paths: ['docs/port-plan/oracle/*catalog*.mjs', 'docs/port-plan/reference-pin.json', '.github/workflows/original-catalog.yml']
+    paths: ['docs/port-plan/oracle/*catalog*.mjs', 'docs/port-plan/reference-pin.json', 'docs/port-plan/evidence/headless-2026-11-01/**', '.github/workflows/original-catalog.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -43,6 +43,8 @@ jobs:
         run: node docs/port-plan/oracle/capture-headless-catalog.mjs .oracle core rust/target/original-catalog/core.json
       - name: All-plugin live original headless registry (fresh process)
         run: node docs/port-plan/oracle/capture-headless-catalog.mjs .oracle all rust/target/original-catalog/all.json
+      - name: Preserve frozen catalog metadata coverage
+        run: node docs/port-plan/oracle/verify-catalog-snapshot.mjs rust/target/original-catalog
       - name: Preserve raw captures and failures
         if: always()
         uses: actions/upload-artifact@v4

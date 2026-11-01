@@ -3,9 +3,13 @@
   "parent": "P02",
   "title": "Capture frozen original live headless command registries",
   "gate": "G0",
-  "status": "specified",
-  "depends_on": ["P00"],
-  "soft_depends_on": ["P01"],
+  "status": "baseline-captured",
+  "depends_on": [
+    "P00"
+  ],
+  "soft_depends_on": [
+    "P01"
+  ],
   "scope": "Build original headless engine and annotation-free API re-export; capture live core-only/all-plugin full schemas and headless/page-only classifications in fresh Node 22 processes. No browser catalog or feature-variant completion claim.",
   "acceptance": [
     "Frozen checkout/locks/Node identity verified; original build and session.state startup checks succeed.",
@@ -13,17 +17,38 @@
     "Validator rejects empty/dropped/duplicate/inconsistent metadata; reference failures cannot pass as catalogs."
   ],
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
-  "source_paths": ["src/headless/engine.ts", "src/commands/registry.ts", "src/plugins/registry.ts", "scripts/build-engine.mjs"],
-  "symbols": ["startEngine", "listCommands", "runsHeadless", "pluginEnabled"],
+  "source_paths": [
+    "src/headless/engine.ts",
+    "src/commands/registry.ts",
+    "src/plugins/registry.ts",
+    "scripts/build-engine.mjs"
+  ],
+  "symbols": [
+    "startEngine",
+    "listCommands",
+    "runsHeadless",
+    "pluginEnabled"
+  ],
   "rust_paths": [],
   "owner": "Codex",
   "branch": "codex/capture-headless-catalog",
-  "claim_pr": null,
-  "implemented_commit": null,
-  "evidence": [],
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/13",
+  "implemented_commit": "8b9084f27f5d0678cf62d1c883c78dc0d13f8fb8",
+  "evidence": [
+    {
+      "kind": "baseline",
+      "location": "evidence/headless-2026-11-01/manifest.json",
+      "candidate_sha": "8b9084f27f5d0678cf62d1c883c78dc0d13f8fb8",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "case_ids": [
+        "headless.core",
+        "headless.all"
+      ]
+    }
+  ],
   "open_items": [
-    "Hosted original build and actual registry capture not yet observed; no baseline results claimed.",
-    "Browser core/all-plugin catalogs, static-row reconciliation and feature variants remain open under P02.",
-    "P00/P01 full baseline and whole-port Rust coordinator/tooling migration remain incomplete."
+    "Browser core/all-plugin runtime catalogs and nested feature variants remain open under P02; these snapshots are headless-only.",
+    "Static 140 command names reconcile exactly with all-plugin headless registry; browser contexts and descriptor differences still require review.",
+    "P00/P01 full/local baseline and whole-port Rust coordinator/tooling migration remain incomplete."
   ]
 }

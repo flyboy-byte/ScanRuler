@@ -27,3 +27,11 @@ export function validateCatalog(catalog) {
   for (const n of ['view.render', 'scan.open']) if (!pageOnlyNames.includes(n)) throw Error('Missing source page invariant: ' + n)
   return digest(JSON.stringify(canonical(commands)))
 }
+
+// Stable original metadata baseline only, not a Rust numerical coverage ratchet.
+export function verifyCatalogSnapshot(current, baseline) {
+  const actual = validateCatalog(current)
+  const expected = validateCatalog(baseline)
+  if (current.selection !== baseline.selection || actual !== expected) throw Error('Frozen original catalog metadata changed')
+  return actual
+}

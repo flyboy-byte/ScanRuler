@@ -21,3 +21,20 @@ Each raw JSON records frozen and candidate SHAs, app/Node/V8/OS/locale, verified
 Validation rejects zero commands, duplicate names, missing schemas/flags, offered/page list inconsistency, missing source startup invariants and incorrect plugin selection. Nine invalid mutations are tested alongside a valid synthetic validator case. Synthetic validator fixtures are not claimed as original results. Local Node 20 can test that pure validator; capture itself refuses anything other than Node 22.
 
 The independent original-catalog.yml workflow checks out the exact frozen ref separately, runs these steps and retains raw files/build failures for 30 days. Save successful generated JSON snapshots with source/run provenance before artifact expiry. Do not claim G0/P02 acceptance until browser contexts, static-row reconciliation, nested feature variants and the remaining original baseline/tool prerequisites are covered. Active oracle coordination will need the planned Rust tooling/purity work before whole-port completion.
+
+## Captured baseline
+
+Successful Node 22 run and complete schemas are saved under
+[headless-2026-11-01](../evidence/headless-2026-11-01/README.md): core 72/6/66 and
+all-plugin 140/36/104 (registered/headless/page-only). All 140 static command
+names reconcile exactly. Twelve validator/snapshot tests now guard full hashes
+and optional-field/schema loss. After capture, run:
+
+```bash
+node docs/port-plan/oracle/verify-catalog-snapshot.mjs rust/target/original-catalog
+```
+
+This hashes complete command metadata with only object-key canonicalization,
+retaining all array order and values. Run context can differ, source metadata
+cannot silently shrink. A new pin or changed baseline requires separate source
+evidence/review, not blessing Rust-produced outputs.
