@@ -34,7 +34,7 @@
   ],
   "owner": "Codex",
   "branch": "codex/port-plane-tls",
-  "claim_pr": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/8",
   "implemented_commit": "8ce7bb8b0112f64cda772a30724b81ce8977efa3",
   "evidence": [
     {
