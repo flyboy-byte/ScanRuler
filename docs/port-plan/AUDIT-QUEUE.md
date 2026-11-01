@@ -17,6 +17,8 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 
 | 10 | #11 (base #10 branch) | Area, surface/volume centroids and closure | evidence/2026-11-01-centroid.md; 23 paired cases |
 
+| 11 | robust-plane follow-on (base #11 branch) | PRNG, median consensus and robust plane fit | evidence/2026-11-01-ransac.md; 50 draw/value/state cases |
+
 Audit/merge in dependency order. After a parent merges, retarget the child to main and inspect the resulting diff before review; preserve each unit's tested SHA/evidence. Never merge a child against an unmerged parent branch as a substitute for landing on main. Regenerate backlog.json from canonical units when resolving generated-index conflicts; preserve independent P39 documentation updates from #1.
 
 For each code PR: cargo xtask ci plus its explicit ignored oracle test(s), and inspect raw paired outputs. Node is oracle-only, system Rust on Logan's host, no rustup. Browser-Wasm runtime and P36 general harness remain missing; units stay implemented, not accepted. No new dependencies or upstream source changes.
@@ -38,3 +40,5 @@ cargo test -p port-io --tests -- --ignored --nocapture
 Oracle tests require Node and the frozen Git object. Inspect each raw target/*-diff run and its candidate identity, not only test counts. Shared-helper changes in #10 refresh plane/clipping/orientation evidence while retaining historical unit evidence. Mesh surface/volume centroid and closure behavior are now implemented in the follow-on unit; no engine/session or browser-Wasm runtime feature exists yet.
 
 Hosted Rust gates observed passing: #9 run 41349387428; #10 run 41349751575. Targeted native source comparisons are distinct from unresolved original-app timing CI and browser-Wasm execution.
+
+Hosted Rust gate observed passing: #11 run 41350575050. Confirmed #6 original-app failure is the same unchanged reNetworkCreases.test.ts:209 timing gate, 1996.27 ms vs 1500 ms (run 41348317870); no source expectation was relaxed.

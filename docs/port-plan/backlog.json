@@ -2535,6 +2535,109 @@
       ]
     },
     {
+      "id": "fit.plane.ransac",
+      "parent": "P07",
+      "title": "Port deterministic consensus and robust plane estimation",
+      "gate": "G2",
+      "status": "implemented",
+      "depends_on": [
+        "fit.plane.clip",
+        "geometry.bounds"
+      ],
+      "soft_depends_on": [
+        "P36"
+      ],
+      "scope": "Complete mulberry32, typed numerical-model ransacConsensus and ransacPlane bodies, including clipped refinement. No click-region selection or two-plane split.",
+      "acceptance": [
+        "Exact source PRNG draws, candidate work/tie behavior, full ordered inliers and presence; numeric fields under fixed pre-registered contract.",
+        "Independent native/browser-Wasm original comparisons over clean/noisy/edge/outlier/refusal patches and source default constants."
+      ],
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/fit/ransac.ts",
+        "src/core/fit/plane.ts"
+      ],
+      "symbols": [
+        "mulberry32",
+        "ransacConsensus",
+        "ransacPlane"
+      ],
+      "rust_paths": [
+        "rust/crates/port-core/src/ransac.rs",
+        "rust/crates/port-core/tests/ransac.rs"
+      ],
+      "owner": "Codex",
+      "branch": "codex/port-ransac-plane",
+      "claim_pr": null,
+      "implemented_commit": "2490952aa3edce0e889e5fe4f36246466df9cd4a",
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-01-ransac-cases.csv",
+          "candidate_sha": "2490952aa3edce0e889e5fe4f36246466df9cd4a",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "collapsed",
+            "collinear",
+            "initial_tie_it0",
+            "initial_tie_it256",
+            "initial_tie_it32",
+            "insufficient",
+            "rng_0",
+            "rng_1",
+            "rng_1039",
+            "rng_2147483648",
+            "rng_24301",
+            "rng_4294967295",
+            "rng_7",
+            "rng_99",
+            "seed_1039_kind0_it0",
+            "seed_1039_kind0_it256",
+            "seed_1039_kind0_it32",
+            "seed_1039_kind1_it0",
+            "seed_1039_kind1_it256",
+            "seed_1039_kind1_it32",
+            "seed_1039_kind2_it0",
+            "seed_1039_kind2_it256",
+            "seed_1039_kind2_it32",
+            "seed_1_kind0_it0",
+            "seed_1_kind0_it256",
+            "seed_1_kind0_it32",
+            "seed_1_kind1_it0",
+            "seed_1_kind1_it256",
+            "seed_1_kind1_it32",
+            "seed_1_kind2_it0",
+            "seed_1_kind2_it256",
+            "seed_1_kind2_it32",
+            "seed_7_kind0_it0",
+            "seed_7_kind0_it256",
+            "seed_7_kind0_it32",
+            "seed_7_kind1_it0",
+            "seed_7_kind1_it256",
+            "seed_7_kind1_it32",
+            "seed_7_kind2_it0",
+            "seed_7_kind2_it256",
+            "seed_7_kind2_it32",
+            "seed_99_kind0_it0",
+            "seed_99_kind0_it256",
+            "seed_99_kind0_it32",
+            "seed_99_kind1_it0",
+            "seed_99_kind1_it256",
+            "seed_99_kind1_it32",
+            "seed_99_kind2_it0",
+            "seed_99_kind2_it256",
+            "seed_99_kind2_it32"
+          ]
+        }
+      ],
+      "open_items": [
+        "Browser-Wasm runtime, wider/nonfinite/adversarial/threshold-edge corpus and generic P36 exact-base ratchet remain open.",
+        "G0/P05 and engine/session/click-region integration remain incomplete.",
+        "Other shape adapters must reuse consensus and add successful model-specific source comparisons; no sphere/cylinder robustness claim.",
+        "Typed Rust options require nonnegative integer work counts and explicit budgets; arbitrary JavaScript callback/primitive ABI is not exposed."
+      ]
+    },
+    {
       "id": "fit.plane.tls",
       "parent": "P07",
       "title": "Port fixed-selection total-least-squares plane fitting",
