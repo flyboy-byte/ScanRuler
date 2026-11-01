@@ -2419,6 +2419,75 @@
       ]
     },
     {
+      "id": "geometry.normals.orient",
+      "parent": "P06",
+      "title": "Port outward winding and normal correction",
+      "gate": "G2",
+      "status": "implemented",
+      "depends_on": [
+        "P05"
+      ],
+      "soft_depends_on": [
+        "P36",
+        "geometry.normals.compute"
+      ],
+      "scope": "Complete orientNormalsOutward body, co-porting its minimal extent reduction and tetraVolume6 arithmetic. No full bounds/meshCentroid API claim.",
+      "acceptance": [
+        "Compare original/native/browser-Wasm boolean and all mutated normal/index values, including successful flips and no-ops.",
+        "Preserve signed-volume operation order and source threshold; safe host errors leave both arrays unchanged."
+      ],
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/geometry/normals.ts",
+        "src/core/geometry/centroid.ts",
+        "src/core/geometry/bounds.ts"
+      ],
+      "symbols": [
+        "orientNormalsOutward",
+        "tetraVolume6",
+        "extentOf (minimal internal reduction only)"
+      ],
+      "rust_paths": [
+        "rust/crates/port-core/src/orientation.rs",
+        "rust/crates/port-core/tests/orientation.rs"
+      ],
+      "owner": "Codex",
+      "branch": "codex/port-mesh-orientation",
+      "claim_pr": null,
+      "implemented_commit": "60115e832f9b28c2322d0ec3dc3681e0495c139b",
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-01-orientation-cases.csv",
+          "candidate_sha": "60115e832f9b28c2322d0ec3dc3681e0495c139b",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "empty",
+            "point",
+            "sheet",
+            "tetra_0.001_0_false",
+            "tetra_0.001_0_true",
+            "tetra_0.001_1039_false",
+            "tetra_0.001_1039_true",
+            "tetra_10000_0_false",
+            "tetra_10000_0_true",
+            "tetra_10000_1039_false",
+            "tetra_10000_1039_true",
+            "tetra_1_0_false",
+            "tetra_1_0_true",
+            "tetra_1_1039_false",
+            "tetra_1_1039_true"
+          ]
+        }
+      ],
+      "open_items": [
+        "Browser-Wasm runtime comparison, G0/P05 and generic P36 ratchet remain open.",
+        "Open/non-finite meshes and threshold-adjacent fuzz corpus remain to be compared; implemented, not accepted.",
+        "No automatic pipeline/session integration; a file with settled winding must retain its source caller bypass.",
+        "Future bounds/centroid work should reuse/audit these co-ported reductions rather than silently duplicating them."
+      ]
+    },
+    {
       "id": "io.mesh.weld",
       "parent": "P06",
       "title": "Port exact-bit triangle soup welding and index-degenerate filtering",
