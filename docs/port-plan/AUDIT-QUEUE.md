@@ -7,7 +7,7 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 | independent | #1 | Stale handoff/CI guidance | Plan checks; documentation only |
 | 1 | #2 | Binary STL helper | evidence/2026-11-01-binary-stl.md; ten successful native cases |
 | 2 | #3 (base #2 branch) | Full STL dispatch/ASCII | evidence/2026-11-01-stl-dispatch.md; 82 cases; hosted Node 22 passed |
-| 4 | normals follow-on (base #4 branch) | Area-weighted normals | evidence/2026-11-01-normals.md; ten native cases |
+| 4 | #5 (base #4 branch) | Area-weighted normals | evidence/2026-11-01-normals.md; ten native cases |
 | 3 | #4 (base #3 branch) | Exact-bit welding/filtering | evidence/2026-11-01-weld.md; 15 native cases |
 
 Audit/merge in dependency order. After a parent merges, retarget the child to main and inspect the resulting diff before review; preserve each unit's tested SHA/evidence. Never merge a child against an unmerged parent branch as a substitute for landing on main. Regenerate backlog.json from canonical units when resolving generated-index conflicts; preserve independent P39 documentation updates from #1.

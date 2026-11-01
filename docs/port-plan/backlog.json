@@ -2389,7 +2389,7 @@
       ],
       "owner": "Codex",
       "branch": "codex/port-vertex-normals",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/5",
       "implemented_commit": "4a5aac469e5fafc4b3689aeb593df860990cbce9",
       "evidence": [
         {
