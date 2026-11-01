@@ -2391,7 +2391,7 @@
       ],
       "owner": "Codex",
       "branch": "codex/port-mesh-weld",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/4",
       "evidence": [
         {
           "kind": "differential",
