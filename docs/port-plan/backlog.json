@@ -2728,7 +2728,7 @@
       ],
       "owner": "Codex",
       "branch": "codex/port-mesh-centroid",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/11",
       "implemented_commit": "1473fe4a5a30c34b091b22ad86509d21c685c5d1",
       "evidence": [
         {

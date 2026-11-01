@@ -15,7 +15,7 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 | 8 | #9 (base #8 branch) | Shared clipping and clipped plane fits | evidence/2026-11-01-clip.md; 19 value/selection cases |
 | 9 | #10 (base #9 branch) | Complete extents/bounds, shared helpers | evidence/2026-11-01-bounds.md; 12 cases + 106 core regressions |
 
-| 10 | centroid follow-on (base #10 branch) | Area, surface/volume centroids and closure | evidence/2026-11-01-centroid.md; 23 paired cases |
+| 10 | #11 (base #10 branch) | Area, surface/volume centroids and closure | evidence/2026-11-01-centroid.md; 23 paired cases |
 
 Audit/merge in dependency order. After a parent merges, retarget the child to main and inspect the resulting diff before review; preserve each unit's tested SHA/evidence. Never merge a child against an unmerged parent branch as a substitute for landing on main. Regenerate backlog.json from canonical units when resolving generated-index conflicts; preserve independent P39 documentation updates from #1.
 
