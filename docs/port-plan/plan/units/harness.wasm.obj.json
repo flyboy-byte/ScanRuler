@@ -21,7 +21,7 @@
   ],
   "owner": "Codex",
   "branch": "codex/wasm-obj-runtime",
-  "claim_pr": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/34",
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
@@ -37,7 +37,8 @@
     "bakeObjTexture"
   ],
   "rust_paths": [
-    "rust/crates/port-wasm-probe/src/lib.rs"
+    "rust/crates/port-wasm-probe/src/lib.rs",
+    "rust/crates/port-wasm-probe/src/obj.rs"
   ],
   "evidence": [],
   "open_items": [

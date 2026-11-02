@@ -10,6 +10,49 @@ export function plyPacket(payload, events) {
   out.writeUInt32LE(events.length, 5 + payload.length); events.copy(out, 9 + payload.length)
   return out
 }
+// Validate complete variable-length state before exact comparison. Counts cannot
+// drive iteration beyond the available packet; UTF-8 is part of the contract.
+function validateObjOutput(mode, bytes) {
+  let at = 0
+  const take = n => { assert.ok(Number.isSafeInteger(n) && n >= 0 && at + n <= bytes.length, 'truncated OBJ state'); const b = bytes.subarray(at, at + n); at += n; return b }
+  const byte = () => take(1)[0]
+  const word = () => take(4).readUInt32LE()
+  const text = () => new TextDecoder('utf-8', { fatal: true }).decode(take(word()))
+  const array = (width, read) => { const n = word(); assert.ok(n <= Math.floor((bytes.length - at) / width), 'invalid OBJ count'); for (let i = 0; i < n; i++) read(); return n }
+  const texts = () => array(4, text)
+  const blob = () => take(word())
+  if (mode === 5) {
+    assert.equal(take(4).toString(), 'OBJ1', 'wrong OBJ result kind')
+    const status = byte(); assert.ok(status === 0 || status === 2, 'unknown OBJ status')
+    if (status === 2) assert.ok(text().length > 0, 'empty OBJ refusal')
+    else {
+      const positions = array(4, () => take(4)); assert.equal(positions % 3, 0, 'incomplete OBJ position')
+      const indices = array(4, () => take(4)); assert.equal(indices % 3, 0, 'incomplete OBJ triangle')
+      const colors = byte(); assert.ok(colors <= 1, 'invalid OBJ color presence')
+      if (colors) assert.equal(blob().length, positions, 'missing OBJ colors')
+      const note = byte(); assert.ok(note <= 2, 'unknown OBJ texture note')
+      if (note) texts()
+    }
+    texts() // All progress messages, including a successful empty sequence.
+  } else {
+    assert.equal(take(4).toString(), 'OTX1', 'wrong OBJ helper kind')
+    const op = byte()
+    if (op === 1) text()
+    else if (op === 2) array(8, () => { text(); text() })
+    else if (op === 3) texts()
+    else if (op === 4) blob()
+    else if (op === 5) {
+      const note = byte(); assert.ok(note <= 2, 'unknown helper texture note')
+      if (note === 2) assert.equal(blob().length % 3, 0, 'incomplete RGB output')
+      if (note) texts()
+    } else throw Error('unknown OBJ helper operation')
+  }
+  assert.equal(at, bytes.length, 'trailing OBJ state')
+}
+export function successfulOutput(mode, bytes) {
+  if (mode === 5 || mode === 6) { validateObjOutput(mode, bytes); return mode === 6 || bytes[4] === 0 }
+  return mode === 1 ? bytes[0] === 1 : bytes[0] === 0
+}
 export function compareOutput(mode, expected, actual) {
   assert.equal(actual.length, expected.length, 'output byte length changed')
   assert.ok(expected.length > 0, 'empty output cannot pass')
@@ -28,7 +71,9 @@ export function compareOutput(mode, expected, actual) {
       worst = Math.max(worst, error)
     }
   }
-  if (mode === 4) {
+  if (mode === 5 || mode === 6) {
+    validateObjOutput(mode, expected); validateObjOutput(mode, actual); exact(expected, actual)
+  } else if (mode === 4) {
     assert.ok(expected.length >= 9, 'malformed PLY envelope')
     assert.ok(expected[0] === 0 || expected[0] === 2, 'unknown PLY result status')
     const n = expected.readUInt32LE(1)
@@ -108,6 +153,11 @@ export function negativePackets() {
   check(a.reset(4) === 0, 'reset before PLY host guard')
   for (let i = 0; i < tooMany.length; i++) if (a.push(tooMany.charCodeAt(i), 1) !== 0) throw Error('small PLY packet refused')
   check(a.run() !== 0 && a.length() === 0, 'PLY host budget fails without source-refusal output')
+  check(a.reset(5) === 0 && a.run() !== 0 && a.length() === 0, 'truncated OBJ packet fails without output')
+  check(a.reset(6) === 0 && a.push(255, 1) === 0 && a.run() !== 0 && a.length() === 0, 'unknown OBJ helper fails without output')
+  check(a.reset(6) === 0 && a.push(5, 1) === 0 && a.push(0xffffffff, 4) === 0 && a.run() !== 0 && a.length() === 0, 'oversized OBJ refs fail before allocation')
+  check(a.reset(5) === 0 && a.push(0, 4) === 0 && a.push(0, 1) === 0 && a.run() === 0 && a.word(0) === 0x314a424f && (a.word(4) & 255) === 2, 'OBJ source refusal is a completed result')
+  check(a.reset(6) === 0 && a.push(1, 1) === 0 && a.push(0, 4) === 0 && a.run() === 0 && a.word(0) === 0x3158544f, 'OBJ helper recovers after failed packet')
   return checks
 }
 

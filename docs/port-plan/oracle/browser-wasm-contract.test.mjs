@@ -115,7 +115,9 @@ test('browser roster preserves prior cases and only the declared new workload ex
       assert.throws(() => selectBrowserCases({ ...def, excluded: [{ id: ids[0], reason: 'unreviewed' }] }, ids))
     }
   }
-  assert.equal(count, 341)
+  assert.equal(count, 564)
+  assert.throws(() => validateBrowserRoster(defs.slice(0, 5)))
+  validateBrowserRoster(defs.slice(0, 5), 'browser.wasm.corpus.v2')
   assert.throws(() => validateBrowserRoster(defs.slice(1)))
 })
 test('PLY mismatches retain raw sidecars and actual Wasm before failing', async () => {
@@ -165,7 +167,7 @@ test('committed expanded Chrome proof reproduces all source/native/Wasm comparis
   const bytes = gunzipSync(read('raw.json.gz'))
   assert.equal(hash(bytes), manifest.raw_decoded_sha256)
   const raw = JSON.parse(bytes), definitions = JSON.parse(read('corpus.json')).suites
-  validateBrowserRoster(definitions)
+  validateBrowserRoster(definitions, JSON.parse(read('corpus.json')).contract)
   assert.equal(report.status, 'passed'); assert.equal(report.runtime, 'chrome-wasm')
   assert.equal(report.candidate_sha, manifest.candidate_sha); assert.equal(report.reference_sha, manifest.reference_sha)
   assert.equal(report.browser.moduleSha256, manifest.module_sha256); assert.equal(report.module_sha256, manifest.module_sha256)
@@ -194,4 +196,54 @@ test('committed expanded Chrome proof reproduces all source/native/Wasm comparis
       [native, 'native_sha256'], [files['wasm.bin'], 'wasm_sha256']]) assert.equal(hash(bytes), c[key])
     compareOutput(mode, original, native); compareOutput(mode, original, files['wasm.bin']); compareOutput(mode, native, files['wasm.bin'])
   }
+})
+
+test('OBJ complete original/native states validate with exact values, signed zeros, notes and progress', async () => {
+  const { readFileSync } = await import('node:fs')
+  const { successfulOutput } = await import('./browser-wasm-contract.mjs')
+  let count = 0
+  for (const [mode, name] of [[5, 'obj-mesh'], [6, 'obj-texture']]) {
+    const proof = JSON.parse(readFileSync(new URL(`../evidence/2026-11-02-${name}.json`, import.meta.url)))
+    for (const c of proof.cases) {
+      const original = Buffer.from(c.files['original.bin'].hex, 'hex'), native = Buffer.from(c.files['rust.bin'].hex, 'hex')
+      assert.equal(compareOutput(mode, original, native), 0, c.id)
+      assert.equal(successfulOutput(mode, original), mode === 6 || c.success)
+      const changed = Buffer.from(original); changed[changed.length - 1] ^= 1
+      assert.throws(() => compareOutput(mode, original, changed), c.id + ': changed final state')
+      assert.throws(() => compareOutput(mode, original, original.subarray(0, -1)), c.id + ': missing state')
+      assert.throws(() => compareOutput(mode, Buffer.concat([original, Buffer.from([0])]), Buffer.concat([original, Buffer.from([0])])), c.id + ': trailing data')
+      if (mode === 5 && c.id === 'triangle') {
+        const signed = Buffer.from(original); signed.writeFloatLE(-0, 9)
+        assert.throws(() => compareOutput(mode, original, signed), 'float32 zero sign must remain exact')
+        const malformed = Buffer.from(original); malformed.writeUInt32LE(0xffffffff, 5)
+        assert.throws(() => compareOutput(mode, malformed, malformed), 'counts bounded by packet')
+      }
+      count++
+    }
+  }
+  assert.equal(count, 225)
+})
+test('OBJ helper kinds, tags, UTF-8 and incomplete results cannot pass even when paired', () => {
+  for (const hex of [
+    '', '4f424a31', '4f424a3101', '4f54583100', '4f5458310503',
+    '4f5458310101000000ff', '4f54583102ffffffff', '4f545831050201000000ff00000000',
+    '4f424a31020000000000000000',
+  ]) {
+    const b = Buffer.from(hex, 'hex')
+    assert.throws(() => compareOutput(b.subarray(0, 4).toString() === 'OBJ1' ? 5 : 6, b, b))
+  }
+})
+test('OBJ mismatch retains exact input and three outputs before assertion', async () => {
+  const { mkdtempSync, readFileSync, rmSync } = await import('node:fs')
+  const { tmpdir } = await import('node:os')
+  const { join } = await import('node:path')
+  const { retainAndCompare } = await import('./browser-wasm-contract.mjs')
+  const dir = mkdtempSync(join(tmpdir(), 'scanruler-obj-wasm-'))
+  try {
+    const output = Buffer.from('4f5458310403000000010203', 'hex')
+    const files = { 'input.bin': Buffer.from('independent input'), 'original.bin': output, 'rust.bin': output }
+    const changed = Buffer.from(output); changed[changed.length - 1] ^= 1
+    await assert.rejects(retainAndCompare(dir, 6, files, changed))
+    for (const [name, bytes] of Object.entries({ ...files, 'wasm.bin': changed })) assert.deepEqual(readFileSync(join(dir, name)), bytes)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
 })

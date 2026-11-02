@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { createServer } from 'node:http'
 import { resolve, basename } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { retainAndCompare, runPacket, negativePackets, plyPacket } from './browser-wasm-contract.mjs'
+import { retainAndCompare, runPacket, negativePackets, plyPacket, successfulOutput } from './browser-wasm-contract.mjs'
 import { validateBrowserRoster, selectBrowserCases, nativeFileNames, verifyNativeCaseFiles } from './browser-wasm-roster.mjs'
 const root = fileURLToPath(new URL('../../../', import.meta.url))
 const smoke = process.argv.includes('--node-smoke')
@@ -22,8 +22,10 @@ assert.equal(read(modulePath.replace(/\.wasm$/, '.candidate.txt')).toString().tr
 const native = json(resolve(target, 'ci/native-evidence.json'))
 assert.equal(native.candidate_sha, candidate, 'stale native evidence')
 assert.equal(native.reference_sha, reference)
-const defs = json(resolve(root, 'docs/port-plan/ci/wasm-suites.json')).suites
-validateBrowserRoster(defs)
+const roster = json(resolve(root, 'docs/port-plan/ci/wasm-suites.json'))
+assert.equal(roster.contract, 'browser.wasm.corpus.v3', 'historical corpus cannot satisfy current browser gate')
+const defs = roster.suites
+validateBrowserRoster(defs, roster.contract)
 const unitPaths = resolve(root, 'docs/port-plan/plan/units')
 const cases = []
 for (const def of defs) {
@@ -43,7 +45,7 @@ for (const def of defs) {
     cases.push({ def, id, files })
   }
 }
-assert.equal(cases.length, 341, 'empty/trimmed browser corpus')
+assert.equal(cases.length, 564, 'empty/trimmed browser corpus')
 const report = { contract: 'browser.wasm.comparison.v1', candidate_sha: candidate, reference_sha: reference,
   runtime: smoke ? 'diagnostic-node-wasm-not-browser' : 'chrome-wasm', node: process.version,
   rustc: read(modulePath.replace(/\.wasm$/, '.rustc.txt')).toString().trim(), module_sha256: hash(moduleBytes),
@@ -108,7 +110,7 @@ try {
     const nativeOutput = def.mode === 4 ? plyPacket(files['rust.bin'], files['rust.progress-or-error.txt']) : files['rust.bin']
     const directory = resolve(out, def.unit, id)
     const { errorNative, errorWasm, errorPair } = await retainAndCompare(directory, def.mode, files, wasm)
-    report.cases.push({ unit: def.unit, id, result: (def.mode === 1 ? wasm[0] === 1 : wasm[0] === 0) ? 'successful_values' : 'source_refusal', input_sha256: hash(files['input.bin']), original_sha256: hash(source),
+    report.cases.push({ unit: def.unit, id, result: successfulOutput(def.mode, wasm) ? 'successful_values' : 'source_refusal', input_sha256: hash(files['input.bin']), original_sha256: hash(source),
       native_sha256: hash(nativeOutput), wasm_sha256: hash(wasm), bytes: wasm.length,
       max_abs_native: errorNative, max_abs_wasm: errorWasm, max_abs_native_wasm: errorPair })
     console.log(`${def.unit}/${id}: original/native/Wasm values + state pass`)
@@ -117,8 +119,8 @@ try {
   delete report.active_case
   report.successful_value_cases = report.cases.filter(c => c.result === 'successful_values').length
   report.source_refusal_cases = report.cases.length - report.successful_value_cases
-  assert.equal(report.successful_value_cases, 287)
-  assert.equal(report.source_refusal_cases, 54)
+  assert.equal(report.successful_value_cases, 482)
+  assert.equal(report.source_refusal_cases, 82)
   report.status = 'passed'
 } catch (error) {
   report.status = 'failed'; report.error = String(error); throw error
