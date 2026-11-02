@@ -3,9 +3,9 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 34,
+    "implemented": 35,
     "planned": 50,
-    "specified": 2
+    "specified": 1
   },
   "native_suites": 26,
   "native_case_identities_including_refusals": 2015,
@@ -373,7 +373,8 @@
         "Complete local original unit run remains red: four failures and one unhandled worker timeout; all raw outcomes retained. Separate hosted main run passes.",
         "Private scans and optional project/benchmark inputs absent; 25 excluded individual entries remain excluded, not passing.",
         "Full P03 adversarial/image/project corpus and source dependency map not completed by these six baseline fixture recipes.",
-        "Immutable hosted toolchain/container identity remains open; no G0 completion or numerical acceptance claim."
+        "Immutable hosted toolchain/container identity remains open; no G0 completion or numerical acceptance claim.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -419,7 +420,8 @@
       "open_items": [
         "Actual browser-Wasm envelope execution remains open; compile coverage is not runtime acceptance.",
         "Registry normalization, arbitrary thrown-value/errorMessage coercion, stale-page detection, mutable JS Error/prototype/stack semantics are outside this bounded constructor/toJSON envelope.",
-        "Session ownership, commands, jobs/history and project integration remain unimplemented; 52 observations do not mean 52 working commands."
+        "Session ownership, commands, jobs/history and project integration remain unimplemented; 52 observations do not mean 52 working commands.",
+        "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
       ]
     },
     {
@@ -442,7 +444,8 @@
         "Actual browser-Wasm validation runtime remains open; wasm32 compile is not execution.",
         "Session/registry integration, schema registration budget enforcement and input wire decoding remain owned by engine.session.contract; no working command is claimed.",
         "Owned dense acyclic ordinary data only; no getters/proxies/custom prototypes/functions/holes/shared identities. Malformed schema types and duplicate keys are explicit host refusals.",
-        "Independent schema fuzzing, line/branch coverage and exact-base differential ratchet remain separate evidence; no accepted status."
+        "Independent schema fuzzing, line/branch coverage and exact-base differential ratchet remain separate evidence; no accepted status.",
+        "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
       ]
     },
     {
@@ -466,7 +469,8 @@
       "open_items": [
         "Browser-Wasm runtime, wider orientation/threshold corpus, G0/P05 and generic P36 exact-base ratchet remain open.",
         "No sphere/cylinder/cone/torus fit or engine-command acceptance.",
-        "Invalid Rust packed-shape/selection errors precede callbacks; arbitrary JS host objects/callback ABI are not exposed."
+        "Invalid Rust packed-shape/selection errors precede callbacks; arbitrary JS host objects/callback ABI are not exposed.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -478,7 +482,8 @@
       "open_items": [
         "Browser-Wasm runtime, non-finite/extreme numerical corpus and near-pivot seeded depth remain open.",
         "P05/G0 and generic P36 harness/ratchet remain incomplete.",
-        "No fit caller wired; Jacobi eigen decomposition and fixed-selection plane fit remain separate units."
+        "No fit caller wired; Jacobi eigen decomposition and fixed-selection plane fit remain separate units.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -491,7 +496,8 @@
         "Browser-Wasm runtime and wider/extreme/nonfinite plane geometry remain unverified.",
         "P05/G0 and generic P36 exact-base ratchet remain open.",
         "No robust starts, two-plane split, region growth or engine/session integration.",
-        "Other fitted shapes must reuse this shared generic body and add model-specific comparison evidence."
+        "Other fitted shapes must reuse this shared generic body and add model-specific comparison evidence.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -504,7 +510,8 @@
         "Browser-Wasm runtime, wider/nonfinite/adversarial/threshold-edge corpus and generic P36 exact-base ratchet remain open.",
         "G0/P05 and engine/session/click-region integration remain incomplete.",
         "Other shape adapters must reuse consensus and add successful model-specific source comparisons; no sphere/cylinder robustness claim.",
-        "Typed Rust options require nonnegative integer work counts and explicit budgets; arbitrary JavaScript callback/primitive ABI is not exposed."
+        "Typed Rust options require nonnegative integer work counts and explicit budgets; arbitrary JavaScript callback/primitive ABI is not exposed.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -518,7 +525,8 @@
         "Seeded fitPlaneFromSeed/region growth and public engine element.fit_marked/session/history command integration remain unimplemented.",
         "Host validates packed graph buffers/indices/point budgets. Returned region is an owned copy; arbitrary JS buffer aliasing is not exposed.",
         "The source extent-failure message/body is retained, but that branch is not reached by the current full-fit corpus; wider adversarial/private-helper branch evidence remains open.",
-        "Runtime checkpoint 2026-11-01: existing registered cases execute in actual Chrome via harness.wasm.runtime; see evidence/browser-wasm-2026-11-01/report.json at candidate 00fd1a69af98c7bacc91da747483ac0ccbfb70c6. No lifecycle acceptance promotion."
+        "Runtime checkpoint 2026-11-01: existing registered cases execute in actual Chrome via harness.wasm.runtime; see evidence/browser-wasm-2026-11-01/report.json at candidate 00fd1a69af98c7bacc91da747483ac0ccbfb70c6. No lifecycle acceptance promotion.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -532,7 +540,8 @@
         "G0/P05 and general P36 exact-base ratchet remain incomplete.",
         "Clipping/robust starts/marked-plane completion are owned by implemented child units; splitting, seeded selection growth and engine/session integration remain open under P07.",
         "The compensated norm is the explicit Math.hypot portability boundary; further platforms must satisfy the frozen tolerance without relaxation.",
-        "Runtime checkpoint 2026-11-01: existing registered cases execute in actual Chrome via harness.wasm.runtime; see evidence/browser-wasm-2026-11-01/report.json at candidate 00fd1a69af98c7bacc91da747483ac0ccbfb70c6. No lifecycle acceptance promotion."
+        "Runtime checkpoint 2026-11-01: existing registered cases execute in actual Chrome via harness.wasm.runtime; see evidence/browser-wasm-2026-11-01/report.json at candidate 00fd1a69af98c7bacc91da747483ac0ccbfb70c6. No lifecycle acceptance promotion.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -544,7 +553,8 @@
       "open_items": [
         "Browser-Wasm runtime, G0/P05 and generic P36 exact-base ratchet remain open.",
         "Region traversal, source/render mapping, spatial queries and engine command/session integration are not implemented by this unit.",
-        "Rust rejects budgets/offset counts above u32 capacity; it does not emulate original malformed/out-of-range typed-array writes or oversized wrapping graphs."
+        "Rust rejects budgets/offset counts above u32 capacity; it does not emulate original malformed/out-of-range typed-array writes or oversized wrapping graphs.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -555,7 +565,8 @@
       "tested_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
       "open_items": [
         "Browser-Wasm runtime, broad nonfinite corpus, G0/P05 and generic P36 ratchet remain open.",
-        "No broad centroid, scene or engine integration is claimed."
+        "No broad centroid, scene or engine integration is claimed.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -567,7 +578,8 @@
       "open_items": [
         "Browser-Wasm runtime, closure-threshold-adjacent/nonfinite/extreme corpus and general P36 ratchet remain open.",
         "G0/P05 and engine/session integration remain incomplete; this is not a mesh topology/closure proof.",
-        "Incomplete triangle indices are explicit Rust input-domain errors; partial JS triangle tails are not compared."
+        "Incomplete triangle indices are explicit Rust input-domain errors; partial JS triangle tails are not compared.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -579,7 +591,8 @@
       "open_items": [
         "Browser-Wasm runtime, viewer caps/downstream classification integration, G0/P05 and generic P36 ratchet remain open.",
         "Original hash-parity behavior is preserved, including even nonmanifold/duplicate/degenerate cases; no stronger watertight/manifold guarantee.",
-        "Rust typed u32 indices and bounded vertex/triangle storage do not expose arbitrary JS numeric objects or emulate invalid/cyclic host behavior."
+        "Rust typed u32 indices and bounded vertex/triangle storage do not expose arbitrary JS numeric objects or emulate invalid/cyclic host behavior.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -591,7 +604,8 @@
       "open_items": [
         "Browser-Wasm runtime, G0/P05, P06 caller integration and generic P36 exact-base ratchet remain open.",
         "Owned factory parent state is read-only; arbitrary JS numeric-array ABI, external parent mutations and malformed cyclic/out-of-range source behavior are not exposed.",
-        "Factory uses a conservative i32::MAX vertex cap plus caller budget. Standalone u32 parent chains are validated before source path halving."
+        "Factory uses a conservative i32::MAX vertex cap plus caller budget. Standalone u32 parent chains are validated before source path halving.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -604,7 +618,8 @@
         "Wider browser-Wasm coverage, G0/P05, general P36 exact-base ratchet and P06 source/render mapping/spatial queries remain open.",
         "Parser/STL-to-session command integration, undo/project state and cancellation/jobs are not implemented by this library unit.",
         "Typed parsed input consumes owned arrays; arbitrary JavaScript alias/callback mutation and object ABI are not exposed. Colors/texture notes are not handled by this original source body.",
-        "Runtime checkpoint 2026-11-01: existing registered cases execute in actual Chrome via harness.wasm.runtime; see evidence/browser-wasm-2026-11-01/report.json at candidate 00fd1a69af98c7bacc91da747483ac0ccbfb70c6. No lifecycle acceptance promotion."
+        "Runtime checkpoint 2026-11-01: existing registered cases execute in actual Chrome via harness.wasm.runtime; see evidence/browser-wasm-2026-11-01/report.json at candidate 00fd1a69af98c7bacc91da747483ac0ccbfb70c6. No lifecycle acceptance promotion.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -616,7 +631,8 @@
       "open_items": [
         "Browser-Wasm runtime and generic P36 ratchet remain open; native finite fixture corpus and wasm32 compilation only.",
         "Non-finite/extreme overflow geometry corpus is not yet verified; do not claim all numeric inputs accepted.",
-        "Shared P05/G0 contracts and session/engine integration remain open."
+        "Shared P05/G0 contracts and session/engine integration remain open.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -629,7 +645,8 @@
         "Browser-Wasm runtime comparison, G0/P05 and generic P36 ratchet remain open.",
         "Open/non-finite meshes and threshold-adjacent fuzz corpus remain to be compared; implemented, not accepted.",
         "No automatic pipeline/session integration; a file with settled winding must retain its source caller bypass.",
-        "Future bounds/centroid work should reuse/audit these co-ported reductions rather than silently duplicating them."
+        "Future bounds/centroid work should reuse/audit these co-ported reductions rather than silently duplicating them.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -641,17 +658,21 @@
       "open_items": [
         "Browser-Wasm runtime, G0/P05 and generic P36 exact-base ratchet remain open.",
         "No edit/undo/project/session command or source/render mapping integration acceptance.",
-        "Typed Rust IDs/maps expose u32/i32 arrays, not arbitrary JavaScript numeric objects."
+        "Typed Rust IDs/maps expose u32/i32 arrays, not arbitrary JavaScript numeric objects.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
       "id": "harness.coverage.original",
-      "status": "specified",
+      "status": "implemented",
       "parent": "P36",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/43",
+      "tested_sha": "96c776c2abe15e184b1dd39c21a13387c88d59fa",
       "open_items": [
-        "Needs a decision on the coverage tool (c8 is already a Node-side dev tool; no product dependency)."
+        "18 source paths remain unmapped, primarily stripped/concatenated geometry helpers; their complete comparisons still run in the native gate but source reach is unknown.",
+        "V8 observed block union is not a static branch/condition denominator; uncalled bodies may conceal unenumerated branches. No percentage or accepted status is claimed.",
+        "Independent fuzz campaign and Chrome-only image/browser corpora are not included in this native report.",
+        "Mapped zero-count ranges/unreached lines remain explicit corpus or continuation targets; see plan/findings/2026-11-02-original-coverage.md."
       ]
     },
     {
@@ -752,7 +773,8 @@
       "open_items": [
         "Browser-Wasm runtime comparison remains unbuilt; native comparison and wasm32 compilation only.",
         "Shared P05/G0 contracts and P36 general harness/coverage ratchet remain open.",
-        "Host rejects incomplete triples and oversized table capacity explicitly; those resource/domain guards are not original successful input parity."
+        "Host rejects incomplete triples and oversized table capacity explicitly; those resource/domain guards are not original successful input parity.",
+        "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
       ]
     },
     {
@@ -763,7 +785,8 @@
       "tested_sha": "a4cb8deac025cda2d67406698d414c9ce5b67051",
       "open_items": [
         "Actual DOM adapter/browser callback runtime and broader mutable live-list/platform/cancellation behavior remain integration follow-ups; Wasm compilation is not runtime acceptance.",
-        "No file decoding, public engine import/history/session or accepted-unit claim."
+        "No file decoding, public engine import/history/session or accepted-unit claim.",
+        "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
       ]
     },
     {
@@ -775,7 +798,8 @@
       "open_items": [
         "Bounded actual Chrome execution is recorded by harness.wasm.files; broader platform/workload and public import acceptance remain open.",
         "Platform drop traversal/async file errors, image decoding, 3MF packed companions and public import/session/project integration remain outside this owned-byte slice.",
-        "Valid UTF-8 filename API; arbitrary JS UTF16/Unicode version and broader platform/large-file acceptance remain open."
+        "Valid UTF-8 filename API; arbitrary JS UTF16/Unicode version and broader platform/large-file acceptance remain open.",
+        "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
       ]
     },
     {
@@ -832,7 +856,8 @@
       "open_items": [
         "Broader browser workloads/platforms and public import acceptance remain open; bounded runtime coverage is tracked by harness.wasm.obj, not whole-unit acceptance.",
         "Platform file-set bundling, PNG/JPEG decoding and public engine/session/project integration remain separate under io.obj.companions and engine units.",
-        "Broader large-file/performance/corpus and filename ingress acceptance remain open; caller limits are explicit host refusals, not source errors."
+        "Broader large-file/performance/corpus and filename ingress acceptance remain open; caller limits are explicit host refusals, not source errors.",
+        "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
       ]
     },
     {
@@ -845,7 +870,8 @@
         "Broader browser workloads/platforms and public import acceptance remain open; bounded runtime coverage is tracked by harness.wasm.obj, not whole-unit acceptance.",
         "OBJ mesh parsing, platform file bundling, PNG/JPEG decoding and public commands remain in io.obj.mesh/io.obj.companions and engine units; parent io.obj stays planned.",
         "Broader Unicode table/version, arbitrary JS UTF16 filename and non-u32 raster-shape interoperability belong to companion ingress/platform acceptance, not this valid-UTF8/u32 helper API.",
-        "Large-file/performance acceptance remains open; explicit byte/name/count/work caps are host safeguards, not source numerical tolerances."
+        "Large-file/performance acceptance remains open; explicit byte/name/count/work caps are host safeguards, not source numerical tolerances.",
+        "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
       ]
     },
     {
@@ -858,7 +884,8 @@
         "Binary continuation is implemented separately in io.ply.binary; the ASCII-only convenience entrypoint retains a distinct binary boundary, and ply::read_ply dispatches all encodings.",
         "Browser-Wasm runtime comparisons and public scan/session/history integration remain unimplemented for this parser.",
         "Caller byte/vertex/triangle/work limits and fallible allocation are explicit host guards; huge hostile workloads are not executed in the original oracle.",
-        "Full P03 licensed/adversarial corpus and acceptance gates remain open; no accepted state or end-to-end import claim."
+        "Full P03 licensed/adversarial corpus and acceptance gates remain open; no accepted state or end-to-end import claim.",
+        "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
       ]
     },
     {
@@ -870,7 +897,8 @@
       "open_items": [
         "Real browser-Wasm execution for PLY remains open; native and Wasm compilation do not imply runtime acceptance.",
         "Public scan/session commands, history, projects and full P03 adversarial/corpus acceptance remain open.",
-        "Caller resource guards are separate from source semantics; unbounded hostile allocations are not run in the original."
+        "Caller resource guards are separate from source semantics; unbounded hostile allocations are not run in the original.",
+        "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
       ]
     },
     {
@@ -894,7 +922,8 @@
         "Native Node 22 comparisons were observed passing in subsequent full Rust gates; original local implementation evidence used Node 20.20.2. See AUDIT-QUEUE.md for immutable hosted run links.",
         "Browser-Wasm runtime comparison is not built; only wasm32 compile check passes. P36 general paired harness/coverage ratchet remains open.",
         "P05 shared buffer/frame contracts and G0 prerequisites remain unaccepted; no promotion of parent P06 or whole scan import.",
-        "Dispatcher and ASCII continuation tracked separately as io.stl.dispatch."
+        "Dispatcher and ASCII continuation tracked separately as io.stl.dispatch.",
+        "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
       ]
     },
     {
@@ -905,7 +934,8 @@
       "tested_sha": "77683bf515590ac3f5cb8a9c3552ec64700ce44a",
       "open_items": [
         "Browser-Wasm runtime comparisons remain unbuilt; wasm32 library compilation passes only.",
-        "P05/G0 contracts and general P36 paired harness/coverage ratchet remain open; no promotion to accepted or full scan import."
+        "P05/G0 contracts and general P36 paired harness/coverage ratchet remain open; no promotion to accepted or full scan import.",
+        "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
       ]
     },
     {

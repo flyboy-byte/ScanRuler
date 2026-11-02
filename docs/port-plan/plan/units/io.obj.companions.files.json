@@ -140,7 +140,8 @@
   "open_items": [
     "Bounded actual Chrome execution is recorded by harness.wasm.files; broader platform/workload and public import acceptance remain open.",
     "Platform drop traversal/async file errors, image decoding, 3MF packed companions and public import/session/project integration remain outside this owned-byte slice.",
-    "Valid UTF-8 filename API; arbitrary JS UTF16/Unicode version and broader platform/large-file acceptance remain open."
+    "Valid UTF-8 filename API; arbitrary JS UTF16/Unicode version and broader platform/large-file acceptance remain open.",
+    "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
   ],
   "resolved_items": [
     "2026-11-02: all 87 fixed full original/Rust observations match exactly, including state after every operation, identity, ordered names/data and registry constants.",

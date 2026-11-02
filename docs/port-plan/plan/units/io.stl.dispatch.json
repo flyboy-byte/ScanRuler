@@ -130,7 +130,8 @@
   "implemented_commit": "77683bf515590ac3f5cb8a9c3552ec64700ce44a",
   "open_items": [
     "Browser-Wasm runtime comparisons remain unbuilt; wasm32 library compilation passes only.",
-    "P05/G0 contracts and general P36 paired harness/coverage ratchet remain open; no promotion to accepted or full scan import."
+    "P05/G0 contracts and general P36 paired harness/coverage ratchet remain open; no promotion to accepted or full scan import.",
+    "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
   ],
   "resolved_items": [
     "2026-11-01: complete parseSTL/parseAscii bodies ported, including binary precedence, fallback, ECMAScript whitespace/parseFloat prefix handling and UTF-8 replacement/BOM behavior. No missing dispatcher continuation.",

@@ -129,7 +129,8 @@
   "open_items": [
     "Broader browser workloads/platforms and public import acceptance remain open; bounded runtime coverage is tracked by harness.wasm.obj, not whole-unit acceptance.",
     "Platform file-set bundling, PNG/JPEG decoding and public engine/session/project integration remain separate under io.obj.companions and engine units.",
-    "Broader large-file/performance/corpus and filename ingress acceptance remain open; caller limits are explicit host refusals, not source errors."
+    "Broader large-file/performance/corpus and filename ingress acceptance remain open; caller limits are explicit host refusals, not source errors.",
+    "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
   ],
   "resolved_items": [
     "2026-11-02: full parseOBJ body and complete decoded texture continuation ported with exact 81 independent source cases (53 outputs /28 refusals), seeds retained.",

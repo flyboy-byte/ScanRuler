@@ -44,7 +44,8 @@
     "Complete local original unit run remains red: four failures and one unhandled worker timeout; all raw outcomes retained. Separate hosted main run passes.",
     "Private scans and optional project/benchmark inputs absent; 25 excluded individual entries remain excluded, not passing.",
     "Full P03 adversarial/image/project corpus and source dependency map not completed by these six baseline fixture recipes.",
-    "Immutable hosted toolchain/container identity remains open; no G0 completion or numerical acceptance claim."
+    "Immutable hosted toolchain/container identity remains open; no G0 completion or numerical acceptance claim.",
+    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
   ],
   "resolved_items": [
     "2026-11-02: full original checks observed on Node 22 with unchanged source; MCP/build/browser/boundaries pass, unit failures preserved.",

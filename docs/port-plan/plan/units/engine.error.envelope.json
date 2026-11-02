@@ -103,7 +103,8 @@
   "open_items": [
     "Actual browser-Wasm envelope execution remains open; compile coverage is not runtime acceptance.",
     "Registry normalization, arbitrary thrown-value/errorMessage coercion, stale-page detection, mutable JS Error/prototype/stack semantics are outside this bounded constructor/toJSON envelope.",
-    "Session ownership, commands, jobs/history and project integration remain unimplemented; 52 observations do not mean 52 working commands."
+    "Session ownership, commands, jobs/history and project integration remain unimplemented; 52 observations do not mean 52 working commands.",
+    "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
   ],
   "resolved_items": [
     "2026-11-02: all twelve original codes and 52 fixed messages compare code/name/message/display/JSON bytes exactly; seeds 1/7/99/1039 unchanged.",

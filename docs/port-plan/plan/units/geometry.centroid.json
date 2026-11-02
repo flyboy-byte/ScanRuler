@@ -69,6 +69,7 @@
   "open_items": [
     "Browser-Wasm runtime, closure-threshold-adjacent/nonfinite/extreme corpus and general P36 ratchet remain open.",
     "G0/P05 and engine/session integration remain incomplete; this is not a mesh topology/closure proof.",
-    "Incomplete triangle indices are explicit Rust input-domain errors; partial JS triangle tails are not compared."
+    "Incomplete triangle indices are explicit Rust input-domain errors; partial JS triangle tails are not compared.",
+    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
   ]
 }

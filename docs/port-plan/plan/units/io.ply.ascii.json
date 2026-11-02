@@ -113,7 +113,8 @@
     "Binary continuation is implemented separately in io.ply.binary; the ASCII-only convenience entrypoint retains a distinct binary boundary, and ply::read_ply dispatches all encodings.",
     "Browser-Wasm runtime comparisons and public scan/session/history integration remain unimplemented for this parser.",
     "Caller byte/vertex/triangle/work limits and fallible allocation are explicit host guards; huge hostile workloads are not executed in the original oracle.",
-    "Full P03 licensed/adversarial corpus and acceptance gates remain open; no accepted state or end-to-end import claim."
+    "Full P03 licensed/adversarial corpus and acceptance gates remain open; no accepted state or end-to-end import claim.",
+    "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
   ],
   "resolved_items": [
     "2026-11-02: 60 exact complete original/native parser comparisons (46 outputs / 14 source refusals), seeds 1/7/99/1039; no input/seed/tolerance reductions.",

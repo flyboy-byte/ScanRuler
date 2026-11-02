@@ -95,6 +95,7 @@
   "open_items": [
     "Browser-Wasm runtime, G0/P05, P06 caller integration and generic P36 exact-base ratchet remain open.",
     "Owned factory parent state is read-only; arbitrary JS numeric-array ABI, external parent mutations and malformed cyclic/out-of-range source behavior are not exposed.",
-    "Factory uses a conservative i32::MAX vertex cap plus caller budget. Standalone u32 parent chains are validated before source path halving."
+    "Factory uses a conservative i32::MAX vertex cap plus caller budget. Standalone u32 parent chains are validated before source path halving.",
+    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
   ]
 }

@@ -110,6 +110,7 @@
   "open_items": [
     "Browser-Wasm runtime, viewer caps/downstream classification integration, G0/P05 and generic P36 ratchet remain open.",
     "Original hash-parity behavior is preserved, including even nonmanifold/duplicate/degenerate cases; no stronger watertight/manifold guarantee.",
-    "Rust typed u32 indices and bounded vertex/triangle storage do not expose arbitrary JS numeric objects or emulate invalid/cyclic host behavior."
+    "Rust typed u32 indices and bounded vertex/triangle storage do not expose arbitrary JS numeric objects or emulate invalid/cyclic host behavior.",
+    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
   ]
 }

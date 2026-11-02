@@ -66,6 +66,7 @@
   "open_items": [
     "Browser-Wasm runtime, non-finite/extreme numerical corpus and near-pivot seeded depth remain open.",
     "P05/G0 and generic P36 harness/ratchet remain incomplete.",
-    "No fit caller wired; Jacobi eigen decomposition and fixed-selection plane fit remain separate units."
+    "No fit caller wired; Jacobi eigen decomposition and fixed-selection plane fit remain separate units.",
+    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
   ]
 }

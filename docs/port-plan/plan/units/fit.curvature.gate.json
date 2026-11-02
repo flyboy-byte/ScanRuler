@@ -126,6 +126,7 @@
   "open_items": [
     "Browser-Wasm runtime, wider orientation/threshold corpus, G0/P05 and generic P36 exact-base ratchet remain open.",
     "No sphere/cylinder/cone/torus fit or engine-command acceptance.",
-    "Invalid Rust packed-shape/selection errors precede callbacks; arbitrary JS host objects/callback ABI are not exposed."
+    "Invalid Rust packed-shape/selection errors precede callbacks; arbitrary JS host objects/callback ABI are not exposed.",
+    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
   ]
 }

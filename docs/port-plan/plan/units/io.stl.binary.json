@@ -62,6 +62,7 @@
     "Native Node 22 comparisons were observed passing in subsequent full Rust gates; original local implementation evidence used Node 20.20.2. See AUDIT-QUEUE.md for immutable hosted run links.",
     "Browser-Wasm runtime comparison is not built; only wasm32 compile check passes. P36 general paired harness/coverage ratchet remains open.",
     "P05 shared buffer/frame contracts and G0 prerequisites remain unaccepted; no promotion of parent P06 or whole scan import.",
-    "Dispatcher and ASCII continuation tracked separately as io.stl.dispatch."
+    "Dispatcher and ASCII continuation tracked separately as io.stl.dispatch.",
+    "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
   ]
 }

@@ -57,6 +57,7 @@
   ],
   "open_items": [
     "Browser-Wasm runtime, broad nonfinite corpus, G0/P05 and generic P36 ratchet remain open.",
-    "No broad centroid, scene or engine integration is claimed."
+    "No broad centroid, scene or engine integration is claimed.",
+    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
   ]
 }

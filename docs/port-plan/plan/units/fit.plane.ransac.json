@@ -98,6 +98,7 @@
     "Browser-Wasm runtime, wider/nonfinite/adversarial/threshold-edge corpus and generic P36 exact-base ratchet remain open.",
     "G0/P05 and engine/session/click-region integration remain incomplete.",
     "Other shape adapters must reuse consensus and add successful model-specific source comparisons; no sphere/cylinder robustness claim.",
-    "Typed Rust options require nonnegative integer work counts and explicit budgets; arbitrary JavaScript callback/primitive ABI is not exposed."
+    "Typed Rust options require nonnegative integer work counts and explicit budgets; arbitrary JavaScript callback/primitive ABI is not exposed.",
+    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
   ]
 }
