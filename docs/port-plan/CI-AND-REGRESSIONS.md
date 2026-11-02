@@ -90,6 +90,16 @@ acceptance gate is invented. Five regeneration/hash/mutation tests are required
 in catalog-contracts; raw maps/ranges and generated gaps are committed. Native
 comparison inventory and browser runtime are unchanged.
 
+## Registry/admission comparison
+
+Mandatory native engine.session.registry adds350 full scenarios/1644 operation
+observations across all140 definitions, including true numeric admission refusals
+and nullish defaults. Complete errors/caller mutations/body targets/catalog
+metadata compare against the full pinned source graph. Native roster27/2365;
+actual browser remains651. Four evidence regressions preserve earlier fields,
+input/archive hashes and mutation sensitivity. No command body or session
+scheduling/history acceptance is claimed. See oracle/REGISTRY.md.
+
 ## Command schema comparison
 
 The required native roster includes697 exact validator states:320 accepted,

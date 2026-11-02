@@ -1,5 +1,11 @@
 # Port PR audit and integration queue
 
+Session continuation from main4ff736f: [#45](https://github.com/flyboy-byte/ScanRuler/pull/45)
+ports complete registration/catalog/headless and schema admission, with350 exact
+full operation scenarios. Parent engine.session.contract is now owned by Codex
+and remains specified; history/scheduling/real feature commands stay open.
+Earlier #42–#44 were merged by the owner, all11 checks green on each.
+
 Current review order: #42 → #43 → [#44](https://github.com/flyboy-byte/ScanRuler/pull/44).
 #44 retains comparison-only LLVM coverage across all26 suites/2015 identities
 at e2c3d00, with report-only correction be43ab8. Every explicit zero DA line

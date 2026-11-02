@@ -23,7 +23,8 @@
         "P05",
         "engine.session.contract",
         "engine.error.envelope",
-        "engine.schema.validate"
+        "engine.schema.validate",
+        "engine.session.registry"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },

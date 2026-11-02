@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust registry and admission** (2026-11-02): preserve complete command registration/catalog/headless behavior, partial failures and coerced arguments on refusal, with350 exact source scenarios across all140 definitions. Session scheduling/history and public feature bodies remain separate.
+
 - **Rust comparison coverage** (2026-11-02): retain LLVM line/region evidence from all26 native suites, with per-file/unit unreached lines, raw exports and explicit unknown branch reach; preserve observed LLVM summary discrepancies and inline-test scope.
 
 - **Original corpus coverage** (2026-11-02): archive Node22 precise V8/source-map reach for 1422 unchanged original replays across eight full modules; retain every unreached block and eighteen unmapped source paths as explicit follow-ups. No static branch denominator or acceptance claim.
