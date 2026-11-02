@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { createServer } from 'node:http'
 import { resolve, basename } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { compareOutput, runPacket, negativePackets } from './browser-wasm-contract.mjs'
+import { retainAndCompare, runPacket, negativePackets } from './browser-wasm-contract.mjs'
 const root = fileURLToPath(new URL('../../../', import.meta.url))
 const smoke = process.argv.includes('--node-smoke')
 if (!smoke && Number(process.versions.node.split('.')[0]) !== 22) throw Error('Hosted browser runner requires Node 22')
@@ -105,19 +105,18 @@ try {
   report.negative_protocol_checks = negatives
   for (const { def, id, files } of cases) {
     // Only mode and byte-for-byte fixture input cross the browser/Wasm boundary.
+    report.active_case = { unit: def.unit, id }
     const wasm = Buffer.from(await call({ mode: def.mode, input: Array.from(files['input.bin']) }))
     const source = files['original.bin'], nativeOutput = files['rust.bin']
-    const errorNative = compareOutput(def.mode, source, nativeOutput)
-    const errorWasm = compareOutput(def.mode, source, wasm)
-    const errorPair = compareOutput(def.mode, nativeOutput, wasm)
-    const directory = resolve(out, def.unit, id); mkdirSync(directory, { recursive: true })
-    for (const [name, bytes] of Object.entries({ ...files, 'wasm.bin': wasm })) writeFileSync(resolve(directory, name), bytes)
+    const directory = resolve(out, def.unit, id)
+    const { errorNative, errorWasm, errorPair } = await retainAndCompare(directory, def.mode, files, wasm)
     report.cases.push({ unit: def.unit, id, result: (def.mode === 1 ? wasm[0] === 1 : wasm[0] === 0) ? 'successful_values' : 'source_refusal', input_sha256: hash(files['input.bin']), original_sha256: hash(source),
       native_sha256: hash(nativeOutput), wasm_sha256: hash(wasm), bytes: wasm.length,
       max_abs_native: errorNative, max_abs_wasm: errorWasm, max_abs_native_wasm: errorPair })
     console.log(`${def.unit}/${id}: original/native/Wasm values + state pass`)
   }
   if (report.page_errors?.length) throw Error('Browser page errors: ' + report.page_errors.join('; '))
+  delete report.active_case
   report.successful_value_cases = report.cases.filter(c => c.result === 'successful_values').length
   report.source_refusal_cases = report.cases.length - report.successful_value_cases
   assert.equal(report.successful_value_cases, 90)

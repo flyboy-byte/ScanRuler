@@ -3158,10 +3158,11 @@
         }
       ],
       "open_items": [
-        "Browser-Wasm runtime, general P36/P37 report/ratchet and G0/P05 remain open; no lifecycle acceptance.",
+        "Wider browser-Wasm coverage, general P36/P37 report/ratchet and G0/P05 remain open; no lifecycle acceptance.",
         "Seeded fitPlaneFromSeed/region growth and public engine element.fit_marked/session/history command integration remain unimplemented.",
         "Host validates packed graph buffers/indices/point budgets. Returned region is an owned copy; arbitrary JS buffer aliasing is not exposed.",
-        "The source extent-failure message/body is retained, but that branch is not reached by the current full-fit corpus; wider adversarial/private-helper branch evidence remains open."
+        "The source extent-failure message/body is retained, but that branch is not reached by the current full-fit corpus; wider adversarial/private-helper branch evidence remains open.",
+        "Runtime checkpoint 2026-11-01: existing registered cases execute in actual Chrome via harness.wasm.runtime; see evidence/browser-wasm-2026-11-01/report.json at candidate 00fd1a69af98c7bacc91da747483ac0ccbfb70c6. No lifecycle acceptance promotion."
       ]
     },
     {
@@ -3228,10 +3229,11 @@
         }
       ],
       "open_items": [
-        "Browser-Wasm runtime, general eigensolver coverage, extreme/nonfinite/near-collinear corpus and broader normal orientations remain open.",
+        "Wider browser-Wasm coverage, general eigensolver coverage, extreme/nonfinite/near-collinear corpus and broader normal orientations remain open.",
         "G0/P05 and general P36 exact-base ratchet remain incomplete.",
-        "Clipping, robust starts, splitting, selection growth and engine/session integration are missing continuations tracked by parent P07.",
-        "The compensated norm is the explicit Math.hypot portability boundary; further platforms must satisfy the frozen tolerance without relaxation."
+        "Clipping/robust starts/marked-plane completion are owned by implemented child units; splitting, seeded selection growth and engine/session integration remain open under P07.",
+        "The compensated norm is the explicit Math.hypot portability boundary; further platforms must satisfy the frozen tolerance without relaxation.",
+        "Runtime checkpoint 2026-11-01: existing registered cases execute in actual Chrome via harness.wasm.runtime; see evidence/browser-wasm-2026-11-01/report.json at candidate 00fd1a69af98c7bacc91da747483ac0ccbfb70c6. No lifecycle acceptance promotion."
       ],
       "history": [
         {
@@ -3817,9 +3819,10 @@
         }
       ],
       "open_items": [
-        "Browser-Wasm runtime, G0/P05, general P36 exact-base ratchet and P06 source/render mapping/spatial queries remain open.",
+        "Wider browser-Wasm coverage, G0/P05, general P36 exact-base ratchet and P06 source/render mapping/spatial queries remain open.",
         "Parser/STL-to-session command integration, undo/project state and cancellation/jobs are not implemented by this library unit.",
-        "Typed parsed input consumes owned arrays; arbitrary JavaScript alias/callback mutation and object ABI are not exposed. Colors/texture notes are not handled by this original source body."
+        "Typed parsed input consumes owned arrays; arbitrary JavaScript alias/callback mutation and object ABI are not exposed. Colors/texture notes are not handled by this original source body.",
+        "Runtime checkpoint 2026-11-01: existing registered cases execute in actual Chrome via harness.wasm.runtime; see evidence/browser-wasm-2026-11-01/report.json at candidate 00fd1a69af98c7bacc91da747483ac0ccbfb70c6. No lifecycle acceptance promotion."
       ]
     },
     {
@@ -4139,10 +4142,11 @@
       "parent": "P36",
       "title": "Execute initial plane and mesh corpus as actual browser Wasm",
       "gate": "G2",
-      "status": "specified",
+      "status": "implemented",
       "depends_on": [
         "fit.plane.tls",
-        "geometry.mesh.graph"
+        "geometry.mesh.graph",
+        "fit.plane.selection"
       ],
       "soft_depends_on": [
         "P00",
@@ -4157,7 +4161,7 @@
       "owner": "Codex",
       "branch": "codex/browser-wasm-comparisons",
       "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/24",
-      "implemented_commit": null,
+      "implemented_commit": "00fd1a69af98c7bacc91da747483ac0ccbfb70c6",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [],
       "symbols": [],
@@ -4165,10 +4169,134 @@
         "rust/crates/port-wasm-probe/src/lib.rs",
         "rust/xtask/src/main.rs"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "runtime-comparison",
+          "location": "evidence/browser-wasm-2026-11-01/report.json",
+          "candidate_sha": "00fd1a69af98c7bacc91da747483ac0ccbfb70c6",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "fit.plane.tls/coincident",
+            "fit.plane.tls/collinear",
+            "fit.plane.tls/empty",
+            "fit.plane.tls/horizontal",
+            "fit.plane.tls/insufficient",
+            "fit.plane.tls/tilted_1039_false",
+            "fit.plane.tls/tilted_1039_true",
+            "fit.plane.tls/tilted_1_false",
+            "fit.plane.tls/tilted_1_true",
+            "fit.plane.tls/tilted_7_false",
+            "fit.plane.tls/tilted_7_true",
+            "fit.plane.tls/tilted_99_false",
+            "fit.plane.tls/tilted_99_true",
+            "geometry.mesh.graph/collapsed_indices",
+            "geometry.mesh.graph/collapsed_soup",
+            "geometry.mesh.graph/collinear_usable_ids",
+            "geometry.mesh.graph/empty",
+            "geometry.mesh.graph/empty_indices",
+            "geometry.mesh.graph/incomplete_before_nan",
+            "geometry.mesh.graph/incomplete_indices",
+            "geometry.mesh.graph/incomplete_positions",
+            "geometry.mesh.graph/incomplete_soup",
+            "geometry.mesh.graph/infinite",
+            "geometry.mesh.graph/missing_indices",
+            "geometry.mesh.graph/mixed_degenerates",
+            "geometry.mesh.graph/nan_before_bad_indices",
+            "geometry.mesh.graph/open_sfalse_kfalse",
+            "geometry.mesh.graph/open_sfalse_ktrue",
+            "geometry.mesh.graph/open_strue_kfalse",
+            "geometry.mesh.graph/open_strue_ktrue",
+            "geometry.mesh.graph/outside_indices",
+            "geometry.mesh.graph/seed_1039_sfalse_kfalse",
+            "geometry.mesh.graph/seed_1039_sfalse_ktrue",
+            "geometry.mesh.graph/seed_1039_strue_kfalse",
+            "geometry.mesh.graph/seed_1039_strue_ktrue",
+            "geometry.mesh.graph/seed_1_sfalse_kfalse",
+            "geometry.mesh.graph/seed_1_sfalse_ktrue",
+            "geometry.mesh.graph/seed_1_strue_kfalse",
+            "geometry.mesh.graph/seed_1_strue_ktrue",
+            "geometry.mesh.graph/seed_7_sfalse_kfalse",
+            "geometry.mesh.graph/seed_7_sfalse_ktrue",
+            "geometry.mesh.graph/seed_7_strue_kfalse",
+            "geometry.mesh.graph/seed_7_strue_ktrue",
+            "geometry.mesh.graph/seed_99_sfalse_kfalse",
+            "geometry.mesh.graph/seed_99_sfalse_ktrue",
+            "geometry.mesh.graph/seed_99_strue_kfalse",
+            "geometry.mesh.graph/seed_99_strue_ktrue",
+            "geometry.mesh.graph/signed_zero",
+            "geometry.mesh.graph/soup_ignores_valid_indices",
+            "geometry.mesh.graph/soup_incomplete_indices",
+            "geometry.mesh.graph/soup_outside_indices",
+            "geometry.mesh.graph/tetra_sfalse_kfalse_rfalse",
+            "geometry.mesh.graph/tetra_sfalse_kfalse_rtrue",
+            "geometry.mesh.graph/tetra_sfalse_ktrue_rfalse",
+            "geometry.mesh.graph/tetra_sfalse_ktrue_rtrue",
+            "geometry.mesh.graph/tetra_strue_kfalse_rfalse",
+            "geometry.mesh.graph/tetra_strue_kfalse_rtrue",
+            "geometry.mesh.graph/tetra_strue_ktrue_rfalse",
+            "geometry.mesh.graph/tetra_strue_ktrue_rtrue",
+            "geometry.mesh.graph/triangle_sfalse_kfalse",
+            "geometry.mesh.graph/triangle_sfalse_ktrue",
+            "geometry.mesh.graph/triangle_strue_kfalse",
+            "geometry.mesh.graph/triangle_strue_ktrue",
+            "fit.plane.selection/coincident",
+            "fit.plane.selection/collinear",
+            "fit.plane.selection/duplicate_collapsed",
+            "fit.plane.selection/duplicate_valid",
+            "fit.plane.selection/insufficient_0",
+            "fit.plane.selection/insufficient_1",
+            "fit.plane.selection/insufficient_19",
+            "fit.plane.selection/outliers_seed_1039_nan_vote-1",
+            "fit.plane.selection/outliers_seed_1039_nan_vote1",
+            "fit.plane.selection/outliers_seed_1039_none_vote-1",
+            "fit.plane.selection/outliers_seed_1039_none_vote1",
+            "fit.plane.selection/outliers_seed_1039_normal_vote-1",
+            "fit.plane.selection/outliers_seed_1039_normal_vote1",
+            "fit.plane.selection/outliers_seed_1039_tight_vote-1",
+            "fit.plane.selection/outliers_seed_1039_tight_vote1",
+            "fit.plane.selection/outliers_seed_1_nan_vote-1",
+            "fit.plane.selection/outliers_seed_1_nan_vote1",
+            "fit.plane.selection/outliers_seed_1_none_vote-1",
+            "fit.plane.selection/outliers_seed_1_none_vote1",
+            "fit.plane.selection/outliers_seed_1_normal_vote-1",
+            "fit.plane.selection/outliers_seed_1_normal_vote1",
+            "fit.plane.selection/outliers_seed_1_tight_vote-1",
+            "fit.plane.selection/outliers_seed_1_tight_vote1",
+            "fit.plane.selection/outliers_seed_7_nan_vote-1",
+            "fit.plane.selection/outliers_seed_7_nan_vote1",
+            "fit.plane.selection/outliers_seed_7_none_vote-1",
+            "fit.plane.selection/outliers_seed_7_none_vote1",
+            "fit.plane.selection/outliers_seed_7_normal_vote-1",
+            "fit.plane.selection/outliers_seed_7_normal_vote1",
+            "fit.plane.selection/outliers_seed_7_tight_vote-1",
+            "fit.plane.selection/outliers_seed_7_tight_vote1",
+            "fit.plane.selection/outliers_seed_99_nan_vote-1",
+            "fit.plane.selection/outliers_seed_99_nan_vote1",
+            "fit.plane.selection/outliers_seed_99_none_vote-1",
+            "fit.plane.selection/outliers_seed_99_none_vote1",
+            "fit.plane.selection/outliers_seed_99_normal_vote-1",
+            "fit.plane.selection/outliers_seed_99_normal_vote1",
+            "fit.plane.selection/outliers_seed_99_tight_vote-1",
+            "fit.plane.selection/outliers_seed_99_tight_vote1",
+            "fit.plane.selection/rotated_tfalse_vote-1",
+            "fit.plane.selection/rotated_tfalse_vote1",
+            "fit.plane.selection/rotated_ttrue_vote-1",
+            "fit.plane.selection/rotated_ttrue_vote1",
+            "fit.plane.selection/sampling_4095",
+            "fit.plane.selection/sampling_4096",
+            "fit.plane.selection/sampling_4097",
+            "fit.plane.selection/sampling_8193",
+            "fit.plane.selection/square_down",
+            "fit.plane.selection/square_nan",
+            "fit.plane.selection/square_up",
+            "fit.plane.selection/square_zero"
+          ]
+        }
+      ],
       "open_items": [
-        "Actual hosted Chrome validation pending; Node smoke/compilation alone cannot establish runtime evidence.",
-        "Other numerical units, public engine/UI/history/project/jobs, generic P36 report, P37 exact-base ratchet, P35/P39 remain open."
+        "Actual Chrome execution is verified for the 114 named TLS/mesh-graph/marked-plane inputs only; wider platforms/adversarial corpora and other numerical units remain open.",
+        "Private linker-export test ABI is not a stable production engine/UI interface; commands/history/projects/jobs remain unimplemented.",
+        "Generic P36 report protocol, P37 exact-base numerical ratchet, P35 whole-product purity and P39 Rust tooling replacement remain open."
       ]
     },
     {

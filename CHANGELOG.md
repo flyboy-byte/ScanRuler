@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Actual Rust in browser Wasm** (2026-11-01): require Chrome execution of existing TLS/mesh-graph/marked-plane inputs, comparing full source/native/Wasm results through a safe bounded private test ABI; 114 cases and memory/codec checks verified.
+
 - **Rust marked-plane elements** (2026-11-01): complete the selected-plane continuation with surface normal voting, minimum-area patch extents, projected center, oriented residual extremes and original region/statistics; fifty-one independent source comparisons.
 
 - **Port CI/status integration** (2026-11-01): separate fast/native/catalog and original unit/MCP/browser results, require complete current-run evidence and generated status, reconcile implemented scope and define the remaining measurement/runtime plan. Source thresholds and numerical contracts are unchanged.

@@ -7,7 +7,7 @@ original TypeScript stays in this repository and is the judge of every result.
 
 > [!IMPORTANT]
 > **Partial Rust operations are implemented and compared natively.** There is no complete Rust app
-> or browser-Wasm runtime parity yet; see the [audit queue](docs/port-plan/AUDIT-QUEUE.md). This fork is **not** the official ScanRuler, is not endorsed by its
+> yet; bounded Chrome-Wasm library comparisons now exist, see the [audit queue](docs/port-plan/AUDIT-QUEUE.md). This fork is **not** the official ScanRuler, is not endorsed by its
 > author, is AGPL-derived, and is **not** a clean-room reimplementation. The product name is the
 > author's; this fork will need different branding before any release.
 
@@ -18,9 +18,9 @@ original TypeScript stays in this repository and is the judge of every result.
 | Plan | P00 to P39 roadmap and bounded child units, gates G0 to G7, in [`docs/port-plan/`](docs/port-plan/HANDOFF.md) |
 | Workspace | [`rust/`](rust/README.md): `port-core` geometry/fitting primitives, `port-io` STL reader, empty `port-engine`, banner CLI, `xtask` |
 | Fast gate | `cd rust && cargo xtask ci`: pin check, plan checks, fmt, clippy, tests, wasm32 check. Passing. **Not a parity check** |
-| Comparisons | Targeted original/native suites exist; browser-Wasm runtime and generic `cargo xtask diff` / coverage ratchet remain unbuilt (P36 to P39) |
+| Comparisons | Targeted original/native suites exist; a bounded TLS/mesh/marked-plane subset also executes in Chrome Wasm; wider runtime coverage and generic `cargo xtask diff` / coverage ratchet remain open (P36 to P39) |
 | Original baseline | Historical hosted Node 22 green run: 3084 tests, 24 skipped ([record](docs/port-plan/evidence/2026-10-31-hosted-ci-baseline.md)). Current original-app timing failures and remaining local/feature evidence are tracked in the [audit queue](docs/port-plan/AUDIT-QUEUE.md) |
-| Next | Audit/land bounded PRs in [dependency order](docs/port-plan/AUDIT-QUEUE.md); complete G0 fixture/environment contracts, browser-Wasm runtime and the command/session slice before acceptance |
+| Next | Audit/land bounded PRs in [dependency order](docs/port-plan/AUDIT-QUEUE.md); complete G0 fixture/environment contracts, wider browser-Wasm coverage and the command/session slice before acceptance |
 
 ## How it is done
 

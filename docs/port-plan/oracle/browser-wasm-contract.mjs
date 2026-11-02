@@ -80,3 +80,17 @@ export function negativePackets() {
   check(a.reset(1) === 0 && a.push(0, 4) === 0 && a.run() === 0 && a.length() === 1, 'clean reset recovers')
   return checks
 }
+
+// Node-side only: preserve the mismatching bytes before any assertion can throw.
+export async function retainAndCompare(directory, mode, files, wasm) {
+  const { mkdirSync, writeFileSync } = await import('node:fs')
+  const { resolve } = await import('node:path')
+  mkdirSync(directory, { recursive: true })
+  for (const name of ['input.bin', 'original.bin', 'rust.bin']) writeFileSync(resolve(directory, name), files[name])
+  writeFileSync(resolve(directory, 'wasm.bin'), wasm)
+  return {
+    errorNative: compareOutput(mode, files['original.bin'], files['rust.bin']),
+    errorWasm: compareOutput(mode, files['original.bin'], wasm),
+    errorPair: compareOutput(mode, files['rust.bin'], wasm),
+  }
+}

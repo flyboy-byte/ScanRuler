@@ -10,7 +10,8 @@ Updated 2026-11-01. The frozen original is authoritative. No workflow change in 
 | `Rust port validation / fast` | `cargo xtask ci` | Native ordinary tests, fmt/lints, plan/status and Wasm **compile** pass |
 | `Rust port validation / native-oracle` | `cargo xtask oracle`, then raw evidence inventory | Every required native source suite passed and its full current-case artifacts exist at the exact checkout SHA |
 | `Rust port validation / catalog-contracts` | original headless/browser snapshot and negative validators | Immutable captured metadata remains valid, not command execution or Rust parity |
-| `Rust port validation / gate` | all three Rust lanes, even if another fails/skips | All required lanes succeeded; existing check ID `gate` retained |
+| `Rust port validation / browser-wasm` | actual Chrome running three Rust library corpora plus hostile codec/memory probes | All 114 source/native/browser cases passed; not UI or all-unit browser parity |
+| `Rust port validation / gate` | all four Rust lanes, even if another fails/skips | All required lanes succeeded; existing check ID `gate` retained |
 | `CI / source-tests` | plugin/unit boundaries, complete `npm test` | Original unit checks pass, including unchanged timing limits |
 | `CI / source-mcp` | complete separate MCP suite | Original agent tests pass independently of unit-test timing |
 | `CI / source-browser` | original production build and complete `e2e:ci` | Original browser regression/smoke checks pass independently of unit-test timing |
@@ -18,7 +19,7 @@ Updated 2026-11-01. The frozen original is authoritative. No workflow change in 
 | Frozen original catalog workflows | real clean-pinned headless/browser captures, full metadata comparison | Original catalog evidence reproducible in core/all contexts |
 | License check | unchanged root/MCP allowlists | Existing npm licensing policy passes; not the Rust P35 purity audit |
 
-`cargo xtask diff`, `diff-ci`, browser-Wasm execution, the general paired report protocol and exact-base numerical coverage ratchet **remain unbuilt**. The planned contracts below remain requirements, not implemented CI claims. No check here authorizes merging or sets branch protection/repository settings.
+`cargo xtask diff`, `diff-ci`, the general paired report protocol and exact-base numerical coverage ratchet **remain unbuilt**. Wider browser-Wasm coverage also remains incomplete. Bounded actual browser execution is implemented in oracle/BROWSER-WASM.md; the remaining planned contracts below are not implemented CI claims. No check here authorizes merging or sets branch protection/repository settings.
 
 ## Native evidence and status
 
@@ -81,3 +82,5 @@ node --test docs/port-plan/oracle/catalog-contract.test.mjs docs/port-plan/oracl
 Use Node 22 for CI reproduction and real original captures. Local native math runs previously used Node 20.20.2; those records stay explicit. System Rust is the host policy; hosted stable provisioning is not a request to install rustup locally. Original `npm test`, MCP, build and browser commands are still required and retain all existing acceptance thresholds. Known source timing failures remain red until a real passing run or separately reviewed source change; never suppress them in a port PR.
 
 The disabled `repo-bootstrap` product-gate example describes the future generic ratchet; it is not the active workflow. Release deployment remains unchanged and no Rust release workflow is activated. Branch protection settings need the owner's separate review after these check names are proven on hosted CI.
+
+The browser-wasm lane depends on the successful native-oracle artifact, checks exact candidate/reference/input hashes, builds its own dependency-free Rust module and uses real Chrome. Source/native outputs never cross into the browser payload; only fixture inputs do. Safe scalar-buffer functions retain unsafe_code=forbid. The private linker exports are not the product ABI. Exact corpus/budgets/limits and actual evidence are recorded in oracle/BROWSER-WASM.md; a Node-Wasm smoke cannot satisfy this lane. Native metadata inventories remain 18 suites / 686 identities; browser coverage is a separate 114-case subset, not additional native numerical cases.
