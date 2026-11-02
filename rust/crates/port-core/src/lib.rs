@@ -23,6 +23,7 @@ pub mod clip;
 pub mod components;
 pub mod curvature_gate;
 pub mod linear;
+pub mod mesh_graph;
 pub mod mesh_selection;
 pub mod normals;
 mod numeric;
