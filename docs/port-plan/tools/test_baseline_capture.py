@@ -3,10 +3,31 @@ from pathlib import Path
 import tempfile
 import unittest
 import json
+import gzip
+import hashlib
 import baseline_capture as baseline
 
 
 class BaselineTests(unittest.TestCase):
+    def test_committed_raw_evidence_reproduces_local_report(self):
+        root = Path(__file__).resolve().parents[3]
+        folder = root / 'docs/port-plan/evidence/baseline-2026-11-02'
+        report = json.loads((folder / 'local.json').read_text())
+        for item in json.loads((folder / 'raw-manifest.json').read_text()):
+            packed = (folder / item['path']).read_bytes()
+            self.assertEqual(hashlib.sha256(packed).hexdigest(), item['sha256'])
+            raw = gzip.decompress(packed)
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), item['decoded_sha256'])
+            self.assertEqual(len(raw), item['decoded_bytes'])
+        units = json.loads(gzip.decompress((folder / 'unit-results.json.gz').read_bytes()))
+        # Raw Vitest names contain the original checkout prefix. This is not an
+        # optional private input; preserve raw bytes and locate the common repo root.
+        original_root = Path(units['testResults'][0]['name'].split('/tests/')[0].split('/plugins/')[0])
+        contract = json.loads((root / 'docs/port-plan/ci/original-exclusions.json').read_text())
+        self.assertEqual(baseline.unit_results(original_root, units, contract), report['unit_results'])
+        self.assertFalse(report['all_original_commands_passed'])
+        self.assertEqual(report['unit_results']['failed'], 4)
+
     def test_repository_guard_inventory_matches_original(self):
         root = Path(__file__).resolve().parents[3]
         contract = json.loads((root / 'docs/port-plan/ci/original-exclusions.json').read_text())

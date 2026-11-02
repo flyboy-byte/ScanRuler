@@ -3,8 +3,8 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 21,
-    "planned": 47
+    "implemented": 22,
+    "planned": 46
   },
   "native_suites": 18,
   "native_case_identities_including_refusals": 686,
@@ -364,12 +364,15 @@
     },
     {
       "id": "baseline.reproducibility",
-      "status": "planned",
+      "status": "implemented",
       "parent": "P00",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/26",
+      "tested_sha": "0a42dcaf1912e8f24b1c3292be83d2f22fc16e77",
       "open_items": [
-        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+        "Complete local original unit run remains red: four failures and one unhandled worker timeout; all raw outcomes retained. Separate hosted main run passes.",
+        "Private scans and optional project/benchmark inputs absent; 25 excluded individual entries remain excluded, not passing.",
+        "Full P03 adversarial/image/project corpus and source dependency map not completed by these six baseline fixture recipes.",
+        "Immutable hosted toolchain/container identity remains open; no G0 completion or numerical acceptance claim."
       ]
     },
     {

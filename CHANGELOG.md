@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Original baseline inventory** (2026-11-02): retain complete local/hosted reference observations, explain every excluded test, verify six repeatable generated fixtures and reject missing evidence without hiding original failures.
+
 - **Actual Rust in browser Wasm** (2026-11-01): require Chrome execution of existing TLS/mesh-graph/marked-plane inputs, comparing full source/native/Wasm results through a safe bounded private test ABI; 114 cases and memory/codec checks verified.
 
 - **Rust marked-plane elements** (2026-11-01): complete the selected-plane continuation with surface normal voting, minimum-area patch extents, projected center, oriented residual extremes and original region/statistics; fifty-one independent source comparisons.
