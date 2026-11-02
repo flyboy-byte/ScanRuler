@@ -27,7 +27,7 @@ Read [STATUS.md](STATUS.md) for the generated unit inventory, [AUDIT-QUEUE.md](A
 
 The pinned baseline remains `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`, app 0.9.2. `main` is the port trunk, `upstream-main` the upstream mirror, and `.oracle` the frozen checkout; see UPSTREAM-SYNC.md. The original TypeScript source/tests and npm locks remain unchanged by the numerical port queue.
 
-Rust library work exists: binary/ASCII STL, ASCII/both-endian binary PLY, welding/filtering, full mesh-graph construction, adjacency/components/selection and shell parity, bounds/centroids, normals/orientation, dense solves, TLS/clipped/robust planes and curvature discrimination, plus complete marked-selection plane element geometry/statistics. All numerical child units remain **implemented, not accepted**. `port-engine` has typed error envelopes only; sessions/registry/jobs/history remain unimplemented, the CLI prints a banner, there is no Rust UI and no end-to-end Rust scan/fit/project command workflow.
+Rust library work exists: binary/ASCII STL, ASCII/both-endian binary PLY, welding/filtering, full mesh-graph construction, adjacency/components/selection and shell parity, bounds/centroids, normals/orientation, dense solves, TLS/clipped/robust planes and curvature discrimination, plus complete marked-selection plane element geometry/statistics. All numerical child units remain **implemented, not accepted**. `port-engine` has typed error envelopes, registry/admission, and history recording; the complete session, jobs and history restoration remain unimplemented. The CLI prints a banner; there is no Rust UI or end-to-end Rust scan/fit/project command workflow.
 
 The native suite/case inventory is generated in STATUS.md; case counts include refusals and are not counts of successful numerical measurements. The existing tests compare actual values/state against independently executed frozen bodies. Their fixed cases, seeds and numerical budgets remain authoritative. Actual Chrome-Wasm comparisons cover TLS plane, complete mesh graph, marked plane, both PLY bodies and complete OBJ parser/texture helpers and companion file bookkeeping (651 inputs: 569 complete outputs/helper states / 82 source refusals; one large PLY and two large OBJ workloads explicitly native-only); see oracle/BROWSER-WASM.md and its immutable report. Other numerical units and broader runtime platforms/corpora remain open. The generic P36/P37 paired report/exact-base ratchet remains unbuilt; compilation alone never filled the runtime gap.
 
@@ -58,7 +58,11 @@ engine.session.contract per the owner’s handoff; parent stays specified. PR #4
 implements bounded engine.session.registry with350 full operation traces,
 including successful/refused admission for all140 definitions, not140 feature
 bodies. Native inventory27/2365; browser unchanged651. Next session increments
-are owned history recording/travel and deterministic scheduling/body effects.
+are undo/redo history travel and deterministic scheduling/body effects. #46
+implements bounded history recording, grouping, clear, sync/async wrappers and
+typed capture faults with 110 complete source comparisons / 1,095 operation
+observations. Native inventory is 28/2475. The immutable typed-cell boundary
+and unported restore/family integration are explicit in HISTORY-RECORD.md.
 
 Latest continuation review order is #42 → #43 → #44: full schema validation,
 original source reach, then Rust comparison-only LLVM reach. Native inventory

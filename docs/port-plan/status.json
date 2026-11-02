@@ -3,12 +3,12 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 37,
+    "implemented": 38,
     "planned": 49,
     "specified": 1
   },
-  "native_suites": 27,
-  "native_case_identities_including_refusals": 2365,
+  "native_suites": 28,
+  "native_case_identities_including_refusals": 2475,
   "accepted_units": [],
   "units": [
     {
@@ -461,6 +461,21 @@
         "Original-derived scenario traces (spec section 8) and the Rust session are unimplemented; no session acceptance claim.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
+      ]
+    },
+    {
+      "id": "engine.session.history.record",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/46",
+      "tested_sha": "b5c2c40cddc6e139542d96230db87a7587f68c9e",
+      "open_items": [
+        "Stable typed section capture is the boundary; complete family capture/apply and dynamic participant lifecycle remain session integration.",
+        "Undo/redo travel, restore hooks and local histories are a distinct next bounded continuation.",
+        "Only original history epoch semantics; no extra backend/session epoch policy is accepted.",
+        "Native source comparisons only; wasm32 compile is not actual browser history execution.",
+        "Typed stable section data and pure captures are the owned boundary; dynamic JS getters, prototypes and reentrant capture are outside this slice.",
+        "Session-level asset budgeting and full allocation-failure isolation remain integration work."
       ]
     },
     {

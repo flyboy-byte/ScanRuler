@@ -9,3 +9,5 @@ pub mod schema;
 pub mod schema_value;
 
 pub mod registry;
+
+pub mod history_record;

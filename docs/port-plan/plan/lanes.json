@@ -24,7 +24,8 @@
         "engine.session.contract",
         "engine.error.envelope",
         "engine.schema.validate",
-        "engine.session.registry"
+        "engine.session.registry",
+        "engine.session.history.record"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },
