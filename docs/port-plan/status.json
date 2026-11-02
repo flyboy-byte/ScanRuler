@@ -726,7 +726,7 @@
       "id": "io.obj.companions.image_audit",
       "status": "specified",
       "parent": "io.obj.companions",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/39",
       "tested_sha": null,
       "open_items": [
         "Candidate-only dependency and source-pixel audit in progress; no application dependency or decoder implementation adopted."
