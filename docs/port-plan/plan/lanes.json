@@ -1,5 +1,5 @@
 {
-  "note": "Maps units to work lanes for tools/next_task.py. Order is the priority between lanes of the same readiness class. Edit when units are added; the tool reports any unit not covered.",
+  "note": "Maps units to work lanes for tools/next_task.py. Order is the priority between lanes of the same readiness class. Edit when units are added; the tool reports any unit not covered. Order set 2026-11-02: B (session) and C (harness) ahead of H (imports) because the remaining import units wait on dependency decisions (image decoding, zip) while B and C are runnable and unblock the measurement slice, projects and MCP.",
   "lanes": [
     {
       "id": "A",
@@ -17,23 +17,15 @@
       "touches": "docs/port-plan/evidence, fixtures, .github"
     },
     {
-      "id": "H",
-      "name": "Import breadth",
+      "id": "B",
+      "name": "Session contract",
       "units": [
-        "io.ply",
-        "io.obj",
-        "io.threemf",
-        "io.ply.ascii",
-        "io.ply.binary",
-        "io.obj.texture",
-        "io.obj.mesh",
-        "io.obj.companions",
-        "io.obj.companions.files",
-        "io.obj.companions.drop",
-        "io.obj.companions.image_audit",
-        "io.obj.companions.images"
+        "P05",
+        "engine.session.contract",
+        "engine.error.envelope",
+        "engine.schema.validate"
       ],
-      "touches": "rust/crates/port-io"
+      "touches": "spec doc, then rust/crates/port-engine"
     },
     {
       "id": "C",
@@ -55,15 +47,23 @@
       "touches": "rust/xtask, ci/, port-wasm-probe (one agent at a time)"
     },
     {
-      "id": "B",
-      "name": "Session contract",
+      "id": "H",
+      "name": "Import breadth",
       "units": [
-        "P05",
-        "engine.session.contract",
-        "engine.error.envelope",
-        "engine.schema.validate"
+        "io.ply",
+        "io.obj",
+        "io.threemf",
+        "io.ply.ascii",
+        "io.ply.binary",
+        "io.obj.texture",
+        "io.obj.mesh",
+        "io.obj.companions",
+        "io.obj.companions.files",
+        "io.obj.companions.drop",
+        "io.obj.companions.image_audit",
+        "io.obj.companions.images"
       ],
-      "touches": "spec doc, then rust/crates/port-engine"
+      "touches": "rust/crates/port-io"
     },
     {
       "id": "D",
