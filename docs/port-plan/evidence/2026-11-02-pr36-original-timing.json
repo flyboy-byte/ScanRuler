@@ -1,0 +1,22 @@
+{
+  "pr": 36,
+  "head_sha": "8b3a208e97979a924ed2afea04c6b3975f87f199",
+  "ci_merge_sha": "7ae7c3d23317947d78f06d03668791c3ae15b69c",
+  "workflow_run": 41485305558,
+  "source_job": 125413961638,
+  "source_job_url": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41485305558/job/125413961638",
+  "conclusion": "FAILURE",
+  "failed_tests": 1,
+  "passed_tests": 3083,
+  "skipped_tests": 24,
+  "failure": {
+    "path": "plugins/reverse/tests/reNetworkCreases.test.ts",
+    "line": 209,
+    "observed_ms": 1517.5567359999995,
+    "required_less_than_ms": 1500
+  },
+  "inspection": "Full job log read; sole failure is the unchanged original wall-time assertion. No threshold/source change or manual retry.",
+  "rust_gate": "SUCCESS",
+  "original_mcp": "SUCCESS",
+  "original_browser": "SUCCESS"
+}

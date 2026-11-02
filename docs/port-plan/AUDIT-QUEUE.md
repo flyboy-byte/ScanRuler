@@ -1,5 +1,17 @@
 # Port PR audit and integration queue
 
+Current continuation queue: #36 → #37 → [#39](https://github.com/flyboy-byte/ScanRuler/pull/39).
+#39 is the exact dependency/source-pixel audit, with direct decoder adoption
+rejected and no application dependencies changed. Main’s #38 verification docs
+are merged into both parents and this branch; derived files were regenerated.
+
+Retained #36 hosted observation at head `8b3a208`: Rust/native/browser/plan/license,
+MCP and original browser succeeded. The original source lane’s only failure was
+reNetworkCreases.test.ts:209: 1517.556736 ms against 1500 ms. Read the full job log;
+[exact observation](evidence/2026-11-02-pr36-original-timing.json) retains the
+run/job/merge SHA. This was not waived, threshold-adjusted or manually retried.
+New parent-integration heads trigger independent CI; inspect those final heads.
+
 Continuation 2026-11-02 from clean main `cb0b480` after #35: new queue
 [#36](https://github.com/flyboy-byte/ScanRuler/pull/36), complete companion file
 selection/identity/byte state. Local 87-case source evidence is committed; inspect

@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Image codec audit** (2026-11-02): freeze 56 original Chrome image observations and an exact pure-Rust candidate graph; retain 28 pixel and two omission mismatches, reject direct decoder adoption, and keep application dependencies unchanged.
+
 - **Companion file state in actual Rust Wasm** (2026-11-02): compare all 87 file-state cases in Chrome, preserving every earlier case for 651 complete comparisons and 24 protocol checks, with full raw evidence and strict state/identity/byte mutation tests.
 
 - **Rust companion file selection** (2026-11-02): preserve complete file classification, first-model selection, companion identity across repeated bundles and ordered original bytes, with 87 exact source-state comparisons. Directory traversal, codecs and public imports remain separate.
