@@ -4293,7 +4293,7 @@
       "owner": "Codex",
       "branch": "codex/wasm-obj-runtime",
       "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/34",
-      "implemented_commit": "6bcab1d1a436fb757ce2023a001f70d3972b5a05",
+      "implemented_commit": "239012c9648f645a3039856e5c511857fb62e691",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [
         "src/core/parsers/obj.ts",
@@ -4315,7 +4315,7 @@
         {
           "kind": "runtime-comparison",
           "location": "evidence/browser-wasm-obj-2026-11-02/manifest.json",
-          "candidate_sha": "6bcab1d1a436fb757ce2023a001f70d3972b5a05"
+          "candidate_sha": "239012c9648f645a3039856e5c511857fb62e691"
         }
       ],
       "open_items": [

@@ -18,3 +18,8 @@ PLY million-vertex progress and both full-size OBJ million-line progress inputs.
 Limits stay 1 MiB input/output and 64 MiB memory; no image-file codec, public
 command/session/UI integration or unit acceptance is claimed. Node22/TypeScript
 and the launcher are temporary reference/test tooling, not a shipped runtime.
+
+Clean tested checkpoint: `239012c9648f645a3039856e5c511857fb62e691`. All 23 native suites /1,191
+identities and their exact-candidate raw inventory passed before the actual Chrome
+run. Codec implementation is `6bcab1d1a436fb757ce2023a001f70d3972b5a05`;
+subsequent checkpoint changes add replay tests, proof and documentation.

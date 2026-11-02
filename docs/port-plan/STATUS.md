@@ -79,7 +79,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [geometry.normals.orient](plan/units/geometry.normals.orient.json) | implemented | `4c8b4cf` | [#6](https://github.com/flyboy-byte/ScanRuler/pull/6) |
 | [geometry.selection](plan/units/geometry.selection.json) | implemented | `3f56d3e` | [#19](https://github.com/flyboy-byte/ScanRuler/pull/19) |
 | [harness.oracle.gate](plan/units/harness.oracle.gate.json) | implemented | `eeb2136` | [#15](https://github.com/flyboy-byte/ScanRuler/pull/15) |
-| [harness.wasm.obj](plan/units/harness.wasm.obj.json) | implemented | `6bcab1d` | [#34](https://github.com/flyboy-byte/ScanRuler/pull/34) |
+| [harness.wasm.obj](plan/units/harness.wasm.obj.json) | implemented | `239012c` | [#34](https://github.com/flyboy-byte/ScanRuler/pull/34) |
 | [harness.wasm.ply](plan/units/harness.wasm.ply.json) | implemented | `8bc7363` | [#29](https://github.com/flyboy-byte/ScanRuler/pull/29) |
 | [harness.wasm.runtime](plan/units/harness.wasm.runtime.json) | implemented | `00fd1a6` | [#24](https://github.com/flyboy-byte/ScanRuler/pull/24) |
 | [io.mesh.weld](plan/units/io.mesh.weld.json) | implemented | `53d6408` | [#4](https://github.com/flyboy-byte/ScanRuler/pull/4) |

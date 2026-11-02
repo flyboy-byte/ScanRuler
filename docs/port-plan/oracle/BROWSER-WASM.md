@@ -34,7 +34,8 @@ Actual browser results must be recorded before claiming execution coverage; a co
 
 ## OBJ local Chrome checkpoint — 2026-11-02
 
-Implementation `6bcab1d1a436fb757ce2023a001f70d3972b5a05`: Chrome
+Clean tested checkpoint `239012c9648f645a3039856e5c511857fb62e691` (codec implementation
+`6bcab1d1a436fb757ce2023a001f70d3972b5a05`): Chrome
 156.0.8078.79 / Node 22.23.4 / Rust 1.99.1 passes 564 comparisons and 18 protocol
 checks. Zero module imports or page errors. All OBJ values, float32 bits, colors,
 ordered notes/filenames/maps, complete sampler buffer and progress/refusals match

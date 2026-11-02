@@ -1,8 +1,8 @@
 {
   "contract": "browser.wasm.obj.evidence.v1",
-  "candidate_sha": "6bcab1d1a436fb757ce2023a001f70d3972b5a05",
+  "candidate_sha": "239012c9648f645a3039856e5c511857fb62e691",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
-  "report_sha256": "411b12f21badc46f7ae026a6a4382dbba960055c363a12b37f5af943cc47157b",
+  "report_sha256": "1527225a0939fe3e800138d488d281d564dcb7bcb0b95641f7a480c8e483a4ae",
   "corpus_sha256": "34a5a8223720431adca132491c9d2093da4939deacf4b80a1b79166a0867cd78",
   "raw_gzip_sha256": "e59c457f56be482e2c75ed116c0ca8fd989a3a0d9fb0deff5b054bd64f6640a4",
   "raw_decoded_sha256": "63275b744624f1617dfbc142f46528df913929976aa6915edfa9b5bc52da97a5",

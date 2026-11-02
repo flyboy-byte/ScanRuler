@@ -645,7 +645,7 @@
       "status": "implemented",
       "parent": "P36",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/34",
-      "tested_sha": "6bcab1d1a436fb757ce2023a001f70d3972b5a05",
+      "tested_sha": "239012c9648f645a3039856e5c511857fb62e691",
       "open_items": [
         "Three explicit native-only workloads remain above unchanged private ABI caps: PLY vertex progress and both OBJ million-line progress fixtures. None counts as a browser pass.",
         "Image-file decoding/bundling, public commands/session/history/projects/UI, broader runtime platforms and generic P36/P37/P39 remain open. No numerical unit is accepted."
