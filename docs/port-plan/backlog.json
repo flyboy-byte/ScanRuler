@@ -3108,6 +3108,106 @@
       ]
     },
     {
+      "id": "geometry.components",
+      "parent": "P06",
+      "title": "Port directed disjoint sets and mesh vertex components",
+      "gate": "G2",
+      "status": "implemented",
+      "depends_on": [],
+      "soft_depends_on": [
+        "P05",
+        "P36"
+      ],
+      "scope": "Complete findRoot, makeUnionFind and vertexComponents, preserving path-halving mutations and directed root identities. No closed-shell/region/grouping caller acceptance.",
+      "acceptance": [
+        "Independent original/native/browser-Wasm query results and complete parent state compare exactly before/after operations on fixed/seeded forests and triangle meshes.",
+        "Invalid standalone chains/union indices fail before mutation; storage and signed-parent host budgets fail safely."
+      ],
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/geometry/unionFind.ts"
+      ],
+      "symbols": [
+        "findRoot",
+        "makeUnionFind",
+        "vertexComponents"
+      ],
+      "rust_paths": [
+        "rust/crates/port-core/src/components.rs",
+        "rust/crates/port-core/tests/components.rs"
+      ],
+      "owner": "Codex",
+      "branch": "codex/port-mesh-components",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/18",
+      "implemented_commit": "66997f8ad0e0cb15148fcc2aa6d6c093e3f9b467",
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-01-components-cases.csv",
+          "candidate_sha": "66997f8ad0e0cb15148fcc2aa6d6c093e3f9b467",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "chain_false",
+            "chain_true",
+            "empty",
+            "mesh_disconnected",
+            "mesh_duplicate",
+            "mesh_empty",
+            "mesh_isolated",
+            "mesh_nonmanifold",
+            "mesh_repeated",
+            "mesh_seed_1039_n17_t1",
+            "mesh_seed_1039_n17_t31",
+            "mesh_seed_1039_n1_t1",
+            "mesh_seed_1039_n1_t31",
+            "mesh_seed_1039_n64_t1",
+            "mesh_seed_1039_n64_t31",
+            "mesh_seed_1_n17_t1",
+            "mesh_seed_1_n17_t31",
+            "mesh_seed_1_n1_t1",
+            "mesh_seed_1_n1_t31",
+            "mesh_seed_1_n64_t1",
+            "mesh_seed_1_n64_t31",
+            "mesh_seed_7_n17_t1",
+            "mesh_seed_7_n17_t31",
+            "mesh_seed_7_n1_t1",
+            "mesh_seed_7_n1_t31",
+            "mesh_seed_7_n64_t1",
+            "mesh_seed_7_n64_t31",
+            "mesh_seed_99_n17_t1",
+            "mesh_seed_99_n17_t31",
+            "mesh_seed_99_n1_t1",
+            "mesh_seed_99_n1_t31",
+            "mesh_seed_99_n64_t1",
+            "mesh_seed_99_n64_t31",
+            "mesh_shared",
+            "mesh_triangle",
+            "ops_seed_1039_n1",
+            "ops_seed_1039_n17",
+            "ops_seed_1039_n64",
+            "ops_seed_1_n1",
+            "ops_seed_1_n17",
+            "ops_seed_1_n64",
+            "ops_seed_7_n1",
+            "ops_seed_7_n17",
+            "ops_seed_7_n64",
+            "ops_seed_99_n1",
+            "ops_seed_99_n17",
+            "ops_seed_99_n64",
+            "singleton",
+            "standalone_branched",
+            "standalone_forest",
+            "standalone_long_chain"
+          ]
+        }
+      ],
+      "open_items": [
+        "Browser-Wasm runtime, G0/P05, P06 caller integration and generic P36 exact-base ratchet remain open.",
+        "Owned factory parent state is read-only; arbitrary JS numeric-array ABI, external parent mutations and malformed cyclic/out-of-range source behavior are not exposed.",
+        "Factory uses a conservative i32::MAX vertex cap plus caller budget. Standalone u32 parent chains are validated before source path halving."
+      ]
+    },
+    {
       "id": "geometry.normals.compute",
       "parent": "P06",
       "title": "Port area-weighted per-vertex normal computation",
