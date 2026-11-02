@@ -1,4 +1,4 @@
-name: Plan integrity only
+name: Plan and status integrity (not parity)
 on:
   pull_request:
   push:
@@ -17,5 +17,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
-      - run: python3 docs/port-plan/tools/port_plan.py --root docs/port-plan check
+      - run: python3 docs/port-plan/tools/port_plan.py --root docs/port-plan check-generated
       - run: python3 docs/port-plan/tools/port_plan.py selftest
+      - run: python3 docs/port-plan/tools/ci_report.py status --check
+      - run: python3 -m unittest discover -s docs/port-plan/tools -p 'test_*.py'

@@ -1,0 +1,123 @@
+{
+  "contract": "native.oracle.inventory.v1",
+  "suites": [
+    {
+      "unit": "io.stl.binary",
+      "test": "pinned_original_comparison",
+      "directory": "stl-diff",
+      "refusals_without_rust_bin": [
+        "truncated"
+      ]
+    },
+    {
+      "unit": "io.stl.dispatch",
+      "test": "pinned_stl_dispatch_comparison",
+      "directory": "stl-dispatch-diff",
+      "refusals_without_rust_bin": [
+        "binary_solid_count_mismatch",
+        "empty",
+        "empty_ascii",
+        "not_js_space_0",
+        "not_js_space_1",
+        "not_js_space_2",
+        "not_js_space_3",
+        "one_vertex",
+        "short_junk",
+        "two_vertices",
+        "uppercase_solid",
+        "uppercase_vertex",
+        "utf8_invalid_prefix"
+      ]
+    },
+    {
+      "unit": "io.mesh.weld",
+      "test": "pinned_weld_comparison",
+      "directory": "weld-diff",
+      "refusals_without_rust_bin": []
+    },
+    {
+      "unit": "geometry.normals.compute",
+      "test": "pinned_normals_comparison",
+      "directory": "normals-diff",
+      "refusals_without_rust_bin": []
+    },
+    {
+      "unit": "geometry.normals.orient",
+      "test": "pinned_orientation_comparison",
+      "directory": "orientation-diff",
+      "refusals_without_rust_bin": []
+    },
+    {
+      "unit": "fit.linalg.solve",
+      "test": "pinned_linear_comparison",
+      "directory": "linear-diff",
+      "refusals_without_rust_bin": []
+    },
+    {
+      "unit": "fit.plane.tls",
+      "test": "pinned_plane_comparison",
+      "directory": "plane-diff",
+      "refusals_without_rust_bin": []
+    },
+    {
+      "unit": "fit.plane.clip",
+      "test": "pinned_clip_comparison",
+      "directory": "clip-diff",
+      "refusals_without_rust_bin": []
+    },
+    {
+      "unit": "geometry.bounds",
+      "test": "pinned_bounds_comparison",
+      "directory": "bounds-diff",
+      "refusals_without_rust_bin": []
+    },
+    {
+      "unit": "geometry.centroid",
+      "test": "pinned_centroid_comparison",
+      "directory": "centroid-diff",
+      "refusals_without_rust_bin": []
+    },
+    {
+      "unit": "fit.plane.ransac",
+      "test": "pinned_ransac_comparison",
+      "directory": "ransac-diff",
+      "refusals_without_rust_bin": []
+    },
+    {
+      "unit": "fit.curvature.gate",
+      "test": "pinned_curvature_gate_comparison",
+      "directory": "curvature-gate-diff",
+      "refusals_without_rust_bin": []
+    },
+    {
+      "unit": "geometry.adjacency",
+      "test": "pinned_adjacency_comparison",
+      "directory": "adjacency-diff",
+      "refusals_without_rust_bin": []
+    },
+    {
+      "unit": "geometry.components",
+      "test": "pinned_components_comparison",
+      "directory": "components-diff",
+      "refusals_without_rust_bin": []
+    },
+    {
+      "unit": "geometry.selection",
+      "test": "pinned_mesh_selection_comparison",
+      "directory": "mesh-selection-diff",
+      "refusals_without_rust_bin": []
+    },
+    {
+      "unit": "geometry.mesh.graph",
+      "test": "pinned_mesh_graph_comparison",
+      "directory": "mesh-graph-diff",
+      "refusals_without_rust_bin": []
+    },
+    {
+      "unit": "geometry.closed.shells",
+      "test": "closed_shells::tests::pinned_closed_shells_comparison",
+      "directory": "closed-shells-diff",
+      "refusals_without_rust_bin": []
+    }
+  ]
+}

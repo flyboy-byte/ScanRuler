@@ -3,6 +3,9 @@ name: Frozen original headless catalogs (not Rust parity)
 on:
   pull_request:
     paths: ['docs/port-plan/oracle/*catalog*.mjs', 'docs/port-plan/reference-pin.json', 'docs/port-plan/evidence/headless-2026-11-01/**', '.github/workflows/original-catalog.yml']
+  push:
+    branches: [main]
+    paths: ['docs/port-plan/oracle/*catalog*.mjs', 'docs/port-plan/reference-pin.json', 'docs/port-plan/evidence/headless-2026-11-01/**', '.github/workflows/original-catalog.yml']
   workflow_dispatch:
 permissions:
   contents: read

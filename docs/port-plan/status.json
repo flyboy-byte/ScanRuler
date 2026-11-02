@@ -1,0 +1,679 @@
+{
+  "contract": "port.status.v1",
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "unit_states": {
+    "baseline-captured": 2,
+    "implemented": 18,
+    "planned": 46,
+    "specified": 1
+  },
+  "native_suites": 17,
+  "native_case_identities_including_refusals": 635,
+  "accepted_units": [],
+  "units": [
+    {
+      "id": "P00",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Done 2026-10-31 (no evidence record yet): full checkout at the pinned commit, local branch port/rust-baseline, upstream remote added, Rust workspace scaffold passes cargo xtask ci (native + wasm32 check).",
+        "Open: Node 22 for the oracle is not installed (Node 20.20.2 present); record the version used for every baseline run.",
+        "Historical 2026-10-31 observation (superseded by checkpoint below): browser (Chromium/Chrome) version not recorded; lockfile hashes not re-verified against reference-pin.json.",
+        "Open: read upstream AGENTS/contribution rules in the checkout (CONTRIBUTING.md/CLA read; no upstream AGENTS.md exists).",
+        "Decision: no rustup (plan/decisions/2026-10-31-no-rustup.md); Node is oracle-only (plan/decisions/2026-10-31-node-is-oracle-only.md).",
+        "Checkpoint 2026-11-01: hosted Node 22/Chrome versions and frozen lock hashes now exist in headless/browser catalog evidence. Local Node remains 20.20.2; hosted Rust stable is not immutable-version-pinned. Parent stays planned pending consolidated reproducibility/skip/fixture evidence."
+      ]
+    },
+    {
+      "id": "P01",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Partial 2026-10-31 (record: evidence/2026-10-31-hosted-ci-baseline.md, run 41243336713 at fabc28e): hosted Node 22 run of the unchanged original is green (371/384 files, 3084 tests, 24 skipped; mcp 123/123; build; e2e:ci). Status stays planned: not a local run, no implemented commit.",
+        "Open: reproduce locally once Node 22 is installed (use the .oracle worktree, UPSTREAM-SYNC.md).",
+        "Open: per-skip reasons still need individual verification; full-suite raw log/environment details and local reproduction remain incomplete. Headless build/catalog evidence is separate, under catalog.headless."
+      ]
+    },
+    {
+      "id": "P02",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Checkpoint 2026-11-01: catalog.headless and catalog.browser are baseline-captured with matching 72 core / 140 all-plugin registered schemas. Nested feature variants and complete operation execution coverage remain open; parent stays planned."
+      ]
+    },
+    {
+      "id": "P03",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Checkpoint 2026-11-01: 635 declared native case identities and per-unit raw/hash evidence exist. Whole-corpus license/provenance/input/observable/seed schema and broader fixture map remain incomplete."
+      ]
+    },
+    {
+      "id": "P04",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P05",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Checkpoint 2026-11-01: native/Wasm-compile workspace and bounded geometry libraries exist; engine.session.contract owns remaining session/error/revision/history interfaces. Native helper tests do not complete P05."
+      ]
+    },
+    {
+      "id": "P06",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Partial 2026-11-01: io.stl.binary implements the parseBinary helper with native bit/progress comparisons; parent remains planned. io.stl.dispatch tracks format detection/ASCII continuation; welding/indexing/session integration remain open.",
+        "Partial 2026-11-01 at 77683bf: io.stl.dispatch implements full binary/ASCII dispatch with 82 native source comparisons. Welding/indexing is the next bounded unit (io.mesh.weld); session integration and browser-Wasm runtime comparisons remain open.",
+        "Integration checkpoint 2026-11-01: geometry.mesh.graph now implements complete buildMeshGraph over bounded typed input, composing implemented weld/filter, adjacency, normals/orientation and extents. Earlier partial notes are historical. Parent remains planned: browser-Wasm runtime, source/render mapping, spatial queries and parser/session command integration remain open."
+      ]
+    },
+    {
+      "id": "P07",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Checkpoint 2026-11-01: TLS/clipped/robust numerical planes exist. fitPlaneOnSelection still needs normal voting, patch extents, oriented extremes and full element fields; fit.plane.selection owns that bounded continuation. Seeded/other-shape paths remain open."
+      ]
+    },
+    {
+      "id": "P08",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P09",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P10",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P11",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P12",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P13",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P14",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P15",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P16",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P17",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P18",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P19",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P20",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P21",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P22",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P23",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P24",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P25",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P26",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P27",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P28",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P29",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P30",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P31",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P32",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P33",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P34",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P35",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": []
+    },
+    {
+      "id": "P36",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Checkpoint 2026-11-01: seventeen required native suites and current-artifact inventory exist. General versioned paired protocol and actual browser-Wasm execution remain open; harness.wasm.runtime scopes the first real runtime comparison."
+      ]
+    },
+    {
+      "id": "P37",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Checkpoint 2026-11-01: discovery/case/file freshness checks reject omissions within a current run. They do not compare against the exact target base or freeze all input/seed/observable coverage; this workstream is unimplemented."
+      ]
+    },
+    {
+      "id": "P38",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Checkpoint 2026-11-01: CI integration PR22 separates Rust fast/native/catalog and original tests/MCP/browser lanes, preserves strict aggregate checks and main-run evidence. P36/P37/browser-Wasm and full acceptance gates remain incomplete."
+      ]
+    },
+    {
+      "id": "P39",
+      "status": "planned",
+      "parent": null,
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Partial 2026-11-01: refreshed stale handoff/CI/contributor guidance against the existing scaffold and hosted evidence; see plan/findings/2026-11-01-handoff-scaffold-drift.md. No lifecycle promotion: Rust checker replacement, paired harness and acceptance remain open.",
+        "Checkpoint 2026-11-01: generated backlog/status freshness and evidence-backed docs are enforced by temporary Python tools. Rust replacement and general accepted-unit reporting remain open; no lifecycle promotion."
+      ]
+    },
+    {
+      "id": "baseline.reproducibility",
+      "status": "planned",
+      "parent": "P00",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ]
+    },
+    {
+      "id": "catalog.browser",
+      "status": "baseline-captured",
+      "parent": "P02",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/14",
+      "tested_sha": "8f327ee96cebe12d0a5113daadb62f9ee8f3cf59",
+      "open_items": [
+        "Production-bundle equivalence, broader MCP command execution and nested feature variants remain open.",
+        "G0/P00/P01 prerequisites and Rust coordinator/purity endpoint remain incomplete."
+      ]
+    },
+    {
+      "id": "catalog.headless",
+      "status": "baseline-captured",
+      "parent": "P02",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/13",
+      "tested_sha": "8b9084f27f5d0678cf62d1c883c78dc0d13f8fb8",
+      "open_items": [
+        "Browser core/all-plugin runtime catalogs and nested feature variants remain open under P02; these snapshots are headless-only.",
+        "Static 140 command names reconcile exactly with all-plugin headless registry; browser contexts and descriptor differences still require review.",
+        "P00/P01 full/local baseline and whole-port Rust coordinator/tooling migration remain incomplete."
+      ]
+    },
+    {
+      "id": "ci.integration",
+      "status": "specified",
+      "parent": "P38",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/22",
+      "tested_sha": null,
+      "open_items": [
+        "Implementation and hosted validation in progress; no acceptance promotion.",
+        "Browser-Wasm runtime, exact-base numerical ratchet and Rust replacement for Python bootstrap remain open."
+      ]
+    },
+    {
+      "id": "engine.measurement.slice",
+      "status": "planned",
+      "parent": "P08",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ]
+    },
+    {
+      "id": "engine.session.contract",
+      "status": "planned",
+      "parent": "P05",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ]
+    },
+    {
+      "id": "fit.curvature.gate",
+      "status": "implemented",
+      "parent": "P07",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/16",
+      "tested_sha": "f46eeb1134a10debf9ec7cdf9bf139633c7b04fb",
+      "open_items": [
+        "Browser-Wasm runtime, wider orientation/threshold corpus, G0/P05 and generic P36 exact-base ratchet remain open.",
+        "No sphere/cylinder/cone/torus fit or engine-command acceptance.",
+        "Invalid Rust packed-shape/selection errors precede callbacks; arbitrary JS host objects/callback ABI are not exposed."
+      ]
+    },
+    {
+      "id": "fit.linalg.solve",
+      "status": "implemented",
+      "parent": "P07",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/7",
+      "tested_sha": "46e0992dea8fa2dd77ccea3a93e4ee65ee30815d",
+      "open_items": [
+        "Browser-Wasm runtime, non-finite/extreme numerical corpus and near-pivot seeded depth remain open.",
+        "P05/G0 and generic P36 harness/ratchet remain incomplete.",
+        "No fit caller wired; Jacobi eigen decomposition and fixed-selection plane fit remain separate units."
+      ]
+    },
+    {
+      "id": "fit.plane.clip",
+      "status": "implemented",
+      "parent": "P07",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/9",
+      "tested_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
+      "open_items": [
+        "Browser-Wasm runtime and wider/extreme/nonfinite plane geometry remain unverified.",
+        "P05/G0 and generic P36 exact-base ratchet remain open.",
+        "No robust starts, two-plane split, region growth or engine/session integration.",
+        "Other fitted shapes must reuse this shared generic body and add model-specific comparison evidence."
+      ]
+    },
+    {
+      "id": "fit.plane.ransac",
+      "status": "implemented",
+      "parent": "P07",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/12",
+      "tested_sha": "2490952aa3edce0e889e5fe4f36246466df9cd4a",
+      "open_items": [
+        "Browser-Wasm runtime, wider/nonfinite/adversarial/threshold-edge corpus and generic P36 exact-base ratchet remain open.",
+        "G0/P05 and engine/session/click-region integration remain incomplete.",
+        "Other shape adapters must reuse consensus and add successful model-specific source comparisons; no sphere/cylinder robustness claim.",
+        "Typed Rust options require nonnegative integer work counts and explicit budgets; arbitrary JavaScript callback/primitive ABI is not exposed."
+      ]
+    },
+    {
+      "id": "fit.plane.selection",
+      "status": "planned",
+      "parent": "P07",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ]
+    },
+    {
+      "id": "fit.plane.tls",
+      "status": "implemented",
+      "parent": "P07",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/8",
+      "tested_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
+      "open_items": [
+        "Browser-Wasm runtime, general eigensolver coverage, extreme/nonfinite/near-collinear corpus and broader normal orientations remain open.",
+        "G0/P05 and general P36 exact-base ratchet remain incomplete.",
+        "Clipping, robust starts, splitting, selection growth and engine/session integration are missing continuations tracked by parent P07.",
+        "The compensated norm is the explicit Math.hypot portability boundary; further platforms must satisfy the frozen tolerance without relaxation."
+      ]
+    },
+    {
+      "id": "geometry.adjacency",
+      "status": "implemented",
+      "parent": "P06",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/17",
+      "tested_sha": "74dd9266ef7ebf147496e4c8297772b42bee8dcb",
+      "open_items": [
+        "Browser-Wasm runtime, G0/P05 and generic P36 exact-base ratchet remain open.",
+        "Region traversal, source/render mapping, spatial queries and engine command/session integration are not implemented by this unit.",
+        "Rust rejects budgets/offset counts above u32 capacity; it does not emulate original malformed/out-of-range typed-array writes or oversized wrapping graphs."
+      ]
+    },
+    {
+      "id": "geometry.bounds",
+      "status": "implemented",
+      "parent": "P06",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/10",
+      "tested_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
+      "open_items": [
+        "Browser-Wasm runtime, broad nonfinite corpus, G0/P05 and generic P36 ratchet remain open.",
+        "No broad centroid, scene or engine integration is claimed."
+      ]
+    },
+    {
+      "id": "geometry.centroid",
+      "status": "implemented",
+      "parent": "P06",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/11",
+      "tested_sha": "1473fe4a5a30c34b091b22ad86509d21c685c5d1",
+      "open_items": [
+        "Browser-Wasm runtime, closure-threshold-adjacent/nonfinite/extreme corpus and general P36 ratchet remain open.",
+        "G0/P05 and engine/session integration remain incomplete; this is not a mesh topology/closure proof.",
+        "Incomplete triangle indices are explicit Rust input-domain errors; partial JS triangle tails are not compared."
+      ]
+    },
+    {
+      "id": "geometry.closed.shells",
+      "status": "implemented",
+      "parent": "P06",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/21",
+      "tested_sha": "fd11f984482cdc41409fc1902a4fa7e111c409d4",
+      "open_items": [
+        "Browser-Wasm runtime, viewer caps/downstream classification integration, G0/P05 and generic P36 ratchet remain open.",
+        "Original hash-parity behavior is preserved, including even nonmanifold/duplicate/degenerate cases; no stronger watertight/manifold guarantee.",
+        "Rust typed u32 indices and bounded vertex/triangle storage do not expose arbitrary JS numeric objects or emulate invalid/cyclic host behavior."
+      ]
+    },
+    {
+      "id": "geometry.components",
+      "status": "implemented",
+      "parent": "P06",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/18",
+      "tested_sha": "66997f8ad0e0cb15148fcc2aa6d6c093e3f9b467",
+      "open_items": [
+        "Browser-Wasm runtime, G0/P05, P06 caller integration and generic P36 exact-base ratchet remain open.",
+        "Owned factory parent state is read-only; arbitrary JS numeric-array ABI, external parent mutations and malformed cyclic/out-of-range source behavior are not exposed.",
+        "Factory uses a conservative i32::MAX vertex cap plus caller budget. Standalone u32 parent chains are validated before source path halving."
+      ]
+    },
+    {
+      "id": "geometry.mesh.graph",
+      "status": "implemented",
+      "parent": "P06",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/20",
+      "tested_sha": "6cfda5b8a50a754dbca8f0226eab1ceee5ed8cdc",
+      "open_items": [
+        "Browser-Wasm runtime, G0/P05, general P36 exact-base ratchet and P06 source/render mapping/spatial queries remain open.",
+        "Parser/STL-to-session command integration, undo/project state and cancellation/jobs are not implemented by this library unit.",
+        "Typed parsed input consumes owned arrays; arbitrary JavaScript alias/callback mutation and object ABI are not exposed. Colors/texture notes are not handled by this original source body."
+      ]
+    },
+    {
+      "id": "geometry.normals.compute",
+      "status": "implemented",
+      "parent": "P06",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/5",
+      "tested_sha": "4a5aac469e5fafc4b3689aeb593df860990cbce9",
+      "open_items": [
+        "Browser-Wasm runtime and generic P36 ratchet remain open; native finite fixture corpus and wasm32 compilation only.",
+        "Non-finite/extreme overflow geometry corpus is not yet verified; do not claim all numeric inputs accepted.",
+        "Shared P05/G0 contracts and session/engine integration remain open."
+      ]
+    },
+    {
+      "id": "geometry.normals.orient",
+      "status": "implemented",
+      "parent": "P06",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/6",
+      "tested_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
+      "open_items": [
+        "Browser-Wasm runtime comparison, G0/P05 and generic P36 ratchet remain open.",
+        "Open/non-finite meshes and threshold-adjacent fuzz corpus remain to be compared; implemented, not accepted.",
+        "No automatic pipeline/session integration; a file with settled winding must retain its source caller bypass.",
+        "Future bounds/centroid work should reuse/audit these co-ported reductions rather than silently duplicating them."
+      ]
+    },
+    {
+      "id": "geometry.selection",
+      "status": "implemented",
+      "parent": "P06",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/19",
+      "tested_sha": "3f56d3ee7683b5700446300382a87022cab558bc",
+      "open_items": [
+        "Browser-Wasm runtime, G0/P05 and generic P36 exact-base ratchet remain open.",
+        "No edit/undo/project/session command or source/render mapping integration acceptance.",
+        "Typed Rust IDs/maps expose u32/i32 arrays, not arbitrary JavaScript numeric objects."
+      ]
+    },
+    {
+      "id": "harness.oracle.gate",
+      "status": "implemented",
+      "parent": "P36",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/15",
+      "tested_sha": "eeb21367b4bb0c7a27dd02910cba10201dd5a9e1",
+      "open_items": [
+        "General P36 independent adapter protocol, browser-Wasm execution, accepted-unit exact-base ratchet and G0/P05 remain open.",
+        "Discovery guard freezes entrypoint names, not all case identities; individual suites enforce their own case/value contracts."
+      ]
+    },
+    {
+      "id": "harness.wasm.runtime",
+      "status": "planned",
+      "parent": "P36",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ]
+    },
+    {
+      "id": "io.mesh.weld",
+      "status": "implemented",
+      "parent": "P06",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/4",
+      "tested_sha": "53d64085bb3573b70e8668aa604ab1d0997bc715",
+      "open_items": [
+        "Browser-Wasm runtime comparison remains unbuilt; native comparison and wasm32 compilation only.",
+        "Shared P05/G0 contracts and P36 general harness/coverage ratchet remain open.",
+        "Host rejects incomplete triples and oversized table capacity explicitly; those resource/domain guards are not original successful input parity."
+      ]
+    },
+    {
+      "id": "io.stl.binary",
+      "status": "implemented",
+      "parent": "P06",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/2",
+      "tested_sha": "5ee3881d887a4720c6a7cf5ca7a675333e6e8e62",
+      "open_items": [
+        "Native Node 22 comparisons were observed passing in subsequent full Rust gates; original local implementation evidence used Node 20.20.2. See AUDIT-QUEUE.md for immutable hosted run links.",
+        "Browser-Wasm runtime comparison is not built; only wasm32 compile check passes. P36 general paired harness/coverage ratchet remains open.",
+        "P05 shared buffer/frame contracts and G0 prerequisites remain unaccepted; no promotion of parent P06 or whole scan import.",
+        "Dispatcher and ASCII continuation tracked separately as io.stl.dispatch."
+      ]
+    },
+    {
+      "id": "io.stl.dispatch",
+      "status": "implemented",
+      "parent": "P06",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/3",
+      "tested_sha": "77683bf515590ac3f5cb8a9c3552ec64700ce44a",
+      "open_items": [
+        "Browser-Wasm runtime comparisons remain unbuilt; wasm32 library compilation passes only.",
+        "P05/G0 contracts and general P36 paired harness/coverage ratchet remain open; no promotion to accepted or full scan import."
+      ]
+    },
+    {
+      "id": "project.measurement.compatibility",
+      "status": "planned",
+      "parent": "P16",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ]
+    }
+  ]
+}

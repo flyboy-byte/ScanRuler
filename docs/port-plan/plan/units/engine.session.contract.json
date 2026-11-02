@@ -1,0 +1,38 @@
+{
+  "id": "engine.session.contract",
+  "parent": "P05",
+  "title": "Specify and implement bounded engine session and mutation contracts",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": [
+    "baseline.reproducibility"
+  ],
+  "soft_depends_on": [
+    "P02",
+    "P03"
+  ],
+  "scope": "Owned buffers, frames/IDs, revisions/epochs, error and history/job lane contracts before command integration.",
+  "acceptance": [
+    "Original-derived successful/refused state traces specify transitions, epoch/revision and late completion behavior.",
+    "Native/Wasm contract tests and explicit downstream ownership; no duplicate business-state store."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/registry.ts",
+    "src/commands/state.ts",
+    "src/commands/types.ts",
+    "src/core/workerProtocol.ts",
+    "src/core/workerRpc.ts",
+    "src/state/historyStore.ts"
+  ],
+  "symbols": [],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+  ]
+}

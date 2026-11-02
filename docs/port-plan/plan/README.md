@@ -8,6 +8,6 @@ Statuses: planned, specified, baseline-captured, implemented, compared, integrat
 
 Evidence entry: kind, location (artifact/report link), candidate_sha; differential entries also include reference_sha and case_ids. Reports themselves must carry the contract/fixture/seed/comparator identities from CI-AND-REGRESSIONS. The checker validates metadata only; actual CI must regenerate or validate results against trusted exact-base runs.
 
-Check live metadata: `python tools/port_plan.py --root . check`. Self-test checker: `python tools/port_plan.py selftest`. Generate aggregate backlog: `python tools/port_plan.py --root . render`. In the future repository, point --root at docs/port-plan. Contributors edit affected unit files; maintainers generate aggregate snapshots in batches. Do not manually update both.
+Check live metadata: `python tools/port_plan.py --root . check`. Self-test checker: `python tools/port_plan.py selftest`. Generate aggregate backlog: `python tools/port_plan.py --root . render`. In this fork, point --root at docs/port-plan. `check-generated` additionally rejects stale backlog tasks. Run `python tools/ci_report.py status` to regenerate STATUS.md/status.json, or add `--check` to reject drift. Contributors edit affected unit files; maintainers generate aggregate snapshots in batches. Do not manually update both.
 
 Keep findings and decisions in uniquely named individual files under plan/findings and plan/decisions; link the unit IDs and evidence. Templates are in templates/. No status transition creates a public claim, PR or issue automatically.

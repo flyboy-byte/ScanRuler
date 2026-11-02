@@ -1,0 +1,33 @@
+{
+  "id": "harness.wasm.runtime",
+  "parent": "P36",
+  "title": "Execute initial plane and mesh corpus as actual browser Wasm",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": [
+    "fit.plane.tls",
+    "geometry.mesh.graph"
+  ],
+  "soft_depends_on": [
+    "P00",
+    "P03",
+    "P05"
+  ],
+  "scope": "Real Rust-Wasm execution with independent original/native/browser inputs and bounded result/error memory boundary.",
+  "acceptance": [
+    "Source/native/Wasm values and state compare on the same immutable IDs/inputs; deliberate runtime failures propagate.",
+    "Record browser/toolchain and memory bounds; no JavaScript numerical implementation or compile-only substitute."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "symbols": [],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+  ]
+}

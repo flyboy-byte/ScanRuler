@@ -44,9 +44,10 @@
       "open_items": [
         "Done 2026-10-31 (no evidence record yet): full checkout at the pinned commit, local branch port/rust-baseline, upstream remote added, Rust workspace scaffold passes cargo xtask ci (native + wasm32 check).",
         "Open: Node 22 for the oracle is not installed (Node 20.20.2 present); record the version used for every baseline run.",
-        "Open: browser (Chromium/Chrome) version not recorded; lockfile hashes not re-verified against reference-pin.json.",
+        "Historical 2026-10-31 observation (superseded by checkpoint below): browser (Chromium/Chrome) version not recorded; lockfile hashes not re-verified against reference-pin.json.",
         "Open: read upstream AGENTS/contribution rules in the checkout (CONTRIBUTING.md/CLA read; no upstream AGENTS.md exists).",
-        "Decision: no rustup (plan/decisions/2026-10-31-no-rustup.md); Node is oracle-only (plan/decisions/2026-10-31-node-is-oracle-only.md)."
+        "Decision: no rustup (plan/decisions/2026-10-31-no-rustup.md); Node is oracle-only (plan/decisions/2026-10-31-node-is-oracle-only.md).",
+        "Checkpoint 2026-11-01: hosted Node 22/Chrome versions and frozen lock hashes now exist in headless/browser catalog evidence. Local Node remains 20.20.2; hosted Rust stable is not immutable-version-pinned. Parent stays planned pending consolidated reproducibility/skip/fixture evidence."
       ],
       "claim_pr": null
     },
@@ -74,10 +75,14 @@
       "soft_depends_on": [],
       "open_items": [
         "Partial 2026-10-31 (record: evidence/2026-10-31-hosted-ci-baseline.md, run 41243336713 at fabc28e): hosted Node 22 run of the unchanged original is green (371/384 files, 3084 tests, 24 skipped; mcp 123/123; build; e2e:ci). Status stays planned: not a local run, no implemented commit.",
-        "Open: npm run build:engine (headless) not run; per-skip reasons not individually verified; browser/OS/CPU details and lockfile hashes not recorded; raw log not archived.",
-        "Open: reproduce locally once Node 22 is installed (use the .oracle worktree, UPSTREAM-SYNC.md)."
+        "Open: reproduce locally once Node 22 is installed (use the .oracle worktree, UPSTREAM-SYNC.md).",
+        "Open: per-skip reasons still need individual verification; full-suite raw log/environment details and local reproduction remain incomplete. Headless build/catalog evidence is separate, under catalog.headless."
       ],
-      "claim_pr": null
+      "claim_pr": null,
+      "resolved_items": [
+        "Open: npm run build:engine (headless) not run; per-skip reasons not individually verified; browser/OS/CPU details and lockfile hashes not recorded; raw log not archived.",
+        "2026-11-01: original npm run build:engine exits 0 on Node 22.23.4 in separate clean frozen checkout, run 41352758112; evidence/headless-2026-11-01 retains logs, lock hashes and runtime context. This does not retroactively fill the original full-suite run environment."
+      ]
     },
     {
       "id": "P02",
@@ -101,7 +106,9 @@
       "symbols": [],
       "rust_paths": [],
       "soft_depends_on": [],
-      "open_items": [],
+      "open_items": [
+        "Checkpoint 2026-11-01: catalog.headless and catalog.browser are baseline-captured with matching 72 core / 140 all-plugin registered schemas. Nested feature variants and complete operation execution coverage remain open; parent stays planned."
+      ],
       "claim_pr": null
     },
     {
@@ -532,7 +539,9 @@
       "symbols": [],
       "rust_paths": [],
       "soft_depends_on": [],
-      "open_items": [],
+      "open_items": [
+        "Checkpoint 2026-11-01: 635 declared native case identities and per-unit raw/hash evidence exist. Whole-corpus license/provenance/input/observable/seed schema and broader fixture map remain incomplete."
+      ],
       "claim_pr": null
     },
     {
@@ -584,7 +593,9 @@
       "symbols": [],
       "rust_paths": [],
       "soft_depends_on": [],
-      "open_items": [],
+      "open_items": [
+        "Checkpoint 2026-11-01: native/Wasm-compile workspace and bounded geometry libraries exist; engine.session.contract owns remaining session/error/revision/history interfaces. Native helper tests do not complete P05."
+      ],
       "claim_pr": null
     },
     {
@@ -668,7 +679,9 @@
       "symbols": [],
       "rust_paths": [],
       "soft_depends_on": [],
-      "open_items": [],
+      "open_items": [
+        "Checkpoint 2026-11-01: TLS/clipped/robust numerical planes exist. fitPlaneOnSelection still needs normal voting, patch extents, oriented extremes and full element fields; fit.plane.selection owns that bounded continuation. Seeded/other-shape paths remain open."
+      ],
       "claim_pr": null
     },
     {
@@ -2277,7 +2290,9 @@
       "symbols": [],
       "rust_paths": [],
       "soft_depends_on": [],
-      "open_items": [],
+      "open_items": [
+        "Checkpoint 2026-11-01: seventeen required native suites and current-artifact inventory exist. General versioned paired protocol and actual browser-Wasm execution remain open; harness.wasm.runtime scopes the first real runtime comparison."
+      ],
       "claim_pr": null
     },
     {
@@ -2302,7 +2317,9 @@
       "symbols": [],
       "rust_paths": [],
       "soft_depends_on": [],
-      "open_items": [],
+      "open_items": [
+        "Checkpoint 2026-11-01: discovery/case/file freshness checks reject omissions within a current run. They do not compare against the exact target base or freeze all input/seed/observable coverage; this workstream is unimplemented."
+      ],
       "claim_pr": null
     },
     {
@@ -2330,7 +2347,9 @@
       "symbols": [],
       "rust_paths": [],
       "soft_depends_on": [],
-      "open_items": [],
+      "open_items": [
+        "Checkpoint 2026-11-01: CI integration PR22 separates Rust fast/native/catalog and original tests/MCP/browser lanes, preserves strict aggregate checks and main-run evidence. P36/P37/browser-Wasm and full acceptance gates remain incomplete."
+      ],
       "claim_pr": null
     },
     {
@@ -2357,9 +2376,267 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [
-        "Partial 2026-11-01: refreshed stale handoff/CI/contributor guidance against the existing scaffold and hosted evidence; see plan/findings/2026-11-01-handoff-scaffold-drift.md. No lifecycle promotion: Rust checker replacement, paired harness and acceptance remain open."
+        "Partial 2026-11-01: refreshed stale handoff/CI/contributor guidance against the existing scaffold and hosted evidence; see plan/findings/2026-11-01-handoff-scaffold-drift.md. No lifecycle promotion: Rust checker replacement, paired harness and acceptance remain open.",
+        "Checkpoint 2026-11-01: generated backlog/status freshness and evidence-backed docs are enforced by temporary Python tools. Rust replacement and general accepted-unit reporting remain open; no lifecycle promotion."
       ],
       "claim_pr": null
+    },
+    {
+      "id": "baseline.reproducibility",
+      "parent": "P00",
+      "title": "Complete original baseline reproducibility and fixture/environment ledger",
+      "gate": "G0",
+      "status": "planned",
+      "depends_on": [],
+      "soft_depends_on": [
+        "P01",
+        "P02",
+        "catalog.headless",
+        "catalog.browser"
+      ],
+      "scope": "Supported original environment/locks/run and per-skip/license evidence, preserving recorded timing failures.",
+      "acceptance": [
+        "Reproduce complete original checks with immutable tool/lock/browser identity and explicit per-skip reasons.",
+        "Record fixture licenses/hashes and distinguish local versus hosted evidence; no reference rebaseline."
+      ],
+      "owner": null,
+      "branch": null,
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        ".github/workflows/ci.yml",
+        "scripts/e2e-ci.mjs",
+        "tests/headlessEngine.test.ts"
+      ],
+      "symbols": [],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ]
+    },
+    {
+      "id": "catalog.browser",
+      "parent": "P02",
+      "title": "Capture frozen original live browser command registries",
+      "gate": "G0",
+      "status": "baseline-captured",
+      "depends_on": [
+        "P00"
+      ],
+      "soft_depends_on": [
+        "catalog.headless",
+        "P01"
+      ],
+      "scope": "Actual original Vite page in fresh Chrome core/all contexts, reading its installed live registry and proving a real empty viewport session. No Rust browser/UI/runtime parity claim.",
+      "acceptance": [
+        "Frozen source/locks/Node/browser identity and viewport=true/scan=null startup verified.",
+        "Complete original browser registered metadata and flag partitions retained with hashes, actual console policy and diagnostics.",
+        "Validation fails on empty/dropped/inconsistent schemas or headless/error context; source failures cannot count as captured pages."
+      ],
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/App.tsx",
+        "src/commands/registry.ts",
+        "src/plugins/registry.ts",
+        "scripts/e2e-lib.mjs",
+        "src/commands/bridge.ts",
+        "mcp/tests/client.js"
+      ],
+      "symbols": [
+        "listCommands",
+        "runsHeadless",
+        "plugins",
+        "runCommand(session.state)",
+        "launchApp",
+        "finish"
+      ],
+      "rust_paths": [],
+      "owner": "Codex",
+      "branch": "codex/capture-browser-catalog",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/14",
+      "implemented_commit": "8f327ee96cebe12d0a5113daadb62f9ee8f3cf59",
+      "evidence": [
+        {
+          "kind": "baseline",
+          "location": "evidence/browser-2026-11-01/manifest.json",
+          "candidate_sha": "8f327ee96cebe12d0a5113daadb62f9ee8f3cf59",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7"
+        }
+      ],
+      "open_items": [
+        "Production-bundle equivalence, broader MCP command execution and nested feature variants remain open.",
+        "G0/P00/P01 prerequisites and Rust coordinator/purity endpoint remain incomplete."
+      ]
+    },
+    {
+      "id": "catalog.headless",
+      "parent": "P02",
+      "title": "Capture frozen original live headless command registries",
+      "gate": "G0",
+      "status": "baseline-captured",
+      "depends_on": [
+        "P00"
+      ],
+      "soft_depends_on": [
+        "P01"
+      ],
+      "scope": "Build original headless engine and annotation-free API re-export; capture live core-only/all-plugin full schemas and headless/page-only classifications in fresh Node 22 processes. No browser catalog or feature-variant completion claim.",
+      "acceptance": [
+        "Frozen checkout/locks/Node identity verified; original build and session.state startup checks succeed.",
+        "Nonempty unique complete schemas/flags, exact offered/page partition, runtime plugin identity and stable hashes saved with run evidence.",
+        "Validator rejects empty/dropped/duplicate/inconsistent metadata; reference failures cannot pass as catalogs."
+      ],
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/headless/engine.ts",
+        "src/commands/registry.ts",
+        "src/plugins/registry.ts",
+        "scripts/build-engine.mjs"
+      ],
+      "symbols": [
+        "startEngine",
+        "listCommands",
+        "runsHeadless",
+        "pluginEnabled"
+      ],
+      "rust_paths": [],
+      "owner": "Codex",
+      "branch": "codex/capture-headless-catalog",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/13",
+      "implemented_commit": "8b9084f27f5d0678cf62d1c883c78dc0d13f8fb8",
+      "evidence": [
+        {
+          "kind": "baseline",
+          "location": "evidence/headless-2026-11-01/manifest.json",
+          "candidate_sha": "8b9084f27f5d0678cf62d1c883c78dc0d13f8fb8",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "headless.core",
+            "headless.all"
+          ]
+        }
+      ],
+      "open_items": [
+        "Browser core/all-plugin runtime catalogs and nested feature variants remain open under P02; these snapshots are headless-only.",
+        "Static 140 command names reconcile exactly with all-plugin headless registry; browser contexts and descriptor differences still require review.",
+        "P00/P01 full/local baseline and whole-port Rust coordinator/tooling migration remain incomplete."
+      ]
+    },
+    {
+      "id": "ci.integration",
+      "parent": "P38",
+      "title": "Consolidate active CI, generated status and implementation handoff",
+      "gate": "contributor-harness-ci",
+      "status": "specified",
+      "depends_on": [
+        "harness.oracle.gate",
+        "catalog.headless",
+        "catalog.browser"
+      ],
+      "soft_depends_on": [
+        "P37",
+        "P39"
+      ],
+      "scope": "Separate active validation lanes, strict aggregate checks and current-run evidence completeness; generated status and remaining execution plan. No numerical or exact-base ratchet implementation.",
+      "acceptance": [
+        "All existing original and native source checks remain mandatory; failures cannot be masked by logging or omitted/skipped lanes.",
+        "Negative tests reject missing/stale suite/case/raw evidence and generated inventory drift.",
+        "Node 22 hosted workflows exercise new job boundaries; docs distinguish observed results, declared inventory and missing runtime/ratchet scope."
+      ],
+      "owner": "Codex",
+      "branch": "codex/ci-status-plan-refresh",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/22",
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [],
+      "symbols": [],
+      "rust_paths": [
+        "rust/xtask/src/main.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Implementation and hosted validation in progress; no acceptance promotion.",
+        "Browser-Wasm runtime, exact-base numerical ratchet and Rust replacement for Python bootstrap remain open."
+      ]
+    },
+    {
+      "id": "engine.measurement.slice",
+      "parent": "P08",
+      "title": "Integrate scan/session and marked-plane command slice",
+      "gate": "G2",
+      "status": "planned",
+      "depends_on": [
+        "engine.session.contract",
+        "geometry.mesh.graph",
+        "io.stl.dispatch",
+        "fit.plane.selection"
+      ],
+      "soft_depends_on": [
+        "harness.wasm.runtime",
+        "P16"
+      ],
+      "scope": "Typed scan.open/session.state and plane branch of element.fit_marked with progress, invalidation, source recipes and one history step. No seeded element.fit claim.",
+      "acceptance": [
+        "Independent original/Rust successful and refused command traces include full session state, scan reset, undo/redo and stale completion handling.",
+        "Original schema/result contracts remain authoritative; unimplemented shape/seeded paths stay explicitly unavailable."
+      ],
+      "owner": null,
+      "branch": null,
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/core/scan.ts",
+        "src/commands/core/session.ts",
+        "src/commands/core/element.ts",
+        "src/core/meshWorker.ts"
+      ],
+      "symbols": [],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ]
+    },
+    {
+      "id": "engine.session.contract",
+      "parent": "P05",
+      "title": "Specify and implement bounded engine session and mutation contracts",
+      "gate": "G2",
+      "status": "planned",
+      "depends_on": [
+        "baseline.reproducibility"
+      ],
+      "soft_depends_on": [
+        "P02",
+        "P03"
+      ],
+      "scope": "Owned buffers, frames/IDs, revisions/epochs, error and history/job lane contracts before command integration.",
+      "acceptance": [
+        "Original-derived successful/refused state traces specify transitions, epoch/revision and late completion behavior.",
+        "Native/Wasm contract tests and explicit downstream ownership; no duplicate business-state store."
+      ],
+      "owner": null,
+      "branch": null,
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/registry.ts",
+        "src/commands/state.ts",
+        "src/commands/types.ts",
+        "src/core/workerProtocol.ts",
+        "src/core/workerRpc.ts",
+        "src/state/historyStore.ts"
+      ],
+      "symbols": [],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ]
     },
     {
       "id": "fit.curvature.gate",
@@ -2769,6 +3046,42 @@
         "G0/P05 and engine/session/click-region integration remain incomplete.",
         "Other shape adapters must reuse consensus and add successful model-specific source comparisons; no sphere/cylinder robustness claim.",
         "Typed Rust options require nonnegative integer work counts and explicit budgets; arbitrary JavaScript callback/primitive ABI is not exposed."
+      ]
+    },
+    {
+      "id": "fit.plane.selection",
+      "parent": "P07",
+      "title": "Complete marked-selection plane element continuation",
+      "gate": "G2",
+      "status": "planned",
+      "depends_on": [
+        "fit.plane.clip",
+        "geometry.mesh.graph"
+      ],
+      "soft_depends_on": [
+        "P05",
+        "P36"
+      ],
+      "scope": "Complete fitPlaneOnSelection with requireSelection, orientToSurface, patchExtents and orientedExtremes; no seeded region or other shape path.",
+      "acceptance": [
+        "Original/Rust full center/normal/bases/extents/statistics/extremes/region and refusal messages compare independently.",
+        "Preserve original selection versus clipped used-point meanings; do not return the numerical plane early."
+      ],
+      "owner": null,
+      "branch": null,
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/fit/fitPlaneFromSeed.ts",
+        "src/core/fit/selection.ts",
+        "src/core/fit/linalg.ts"
+      ],
+      "symbols": [],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
       ]
     },
     {
@@ -3742,6 +4055,39 @@
       ]
     },
     {
+      "id": "harness.wasm.runtime",
+      "parent": "P36",
+      "title": "Execute initial plane and mesh corpus as actual browser Wasm",
+      "gate": "G2",
+      "status": "planned",
+      "depends_on": [
+        "fit.plane.tls",
+        "geometry.mesh.graph"
+      ],
+      "soft_depends_on": [
+        "P00",
+        "P03",
+        "P05"
+      ],
+      "scope": "Real Rust-Wasm execution with independent original/native/browser inputs and bounded result/error memory boundary.",
+      "acceptance": [
+        "Source/native/Wasm values and state compare on the same immutable IDs/inputs; deliberate runtime failures propagate.",
+        "Record browser/toolchain and memory bounds; no JavaScript numerical implementation or compile-only substitute."
+      ],
+      "owner": null,
+      "branch": null,
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [],
+      "symbols": [],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ]
+    },
+    {
       "id": "io.mesh.weld",
       "parent": "P06",
       "title": "Port exact-bit triangle soup welding and index-degenerate filtering",
@@ -3832,7 +4178,7 @@
       "source_paths": [
         "src/core/parsers/stl.ts"
       ],
-      "source_mapping": "parseBinary full helper body; parseSTL and parseAscii remain unported",
+      "source_mapping": "parseBinary full helper; dispatcher/ASCII owned by io.stl.dispatch, complete graph owned by geometry.mesh.graph.",
       "symbols": [
         "parseBinary"
       ],
@@ -3868,7 +4214,7 @@
         }
       ],
       "open_items": [
-        "Native exact comparisons pass locally using Node 20.20.2; hosted Node 22 comparison configured but not yet observed.",
+        "Native Node 22 comparisons were observed passing in subsequent full Rust gates; original local implementation evidence used Node 20.20.2. See AUDIT-QUEUE.md for immutable hosted run links.",
         "Browser-Wasm runtime comparison is not built; only wasm32 compile check passes. P36 general paired harness/coverage ratchet remains open.",
         "P05 shared buffer/frame contracts and G0 prerequisites remain unaccepted; no promotion of parent P06 or whole scan import.",
         "Dispatcher and ASCII continuation tracked separately as io.stl.dispatch."
@@ -4011,6 +4357,42 @@
       "resolved_items": [
         "2026-11-01: complete parseSTL/parseAscii bodies ported, including binary precedence, fallback, ECMAScript whitespace/parseFloat prefix handling and UTF-8 replacement/BOM behavior. No missing dispatcher continuation.",
         "2026-11-01: hosted Rust gate and both native source suites pass on Node 22.23.4 at PR head 458d9d8 (run 41346035132); browser-Wasm runtime remains unverified."
+      ]
+    },
+    {
+      "id": "project.measurement.compatibility",
+      "parent": "P16",
+      "title": "Round-trip legacy measurement projects without losing unknown data",
+      "gate": "G2",
+      "status": "planned",
+      "depends_on": [
+        "engine.session.contract",
+        "engine.measurement.slice"
+      ],
+      "soft_depends_on": [
+        "P03",
+        "P17"
+      ],
+      "scope": "Schema-1 original archives/recipes for the slice, bounded decompression, unknown plugin/member preservation and failure-safe session load.",
+      "acceptance": [
+        "Original archives reopen equivalent pose/units/IDs/recipes/results; unknown plugin content survives disabled-plugin round trips.",
+        "Missing/corrupt/oversized archive and cancellation leave the current session intact; no invented replacement format."
+      ],
+      "owner": null,
+      "branch": null,
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/project/archive.ts",
+        "src/core/project/manifest.ts",
+        "src/core/project/validation.ts"
+      ],
+      "symbols": [],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
       ]
     }
   ],

@@ -23,7 +23,7 @@
   "source_paths": [
     "src/core/parsers/stl.ts"
   ],
-  "source_mapping": "parseBinary full helper body; parseSTL and parseAscii remain unported",
+  "source_mapping": "parseBinary full helper; dispatcher/ASCII owned by io.stl.dispatch, complete graph owned by geometry.mesh.graph.",
   "symbols": [
     "parseBinary"
   ],
@@ -59,7 +59,7 @@
     }
   ],
   "open_items": [
-    "Native exact comparisons pass locally using Node 20.20.2; hosted Node 22 comparison configured but not yet observed.",
+    "Native Node 22 comparisons were observed passing in subsequent full Rust gates; original local implementation evidence used Node 20.20.2. See AUDIT-QUEUE.md for immutable hosted run links.",
     "Browser-Wasm runtime comparison is not built; only wasm32 compile check passes. P36 general paired harness/coverage ratchet remains open.",
     "P05 shared buffer/frame contracts and G0 prerequisites remain unaccepted; no promotion of parent P06 or whole scan import.",
     "Dispatcher and ASCII continuation tracked separately as io.stl.dispatch."

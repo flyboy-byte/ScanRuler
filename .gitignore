@@ -22,3 +22,6 @@ dist/
 
 # Frozen oracle worktree (docs/port-plan/UPSTREAM-SYNC.md)
 /.oracle/
+
+# Temporary port-plan Python tooling
+/docs/port-plan/tools/__pycache__/

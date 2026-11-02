@@ -34,9 +34,15 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+concurrency:
+  group: licenses-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   npm-licenses:
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5

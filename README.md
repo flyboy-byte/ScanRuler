@@ -19,8 +19,8 @@ original TypeScript stays in this repository and is the judge of every result.
 | Workspace | [`rust/`](rust/README.md): `port-core` geometry/fitting primitives, `port-io` STL reader, empty `port-engine`, banner CLI, `xtask` |
 | Fast gate | `cd rust && cargo xtask ci`: pin check, plan checks, fmt, clippy, tests, wasm32 check. Passing. **Not a parity check** |
 | Comparisons | Targeted original/native suites exist; browser-Wasm runtime and generic `cargo xtask diff` / coverage ratchet remain unbuilt (P36 to P39) |
-| Original baseline | Historical hosted Node 22 green run: 3084 tests, 24 skipped ([record](docs/port-plan/evidence/2026-10-31-hosted-ci-baseline.md)). Current original-app timing failures and missing local/catalog evidence are tracked in the [audit queue](docs/port-plan/AUDIT-QUEUE.md) |
-| Next | Audit/land bounded PRs in [dependency order](docs/port-plan/AUDIT-QUEUE.md); complete G0 catalogs and browser-Wasm comparisons before acceptance, then integrate the measurement engine |
+| Original baseline | Historical hosted Node 22 green run: 3084 tests, 24 skipped ([record](docs/port-plan/evidence/2026-10-31-hosted-ci-baseline.md)). Current original-app timing failures and remaining local/feature evidence are tracked in the [audit queue](docs/port-plan/AUDIT-QUEUE.md) |
+| Next | Audit/land bounded PRs in [dependency order](docs/port-plan/AUDIT-QUEUE.md); complete G0 fixture/environment contracts, browser-Wasm runtime and the command/session slice before acceptance |
 
 ## How it is done
 
@@ -37,7 +37,7 @@ original TypeScript stays in this repository and is the judge of every result.
 | You want | Go to |
 | --- | --- |
 | The story and the ideas, in order | [Guide](docs/guide/README.md) |
-| What to do next | [`HANDOFF.md`](docs/port-plan/HANDOFF.md), [`SESSION-2026-10-31.md`](docs/port-plan/SESSION-2026-10-31.md) |
+| What to do next | [`HANDOFF.md`](docs/port-plan/HANDOFF.md), [`IMPLEMENTATION-PLAN.md`](docs/port-plan/IMPLEMENTATION-PLAN.md), [`STATUS.md`](docs/port-plan/STATUS.md) |
 | How results are proven | [`CI-AND-REGRESSIONS.md`](docs/port-plan/CI-AND-REGRESSIONS.md), [`VALIDATION.md`](docs/port-plan/VALIDATION.md) |
 | Helping out | [`CONTRIBUTING-RUST.md`](CONTRIBUTING-RUST.md) |
 | Branches and upstream updates | [`UPSTREAM-SYNC.md`](docs/port-plan/UPSTREAM-SYNC.md) |
@@ -46,7 +46,8 @@ original TypeScript stays in this repository and is the judge of every result.
 ```bash
 cd rust
 cargo xtask env   # toolchain versions to record with any result
-cargo xtask ci    # the fast gate
+cargo xtask ci    # fast checks, generated status and Wasm compilation
+cargo xtask oracle # all native source suites (Node required)
 ```
 
 Toolchain: the system Rust (no rustup needed). Node 22 is only required to run the original.

@@ -1,10 +1,12 @@
 # Whole-repository Rust port plan
 
+Updated 2026-11-01. Current library evidence: [STATUS.md](STATUS.md). Remaining execution increments: [IMPLEMENTATION-PLAN.md](IMPLEMENTATION-PLAN.md). The roadmap gates below remain unpassed unless canonical units establish acceptance.
+
 ## Product contract
 
 Port the baseline public product: 3D Measure, Deviation, Wall thickness, 2D Measure, Reverse engineer and Mesh Tools; file import/export; projects and recovery; agent guides and MCP; native/web distribution, documentation and release tooling. The original product is browser-first; desktop is an added target, not an excuse to lose browser capability. The closed beta workspace mentioned upstream is absent and cannot be ported from this fork.
 
-All published functionality at the pinned commit is in scope. An omitted item requires an explicit ledger entry and prevents a whole-port parity claim. New features, regulatory/certified metrology claims, Tangency upstream changes, automatic CAD editing from inspection data and development of a new general CAD kernel are outside the first complete application release.
+All published functionality at the pinned commit is in scope. An omitted item requires an explicit ledger entry and prevents a whole-port parity claim. New features, regulatory/certified metrology claims, Tangency upstream changes, automatic CAD editing from inspection data and an unrelated general CAD platform are outside the first complete application release. Required pure-Rust geometry/kernel replacements remain in scope.
 
 The confirmed completion target is **pure Rust throughout, including geometry kernels**, as clarified by the user. This is a personal side project directed toward Tangency's Rust ecosystem. See `PURE-RUST.md` for the precise dependency boundary and required geometry workstreams.
 
@@ -19,7 +21,7 @@ Use the user's existing fork, preserve its upstream history and LICENSE/notices,
 
 `origin` is flyboy-byte/ScanRuler and `upstream` is CNCKitchen/ScanRuler. Preserve immutable reference `2cd89c6…`; discover any fork changes before creating work. Public naming/trademark replacement is a release prerequisite; internal crate names are provisional. No new official Tangency project or maintainer endorsement is assumed.
 
-Upstream changes go into a drift ledger: commit, affected feature, bug/security relevance, decision to backport or defer. No automatic moving target. A rebaseline requires rerunning affected oracles and updating catalogs and project fixtures; security/data-loss fixes receive priority review. This planning packet itself is outside Git until deliberately placed in the fork.
+Upstream changes go into a drift ledger: commit, affected feature, bug/security relevance, decision to backport or defer. No automatic moving target. A rebaseline requires rerunning affected oracles and updating catalogs and project fixtures; security/data-loss fixes receive priority review. ~~This planning packet is outside Git~~ — resolved: canonical planning/evidence and the Rust workspace are tracked in this fork.
 
 ## Critical path and milestones
 
@@ -36,9 +38,9 @@ Upstream changes go into a drift ledger: commit, affected feature, bug/security 
 
 The schedule is a dependency graph, not a strict single-file queue. Prove high-risk pure-Rust kernel and viewer boundaries early. Port reconstruction in bounded groups while fitting/UI mature; do not leave all modelling risk until the end. Do not parallelize ownership of session state, wire schemas or kernel arenas without agreed interfaces and isolated work branches. This plan does not instruct spawning agents.
 
-## First implementation increment
+## First vertical slice: current boundary
 
-P00–P04 retire environment/reference risks and identify pure-Rust geometry gaps. Then the first useful slice is:
+Bounded numerical libraries have already progressed while P00–P05 remain incomplete. That is useful partial work, not a passed prerequisite gate. Steps 2/3 below now have library implementations; CLI/session/project/browser integration remains open. Follow IMPLEMENTATION-PLAN.md for concrete remaining PR scopes.
 
 1. Define units, frames, buffers, IDs, result/error envelope and the project compatibility reader contract.
 2. Read a binary STL and a controlled indexed mesh. Import into Rust-owned storage with stable vertex IDs; compare bounds and topology to the baseline parser.
@@ -51,7 +53,7 @@ The slice is a vertical product test, not a promise to implement the whole workf
 
 ## How implementation advances
 
-Canonical work status lives in plan/units/<id>.json; backlog.json is a generated index. PORTING-PROCESS.md defines claims, refinement and evidence-backed transitions; CI-AND-REGRESSIONS.md defines our original-versus-Rust gate. Every feature row needs: source paths, behavior contract/defaults, native/Wasm support, input/output/error cases, project/history impact, oracle and UI coverage, backend requirements, owner/branch and evidence. The row progresses `planned → specified → baseline-captured → implemented → compared → integrated → accepted`. Preserve failing comparisons; no automatic tolerance loosening. Backlog status remains `planned` until implementation begins.
+Canonical work status lives in plan/units/<id>.json; backlog.json is a generated index. PORTING-PROCESS.md defines claims, refinement and evidence-backed transitions; CI-AND-REGRESSIONS.md defines our original-versus-Rust gate. Every feature row needs: source paths, behavior contract/defaults, native/Wasm support, input/output/error cases, project/history impact, oracle and UI coverage, backend requirements, owner/branch and evidence. The row progresses `planned → specified → baseline-captured → implemented → compared → integrated → accepted`. Preserve failing comparisons; no automatic tolerance loosening. Parent workstreams remain planned where their full scope is open; bounded children record their actual implemented/baseline-captured state. Generated STATUS.md is an inventory, not automatic acceptance.
 
 Before replacing a path, compare it in shadow mode where possible: original result remains authoritative while Rust computes separately. One result is applied; never let two stores mutate the document. Behind an internal switch, select TS or Rust per completed operation. Remove a switch only when browser/native parity, undo/project behavior and failure cases pass. Do not double-execute mutations while comparing them; replay each against separate identical sessions.
 
