@@ -158,6 +158,7 @@ test('missing, stale and corrupt PLY sidecars fail before browser execution', as
 for (const [folder, total, successes, refusals, protocol, excluded] of [
   ['browser-wasm-ply-2026-11-02', 341, 287, 54, 13, ['io.ply.binary/le-vertex-progress']],
   ['browser-wasm-obj-2026-11-02', 564, 482, 82, 18, ['io.ply.binary/le-vertex-progress', 'io.obj.mesh/line-progress', 'io.obj.mesh/short-unicode-line-skips-progress']],
+  ['browser-wasm-files-2026-11-02', 651, 569, 82, 24, ['io.ply.binary/le-vertex-progress', 'io.obj.mesh/line-progress', 'io.obj.mesh/short-unicode-line-skips-progress']],
 ]) test(folder + ': complete committed Chrome proof replays all source/native/Wasm results', async () => {
   const { readFileSync } = await import('node:fs')
   const { createHash } = await import('node:crypto')

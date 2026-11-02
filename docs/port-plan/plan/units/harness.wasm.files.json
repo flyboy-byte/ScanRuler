@@ -3,7 +3,7 @@
   "parent": "P36",
   "title": "Compare complete companion file states in actual Chrome Wasm",
   "gate": "G3",
-  "status": "specified",
+  "status": "implemented",
   "depends_on": [
     "harness.wasm.obj",
     "io.obj.companions.files"
@@ -21,7 +21,7 @@
   "owner": "Codex",
   "branch": "codex/wasm-companion-files",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/37",
-  "implemented_commit": null,
+  "implemented_commit": "dbe8fcc78b1b6efefe2e6eb11f8d05c5bf049d44",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/core/formats.ts",
@@ -39,9 +39,21 @@
     "rust/crates/port-wasm-probe/src/lib.rs",
     "rust/crates/port-wasm-probe/src/files.rs"
   ],
-  "evidence": [],
-  "open_items": [
-    "Preregistered in oracle/OBJ-FILES-WASM.md; actual runtime implementation/evidence pending."
+  "evidence": [
+    {
+      "kind": "runtime-comparison",
+      "location": "evidence/browser-wasm-files-2026-11-02/manifest.json",
+      "candidate_sha": "dbe8fcc78b1b6efefe2e6eb11f8d05c5bf049d44"
+    }
   ],
-  "resolved_items": []
+  "open_items": [
+    "Broader platform/large-file/async-I/O/public engine/project/UI acceptance remains open; no decoder/drop traversal or accepted numerical unit claim.",
+    "Three existing native-only PLY/OBJ workloads remain above unchanged private ABI caps; none counts as a browser pass.",
+    "Generic P36/P37 and Rust replacement of temporary test tooling remain open."
+  ],
+  "resolved_items": [
+    "2026-11-02: all651 independent source/native/Chrome comparisons pass (569 complete outputs/helper states,82 source refusals), preserving all earlier564 cases and budgets.",
+    "All87 file-state cases compare exactly; full raw proof, historical v2/v3 replay and strict mutation/shape/retention checks are committed.",
+    "24 bounded protocol checks pass; no module imports/page errors. Clean exact-candidate native24-suite inventory and module/browser hashes match."
+  ]
 }
