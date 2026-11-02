@@ -72,3 +72,13 @@ jobs:
           name: mesh-weld-comparison
           path: rust/target/weld-diff/
           retention-days: 7
+      - name: Vertex normals pinned-original comparison (native)
+        working-directory: rust
+        run: cargo test -p port-core --test normals pinned_normals_comparison -- --ignored --nocapture
+      - name: Retain vertex normal evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vertex-normal-comparison
+          path: rust/target/normals-diff/
+          retention-days: 7
