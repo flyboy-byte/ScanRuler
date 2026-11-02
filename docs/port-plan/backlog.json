@@ -4270,6 +4270,52 @@
       ]
     },
     {
+      "id": "harness.wasm.obj",
+      "parent": "P36",
+      "title": "Compare complete OBJ parser and texture helper states in real browser Wasm",
+      "gate": "G3",
+      "status": "specified",
+      "depends_on": [
+        "harness.wasm.ply",
+        "io.obj.texture",
+        "io.obj.mesh"
+      ],
+      "soft_depends_on": [
+        "P03",
+        "P37"
+      ],
+      "scope": "Safe input-only OBJ/helper codecs and exact current-SHA original/native/Chrome comparisons; preserve all existing 341 browser cases and explicitly retain two new large native-only OBJ progress workloads.",
+      "acceptance": [
+        "Actual Chrome executes authored input packets through complete Rust parser/helpers; every geometry/color/note/progress/refusal/output byte matches independent original/native results.",
+        "All old browser cases/budgets retained; v2 historical proof stays immutable and cannot satisfy the new v3 runtime roster.",
+        "Bounded typed packet decoding, distinct host failures, mutation/shape/failure-retention tests and full actual raw evidence."
+      ],
+      "owner": "Codex",
+      "branch": "codex/wasm-obj-runtime",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/parsers/obj.ts",
+        "src/core/parsers/objTexture.ts"
+      ],
+      "symbols": [
+        "parseOBJ",
+        "baseName",
+        "parseMtl",
+        "mtllibNames",
+        "sampleTexture",
+        "bakeObjTexture"
+      ],
+      "rust_paths": [
+        "rust/crates/port-wasm-probe/src/lib.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Contract specified in oracle/OBJ-WASM.md; actual runtime implementation/evidence pending."
+      ]
+    },
+    {
       "id": "harness.wasm.ply",
       "parent": "P36",
       "title": "Compare complete PLY parser values and progress in actual browser Wasm",
