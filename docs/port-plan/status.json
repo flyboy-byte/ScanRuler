@@ -3,9 +3,8 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 18,
-    "planned": 46,
-    "specified": 1
+    "implemented": 19,
+    "planned": 46
   },
   "native_suites": 17,
   "native_case_identities_including_refusals": 635,
@@ -398,12 +397,12 @@
     },
     {
       "id": "ci.integration",
-      "status": "specified",
+      "status": "implemented",
       "parent": "P38",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/22",
-      "tested_sha": null,
+      "tested_sha": "2e3e4ee6f1652a87fcb0047d3cbfa9af6199d219",
       "open_items": [
-        "Implementation and hosted validation in progress; no acceptance promotion.",
+        "Hosted new lane outcomes pending at the local evidence checkpoint; current PR checks must be inspected.",
         "Browser-Wasm runtime, exact-base numerical ratchet and Rust replacement for Python bootstrap remain open."
       ]
     },

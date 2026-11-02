@@ -2529,7 +2529,7 @@
       "parent": "P38",
       "title": "Consolidate active CI, generated status and implementation handoff",
       "gate": "contributor-harness-ci",
-      "status": "specified",
+      "status": "implemented",
       "depends_on": [
         "harness.oracle.gate",
         "catalog.headless",
@@ -2548,16 +2548,22 @@
       "owner": "Codex",
       "branch": "codex/ci-status-plan-refresh",
       "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/22",
-      "implemented_commit": null,
+      "implemented_commit": "2e3e4ee6f1652a87fcb0047d3cbfa9af6199d219",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [],
       "symbols": [],
       "rust_paths": [
         "rust/xtask/src/main.rs"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "test",
+          "location": "evidence/2026-11-01-ci-integration.json",
+          "candidate_sha": "2e3e4ee6f1652a87fcb0047d3cbfa9af6199d219"
+        }
+      ],
       "open_items": [
-        "Implementation and hosted validation in progress; no acceptance promotion.",
+        "Hosted new lane outcomes pending at the local evidence checkpoint; current PR checks must be inspected.",
         "Browser-Wasm runtime, exact-base numerical ratchet and Rust replacement for Python bootstrap remain open."
       ]
     },
