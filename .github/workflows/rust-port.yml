@@ -92,3 +92,13 @@ jobs:
           name: mesh-orientation-comparison
           path: rust/target/orientation-diff/
           retention-days: 7
+      - name: Dense solver pinned-original comparison (native)
+        working-directory: rust
+        run: cargo test -p port-core --test linear pinned_linear_comparison -- --ignored --nocapture
+      - name: Retain solver evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: linear-solver-comparison
+          path: rust/target/linear-diff/
+          retention-days: 7
