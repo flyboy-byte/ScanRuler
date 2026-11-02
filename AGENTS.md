@@ -53,4 +53,4 @@ This is a faithful pure-Rust port of the pinned baseline (`2cd89c6`, app 0.9.2);
 
 Gates: `cd rust && cargo xtask ci` (fast gate, exists now); `cargo xtask diff` / `diff-ci` (parity gate, not yet built; do not claim parity without it). Toolchain: system Rust, no rustup (`plan/decisions/2026-10-31-no-rustup.md`); Node is only for the original oracle.
 
-Several agents at once: `docs/port-plan/AGENT-OPERATIONS.md` (branch from `main`, claim with a draft PR, lanes, merge protocol). Branches, the frozen oracle worktree and how upstream updates are merged: `docs/port-plan/UPSTREAM-SYNC.md`. `main` is the port trunk; `upstream-main` is a fast-forward-only mirror.
+Environment and milestones: `docs/port-plan/ROADMAP-TO-USABLE.md`. Several agents at once: `docs/port-plan/AGENT-OPERATIONS.md` (branch from `main`, claim with a draft PR, lanes, merge protocol). Branches, the frozen oracle worktree and how upstream updates are merged: `docs/port-plan/UPSTREAM-SYNC.md`. `main` is the port trunk; `upstream-main` is a fast-forward-only mirror.

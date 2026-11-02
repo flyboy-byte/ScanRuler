@@ -8,7 +8,7 @@ they disagree, those win and this file is fixed.
 
 ## 1. Every agent starts here
 
-1. Read `AGENTS.md` (or `CLAUDE.md`), then `HANDOFF.md`, then this file, then your unit's JSON.
+1. Read `AGENTS.md` (or `CLAUDE.md`), then `HANDOFF.md`, `ROADMAP-TO-USABLE.md` (environment, milestones), then this file, then your unit's JSON.
 2. `git fetch origin && git checkout -b <agent>/<unit>-<slug> origin/main`. Always branch from current
    `main`, never from another agent's branch. No stacks: if you need another agent's unfinished work,
    say so in the PR and wait for it to merge.

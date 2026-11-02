@@ -12,7 +12,7 @@ An AGPL port can proceed while the licensing enquiry is pending. Source-informed
 
 ## Read order
 
-1. This file for authorization, status and immediate work, then [AGENT-OPERATIONS.md](AGENT-OPERATIONS.md) for lanes, claims and the merge protocol when several agents work at once.
+1. This file for authorization, status and immediate work, then [ROADMAP-TO-USABLE.md](ROADMAP-TO-USABLE.md) (dev environment, milestones to a usable build, MCP and test-scan strategy), then [AGENT-OPERATIONS.md](AGENT-OPERATIONS.md) for lanes, claims and the merge protocol when several agents work at once.
 2. `PURE-RUST.md`, then `PLAN.md`, for the confirmed endpoint, milestones, critical path and release gates.
 3. `ARCHITECTURE.md` for runtime boundaries and unresolved backend decisions.
 4. `VALIDATION.md` for numerical, file, UI, protocol and performance acceptance.
@@ -37,7 +37,7 @@ The unchanged original has both green hosted full runs and a repeatable intermit
 
 ## Working and validating
 
-Local host: system Rust, no rustup; Node is oracle-only. Hosted jobs provision Rust stable and Node 22 and record versions. The hosted Rust toolchain is not yet locked to an immutable release; record that reproducibility gap under P00. Do not change local machine setup based on hosted installation commands.
+Local host: system Rust, no rustup; Node is oracle-only (user-space `fnm` Node 22; `cargo xtask oracle` selects it itself). Hosted jobs provision Rust stable and Node 22 and record versions. The hosted Rust toolchain is not yet locked to an immutable release; record that reproducibility gap under P00. Do not change local machine setup based on hosted installation commands.
 
 ```bash
 cd rust
