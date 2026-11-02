@@ -1,5 +1,6 @@
 {
   "schema": 1,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "license": "AGPL-3.0-only",
   "comparison": "exact PLY1 full float32/index/optional-winding bytes; exact progress and source errors",
   "seeds": [
@@ -322,6 +323,30 @@
       "bytes": 65724
     },
     {
+      "id": "repeated-vertices",
+      "success": true,
+      "sha256": "1216c0393e2f8e6d64f9a18a6dcd445cfc5493322cee9800e3d1347a97d8da7c",
+      "bytes": 253
+    },
+    {
+      "id": "repeated-faces-append",
+      "success": true,
+      "sha256": "e688b17827bf43956c29f12484d4011d9fa72e763b66eda2c7534ec64541f00a",
+      "bytes": 241
+    },
+    {
+      "id": "unknown-negative-element",
+      "success": true,
+      "sha256": "1631536c5faae5fc4eac232b5aeca647ce5c4ecf78184febeadb31b92d48163a",
+      "bytes": 218
+    },
+    {
+      "id": "missing-format",
+      "success": false,
+      "sha256": "99ddbc3bd3f576cc64b6e88f2b7bc4981cc13db1ce1f7921b49b42fc486f2367",
+      "bytes": 162
+    },
+    {
       "id": "seed-1",
       "success": true,
       "sha256": "8d6dcfe7bedc9dfe531acbc703b3d688eed6fa0ff343b64a0ceef365bfa9b240",
@@ -345,6 +370,5 @@
       "sha256": "6426a82ce8370a56d5305d88a86ab079813a5a2f517081b38eade6315256c2b8",
       "bytes": 1633
     }
-  ],
-  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7"
+  ]
 }

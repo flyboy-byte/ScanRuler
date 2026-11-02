@@ -96,7 +96,7 @@ pub fn read_stl(
 
 // TextDecoder's default UTF-8 replacement mode and initial BOM handling. Reserve
 // each append fallibly, avoiding a hidden infallible lossy-string allocation.
-fn decode_utf8(mut bytes: &[u8]) -> Result<String, StlError> {
+pub(crate) fn decode_utf8(mut bytes: &[u8]) -> Result<String, StlError> {
     if bytes.starts_with(&[0xef, 0xbb, 0xbf]) {
         bytes = &bytes[3..];
     }
@@ -126,7 +126,7 @@ fn decode_utf8(mut bytes: &[u8]) -> Result<String, StlError> {
 }
 
 // ECMAScript \s is not Rust char::is_whitespace (notably U+0085 and U+FEFF).
-fn js_space(c: char) -> bool {
+pub(crate) fn js_space(c: char) -> bool {
     matches!(c, '\u{0009}'..='\u{000d}' | '\u{0020}' | '\u{00a0}' | '\u{1680}'
         | '\u{2000}'..='\u{200a}' | '\u{2028}' | '\u{2029}' | '\u{202f}'
         | '\u{205f}' | '\u{3000}' | '\u{feff}')
@@ -184,7 +184,7 @@ fn read_ascii(
 
 // parseFloat's decimal/Infinity prefix grammar, not Rust's whole-string parse.
 // Parse via f64 before narrowing: the original stores JS Numbers into Float32Array.
-fn parse_float_prefix(token: &str) -> f64 {
+pub(crate) fn parse_float_prefix(token: &str) -> f64 {
     let bytes = token.as_bytes();
     let mut at = usize::from(matches!(bytes.first(), Some(b'+' | b'-')));
     if token[at..].starts_with("Infinity") {
