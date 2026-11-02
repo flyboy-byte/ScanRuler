@@ -636,7 +636,8 @@
       "soft_depends_on": [],
       "open_items": [
         "Partial 2026-11-01: io.stl.binary implements the parseBinary helper with native bit/progress comparisons; parent remains planned. io.stl.dispatch tracks format detection/ASCII continuation; welding/indexing/session integration remain open.",
-        "Partial 2026-11-01 at 77683bf: io.stl.dispatch implements full binary/ASCII dispatch with 82 native source comparisons. Welding/indexing is the next bounded unit (io.mesh.weld); session integration and browser-Wasm runtime comparisons remain open."
+        "Partial 2026-11-01 at 77683bf: io.stl.dispatch implements full binary/ASCII dispatch with 82 native source comparisons. Welding/indexing is the next bounded unit (io.mesh.weld); session integration and browser-Wasm runtime comparisons remain open.",
+        "Integration checkpoint 2026-11-01: geometry.mesh.graph now implements complete buildMeshGraph over bounded typed input, composing implemented weld/filter, adjacency, normals/orientation and extents. Earlier partial notes are historical. Parent remains planned: browser-Wasm runtime, source/render mapping, spatial queries and parser/session command integration remain open."
       ],
       "claim_pr": null
     },
@@ -3205,6 +3206,110 @@
         "Browser-Wasm runtime, G0/P05, P06 caller integration and generic P36 exact-base ratchet remain open.",
         "Owned factory parent state is read-only; arbitrary JS numeric-array ABI, external parent mutations and malformed cyclic/out-of-range source behavior are not exposed.",
         "Factory uses a conservative i32::MAX vertex cap plus caller budget. Standalone u32 parent chains are validated before source path halving."
+      ]
+    },
+    {
+      "id": "geometry.mesh.graph",
+      "parent": "P06",
+      "title": "Port complete parsed mesh graph construction pipeline",
+      "gate": "G2",
+      "status": "implemented",
+      "depends_on": [
+        "io.mesh.weld",
+        "geometry.adjacency",
+        "geometry.normals.compute",
+        "geometry.normals.orient",
+        "geometry.bounds"
+      ],
+      "soft_depends_on": [
+        "P05",
+        "P36",
+        "io.stl.dispatch"
+      ],
+      "scope": "Complete buildMeshGraph validation, welding/filtering, adjacency, normals/orientation and bbox diagonal with source errors/progress. No parser/session/command integration.",
+      "acceptance": [
+        "Independent original/native/browser-Wasm complete graph arrays/counts/bounds and ordered progress/error text compare exactly on soup/indexed/keepWinding and malformed cases.",
+        "Retain source validation order and adjacency-before-winding reversal; host storage bounded and no partial graph escapes."
+      ],
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/geometry/buildGraph.ts"
+      ],
+      "symbols": [
+        "buildMeshGraph"
+      ],
+      "rust_paths": [
+        "rust/crates/port-core/src/mesh_graph.rs",
+        "rust/crates/port-core/tests/mesh_graph.rs"
+      ],
+      "owner": "Codex",
+      "branch": "codex/port-mesh-graph",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/20",
+      "implemented_commit": "6cfda5b8a50a754dbca8f0226eab1ceee5ed8cdc",
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-01-mesh-graph-cases.csv",
+          "candidate_sha": "6cfda5b8a50a754dbca8f0226eab1ceee5ed8cdc",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "collapsed_indices",
+            "collapsed_soup",
+            "collinear_usable_ids",
+            "empty",
+            "empty_indices",
+            "incomplete_before_nan",
+            "incomplete_indices",
+            "incomplete_positions",
+            "incomplete_soup",
+            "infinite",
+            "missing_indices",
+            "mixed_degenerates",
+            "nan_before_bad_indices",
+            "open_sfalse_kfalse",
+            "open_sfalse_ktrue",
+            "open_strue_kfalse",
+            "open_strue_ktrue",
+            "outside_indices",
+            "seed_1039_sfalse_kfalse",
+            "seed_1039_sfalse_ktrue",
+            "seed_1039_strue_kfalse",
+            "seed_1039_strue_ktrue",
+            "seed_1_sfalse_kfalse",
+            "seed_1_sfalse_ktrue",
+            "seed_1_strue_kfalse",
+            "seed_1_strue_ktrue",
+            "seed_7_sfalse_kfalse",
+            "seed_7_sfalse_ktrue",
+            "seed_7_strue_kfalse",
+            "seed_7_strue_ktrue",
+            "seed_99_sfalse_kfalse",
+            "seed_99_sfalse_ktrue",
+            "seed_99_strue_kfalse",
+            "seed_99_strue_ktrue",
+            "signed_zero",
+            "soup_ignores_valid_indices",
+            "soup_incomplete_indices",
+            "soup_outside_indices",
+            "tetra_sfalse_kfalse_rfalse",
+            "tetra_sfalse_kfalse_rtrue",
+            "tetra_sfalse_ktrue_rfalse",
+            "tetra_sfalse_ktrue_rtrue",
+            "tetra_strue_kfalse_rfalse",
+            "tetra_strue_kfalse_rtrue",
+            "tetra_strue_ktrue_rfalse",
+            "tetra_strue_ktrue_rtrue",
+            "triangle_sfalse_kfalse",
+            "triangle_sfalse_ktrue",
+            "triangle_strue_kfalse",
+            "triangle_strue_ktrue"
+          ]
+        }
+      ],
+      "open_items": [
+        "Browser-Wasm runtime, G0/P05, general P36 exact-base ratchet and P06 source/render mapping/spatial queries remain open.",
+        "Parser/STL-to-session command integration, undo/project state and cancellation/jobs are not implemented by this library unit.",
+        "Typed parsed input consumes owned arrays; arbitrary JavaScript alias/callback mutation and object ABI are not exposed. Colors/texture notes are not handled by this original source body."
       ]
     },
     {
