@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **PLY negative-count error text** (2026-11-02): an independent 282,000-file fuzz against the original found one divergence, the typed-array length in the error printed with Rust instead of JavaScript number formatting; fixed with a regression test. The other host-limit differences are recorded as open findings.
+
 - **Rust engine error envelopes** (2026-11-02): preserve the twelve original command codes and lossless message/JSON fields, with 52 exact source comparisons including lone UTF-16 surrogates; session, registry and job/history integration remain open.
 
 - **PLY in actual Rust browser Wasm** (2026-11-02): extend the bounded source/native/Chrome comparisons to 341 cases, retaining exact PLY data/progress/IEEE bits and all previous cases; record the sole large native-only workload and complete raw evidence.
