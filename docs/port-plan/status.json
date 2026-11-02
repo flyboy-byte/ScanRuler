@@ -3,12 +3,11 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 27,
-    "planned": 47,
-    "specified": 1
+    "implemented": 28,
+    "planned": 47
   },
-  "native_suites": 22,
-  "native_case_identities_including_refusals": 1110,
+  "native_suites": 23,
+  "native_case_identities_including_refusals": 1191,
   "accepted_units": [],
   "units": [
     {
@@ -700,13 +699,14 @@
     },
     {
       "id": "io.obj.mesh",
-      "status": "specified",
+      "status": "implemented",
       "parent": "io.obj",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/32",
+      "tested_sha": "58aeacb529da621506b59f0b3aa7735d07173d4a",
       "open_items": [
-        "81 fixed original-captured inputs declared before Rust implementation: 53 outputs /28 refusals; four seeds and full million-line progress/short-UTF16-line boundary cases.",
-        "Platform/image decoding and actual browser-Wasm parser runtime remain separate; reuse the complete io.obj.texture continuation."
+        "Actual browser-Wasm parser execution remains open; compilation is not runtime acceptance.",
+        "Platform file-set bundling, PNG/JPEG decoding and public engine/session/project integration remain separate under io.obj.companions and engine units.",
+        "Broader large-file/performance/corpus and filename ingress acceptance remain open; caller limits are explicit host refusals, not source errors."
       ]
     },
     {

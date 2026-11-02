@@ -54,8 +54,8 @@ CI results are separated: Rust fast checks, native oracle assertions/raw evidenc
 ## Review and next implementation
 
 PR #31 ports the complete decoded-RGBA OBJ material/texture helper module, with
-144 exact source observations. io.obj.mesh owns the parseOBJ continuation and
-io.obj.companions owns file bundling/PNG-JPEG ingress; parent io.obj stays planned.
+144 exact source observations. PR #32 implements the complete parseOBJ continuation with 81 exact source cases.
+io.obj.companions still owns file bundling/PNG-JPEG ingress; parent io.obj stays planned.
 The independent fuzz agent writes only to /tmp; its separate PLY fixes must not be
 folded into these OBJ changes.
 

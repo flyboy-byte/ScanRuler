@@ -3,6 +3,21 @@ import hashlib,json,re,struct,unittest
 from pathlib import Path
 
 class ObjMeshCorpusTests(unittest.TestCase):
+    def test_complete_committed_source_state_and_progress(self):
+        root=Path(__file__).resolve().parents[3]
+        report=json.loads((root/'docs/port-plan/evidence/2026-11-02-obj-mesh.json').read_text())
+        m=json.loads((root/'docs/port-plan/fixtures/obj-mesh/manifest.json').read_text())
+        self.assertEqual([c['id'] for c in report['cases']],[c['id'] for c in m['cases']]);self.assertEqual(report['complete_outputs'],53);self.assertEqual(report['source_refusals'],28)
+        for c in report['cases']:
+            files=c['files'];self.assertEqual(files['input.bin']['sha256'],c['sha256']);self.assertEqual(files['original.bin']['sha256'],files['rust.bin']['sha256'])
+            for name,item in files.items():
+                if name=='input.bin':continue
+                b=bytes.fromhex(item['hex']);self.assertEqual(len(b),item['bytes']);self.assertEqual(hashlib.sha256(b).hexdigest(),item['sha256'])
+            b=bytes.fromhex(files['original.bin']['hex']);self.assertEqual(b[:4],b'OBJ1');self.assertEqual(b[4],0 if c['success'] else 2);self.assertEqual(files['original.stderr.txt']['bytes'],0)
+        progress=bytes.fromhex(next(c for c in report['cases'] if c['id']=='line-progress')['files']['original.bin']['hex'])
+        skipped=bytes.fromhex(next(c for c in report['cases'] if c['id']=='short-unicode-line-skips-progress')['files']['original.bin']['hex'])
+        self.assertIn('Reading OBJ… 100%'.encode(),progress);self.assertNotIn('Reading OBJ… 100%'.encode(),skipped)
+
     def test_fixed_inputs_and_full_progress_boundaries(self):
         root=Path(__file__).resolve().parents[3];folder=root/'docs/port-plan/fixtures/obj-mesh'
         m=json.loads((folder/'manifest.json').read_text());rows=m['cases'];ids=[r['id'] for r in rows]

@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust OBJ mesh parser** (2026-11-02): port the complete geometry/UV/material body and decoded texture continuation, comparing 81 source cases exactly, including first-corner binding and full progress boundaries. File/image ingress and commands remain open.
+
 - **Rust OBJ material/texture helpers** (2026-11-02): port complete MTL lookup, filename matching and decoded-RGBA baking with 144 exact source comparisons. Mesh parsing, image decoding and command integration remain separate.
 
 - **Rust engine error envelopes** (2026-11-02): preserve the twelve original command codes and lossless message/JSON fields, with 52 exact source comparisons including lone UTF-16 surrogates; session, registry and job/history integration remain open.
