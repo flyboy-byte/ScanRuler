@@ -31,12 +31,12 @@
   "owner": "Codex",
   "branch": "codex/port-plane-clipping",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/9",
-  "implemented_commit": "1c0ff45cb57eefa2b8f03c585c8c8da6d4209270",
+  "implemented_commit": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
   "evidence": [
     {
       "kind": "differential",
-      "location": "evidence/2026-11-01-clip-cases.csv",
-      "candidate_sha": "1c0ff45cb57eefa2b8f03c585c8c8da6d4209270",
+      "location": "evidence/2026-11-01-bounds-callers.csv",
+      "candidate_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "case_ids": [
         "generic_1",
@@ -66,5 +66,40 @@
     "P05/G0 and generic P36 exact-base ratchet remain open.",
     "No robust starts, two-plane split, region growth or engine/session integration.",
     "Other fitted shapes must reuse this shared generic body and add model-specific comparison evidence."
+  ],
+  "history": [
+    {
+      "reason": "2026-11-01 shared norm/extent extraction; original implementation evidence retained",
+      "implemented_commit": "1c0ff45cb57eefa2b8f03c585c8c8da6d4209270",
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-01-clip-cases.csv",
+          "candidate_sha": "1c0ff45cb57eefa2b8f03c585c8c8da6d4209270",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "generic_1",
+            "generic_2",
+            "generic_3",
+            "generic_4",
+            "generic_5",
+            "generic_6",
+            "insufficient",
+            "seed_1039_k0",
+            "seed_1039_k1",
+            "seed_1039_k3",
+            "seed_1_k0",
+            "seed_1_k1",
+            "seed_1_k3",
+            "seed_7_k0",
+            "seed_7_k1",
+            "seed_7_k3",
+            "seed_99_k0",
+            "seed_99_k1",
+            "seed_99_k3"
+          ]
+        }
+      ]
+    }
   ]
 }

@@ -42,20 +42,14 @@ pub fn orient_normals_outward(
         return Ok(false);
     }
     let mut centre = [0.; 3];
-    let mut min = [f64::INFINITY; 3];
-    let mut max = [f64::NEG_INFINITY; 3];
     for xyz in positions.as_chunks::<3>().0 {
         for k in 0..3 {
             let x = f64::from(xyz[k]);
             centre[k] += x;
-            if x < min[k] {
-                min[k] = x;
-            }
-            if x > max[k] {
-                max[k] = x;
-            }
         }
     }
+    let crate::bounds::Extent { min, max } =
+        crate::bounds::extent_of(positions, count).map_err(|_| InvalidOrientationMesh)?;
     for c in &mut centre {
         *c /= count as f64;
     }

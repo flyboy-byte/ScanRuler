@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust mesh bounds** (2026-11-01): port complete prefix/indexed extents and center/radius bounds, reuse shared pure-Rust numeric primitives, and recompare all affected fitting/orientation callers.
+
 - **Rust used-point clipping** (2026-11-01): port shared iterative clipping and clipped-plane statistics, preserving used-point identities, failed-refit continuations and source guards, with nineteen independent value/state comparisons.
 
 - **Rust fixed-selection plane fit** (2026-11-01): port covariance/TLS fitting and signed residuals with private Jacobi dependencies, pre-registered numerical comparisons and explicit unported robust-fitting continuations.
