@@ -3,7 +3,7 @@
   "parent": "P05",
   "title": "Port command input schema validation, coercion and size budget",
   "gate": "G2",
-  "status": "planned",
+  "status": "specified",
   "depends_on": [
     "baseline.reproducibility"
   ],
@@ -16,8 +16,8 @@
     "Seeded schema and value generator (including oneOf, names, id/name, nested arrays, binary strings, non-finite numbers, undefined fields) compares original errors line by line, the returned coerced value and the weight figures against Rust, with a deliberately wrong error line rejected.",
     "Every real command input schema from mcp/src/commands.json validates a corpus of accepted and refused inputs identically."
   ],
-  "owner": null,
-  "branch": null,
+  "owner": "Codex",
+  "branch": "codex/schema-validate",
   "claim_pr": null,
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",

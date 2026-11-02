@@ -4,8 +4,8 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 33,
-    "planned": 52,
-    "specified": 1
+    "planned": 51,
+    "specified": 2
   },
   "native_suites": 25,
   "native_case_identities_including_refusals": 1318,
@@ -434,7 +434,7 @@
     },
     {
       "id": "engine.schema.validate",
-      "status": "planned",
+      "status": "specified",
       "parent": "P05",
       "pr": null,
       "tested_sha": null,
