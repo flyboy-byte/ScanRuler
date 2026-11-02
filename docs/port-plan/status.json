@@ -2,10 +2,9 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 2,
+    "baseline-captured": 3,
     "implemented": 29,
-    "planned": 47,
-    "specified": 1
+    "planned": 47
   },
   "native_suites": 23,
   "native_case_identities_including_refusals": 1191,
@@ -690,9 +689,9 @@
     },
     {
       "id": "io.obj.companions.files",
-      "status": "specified",
+      "status": "baseline-captured",
       "parent": "io.obj.companions",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/36",
       "tested_sha": null,
       "open_items": [
         "Specify and capture source cases before porting; native/Wasm runtime evidence pending."

@@ -3,7 +3,7 @@
   "parent": "io.obj.companions",
   "title": "Port complete file classification, bundle identity and companion byte preservation",
   "gate": "G3",
-  "status": "specified",
+  "status": "baseline-captured",
   "depends_on": [
     "io.obj.mesh"
   ],
@@ -13,7 +13,7 @@
   ],
   "owner": "Codex",
   "branch": "codex/obj-companion-files",
-  "claim_pr": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/36",
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
