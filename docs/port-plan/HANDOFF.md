@@ -27,7 +27,7 @@ Read [STATUS.md](STATUS.md) for the generated unit inventory, [AUDIT-QUEUE.md](A
 
 The pinned baseline remains `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`, app 0.9.2. `main` is the port trunk, `upstream-main` the upstream mirror, and `.oracle` the frozen checkout; see UPSTREAM-SYNC.md. The original TypeScript source/tests and npm locks remain unchanged by the numerical port queue.
 
-Rust library work exists: binary/ASCII STL, ASCII/both-endian binary PLY, welding/filtering, full mesh-graph construction, adjacency/components/selection and shell parity, bounds/centroids, normals/orientation, dense solves, TLS/clipped/robust planes and curvature discrimination, plus complete marked-selection plane element geometry/statistics. All numerical child units remain **implemented, not accepted**. `port-engine` is empty, the CLI prints a banner, there is no Rust UI and no end-to-end Rust scan/fit/project command workflow.
+Rust library work exists: binary/ASCII STL, ASCII/both-endian binary PLY, welding/filtering, full mesh-graph construction, adjacency/components/selection and shell parity, bounds/centroids, normals/orientation, dense solves, TLS/clipped/robust planes and curvature discrimination, plus complete marked-selection plane element geometry/statistics. All numerical child units remain **implemented, not accepted**. `port-engine` has typed error envelopes only; sessions/registry/jobs/history remain unimplemented, the CLI prints a banner, there is no Rust UI and no end-to-end Rust scan/fit/project command workflow.
 
 The native suite/case inventory is generated in STATUS.md; case counts include refusals and are not counts of successful numerical measurements. The existing tests compare actual values/state against independently executed frozen bodies. Their fixed cases, seeds and numerical budgets remain authoritative. Actual Chrome-Wasm comparisons cover TLS plane, complete mesh graph, marked plane and both PLY bodies (341 inputs: 287 successful outputs / 54 source refusals; one large PLY vertex workload explicitly native-only); see oracle/BROWSER-WASM.md and its immutable report. Other numerical units and broader runtime platforms/corpora remain open. The generic P36/P37 paired report/exact-base ratchet remains unbuilt; compilation alone never filled the runtime gap.
 
@@ -53,6 +53,11 @@ CI results are separated: Rust fast checks, native oracle assertions/raw evidenc
 
 ## Review and next implementation
 
+PR #30 starts the engine foundation with the original twelve-code error envelope
+and 52 exact field/JSON observations, preserving UTF-16 messages. Session ownership
+and execution are still absent. Reuse this type in engine.session.contract; do not
+use human Display text as the wire message or claim registry normalization exists.
+
 PR #27 adds complete ASCII PLY header/body decoding under `io.ply.ascii`, with
 60 exact independent cases. PR #28 completes both binary bodies under
 `io.ply.binary` (168 cases) and adds `ply::read_ply` for all encodings. Existing
@@ -67,7 +72,7 @@ failures and a worker timeout. The independent hosted main run passes. All
 exclusions and six repeatable fixture recipes are inventoried. This does not
 complete G0 or the full P03 corpus; do not relabel the local unit run green.
 
-PRs #1–#25 are merged into main at `551b3a9`. The new open stack is #26 → #27 → #28 → #29; see AUDIT-QUEUE.md and inspect live checks. No new PR has been merged by this session. New work follows ROADMAP-TO-USABLE.md section 2. No deploy, legal signature or upstream contact is authorized by this plan. Existing user authorization covers fork PR submissions and, when Logan asks for it, integration per ROADMAP-TO-USABLE.md section 2.
+PRs #1–#25 are merged into main at `551b3a9`. The new open stack is #26 → #27 → #28 → #29 → #30; see AUDIT-QUEUE.md and inspect live checks. No new PR has been merged by this session. New work follows ROADMAP-TO-USABLE.md section 2. No deploy, legal signature or upstream contact is authorized by this plan. Existing user authorization covers fork PR submissions and, when Logan asks for it, integration per ROADMAP-TO-USABLE.md section 2.
 
 The marked-plane element continuation is now implemented under fit.plane.selection; public command/history integration is still absent. Prioritize reproducible reference/fixture contracts, the remaining P05 session/error/history contract and wider browser-Wasm coverage, then a bounded engine import/plane command slice. Use the implementation plan's concrete exit conditions. Keep the kernel/purity capability spike parallel and explicit; more helper ports cannot substitute for command/session or kernel evidence.
 

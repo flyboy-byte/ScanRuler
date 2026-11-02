@@ -179,6 +179,7 @@ const ORACLE_TESTS: &[&str] = &[
     "pinned_stl_dispatch_comparison",
     "pinned_ply_ascii_comparison",
     "pinned_ply_binary_comparison",
+    "pinned_engine_error_comparison",
 ];
 
 fn validate_oracle_discovery(list: &str) -> Result<(), String> {
@@ -238,23 +239,29 @@ fn ensure_oracle_node() -> Result<bool, String> {
     }
 }
 
+// Discovery and execution must inspect the same owned crates. In particular,
+// registering an engine suite cannot leave it invisible to either invocation.
+fn oracle_args() -> Vec<&'static str> {
+    vec![
+        "test",
+        "-p",
+        "port-core",
+        "-p",
+        "port-io",
+        "-p",
+        "port-engine",
+        "--tests",
+    ]
+}
+
 fn oracle() -> Result<(), String> {
     if ensure_oracle_node()? {
         return Ok(());
     }
     pin()?;
     let output = Command::new("cargo")
-        .args([
-            "test",
-            "-p",
-            "port-core",
-            "-p",
-            "port-io",
-            "--tests",
-            "--",
-            "--ignored",
-            "--list",
-        ])
+        .args(oracle_args())
+        .args(["--", "--ignored", "--list"])
         .current_dir(workspace())
         .output()
         .map_err(|e| format!("oracle discovery could not start: {e}"))?;
@@ -270,22 +277,9 @@ fn oracle() -> Result<(), String> {
         ORACLE_TESTS.len()
     );
     env();
-    run(
-        "cargo",
-        &[
-            "test",
-            "-p",
-            "port-core",
-            "-p",
-            "port-io",
-            "--tests",
-            "--no-fail-fast",
-            "--",
-            "--ignored",
-            "--nocapture",
-        ],
-        &workspace(),
-    )
+    let mut args = oracle_args();
+    args.extend(["--no-fail-fast", "--", "--ignored", "--nocapture"]);
+    run("cargo", &args, &workspace())
 }
 
 fn wasm_probe() -> Result<(), String> {

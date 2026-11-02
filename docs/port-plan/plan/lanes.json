@@ -46,7 +46,8 @@
       "name": "Session contract",
       "units": [
         "P05",
-        "engine.session.contract"
+        "engine.session.contract",
+        "engine.error.envelope"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },

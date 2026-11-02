@@ -5,7 +5,8 @@
   "gate": "G2",
   "status": "planned",
   "depends_on": [
-    "baseline.reproducibility"
+    "baseline.reproducibility",
+    "engine.error.envelope"
   ],
   "soft_depends_on": [
     "P02",
@@ -33,6 +34,7 @@
   "rust_paths": [],
   "evidence": [],
   "open_items": [
-    "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+    "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
+    "Source-derived mutation/refusal/late-job traces, owned scan buffers, revisions/epochs and history lanes still require implementation; no session acceptance claim."
   ]
 }

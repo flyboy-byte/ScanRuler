@@ -229,6 +229,17 @@
         "original.progress-or-error.txt",
         "rust.progress-or-error.txt"
       ]
+    },
+    {
+      "unit": "engine.error.envelope",
+      "test": "pinned_engine_error_comparison",
+      "directory": "engine-error-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }
