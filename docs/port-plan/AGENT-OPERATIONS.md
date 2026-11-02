@@ -11,7 +11,8 @@ they disagree, those win and this file is fixed.
 1. Read `AGENTS.md` (or `CLAUDE.md`), then `HANDOFF.md`, `ROADMAP-TO-USABLE.md` (environment, milestones), then this file, then your unit's JSON.
 2. `git fetch origin && git checkout -b <agent>/<unit>-<slug> origin/main`. Always branch from current
    `main`, never from another agent's branch. No stacks: if you need another agent's unfinished work,
-   say so in the PR and wait for it to merge.
+   say so in the PR and wait for it to merge. **Exception:** a single unattended pass cannot wait, so it may stack
+   its own PRs in a declared order (see `NEXT-PASS.md`); the integrator then merges bottom-up and retargets.
 3. `gh pr list -R flyboy-byte/scanruler` and search open PRs for your symbols and paths. Pass `-R
    flyboy-byte/scanruler` on every `gh` call; the fork default can resolve to upstream.
 4. **Claim by opening a draft PR first**: unit id, original symbols, files you will touch, how success is

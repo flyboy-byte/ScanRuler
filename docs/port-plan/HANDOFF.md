@@ -35,7 +35,7 @@ Original command baselines were captured in real Node 22 headless engines and Ch
 
 The unchanged original has both green hosted full runs and a repeatable intermittent timing failure in `reNetworkCreases.test.ts:209` (1500 ms limit). The audit queue retains exact runs/results. No threshold, seed or test is waived. Missing private scans remain skips. The older scaffold-only handoff and baseline observations are history, not current status.
 
-Licensing, trademark and rename questions are **parked** by the owner until the project is more mature and Stefan has replied to Logan's email about the SolidCraft integration; see [LICENSING-AND-NAMING.md](LICENSING-AND-NAMING.md) (reference only). Starting prompts for each work lane: [prompts/README.md](prompts/README.md).
+Licensing, trademark and rename questions are **parked** by the owner until the project is more mature and Stefan has replied to Logan's email about the SolidCraft integration; see [LICENSING-AND-NAMING.md](LICENSING-AND-NAMING.md) (reference only). What the next agent pass should do: [NEXT-PASS.md](NEXT-PASS.md). Starting prompts for each work lane: [prompts/README.md](prompts/README.md).
 
 ## Working and validating
 
