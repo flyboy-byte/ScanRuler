@@ -17,3 +17,6 @@ mod ply_binary;
 
 /// Owned file selection, companion identity and byte snapshots; no image codec.
 pub mod scan_files;
+
+/// Complete dropped-folder async callback traversal; no DOM adapter or decoder.
+pub mod drop_files;
