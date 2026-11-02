@@ -1,0 +1,34 @@
+{
+  "id": "harness.coverage.original",
+  "parent": "P36",
+  "title": "Measure which branches of the original the comparison corpus reaches",
+  "gate": "G3",
+  "status": "planned",
+  "depends_on": [
+    "harness.oracle.gate"
+  ],
+  "soft_depends_on": [
+    "P03"
+  ],
+  "scope": "Run the original parsers and commands with V8/c8 coverage while the corpus and fuzz cases execute; report original source branches never reached by any comparison case. Each unreached branch is unverified behaviour and becomes a corpus or fuzz target.",
+  "acceptance": [
+    "Report lists, per original source file, lines and branches reached versus not reached by the committed corpus, reproducibly under Node 22.",
+    "Unreached branches in ported units are tracked as open items in the unit JSON; the report is generated, not hand-edited."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/parsers/ply.ts",
+    "src/core/parsers/stl.ts",
+    "src/core/parsers/obj.ts"
+  ],
+  "symbols": [],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Needs a decision on the coverage tool (c8 is already a Node-side dev tool; no product dependency)."
+  ]
+}
