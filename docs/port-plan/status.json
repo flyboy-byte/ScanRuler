@@ -3,12 +3,12 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 33,
+    "implemented": 34,
     "planned": 51,
-    "specified": 2
+    "specified": 1
   },
-  "native_suites": 25,
-  "native_case_identities_including_refusals": 1318,
+  "native_suites": 26,
+  "native_case_identities_including_refusals": 2015,
   "accepted_units": [],
   "units": [
     {
@@ -434,13 +434,15 @@
     },
     {
       "id": "engine.schema.validate",
-      "status": "specified",
+      "status": "implemented",
       "parent": "P05",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/42",
+      "tested_sha": "d3f99454e8889a1e47e5e50a5f1c51da9d109743",
       "open_items": [
-        "Value model must carry JS distinctions the schema checks (undefined versus null, Uint8Array versus array, non-finite numbers); decide the representation before coding.",
-        "Pure and dependency-free: no JSON crate needed beyond the repo's own value type."
+        "Actual browser-Wasm validation runtime remains open; wasm32 compile is not execution.",
+        "Session/registry integration, schema registration budget enforcement and input wire decoding remain owned by engine.session.contract; no working command is claimed.",
+        "Owned dense acyclic ordinary data only; no getters/proxies/custom prototypes/functions/holes/shared identities. Malformed schema types and duplicate keys are explicit host refusals.",
+        "Independent schema fuzzing, line/branch coverage and exact-base differential ratchet remain separate evidence; no accepted status."
       ]
     },
     {

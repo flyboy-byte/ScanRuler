@@ -69,6 +69,15 @@ Artifacts are SHA-named and retained 30 days: Rust fast logs/environment, every 
 
 Generated [STATUS.md](STATUS.md) and `status.json` describe canonical declared state, not the latest CI result. `AUDIT-QUEUE.md` records observed run outcomes. The generated backlog and status must be refreshed after canonical changes. Python remains temporary bootstrap tooling until P39's Rust replacement; it is not shipped application logic.
 
+## Command schema comparison
+
+The required native roster includes697 exact validator states:320 accepted,
+376 refused with complete lines/coerced values and1 original TypeError. Every
+core/plugin command schema has successful and refused inputs. Native scope is
+26 suites/2015 identities. Browser scope remains651; Wasm compilation does not
+claim schema runtime. Four evidence regressions reject altered error lines,
+missing/malformed frames, missing command schemas and lost source observations.
+
 ## Drop callback comparison
 
 Drop traversal adds 40 exact result/error/callback traces, bringing native scope

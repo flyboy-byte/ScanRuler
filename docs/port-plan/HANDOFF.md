@@ -53,6 +53,12 @@ CI results are separated: Rust fast checks, native oracle assertions/raw evidenc
 
 ## Review and next implementation
 
+Current continuation starts from main `3d9b482` after owner integration through
+#41. PR #42 implements the pure `engine.schema.validate` function with697 exact
+full observations; native inventory26/2015, actual browser unchanged651. Session
+contract implementation is held by the owner’s other agent. Coverage reports are
+the next separate units; prior queue paragraphs below retain historical context.
+
 PR #40 ports complete async droppedFiles/fileOf/childrenOf over thin platform
 callbacks, with 40 exact native full-result/error/call-order traces. Actual DOM
 adapter runtime remains open. Review stack #36 → #37 → #39 → #40. Native

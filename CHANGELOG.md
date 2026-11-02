@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust command schema validation** (2026-11-02): preserve exact ordered refusals, sequential boolean coercion, names/id guidance and UTF-16 schema weights, with 697 complete source comparisons across every core/plugin command schema. Session/registry and actual browser runtime remain separate.
+
 - **Rust dropped-folder traversal** (2026-11-02): preserve complete asynchronous getter/batch/file ordering, browser fallback and opaque platform failures, with 40 exact source traces and bounded resource/pending-future tests. Actual DOM adapter runtime remains open.
 
 - **Image codec audit** (2026-11-02): freeze 56 original Chrome image observations and an exact pure-Rust candidate graph; retain 28 pixel and two omission mismatches, reject direct decoder adoption, and keep application dependencies unchanged.
