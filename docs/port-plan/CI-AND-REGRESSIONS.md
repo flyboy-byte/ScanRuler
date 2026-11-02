@@ -69,6 +69,17 @@ Artifacts are SHA-named and retained 30 days: Rust fast logs/environment, every 
 
 Generated [STATUS.md](STATUS.md) and `status.json` describe canonical declared state, not the latest CI result. `AUDIT-QUEUE.md` records observed run outcomes. The generated backlog and status must be refreshed after canonical changes. Python remains temporary bootstrap tooling until P39's Rust replacement; it is not shipped application logic.
 
+## Rust comparison-only coverage diagnostic
+
+`tools/rust_coverage.py run` builds isolated system-LLVM profiles and executes
+all26 mandatory native suites, excluding ordinary tests from execution. The
+retained e2c3d00 run has2015 exact case identities and raw inventory complete.
+Four fast-gate tests regenerate the report and cross-check explicit LCOV records,
+raw LLVM JSON summaries, hashes and malformed/mutated evidence. Stable flags
+emit no branch records. Inline test sections, uninstrumented lines and observed
+DA-versus-summary discrepancies remain explicit unknowns, not a percent gate.
+See oracle/RUST-COVERAGE.md and the dated evidence/finding.
+
 ## Original source coverage diagnostic
 
 `oracle/ORIGINAL-COVERAGE.md` documents the reproducible V8/compiler-map report:

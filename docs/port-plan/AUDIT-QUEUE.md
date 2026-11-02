@@ -1,5 +1,12 @@
 # Port PR audit and integration queue
 
+Current review order: #42 → #43 → [#44](https://github.com/flyboy-byte/ScanRuler/pull/44).
+#44 retains comparison-only LLVM coverage across all26 suites/2015 identities
+at e2c3d00, with report-only correction be43ab8. Every explicit zero DA line
+and unresolved LLVM metric discrepancy remains visible; no branch/acceptance
+claim. The full original/ Rust value comparisons and native/browser inventories
+are unchanged. Session implementation remains with the owner’s other agent.
+
 Coverage continuation: review #42 → [#43](https://github.com/flyboy-byte/ScanRuler/pull/43).
 #43 archives1422 exact instrumented original replays, eight complete module maps
 and every unreached/unknown location. It changes no Rust bodies; full native

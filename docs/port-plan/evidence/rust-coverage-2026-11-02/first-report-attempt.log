@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/home/logan/projects/scanruler/docs/port-plan/tools/rust_coverage.py", line 110, in <module>
+    if a.command=='run':run(a.out)
+                        ~~~^^^^^^^
+  File "/home/logan/projects/scanruler/docs/port-plan/tools/rust_coverage.py", line 105, in run
+    (out/'run.json').write_text(json.dumps(metadata,indent=2)+'\n');report=write_report(out,(out/'coverage.lcov').read_text(),metadata,sources)
+                                                                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/logan/projects/scanruler/docs/port-plan/tools/rust_coverage.py", line 70, in write_report
+    report=summarize(lcov,metadata,sources)
+  File "/home/logan/projects/scanruler/docs/port-plan/tools/rust_coverage.py", line 36, in summarize
+    parsed=parse_lcov(lcov);by_relative={}
+  File "/home/logan/projects/scanruler/docs/port-plan/tools/rust_coverage.py", line 27, in parse_lcov
+    if current is None or int(line[3:])!=len(current['lines']):raise ValueError('LCOV line total')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: LCOV line total

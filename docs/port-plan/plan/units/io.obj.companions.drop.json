@@ -85,7 +85,8 @@
   "open_items": [
     "Actual DOM adapter/browser callback runtime and broader mutable live-list/platform/cancellation behavior remain integration follow-ups; Wasm compilation is not runtime acceptance.",
     "No file decoding, public engine import/history/session or accepted-unit claim.",
-    "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
+    "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance.",
+    "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
   ],
   "resolved_items": [
     "2026-11-02: all40 original/native full DRP1 file identities/errors/callback traces match exactly (24 successful results /16 opaque platform failures).",

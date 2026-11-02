@@ -11,9 +11,9 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 35 |
+| implemented | 36 |
 | planned | 49 |
-| specified | 2 |
+| specified | 1 |
 
 | Unit | State | Tested implementation | PR |
 | --- | --- | --- | --- |
@@ -81,7 +81,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [geometry.normals.orient](plan/units/geometry.normals.orient.json) | implemented | `4c8b4cf` | [#6](https://github.com/flyboy-byte/ScanRuler/pull/6) |
 | [geometry.selection](plan/units/geometry.selection.json) | implemented | `3f56d3e` | [#19](https://github.com/flyboy-byte/ScanRuler/pull/19) |
 | [harness.coverage.original](plan/units/harness.coverage.original.json) | implemented | `96c776c` | [#43](https://github.com/flyboy-byte/ScanRuler/pull/43) |
-| [harness.coverage.rust](plan/units/harness.coverage.rust.json) | specified | — | — |
+| [harness.coverage.rust](plan/units/harness.coverage.rust.json) | implemented | `be43ab8` | [#44](https://github.com/flyboy-byte/ScanRuler/pull/44) |
 | [harness.fuzz.standing](plan/units/harness.fuzz.standing.json) | planned | — | — |
 | [harness.oracle.gate](plan/units/harness.oracle.gate.json) | implemented | `eeb2136` | [#15](https://github.com/flyboy-byte/ScanRuler/pull/15) |
 | [harness.verification.levels](plan/units/harness.verification.levels.json) | planned | — | — |
