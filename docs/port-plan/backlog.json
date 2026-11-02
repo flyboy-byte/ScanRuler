@@ -3544,6 +3544,50 @@
       ]
     },
     {
+      "id": "engine.session.history.record",
+      "parent": "engine.session.contract",
+      "title": "Port identity-aware history recording, grouping and late-step epoch drop",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [
+        "engine.error.envelope"
+      ],
+      "soft_depends_on": [
+        "engine.session.registry",
+        "engine.session.contract"
+      ],
+      "scope": "Complete sameValue/same/record, group/clear and sync/async history wrapper recording semantics over stable owned typed state sections. No undo/redo restoration, family capture/apply or fake command workflow.",
+      "acceptance": [
+        "Original full history module runs authored and seeded mutation traces with real stores and participants. Compare complete before/after patches, identity and data, labels/workspaces/groups, redo clearing, cap64, nested/overlapping wrappers, thrown bodies, capture failures, epoch drop and revision movement.",
+        "Owned immutable DAG reference cells preserve JS scalar/array/object identity rules without copying scan buffers. Explicit host quotas, no async runtime/dependency; changed graph value or patch order is rejected."
+      ],
+      "owner": "Codex",
+      "branch": "codex/history-record",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/state/historyStore.ts"
+      ],
+      "symbols": [
+        "sameValue",
+        "same",
+        "record",
+        "historyAction",
+        "historyAsync",
+        "beginHistoryGroup",
+        "endHistoryGroup",
+        "clearHistory"
+      ],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Stable typed section capture is the boundary; complete family capture/apply and dynamic participant lifecycle remain session integration.",
+        "Undo/redo travel, restore hooks and local histories are a distinct next bounded continuation.",
+        "Only original history epoch semantics; no extra backend/session epoch policy is accepted."
+      ]
+    },
+    {
       "id": "engine.session.registry",
       "parent": "engine.session.contract",
       "title": "Port owned command registration, catalog and schema admission",
