@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+name: Frozen original browser catalogs (not Rust parity)
+on:
+  pull_request:
+    paths: ['docs/port-plan/oracle/*browser-catalog*.mjs', 'docs/port-plan/oracle/catalog-reference.mjs', 'docs/port-plan/oracle/catalog-contract.mjs', 'docs/port-plan/reference-pin.json', '.github/workflows/original-browser-catalog.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: original-browser-catalog-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 2cd89c6769a10c27ee7754b477ada521c9ef5cb7
+          path: .oracle
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: .oracle/package-lock.json
+      - name: Browser validator tests
+        run: node --test docs/port-plan/oracle/browser-catalog-contract.test.mjs
+      - name: Prepare evidence
+        run: mkdir -p rust/target/original-browser-catalog
+      - name: Install frozen original dependencies
+        working-directory: .oracle
+        run: npm ci
+      - name: Install frozen original MCP dependencies
+        working-directory: .oracle/mcp
+        run: npm ci
+      - name: Core-only actual original app (fresh Chrome)
+        run: node docs/port-plan/oracle/capture-browser-catalog.mjs .oracle core rust/target/original-browser-catalog
+      - name: All-plugin actual original app (fresh Chrome)
+        run: node docs/port-plan/oracle/capture-browser-catalog.mjs .oracle all rust/target/original-browser-catalog
+      - name: Compare immutable browser metadata baseline
+        run: node docs/port-plan/oracle/verify-browser-catalog.mjs rust/target/original-browser-catalog
+      - name: Preserve browser captures and source diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frozen-original-browser-catalogs
+          path: rust/target/original-browser-catalog/
+          if-no-files-found: warn
+          retention-days: 30

@@ -1,0 +1,45 @@
+{
+  "contract": "original.headless.catalog.v1",
+  "referenceSha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "candidateSha": "8b9084f27f5d0678cf62d1c883c78dc0d13f8fb8",
+  "run": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41352758112",
+  "files": {
+    "core": {
+      "path": "core.json.gz",
+      "rawBytes": 185217,
+      "gzipBytes": 27355,
+      "rawSha256": "f2dc4226632bd289c907867c5e95dd80290b125c769d352c6009ff7b39cc2bfe",
+      "gzipSha256": "44ad885f88c4a1706ef2a9176fff178d3dde738cab9987410c6f7bebaace2f1b",
+      "commandsSha256": "af1cf3d58378bebcf46d75c36ee9043a5d9c2b63cee697e24cd3d3f7e4248f13",
+      "registered": 72,
+      "headless": 6,
+      "pageOnly": 66
+    },
+    "all": {
+      "path": "all.json.gz",
+      "rawBytes": 425978,
+      "gzipBytes": 63861,
+      "rawSha256": "62e3d00f436dc9e4973f0f990dd023c5d73c8e1b96b042e73bcf7ff1b9e30fa3",
+      "gzipSha256": "f5747637440db50726b389d4e66dae6d6b4b5031323786a22d1dd246cb6ccb73",
+      "commandsSha256": "19a2cd59faded4b4b6f0447d2aaeede556d410acaa62ab607b30c06eab22a2aa",
+      "registered": 140,
+      "headless": 36,
+      "pageOnly": 104
+    }
+  },
+  "builtEngineVerification": {
+    "run": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41353681379",
+    "candidateSha": "bfe3c625a75fecc8b9f420715da1437c7102060b",
+    "engineSha256": "03e98e13651d7de9f734526876de0f70163bc35ab69d6ad06d303954a29eac33",
+    "files": {
+      "core": {
+        "path": "built-core.json",
+        "sha256": "4bfd1df182a0e8b6fd1658098e25be725eaded7e4148e4e9f9e016c253f679c9"
+      },
+      "all": {
+        "path": "built-all.json",
+        "sha256": "f001c734c9fab85ec2b5c751e95ad6a95debd63319d7b6a1cd93a3d257340077"
+      }
+    }
+  }
+}
