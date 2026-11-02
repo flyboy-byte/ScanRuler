@@ -1,0 +1,31 @@
+{
+  "id": "harness.verification.levels",
+  "parent": "P36",
+  "title": "Record a verification level on each unit so implemented is not read as verified",
+  "gate": "G3",
+  "status": "planned",
+  "depends_on": [
+    "harness.fuzz.standing"
+  ],
+  "soft_depends_on": [
+    "harness.coverage.original",
+    "harness.coverage.rust"
+  ],
+  "scope": "Add a verification field to unit files with ordered levels (none, fixed-corpus, fuzzed, coverage-reviewed) and require the top level for accepted. The status table and next_task.py show the level.",
+  "acceptance": [
+    "Plan checker rejects accepted without the top level and rejects a level its evidence does not support; selftest includes the mutations.",
+    "Existing implemented units are labelled honestly from their current evidence (PLY and STL: fuzzed after PR #33; others fixed-corpus)."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "symbols": [],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Edits tools/port_plan.py, the generated status and every unit file: coordinate so only one PR changes them."
+  ]
+}

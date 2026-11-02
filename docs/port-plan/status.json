@@ -4,7 +4,7 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 30,
-    "planned": 50
+    "planned": 54
   },
   "native_suites": 24,
   "native_case_identities_including_refusals": 1278,
@@ -630,6 +630,37 @@
       ]
     },
     {
+      "id": "harness.coverage.original",
+      "status": "planned",
+      "parent": "P36",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Needs a decision on the coverage tool (c8 is already a Node-side dev tool; no product dependency)."
+      ]
+    },
+    {
+      "id": "harness.coverage.rust",
+      "status": "planned",
+      "parent": "P36",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Check that the Arch rust package provides llvm-tools or a source-coverage path; no rustup. Tooling only, no product dependency."
+      ]
+    },
+    {
+      "id": "harness.fuzz.standing",
+      "status": "planned",
+      "parent": "P36",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Reference harness was scratch-only (see plan/findings/2026-11-02-ply-stl-independent-fuzz.md for method); it must be rewritten in-repo, not copied from /tmp.",
+        "Touches rust/xtask and .github: one open PR at a time."
+      ]
+    },
+    {
       "id": "harness.oracle.gate",
       "status": "implemented",
       "parent": "P36",
@@ -638,6 +669,16 @@
       "open_items": [
         "General P36 independent adapter protocol, browser-Wasm execution, accepted-unit exact-base ratchet and G0/P05 remain open.",
         "Discovery guard freezes entrypoint names, not all case identities; individual suites enforce their own case/value contracts."
+      ]
+    },
+    {
+      "id": "harness.verification.levels",
+      "status": "planned",
+      "parent": "P36",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Edits tools/port_plan.py, the generated status and every unit file: coordinate so only one PR changes them."
       ]
     },
     {

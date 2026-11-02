@@ -45,7 +45,11 @@
         "harness.oracle.gate",
         "harness.wasm.runtime",
         "harness.wasm.ply",
-        "harness.wasm.obj"
+        "harness.wasm.obj",
+        "harness.fuzz.standing",
+        "harness.coverage.original",
+        "harness.coverage.rust",
+        "harness.verification.levels"
       ],
       "touches": "rust/xtask, ci/, port-wasm-probe (one agent at a time)"
     },
