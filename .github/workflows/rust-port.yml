@@ -112,3 +112,13 @@ jobs:
           name: plane-fit-comparison
           path: rust/target/plane-diff/
           retention-days: 7
+      - name: Clipped plane pinned-original comparison (native)
+        working-directory: rust
+        run: cargo test -p port-core --test clip pinned_clip_comparison -- --ignored --nocapture
+      - name: Retain clipping evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: plane-clipping-comparison
+          path: rust/target/clip-diff/
+          retention-days: 7

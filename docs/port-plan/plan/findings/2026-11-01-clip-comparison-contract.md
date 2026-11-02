@@ -1,0 +1,3 @@
+# Used-point clipping contract — pre-registered 2026-11-01
+
+Target complete clippedRefit and fitPlaneClipped bodies. Compare fit presence, complete ordered used-point IDs and lengths exactly. Compare plane fields and sigma/span/min/max under the existing fixed 1e-12*(1+abs(original)) f64 budget, established before clipping implementation; never loosen it after a mismatch. Generic callback fixtures must additionally exercise failed later fits and non-finite residuals so last-good-result continuations cannot be omitted. Retain 12 rounds, sigma<1e-9, keep<10 and k<=0 guards unchanged. No robust RANSAC/region growth claim.
