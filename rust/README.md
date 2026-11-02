@@ -10,10 +10,11 @@ and [the plan](../docs/port-plan/HANDOFF.md).
 | `port-engine` | Session, commands, jobs, history | Empty |
 | `port-io` | Formats and the `.scanruler` project reader/writer | STL binary/ASCII dispatch and triangle extraction (P06); no welding/session loader |
 | `port-cli` | `scanruler-rs`, native front end for differential runs | Prints a banner |
-| `xtask` | Project tasks | `ci`, `pin`, `plan`, `wasm`, `env` |
+| `xtask` | Project tasks | `ci`, `oracle`, `pin`, `plan`, `wasm`, `env` |
 
 ```bash
 cargo xtask ci     # the fast gate; same thing CI runs
+cargo xtask oracle # all native source suites; fails if a required suite disappears
 cargo xtask env    # toolchain versions to record with any result
 ```
 
@@ -31,7 +32,11 @@ cargo xtask env    # toolchain versions to record with any result
 
 It does not compare anything with the original app. That harness (`cargo xtask diff`,
 `diff-ci`) is planned under P36 to P39, and the disabled example workflow is designed to fail
-until it exists. A green `ci` run is not parity.
+until it exists. A green `ci` run is not parity. `cargo xtask oracle` separately discovers all eleven
+required native oracle entrypoints, rejects missing/duplicate discovery, then runs
+all ignored core/IO integration tests without filtering their cases. It requires
+Node and the frozen Git object. It does not implement the general P36 ratchet or
+browser-Wasm execution. CI retains every existing raw-output artifact.
 
 ## First import operation
 
