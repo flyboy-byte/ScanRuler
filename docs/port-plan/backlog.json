@@ -4998,7 +4998,7 @@
       "parent": "P36",
       "title": "Measure which branches of the original the comparison corpus reaches",
       "gate": "G3",
-      "status": "planned",
+      "status": "specified",
       "depends_on": [
         "harness.oracle.gate"
       ],
@@ -5010,8 +5010,8 @@
         "Report lists, per original source file, lines and branches reached versus not reached by the committed corpus, reproducibly under Node 22.",
         "Unreached branches in ported units are tracked as open items in the unit JSON; the report is generated, not hand-edited."
       ],
-      "owner": null,
-      "branch": null,
+      "owner": "Codex",
+      "branch": "codex/original-coverage",
       "claim_pr": null,
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
