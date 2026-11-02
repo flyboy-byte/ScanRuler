@@ -1,16 +1,18 @@
 # Actual Rust execution in browser Wasm
 
 Scope 2026-11-02: TLS plane (13 cases), complete mesh graph (50), marked-plane
-elements (51), ASCII PLY (60) and binary PLY (167). The original 114 cases remain
-unchanged. Original frozen Node outputs and native Rust outputs come from the
-independent source suites. The browser receives only mode plus fixture input
-bytes. The local HTTP server serves only an empty page and the compiled Wasm
-module, never expected results. See [the PLY contract](PLY-WASM.md) for the one
-explicit new native-only workload and exact progress/error envelopes.
+elements (51), ASCII PLY (60), binary PLY (167), OBJ texture helpers (144) and
+complete OBJ parser (79). All original 341 browser cases remain unchanged.
+Original frozen Node outputs and native Rust outputs come from independent
+source suites. The browser receives only mode plus authored fixture input bytes.
+The local HTTP server serves only an empty page and compiled Wasm module, never
+expected results. [PLY contract](PLY-WASM.md) and [OBJ contract](OBJ-WASM.md)
+record three explicit native-only workload exclusions. The live v3 roster cannot
+be replaced by the smaller historical v2 roster.
 
 This is a private test ABI, not a product/session interface. `port-wasm-probe` uses safe Mutex-owned buffers and five scalar functions (reset/push/run/length/word). It inherits unsafe_code=forbid and depends only on existing owned port-core/port-io crates. There are no raw pointer exchanges, no unsafe no_mangle attributes, wasm-bindgen, C/C++ kernel or JavaScript geometry implementation. A test-only linker export-all/link-dead-code build exposes unique v0 symbol suffixes; the runner fails if lookup changes. The module must import nothing. Future production ABI design remains under P05.
 
-Limits: one MiB input/output, 30,000 geometry coordinate scalars, 10,000 geometry indices/selected points and 64 MiB linear memory. PLY additionally caps declared vertices/triangles at 10,000 and work at 4,000,000. Its million-face zero-property progress case fits these bounds; its million-vertex input/output does not and stays explicitly native-only. Valid source refusals are serialized as results; malformed codec, invalid mode, exhausted input and allocation errors return nonzero and clear stale output. Browser tests deliberately exercise bad mode, truncated/oversized declarations, poisoned writes, out-of-range reads, hard memory-growth refusal, clean reset/recovery and distinct PLY host-versus-source failures. No browser exception or missing result can become a pass.
+Limits: one MiB input/output, 30,000 geometry coordinate scalars, 10,000 geometry indices/selected points and 64 MiB linear memory. PLY additionally caps declared vertices/triangles at 10,000 and work at 4,000,000. Its million-face zero-property progress case fits these bounds; its million-vertex input/output does not and stays explicitly native-only. OBJ additionally caps vertices/UVs/face corners at 10,000, indices at 30,000, materials at 1,024, companion files at 64, names at 4,096 bytes and work at 4,000,000. Both full-size million-line OBJ progress inputs exceed the input cap and remain unchanged in native comparisons. Typed packet counts/UTF-8/trailing data are checked before execution. Valid source refusals are serialized as results; malformed codec, invalid mode, exhausted input and allocation errors return nonzero and clear stale output. Browser tests deliberately exercise bad mode, truncated/oversized declarations, poisoned writes, out-of-range reads, hard memory-growth refusal, clean reset/recovery and distinct PLY host-versus-source failures. No browser exception or missing result can become a pass.
 
 From the fork root, system Rust/Wasm target, Node 22 and Chrome plus the original npm dependencies are required:
 
@@ -28,7 +30,19 @@ Local diagnostic mode `node .../run-browser-wasm.mjs --node-smoke` can execute t
 
 Comparisons retain existing contracts: complete graph bytes exact; TLS/marked numerical fields within 1e-12*(1+abs(original)); exact presence/kind/error/count/region, and marked zero signs. All 45 marked-frame angle probes remain, with no alternate-frame normalization or original-derived constants. Negative comparator tests reject changed values, missing/nonfinite outputs, changed presence, graph bytes, region and signed zero. No tolerance, input, seed or existing passing comparison is removed.
 
-Actual browser results must be recorded before claiming execution coverage; a compiled module or Node smoke is insufficient. The current local Chrome checkpoint covers 341 inputs (287 successful outputs and 54 source refusals), with one additional PLY native-only workload explicitly excluded. It does not provide UI/session/command/project acceptance, all-unit browser parity, the general P36 protocol, P37 exact-base coverage ratchet, P39 Rust tooling replacement or P35 whole-product purity. The JS launcher/comparator is temporary source-oracle test tooling and browser serialization only; algorithms execute in Rust.
+Actual browser results must be recorded before claiming execution coverage; a compiled module or Node smoke is insufficient. The current local Chrome checkpoint covers 564 inputs (482 successful outputs/helper states and 82 source refusals), with three native-only workloads explicitly excluded. Helper observations are not working import commands. It does not provide UI/session/command/project acceptance, all-unit browser parity, the general P36 protocol, P37 exact-base coverage ratchet, P39 Rust tooling replacement or P35 whole-product purity. The JS launcher/comparator is temporary source-oracle test tooling and browser serialization only; algorithms execute in Rust.
+
+## OBJ local Chrome checkpoint — 2026-11-02
+
+Implementation `6bcab1d1a436fb757ce2023a001f70d3972b5a05`: Chrome
+156.0.8078.79 / Node 22.23.4 / Rust 1.99.1 passes 564 comparisons and 18 protocol
+checks. Zero module imports or page errors. All OBJ values, float32 bits, colors,
+ordered notes/filenames/maps, complete sampler buffer and progress/refusals match
+exactly. Existing numerical budgets stay unchanged.
+[Manifest, complete raw bytes and identities](../evidence/browser-wasm-obj-2026-11-02/manifest.json).
+20 comparator/proof tests replay old and new raw proofs and reject mutations,
+malformed outputs, missing/stale artifacts and trimmed rosters. Final hosted
+head outcomes must still be inspected separately.
 
 ## Expanded local Chrome checkpoint — 2026-11-02
 

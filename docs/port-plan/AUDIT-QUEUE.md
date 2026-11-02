@@ -5,9 +5,21 @@ checks passed before this continuation. The new queue starts at
 [#31](https://github.com/flyboy-byte/ScanRuler/pull/31) (OBJ material/decoded-image
 texture helpers, base `main`), then
 [#32](https://github.com/flyboy-byte/ScanRuler/pull/32) (complete OBJ parser and
-texture continuation, base #31). No PR has been merged by this continuation. Read live checks;
+texture continuation, base #31), then
+[#34](https://github.com/flyboy-byte/ScanRuler/pull/34) (actual Chrome/Wasm OBJ
+comparison, base #32). Independent PLY fuzz [#33](https://github.com/flyboy-byte/ScanRuler/pull/33)
+is outside this stack and has not been incorporated. No PR has been merged by this continuation. Read live checks;
 local baseline unit failures are preserved in `evidence/baseline-2026-11-02/`.
 Current implementation state is generated in [STATUS.md](STATUS.md).
+
+Hosted observation 2026-11-02: #31 at `2fe1e8f` and #32 at `cae316c7` have
+successful Rust fast/native/browser/aggregate, original source/MCP/browser/aggregate,
+plan and license checks. #31 Rust [41470795726](https://github.com/flyboy-byte/ScanRuler/actions/runs/41470795726),
+original [41470795816](https://github.com/flyboy-byte/ScanRuler/actions/runs/41470795816);
+#32 Rust [41473833846](https://github.com/flyboy-byte/ScanRuler/actions/runs/41473833846),
+original [41473833818](https://github.com/flyboy-byte/ScanRuler/actions/runs/41473833818).
+CLA was skipped, not signed by this continuation. #34 final hosted checks must
+be inspected separately; its local exact-output and actual Chrome proof is committed.
 
 The table below is the **historical first-batch checkpoint**, not current branch
 bases or a live badge. Its earlier “no PR open/no PR merged” statements describe
