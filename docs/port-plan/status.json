@@ -4,7 +4,8 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 32,
-    "planned": 53
+    "planned": 52,
+    "specified": 1
   },
   "native_suites": 24,
   "native_case_identities_including_refusals": 1278,
@@ -742,12 +743,12 @@
     },
     {
       "id": "io.obj.companions.drop",
-      "status": "planned",
+      "status": "specified",
       "parent": "io.obj.companions",
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "No implementation or image dependency adoption claimed."
+        "Actual DOM adapter/browser callback execution and broader live-list/late-platform behavior remain integration follow-ups; this unit ports the complete snapshot/callback algorithm."
       ]
     },
     {

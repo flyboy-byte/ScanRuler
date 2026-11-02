@@ -4807,7 +4807,7 @@
       "parent": "io.obj.companions",
       "title": "Port dropped-folder traversal and file-read failures",
       "gate": "G3",
-      "status": "planned",
+      "status": "specified",
       "depends_on": [
         "io.obj.companions.files"
       ],
@@ -4815,8 +4815,8 @@
         "P03",
         "P36"
       ],
-      "owner": null,
-      "branch": null,
+      "owner": "Codex",
+      "branch": "codex/drop-files",
       "claim_pr": null,
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
@@ -4828,15 +4828,17 @@
         "fileOf",
         "childrenOf"
       ],
-      "rust_paths": [],
-      "scope": "Complete droppedFiles/fileOf/childrenOf including fallback, one-level directory traversal, batches and ordered platform errors. Thin platform callbacks only.",
+      "rust_paths": [
+        "rust/crates/port-io/src/drop_files.rs"
+      ],
+      "scope": "Complete droppedFiles/fileOf/childrenOf control flow over thin async platform callbacks: initial entry reads, browser fallback, one-level batches collected before file reads, order/duplicates and original opaque errors.",
       "acceptance": [
-        "Preserve complete original successful/refused state and order; resource failures remain distinct.",
-        "Fixed licensed source cases and full result evidence precede Rust; no hidden browser/foreign codec in product."
+        "Fixed original/native traces compare every returned file identity, complete platform error fields and all callback order, before implementation.",
+        "Bounded safe Rust async control flow with resource/allocation failures distinct from platform errors; no new runtime/dependency/session store."
       ],
       "evidence": [],
       "open_items": [
-        "No implementation or image dependency adoption claimed."
+        "Actual DOM adapter/browser callback execution and broader live-list/late-platform behavior remain integration follow-ups; this unit ports the complete snapshot/callback algorithm."
       ],
       "resolved_items": []
     },
