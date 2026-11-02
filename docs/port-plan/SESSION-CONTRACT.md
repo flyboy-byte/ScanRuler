@@ -9,10 +9,10 @@ port, not the original's behaviour). This is a specification, not an implementat
 the Rust session has to reproduce.
 
 Sources read in full: `src/commands/types.ts`, `registry.ts`, `state.ts`; `src/state/historyStore.ts`;
-`src/commands/activity.ts` (busy guard, plugin stop); `src/core/workerRpc.ts`; `src/core/workerProtocol.ts`
+`src/commands/activity.ts` (busy guard, plugin stop); `src/commands/schema.ts` (validation); `src/commands/stalePage.ts`;
+`src/commands/host.ts` (`sessionBusy` only); `src/core/workerRpc.ts`; `src/core/workerProtocol.ts`
 (request/response union); `src/core/workerClient.ts` (request ids, staged imports). Not read here and still open:
-`schema.ts` (validation rules), `stalePage.ts`, `host.ts` (what the session guard reports), `agentLink.ts`,
-`core/*.ts` (each command's own body).
+`host.ts` beyond `sessionBusy`, `agentLink.ts`, `stateSections.ts`, `core/*.ts` (each command's own body).
 
 ## 1. What a command is
 
@@ -50,9 +50,19 @@ becomes `failed` with its message (`Error.message` or `String(value)`).
 
 The Rust port reuses the merged `port-engine` error envelope (unit `engine.error.envelope`, PR #30): the twelve
 codes, lossless message fields and the JSON form already exist and are compared. This spec adds no code and does
-not replace UTF-16 messages with `Display` text. **Open (needs `host.ts` and `schema.ts`):** the `busy` message is `The session is busy — <what>. Try again once it has
-finished.` (DOCUMENTED); `<what>` is the sentence the session guard returns, which `host.ts` supplies for the
-session's own causes. The plugin causes are in section 3.10.
+not replace UTF-16 messages with `Display` text. `busy` is `The session is busy — <what>. Try again once it has finished.` (DOCUMENTED); `<what>` is the first match,
+in this order (`host.ts` `sessionBusy`): `a file is being read` (imports busy); the status text, else `it is working`
+(store busy); `a step of the history is being restored`; `the reference is being read`; `the scan is being aligned to
+the reference`; `the deviation map is being measured`; `the deviation map on the reference is being measured`;
+`the wall thickness is being measured`; `the image is being read`; `an element is being fitted`; then the first
+plugin busy text (3.10).
+
+`stale_page` (`stalePage.ts`, DOCUMENTED): a dynamic-import fault (message matches `Failed to fetch dynamically
+imported module`, `error loading dynamically imported module`, `Importing a module script failed` or `Unable to
+preload CSS`, case-insensitive; a `CommandError` never matches) marks the page stale from then on (ISO time kept,
+first mark wins) and answers `This tab is older than the app it came from (rebuilt since) — save the project
+(project_save), then ask the person to reload; the work is lost on reload otherwise. (<original message>)`.
+The readout then carries `stale: {since, note}`.
 
 ## 3. Scheduling lanes
 
@@ -61,6 +71,30 @@ DOCUMENTED (`registry.ts`). There are four lanes, and the order of checks inside
 **3.1 Admission (at call time, before any queueing).** Unknown name -> reject `unknown_command`
 (`There is no command "<name>".`). Input is validated against the schema -> reject `invalid_input` with the errors
 joined by `"; "`. A missing input is `{}`. Both happen synchronously at call time, so a bad call never waits in a queue.
+
+**3.1a Input validation is its own function and has a side effect** (`schema.ts`, DOCUMENTED). `validate(schema,
+value, path='input')` returns every error as one line starting with the path (`input.at.point: expected 3 items`).
+It is hand-rolled over a small JSON-Schema subset: `object`, `array`, `string` (+`minLength`, `format:'binary'`
+meaning bytes), `number`/`integer` (finite; `minimum`, `maximum`, `exclusiveMinimum`), `boolean`, `null`, `enum`,
+`oneOf`, `required`, `additionalProperties:false`, `minItems`/`maxItems`, and the extension `names`. Behaviours a
+port must reproduce, all compared output:
+- It **mutates the caller's value**: a field or list item `"true"`/`"false"` where only a boolean fits becomes the
+  boolean, in place, before the command sees it.
+- A string where a number goes, for a field listed in `names`, is refused with a message saying where to put the
+  name (`give <field>: { <slot>: "<value>" }`); a string `id` where an object also has `name` is refused with
+  `a name goes in name`. The messages are exact strings.
+- `oneOf`: exactly one passing branch is success; more than one gives `matches more than one of <names>`; none
+  gives `expected one of <names>` plus the errors of the closest branch (fewest errors among branches whose type
+  fits the value, else among all).
+- `required` fails on `undefined` only; `undefined` values are skipped; unknown fields under
+  `additionalProperties:false` give `not a known field — the fields here: <list or none>`.
+- `enum` is checked before type; messages use `JSON.stringify` of the values.
+- `registerCommands` rejects schemas past `SCHEMA_BUDGET = {bytes: 8000, depth: 12}` where bytes is the length of
+  `JSON.stringify(schema)` and depth counts nesting of every object and array in the schema JSON.
+
+This is a pure function of `(schema, value)` and the cleanest unit to differential-fuzz: see unit
+`engine.schema.validate`. The Rust port represents the mutation as an explicit coerced copy returned to the caller,
+which is observably the same.
 
 **3.2 Reads (`readOnly`).** Start at once. A fresh abort controller per run. Unless the call is deferred, the run
 first waits for all settlers (3.5) to finish what deferred runs left. A `scene` read is serialised on the scene
@@ -247,8 +281,7 @@ Acceptance for this unit stays unmet until those traces exist and pass; the spec
 
 ## 9. Open items
 
-- Read `host.ts` (the session guard's busy sentences), `schema.ts` (validation rules and `SCHEMA_BUDGET`) and
-  `stalePage.ts` and add them here.
+- Read `stateSections.ts`, `agentLink.ts` and the rest of `host.ts` (project and flat hosts).
 - `session.state` per-family content waits on those families.
 - Decide the clock/event representation (section 7.2) with the Codex side before code; record it as a decision file.
 - Extra revision/epoch semantics for the Rust Wasm worker boundary (section 6, DESIGN) need the owner's review.

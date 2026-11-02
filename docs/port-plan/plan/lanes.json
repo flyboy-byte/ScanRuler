@@ -60,7 +60,8 @@
       "units": [
         "P05",
         "engine.session.contract",
-        "engine.error.envelope"
+        "engine.error.envelope",
+        "engine.schema.validate"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },

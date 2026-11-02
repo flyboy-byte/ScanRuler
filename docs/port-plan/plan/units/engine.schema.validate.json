@@ -1,0 +1,38 @@
+{
+  "id": "engine.schema.validate",
+  "parent": "P05",
+  "title": "Port command input schema validation, coercion and size budget",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": [
+    "baseline.reproducibility"
+  ],
+  "soft_depends_on": [
+    "engine.session.contract",
+    "harness.fuzz.standing"
+  ],
+  "scope": "The JSON-Schema subset validator and its exact error lines, the in-place true/false coercion, the names/id refusals, oneOf closest-branch reporting, and schemaWeight/SCHEMA_BUDGET, as a pure Rust function over an owned schema and value. Section 3.1a of SESSION-CONTRACT.md is the specification.",
+  "acceptance": [
+    "Seeded schema and value generator (including oneOf, names, id/name, nested arrays, binary strings, non-finite numbers, undefined fields) compares original errors line by line, the returned coerced value and the weight figures against Rust, with a deliberately wrong error line rejected.",
+    "Every real command input schema from mcp/src/commands.json validates a corpus of accepted and refused inputs identically."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/schema.ts"
+  ],
+  "symbols": [
+    "validate",
+    "schemaWeight",
+    "SCHEMA_BUDGET"
+  ],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Value model must carry JS distinctions the schema checks (undefined versus null, Uint8Array versus array, non-finite numbers); decide the representation before coding.",
+    "Pure and dependency-free: no JSON crate needed beyond the repo's own value type."
+  ]
+}

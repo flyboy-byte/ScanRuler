@@ -4,7 +4,7 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 33,
-    "planned": 51,
+    "planned": 52,
     "specified": 1
   },
   "native_suites": 25,
@@ -433,13 +433,24 @@
       ]
     },
     {
+      "id": "engine.schema.validate",
+      "status": "planned",
+      "parent": "P05",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Value model must carry JS distinctions the schema checks (undefined versus null, Uint8Array versus array, non-finite numbers); decide the representation before coding.",
+        "Pure and dependency-free: no JSON crate needed beyond the repo's own value type."
+      ]
+    },
+    {
       "id": "engine.session.contract",
       "status": "specified",
       "parent": "P05",
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "Spec drafted in SESSION-CONTRACT.md from registry/state/types/historyStore/activity/worker files; still to read: host.ts, schema.ts, stalePage.ts.",
+        "Spec drafted in SESSION-CONTRACT.md from registry, state, types, historyStore, activity, schema, stalePage, host.sessionBusy and the worker files; still to read: stateSections.ts, agentLink.ts, rest of host.ts.",
         "Original-derived scenario traces (spec section 8) and the Rust session are unimplemented; no session acceptance claim.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text."
       ]
