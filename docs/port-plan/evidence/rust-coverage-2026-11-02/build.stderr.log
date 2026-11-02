@@ -1,0 +1,4 @@
+   Compiling port-core v0.0.0 (/home/logan/projects/scanruler/rust/crates/port-core)
+   Compiling port-io v0.0.0 (/home/logan/projects/scanruler/rust/crates/port-io)
+   Compiling port-engine v0.0.0 (/home/logan/projects/scanruler/rust/crates/port-engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.37s

@@ -1,0 +1,60 @@
+{
+  "contract": "rust.coverage.bundle.v1",
+  "reporter_sha": "be43ab8afa369bf49a779339e82de7878d416a56",
+  "profile_candidate_sha": "e2c3d0010700899a47c6ec6c454d5cb3299b1141",
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "files": {
+    "build-messages.jsonl.gz": {
+      "bytes": 1546,
+      "sha256": "116f3845cb5cd439f8be423be75a8a0876b9d9e54169af7f123048fff5b840a5"
+    },
+    "build.stderr.log": {
+      "bytes": 328,
+      "sha256": "ac60761e75684dfdf9ce147065ee357251624cb2bebe355114f0a8ffbda90162"
+    },
+    "coverage.lcov.gz": {
+      "bytes": 44610,
+      "sha256": "5656c458f1b6bf3c83e0b3d03d4f6a0b1a78a1ea9c251411c95f4305d4e34f5e"
+    },
+    "coverage.lcov.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "first-report-attempt.log": {
+      "bytes": 1210,
+      "sha256": "578343889a0b50f5807c29316c1e1874c4a793d864da5efe1c2ced4247d87fdf"
+    },
+    "llvm-export.json.gz": {
+      "bytes": 303081,
+      "sha256": "08be862eabda9004758416ce020597c75af3deb1164051c496838bff8c62f66a"
+    },
+    "llvm-export.json.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native-evidence.json.gz": {
+      "bytes": 167896,
+      "sha256": "3dee4bb6c81e6f970e35a27992f2e94ea388d37ce7819eda3bcf2ba25c3006eb"
+    },
+    "oracle.log.gz": {
+      "bytes": 13119,
+      "sha256": "405d464112f65555003bc47c46f6018ed5492f4d5ef5c0d2f901666356db5fb1"
+    },
+    "report.json": {
+      "bytes": 106870,
+      "sha256": "107d6b765d2b3dfa2eeff2f2ff1bc4fb98bdf7c01dacba61d793827709286852"
+    },
+    "report.md": {
+      "bytes": 6160,
+      "sha256": "b8b7ccd55ce008378fcfe500068765daac418d502b16ee0c156a1361e7ee2255"
+    },
+    "run.json": {
+      "bytes": 18011,
+      "sha256": "18c040a5d9316d64a78db865315bf93d4c2be71b9bb31c13a4196182fd16ebd4"
+    },
+    "sources.json.gz": {
+      "bytes": 56635,
+      "sha256": "eee66e83de89ac621690cd7f325d96f23f734d8280b9ba3094e8314d36e07c84"
+    }
+  }
+}

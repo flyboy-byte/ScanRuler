@@ -53,6 +53,13 @@ CI results are separated: Rust fast checks, native oracle assertions/raw evidenc
 
 ## Review and next implementation
 
+Latest continuation review order is #42 → #43 → #44: full schema validation,
+original source reach, then Rust comparison-only LLVM reach. Native inventory
+remains26/2015; browser651. Both coverage reports retain measured/unreached/
+unknown scope, not acceptance. Session contract remains held by the owner’s
+other agent. Tool/profile checkpoints and every gap are in the canonical units
+and dated report bundles; historical queue paragraphs below are preserved.
+
 Current continuation starts from main `3d9b482` after owner integration through
 #41. PR #42 implements the pure `engine.schema.validate` function with697 exact
 full observations; native inventory26/2015, actual browser unchanged651. Session

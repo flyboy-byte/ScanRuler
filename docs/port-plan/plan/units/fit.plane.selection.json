@@ -107,6 +107,7 @@
     "Host validates packed graph buffers/indices/point budgets. Returned region is an owned copy; arbitrary JS buffer aliasing is not exposed.",
     "The source extent-failure message/body is retained, but that branch is not reached by the current full-fit corpus; wider adversarial/private-helper branch evidence remains open.",
     "Runtime checkpoint 2026-11-01: existing registered cases execute in actual Chrome via harness.wasm.runtime; see evidence/browser-wasm-2026-11-01/report.json at candidate 00fd1a69af98c7bacc91da747483ac0ccbfb70c6. No lifecycle acceptance promotion.",
-    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
+    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
+    "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
   ]
 }
