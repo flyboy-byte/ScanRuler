@@ -1,0 +1,65 @@
+{
+  "contract": "image.audit.manifest.v1",
+  "candidate_sha": "87d2318da99751b0b57f893861c2580c7bf574ae",
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "dependency_root": "image@0.25.10",
+  "application_dependency_adopted": false,
+  "source_cases": 56,
+  "source_decoded_images": 36,
+  "candidate_counts": {
+    "both_omitted": 18,
+    "exact_pixels": 8,
+    "pixel_mismatch": 28,
+    "presence_mismatch": 2
+  },
+  "pixel_compatibility": "REJECTED: 28 pixel mismatches and 2 presence mismatches; no tolerance or normalization",
+  "source_recapture": {
+    "same_complete_values": true,
+    "cases": 56,
+    "browser": "Chrome/156.0.8078.79",
+    "platform": {
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "offscreenCanvas": true
+    },
+    "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7"
+  },
+  "builds": {
+    "native": "passed",
+    "wasm": "compiled-and-linked; imports empty; runtime pixels untested",
+    "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13) (Arch Linux rust 1:1.99.1-1)"
+  },
+  "files": {
+    "evidence/2026-11-02-image-source.json": {
+      "bytes": 580840,
+      "sha256": "efcdce2a191a436cf5539a1f4cdc84ae9fc54ef8f8871919d8e552b36236f192"
+    },
+    "evidence/2026-11-02-image-candidate.json": {
+      "bytes": 1746070,
+      "sha256": "08df7bfd2a706c6eca00661958f3d323e17ddc6c5d5e6015b6a5fb8791c22f35"
+    },
+    "evidence/2026-11-02-image-dependencies.json": {
+      "bytes": 39055,
+      "sha256": "626fd509d0c083151c330a93b1a7aa0f42bf6ce9a4d9f75d87ac04fe450e60c8"
+    },
+    "evidence/2026-11-02-image-wasm-build.json": {
+      "bytes": 273,
+      "sha256": "0042224eaeb50012a85a2e2e62eec7afc0370ffd859ca002f51aeaccc38033c8"
+    },
+    "fixtures/image-audit/manifest.json": {
+      "bytes": 9780,
+      "sha256": "1e8ff78119b7f557ecd181ebfb14b4096c8b4cb46a501df68ec7b718255784c0"
+    },
+    "spikes/image-audit/candidate.lock": {
+      "bytes": 5040,
+      "sha256": "bfc93ce3bc95b575f166329cb4f95d14b350d0de93dc0c0dea5637cfde83af33"
+    },
+    "spikes/image-audit/decoder.rs": {
+      "bytes": 1685,
+      "sha256": "76ca4e1d70c5188d79cf8e079b247b10afdc3f1dd55bfcc507786942ecfdfe7b"
+    },
+    "spikes/image-audit/main.rs": {
+      "bytes": 446,
+      "sha256": "ddc47525c0e8dd70120b447da9045784c484ec79bab062ca49346421e1a6190c"
+    }
+  }
+}

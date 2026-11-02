@@ -3,9 +3,8 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 31,
-    "planned": 53,
-    "specified": 1
+    "implemented": 32,
+    "planned": 53
   },
   "native_suites": 24,
   "native_case_identities_including_refusals": 1278,
@@ -765,12 +764,13 @@
     },
     {
       "id": "io.obj.companions.image_audit",
-      "status": "specified",
+      "status": "implemented",
       "parent": "io.obj.companions",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/39",
-      "tested_sha": null,
+      "tested_sha": "87d2318da99751b0b57f893861c2580c7bf574ae",
       "open_items": [
-        "Candidate-only dependency and source-pixel audit in progress; no application dependency or decoder implementation adopted."
+        "The audit is implemented, not decoder acceptance. io.obj.companions.images owns faithful alpha/canvas, JPEG, 16-bit conversion, omission/limits and actual Wasm pixel continuations.",
+        "Wider image profiles/Exif/animation/interlacing/hostile-workload and independent audit remain open; this bounded candidate review does not accept P35 or a public import feature."
       ]
     },
     {
@@ -780,7 +780,9 @@
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "No implementation or image dependency adoption claimed."
+        "No application dependency adoption or decoder implementation claimed. image0.25.10 candidate audit rejects direct use:28 pixel mismatches and 2 presence mismatches on 56 original inputs.",
+        "Use the fixed alpha atlas/JPEG/16-bit/truncation counterexamples. Derive faithful conversion/decoder behavior before adoption; do not loosen byte comparison or feed source pixels into Rust.",
+        "Complete the ordered MTL/image continuation, strict resource limits, actual Wasm pixels and broader platform/corpus acceptance."
       ]
     },
     {
@@ -791,7 +793,7 @@
       "tested_sha": null,
       "open_items": [
         "Complete file-selection/identity/byte-preservation slice tracked in io.obj.companions.files; drop traversal and image decoding remain separate continuations.",
-        "No PNG/JPEG/BMP/WebP image decoder selected or audited. Browser decode/canvas behavior, malformed-image omission and 3MF packed images remain open; parent stays planned."
+        "Image candidate audit under io.obj.companions.image_audit is complete, but raw decoder pixel compatibility failed and no dependency is adopted. Browser canvas/PNG/JPEG/BMP/WebP semantics, malformed omission and 3MF packed images remain open; parent stays planned."
       ]
     },
     {

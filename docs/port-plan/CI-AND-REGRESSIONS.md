@@ -69,6 +69,17 @@ Artifacts are SHA-named and retained 30 days: Rust fast logs/environment, every 
 
 Generated [STATUS.md](STATUS.md) and `status.json` describe canonical declared state, not the latest CI result. `AUDIT-QUEUE.md` records observed run outcomes. The generated backlog and status must be refreshed after canonical changes. Python remains temporary bootstrap tooling until P39's Rust replacement; it is not shipped application logic.
 
+## Image candidate audit observations
+
+The image audit is separate from application parity inventory: 56 encoded inputs
+produce 36 original decoded images and 20 omissions. Candidate results retain
+8 exact images, 28 pixel mismatches, 18 agreed omissions and 2 presence mismatches.
+No dependency is adopted and no mismatching result becomes a passing native or
+browser case. Four audit tests validate complete raw frames, counterexamples,
+mutation sensitivity, frozen graphs and exact manifest hashes. Candidate Wasm
+evidence is compile/link/import inspection only; actual decoder Wasm pixels remain
+open. See plan/findings/2026-11-02-image-codec-pixel-audit.md.
+
 ## Paired-runner protocol
 
 Each case has immutable ID, unit/operation, versioned input payload or asset hash, seed, operation sequence and declared observable output paths. A coordinator feeds independent copies to the original adapter and Rust adapter. Source measurement adapters can use a pure-core Node harness or the real browser; the original headless app is limited. Rust runs native and browser-Wasm where required. The adapters emit versioned data, not guessed summaries.

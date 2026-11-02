@@ -3,7 +3,7 @@
   "parent": "io.obj.companions",
   "title": "Audit exact pure-Rust image candidate and original browser pixel contract",
   "gate": "G3",
-  "status": "specified",
+  "status": "implemented",
   "depends_on": [
     "io.obj.companions.files"
   ],
@@ -14,7 +14,7 @@
   "owner": "Codex",
   "branch": "codex/image-codec-audit",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/39",
-  "implemented_commit": null,
+  "implemented_commit": "87d2318da99751b0b57f893861c2580c7bf574ae",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/app/scanFiles.ts"
@@ -30,9 +30,20 @@
     "Capture independently authored original full decoded pixels/omissions before the candidate comparison; retain exact mismatches and no relaxed tolerance.",
     "Record a concrete adoption decision and unresolved pixel/platform/resource behavior; do not claim a port or add application dependencies."
   ],
-  "evidence": [],
-  "open_items": [
-    "Candidate-only dependency and source-pixel audit in progress; no application dependency or decoder implementation adopted."
+  "evidence": [
+    {
+      "kind": "dependency-audit",
+      "location": "evidence/2026-11-02-image-audit.json",
+      "candidate_sha": "87d2318da99751b0b57f893861c2580c7bf574ae"
+    }
   ],
-  "resolved_items": []
+  "open_items": [
+    "The audit is implemented, not decoder acceptance. io.obj.companions.images owns faithful alpha/canvas, JPEG, 16-bit conversion, omission/limits and actual Wasm pixel continuations.",
+    "Wider image profiles/Exif/animation/interlacing/hostile-workload and independent audit remain open; this bounded candidate review does not accept P35 or a public import feature."
+  ],
+  "resolved_items": [
+    "2026-11-02: exact 22-package PNG/JPEG/BMP/WebP candidate graph, shipped licenses, native/Wasm builds and no-import link proof reviewed; no application dependency adopted.",
+    "56 independent image inputs and full original Chrome pixels captured before the candidate; fresh source recapture matches all 56 states.",
+    "Candidate trial complete:8 exact images,28 pixel mismatches,18 agreed omissions,2 presence mismatches. Direct raw decoder adoption rejected; all counterexamples and mutation-sensitive audit tests retained."
+  ]
 }

@@ -56,3 +56,14 @@ class ImageAuditTests(unittest.TestCase):
             self.assertRegex(p['source_tree_sha256'],r'^[0-9a-f]{64}$');self.assertTrue(set(p['dependencies'])<=set(locked))
             self.assertNotIn('any_c_zlib',p['features'])
         wasm=read('evidence/2026-11-02-image-wasm-build.json');self.assertEqual(wasm['imports'],[]);self.assertGreater(wasm['bytes'],0);self.assertRegex(wasm['module_sha256'],r'^[0-9a-f]{64}$')
+
+    def test_manifest_keeps_audit_distinct_from_product_acceptance(self):
+        manifest=read('evidence/2026-11-02-image-audit.json');candidate=read('evidence/2026-11-02-image-candidate.json')
+        self.assertFalse(manifest['application_dependency_adopted']);self.assertEqual(manifest['candidate_sha'],candidate['candidate_sha'])
+        self.assertEqual(manifest['source_cases'],56);self.assertEqual(manifest['source_decoded_images'],36)
+        self.assertEqual(manifest['candidate_counts'],candidate['counts'])
+        self.assertTrue(manifest['pixel_compatibility'].startswith('REJECTED'))
+        self.assertTrue(manifest['source_recapture']['same_complete_values']);self.assertEqual(manifest['source_recapture']['cases'],56)
+        self.assertTrue(manifest['source_recapture']['platform']['offscreenCanvas'])
+        for name,item in manifest['files'].items():
+            raw=(BASE/name).read_bytes();self.assertEqual(len(raw),item['bytes']);self.assertEqual(sha(raw),item['sha256'])

@@ -53,6 +53,16 @@ CI results are separated: Rust fast checks, native oracle assertions/raw evidenc
 
 ## Review and next implementation
 
+PR #39 audits the next image codec choice on top of #36/#37. Its exact
+22-package image0.25.10 candidate builds natively and for Wasm, but raw pixels
+fail the frozen source contract: 8 exact images /28 pixel mismatches /18 agreed
+omissions /2 presence mismatches across 56 cases. No application dependency is
+adopted. Follow the measured finding before implementing image/canvas/JPEG
+continuations. This is an audit result, not a decoder port or acceptance.
+
+The owner’s #38 verification strategy is integrated into this stack; all four
+new lane C units remain planned and canonical inventory is regenerated.
+
 Continuation from clean `main` `cb0b480` after #35: #36 ports the complete
 classification/bundle/association/byte-preservation slice with 87 exact native
 source states (24 suites /1,278 identities). `io.obj.companions.files` owns it;

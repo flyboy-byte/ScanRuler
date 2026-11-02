@@ -4995,7 +4995,7 @@
       "parent": "io.obj.companions",
       "title": "Audit exact pure-Rust image candidate and original browser pixel contract",
       "gate": "G3",
-      "status": "specified",
+      "status": "implemented",
       "depends_on": [
         "io.obj.companions.files"
       ],
@@ -5006,7 +5006,7 @@
       "owner": "Codex",
       "branch": "codex/image-codec-audit",
       "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/39",
-      "implemented_commit": null,
+      "implemented_commit": "87d2318da99751b0b57f893861c2580c7bf574ae",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [
         "src/app/scanFiles.ts"
@@ -5022,11 +5022,22 @@
         "Capture independently authored original full decoded pixels/omissions before the candidate comparison; retain exact mismatches and no relaxed tolerance.",
         "Record a concrete adoption decision and unresolved pixel/platform/resource behavior; do not claim a port or add application dependencies."
       ],
-      "evidence": [],
-      "open_items": [
-        "Candidate-only dependency and source-pixel audit in progress; no application dependency or decoder implementation adopted."
+      "evidence": [
+        {
+          "kind": "dependency-audit",
+          "location": "evidence/2026-11-02-image-audit.json",
+          "candidate_sha": "87d2318da99751b0b57f893861c2580c7bf574ae"
+        }
       ],
-      "resolved_items": []
+      "open_items": [
+        "The audit is implemented, not decoder acceptance. io.obj.companions.images owns faithful alpha/canvas, JPEG, 16-bit conversion, omission/limits and actual Wasm pixel continuations.",
+        "Wider image profiles/Exif/animation/interlacing/hostile-workload and independent audit remain open; this bounded candidate review does not accept P35 or a public import feature."
+      ],
+      "resolved_items": [
+        "2026-11-02: exact 22-package PNG/JPEG/BMP/WebP candidate graph, shipped licenses, native/Wasm builds and no-import link proof reviewed; no application dependency adopted.",
+        "56 independent image inputs and full original Chrome pixels captured before the candidate; fresh source recapture matches all 56 states.",
+        "Candidate trial complete:8 exact images,28 pixel mismatches,18 agreed omissions,2 presence mismatches. Direct raw decoder adoption rejected; all counterexamples and mutation-sensitive audit tests retained."
+      ]
     },
     {
       "id": "io.obj.companions.images",
@@ -5061,7 +5072,9 @@
       ],
       "evidence": [],
       "open_items": [
-        "No implementation or image dependency adoption claimed."
+        "No application dependency adoption or decoder implementation claimed. image0.25.10 candidate audit rejects direct use:28 pixel mismatches and 2 presence mismatches on 56 original inputs.",
+        "Use the fixed alpha atlas/JPEG/16-bit/truncation counterexamples. Derive faithful conversion/decoder behavior before adoption; do not loosen byte comparison or feed source pixels into Rust.",
+        "Complete the ordered MTL/image continuation, strict resource limits, actual Wasm pixels and broader platform/corpus acceptance."
       ],
       "resolved_items": []
     },
@@ -5103,8 +5116,9 @@
       "rust_paths": [],
       "open_items": [
         "Complete file-selection/identity/byte-preservation slice tracked in io.obj.companions.files; drop traversal and image decoding remain separate continuations.",
-        "No PNG/JPEG/BMP/WebP image decoder selected or audited. Browser decode/canvas behavior, malformed-image omission and 3MF packed images remain open; parent stays planned."
-      ]
+        "Image candidate audit under io.obj.companions.image_audit is complete, but raw decoder pixel compatibility failed and no dependency is adopted. Browser canvas/PNG/JPEG/BMP/WebP semantics, malformed omission and 3MF packed images remain open; parent stays planned."
+      ],
+      "resolved_items": []
     },
     {
       "id": "io.obj",
