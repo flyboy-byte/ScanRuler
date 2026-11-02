@@ -4544,7 +4544,7 @@
       "parent": "io.ply",
       "title": "Port binary PLY scalar/stride/list and face sizing bodies",
       "gate": "G3",
-      "status": "planned",
+      "status": "specified",
       "depends_on": [
         "io.ply.ascii"
       ],
@@ -4557,8 +4557,8 @@
         "Independently compare original/native/browser outputs and refusals for both byte orders and every scalar alias, list layout and progress boundary.",
         "Preserve two-pass sizing/fill order and original malformed-input observations within explicit resource limits."
       ],
-      "owner": null,
-      "branch": null,
+      "owner": "Codex",
+      "branch": "codex/port-ply-binary",
       "claim_pr": null,
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
@@ -4570,11 +4570,16 @@
         "readScalar"
       ],
       "rust_paths": [
-        "rust/crates/port-io/src/ply_ascii.rs"
+        "rust/crates/port-io/src/ply_ascii.rs",
+        "rust/crates/port-io/src/ply_binary.rs",
+        "rust/crates/port-io/src/ply.rs",
+        "rust/crates/port-io/tests/ply_binary.rs"
       ],
       "evidence": [],
       "open_items": [
-        "Not implemented. ASCII unit returns an explicit unported error at this call boundary."
+        "Fixed 166-case input corpus declared before binary implementation: both byte orders, all 16 aliases in vertices/counts/indices, list/stride/refusal/IEEE cases, four seeds per endian and both million-record progress boundaries.",
+        "Original outcomes must be captured before the first Rust comparison; exact complete PLY1 bytes and progress/refusals, no numeric tolerance.",
+        "Browser runtime, engine integration and broad P03 acceptance remain open."
       ]
     },
     {

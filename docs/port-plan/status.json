@@ -4,7 +4,8 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 23,
-    "planned": 47
+    "planned": 46,
+    "specified": 1
   },
   "native_suites": 19,
   "native_case_identities_including_refusals": 746,
@@ -676,12 +677,14 @@
     },
     {
       "id": "io.ply.binary",
-      "status": "planned",
+      "status": "specified",
       "parent": "io.ply",
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "Not implemented. ASCII unit returns an explicit unported error at this call boundary."
+        "Fixed 166-case input corpus declared before binary implementation: both byte orders, all 16 aliases in vertices/counts/indices, list/stride/refusal/IEEE cases, four seeds per endian and both million-record progress boundaries.",
+        "Original outcomes must be captured before the first Rust comparison; exact complete PLY1 bytes and progress/refusals, no numeric tolerance.",
+        "Browser runtime, engine integration and broad P03 acceptance remain open."
       ]
     },
     {
