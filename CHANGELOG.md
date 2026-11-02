@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **OBJ in actual Rust browser Wasm** (2026-11-02): compare complete parser and material/decoded-image helpers in Chrome, retaining all earlier cases for 564 total comparisons and 18 protocol checks; record full raw evidence and two unchanged large native-only OBJ workloads.
+
 - **Rust OBJ mesh parser** (2026-11-02): port the complete geometry/UV/material body and decoded texture continuation, comparing 81 source cases exactly, including first-corner binding and full progress boundaries. File/image ingress and commands remain open.
 
 - **Rust OBJ material/texture helpers** (2026-11-02): port complete MTL lookup, filename matching and decoded-RGBA baking with 144 exact source comparisons. Mesh parsing, image decoding and command integration remain separate.

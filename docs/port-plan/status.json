@@ -3,7 +3,7 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 28,
+    "implemented": 29,
     "planned": 47
   },
   "native_suites": 23,
@@ -641,6 +641,17 @@
       ]
     },
     {
+      "id": "harness.wasm.obj",
+      "status": "implemented",
+      "parent": "P36",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/34",
+      "tested_sha": "239012c9648f645a3039856e5c511857fb62e691",
+      "open_items": [
+        "Three explicit native-only workloads remain above unchanged private ABI caps: PLY vertex progress and both OBJ million-line progress fixtures. None counts as a browser pass.",
+        "Image-file decoding/bundling, public commands/session/history/projects/UI, broader runtime platforms and generic P36/P37/P39 remain open. No numerical unit is accepted."
+      ]
+    },
+    {
       "id": "harness.wasm.ply",
       "status": "implemented",
       "parent": "P36",
@@ -704,7 +715,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/32",
       "tested_sha": "58aeacb529da621506b59f0b3aa7735d07173d4a",
       "open_items": [
-        "Actual browser-Wasm parser execution remains open; compilation is not runtime acceptance.",
+        "Broader browser workloads/platforms and public import acceptance remain open; bounded runtime coverage is tracked by harness.wasm.obj, not whole-unit acceptance.",
         "Platform file-set bundling, PNG/JPEG decoding and public engine/session/project integration remain separate under io.obj.companions and engine units.",
         "Broader large-file/performance/corpus and filename ingress acceptance remain open; caller limits are explicit host refusals, not source errors."
       ]
@@ -716,7 +727,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/31",
       "tested_sha": "219059c2c719879bfce24fb75cfe69cdf3ef6abb",
       "open_items": [
-        "Actual browser-Wasm helper execution remains open; compile checks do not establish runtime acceptance.",
+        "Broader browser workloads/platforms and public import acceptance remain open; bounded runtime coverage is tracked by harness.wasm.obj, not whole-unit acceptance.",
         "OBJ mesh parsing, platform file bundling, PNG/JPEG decoding and public commands remain in io.obj.mesh/io.obj.companions and engine units; parent io.obj stays planned.",
         "Broader Unicode table/version, arbitrary JS UTF16 filename and non-u32 raster-shape interoperability belong to companion ingress/platform acceptance, not this valid-UTF8/u32 helper API.",
         "Large-file/performance acceptance remains open; explicit byte/name/count/work caps are host safeguards, not source numerical tolerances."
