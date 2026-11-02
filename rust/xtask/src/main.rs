@@ -149,6 +149,7 @@ const ORACLE_TESTS: &[&str] = &[
     "pinned_curvature_gate_comparison",
     "pinned_linear_comparison",
     "pinned_mesh_selection_comparison",
+    "pinned_mesh_graph_comparison",
     "pinned_normals_comparison",
     "pinned_orientation_comparison",
     "pinned_plane_comparison",
