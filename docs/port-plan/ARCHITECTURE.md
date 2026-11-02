@@ -1,6 +1,6 @@
 # Runtime and compatibility architecture
 
-Status: proposed contracts based on selective source review. No Rust implementation or kernel binding has been built. Source details refer to commit `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
+Status 2026-11-01: bounded pure-Rust geometry/format libraries exist; session/command/UI/kernel contracts below are still proposed unless canonical units show evidence. No Rust kernel binding or complete application exists. See STATUS.md and IMPLEMENTATION-PLAN.md. Source details refer to commit `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
 
 ## Keep the first workspace small
 

@@ -1,0 +1,39 @@
+{
+  "id": "engine.measurement.slice",
+  "parent": "P08",
+  "title": "Integrate scan/session and marked-plane command slice",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": [
+    "engine.session.contract",
+    "geometry.mesh.graph",
+    "io.stl.dispatch",
+    "fit.plane.selection"
+  ],
+  "soft_depends_on": [
+    "harness.wasm.runtime",
+    "P16"
+  ],
+  "scope": "Typed scan.open/session.state and plane branch of element.fit_marked with progress, invalidation, source recipes and one history step. No seeded element.fit claim.",
+  "acceptance": [
+    "Independent original/Rust successful and refused command traces include full session state, scan reset, undo/redo and stale completion handling.",
+    "Original schema/result contracts remain authoritative; unimplemented shape/seeded paths stay explicitly unavailable."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/core/scan.ts",
+    "src/commands/core/session.ts",
+    "src/commands/core/element.ts",
+    "src/core/meshWorker.ts"
+  ],
+  "symbols": [],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+  ]
+}

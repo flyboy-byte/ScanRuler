@@ -1,166 +1,108 @@
 # SPDX-License-Identifier: AGPL-3.0-only
-# Fast product gate for the Rust port: fmt, clippy, tests, wasm32 check and the plan
-# checks, all through `cargo xtask ci`. This is NOT the parity gate: the differential
-# suites against the original (`cargo xtask diff-ci`) do not exist yet, so a green run
-# here proves the fast checks only. A separate step compares the binary STL helper
-# against the frozen original; it does not establish whole-product parity. See
-# docs/port-plan/CI-AND-REGRESSIONS.md and repo-bootstrap/.github/workflows/port-gate.yml.example.
-name: Rust port (fast gate)
+# Separate fast checks, actual native source assertions and source-catalog contracts.
+# None of these implement browser-Wasm parity or the P37 exact-base numerical ratchet.
+name: Rust port validation
 on:
   pull_request:
-    paths: ['rust/**', 'docs/port-plan/**', '.github/workflows/rust-port.yml']
   push:
     branches: [main]
-    paths: ['rust/**', 'docs/port-plan/**', '.github/workflows/rust-port.yml']
   workflow_dispatch:
 permissions:
   contents: read
+defaults:
+  run:
+    shell: bash # Explicit shell enables pipefail; tee must not mask a failed gate.
 concurrency:
   group: rust-port-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
-  gate:
+  fast:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
-          fetch-depth: 0 # the frozen source commit is the STL comparison oracle
-      - name: Toolchain and wasm32 target
+          fetch-depth: 0
+      - name: Hosted toolchain and Wasm compile target
         run: |
           rustup toolchain install stable --profile minimal --component rustfmt,clippy --target wasm32-unknown-unknown
           rustup default stable
-      - name: Environment record
+      - name: Fast gate (no native oracle execution)
         working-directory: rust
-        run: cargo xtask env
-      - name: Fast gate
-        working-directory: rust
-        run: cargo xtask ci
+        run: |
+          mkdir -p target/ci
+          cargo xtask env | tee target/ci/environment.txt
+          cargo xtask ci 2>&1 | tee target/ci/fast.log
+      - name: Retain fast diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rust-fast-${{ github.sha }}
+          path: rust/target/ci/
+          if-no-files-found: error
+          retention-days: 30
+  native-oracle:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Hosted native toolchain
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-      - name: Complete native source comparisons (discovery guarded)
+      - name: Run every required native source suite
         working-directory: rust
-        run: cargo xtask oracle
-      - name: Retain raw binary STL comparison evidence
+        run: |
+          mkdir -p target/ci
+          cargo xtask env | tee target/ci/environment.txt
+          cargo xtask oracle 2>&1 | tee target/ci/native-oracle.log
+      - name: Verify exact-run raw evidence inventory
+        if: always()
+        env:
+          CANDIDATE_SHA: ${{ github.sha }}
+        run: python3 docs/port-plan/tools/ci_report.py evidence --candidate "$CANDIDATE_SHA"
+      - name: Retain every suite and evidence manifest
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: binary-stl-comparison
-          path: rust/target/stl-diff/
-          if-no-files-found: warn
-          retention-days: 7
-      - name: Retain raw STL dispatch comparison evidence
-        if: always()
-        uses: actions/upload-artifact@v4
+          name: native-source-${{ github.sha }}
+          path: |
+            rust/target/*-diff/
+            rust/target/ci/
+          if-no-files-found: error
+          retention-days: 30
+  catalog-contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          name: stl-dispatch-comparison
-          path: rust/target/stl-dispatch-diff/
-          if-no-files-found: warn
-          retention-days: 7
-      - name: Retain welding evidence
-        if: always()
-        uses: actions/upload-artifact@v4
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
         with:
-          name: mesh-weld-comparison
-          path: rust/target/weld-diff/
-          retention-days: 7
-      - name: Retain vertex normal evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: vertex-normal-comparison
-          path: rust/target/normals-diff/
-          retention-days: 7
-      - name: Retain orientation evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: mesh-orientation-comparison
-          path: rust/target/orientation-diff/
-          retention-days: 7
-      - name: Retain solver evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: linear-solver-comparison
-          path: rust/target/linear-diff/
-          retention-days: 7
-      - name: Retain plane fit evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: plane-fit-comparison
-          path: rust/target/plane-diff/
-          retention-days: 7
-      - name: Retain clipping evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: plane-clipping-comparison
-          path: rust/target/clip-diff/
-          retention-days: 7
-      - name: Retain bounds evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: mesh-bounds-comparison
-          path: rust/target/bounds-diff/
-          retention-days: 7
-      - name: Retain centroid evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: mesh-centroid-comparison
-          path: rust/target/centroid-diff/
-          retention-days: 7
-      - name: Retain robust plane evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: robust-plane-comparison
-          path: rust/target/ransac-diff/
-          retention-days: 7
-      - name: Retain curvature gate evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: curvature-gate-comparison
-          path: rust/target/curvature-gate-diff/
-          retention-days: 7
-      - name: Retain adjacency evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: mesh-adjacency-comparison
-          path: rust/target/adjacency-diff/
-          retention-days: 7
-      - name: Retain component evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: mesh-components-comparison
-          path: rust/target/components-diff/
-          retention-days: 7
-      - name: Retain selection evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: mesh-selection-comparison
-          path: rust/target/mesh-selection-diff/
-          retention-days: 7
-      - name: Retain mesh graph evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: mesh-graph-comparison
-          path: rust/target/mesh-graph-diff/
-          retention-days: 7
-      - name: Retain closed-shell evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: closed-shells-comparison
-          path: rust/target/closed-shells-diff/
-          retention-days: 7
+          node-version: 22
+      - name: Negative validators and immutable captured snapshots
+        run: node --test docs/port-plan/oracle/catalog-contract.test.mjs docs/port-plan/oracle/browser-catalog-contract.test.mjs
+  gate:
+    if: always()
+    needs: [fast, native-oracle, catalog-contracts]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Every required lane must succeed
+        env:
+          FAST: ${{ needs.fast.result }}
+          NATIVE: ${{ needs.native-oracle.result }}
+          CATALOG: ${{ needs.catalog-contracts.result }}
+        run: |
+          test "$FAST" = success
+          test "$NATIVE" = success
+          test "$CATALOG" = success

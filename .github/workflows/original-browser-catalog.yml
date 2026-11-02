@@ -2,7 +2,10 @@
 name: Frozen original browser catalogs (not Rust parity)
 on:
   pull_request:
-    paths: ['docs/port-plan/oracle/*browser-catalog*.mjs', 'docs/port-plan/oracle/catalog-reference.mjs', 'docs/port-plan/oracle/catalog-contract.mjs', 'docs/port-plan/reference-pin.json', '.github/workflows/original-browser-catalog.yml']
+    paths: ['docs/port-plan/oracle/*browser-catalog*.mjs', 'docs/port-plan/oracle/catalog-reference.mjs', 'docs/port-plan/oracle/catalog-contract.mjs', 'docs/port-plan/reference-pin.json', 'docs/port-plan/evidence/browser-2026-11-01/**', '.github/workflows/original-browser-catalog.yml']
+  push:
+    branches: [main]
+    paths: ['docs/port-plan/oracle/*browser-catalog*.mjs', 'docs/port-plan/oracle/catalog-reference.mjs', 'docs/port-plan/oracle/catalog-contract.mjs', 'docs/port-plan/reference-pin.json', 'docs/port-plan/evidence/browser-2026-11-01/**', '.github/workflows/original-browser-catalog.yml']
   workflow_dispatch:
 permissions:
   contents: read

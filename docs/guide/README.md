@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # Porting ScanRuler to Rust: a guide
 
-Written 2026-10-31 for someone who is smart, curious and has not been in the room. It explains
+Updated 2026-11-01 (original guide written 2026-10-31) for someone who is smart, curious and has not been in the room. It explains
 what this side project is, how it is being done, why it is being done that way, and where to
 look in the repository. It is meant to be read in order, and each page stands on its own.
 
@@ -33,7 +33,6 @@ look in the repository. It is meant to be read in order, and each page stands on
 
 ## Honest status
 
-As of 2026-10-31 nothing is ported. The workspace builds, its gate (`cd rust && cargo xtask ci`)
-passes, and it contains only units, identifiers and rigid transforms. No original-versus-Rust
-comparison has been run, because the original has not yet been run on this machine. Any page
-here that sounds like a plan is a plan.
+As of 2026-11-01, bounded geometry/format operations are implemented and compared natively. The full mesh-graph library pipeline exists; the engine is empty, the CLI is a banner and no Rust UI exists. Wasm compiles but browser-Wasm runtime parity is open. No numerical unit is accepted. Original browser/headless catalog metadata is captured, not complete command execution parity.
+
+Start at the [generated status](../port-plan/STATUS.md), [audit queue](../port-plan/AUDIT-QUEUE.md) and [next implementation increments](../port-plan/IMPLEMENTATION-PLAN.md). Historical scaffold-only statements in the story refer to 2026-10-31, not current implementation status.

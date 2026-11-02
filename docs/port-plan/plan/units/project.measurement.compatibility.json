@@ -1,0 +1,36 @@
+{
+  "id": "project.measurement.compatibility",
+  "parent": "P16",
+  "title": "Round-trip legacy measurement projects without losing unknown data",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": [
+    "engine.session.contract",
+    "engine.measurement.slice"
+  ],
+  "soft_depends_on": [
+    "P03",
+    "P17"
+  ],
+  "scope": "Schema-1 original archives/recipes for the slice, bounded decompression, unknown plugin/member preservation and failure-safe session load.",
+  "acceptance": [
+    "Original archives reopen equivalent pose/units/IDs/recipes/results; unknown plugin content survives disabled-plugin round trips.",
+    "Missing/corrupt/oversized archive and cancellation leave the current session intact; no invented replacement format."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/project/archive.ts",
+    "src/core/project/manifest.ts",
+    "src/core/project/validation.ts"
+  ],
+  "symbols": [],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+  ]
+}

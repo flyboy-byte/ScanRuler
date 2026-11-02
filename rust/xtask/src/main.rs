@@ -67,13 +67,31 @@ fn plan() -> Result<(), String> {
             "docs/port-plan/tools/port_plan.py",
             "--root",
             "docs/port-plan",
-            "check",
+            "check-generated",
         ],
         &r,
     )?;
     run(
         "python3",
         &["docs/port-plan/tools/port_plan.py", "selftest"],
+        &r,
+    )?;
+    run(
+        "python3",
+        &["docs/port-plan/tools/ci_report.py", "status", "--check"],
+        &r,
+    )?;
+    run(
+        "python3",
+        &[
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "docs/port-plan/tools",
+            "-p",
+            "test_*.py",
+        ],
         &r,
     )
 }

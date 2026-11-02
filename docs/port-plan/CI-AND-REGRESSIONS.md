@@ -1,12 +1,34 @@
-# Our CI and regression system
+# CI and regression contracts
 
-## Contract
+Updated 2026-11-01. The frozen original is authoritative. No workflow change in this integration alters a numerical formula, tolerance, seed, source test or timing threshold.
 
-The default reference is Stefan's pinned original code. CI proves that Rust preserves it and that previously established behavior stays covered. Rust compilation, test counts, status-only agreement or a beautiful screenshot cannot replace differential evidence. Source algorithm changes and source rebaselines are separate reviewed changes.
+## Executable gates
 
-Current fast-gate interface: `cd rust && cargo xtask ci` runs the pin/plan checks, formatting, clippy, workspace tests and wasm32 library compilation. It exists in `rust/xtask/src/main.rs` and is run by `.github/workflows/rust-port.yml`. It does not run differential comparisons or browser-Wasm execution.
+| Gate / check | Executes | What success means |
+| --- | --- | --- |
+| `Plan and status integrity / plan` | canonical validation, generated backlog/status freshness, negative tooling tests | Metadata/inventory is consistent, not numerical parity |
+| `Rust port validation / fast` | `cargo xtask ci` | Native ordinary tests, fmt/lints, plan/status and Wasm **compile** pass |
+| `Rust port validation / native-oracle` | `cargo xtask oracle`, then raw evidence inventory | Every required native source suite passed and its full current-case artifacts exist at the exact checkout SHA |
+| `Rust port validation / catalog-contracts` | original headless/browser snapshot and negative validators | Immutable captured metadata remains valid, not command execution or Rust parity |
+| `Rust port validation / gate` | all three Rust lanes, even if another fails/skips | All required lanes succeeded; existing check ID `gate` retained |
+| `CI / source-tests` | plugin/unit boundaries, complete `npm test` | Original unit checks pass, including unchanged timing limits |
+| `CI / source-mcp` | complete separate MCP suite | Original agent tests pass independently of unit-test timing |
+| `CI / source-browser` | original production build and complete `e2e:ci` | Original browser regression/smoke checks pass independently of unit-test timing |
+| `CI / test-and-build` | all three original lanes | Every original lane succeeded; existing check ID retained |
+| Frozen original catalog workflows | real clean-pinned headless/browser captures, full metadata comparison | Original catalog evidence reproducible in core/all contexts |
+| License check | unchanged root/MCP allowlists | Existing npm licensing policy passes; not the Rust P35 purity audit |
 
-Remaining proposed comparison interface: `cargo xtask diff --unit <id>` for targeted comparison, and `cargo xtask diff --baseline <report-dir>` for the exact-base ratchet. The `diff` and `diff-ci` commands **do not exist yet**. P36–P39 establish the harness, contracts, CI and maintained plan process. Bootstrap templates fail if invoked before those commands exist; they must not report fake passing builds.
+`cargo xtask diff`, `diff-ci`, browser-Wasm execution, the general paired report protocol and exact-base numerical coverage ratchet **remain unbuilt**. The planned contracts below remain requirements, not implemented CI claims. No check here authorizes merging or sets branch protection/repository settings.
+
+## Native evidence and status
+
+`ci/native-suites.json` maps all seventeen required Rust entrypoints to canonical units and raw directories. The reporter verifies the manifest agrees with Rust discovery and all numerical unit inventories. It rejects missing/duplicate suites, stale candidate identity, missing/extra case IDs and absent input/original/Rust files, including compared progress/count sidecars on successful cases. The two STL adapters retain their existing explicitly enumerated refusal/error artifacts; legitimate zero-length values are permitted but missing files are not.
+
+Numerical comparisons remain in the existing Rust tests with their original fixed budgets and cases. The inventory reporter hashes raw files; it does **not** reinterpret values, declare a refusal successful geometry, compare against the exact PR base, or replace P36/P37. Canonical case edits and changed input/output hashes still need review; there is no automatic accepted-case ratchet yet.
+
+Artifacts are SHA-named and retained 30 days: Rust fast logs/environment, every `*-diff` raw directory plus native manifest/log, original unit/MCP logs and successful/failing browser diagnostics. Catalog snapshots remain committed and hashed. Main runs use unique run IDs and are never cancelled by a newer commit. Only superseded PR runs are cancelled. Explicit Bash enables pipefail so log capture cannot hide a failed command. No build-output/golden cache is introduced.
+
+Generated [STATUS.md](STATUS.md) and `status.json` describe canonical declared state, not the latest CI result. `AUDIT-QUEUE.md` records observed run outcomes. The generated backlog and status must be refreshed after canonical changes. Python remains temporary bootstrap tooling until P39's Rust replacement; it is not shipped application logic.
 
 ## Paired-runner protocol
 
@@ -43,8 +65,19 @@ The paired harness must reject a deliberately altered Rust value, a missing key,
 
 Mutation checks are initially scheduled/targeted because cost is unknown. Do not inherit SolidCore's timing numbers or infrastructure. Deterministic seed prefixes preserve reproducers as campaigns grow. Capture timeout/crash cases with enough state to rerun them alone. A failed mutation or fuzzer finding does not authorize changing the source target.
 
-## Activation kit and honest status
+## Local reproduction and review
 
-`repo-bootstrap/` contains original contributor/agent instructions, claim/PR/issue templates, a plan-only GitHub workflow and a disabled product-gate example. Install them deliberately in the fork and review/update action/tool pins and paths. Do not blindly invoke Storytold's shared workflow: it has suite-specific setup/fonts and policies. We adopt the pattern, not an unreviewed dependency on their infrastructure.
+```bash
+python3 docs/port-plan/tools/port_plan.py --root docs/port-plan render
+python3 docs/port-plan/tools/ci_report.py status
+cd rust
+cargo xtask ci
+cargo xtask oracle
+cd ..
+python3 docs/port-plan/tools/ci_report.py evidence --candidate "$(git rev-parse HEAD)"
+node --test docs/port-plan/oracle/catalog-contract.test.mjs docs/port-plan/oracle/browser-catalog-contract.test.mjs
+```
 
-The planning workflow can run `tools/port_plan.py` now. The product workflow stays disabled until the Rust workspace and xtask commands genuinely exist, then fails closed if required files/commands or baseline reports are missing. A green plan-only check must never be labelled port CI or numerical parity. No remote workflow, repository setting, CI secret, branch rule or public issue was created during handoff preparation.
+Use Node 22 for CI reproduction and real original captures. Local native math runs previously used Node 20.20.2; those records stay explicit. System Rust is the host policy; hosted stable provisioning is not a request to install rustup locally. Original `npm test`, MCP, build and browser commands are still required and retain all existing acceptance thresholds. Known source timing failures remain red until a real passing run or separately reviewed source change; never suppress them in a port PR.
+
+The disabled `repo-bootstrap` product-gate example describes the future generic ratchet; it is not the active workflow. Release deployment remains unchanged and no Rust release workflow is activated. Branch protection settings need the owner's separate review after these check names are proven on hosted CI.

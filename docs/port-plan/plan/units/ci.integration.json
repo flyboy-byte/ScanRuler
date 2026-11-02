@@ -1,0 +1,43 @@
+{
+  "id": "ci.integration",
+  "parent": "P38",
+  "title": "Consolidate active CI, generated status and implementation handoff",
+  "gate": "contributor-harness-ci",
+  "status": "implemented",
+  "depends_on": [
+    "harness.oracle.gate",
+    "catalog.headless",
+    "catalog.browser"
+  ],
+  "soft_depends_on": [
+    "P37",
+    "P39"
+  ],
+  "scope": "Separate active validation lanes, strict aggregate checks and current-run evidence completeness; generated status and remaining execution plan. No numerical or exact-base ratchet implementation.",
+  "acceptance": [
+    "All existing original and native source checks remain mandatory; failures cannot be masked by logging or omitted/skipped lanes.",
+    "Negative tests reject missing/stale suite/case/raw evidence and generated inventory drift.",
+    "Node 22 hosted workflows exercise new job boundaries; docs distinguish observed results, declared inventory and missing runtime/ratchet scope."
+  ],
+  "owner": "Codex",
+  "branch": "codex/ci-status-plan-refresh",
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/22",
+  "implemented_commit": "f43ffae5a4f3d6b1d457ee19fcd20131e0949e12",
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "symbols": [],
+  "rust_paths": [
+    "rust/xtask/src/main.rs"
+  ],
+  "evidence": [
+    {
+      "kind": "test",
+      "location": "evidence/2026-11-01-ci-integration.json",
+      "candidate_sha": "f43ffae5a4f3d6b1d457ee19fcd20131e0949e12"
+    }
+  ],
+  "open_items": [
+    "Hosted new lane outcomes pending at the local evidence checkpoint; current PR checks must be inspected.",
+    "Browser-Wasm runtime, exact-base numerical ratchet and Rust replacement for Python bootstrap remain open."
+  ]
+}

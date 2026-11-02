@@ -1,0 +1,36 @@
+{
+  "id": "fit.plane.selection",
+  "parent": "P07",
+  "title": "Complete marked-selection plane element continuation",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": [
+    "fit.plane.clip",
+    "geometry.mesh.graph"
+  ],
+  "soft_depends_on": [
+    "P05",
+    "P36"
+  ],
+  "scope": "Complete fitPlaneOnSelection with requireSelection, orientToSurface, patchExtents and orientedExtremes; no seeded region or other shape path.",
+  "acceptance": [
+    "Original/Rust full center/normal/bases/extents/statistics/extremes/region and refusal messages compare independently.",
+    "Preserve original selection versus clipped used-point meanings; do not return the numerical plane early."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/fit/fitPlaneFromSeed.ts",
+    "src/core/fit/selection.ts",
+    "src/core/fit/linalg.ts"
+  ],
+  "symbols": [],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+  ]
+}

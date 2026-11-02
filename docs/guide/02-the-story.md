@@ -64,3 +64,7 @@ and no test results.
 Capture the original's real behaviour (install Node 22, run its tests, record what it skips), then
 build the first vertical slice: read a binary STL, fit a plane to a named selection, and compare
 the result with the original, natively and in the browser. See page 3.
+
+## Implementation continuation — 2026-11-01
+
+The scaffold-only phase above is historical. PRs #2–#21 now provide bounded pure-Rust STL/geometry/fitting units with native source comparisons; #13/#14 capture actual original catalogs. #22 reconciles CI, status and remaining plans after the owner reviews from #1 upward. No complete Rust application or browser-Wasm parity is claimed. See the generated status and audit queue rather than extrapolating from this narrative.

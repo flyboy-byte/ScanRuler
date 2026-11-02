@@ -1,0 +1,35 @@
+{
+  "id": "baseline.reproducibility",
+  "parent": "P00",
+  "title": "Complete original baseline reproducibility and fixture/environment ledger",
+  "gate": "G0",
+  "status": "planned",
+  "depends_on": [],
+  "soft_depends_on": [
+    "P01",
+    "P02",
+    "catalog.headless",
+    "catalog.browser"
+  ],
+  "scope": "Supported original environment/locks/run and per-skip/license evidence, preserving recorded timing failures.",
+  "acceptance": [
+    "Reproduce complete original checks with immutable tool/lock/browser identity and explicit per-skip reasons.",
+    "Record fixture licenses/hashes and distinguish local versus hosted evidence; no reference rebaseline."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    ".github/workflows/ci.yml",
+    "scripts/e2e-ci.mjs",
+    "tests/headlessEngine.test.ts"
+  ],
+  "symbols": [],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+  ]
+}

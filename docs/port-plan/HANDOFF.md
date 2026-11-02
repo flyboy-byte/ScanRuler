@@ -19,39 +19,40 @@ An AGPL port can proceed while the licensing enquiry is pending. Source-informed
 5. `GAPS-AND-DECISIONS.md` for corrections to the first plan, blockers and decisions.
    Also read `DEPLOYMENT.md`: pure Rust can retain static browser hosting through Wasm and add native packages; no geometry server is required.
 6. `PORTING-PROCESS.md` and `CI-AND-REGRESSIONS.md` for contributor claims, living-plan refinement, authoritative reference comparisons and our CI/regression gates.
-7. Canonical `plan/units/<id>.json`, generated `backlog.json`, `commands.csv`, `features.csv`, `port-map.csv`, and `reference/` for the work inventory/evidence. `repo-bootstrap/` supplies installable contributor/CI templates; none are activated remotely.
+7. Canonical `plan/units/<id>.json`, generated `backlog.json`, `commands.csv`, `features.csv`, `port-map.csv`, and `reference/` for the work inventory/evidence. `repo-bootstrap/` retains historical contributor/CI templates; active workflows live in `../../.github/workflows/` and are described in CI-AND-REGRESSIONS.md.
 
-## Baseline and evidence
+## Current implementation and evidence — 2026-11-01
 
-- Fork: https://github.com/flyboy-byte/ScanRuler; upstream: https://github.com/CNCKitchen/ScanRuler.
-- Frozen port baseline: `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`, app 0.9.2, MCP helper 0.5.0. It matched upstream when initially compared. Do not silently change the port target to current main.
-- Git tree: 1,246 tracked files. `port-map.csv` maps every baseline file to a proposed disposition; mappings are rule-based and require review.
-- Static command ledger: 72 core command descriptors from `mcp/src/commands.json`, 49 reverse registrations and 19 mesh registrations. **140 candidate commands, not a runtime-verified complete catalog.** Capture live core-only, all-plugin and headless registries before implementation coverage is claimed.
-- 27 feature interfaces extending FeatureFlags were identified. Their variants, parameter schemas and behavior are not fully audited. `features.csv` is a starting ledger, not proof of parity.
-- Source review was selective. Full immutable source links/blob IDs are in `reference/source-review.json`; quoted source-derived observations are in `reference/findings.md`. Core descriptors are saved as `reference/core-commands.json`.
+Read [STATUS.md](STATUS.md) for the generated unit inventory, [AUDIT-QUEUE.md](AUDIT-QUEUE.md) for PR order and hosted outcomes, and [IMPLEMENTATION-PLAN.md](IMPLEMENTATION-PLAN.md) for the next bounded increments. These are different views: canonical `plan/units/*.json` own lifecycle state; an inventory is not a runtime report or a completion percentage.
 
-## What exists and what does not
+The pinned baseline remains `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`, app 0.9.2. `main` is the port trunk, `upstream-main` the upstream mirror, and `.oracle` the frozen checkout; see UPSTREAM-SYNC.md. The original TypeScript source/tests and npm locks remain unchanged by the numerical port queue.
 
-The repository now contains a Rust workspace with `port-core`, `port-engine`, `port-io`, `port-cli` and `xtask`. Core scaffolding includes units, identifiers and rigid transforms; the engine and IO crates are empty and the CLI prints a banner. See `../../rust/README.md`. No original-versus-Rust comparison has been established, so these modules do not establish numerical parity.
+Rust library work exists: binary/ASCII STL, welding/filtering, full mesh-graph construction, adjacency/components/selection and shell parity, bounds/centroids, normals/orientation, dense solves, TLS/clipped/robust planes and curvature discrimination. All numerical child units remain **implemented, not accepted**. `port-engine` is empty, the CLI prints a banner, there is no Rust UI and no end-to-end Rust scan/fit/project command workflow.
 
-`cd rust && cargo xtask ci` exists: it checks the reference pin, live plan and checker self-tests, formatting, clippy, workspace tests and compilation of the library crates for wasm32. `.github/workflows/rust-port.yml` runs this fast gate. `cargo xtask diff` and `diff-ci` remain unimplemented. A Wasm compile check is not a browser execution check.
+Seventeen native source suites declare 635 case identities including refusals; this is not 635 successful numerical measurements. The existing tests compare actual values/state against independently executed frozen bodies. Their fixed cases, seeds and numerical budgets remain authoritative. Browser-Wasm runtime and the generic P36/P37 paired report/exact-base ratchet remain unbuilt; Wasm compilation alone does not fill that gap.
 
-A hosted Node 22 baseline of the unchanged original is recorded in [evidence/2026-10-31-hosted-ci-baseline.md](evidence/2026-10-31-hosted-ci-baseline.md). It includes original unit/MCP tests, build and browser suites, with skips retained. It is partial P01 evidence, not a local baseline or a Rust comparison. Headless build, live catalogs, lockfile verification and environment details remain open as specified in P00–P03. Historical environment observations in that evidence are not a current machine inventory.
+Original command baselines were captured in real Node 22 headless engines and Chrome pages, both core-only and all-plugin. Core: 72 registered / 6 headless-capable; all: 140 / 36. Full schemas and immutable hashes are under `evidence/headless-2026-11-01/` and `evidence/browser-2026-11-01/`. Metadata agrees across contexts; that does not prove all commands execute, feature variants are complete, or Rust implements them. Catalog children are baseline-captured; P02/G0 remain incomplete.
 
-## Next implementation session
+The unchanged original has both green hosted full runs and a repeatable intermittent timing failure in `reNetworkCreases.test.ts:209` (1500 ms limit). The audit queue retains exact runs/results. No threshold, seed or test is waived. Missing private scans remain skips. The older scaffold-only handoff and baseline observations are history, not current status.
 
-1. Read `UPSTREAM-SYNC.md` and inspect current branch, worktree status, open PR claims and the relevant canonical unit files. Use an isolated branch from `main` for a bounded contribution to the fork. Do not recreate the workspace or change the frozen reference.
-2. Inspect the current environment rather than assuming the planning host's tools or network failures still apply. Use the system Rust toolchain on Logan's Arch machine; do not install rustup (decision `plan/decisions/2026-10-31-no-rustup.md`). Record `cd rust && cargo xtask env`; the reported known Wasm target still needs `cargo xtask wasm` to prove compilation. CI uses its own runner toolchain.
-3. Finish the remaining P00 prerequisites: Node 22 for the original oracle, recorded browser/tool versions, and lock hashes checked against `reference-pin.json`. Run the original from the frozen `reference/2cd89c6` worktree in `.oracle/`, following `UPSTREAM-SYNC.md`; the root TypeScript source remains untouched.
-4. Complete P01's missing baseline evidence, then P02's live core-only/all-plugin/headless catalogs and P03's fixture/dependency audit. Preserve hosted evidence and individual failures/skips. Do not count private scans as passing. Keep unit files authoritative and regenerate `backlog.json` after status edits.
-5. With G0 evidence in place, prove pure-Rust kernel capabilities separately and implement the plane-fitting slice with independent original/native/browser-Wasm comparisons. The original headless engine cannot open scans; use a browser oracle or direct pure-core harness for measurement comparisons. Do not select tolerances from observed Rust discrepancies.
+## Working and validating
 
-Local source inspection, planning and implementation are authorized. Public actions require the owner's explicit instruction for that session; instructions to open a PR authorize that PR, not deployment, legal signatures or contact with the upstream author.
+Local host: system Rust, no rustup; Node is oracle-only. Hosted jobs provision Rust stable and Node 22 and record versions. The hosted Rust toolchain is not yet locked to an immutable release; record that reproducibility gap under P00. Do not change local machine setup based on hosted installation commands.
 
-## Completion and handoff discipline
+```bash
+cd rust
+cargo xtask ci       # pin, generated plan/status, negative tooling tests, fmt/lints/tests, Wasm compile
+cargo xtask oracle   # all required native original/Rust suites, no filtered cases
+```
 
-Update a canonical unit file only with the actual achieved state, tested commit, evidence and open items; generate the aggregate backlog rather than maintaining two status systems. Stefan's pinned behavior/math are authoritative; source changes and deliberate behavior improvements are separate reviewed work. Mark an item complete only with the actual commit and evidence path. Update the exact baseline, statuses, blockers and next command after every substantial session. Retain failed/skipped evidence. Preserve immutable upstream and keep cutovers reversible. A runnable partial port is valuable but must name missing workspaces, commands, feature types and external dependencies.
+From the fork root, `python3 docs/port-plan/tools/ci_report.py status --check` checks generated inventory; `port_plan.py --root docs/port-plan check-generated` rejects stale backlog. After editing canonical units, run `port_plan.py --root docs/port-plan render` and `ci_report.py status`.
 
-For living plan validation, run `python tools/port_plan.py --root . check` from this packet, plus `python tools/port_plan.py selftest`. Per-unit files are canonical and support future status changes. The separate packet verifier checks this frozen all-planned export only; do not use its snapshot expectations as the living implementation CI.
+CI results are separated: Rust fast checks, native oracle assertions/raw evidence, original catalog contracts, original unit tests, original MCP, and original build/browser regression. Final `gate` and `test-and-build` require every respective lane to succeed. Original source unit failures no longer prevent MCP/browser evidence from running. See CI-AND-REGRESSIONS.md for artifacts and gaps.
 
-For the historical frozen packet's integrity, run `python docs/port-plan/verify.py` from the repository root. Its snapshot assumptions may no longer hold after living-plan changes; use the live checker for current work. The archive is portable; the verifier uses paths relative to itself.
+## Review and next implementation
+
+The owner will audit PRs from #1 upward. #22 is the CI/status/docs integration checkpoint after #1–#21, combining the numerical chain with the independent catalog/documentation histories. No PR is merged by this session; no deploy, legal signature or upstream contact is authorized by this plan. Existing user authorization covers fork PR submissions, not those other actions.
+
+Prioritize reproducible reference/fixture contracts, the remaining P05 session/error/history contract and actual browser-Wasm execution, then a bounded engine import/plane command slice. Use the implementation plan's concrete exit conditions. Keep the kernel/purity capability spike parallel and explicit; more helper ports cannot substitute for command/session or kernel evidence.
+
+Update each affected unit with its actual tested SHA, evidence and open scope. Preserve old reports and failed attempts. Generated status never promotes acceptance. The portable `verify.py`/SHA256SUMS bundle validates the historical planning export; it is not the live checker. Use the commands above for this checkout.

@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Port CI/status integration** (2026-11-01): separate fast/native/catalog and original unit/MCP/browser results, require complete current-run evidence and generated status, reconcile implemented scope and define the remaining measurement/runtime plan. Source thresholds and numerical contracts are unchanged.
+
 - **Rust closed-shell parity** (2026-11-01): port complete source closure flags with original signed-zero bit welding, disjoint sets and edge hashes; sixty-four exact flag/private-state comparisons.
 
 - **Rust complete mesh graphs** (2026-11-01): integrate the original validation, welding/filtering, adjacency, normals/orientation and bounds pipeline; compare full graph state, progress and refusal text on fifty source cases.

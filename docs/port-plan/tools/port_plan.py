@@ -102,7 +102,7 @@ def selftest():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
-    parser.add_argument("command", choices=["check", "render", "selftest"])
+    parser.add_argument("command", choices=["check", "check-generated", "render", "selftest"])
     args = parser.parse_args()
     if args.command == "selftest":
         selftest()
@@ -120,6 +120,8 @@ def main():
     errors = validate(metadata, units)
     if errors:
         raise SystemExit("Plan invalid:\n" + "\n".join(errors))
+    if args.command == "check-generated" and metadata.get("tasks") != units:
+        raise SystemExit("Generated backlog is stale; run port_plan.py --root docs/port-plan render")
     if args.command == "render":
         metadata["tasks"] = units
         metadata["generated_from"] = "plan/units/*.json"

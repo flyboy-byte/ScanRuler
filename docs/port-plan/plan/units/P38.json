@@ -23,6 +23,8 @@
   "symbols": [],
   "rust_paths": [],
   "soft_depends_on": [],
-  "open_items": [],
+  "open_items": [
+    "Checkpoint 2026-11-01: CI integration PR22 separates Rust fast/native/catalog and original tests/MCP/browser lanes, preserves strict aggregate checks and main-run evidence. P36/P37/browser-Wasm and full acceptance gates remain incomplete."
+  ],
   "claim_pr": null
 }

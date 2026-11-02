@@ -1,19 +1,21 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # 4. Testing and CI
 
-## What exists today and what does not
+## What exists today — 2026-11-01
 
-| Gate | Command | State (2026-10-31) |
-|------|---------|--------------------|
-| Plan integrity | `python docs/port-plan/tools/port_plan.py --root docs/port-plan check` and `selftest` | Works. Checks unit metadata and dependency order only. **Not a parity check** |
-| Fast product gate | `cd rust && cargo xtask ci` | Works. Runs the pin check, plan checks, `cargo fmt --check`, clippy with warnings denied, tests, and a WebAssembly build check |
-| Targeted comparison | `cargo xtask diff --unit <id>` | Planned (P36 to P39). Does not exist |
-| Exact-base ratchet | `cargo xtask diff --baseline <dir>` / `diff-ci` | Planned. Does not exist |
-| Original's own suite | `npm test`, `npm run build`, `npm run e2e:ci`, `npm --prefix mcp test` | Needs Node 22; not yet run here |
+| Gate | Command / check | Current scope |
+| --- | --- | --- |
+| Plan/status | `cargo xtask plan` or plan workflow | Canonical metadata, generated freshness and negative tooling tests; not parity |
+| Rust fast | `cargo xtask ci` | fmt/lints, ordinary native tests, pin/plan/status and Wasm compilation |
+| Native source | `cargo xtask oracle` | All seventeen required suites; 635 declared case identities including refusals |
+| Raw evidence | `ci_report.py evidence --candidate <sha>` | Full case/file inventory at exact checkout; not an independent numerical comparator |
+| Original catalogs | validator tests and real capture workflows | Immutable core/all browser/headless schemas and context; not Rust commands |
+| Original app | source-tests, source-mcp, source-browser | All original tests/build/browser checks; independent lanes and strict final gate |
+| Browser-Wasm / generic diff / exact-base ratchet | P36/P37 | Not implemented; no green substitute |
 
-The rule about honesty: **a green fast gate is never called parity.** The GitHub workflow for it
-says so in its header, and the disabled `port-gate.yml.example` is deliberately written to fail
-rather than pass when the real harness is missing.
+Fast checks and actual native comparisons now have distinct results. The final Rust `gate` requires every Rust lane; original `test-and-build` requires all original lanes. Failed or skipped required lanes remain red. Source timing failures no longer block collecting independent MCP/browser results; no threshold is changed. Main validations are never cancelled by later commits. SHA-named raw evidence/log artifacts are retained thirty days. See [the executable CI contract](../port-plan/CI-AND-REGRESSIONS.md) for exact commands and limitations.
+
+A green native gate is evidence for its fixed native corpus, not browser runtime or whole-product parity. [STATUS.md](../port-plan/STATUS.md) counts canonical inventory, while the [audit queue](../port-plan/AUDIT-QUEUE.md) records observed run outcomes. Neither can stand in for the other.
 
 ## How "matches the original" is proven
 

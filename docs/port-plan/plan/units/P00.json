@@ -23,9 +23,10 @@
   "open_items": [
     "Done 2026-10-31 (no evidence record yet): full checkout at the pinned commit, local branch port/rust-baseline, upstream remote added, Rust workspace scaffold passes cargo xtask ci (native + wasm32 check).",
     "Open: Node 22 for the oracle is not installed (Node 20.20.2 present); record the version used for every baseline run.",
-    "Open: browser (Chromium/Chrome) version not recorded; lockfile hashes not re-verified against reference-pin.json.",
+    "Historical 2026-10-31 observation (superseded by checkpoint below): browser (Chromium/Chrome) version not recorded; lockfile hashes not re-verified against reference-pin.json.",
     "Open: read upstream AGENTS/contribution rules in the checkout (CONTRIBUTING.md/CLA read; no upstream AGENTS.md exists).",
-    "Decision: no rustup (plan/decisions/2026-10-31-no-rustup.md); Node is oracle-only (plan/decisions/2026-10-31-node-is-oracle-only.md)."
+    "Decision: no rustup (plan/decisions/2026-10-31-no-rustup.md); Node is oracle-only (plan/decisions/2026-10-31-node-is-oracle-only.md).",
+    "Checkpoint 2026-11-01: hosted Node 22/Chrome versions and frozen lock hashes now exist in headless/browser catalog evidence. Local Node remains 20.20.2; hosted Rust stable is not immutable-version-pinned. Parent stays planned pending consolidated reproducibility/skip/fixture evidence."
   ],
   "claim_pr": null
 }

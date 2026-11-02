@@ -23,6 +23,8 @@
   "symbols": [],
   "rust_paths": [],
   "soft_depends_on": [],
-  "open_items": [],
+  "open_items": [
+    "Checkpoint 2026-11-01: seventeen required native suites and current-artifact inventory exist. General versioned paired protocol and actual browser-Wasm execution remain open; harness.wasm.runtime scopes the first real runtime comparison."
+  ],
   "claim_pr": null
 }
