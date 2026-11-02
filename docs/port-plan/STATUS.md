@@ -89,7 +89,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [harness.wasm.ply](plan/units/harness.wasm.ply.json) | implemented | `8bc7363` | [#29](https://github.com/flyboy-byte/ScanRuler/pull/29) |
 | [harness.wasm.runtime](plan/units/harness.wasm.runtime.json) | implemented | `00fd1a6` | [#24](https://github.com/flyboy-byte/ScanRuler/pull/24) |
 | [io.mesh.weld](plan/units/io.mesh.weld.json) | implemented | `53d6408` | [#4](https://github.com/flyboy-byte/ScanRuler/pull/4) |
-| [io.obj.companions.drop](plan/units/io.obj.companions.drop.json) | specified | — | — |
+| [io.obj.companions.drop](plan/units/io.obj.companions.drop.json) | specified | — | [#40](https://github.com/flyboy-byte/ScanRuler/pull/40) |
 | [io.obj.companions.files](plan/units/io.obj.companions.files.json) | implemented | `f0a3e9e` | [#36](https://github.com/flyboy-byte/ScanRuler/pull/36) |
 | [io.obj.companions.image_audit](plan/units/io.obj.companions.image_audit.json) | implemented | `87d2318` | [#39](https://github.com/flyboy-byte/ScanRuler/pull/39) |
 | [io.obj.companions.images](plan/units/io.obj.companions.images.json) | planned | — | — |

@@ -1,0 +1,213 @@
+{
+  "contract": "drop.files.input.v1",
+  "license": "AGPL-3.0-only",
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "seeds": [
+    1,
+    7,
+    99,
+    1039
+  ],
+  "cases": [
+    {
+      "id": "null",
+      "bytes": 25,
+      "sha256": "09b15c0964f0902cea74e82e630e7578a81cbd6da5559fbc9b12e07a270687ce"
+    },
+    {
+      "id": "empty",
+      "bytes": 17,
+      "sha256": "96040c8dbcc45a7f0a1557ad61f47028ce124810f6850254cce6551ee3f7ba9a"
+    },
+    {
+      "id": "fallback",
+      "bytes": 61,
+      "sha256": "d0266f57915126a109aa5d57fc555fb4e7053bb2986df2c354638b0be88deaa7"
+    },
+    {
+      "id": "no-entries",
+      "bytes": 39,
+      "sha256": "d84f7ebfcaf56b58fef74e21441b73c242b99fb6153a25c179b255ec0670dbb3"
+    },
+    {
+      "id": "non-file-items",
+      "bytes": 43,
+      "sha256": "a7137afdf434500978b1f9a9f384687fe5153ff4d77442c1a2ceef19b9355d76"
+    },
+    {
+      "id": "one-directory",
+      "bytes": 78,
+      "sha256": "64dfcfe5f74a9130175ff02840b119ef00dd3d963ed6470959e0328629bb47b9"
+    },
+    {
+      "id": "multiple-batches",
+      "bytes": 88,
+      "sha256": "2260171a75daae54b541ff9fa969a006c85348cde84cbb0867175eb73ad81606"
+    },
+    {
+      "id": "batch-error-before-file-reads",
+      "bytes": 115,
+      "sha256": "5e1ae5a180f4986dd8c5a3b01ac8d4e10493ed6ab1fb4dca9ea2e50acd2b82f2"
+    },
+    {
+      "id": "one-level-only",
+      "bytes": 98,
+      "sha256": "c6276ed8f8e2abeef3b8a41b954de7783dd5cd5c3c34ee4d94042ec0c7209e12"
+    },
+    {
+      "id": "duplicate-directory-readers",
+      "bytes": 70,
+      "sha256": "878f513dc37cad5b025c2a6a354d6ba940782f09d9b7eec661a37b90acfcae7e"
+    },
+    {
+      "id": "both-flags",
+      "bytes": 81,
+      "sha256": "e91a10e1cabf7a52ae40e1f3cbb4e3bb4e5ca4ca466535a96433143076839de2"
+    },
+    {
+      "id": "no-entry-flags",
+      "bytes": 85,
+      "sha256": "6d9390c492e5fd59a3acb0a0184f4cbe878a03f84ebdaef5fb054de306ff848f"
+    },
+    {
+      "id": "mixed-top-order",
+      "bytes": 99,
+      "sha256": "e2c857ecc2666eb8b095e3fcc1da6b212751d9e6116d94fd62edaaa54d25ab94"
+    },
+    {
+      "id": "file-error",
+      "bytes": 108,
+      "sha256": "40360877101628f79df42c2508f1dcbf394e40a23ad7b1f4a94012802ae88da7"
+    },
+    {
+      "id": "entry-error",
+      "bytes": 97,
+      "sha256": "a58449a914f8bed5c906b3d50389db086ea7dc2b6ff27f3b915fa35867d84026"
+    },
+    {
+      "id": "reader-error",
+      "bytes": 90,
+      "sha256": "c50175539ebd51e6196de6de75b35876167f777bad155eb2b1a73c675203dcff"
+    },
+    {
+      "id": "batch-error",
+      "bytes": 95,
+      "sha256": "0f81f66d723fbae13d3b5e172474b9cc0200e46cd0438ec0560cd802ffefdc5f"
+    },
+    {
+      "id": "child-file-error",
+      "bytes": 125,
+      "sha256": "120773a00b0222aa45c9ff62d39aaaa189c8263340011f18d4cf4599d3737979"
+    },
+    {
+      "id": "missing-getter",
+      "bytes": 43,
+      "sha256": "62b986268ff6ab9c272ff4767f271e5d491f9b3d56851ea051a28699493f11a7"
+    },
+    {
+      "id": "missing-entry-with-directory",
+      "bytes": 70,
+      "sha256": "0b64a42720feebd45da2d4a9c0dc8aa62d8e022fa800f28ff2574608ea0e4847"
+    },
+    {
+      "id": "after-empty-ignored",
+      "bytes": 115,
+      "sha256": "b2aa49ce71f2aacad29f0004139877eb680ed4e8ebb9c2548c3be90419657620"
+    },
+    {
+      "id": "duplicate-child-identities",
+      "bytes": 82,
+      "sha256": "47d9725528a6cb2915fd7b30d808da1252cee573db19e8bc22725109ea49d7e2"
+    },
+    {
+      "id": "getters-before-traversal",
+      "bytes": 128,
+      "sha256": "ad7d33b6d2973b0deda336c4ff4172e073d0c2d916152de54f95003f8a6a3e2f"
+    },
+    {
+      "id": "unicode-error-fields",
+      "bytes": 71,
+      "sha256": "ae9b4ff9fc627526675e3c5982edee32160242b0c5d1e1e31b42d194cdd4116c"
+    },
+    {
+      "id": "seed-1-0",
+      "bytes": 172,
+      "sha256": "a83f32d495d15f9458f9ab8186501b7e436bcab3035e1e9dd495033d53d8207f"
+    },
+    {
+      "id": "seed-1-1",
+      "bytes": 172,
+      "sha256": "591fc777c9b53312342b7dd2065162c6fadc68bded6599b5bc943bddbe59e450"
+    },
+    {
+      "id": "seed-1-2",
+      "bytes": 199,
+      "sha256": "5ed9c2c4700504de4a94b062bd1cf9f0abf9a1775dea85c16b128fbb3f6719aa"
+    },
+    {
+      "id": "seed-1-3",
+      "bytes": 199,
+      "sha256": "5580bda76897b869b791f160c34cbcda1902c0d3794824b14b430ab469c2fcee"
+    },
+    {
+      "id": "seed-7-0",
+      "bytes": 172,
+      "sha256": "569b258d696070cc32d2d37b9a27055ac289d8f03380cc461434bc799b99dcb2"
+    },
+    {
+      "id": "seed-7-1",
+      "bytes": 172,
+      "sha256": "310689928c09218dca520bd54312f0aa61d810be6c3d88eb9967fe97991a089b"
+    },
+    {
+      "id": "seed-7-2",
+      "bytes": 199,
+      "sha256": "bc512279a47e858b04621236fe102ec2bde0942efdaba2051ce8e218f93f414c"
+    },
+    {
+      "id": "seed-7-3",
+      "bytes": 199,
+      "sha256": "d42a9fdcc6ee92392b6ce414e31313a4f5638359926b7bdc6933134e9e12bd2f"
+    },
+    {
+      "id": "seed-99-0",
+      "bytes": 172,
+      "sha256": "5ad3d9239624a260a76552d983cc19b66e7c763c11472cbad12fb90d7bafcc31"
+    },
+    {
+      "id": "seed-99-1",
+      "bytes": 172,
+      "sha256": "b100d39141db94f26b37708bd21325ced62773ca01b064156ea8b5ae5fb75f77"
+    },
+    {
+      "id": "seed-99-2",
+      "bytes": 200,
+      "sha256": "461ba2441fd9cf4e7caf1add33af22fbca8330917dfab550920c60b1dd4063cb"
+    },
+    {
+      "id": "seed-99-3",
+      "bytes": 200,
+      "sha256": "a46f4d379455d6abbbddbd37da27f37414f548115243ab3ac9cafa78b651cb08"
+    },
+    {
+      "id": "seed-1039-0",
+      "bytes": 172,
+      "sha256": "fa8dadbad1177177763ba84a404dbf14ca642fb06de6d2acbe7fd454a1f28814"
+    },
+    {
+      "id": "seed-1039-1",
+      "bytes": 172,
+      "sha256": "ef2516736174232464d7b5d0edb099c757312ed568ca22f1cace3f1d0136a3b3"
+    },
+    {
+      "id": "seed-1039-2",
+      "bytes": 202,
+      "sha256": "e7220449d8c02851c0179b6951371cf3dabfaf31a3a70e1c412d8361911bb308"
+    },
+    {
+      "id": "seed-1039-3",
+      "bytes": 202,
+      "sha256": "3406de0e80352b1271e50fa992761efa940db35dc9982fad36137c5653263f44"
+    }
+  ]
+}
