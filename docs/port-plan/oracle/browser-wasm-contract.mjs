@@ -1,6 +1,15 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // Test comparison only. No geometry, source-result injection or product runtime.
 import assert from 'node:assert/strict'
+// Envelope only, assembled after independent execution; never a Rust input.
+export function plyPacket(payload, events) {
+  assert.ok(Buffer.isBuffer(payload) && Buffer.isBuffer(events), 'missing PLY output/progress sidecar')
+  const out = Buffer.alloc(9 + payload.length + events.length)
+  out[0] = payload.length ? 0 : 2
+  out.writeUInt32LE(payload.length, 1); payload.copy(out, 5)
+  out.writeUInt32LE(events.length, 5 + payload.length); events.copy(out, 9 + payload.length)
+  return out
+}
 export function compareOutput(mode, expected, actual) {
   assert.equal(actual.length, expected.length, 'output byte length changed')
   assert.ok(expected.length > 0, 'empty output cannot pass')
@@ -19,7 +28,23 @@ export function compareOutput(mode, expected, actual) {
       worst = Math.max(worst, error)
     }
   }
-  if (mode === 2) exact(expected, actual)
+  if (mode === 4) {
+    assert.ok(expected.length >= 9, 'malformed PLY envelope')
+    assert.ok(expected[0] === 0 || expected[0] === 2, 'unknown PLY result status')
+    const n = expected.readUInt32LE(1)
+    assert.ok(9 + n <= expected.length, 'truncated PLY output')
+    assert.equal(expected.length, 9 + n + expected.readUInt32LE(5 + n), 'missing PLY progress/error')
+    if (expected[0] === 0) {
+      assert.ok(n >= 16, 'empty successful PLY result')
+      assert.equal(expected.subarray(5, 9).toString(), 'PLY1', 'wrong PLY result kind')
+      assert.ok(expected.readUInt32LE(9) <= 1, 'wrong optional winding flag')
+      assert.equal(n, 16 + 4 * (expected.readUInt32LE(13) + expected.readUInt32LE(17)), 'missing PLY values')
+    } else {
+      assert.equal(n, 0, 'source refusal contains values')
+      assert.ok(expected.readUInt32LE(5) > 0, 'empty source refusal')
+    }
+    exact(expected, actual) // IEEE float32 bits, including NaNs, are source observables here.
+  } else if (mode === 2) exact(expected, actual)
   else if (mode === 1) {
     assert.ok(expected[0] === 0 || expected[0] === 1)
     if (!expected[0]) assert.equal(expected.length, 1, 'malformed TLS refusal')
@@ -78,6 +103,11 @@ export function negativePackets() {
   for (let i = 0; i < 1048576 / 4; i++) if (a.push(0, 4) !== 0) throw Error('input cap ended early')
   check(a.push(0, 1) !== 0 && a.length() === 0 && a.run() !== 0, 'input budget enforced and poisoned')
   check(a.reset(1) === 0 && a.push(0, 4) === 0 && a.run() === 0 && a.length() === 1, 'clean reset recovers')
+  check(a.reset(4) === 0 && a.run() === 0 && a.length() > 9 && (a.word(0) & 255) === 2, 'PLY source refusal is a completed result')
+  const tooMany = 'ply\nformat ascii 1.0\nelement vertex 10001\nproperty float x\nproperty float y\nproperty float z\nelement face 1\nend_header\n'
+  check(a.reset(4) === 0, 'reset before PLY host guard')
+  for (let i = 0; i < tooMany.length; i++) if (a.push(tooMany.charCodeAt(i), 1) !== 0) throw Error('small PLY packet refused')
+  check(a.run() !== 0 && a.length() === 0, 'PLY host budget fails without source-refusal output')
   return checks
 }
 
@@ -86,11 +116,17 @@ export async function retainAndCompare(directory, mode, files, wasm) {
   const { mkdirSync, writeFileSync } = await import('node:fs')
   const { resolve } = await import('node:path')
   mkdirSync(directory, { recursive: true })
-  for (const name of ['input.bin', 'original.bin', 'rust.bin']) writeFileSync(resolve(directory, name), files[name])
+  for (const [name, bytes] of Object.entries(files)) writeFileSync(resolve(directory, name), bytes)
   writeFileSync(resolve(directory, 'wasm.bin'), wasm)
+  const original = mode === 4 ? plyPacket(files['original.bin'], files['original.progress-or-error.txt']) : files['original.bin']
+  const native = mode === 4 ? plyPacket(files['rust.bin'], files['rust.progress-or-error.txt']) : files['rust.bin']
+  if (mode === 4) {
+    writeFileSync(resolve(directory, 'original.packet.bin'), original)
+    writeFileSync(resolve(directory, 'rust.packet.bin'), native)
+  }
   return {
-    errorNative: compareOutput(mode, files['original.bin'], files['rust.bin']),
-    errorWasm: compareOutput(mode, files['original.bin'], wasm),
-    errorPair: compareOutput(mode, files['rust.bin'], wasm),
+    errorNative: compareOutput(mode, original, native),
+    errorWasm: compareOutput(mode, original, wasm),
+    errorPair: compareOutput(mode, native, wasm),
   }
 }

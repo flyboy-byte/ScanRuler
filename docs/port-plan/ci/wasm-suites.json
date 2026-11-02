@@ -1,8 +1,11 @@
 {
-  "contract": "browser.wasm.corpus.v1",
+  "contract": "browser.wasm.corpus.v2",
   "suites": [
     {"unit":"fit.plane.tls","directory":"plane-diff","mode":1,"cases":13},
     {"unit":"geometry.mesh.graph","directory":"mesh-graph-diff","mode":2,"cases":50},
-    {"unit":"fit.plane.selection","directory":"marked-plane-diff","mode":3,"cases":51}
+    {"unit":"fit.plane.selection","directory":"marked-plane-diff","mode":3,"cases":51},
+    {"unit":"io.ply.ascii","directory":"ply-ascii-diff","mode":4,"cases":60},
+    {"unit":"io.ply.binary","directory":"ply-binary-diff","mode":4,"cases":167,
+     "excluded":[{"id":"le-vertex-progress","reason":"3 MiB input / 12 MiB output exceed the existing private ABI 1 MiB caps; retained in native comparisons, broader browser vertex-progress coverage remains open."}]}
   ]
 }

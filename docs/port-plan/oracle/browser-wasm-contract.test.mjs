@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { compareOutput } from './browser-wasm-contract.mjs'
+import { compareOutput, plyPacket } from './browser-wasm-contract.mjs'
+import { validateBrowserRoster, selectBrowserCases, nativeFileNames, verifyNativeCaseFiles } from './browser-wasm-roster.mjs'
 const tls = () => { const b = Buffer.alloc(33); b[0] = 1; [0, 0, 1, 3].forEach((v, i) => b.writeDoubleLE(v, 1 + i * 8)); return b }
 test('valid numerical and exact graph results', () => {
   assert.equal(compareOutput(1, tls(), tls()), 0)
@@ -48,7 +49,7 @@ test('committed Chrome evidence retains full corpus and module identities', asyn
   assert.equal(report.cases.length, 114); assert.equal(report.successful_value_cases, 90); assert.equal(report.source_refusal_cases, 24)
   const definitions = JSON.parse(readFileSync(new URL('../ci/wasm-suites.json', import.meta.url))).suites
   const expected = []
-  for (const def of definitions) {
+  for (const def of definitions.filter(s => s.mode <= 3)) {
     const unit = JSON.parse(readFileSync(new URL(`../plan/units/${def.unit}.json`, import.meta.url)))
     for (const id of unit.evidence.find(e => e.kind === 'differential').case_ids) expected.push(def.unit + '/' + id)
   }
@@ -69,4 +70,84 @@ test('a mismatch retains complete raw inputs and all outputs before failing', as
     await assert.rejects(retainAndCompare(dir, 1, files, wrong))
     for (const [name, bytes] of Object.entries({ ...files, 'wasm.bin': wrong })) assert.deepEqual(readFileSync(join(dir, name)), bytes)
   } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+function ply() {
+  const b = Buffer.alloc(28)
+  b.write('PLY1'); b.writeUInt32LE(3, 8)
+  b.writeUInt32LE(0x7fc12345, 16); b.writeFloatLE(-0, 20); b.writeFloatLE(Infinity, 24)
+  return plyPacket(b, Buffer.from('Reading PLY…\n'))
+}
+test('PLY retains exact nonfinite bits, zero signs and progress', () => {
+  const b = ply()
+  assert.equal(compareOutput(4, b, b), 0)
+  for (const offset of [5, 9, 13, 21, 25, b.length - 1]) {
+    const changed = Buffer.from(b); changed[offset] ^= 1
+    assert.throws(() => compareOutput(4, b, changed))
+  }
+  assert.throws(() => compareOutput(4, b, b.subarray(0, -1)))
+})
+test('PLY cannot accept empty or malformed value/refusal envelopes', () => {
+  const error = plyPacket(Buffer.alloc(0), Buffer.from('Not a valid PLY file.\n'))
+  assert.equal(compareOutput(4, error, error), 0)
+  for (const b of [Buffer.alloc(0), plyPacket(Buffer.alloc(0), Buffer.alloc(0)), plyPacket(Buffer.from('bad'), Buffer.alloc(0))]) {
+    assert.throws(() => compareOutput(4, b, b))
+  }
+  const unknown = Buffer.from(error); unknown[0] = 1
+  assert.throws(() => compareOutput(4, unknown, unknown))
+  const missing = ply(); missing.writeUInt32LE(1000, 13)
+  assert.throws(() => compareOutput(4, missing, missing))
+  assert.throws(() => plyPacket(Buffer.alloc(0), undefined))
+})
+test('browser roster preserves prior cases and only the declared new workload exclusion', async () => {
+  const { readFileSync } = await import('node:fs')
+  const defs = JSON.parse(readFileSync(new URL('../ci/wasm-suites.json', import.meta.url))).suites
+  validateBrowserRoster(defs)
+  let count = 0
+  for (const def of defs) {
+    const unit = JSON.parse(readFileSync(new URL(`../plan/units/${def.unit}.json`, import.meta.url)))
+    const ids = unit.evidence.find(e => e.kind === 'differential').case_ids
+    count += selectBrowserCases(def, ids).length
+    assert.throws(() => selectBrowserCases(def, ids.slice(1)))
+    if (def.excluded) {
+      assert.throws(() => selectBrowserCases({ ...def, excluded: [] }, ids))
+      assert.throws(() => selectBrowserCases({ ...def, excluded: [{ id: 'le-vertex-progress', reason: '' }] }, ids))
+      assert.throws(() => selectBrowserCases({ ...def, excluded: [{ id: ids[0], reason: 'unreviewed' }] }, ids))
+    }
+  }
+  assert.equal(count, 341)
+  assert.throws(() => validateBrowserRoster(defs.slice(1)))
+})
+test('PLY mismatches retain raw sidecars and actual Wasm before failing', async () => {
+  const { mkdtempSync, readFileSync, rmSync } = await import('node:fs')
+  const { tmpdir } = await import('node:os')
+  const { join } = await import('node:path')
+  const { retainAndCompare } = await import('./browser-wasm-contract.mjs')
+  const dir = mkdtempSync(join(tmpdir(), 'scanruler-ply-wasm-mismatch-'))
+  try {
+    const b = ply(), n = b.readUInt32LE(1)
+    const files = { 'input.bin': Buffer.from('input'), 'original.bin': b.subarray(5, 5 + n), 'rust.bin': b.subarray(5, 5 + n),
+      'original.progress-or-error.txt': b.subarray(9 + n), 'rust.progress-or-error.txt': b.subarray(9 + n) }
+    const wrong = Buffer.from(b); wrong[21] ^= 1
+    await assert.rejects(retainAndCompare(dir, 4, files, wrong))
+    for (const [name, bytes] of Object.entries({ ...files, 'wasm.bin': wrong })) assert.deepEqual(readFileSync(join(dir, name)), bytes)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+test('missing, stale and corrupt PLY sidecars fail before browser execution', async () => {
+  const { createHash } = await import('node:crypto')
+  const files = Object.fromEntries(nativeFileNames(4).map(name => [name, Buffer.from(name)]))
+  const metadata = { files: Object.fromEntries(Object.entries(files).map(([name, b]) => [name,
+    { bytes: b.length, sha256: createHash('sha256').update(b).digest('hex') }])) }
+  verifyNativeCaseFiles(4, files, metadata)
+  for (const name of ['original.progress-or-error.txt', 'rust.progress-or-error.txt']) {
+    const missing = { ...files }; delete missing[name]
+    assert.throws(() => verifyNativeCaseFiles(4, missing, metadata))
+    assert.throws(() => verifyNativeCaseFiles(4, { ...files, [name]: Buffer.from('changed') }, metadata))
+    const absent = structuredClone(metadata); delete absent.files[name]
+    assert.throws(() => verifyNativeCaseFiles(4, files, absent))
+    const stale = structuredClone(metadata); stale.files[name].sha256 = '0'.repeat(64)
+    assert.throws(() => verifyNativeCaseFiles(4, files, stale))
+    const badLength = structuredClone(metadata); badLength.files[name].bytes++
+    assert.throws(() => verifyNativeCaseFiles(4, files, badLength))
+  }
 })
