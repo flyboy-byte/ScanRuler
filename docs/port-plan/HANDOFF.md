@@ -80,7 +80,7 @@ failures and a worker timeout. The independent hosted main run passes. All
 exclusions and six repeatable fixture recipes are inventoried. This does not
 complete G0 or the full P03 corpus; do not relabel the local unit run green.
 
-PRs #1–#30 are merged into main at `fabac0d`, with its checks passed. The next open queue starts at #31 for io.obj.texture; see AUDIT-QUEUE.md and inspect live checks. This continuation has not merged anything. New work follows ROADMAP-TO-USABLE.md section 2. No deploy, legal signature or upstream contact is authorized by this plan. Existing user authorization covers fork PR submissions and, when Logan asks for it, integration per ROADMAP-TO-USABLE.md section 2.
+PRs #1–#34 are merged into main at `28dfeae` and none is open. See AUDIT-QUEUE.md. New work follows ROADMAP-TO-USABLE.md section 2. No deploy, legal signature or upstream contact is authorized by this plan. Existing user authorization covers fork PR submissions and, when Logan asks for it, integration per ROADMAP-TO-USABLE.md section 2.
 
 The marked-plane element continuation is now implemented under fit.plane.selection; public command/history integration is still absent. Prioritize reproducible reference/fixture contracts, the remaining P05 session/error/history contract and wider browser-Wasm coverage, then a bounded engine import/plane command slice. Use the implementation plan's concrete exit conditions. Keep the kernel/purity capability spike parallel and explicit; more helper ports cannot substitute for command/session or kernel evidence.
 

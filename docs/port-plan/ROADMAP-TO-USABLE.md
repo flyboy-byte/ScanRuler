@@ -17,8 +17,9 @@ possible. This file fixes the layout, workflow and pipeline. It does not change 
 | Python 3 | Plan and status checkers only | No dependencies. |
 
 Local loop for any change: `cd rust && cargo xtask ci` (fast, any machine), then `cargo xtask oracle` for
-numerical work. **Verified 2026-11-02 on this machine:** `cargo xtask oracle` passes all 18 native suites on
-Node 22.23.4 / Rust 1.99.1. That is a local result, not parity: the harness still lacks the exact-base
+numerical work. **Verified 2026-11-02:** `cargo xtask oracle` passed all 21 native suites on this machine
+(Node 22.23.4 / Rust 1.99.1) before the OBJ units; the hosted `native-oracle` check is green on every merged PR
+head and `ci/native-suites.json` now lists 23. That is a local result, not parity: the harness still lacks the exact-base
 ratchet (P37) and covers library functions, not application workflows.
 
 ## 2. Workflow (no prompt or handoff needed)
@@ -123,3 +124,14 @@ Licensing, trademarks and the rename (`LICENSING-AND-NAMING.md`) wait for the pr
 No release dates, no completion percentage, no promise that a milestone is near. The honest status today
 is generated in `STATUS.md`; there is still no working Rust engine command flow,
 project reader or UI. Library implementation is distinct from acceptance.
+
+## 9. Open owner decisions (nothing blocks the queue)
+
+- **PLY host-limit differences** (`plan/findings/2026-11-02-ply-stl-independent-fuzz.md`, H1 to H3): Rust refuses some
+  hostile inputs where the original fails differently or succeeds. Keep, document per class or match more
+  closely. Do not tune limits to hide them.
+- **Zip/inflate and PNG/JPEG decoding** (`io.threemf`, `io.obj.companions`): own implementation or an audited pure-Rust
+  crate, decided in a recorded file before any code (section 6).
+- **Parent units** `io.ply` and `io.obj` stay `planned` until their P03 corpus entries exist; their children are implemented.
+- **Independent fuzz is the standard second check for an import unit**: seeded mutation of header, truncation and body
+  against the original, in a scratch directory, before the unit leaves `implemented`.
