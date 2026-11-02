@@ -572,6 +572,26 @@
       "bytes": 4567,
       "sha256": "5c2f222fca39131420d5afe950bbbbaddac0348b57e0413b6ee8acc81ca8e9c5",
       "seed": 1039
+    },
+    {
+      "id": "identity-scalar-nan",
+      "bytes": 208,
+      "sha256": "5f4d835ded47b429bbc22aff78329e9c041f79b44d20924cb487d9921f22a2d1"
+    },
+    {
+      "id": "array-nan-identity",
+      "bytes": 681,
+      "sha256": "14bad127d7cc7391acc28f6d600b7b629be8e37a9db42b336e06656187c7f4f6"
+    },
+    {
+      "id": "numeric-field-order",
+      "bytes": 545,
+      "sha256": "fd3342386703d7c356f0a9f4142a95804c9619127541d7f95964e596fa8a1c9e"
+    },
+    {
+      "id": "surrogate-section-key",
+      "bytes": 6595,
+      "sha256": "5c371d4c03b4c5fe3f6b970325ec729d34cf70cf13a69af03715e42eecc60a9d"
     }
   ]
 }

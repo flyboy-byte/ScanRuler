@@ -183,9 +183,12 @@ DOCUMENTED (`historyStore.ts`), the rules the Rust history reproduces:
 - **Recording clears redo.** A new step empties `future`.
 - **Groups.** Within one `beginHistoryGroup`/`endHistoryGroup` span, consecutive steps in the same workspace merge
   into the previous entry (earliest `before` wins per key, latest `after` wins), only when there is no redo.
-- **Nesting.** `historyAction` inside another action or while restoring or busy or blocked runs the job without a
-  step; the outermost action records one step. `historyAsync` does the same for async jobs and holds `paused` for
-  its duration, so nested or concurrent async wrappers while paused do not record (the interrupt case, 3.6).
+- **Nesting.** `historyAction` inside another action or while restoring or the main store is busy or the configured hook blocks runs the job without a
+  step; the outermost action records one step. This is not every condition of historyBlocked: participant/editor
+  blocking does not itself suppress historyAction. `historyAsync` checks **only paused or restoring**, ignoring
+  sync depth, store busy and the hook guard; otherwise it holds paused for its duration. Nested/concurrent async
+  wrappers while paused do not record, even if the outer wrapper ends first (the interrupt case,3.6). These
+  distinctions are measured by engine.session.history.record (PR #46).
 - **Epoch.** A module counter `epoch` increments on `clearHistory` and on every undo/redo travel. `record` captures
   the epoch when the job starts and discards its result if the epoch changed ("a source replacement starts another
   document"). This is how a step that finishes after a new scan was opened is dropped.

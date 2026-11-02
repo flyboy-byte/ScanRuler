@@ -103,4 +103,8 @@ vec![
     Case { id: "seed-1039-09", input: include_bytes!("../../../../../docs/port-plan/fixtures/history-record/seed-1039-09.bin") },
     Case { id: "seed-1039-10", input: include_bytes!("../../../../../docs/port-plan/fixtures/history-record/seed-1039-10.bin") },
     Case { id: "seed-1039-11", input: include_bytes!("../../../../../docs/port-plan/fixtures/history-record/seed-1039-11.bin") },
+    Case { id: "identity-scalar-nan", input: include_bytes!("../../../../../docs/port-plan/fixtures/history-record/identity-scalar-nan.bin") },
+    Case { id: "array-nan-identity", input: include_bytes!("../../../../../docs/port-plan/fixtures/history-record/array-nan-identity.bin") },
+    Case { id: "numeric-field-order", input: include_bytes!("../../../../../docs/port-plan/fixtures/history-record/numeric-field-order.bin") },
+    Case { id: "surrogate-section-key", input: include_bytes!("../../../../../docs/port-plan/fixtures/history-record/surrogate-section-key.bin") },
 ]
