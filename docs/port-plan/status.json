@@ -4,7 +4,8 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 22,
-    "planned": 46
+    "planned": 47,
+    "specified": 1
   },
   "native_suites": 18,
   "native_case_identities_including_refusals": 686,
@@ -662,13 +663,36 @@
       ]
     },
     {
+      "id": "io.ply.ascii",
+      "status": "specified",
+      "parent": "io.ply",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Binary branch explicitly unported here; tracked separately under io.ply.binary.",
+        "56 fixed cases, seeds 1/7/99/1039; source values captured before first Rust comparison.",
+        "Browser-Wasm comparisons, public scan commands and full P03 corpus not provided by this unit."
+      ]
+    },
+    {
+      "id": "io.ply.binary",
+      "status": "planned",
+      "parent": "io.ply",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Not implemented. ASCII unit returns an explicit unported error at this call boundary."
+      ]
+    },
+    {
       "id": "io.ply",
       "status": "planned",
       "parent": "P06",
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "Needs the P03 corpus entries for each PLY variant before acceptance; scoped from the 2026-11-02 import-format audit."
+        "Needs the P03 corpus entries for each PLY variant before acceptance; scoped from the 2026-11-02 import-format audit.",
+        "2026-11-02: bounded ASCII/header and binary continuations tracked under io.ply.ascii and io.ply.binary; parent remains planned until both and broader acceptance complete."
       ]
     },
     {

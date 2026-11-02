@@ -1,0 +1,43 @@
+{
+  "id": "io.ply.ascii",
+  "parent": "io.ply",
+  "title": "Port complete ASCII PLY header and body",
+  "gate": "G3",
+  "status": "specified",
+  "depends_on": [
+    "io.stl.dispatch"
+  ],
+  "soft_depends_on": [
+    "P03",
+    "P36"
+  ],
+  "scope": "Complete source parsePLY header and parseAsciiBody, including face fans, property/list skips, cursor and Uint32 conversion, UTF-8 and keep-winding. Binary branch returns an explicit unported boundary.",
+  "acceptance": [
+    "Compare complete independent original/native float32/index/optional-winding bytes plus exact progress and source refusals on all fixed case IDs; exact bytes are fixed before comparison.",
+    "Keep source operation order, repeated elements, numeric-prefix semantics and malformed successful outputs; bounded host errors are distinct from source errors.",
+    "Compile on native/Wasm; browser runtime and scan/session integration remain explicit follow-ups."
+  ],
+  "owner": "Codex",
+  "branch": "codex/port-ply-ascii",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/parsers/ply.ts"
+  ],
+  "symbols": [
+    "parsePLY (header and ASCII branch)",
+    "parseAsciiBody",
+    "indexOfAscii"
+  ],
+  "rust_paths": [
+    "rust/crates/port-io/src/ply_ascii.rs",
+    "rust/crates/port-io/tests/ply_ascii.rs"
+  ],
+  "evidence": [],
+  "open_items": [
+    "Binary branch explicitly unported here; tracked separately under io.ply.binary.",
+    "56 fixed cases, seeds 1/7/99/1039; source values captured before first Rust comparison.",
+    "Browser-Wasm comparisons, public scan commands and full P03 corpus not provided by this unit."
+  ]
+}
