@@ -1,12 +1,13 @@
 # Implementation frontier and next increments
 
-Updated 2026-11-01. This is the remaining execution sequence after the first numerical PR batch, not a declaration that G0/G2 passed. [STATUS.md](STATUS.md) is generated; canonical units own state. PRs #1–#24 are merged (2026-11-02); the workflow and merge protocol are in [ROADMAP-TO-USABLE.md](ROADMAP-TO-USABLE.md). Nothing here merges a PR or authorizes deployment.
+Updated 2026-11-02. This is the remaining execution sequence after the first numerical PR batch, not a declaration that G0/G2 passed. [STATUS.md](STATUS.md) is generated; canonical units own state. PRs #1–#24 are merged (2026-11-02); the workflow and merge protocol are in [ROADMAP-TO-USABLE.md](ROADMAP-TO-USABLE.md). Nothing here merges a PR or authorizes deployment.
 
 ## Existing reusable base
 
 The bounded library units implement STL extraction; exact-bit welding and index-degenerate removal; complete parsed-mesh graph construction; ordered adjacency, directed components, selection remaps and hash-parity shell flags; extents/centroids/normals/orientation; dense solves; TLS/clipped/robust planes, curvature discrimination and full marked-selection plane element geometry/statistics. Reuse these modules rather than creating a second solver or graph pipeline. Every unit still has runtime/integration gaps; helper comparisons do not make `scan.open` or `element.fit` available in Rust.
 
-Original core/all browser and headless schema catalogs are captured and agree. They establish command metadata, not executed operation coverage or all feature variants. All original code/locks remain available for comparison. `port-engine` has typed error envelopes only; session/command execution is absent and the CLI only prints a banner. No Rust UI, persisted session or exact kernel is implemented.
+Original core/all browser and headless schema catalogs are captured and agree. They establish command metadata, not executed operation coverage or all feature variants. All original code/locks remain available for comparison. `port-engine` has typed errors, schema validation and owned registry/admission
+(PR #45,350 exact operation scenarios); session scheduling/history execution is absent and the CLI only prints a banner. No Rust UI, persisted session or exact kernel is implemented.
 
 ## Ordered vertical slice
 

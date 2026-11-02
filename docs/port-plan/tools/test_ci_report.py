@@ -99,7 +99,7 @@ class InventoryTests(unittest.TestCase):
         value = report.status()
         self.assertEqual(value, report.status())
         self.assertEqual(value['native_suites'], 27)
-        self.assertEqual(value['native_case_identities_including_refusals'], 2225)
+        self.assertEqual(value['native_case_identities_including_refusals'], 2365)
 
     def test_roster_rejects_missing_duplicate_or_unknown_suite(self):
         with tempfile.TemporaryDirectory() as directory:

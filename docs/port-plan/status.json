@@ -8,7 +8,7 @@
     "specified": 1
   },
   "native_suites": 27,
-  "native_case_identities_including_refusals": 2225,
+  "native_case_identities_including_refusals": 2365,
   "accepted_units": [],
   "units": [
     {
@@ -468,7 +468,7 @@
       "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/45",
-      "tested_sha": "e97261dafd45161b087c733e76bd1a16e0755a98",
+      "tested_sha": "bdc24fe374eebbd98c2852a22b50f7dbcd68212e",
       "open_items": [
         "No public feature command or scheduler is implemented; successful admission hands body key/coerced input to engine.session.contract for queue/scene/settle/history/timeouts/jobs integration.",
         "Native source comparisons only; wasm32 compile is not actual registry browser runtime.",

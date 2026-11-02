@@ -9,8 +9,9 @@ and refused/coerced input, original empty-oneOf fault and32 seeded scenarios
 (eight per seed1/7/99/1039). This does not implement140 command bodies.
 
 `build-session-registry.mjs` verifies original package/lock identities, archives
-the pin to ignored target, and Vite-bundles the actual registry and its real
-history/activity/schema/store dependencies. No reached behavior stub or original
+the pin into a fresh /tmp directory, and Vite-bundles the actual registry and its real
+history/activity/schema/store dependencies. Only compiled code/maps remain in
+ignored target; temporary source is removed. No reached behavior stub or original
 source edit. Callback fixtures echo independently supplied arguments and identify
 the body key. Each case imports a fresh registry module; calls await its original
 runCommand result. The Rust side compares its explicit admission stage; queue,

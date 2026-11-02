@@ -29,6 +29,9 @@ class RegistryCorpusTests(unittest.TestCase):
    b=(PLAN/'fixtures/registry'/(c['id']+'.bin')).read_bytes();self.assertEqual(len(b),c['bytes']);self.assertEqual(hashlib.sha256(b).hexdigest(),c['sha256']);r=rr.Reader(b);r.value();r.end()
   for name,item in json.loads((PLAN/'evidence/2026-11-02-registry-source-manifest.json').read_text()).items():
    b=(PLAN/'evidence'/name).read_bytes();raw=gzip.decompress(b);self.assertEqual(len(b),item['bytes']);self.assertEqual(hashlib.sha256(b).hexdigest(),item['sha256']);self.assertEqual(len(raw),item['raw_bytes']);self.assertEqual(hashlib.sha256(raw).hexdigest(),item['raw_sha256'])
+  folder=PLAN/'evidence/registry-oracle-2026-11-02';provenance=json.loads((folder/'provenance.json').read_text());source=rr.load(PLAN/'evidence/2026-11-02-registry-source-350.json.gz')
+  for name,key in [('registry.mjs','bundle_sha256'),('registry.mjs.map','source_map_sha256')]:self.assertEqual(hashlib.sha256(gzip.decompress((folder/(name+'.gz')).read_bytes())).hexdigest(),provenance[key])
+  self.assertEqual(source['bundle_sha256'],provenance['bundle_sha256']);self.assertEqual(source['package_lock_sha256'],provenance['package_lock_sha256']);self.assertEqual(provenance['collator']['locale'],'en-US');self.assertEqual(provenance['reference_sha'],source['reference_sha'])
  def test_changed_real_metadata_error_boolean_and_missing_tail_rejected(self):
   d=rr.load(PLAN/'evidence/2026-11-02-registry-source-350.json.gz');b=bytes.fromhex(next(c['hex']for c in d['cases']if c['id']=='unknown-input'))
   for text in ['Probe 🦀','There is no command']:

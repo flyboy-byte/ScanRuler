@@ -37,11 +37,12 @@ sorting uses the observed Node22 ICU alphabet order, compared on all140 names
 and authored/seeded punctuation/digit/prefix cases. No external collation crate.
 
 ORACLE: Vite builds the full pinned registry module and real history/activity/
-schema/store dependencies from a fresh git archive under target. No reached
+schema/store dependencies from a fresh git archive in /tmp, with only compiled artifacts under target. No reached
 behavioral stub. Fixture command bodies only echo input and identify their
 opaque callback; they are not implementations of the catalog's140 features.
 Every original result/error/input mutation/target/catalog/headless state is
 compared. The immutable initial209-case capture predates Rust comparison;
-extended observables and210th refused-coercion regression preserve all prior
+extended observables,210th refused-coercion regression and140 appended true
+admission refusals preserve all prior
 fields/inputs. Raw source captures are compressed losslessly, with original raw
 SHA256/length retained. No result enters the other engine.

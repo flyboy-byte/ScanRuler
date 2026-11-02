@@ -53,6 +53,13 @@ CI results are separated: Rust fast checks, native oracle assertions/raw evidenc
 
 ## Review and next implementation
 
+After owner integration through #44, main4ff736f is the base. Codex now owns
+engine.session.contract per the owner’s handoff; parent stays specified. PR #45
+implements bounded engine.session.registry with350 full operation traces,
+including successful/refused admission for all140 definitions, not140 feature
+bodies. Native inventory27/2365; browser unchanged651. Next session increments
+are owned history recording/travel and deterministic scheduling/body effects.
+
 Latest continuation review order is #42 → #43 → #44: full schema validation,
 original source reach, then Rust comparison-only LLVM reach. Native inventory
 remains26/2015; browser651. Both coverage reports retain measured/unreached/
