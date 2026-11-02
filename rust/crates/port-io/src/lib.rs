@@ -14,3 +14,6 @@ pub mod ply;
 /// Source-faithful ASCII PLY import; binary is an explicit unported boundary.
 pub mod ply_ascii;
 mod ply_binary;
+
+/// Owned file selection, companion identity and byte snapshots; no image codec.
+pub mod scan_files;
