@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-//! Complete ASCII PLY header/body from the pinned parser. Binary decoding is an
-//! explicit missing call boundary, not a silent ASCII fallback. Mesh graph and
-//! session validation remain the caller's responsibility.
+//! Complete ASCII PLY body and shared header from the pinned parser. Use
+//! `crate::ply::read_ply` for all encodings. Mesh graph/session validation is separate.
 use crate::stl_dispatch::{decode_utf8, js_space, parse_float_prefix};
 
 /// Exact source comment declaring that winding must be preserved.
@@ -22,8 +21,16 @@ pub enum PlyError {
     UnsupportedFormat(String),
     /// Source typed-array allocation would receive a negative length.
     InvalidArrayLength(String),
-    /// Recognized binary input reaches the explicitly unported body boundary.
+    /// ASCII-only entrypoint reached a binary encoding; use `ply::read_ply`.
     BinaryNotPorted,
+    /// Binary scalar type not supported by the original.
+    UnsupportedType(String),
+    /// Original cannot skip unknown elements containing lists.
+    CannotSkipElement(String),
+    /// Original DataView scalar read is outside the file.
+    Truncated,
+    /// Body contained no vertex allocation.
+    NoVertices,
     /// Caller byte, vertex, triangle or work budget exceeded.
     ResourceLimit,
     /// Fallible storage reservation failed.
@@ -41,7 +48,15 @@ impl std::fmt::Display for PlyError {
             Self::MissingCoordinates => f.write_str("PLY vertex element is missing x/y/z."),
             Self::UnsupportedFormat(s) => write!(f, "Unsupported PLY format \"{s}\"."),
             Self::InvalidArrayLength(s) => write!(f, "Invalid typed array length: {s}"),
-            Self::BinaryNotPorted => f.write_str("Binary PLY decoding is not ported yet."),
+            Self::BinaryNotPorted => {
+                f.write_str("Binary PLY requires the full read_ply dispatcher.")
+            }
+            Self::UnsupportedType(s) => write!(f, "Unsupported PLY type \"{s}\"."),
+            Self::CannotSkipElement(s) => {
+                write!(f, "Cannot skip PLY element \"{s}\" with list properties.")
+            }
+            Self::Truncated => f.write_str("Offset is outside the bounds of the DataView"),
+            Self::NoVertices => f.write_str("PLY file has no vertices."),
             Self::ResourceLimit => f.write_str("PLY input exceeds the caller's resource budget."),
             Self::Allocation => f.write_str("Could not allocate PLY storage."),
         }
@@ -74,24 +89,34 @@ pub struct PlyMesh {
     pub keep_winding: bool,
 }
 
-struct Property {
-    name: String,
-    list: bool,
+pub(crate) struct Property {
+    pub(crate) name: String,
+    pub(crate) list: bool,
+    pub(crate) scalar_type: String,
+    pub(crate) count_type: String,
+    pub(crate) item_type: String,
 }
-struct Element {
-    name: String,
-    count: f64,
-    props: Vec<Property>,
+pub(crate) struct Element {
+    pub(crate) name: String,
+    pub(crate) count: f64,
+    pub(crate) props: Vec<Property>,
+}
+pub(crate) struct Header {
+    pub(crate) body_start: usize,
+    pub(crate) format: String,
+    pub(crate) keep_winding: bool,
+    pub(crate) elements: Vec<Element>,
+    pub(crate) left: usize,
 }
 
-fn own(s: &str) -> Result<String, PlyError> {
+pub(crate) fn own(s: &str) -> Result<String, PlyError> {
     let mut out = String::new();
     out.try_reserve_exact(s.len())
         .map_err(|_| PlyError::Allocation)?;
     out.push_str(s);
     Ok(out)
 }
-fn append<T>(v: &mut Vec<T>, value: T) -> Result<(), PlyError> {
+pub(crate) fn append<T>(v: &mut Vec<T>, value: T) -> Result<(), PlyError> {
     v.try_reserve(1).map_err(|_| PlyError::Allocation)?;
     v.push(value);
     Ok(())
@@ -127,14 +152,14 @@ fn token<'a>(tokens: &[&'a str], cursor: f64) -> &'a str {
         "undefined"
     }
 }
-fn uint32(v: f64) -> u32 {
+pub(crate) fn uint32(v: f64) -> u32 {
     if v.is_finite() {
         v.trunc().rem_euclid(4_294_967_296.0) as u32
     } else {
         0
     }
 }
-fn work(left: &mut usize) -> Result<(), PlyError> {
+pub(crate) fn work(left: &mut usize) -> Result<(), PlyError> {
     *left = left.checked_sub(1).ok_or(PlyError::ResourceLimit)?;
     Ok(())
 }
@@ -143,12 +168,21 @@ fn work(left: &mut usize) -> Result<(), PlyError> {
 ///
 /// Numeric prefixes, nonfinite/missing coordinates, invalid indices and repeated
 /// declarations preserve parser output; downstream graph validation is separate.
-/// Binary is explicitly unported. No partial mesh escapes an error.
+/// Binary is refused by this ASCII-only entrypoint; use `ply::read_ply` instead.
+/// No partial mesh escapes an error.
 pub fn read_ply_ascii(
     bytes: &[u8],
     limits: PlyLimits,
-    mut on_progress: impl FnMut(&str),
+    on_progress: impl FnMut(&str),
 ) -> Result<PlyMesh, PlyError> {
+    let header = read_header(bytes, limits)?;
+    if header.format != "ascii" {
+        return Err(PlyError::BinaryNotPorted);
+    }
+    ascii_body(bytes, header, limits, on_progress)
+}
+
+pub(crate) fn read_header(bytes: &[u8], limits: PlyLimits) -> Result<Header, PlyError> {
     if bytes.len() > limits.max_bytes {
         return Err(PlyError::ResourceLimit);
     }
@@ -200,6 +234,9 @@ pub fn read_ply_ascii(
                         Property {
                             name: own(part(if list { 4 } else { 2 }))?,
                             list,
+                            scalar_type: own(part(1))?,
+                            count_type: own(part(2))?,
+                            item_type: own(part(3))?,
                         },
                     )?;
                 }
@@ -217,15 +254,34 @@ pub fn read_ply_ascii(
     {
         return Err(PlyError::NoFaces);
     }
-    if matches!(
+    if !matches!(
         format.as_str(),
-        "binary_little_endian" | "binary_big_endian"
+        "ascii" | "binary_little_endian" | "binary_big_endian"
     ) {
-        return Err(PlyError::BinaryNotPorted);
-    }
-    if format != "ascii" {
         return Err(PlyError::UnsupportedFormat(format));
     }
+    Ok(Header {
+        body_start,
+        format,
+        keep_winding,
+        elements,
+        left,
+    })
+}
+
+pub(crate) fn ascii_body(
+    bytes: &[u8],
+    header: Header,
+    limits: PlyLimits,
+    mut on_progress: impl FnMut(&str),
+) -> Result<PlyMesh, PlyError> {
+    let Header {
+        body_start,
+        keep_winding,
+        elements,
+        mut left,
+        ..
+    } = header;
     on_progress("Reading PLY…");
     let body = decode(&bytes[body_start.min(bytes.len())..])?;
     let tokens = words(&body)?;
@@ -323,7 +379,7 @@ pub fn read_ply_ascii(
         }
     }
     Ok(PlyMesh {
-        positions: positions.ok_or(PlyError::NoVertex)?,
+        positions: positions.ok_or(PlyError::NoVertices)?,
         indices,
         keep_winding,
     })

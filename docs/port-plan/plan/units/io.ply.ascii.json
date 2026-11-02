@@ -110,13 +110,14 @@
     }
   ],
   "open_items": [
-    "Binary body explicitly unported at the recognized encoding boundary; io.ply.binary owns the continuation. Parent io.ply remains planned.",
+    "Binary continuation is implemented separately in io.ply.binary; the ASCII-only convenience entrypoint retains a distinct binary boundary, and ply::read_ply dispatches all encodings.",
     "Browser-Wasm runtime comparisons and public scan/session/history integration remain unimplemented for this parser.",
     "Caller byte/vertex/triangle/work limits and fallible allocation are explicit host guards; huge hostile workloads are not executed in the original oracle.",
     "Full P03 licensed/adversarial corpus and acceptance gates remain open; no accepted state or end-to-end import claim."
   ],
   "resolved_items": [
     "2026-11-02: 60 exact complete original/native parser comparisons (46 outputs / 14 source refusals), seeds 1/7/99/1039; no input/seed/tolerance reductions.",
-    "Existing source-compatible UTF-8/whitespace/parseFloat helpers reused from STL with visibility-only changes; no numerical formulas altered."
+    "Existing source-compatible UTF-8/whitespace/parseFloat helpers reused from STL with visibility-only changes; no numerical formulas altered.",
+    "2026-11-02: shared header factored under io.ply.binary; all 60 existing cases now compare full dispatcher values and progress as well as the ASCII entrypoint. Original implementation evidence remains immutable."
   ]
 }

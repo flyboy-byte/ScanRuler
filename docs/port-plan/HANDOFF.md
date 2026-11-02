@@ -54,9 +54,11 @@ CI results are separated: Rust fast checks, native oracle assertions/raw evidenc
 ## Review and next implementation
 
 PR #27 adds complete ASCII PLY header/body decoding under `io.ply.ascii`, with
-60 exact independent cases. Binary PLY returns an explicit unported boundary and
-is tracked under `io.ply.binary`; parent `io.ply` remains planned. This parser is
-not yet wired into engine commands or browser-Wasm runtime comparisons.
+60 exact independent cases. PR #28 completes both binary bodies under
+`io.ply.binary` (168 cases) and adds `ply::read_ply` for all encodings. Existing
+ASCII comparisons now check that full dispatcher as well. Parent `io.ply` remains
+planned for broader acceptance; engine commands and real browser-Wasm PLY runtime
+comparisons remain open.
 
 Baseline reproducibility tooling and a complete local observation were added in
 PR #26; see [the retained results](evidence/baseline-2026-11-02/README.md). MCP,

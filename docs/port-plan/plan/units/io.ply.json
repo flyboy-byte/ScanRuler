@@ -27,7 +27,7 @@
   "rust_paths": [],
   "evidence": [],
   "open_items": [
-    "Needs the P03 corpus entries for each PLY variant before acceptance; scoped from the 2026-11-02 import-format audit.",
-    "2026-11-02: bounded ASCII/header and binary continuations tracked under io.ply.ascii and io.ply.binary; parent remains planned until both and broader acceptance complete."
+    "Both source parser bodies and full dispatcher implemented in io.ply.ascii/io.ply.binary, with independent native evidence; this umbrella remains planned for broader native/browser import acceptance.",
+    "Real browser-Wasm parsing, public scan/session integration and P03 corpus acceptance remain open."
   ]
 }

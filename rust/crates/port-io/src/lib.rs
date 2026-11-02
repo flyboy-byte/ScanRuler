@@ -5,5 +5,8 @@
 pub mod stl;
 pub mod stl_dispatch;
 
+/// All original PLY encodings through one dispatcher.
+pub mod ply;
 /// Source-faithful ASCII PLY import; binary is an explicit unported boundary.
 pub mod ply_ascii;
+mod ply_binary;

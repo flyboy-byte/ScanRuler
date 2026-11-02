@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust binary PLY import** (2026-11-02): complete both byte orders and the full PLY dispatcher, with 168 exact source comparisons including every scalar alias, two-pass faces, IEEE edge cases and real progress boundaries. Keep all existing ASCII comparisons.
+
 - **Rust ASCII PLY import** (2026-11-02): port complete header and ASCII mesh decoding with winding preservation, face fans and source numeric/property behavior; compare 60 independent cases exactly. Binary PLY and session integration remain open.
 
 - **Original baseline inventory** (2026-11-02): retain complete local/hosted reference observations, explain every excluded test, verify six repeatable generated fixtures and reject missing evidence without hiding original failures.

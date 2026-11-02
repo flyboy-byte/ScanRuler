@@ -213,6 +213,20 @@
         "input.bin",
         "original.bin",
         "original.progress-or-error.txt",
+        "rust.progress-or-error.txt",
+        "dispatcher.bin",
+        "dispatcher.progress-or-error.txt"
+      ]
+    },
+    {
+      "unit": "io.ply.binary",
+      "test": "pinned_ply_binary_comparison",
+      "directory": "ply-binary-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.progress-or-error.txt",
         "rust.progress-or-error.txt"
       ]
     }

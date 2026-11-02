@@ -3,7 +3,8 @@
 Updated 2026-11-02 UTC. PRs #1–#25 are merged into `main` (`551b3a9`). The next
 stack is [#26](https://github.com/flyboy-byte/ScanRuler/pull/26) (baseline evidence,
 base `main`), then [#27](https://github.com/flyboy-byte/ScanRuler/pull/27) (ASCII PLY,
-base #26). No new PR has been merged by this session. Read their live checks;
+base #26), then [#28](https://github.com/flyboy-byte/ScanRuler/pull/28) (binary PLY
+and full dispatcher, base #27). No new PR has been merged by this session. Read their live checks;
 local baseline unit failures are preserved in `evidence/baseline-2026-11-02/`.
 Current implementation state is generated in [STATUS.md](STATUS.md).
 
