@@ -38,6 +38,6 @@ Acceptance tests that need `ballbar.stl`, `side bracket left.stl` / `block-mariu
 - Projects open by their own `schemaVersion`, not the app version; changing the project format is a major-version matter.
 - Contributions need the CLA (`CONTRIBUTING.md`).
 
-## Rust port (in progress, branch `port/rust-baseline`)
+## Rust port (in progress; `main` is the trunk)
 
-The fork is being ported to pure Rust (kernels included). Start with `docs/port-plan/HANDOFF.md`, then `PURE-RUST.md` and `PLAN.md`. Baseline is frozen at `2cd89c6` (app 0.9.2); the TS app stays runnable as the comparison oracle and Rust work goes under `rust/`. Per-unit status lives in `docs/port-plan/plan/units/*.json` (the backlog is generated). Check with `python docs/port-plan/tools/port_plan.py --root docs/port-plan check` and `... selftest`. The port is AGPL-derived, not clean-room. Don't message Stefan, sign the CLA, push, or deploy without Logan saying so.
+The fork is being ported to pure Rust (kernels included). Start with `docs/port-plan/HANDOFF.md`, then `AGENT-OPERATIONS.md` (lanes, claims, merge protocol), `PURE-RUST.md` and `PLAN.md`. Library ports of STL, mesh graph and plane fitting are merged (PRs #1–#24) but no unit is accepted and there is no Rust engine, UI or project reader yet. Baseline is frozen at `2cd89c6` (app 0.9.2); the TS app stays runnable as the comparison oracle and Rust work goes under `rust/`. Per-unit status lives in `docs/port-plan/plan/units/*.json` (the backlog is generated). Check with `python docs/port-plan/tools/port_plan.py --root docs/port-plan check` and `... selftest`. The port is AGPL-derived, not clean-room. Don't message Stefan, sign the CLA, push to `main`, merge, or deploy without Logan saying so.

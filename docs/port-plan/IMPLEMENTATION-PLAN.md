@@ -1,6 +1,6 @@
 # Implementation frontier and next increments
 
-Updated 2026-11-01. This is the remaining execution sequence after the first numerical PR batch, not a declaration that G0/G2 passed. [STATUS.md](STATUS.md) is generated; canonical units own state. Review/merge PRs #1–#21 in numerical order, then #22's CI/docs integration. Nothing here merges a PR or authorizes deployment.
+Updated 2026-11-01. This is the remaining execution sequence after the first numerical PR batch, not a declaration that G0/G2 passed. [STATUS.md](STATUS.md) is generated; canonical units own state. PRs #1–#24 are merged (2026-11-02); lane assignment and the merge protocol for the next wave are in [AGENT-OPERATIONS.md](AGENT-OPERATIONS.md). Nothing here merges a PR or authorizes deployment.
 
 ## Existing reusable base
 

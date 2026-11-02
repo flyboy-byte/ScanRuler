@@ -12,7 +12,7 @@ An AGPL port can proceed while the licensing enquiry is pending. Source-informed
 
 ## Read order
 
-1. This file for authorization, status and immediate work.
+1. This file for authorization, status and immediate work, then [AGENT-OPERATIONS.md](AGENT-OPERATIONS.md) for lanes, claims and the merge protocol when several agents work at once.
 2. `PURE-RUST.md`, then `PLAN.md`, for the confirmed endpoint, milestones, critical path and release gates.
 3. `ARCHITECTURE.md` for runtime boundaries and unresolved backend decisions.
 4. `VALIDATION.md` for numerical, file, UI, protocol and performance acceptance.
@@ -51,7 +51,7 @@ CI results are separated: Rust fast checks, native oracle assertions/raw evidenc
 
 ## Review and next implementation
 
-The owner will audit PRs from #1 upward. #22 is the CI/status/docs integration checkpoint after #1–#21, combining the numerical chain with the independent catalog/documentation histories. No PR is merged by this session; no deploy, legal signature or upstream contact is authorized by this plan. Existing user authorization covers fork PR submissions, not those other actions.
+PRs #1–#24 were merged into `main` in order on 2026-11-02 (merge commits, `main` at `0940fd2`, hosted CI green; the only red checks on the way were the known `reNetworkCreases` wall-time test). No PR is open. New work follows [AGENT-OPERATIONS.md](AGENT-OPERATIONS.md): branch from `main`, claim with a draft PR, no stacks. No deploy, legal signature or upstream contact is authorized by this plan. Existing user authorization covers fork PR submissions and, when Logan asks for it, integration per AGENT-OPERATIONS section 5.
 
 The marked-plane element continuation is now implemented under fit.plane.selection; public command/history integration is still absent. Prioritize reproducible reference/fixture contracts, the remaining P05 session/error/history contract and wider browser-Wasm coverage, then a bounded engine import/plane command slice. Use the implementation plan's concrete exit conditions. Keep the kernel/purity capability spike parallel and explicit; more helper ports cannot substitute for command/session or kernel evidence.
 
