@@ -45,7 +45,8 @@
         "harness.oracle.gate",
         "harness.wasm.runtime",
         "harness.wasm.ply",
-        "harness.wasm.obj"
+        "harness.wasm.obj",
+        "harness.wasm.files"
       ],
       "touches": "rust/xtask, ci/, port-wasm-probe (one agent at a time)"
     },

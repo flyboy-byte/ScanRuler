@@ -4270,6 +4270,53 @@
       ]
     },
     {
+      "id": "harness.wasm.files",
+      "parent": "P36",
+      "title": "Compare complete companion file states in actual Chrome Wasm",
+      "gate": "G3",
+      "status": "specified",
+      "depends_on": [
+        "harness.wasm.obj",
+        "io.obj.companions.files"
+      ],
+      "soft_depends_on": [
+        "P03",
+        "P37"
+      ],
+      "scope": "Bounded authored-input file-state codec, preserving all old564 browser comparisons while adding all87 full file-classifier/association/byte states.",
+      "acceptance": [
+        "Actual Chrome runs all87 authored file-state inputs independently; full FLS1 output/state bytes match original and native exactly.",
+        "Preserve all old564 cases, budgets and historical v2/v3 proofs; require live v4 roster651 cases.",
+        "Host/codec failures clear stale output and cannot become source outcomes; complete raw failure/proof retention."
+      ],
+      "owner": "Codex",
+      "branch": "codex/wasm-companion-files",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/formats.ts",
+        "src/app/scanFiles.ts"
+      ],
+      "symbols": [
+        "extensionOf",
+        "isModelFile",
+        "isTextureFile",
+        "bundleFiles",
+        "companionsOf",
+        "companionBytes"
+      ],
+      "rust_paths": [
+        "rust/crates/port-wasm-probe/src/lib.rs",
+        "rust/crates/port-wasm-probe/src/files.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Preregistered in oracle/OBJ-FILES-WASM.md; actual runtime implementation/evidence pending."
+      ],
+      "resolved_items": []
+    },
+    {
       "id": "harness.wasm.obj",
       "parent": "P36",
       "title": "Compare complete OBJ parser and texture helper states in real browser Wasm",
