@@ -1,0 +1,3 @@
+# Full mesh graph comparison — 2026-11-01
+
+Before implementation: port complete buildGraph.ts::buildMeshGraph using already-ported welding, filtering, adjacency, normals/orientation and extent. Preserve validation order/error messages, progress order, and adjacency computed before optional winding reversal. Compare complete owned graph arrays/counts/bbox diagonal and progress or error text exactly against an independently executed full frozen-source pipeline. Fixed seeds 1/7/99/1039; soup/indexed, keepWinding, duplicates/degenerates and competing malformed inputs. No tolerance or source-result-fed Rust execution. Explicit Rust storage budgets/ownership supplement source contracts; no session/command/application or browser-Wasm acceptance claim.
