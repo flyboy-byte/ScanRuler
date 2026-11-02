@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust mesh centroids** (2026-11-01): port surface-area sums, area/volume centroids and the original two-origin closure heuristic, with twenty-three independent value/state comparisons and updated partial-port orientation docs.
+
 - **Rust mesh bounds** (2026-11-01): port complete prefix/indexed extents and center/radius bounds, reuse shared pure-Rust numeric primitives, and recompare all affected fitting/orientation callers.
 
 - **Rust used-point clipping** (2026-11-01): port shared iterative clipping and clipped-plane statistics, preserving used-point identities, failed-refit continuations and source guards, with nineteen independent value/state comparisons.

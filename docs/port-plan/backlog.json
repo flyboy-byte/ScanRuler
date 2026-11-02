@@ -2698,6 +2698,80 @@
       ]
     },
     {
+      "id": "geometry.centroid",
+      "parent": "P06",
+      "title": "Port surface area and surface/volume centroid computation",
+      "gate": "G2",
+      "status": "implemented",
+      "depends_on": [
+        "geometry.bounds",
+        "geometry.normals.orient"
+      ],
+      "soft_depends_on": [
+        "P36"
+      ],
+      "scope": "Complete triangleAreaSum/meshCentroid bodies with original two-origin closure heuristic, reusing norm, indexed extents and tetraVolume6.",
+      "acceptance": [
+        "Independent original/native/browser-Wasm area/centroid/volume values and exact closure/volume-presence flags on closed/open/degenerate cases.",
+        "Preserve all arithmetic/origin/threshold order and conditional output meaning."
+      ],
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/geometry/centroid.ts"
+      ],
+      "symbols": [
+        "triangleAreaSum",
+        "meshCentroid",
+        "tetraVolume (using existing tetraVolume6)"
+      ],
+      "rust_paths": [
+        "rust/crates/port-core/src/centroid.rs",
+        "rust/crates/port-core/tests/centroid.rs"
+      ],
+      "owner": "Codex",
+      "branch": "codex/port-mesh-centroid",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/11",
+      "implemented_commit": "1473fe4a5a30c34b091b22ad86509d21c685c5d1",
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-01-centroid-cases.csv",
+          "candidate_sha": "1473fe4a5a30c34b091b22ad86509d21c685c5d1",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "collapsed",
+            "empty",
+            "isolated",
+            "open_tetra_1",
+            "open_tetra_2",
+            "open_tetra_3",
+            "seed_1",
+            "seed_1039",
+            "seed_7",
+            "seed_99",
+            "sheet",
+            "tetra_0.001_0_false",
+            "tetra_0.001_0_true",
+            "tetra_0.001_1039_false",
+            "tetra_0.001_1039_true",
+            "tetra_10000_0_false",
+            "tetra_10000_0_true",
+            "tetra_10000_1039_false",
+            "tetra_10000_1039_true",
+            "tetra_1_0_false",
+            "tetra_1_0_true",
+            "tetra_1_1039_false",
+            "tetra_1_1039_true"
+          ]
+        }
+      ],
+      "open_items": [
+        "Browser-Wasm runtime, closure-threshold-adjacent/nonfinite/extreme corpus and general P36 ratchet remain open.",
+        "G0/P05 and engine/session integration remain incomplete; this is not a mesh topology/closure proof.",
+        "Incomplete triangle indices are explicit Rust input-domain errors; partial JS triangle tails are not compared."
+      ]
+    },
+    {
       "id": "geometry.normals.compute",
       "parent": "P06",
       "title": "Port area-weighted per-vertex normal computation",
@@ -2753,8 +2827,10 @@
       "open_items": [
         "Browser-Wasm runtime and generic P36 ratchet remain open; native finite fixture corpus and wasm32 compilation only.",
         "Non-finite/extreme overflow geometry corpus is not yet verified; do not claim all numeric inputs accepted.",
-        "Outward orientation and its centroid/extent dependencies remain unported.",
         "Shared P05/G0 contracts and session/engine integration remain open."
+      ],
+      "resolved_items": [
+        "2026-11-01: orientation and minimal volume/extent dependencies implemented separately as geometry.normals.orient; no browser-Wasm acceptance implied."
       ]
     },
     {

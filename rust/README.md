@@ -6,7 +6,7 @@ and [the plan](../docs/port-plan/HANDOFF.md).
 
 | Crate | Role | Contents today |
 |-------|------|----------------|
-| `port-core` | Pure core: no DOM, files or global state | Units, JSON-safe ids, rigid transforms, the reference pin |
+| `port-core` | Pure core: no DOM, files or global state | Welding, bounds/centroids, normals/orientation, dense solves, TLS/clipped planes; initial units/IDs/transforms and pin |
 | `port-engine` | Session, commands, jobs, history | Empty |
 | `port-io` | Formats and the `.scanruler` project reader/writer | STL binary/ASCII dispatch and triangle extraction (P06); no welding/session loader |
 | `port-cli` | `scanruler-rs`, native front end for differential runs | Prints a banner |
@@ -64,3 +64,11 @@ This second native suite compares 82 cases (69 successful outputs, 13 original
 refusals), including Unicode whitespace, malformed UTF-8, IEEE numeric boundaries
 and the 512-byte prefix cutoff. Its raw evidence is under
 `rust/target/stl-dispatch-diff/` and uploaded separately in CI.
+
+## Geometry and fitting audit
+
+Current operations and exact test/evidence identities live in the canonical units
+under docs/port-plan/plan/units. Start with the [ordered audit queue](../docs/port-plan/AUDIT-QUEUE.md)
+for parent-first PR review, source symbols, reports, known gaps and complete run commands.
+These are partial library ports: port-engine is still empty, the CLI is a banner,
+and no Rust UI or browser-Wasm runtime parity is claimed. No child unit is accepted.
