@@ -18,6 +18,7 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 | 11 | #12 (base #11 branch) | PRNG, median consensus and robust plane fit | evidence/2026-11-01-ransac.md; 50 draw/value/state cases |
 | 12 | #15 (base #12 branch) | Discovery-guarded native oracle gate | evidence/2026-11-01-native-oracle-gate.md |
 | 13 | #16 (base #15 branch) | Curved-fit versus plane gate and residual RMS | evidence/2026-11-01-curvature-gate.md; 80 exact value/state cases |
+| 14 | #17 (base #16 branch) | Ordered vertex adjacency | evidence/2026-11-01-adjacency.md; 56 complete-array cases |
 | independent | [#13](https://github.com/flyboy-byte/ScanRuler/pull/13) | Frozen original headless catalog | Actual built-engine core/all evidence; hosted capture passed |
 | after #13 | [#14](https://github.com/flyboy-byte/ScanRuler/pull/14) | Browser catalog capture | Actual original Chrome core/all captured; evidence and immutable schema guards on #14 |
 
@@ -47,3 +48,5 @@ Hosted Rust gate observed passing: #11 run 41350575050. Confirmed #6 original-ap
 Submission checkpoint 2026-11-01: #13 current-head checks all passed (original-app CI 41354547773 and headless capture 41354547806). #14 actual Chrome capture passed run 41356099428 after real original MCP pairing; snapshots committed and current recapture pending. #15 hosted Rust gate passed 41356040853 (all eleven native suites); original-app CI still running at this checkpoint. #12 Rust gate passed 41351565751; its separate original-app failure is confirmed reNetworkCreases.test.ts:209, 1872.05 ms vs 1500 ms (41351565764). #9 has the same failure at 1536.11 ms (41349387418). No thresholds changed and no merges performed.
 
 Follow-on checkpoint: #14 final immutable browser recapture passed 41356255484; its separate original-app test fails the same reNetworkCreases.test.ts:209 threshold (1553.30 ms vs 1500 ms; 41356255460). #15 current-head Rust gate passed 41356313339 and complete original-app CI passed 41356313288. #16 adds 80 exact curvature/RMS cases to the discovery roster (twelve suites, 352 identities including refusals). No original source threshold changes.
+
+#16 hosted Rust gate passed run 41365187936 (twelve source suites); original-app CI was pending at the checkpoint. #17 adds complete mesh adjacency, 56 exact array cases and a weld-to-adjacency integration check; local thirteen-suite gate passes, 408 case identities including refusals. Original-app CI must be checked independently.

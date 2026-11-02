@@ -2868,6 +2868,110 @@
       ]
     },
     {
+      "id": "geometry.adjacency",
+      "parent": "P06",
+      "title": "Port complete ordered vertex-to-vertex mesh adjacency",
+      "gate": "G2",
+      "status": "implemented",
+      "depends_on": [],
+      "soft_depends_on": [
+        "P05",
+        "P36",
+        "io.mesh.weld"
+      ],
+      "scope": "Complete buildAdjacency CSR arrays, duplicates and append order, with bounded host allocation. No region traversal or source/render mapping.",
+      "acceptance": [
+        "Independent original/native/browser-Wasm offsets and ordered neighbor lists compare exactly on fixed/seeded/topology-edge fixtures.",
+        "Malformed indices/triangles and caller/capacity budgets fail safely before allocation; weld output composes with the graph."
+      ],
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/geometry/adjacency.ts"
+      ],
+      "symbols": [
+        "buildAdjacency"
+      ],
+      "rust_paths": [
+        "rust/crates/port-core/src/adjacency.rs",
+        "rust/crates/port-core/tests/adjacency.rs"
+      ],
+      "owner": "Codex",
+      "branch": "codex/port-mesh-adjacency",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/17",
+      "implemented_commit": "74dd9266ef7ebf147496e4c8297772b42bee8dcb",
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-01-adjacency-cases.csv",
+          "candidate_sha": "74dd9266ef7ebf147496e4c8297772b42bee8dcb",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "disconnected_reversed",
+            "duplicate",
+            "empty",
+            "isolated",
+            "nonmanifold",
+            "repeated_corners",
+            "seed_1039_v127_t0",
+            "seed_1039_v127_t1",
+            "seed_1039_v127_t31",
+            "seed_1039_v17_t0",
+            "seed_1039_v17_t1",
+            "seed_1039_v17_t31",
+            "seed_1039_v1_t0",
+            "seed_1039_v1_t1",
+            "seed_1039_v1_t31",
+            "seed_1039_v2_t0",
+            "seed_1039_v2_t1",
+            "seed_1039_v2_t31",
+            "seed_1_v127_t0",
+            "seed_1_v127_t1",
+            "seed_1_v127_t31",
+            "seed_1_v17_t0",
+            "seed_1_v17_t1",
+            "seed_1_v17_t31",
+            "seed_1_v1_t0",
+            "seed_1_v1_t1",
+            "seed_1_v1_t31",
+            "seed_1_v2_t0",
+            "seed_1_v2_t1",
+            "seed_1_v2_t31",
+            "seed_7_v127_t0",
+            "seed_7_v127_t1",
+            "seed_7_v127_t31",
+            "seed_7_v17_t0",
+            "seed_7_v17_t1",
+            "seed_7_v17_t31",
+            "seed_7_v1_t0",
+            "seed_7_v1_t1",
+            "seed_7_v1_t31",
+            "seed_7_v2_t0",
+            "seed_7_v2_t1",
+            "seed_7_v2_t31",
+            "seed_99_v127_t0",
+            "seed_99_v127_t1",
+            "seed_99_v127_t31",
+            "seed_99_v17_t0",
+            "seed_99_v17_t1",
+            "seed_99_v17_t31",
+            "seed_99_v1_t0",
+            "seed_99_v1_t1",
+            "seed_99_v1_t31",
+            "seed_99_v2_t0",
+            "seed_99_v2_t1",
+            "seed_99_v2_t31",
+            "shared_edge",
+            "triangle"
+          ]
+        }
+      ],
+      "open_items": [
+        "Browser-Wasm runtime, G0/P05 and generic P36 exact-base ratchet remain open.",
+        "Region traversal, source/render mapping, spatial queries and engine command/session integration are not implemented by this unit.",
+        "Rust rejects budgets/offset counts above u32 capacity; it does not emulate original malformed/out-of-range typed-array writes or oversized wrapping graphs."
+      ]
+    },
+    {
       "id": "geometry.bounds",
       "parent": "P06",
       "title": "Port complete extents and mesh bounds",
