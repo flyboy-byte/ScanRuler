@@ -1,0 +1,30 @@
+{
+  "id": "harness.coverage.rust",
+  "parent": "P36",
+  "title": "Measure which lines of the Rust port the comparison cases execute",
+  "gate": "G3",
+  "status": "planned",
+  "depends_on": [
+    "harness.oracle.gate"
+  ],
+  "soft_depends_on": [
+    "P37"
+  ],
+  "scope": "Use LLVM source-based coverage on the Rust test run that executes original-versus-Rust cases; report lines and branches of each ported function that no comparison case runs.",
+  "acceptance": [
+    "Report is reproducible with one command on the pinned toolchain and lists unexecuted lines per ported unit.",
+    "Any unexecuted line in a unit marked implemented is an open item or has a recorded reason."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "symbols": [],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Check that the Arch rust package provides llvm-tools or a source-coverage path; no rustup. Tooling only, no product dependency."
+  ]
+}
