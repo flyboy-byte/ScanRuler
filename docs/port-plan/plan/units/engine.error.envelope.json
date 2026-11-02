@@ -1,0 +1,42 @@
+{
+  "id": "engine.error.envelope",
+  "parent": "P05",
+  "title": "Port typed command error envelope and lossless JSON messages",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "baseline.reproducibility"
+  ],
+  "soft_depends_on": [
+    "engine.session.contract"
+  ],
+  "scope": "Complete original typed CommandError constructor/toJSON and initial code/name/message/display observations, preserving UTF-16 and exact well-formed JSON; no registry/coercion/session implementation.",
+  "acceptance": [
+    "All twelve codes and fixed control/Unicode/lone-surrogate/seeded messages compare complete independent original/native field and JSON bytes, not thrown/error status.",
+    "Owned bounded fallible message storage and JSON output; native/Wasm compile and host guards.",
+    "Explicitly retain missing coercion, registry normalization, session/job/history and runtime integration scope."
+  ],
+  "owner": "Codex",
+  "branch": "codex/engine-error-envelope",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/types.ts"
+  ],
+  "symbols": [
+    "CommandError.constructor",
+    "CommandError.toJSON",
+    "CommandErrorCode"
+  ],
+  "rust_paths": [
+    "rust/crates/port-engine/src/error.rs",
+    "rust/crates/port-engine/tests/error_envelope.rs"
+  ],
+  "evidence": [],
+  "open_items": [
+    "52 original observations captured before implementation; exact complete ERR1 field frames, seeds 1/7/99/1039.",
+    "Registry asCommandError, errorMessage arbitrary-value coercion, stacks/prototypes and mutable Error objects are not ported by this bounded envelope.",
+    "Actual browser runtime and public session/commands/history integration remain open."
+  ]
+}

@@ -4,7 +4,8 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 25,
-    "planned": 46
+    "planned": 46,
+    "specified": 1
   },
   "native_suites": 20,
   "native_case_identities_including_refusals": 914,
@@ -407,6 +408,18 @@
       "open_items": [
         "Hosted new lane outcomes pending at the local evidence checkpoint; current PR checks must be inspected.",
         "Browser-Wasm runtime, exact-base numerical ratchet and Rust replacement for Python bootstrap remain open."
+      ]
+    },
+    {
+      "id": "engine.error.envelope",
+      "status": "specified",
+      "parent": "P05",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "52 original observations captured before implementation; exact complete ERR1 field frames, seeds 1/7/99/1039.",
+        "Registry asCommandError, errorMessage arbitrary-value coercion, stacks/prototypes and mutable Error objects are not ported by this bounded envelope.",
+        "Actual browser runtime and public session/commands/history integration remain open."
       ]
     },
     {
