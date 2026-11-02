@@ -1,0 +1,111 @@
+{
+  "id": "geometry.selection",
+  "parent": "P06",
+  "title": "Port ordered mesh selection filtering and remapping",
+  "gate": "G2",
+  "status": "implemented",
+  "depends_on": [],
+  "soft_depends_on": [
+    "P05",
+    "P36"
+  ],
+  "scope": "Complete trianglesWithin and remapVertices, retaining order/duplicates and original permissive out-of-range/tail filtering. No edit/undo/project command caller.",
+  "acceptance": [
+    "Independent original/native/browser-Wasm complete ordered outputs compare exactly on fixed/seeded marks, tails and signed maps.",
+    "Fallible storage and explicit vertex/output budgets fail safely with no partial selection."
+  ],
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/geometry/region.ts",
+    "src/core/geometry/remap.ts"
+  ],
+  "symbols": [
+    "trianglesWithin",
+    "remapVertices"
+  ],
+  "rust_paths": [
+    "rust/crates/port-core/src/mesh_selection.rs",
+    "rust/crates/port-core/tests/mesh_selection.rs"
+  ],
+  "owner": "Codex",
+  "branch": "codex/port-mesh-selection",
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/19",
+  "implemented_commit": "3f56d3ee7683b5700446300382a87022cab558bc",
+  "evidence": [
+    {
+      "kind": "differential",
+      "location": "evidence/2026-11-01-mesh-selection-cases.csv",
+      "candidate_sha": "3f56d3ee7683b5700446300382a87022cab558bc",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "case_ids": [
+        "remap_all_removed",
+        "remap_duplicates",
+        "remap_empty",
+        "remap_empty_ids",
+        "remap_empty_map",
+        "remap_mixed",
+        "remap_seed_1039_n0_m0",
+        "remap_seed_1039_n0_m31",
+        "remap_seed_1039_n17_m0",
+        "remap_seed_1039_n17_m31",
+        "remap_seed_1039_n1_m0",
+        "remap_seed_1039_n1_m31",
+        "remap_seed_1_n0_m0",
+        "remap_seed_1_n0_m31",
+        "remap_seed_1_n17_m0",
+        "remap_seed_1_n17_m31",
+        "remap_seed_1_n1_m0",
+        "remap_seed_1_n1_m31",
+        "remap_seed_7_n0_m0",
+        "remap_seed_7_n0_m31",
+        "remap_seed_7_n17_m0",
+        "remap_seed_7_n17_m31",
+        "remap_seed_7_n1_m0",
+        "remap_seed_7_n1_m31",
+        "remap_seed_99_n0_m0",
+        "remap_seed_99_n0_m31",
+        "remap_seed_99_n17_m0",
+        "remap_seed_99_n17_m31",
+        "remap_seed_99_n1_m0",
+        "remap_seed_99_n1_m31",
+        "triangles_all_marked",
+        "triangles_empty",
+        "triangles_none_marked",
+        "triangles_out_of_range",
+        "triangles_partial_mark",
+        "triangles_repeated",
+        "triangles_seed_1039_n0_m0",
+        "triangles_seed_1039_n0_m31",
+        "triangles_seed_1039_n17_m0",
+        "triangles_seed_1039_n17_m31",
+        "triangles_seed_1039_n1_m0",
+        "triangles_seed_1039_n1_m31",
+        "triangles_seed_1_n0_m0",
+        "triangles_seed_1_n0_m31",
+        "triangles_seed_1_n17_m0",
+        "triangles_seed_1_n17_m31",
+        "triangles_seed_1_n1_m0",
+        "triangles_seed_1_n1_m31",
+        "triangles_seed_7_n0_m0",
+        "triangles_seed_7_n0_m31",
+        "triangles_seed_7_n17_m0",
+        "triangles_seed_7_n17_m31",
+        "triangles_seed_7_n1_m0",
+        "triangles_seed_7_n1_m31",
+        "triangles_seed_99_n0_m0",
+        "triangles_seed_99_n0_m31",
+        "triangles_seed_99_n17_m0",
+        "triangles_seed_99_n17_m31",
+        "triangles_seed_99_n1_m0",
+        "triangles_seed_99_n1_m31",
+        "triangles_tail_one",
+        "triangles_tail_two"
+      ]
+    }
+  ],
+  "open_items": [
+    "Browser-Wasm runtime, G0/P05 and generic P36 exact-base ratchet remain open.",
+    "No edit/undo/project/session command or source/render mapping integration acceptance.",
+    "Typed Rust IDs/maps expose u32/i32 arrays, not arbitrary JavaScript numeric objects."
+  ]
+}
