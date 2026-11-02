@@ -12,7 +12,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | --- | ---: |
 | baseline-captured | 2 |
 | implemented | 21 |
-| planned | 44 |
+| planned | 47 |
 
 | Unit | State | Tested implementation | PR |
 | --- | --- | --- | --- |
@@ -80,6 +80,9 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [harness.oracle.gate](plan/units/harness.oracle.gate.json) | implemented | `eeb2136` | [#15](https://github.com/flyboy-byte/ScanRuler/pull/15) |
 | [harness.wasm.runtime](plan/units/harness.wasm.runtime.json) | implemented | `00fd1a6` | [#24](https://github.com/flyboy-byte/ScanRuler/pull/24) |
 | [io.mesh.weld](plan/units/io.mesh.weld.json) | implemented | `53d6408` | [#4](https://github.com/flyboy-byte/ScanRuler/pull/4) |
+| [io.obj](plan/units/io.obj.json) | planned | — | — |
+| [io.ply](plan/units/io.ply.json) | planned | — | — |
 | [io.stl.binary](plan/units/io.stl.binary.json) | implemented | `5ee3881` | [#2](https://github.com/flyboy-byte/ScanRuler/pull/2) |
 | [io.stl.dispatch](plan/units/io.stl.dispatch.json) | implemented | `77683bf` | [#3](https://github.com/flyboy-byte/ScanRuler/pull/3) |
+| [io.threemf](plan/units/io.threemf.json) | planned | — | — |
 | [project.measurement.compatibility](plan/units/project.measurement.compatibility.json) | planned | — | — |

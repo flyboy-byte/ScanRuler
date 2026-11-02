@@ -1,0 +1,34 @@
+{
+  "id": "io.obj",
+  "parent": "P06",
+  "title": "Port OBJ, MTL and texture-set import",
+  "gate": "G3",
+  "status": "planned",
+  "depends_on": [
+    "io.stl.dispatch"
+  ],
+  "soft_depends_on": [
+    "P03"
+  ],
+  "scope": "OBJ geometry (polygons, negative indices, groups), the MTL library and texture references as the original resolves them, including the multi-file pick/drop set.",
+  "acceptance": [
+    "Generated and adversarial OBJ/MTL corpus compares original against Rust on geometry, material and texture bindings, refusals and limits.",
+    "Image decoding is a separate, explicitly reviewed dependency decision (pure-Rust only) and is not assumed here."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/parsers/obj.ts",
+    "src/core/parsers/objTexture.ts",
+    "src/app/scanFiles.ts"
+  ],
+  "symbols": [],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Texture image decoding needs a recorded pure-Rust dependency decision (P35 purity audit)."
+  ]
+}
