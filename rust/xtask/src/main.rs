@@ -250,6 +250,42 @@ fn oracle() -> Result<(), String> {
     )
 }
 
+fn wasm_probe() -> Result<(), String> {
+    let w = workspace();
+    run(
+        "cargo",
+        &[
+            "rustc",
+            "-p",
+            "port-wasm-probe",
+            "--target",
+            "wasm32-unknown-unknown",
+            "--lib",
+            "--",
+            "-C",
+            "link-dead-code=yes",
+            "-C",
+            "link-arg=--export-all",
+            "-C",
+            "symbol-mangling-version=v0",
+            "-C",
+            "link-arg=--max-memory=67108864",
+        ],
+        &w,
+    )?;
+    let output = w.join("target/wasm32-unknown-unknown/debug/port_wasm_probe");
+    std::fs::write(
+        output.with_extension("candidate.txt"),
+        capture("git", &["rev-parse", "HEAD"]),
+    )
+    .map_err(|e| format!("recording Wasm candidate: {e}"))?;
+    std::fs::write(
+        output.with_extension("rustc.txt"),
+        capture("rustc", &["-V"]),
+    )
+    .map_err(|e| format!("recording Wasm compiler: {e}"))
+}
+
 fn main() -> ExitCode {
     let task = std::env::args().nth(1).unwrap_or_default();
     let result = match task.as_str() {
@@ -258,11 +294,12 @@ fn main() -> ExitCode {
         "pin" => pin(),
         "plan" => plan(),
         "wasm" => wasm(),
+        "wasm-probe" => wasm_probe(),
         "env" => {
             env();
             Ok(())
         }
-        _ => Err("usage: cargo xtask <ci|oracle|pin|plan|wasm|env>".to_string()),
+        _ => Err("usage: cargo xtask <ci|oracle|pin|plan|wasm|wasm-probe|env>".to_string()),
     };
     match result {
         Ok(()) => ExitCode::SUCCESS,
