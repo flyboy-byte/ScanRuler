@@ -6,7 +6,7 @@ and [the plan](../docs/port-plan/HANDOFF.md).
 
 | Crate | Role | Contents today |
 |-------|------|----------------|
-| `port-core` | Pure core: no DOM, files or global state | Welding, adjacency/components, bounds/centroids, normals/orientation, dense solves, TLS/clipped planes and curvature discrimination; initial units/IDs/transforms and pin |
+| `port-core` | Pure core: no DOM, files or global state | Welding, adjacency/components/selection, bounds/centroids, normals/orientation, dense solves, TLS/clipped planes and curvature discrimination; initial units/IDs/transforms and pin |
 | `port-engine` | Session, commands, jobs, history | Empty |
 | `port-io` | Formats and the `.scanruler` project reader/writer | STL binary/ASCII dispatch and triangle extraction (P06); no welding/session loader |
 | `port-cli` | `scanruler-rs`, native front end for differential runs | Prints a banner |
@@ -32,7 +32,7 @@ cargo xtask env    # toolchain versions to record with any result
 
 It does not compare anything with the original app. That harness (`cargo xtask diff`,
 `diff-ci`) is planned under P36 to P39, and the disabled example workflow is designed to fail
-until it exists. A green `ci` run is not parity. `cargo xtask oracle` separately discovers all fourteen
+until it exists. A green `ci` run is not parity. `cargo xtask oracle` separately discovers all fifteen
 required native oracle entrypoints, rejects missing/duplicate discovery, then runs
 all ignored core/IO integration tests without filtering their cases. It requires
 Node and the frozen Git object. It does not implement the general P36 ratchet or
@@ -108,3 +108,13 @@ Storage is fallible and capped by caller budget and signed Int32 parent capacity
 Fifty-one independent source fixtures compare complete parent state and every
 query result after each operation. Browser-Wasm execution and downstream shell/
 region/command integration remain open.
+
+## Mesh selection preservation
+
+`mesh_selection::triangles_within` keeps complete triangles whose three corners
+are marked, retaining order/duplicates and skipping incomplete trailing triples.
+Out-of-range marks are ignored and triangles with out-of-range corners excluded.
+`remap_vertices` retains input order/repeats while dropping negative/missing map
+entries. Fallible storage and explicit vertex/output budgets bound results.
+Sixty-two source fixtures compare complete output arrays exactly. Undo/project/
+edit commands and browser-Wasm execution remain open.

@@ -143,3 +143,10 @@ jobs:
           name: mesh-components-comparison
           path: rust/target/components-diff/
           retention-days: 7
+      - name: Retain selection evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mesh-selection-comparison
+          path: rust/target/mesh-selection-diff/
+          retention-days: 7
