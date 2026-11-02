@@ -645,7 +645,7 @@
       "id": "harness.wasm.files",
       "status": "specified",
       "parent": "P36",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/37",
       "tested_sha": null,
       "open_items": [
         "Preregistered in oracle/OBJ-FILES-WASM.md; actual runtime implementation/evidence pending."

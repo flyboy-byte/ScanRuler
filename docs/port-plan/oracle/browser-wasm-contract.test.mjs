@@ -115,9 +115,11 @@ test('browser roster preserves prior cases and only the declared new workload ex
       assert.throws(() => selectBrowserCases({ ...def, excluded: [{ id: ids[0], reason: 'unreviewed' }] }, ids))
     }
   }
-  assert.equal(count, 564)
+  assert.equal(count, 651)
   assert.throws(() => validateBrowserRoster(defs.slice(0, 5)))
   validateBrowserRoster(defs.slice(0, 5), 'browser.wasm.corpus.v2')
+  assert.throws(() => validateBrowserRoster(defs.slice(0, 7)))
+  validateBrowserRoster(defs.slice(0, 7), 'browser.wasm.corpus.v3')
   assert.throws(() => validateBrowserRoster(defs.slice(1)))
 })
 test('PLY mismatches retain raw sidecars and actual Wasm before failing', async () => {
@@ -255,5 +257,50 @@ test('OBJ mismatch retains exact input and three outputs before assertion', asyn
     const changed = Buffer.from(output); changed[changed.length - 1] ^= 1
     await assert.rejects(retainAndCompare(dir, 6, files, changed))
     for (const [name, bytes] of Object.entries({ ...files, 'wasm.bin': changed })) assert.deepEqual(readFileSync(join(dir, name)), bytes)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('complete file classifications, identity traces and byte copies are exact', async () => {
+  const { readFileSync } = await import('node:fs')
+  const proof = JSON.parse(readFileSync(new URL('../evidence/2026-11-02-obj-files.json', import.meta.url)))
+  assert.equal(proof.cases.length, 87)
+  for (const c of proof.cases) {
+    const source = Buffer.from(c.files['original.bin'].hex, 'hex'), native = Buffer.from(c.files['rust.bin'].hex, 'hex')
+    assert.equal(compareOutput(7, source, native), 0, c.id)
+    assert.equal(successfulOutput(7, source), true)
+    const changed = Buffer.from(source); changed[changed.length - 1] ^= 1
+    assert.throws(() => compareOutput(7, source, changed), c.id + ': changed last state/byte')
+    assert.throws(() => compareOutput(7, source, source.subarray(0, -1)), c.id + ': missing state')
+    const trailing = Buffer.concat([source, Buffer.from([0])])
+    assert.throws(() => compareOutput(7, trailing, trailing), c.id + ': trailing state')
+    if (c.id === 'format-0') {
+      const flag = Buffer.from(source); flag[9] = 2
+      assert.throws(() => compareOutput(7, flag, flag), 'classifier flags must be boolean')
+    }
+  }
+})
+test('file-state kinds, counts, references and invalid UTF8 cannot pass even paired', () => {
+  for (const hex of ['', '464c5331', '464c533102', '464c533101ffffffff',
+    '464c53310001000000ff', '464c53310101000000ff0000000000000000',
+    '464c53310101000000010000000000000000']) {
+    const b = Buffer.from(hex, 'hex'); assert.throws(() => compareOutput(7, b, b))
+  }
+  const zeroOps = Buffer.from('464c53310100000000', 'hex')
+  assert.equal(compareOutput(7, zeroOps, zeroOps), 0)
+  // One bundle chooses file0, yet its association snapshot owns zero files.
+  const invalidId = Buffer.from('464c53310101000000010000000000000000', 'hex')
+  assert.throws(() => compareOutput(7, invalidId, invalidId))
+})
+test('file-state mismatch retains exact independent input and all three outputs', async () => {
+  const { mkdtempSync, readFileSync, rmSync } = await import('node:fs')
+  const { tmpdir } = await import('node:os')
+  const { join } = await import('node:path')
+  const { retainAndCompare } = await import('./browser-wasm-contract.mjs')
+  const dir = mkdtempSync(join(tmpdir(), 'scanruler-files-wasm-'))
+  try {
+    const source = Buffer.from('464c53310100000000', 'hex'), wrong = Buffer.from(source); wrong[4] = 255
+    const files = { 'input.bin': Buffer.from('authored input'), 'original.bin': source, 'rust.bin': source }
+    await assert.rejects(retainAndCompare(dir, 7, files, wrong))
+    for (const [name, bytes] of Object.entries({ ...files, 'wasm.bin': wrong })) assert.deepEqual(readFileSync(join(dir, name)), bytes)
   } finally { rmSync(dir, { recursive: true, force: true }) }
 })
