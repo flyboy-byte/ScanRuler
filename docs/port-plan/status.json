@@ -4,8 +4,8 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 35,
-    "planned": 50,
-    "specified": 1
+    "planned": 49,
+    "specified": 2
   },
   "native_suites": 26,
   "native_case_identities_including_refusals": 2015,
@@ -677,7 +677,7 @@
     },
     {
       "id": "harness.coverage.rust",
-      "status": "planned",
+      "status": "specified",
       "parent": "P36",
       "pr": null,
       "tested_sha": null,

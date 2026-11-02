@@ -3,7 +3,7 @@
   "parent": "P36",
   "title": "Measure which lines of the Rust port the comparison cases execute",
   "gate": "G3",
-  "status": "planned",
+  "status": "specified",
   "depends_on": [
     "harness.oracle.gate"
   ],
@@ -15,8 +15,8 @@
     "Report is reproducible with one command on the pinned toolchain and lists unexecuted lines per ported unit.",
     "Any unexecuted line in a unit marked implemented is an open item or has a recorded reason."
   ],
-  "owner": null,
-  "branch": null,
+  "owner": "Codex",
+  "branch": "codex/rust-coverage",
   "claim_pr": null,
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
