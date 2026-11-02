@@ -135,3 +135,24 @@ project reader or UI. Library implementation is distinct from acceptance.
 - **Parent units** `io.ply` and `io.obj` stay `planned` until their P03 corpus entries exist; their children are implemented.
 - **Independent fuzz is the standard second check for an import unit**: seeded mutation of header, truncation and body
   against the original, in a scratch directory, before the unit leaves `implemented`.
+
+## 10. Verifying a large amount of ported code (decided 2026-11-02)
+
+The original is the judge; the risk is input it was never asked about. Strategy, in the order to build it
+(units in lane C):
+
+1. **Standing fuzz** (`harness.fuzz.standing`): seeded mutation of every parser against the original, a repeatable
+   command plus a scheduled job. The scratch PLY/STL run found a bug that about 1,300 fixed cases missed.
+2. **Coverage of what is compared** (`harness.coverage.original`, `harness.coverage.rust`): which original branches
+   and which Rust lines the comparison cases never reach. Unreached original behaviour is unverified and becomes the
+   next corpus target.
+3. **Prove the checks can fail**: every unit already needs a deliberately wrong Rust value rejected; add occasional
+   mutation testing as an audit (tooling only, needs the owner's OK to install).
+4. **Verification levels** (`harness.verification.levels`): none, fixed-corpus, fuzzed, coverage-reviewed;
+   `accepted` needs the last. Implemented never means verified.
+5. **Composition checks**: session command traces, paired MCP traces and opening original `.scanruler` projects
+   (sections 3 and 4) catch what per-function parity cannot.
+6. **Rotate checkers**: whoever did not write a unit fuzzes and audits it. Review for hostile input: allocation sized
+   from a header, `as` casts, indexing, unbounded loops. Lints already forbid `unsafe`, `unwrap` and `panic`.
+7. **Use it** from M3 onward.
+

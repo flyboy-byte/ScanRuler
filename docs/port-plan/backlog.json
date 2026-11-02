@@ -4233,6 +4233,106 @@
       ]
     },
     {
+      "id": "harness.coverage.original",
+      "parent": "P36",
+      "title": "Measure which branches of the original the comparison corpus reaches",
+      "gate": "G3",
+      "status": "planned",
+      "depends_on": [
+        "harness.oracle.gate"
+      ],
+      "soft_depends_on": [
+        "P03"
+      ],
+      "scope": "Run the original parsers and commands with V8/c8 coverage while the corpus and fuzz cases execute; report original source branches never reached by any comparison case. Each unreached branch is unverified behaviour and becomes a corpus or fuzz target.",
+      "acceptance": [
+        "Report lists, per original source file, lines and branches reached versus not reached by the committed corpus, reproducibly under Node 22.",
+        "Unreached branches in ported units are tracked as open items in the unit JSON; the report is generated, not hand-edited."
+      ],
+      "owner": null,
+      "branch": null,
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/parsers/ply.ts",
+        "src/core/parsers/stl.ts",
+        "src/core/parsers/obj.ts"
+      ],
+      "symbols": [],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Needs a decision on the coverage tool (c8 is already a Node-side dev tool; no product dependency)."
+      ]
+    },
+    {
+      "id": "harness.coverage.rust",
+      "parent": "P36",
+      "title": "Measure which lines of the Rust port the comparison cases execute",
+      "gate": "G3",
+      "status": "planned",
+      "depends_on": [
+        "harness.oracle.gate"
+      ],
+      "soft_depends_on": [
+        "P37"
+      ],
+      "scope": "Use LLVM source-based coverage on the Rust test run that executes original-versus-Rust cases; report lines and branches of each ported function that no comparison case runs.",
+      "acceptance": [
+        "Report is reproducible with one command on the pinned toolchain and lists unexecuted lines per ported unit.",
+        "Any unexecuted line in a unit marked implemented is an open item or has a recorded reason."
+      ],
+      "owner": null,
+      "branch": null,
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [],
+      "symbols": [],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Check that the Arch rust package provides llvm-tools or a source-coverage path; no rustup. Tooling only, no product dependency."
+      ]
+    },
+    {
+      "id": "harness.fuzz.standing",
+      "parent": "P36",
+      "title": "Standing seeded mutation fuzz against the original (cargo xtask fuzz)",
+      "gate": "G3",
+      "status": "planned",
+      "depends_on": [
+        "harness.oracle.gate"
+      ],
+      "soft_depends_on": [
+        "P37"
+      ],
+      "scope": "Turn the 2026-11-02 PLY/STL audit harness into a repeatable command: a seed and unit name generate mutated inputs (truncation at every byte, byte substitution/insert/delete, header-token dictionary, count and type edits, Unicode and encoding edge cases, random model-based files), run the original and Rust on independent copies and compare success, full error and progress text and output bytes. Covers every parser/import unit; divergences and host-limit refusals are reported in separate classes.",
+      "acceptance": [
+        "Command runs a named parser unit at a given seed and case count, prints case/divergence counts and writes minimal reproducers outside the repo; a deliberately wrong Rust value is reported as a divergence.",
+        "PLY and STL run reproduces the 2026-11-02 audit result (zero divergences after PR #33) from the committed generator and records the seed set; OBJ is added in the same PR or the next.",
+        "A scheduled hosted job runs fresh seeds; findings become files under plan/findings and a failing regression test, never a looser comparison."
+      ],
+      "owner": null,
+      "branch": null,
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/parsers/ply.ts",
+        "src/core/parsers/stl.ts",
+        "src/core/parsers/obj.ts"
+      ],
+      "symbols": [],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Reference harness was scratch-only (see plan/findings/2026-11-02-ply-stl-independent-fuzz.md for method); it must be rewritten in-repo, not copied from /tmp.",
+        "Touches rust/xtask and .github: one open PR at a time."
+      ]
+    },
+    {
       "id": "harness.oracle.gate",
       "parent": "P36",
       "title": "Run all existing native oracle suites with guarded discovery",
@@ -4267,6 +4367,37 @@
       "open_items": [
         "General P36 independent adapter protocol, browser-Wasm execution, accepted-unit exact-base ratchet and G0/P05 remain open.",
         "Discovery guard freezes entrypoint names, not all case identities; individual suites enforce their own case/value contracts."
+      ]
+    },
+    {
+      "id": "harness.verification.levels",
+      "parent": "P36",
+      "title": "Record a verification level on each unit so implemented is not read as verified",
+      "gate": "G3",
+      "status": "planned",
+      "depends_on": [
+        "harness.fuzz.standing"
+      ],
+      "soft_depends_on": [
+        "harness.coverage.original",
+        "harness.coverage.rust"
+      ],
+      "scope": "Add a verification field to unit files with ordered levels (none, fixed-corpus, fuzzed, coverage-reviewed) and require the top level for accepted. The status table and next_task.py show the level.",
+      "acceptance": [
+        "Plan checker rejects accepted without the top level and rejects a level its evidence does not support; selftest includes the mutations.",
+        "Existing implemented units are labelled honestly from their current evidence (PLY and STL: fuzzed after PR #33; others fixed-corpus)."
+      ],
+      "owner": null,
+      "branch": null,
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [],
+      "symbols": [],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Edits tools/port_plan.py, the generated status and every unit file: coordinate so only one PR changes them."
       ]
     },
     {
