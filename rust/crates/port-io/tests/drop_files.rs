@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-//! Full original file classification, identity, associations and preserved bytes.
+//! Full original dropped-file identities, errors and async callback order.
 #![allow(clippy::unwrap_used, clippy::expect_used, clippy::panic)]
 #[path = "support/drop_files_wire.rs"]
 mod wire;
@@ -97,7 +97,7 @@ fn pinned_drop_files_comparison() {
     assert!(sha.status.success());
     std::fs::write(run.join("candidate.txt"), sha.stdout).unwrap();
     let mut identity = String::from(
-        "contract: drop.files.bytes.v1\nreference: 2cd89c6769a10c27ee7754b477ada521c9ef5cb7\nseeds: 1,7,99,1039\ncomparison: exact complete FLS1 classification, identity, links, names/bytes/order\n",
+        "contract: drop.files.bytes.v1\nreference: 2cd89c6769a10c27ee7754b477ada521c9ef5cb7\nseeds: 1,7,99,1039\ncomparison: exact complete DRP1 file identities, platform errors and callback order\n",
     );
     for (label, p, args) in [
         ("dirty", "git", vec!["status", "--porcelain"]),
@@ -121,7 +121,7 @@ fn pinned_drop_files_comparison() {
     for c in cases {
         let rust = wire::run(c.input);
         let mut child = Command::new("node")
-            .arg(root.join("docs/port-plan/oracle/obj-files.cjs"))
+            .arg(root.join("docs/port-plan/oracle/drop-files.cjs"))
             .current_dir(&root)
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
