@@ -19,7 +19,8 @@ class ArtifactTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.target = Path(self.temp.name)
         self.suite = {'unit': 'example.unit', 'test': 'pinned_example', 'directory': 'example-diff',
-                      'case_ids': ['empty', 'value'], 'refusals_without_rust_bin': []}
+                      'case_ids': ['empty', 'value'], 'refusals_without_rust_bin': [],
+                      'required_files': ['input.bin', 'original.bin']}
         self.run = self.target / 'example-diff/run-1'
         self.run.mkdir(parents=True)
         (self.run / 'candidate.txt').write_text(SHA)
@@ -52,6 +53,19 @@ class ArtifactTests(unittest.TestCase):
     def test_missing_original_or_rust_even_for_empty_case(self):
         for name in ['original.bin', 'rust.bin']:
             path = self.run / 'empty' / name
+            path.unlink()
+            with self.assertRaises(ValueError): self.check()
+            path.write_bytes(b'')
+
+    def test_successful_progress_and_count_files_cannot_disappear(self):
+        extra = ['original.progress.txt', 'rust.progress.txt', 'count.txt']
+        self.suite['required_files'] += extra
+        for case in self.suite['case_ids']:
+            for name in extra:
+                (self.run / case / name).write_bytes(b'')
+        self.check()
+        for name in extra:
+            path = self.run / 'value' / name
             path.unlink()
             with self.assertRaises(ValueError): self.check()
             path.write_bytes(b'')

@@ -32,6 +32,11 @@ def roster(root=ROOT):
     for s in suites:
         if not re.fullmatch(r'[a-z][a-z-]*-diff', s['directory']):
             raise ValueError('Unsafe evidence directory')
+        required = s['required_files']
+        if not {'input.bin', 'original.bin'} <= set(required) or len(set(required)) != len(required):
+            raise ValueError('Incomplete/duplicate raw file contract')
+        if any(not re.fullmatch(r'[a-z][a-z0-9_.-]*', f) for f in required):
+            raise ValueError('Unsafe raw file contract')
         cases = [e['case_ids'] for e in by_id[s['unit']]['evidence'] if e['kind'] == 'differential']
         if len(cases) != 1 or not cases[0] or len(set(cases[0])) != len(cases[0]):
             raise ValueError('Missing/ambiguous/duplicate case inventory: ' + s['unit'])
@@ -103,7 +108,7 @@ def evidence(target, suites, candidate, reference):
             directory = run / case_id
             if directory.is_symlink():
                 raise ValueError('Unexpected linked case')
-            required = ['input.bin', 'original.bin']
+            required = list(suite['required_files'])
             if case_id in suite['refusals_without_rust_bin']:
                 required += ['original.progress-or-error.txt']
                 required += ['rust.progress.txt' if suite['directory'] == 'stl-diff' else 'rust.progress-or-error.txt']
