@@ -240,6 +240,17 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "io.obj.texture",
+      "test": "pinned_obj_texture_comparison",
+      "directory": "obj-texture-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

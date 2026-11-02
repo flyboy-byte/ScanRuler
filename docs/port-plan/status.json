@@ -3,11 +3,11 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 26,
-    "planned": 46
+    "implemented": 27,
+    "planned": 48
   },
-  "native_suites": 21,
-  "native_case_identities_including_refusals": 966,
+  "native_suites": 22,
+  "native_case_identities_including_refusals": 1110,
   "accepted_units": [],
   "units": [
     {
@@ -677,13 +677,47 @@
       ]
     },
     {
+      "id": "io.obj.companions",
+      "status": "planned",
+      "parent": "io.obj",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "No image decoder dependency selected/audited; no implementation claim."
+      ]
+    },
+    {
       "id": "io.obj",
       "status": "planned",
       "parent": "P06",
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "Texture image decoding needs a recorded pure-Rust dependency decision (P35 purity audit)."
+        "Texture image decoding needs a recorded pure-Rust dependency decision (P35 purity audit).",
+        "2026-11-02: bounded continuations tracked as io.obj.texture, io.obj.mesh and io.obj.companions; parent remains planned until full import acceptance."
+      ]
+    },
+    {
+      "id": "io.obj.mesh",
+      "status": "planned",
+      "parent": "io.obj",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Not implemented. Reuse io.obj.texture rather than omitting its continuation."
+      ]
+    },
+    {
+      "id": "io.obj.texture",
+      "status": "implemented",
+      "parent": "io.obj",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/31",
+      "tested_sha": "219059c2c719879bfce24fb75cfe69cdf3ef6abb",
+      "open_items": [
+        "Actual browser-Wasm helper execution remains open; compile checks do not establish runtime acceptance.",
+        "OBJ mesh parsing, platform file bundling, PNG/JPEG decoding and public commands remain in io.obj.mesh/io.obj.companions and engine units; parent io.obj stays planned.",
+        "Broader Unicode table/version, arbitrary JS UTF16 filename and non-u32 raster-shape interoperability belong to companion ingress/platform acceptance, not this valid-UTF8/u32 helper API.",
+        "Large-file/performance acceptance remains open; explicit byte/name/count/work caps are host safeguards, not source numerical tolerances."
       ]
     },
     {

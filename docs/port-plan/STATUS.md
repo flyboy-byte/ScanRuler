@@ -4,15 +4,15 @@ Generated from canonical unit files and ci/native-suites.json; do not hand-edit.
 
 Reference: `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
 
-Native coverage inventory: **21 suites / 966 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
+Native coverage inventory: **22 suites / 1110 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
 
 No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Bounded [browser-Wasm coverage](oracle/BROWSER-WASM.md) is separate from engine/session/UI integration and the still-open exact-base numerical ratchet.
 
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 26 |
-| planned | 46 |
+| implemented | 27 |
+| planned | 48 |
 
 | Unit | State | Tested implementation | PR |
 | --- | --- | --- | --- |
@@ -82,7 +82,10 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [harness.wasm.ply](plan/units/harness.wasm.ply.json) | implemented | `8bc7363` | [#29](https://github.com/flyboy-byte/ScanRuler/pull/29) |
 | [harness.wasm.runtime](plan/units/harness.wasm.runtime.json) | implemented | `00fd1a6` | [#24](https://github.com/flyboy-byte/ScanRuler/pull/24) |
 | [io.mesh.weld](plan/units/io.mesh.weld.json) | implemented | `53d6408` | [#4](https://github.com/flyboy-byte/ScanRuler/pull/4) |
+| [io.obj.companions](plan/units/io.obj.companions.json) | planned | — | — |
 | [io.obj](plan/units/io.obj.json) | planned | — | — |
+| [io.obj.mesh](plan/units/io.obj.mesh.json) | planned | — | — |
+| [io.obj.texture](plan/units/io.obj.texture.json) | implemented | `219059c` | [#31](https://github.com/flyboy-byte/ScanRuler/pull/31) |
 | [io.ply.ascii](plan/units/io.ply.ascii.json) | implemented | `737d3c3` | [#27](https://github.com/flyboy-byte/ScanRuler/pull/27) |
 | [io.ply.binary](plan/units/io.ply.binary.json) | implemented | `98d39fc` | [#28](https://github.com/flyboy-byte/ScanRuler/pull/28) |
 | [io.ply](plan/units/io.ply.json) | planned | — | — |

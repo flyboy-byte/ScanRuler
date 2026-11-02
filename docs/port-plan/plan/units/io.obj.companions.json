@@ -1,0 +1,40 @@
+{
+  "parent": "io.obj",
+  "gate": "G3",
+  "status": "planned",
+  "depends_on": [
+    "io.obj.mesh"
+  ],
+  "soft_depends_on": [
+    "P03",
+    "P36"
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "evidence": [],
+  "id": "io.obj.companions",
+  "title": "Port model/texture file bundling and image-decoder boundary",
+  "scope": "Original multi-file pick/drop, companions bytes/reading and pure-Rust PNG/JPEG decoded-image ingress; platform adapters stay thin.",
+  "acceptance": [
+    "Original-versus-Rust file-set order, chosen model, decoded pixels, failed-image omission and persistence inputs compare on licensed fixed fixtures.",
+    "Image dependencies require explicit license/purity decision before adoption; no browser/C++ decoding hidden in the Rust product."
+  ],
+  "source_paths": [
+    "src/app/scanFiles.ts"
+  ],
+  "symbols": [
+    "bundleFiles",
+    "companionsOf",
+    "droppedFiles",
+    "companionBytes",
+    "readCompanions",
+    "decodeImage"
+  ],
+  "rust_paths": [],
+  "open_items": [
+    "No image decoder dependency selected/audited; no implementation claim."
+  ]
+}

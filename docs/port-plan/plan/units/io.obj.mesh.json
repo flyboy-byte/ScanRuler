@@ -1,0 +1,37 @@
+{
+  "parent": "io.obj",
+  "gate": "G3",
+  "status": "planned",
+  "depends_on": [
+    "io.obj.texture"
+  ],
+  "soft_depends_on": [
+    "P03",
+    "P36"
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "evidence": [],
+  "id": "io.obj.mesh",
+  "title": "Port complete OBJ mesh/UV/material parser and texture continuation",
+  "scope": "Complete parseOBJ body, including strict Number/index/line semantics, sparse first-UV/material binding and calls to the decoded-image texture pipeline.",
+  "acceptance": [
+    "Exact original/Rust positions, indices, colors, texture notes, progress and refusals on generated/adversarial source inputs and decoded companions.",
+    "All successful source continuations retained, with bounded host guards distinct from source outcomes."
+  ],
+  "source_paths": [
+    "src/core/parsers/obj.ts"
+  ],
+  "symbols": [
+    "parseOBJ"
+  ],
+  "rust_paths": [
+    "rust/crates/port-io/src/obj.rs"
+  ],
+  "open_items": [
+    "Not implemented. Reuse io.obj.texture rather than omitting its continuation."
+  ]
+}
