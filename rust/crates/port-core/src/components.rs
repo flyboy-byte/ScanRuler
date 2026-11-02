@@ -80,7 +80,8 @@ impl UnionFind {
 }
 
 /// Make members 0..n, each initially its own root.
-/// The original factory stores signed Int32 parents, so n cannot exceed i32::MAX.
+/// A conservative i32::MAX vertex cap keeps every parent representable in the
+/// original signed Int32Array; caller budgets can further limit storage.
 pub fn make_union_find(n: usize, max_vertices: usize) -> Result<UnionFind, ComponentError> {
     if n > max_vertices || n > i32::MAX as usize {
         return Err(ComponentError::VertexLimit);
