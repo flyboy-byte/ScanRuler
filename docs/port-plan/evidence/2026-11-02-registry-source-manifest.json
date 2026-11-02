@@ -5,6 +5,12 @@
     "raw_bytes": 25446392,
     "raw_sha256": "36e79b90a518547952c488824093ed45b578a8161233d2e7a5c887f97e3b5050"
   },
+  "2026-11-02-registry-source-350.json.gz": {
+    "bytes": 1820496,
+    "sha256": "46c0755576ff7ae2f4c2dd72de18f63adad3f6eeca10c00c3c137fe7cc9d0d99",
+    "raw_bytes": 27576989,
+    "raw_sha256": "af00d73ccfc97b8ed1af548e482b45ccde726d9eb49fbbcd830dfa9427b7e656"
+  },
   "2026-11-02-registry-source-v2.json.gz": {
     "bytes": 1708515,
     "sha256": "0cf52644659d974629c831d31f12ed87c4f0545abbbff8781f9cdce955cea604",

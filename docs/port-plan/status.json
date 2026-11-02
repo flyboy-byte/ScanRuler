@@ -3,12 +3,12 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 36,
+    "implemented": 37,
     "planned": 49,
-    "specified": 2
+    "specified": 1
   },
-  "native_suites": 26,
-  "native_case_identities_including_refusals": 2015,
+  "native_suites": 27,
+  "native_case_identities_including_refusals": 2225,
   "accepted_units": [],
   "units": [
     {
@@ -454,7 +454,7 @@
       "id": "engine.session.contract",
       "status": "specified",
       "parent": "P05",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/45",
       "tested_sha": null,
       "open_items": [
         "Spec drafted in SESSION-CONTRACT.md from registry, state, types, historyStore, activity, schema, stalePage, host.sessionBusy and the worker files; still to read: stateSections.ts, agentLink.ts, rest of host.ts.",
@@ -465,12 +465,16 @@
     },
     {
       "id": "engine.session.registry",
-      "status": "specified",
+      "status": "implemented",
       "parent": "engine.session.contract",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/45",
+      "tested_sha": "e97261dafd45161b087c733e76bd1a16e0755a98",
       "open_items": [
-        "Live scheduler/history/settle/timeout/jobs, arbitrary shared definition mutation, locale/platform acceptance and public command execution remain separate session continuations."
+        "No public feature command or scheduler is implemented; successful admission hands body key/coerced input to engine.session.contract for queue/scene/settle/history/timeouts/jobs integration.",
+        "Native source comparisons only; wasm32 compile is not actual registry browser runtime.",
+        "Owned typed data only, no shared/live-mutated definition aliases or executable values. Retained repeatable cleanup handles have an explicit host cap; full session lifecycle must own/drop them.",
+        "Default Node22 ICU ordering on valid ASCII names is compared on all140 names and authored/seeded order cases; broader locale/platform acceptance remains open.",
+        "Independent fuzz/coverage/strict exact-base ratchet and accepted status remain open."
       ]
     },
     {

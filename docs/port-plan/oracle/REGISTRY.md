@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # Registry and admission comparison
 
-Unit `engine.session.registry`; pinned original2cd89c6.210 deterministic operation
+Unit `engine.session.registry`; pinned original2cd89c6.350 deterministic operation
 scenarios include all140 real command definitions, one whole140-command catalog,
 name syntax/order, duplicate/partial registration, repeat cleanup/reregistration,
 headless/metadata presence, schema8000/8001 and depth12/13 boundaries, defaulted

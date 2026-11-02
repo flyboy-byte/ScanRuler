@@ -271,7 +271,7 @@ fn pinned_registry_comparison() {
         String::from_utf8_lossy(&prepared.stderr)
     );
     let cases = cases();
-    assert_eq!(cases.len(), 210);
+    assert_eq!(cases.len(), 350);
     let mut input = Vec::new();
     for c in &cases {
         n(&mut input, c.input.len());
@@ -377,7 +377,7 @@ fn pinned_registry_comparison() {
     }
     assert_eq!(offset, original.stdout.len());
     println!(
-        "210 complete registry-operation scenarios; raw {}",
+        "350 complete registry-operation scenarios; raw {}",
         run.display()
     );
 }
