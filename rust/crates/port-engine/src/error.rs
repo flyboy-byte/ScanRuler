@@ -110,7 +110,11 @@ impl CommandError {
         message: &str,
         max_units: usize,
     ) -> Result<Self, EnvelopeError> {
-        let count = message.encode_utf16().count();
+        // Refuse over-budget borrowed strings without scanning their entire tail.
+        let count = message
+            .encode_utf16()
+            .take(max_units.saturating_add(1))
+            .count();
         if count > max_units {
             return Err(EnvelopeError::MessageLimit);
         }
