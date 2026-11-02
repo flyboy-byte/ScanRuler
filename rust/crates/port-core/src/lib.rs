@@ -24,6 +24,7 @@ pub mod closed_shells;
 pub mod components;
 pub mod curvature_gate;
 pub mod linear;
+pub mod marked_plane;
 pub mod mesh_graph;
 pub mod mesh_selection;
 pub mod normals;
