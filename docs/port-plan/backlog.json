@@ -4156,6 +4156,49 @@
       ]
     },
     {
+      "id": "harness.wasm.ply",
+      "parent": "P36",
+      "title": "Compare complete PLY parser values and progress in actual browser Wasm",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [
+        "harness.wasm.runtime",
+        "io.ply.ascii",
+        "io.ply.binary"
+      ],
+      "soft_depends_on": [
+        "P03",
+        "P37"
+      ],
+      "scope": "Safe private raw-PLY codec plus current-SHA source/native/browser comparisons for all 60 ASCII and 167 binary cases; explicit million-vertex runtime budget exclusion, retaining all native and existing browser inputs.",
+      "acceptance": [
+        "Actual Chrome executes independent raw inputs only; exact complete PLY output/progress/refusals match original and native, including IEEE bits.",
+        "No source outputs enter Rust; all raw outputs retained before assertions; malformed/changed output and missing/stale sidecars fail.",
+        "Existing 114 browser cases and their tolerances remain unchanged; one new workload exclusion is explicit and cannot hide a previously passing browser case."
+      ],
+      "owner": "Codex",
+      "branch": "codex/wasm-ply-runtime",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/parsers/ply.ts"
+      ],
+      "symbols": [
+        "parsePLY",
+        "parseAsciiBody",
+        "parseBinaryBody"
+      ],
+      "rust_paths": [
+        "rust/crates/port-wasm-probe/src/lib.rs",
+        "rust/crates/port-wasm-probe/Cargo.toml"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Specified in oracle/PLY-WASM.md; runtime implementation and actual Chrome evidence pending."
+      ]
+    },
+    {
       "id": "harness.wasm.runtime",
       "parent": "P36",
       "title": "Execute initial plane and mesh corpus as actual browser Wasm",

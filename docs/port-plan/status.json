@@ -4,7 +4,8 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 24,
-    "planned": 46
+    "planned": 46,
+    "specified": 1
   },
   "native_suites": 20,
   "native_case_identities_including_refusals": 914,
@@ -625,6 +626,16 @@
       "open_items": [
         "General P36 independent adapter protocol, browser-Wasm execution, accepted-unit exact-base ratchet and G0/P05 remain open.",
         "Discovery guard freezes entrypoint names, not all case identities; individual suites enforce their own case/value contracts."
+      ]
+    },
+    {
+      "id": "harness.wasm.ply",
+      "status": "specified",
+      "parent": "P36",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Specified in oracle/PLY-WASM.md; runtime implementation and actual Chrome evidence pending."
       ]
     },
     {
