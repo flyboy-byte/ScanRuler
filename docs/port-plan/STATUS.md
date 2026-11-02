@@ -4,15 +4,15 @@ Generated from canonical unit files and ci/native-suites.json; do not hand-edit.
 
 Reference: `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
 
-Native coverage inventory: **22 suites / 1110 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
+Native coverage inventory: **23 suites / 1191 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
 
 No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Bounded [browser-Wasm coverage](oracle/BROWSER-WASM.md) is separate from engine/session/UI integration and the still-open exact-base numerical ratchet.
 
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 27 |
-| planned | 48 |
+| implemented | 28 |
+| planned | 47 |
 
 | Unit | State | Tested implementation | PR |
 | --- | --- | --- | --- |
@@ -84,7 +84,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [io.mesh.weld](plan/units/io.mesh.weld.json) | implemented | `53d6408` | [#4](https://github.com/flyboy-byte/ScanRuler/pull/4) |
 | [io.obj.companions](plan/units/io.obj.companions.json) | planned | — | — |
 | [io.obj](plan/units/io.obj.json) | planned | — | — |
-| [io.obj.mesh](plan/units/io.obj.mesh.json) | planned | — | — |
+| [io.obj.mesh](plan/units/io.obj.mesh.json) | implemented | `58aeacb` | [#32](https://github.com/flyboy-byte/ScanRuler/pull/32) |
 | [io.obj.texture](plan/units/io.obj.texture.json) | implemented | `219059c` | [#31](https://github.com/flyboy-byte/ScanRuler/pull/31) |
 | [io.ply.ascii](plan/units/io.ply.ascii.json) | implemented | `737d3c3` | [#27](https://github.com/flyboy-byte/ScanRuler/pull/27) |
 | [io.ply.binary](plan/units/io.ply.binary.json) | implemented | `98d39fc` | [#28](https://github.com/flyboy-byte/ScanRuler/pull/28) |

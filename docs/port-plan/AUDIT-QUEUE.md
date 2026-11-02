@@ -3,7 +3,9 @@
 Updated 2026-11-02 UTC. PRs #1–#30 are merged into `main` (`fabac0d`), whose
 checks passed before this continuation. The new queue starts at
 [#31](https://github.com/flyboy-byte/ScanRuler/pull/31) (OBJ material/decoded-image
-texture helpers, base `main`). No PR has been merged by this continuation. Read live checks;
+texture helpers, base `main`), then
+[#32](https://github.com/flyboy-byte/ScanRuler/pull/32) (complete OBJ parser and
+texture continuation, base #31). No PR has been merged by this continuation. Read live checks;
 local baseline unit failures are preserved in `evidence/baseline-2026-11-02/`.
 Current implementation state is generated in [STATUS.md](STATUS.md).
 

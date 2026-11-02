@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust OBJ mesh parser** (2026-11-02): port the complete geometry/UV/material body and decoded texture continuation, comparing 81 source cases exactly, including first-corner binding and full progress boundaries. File/image ingress and commands remain open.
+
 - **Rust OBJ material/texture helpers** (2026-11-02): port complete MTL lookup, filename matching and decoded-RGBA baking with 144 exact source comparisons. Mesh parsing, image decoding and command integration remain separate.
 - **PLY negative-count error text** (2026-11-02): an independent 282,000-file fuzz against the original found one divergence, the typed-array length in the error printed with Rust instead of JavaScript number formatting; fixed with a regression test. The other host-limit differences are recorded as open findings.
 
