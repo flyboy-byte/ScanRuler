@@ -28,7 +28,10 @@
         "io.obj.texture",
         "io.obj.mesh",
         "io.obj.companions",
-        "io.obj.companions.files"
+        "io.obj.companions.files",
+        "io.obj.companions.drop",
+        "io.obj.companions.image_audit",
+        "io.obj.companions.images"
       ],
       "touches": "rust/crates/port-io"
     },

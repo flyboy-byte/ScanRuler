@@ -2,12 +2,12 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 3,
-    "implemented": 29,
-    "planned": 47
+    "baseline-captured": 2,
+    "implemented": 30,
+    "planned": 50
   },
-  "native_suites": 23,
-  "native_case_identities_including_refusals": 1191,
+  "native_suites": 24,
+  "native_case_identities_including_refusals": 1278,
   "accepted_units": [],
   "units": [
     {
@@ -688,13 +688,45 @@
       ]
     },
     {
-      "id": "io.obj.companions.files",
-      "status": "baseline-captured",
+      "id": "io.obj.companions.drop",
+      "status": "planned",
       "parent": "io.obj.companions",
-      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/36",
+      "pr": null,
       "tested_sha": null,
       "open_items": [
-        "Specify and capture source cases before porting; native/Wasm runtime evidence pending."
+        "No implementation or image dependency adoption claimed."
+      ]
+    },
+    {
+      "id": "io.obj.companions.files",
+      "status": "implemented",
+      "parent": "io.obj.companions",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/36",
+      "tested_sha": "f0a3e9e77b3219effa0f326a9e09ec2b7d412e3c",
+      "open_items": [
+        "Actual browser-Wasm file state comparisons remain open; compilation is not runtime acceptance.",
+        "Platform drop traversal/async file errors, image decoding, 3MF packed companions and public import/session/project integration remain outside this owned-byte slice.",
+        "Valid UTF-8 filename API; arbitrary JS UTF16/Unicode version and broader platform/large-file acceptance remain open."
+      ]
+    },
+    {
+      "id": "io.obj.companions.image_audit",
+      "status": "planned",
+      "parent": "io.obj.companions",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "No implementation or image dependency adoption claimed."
+      ]
+    },
+    {
+      "id": "io.obj.companions.images",
+      "status": "planned",
+      "parent": "io.obj.companions",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "No implementation or image dependency adoption claimed."
       ]
     },
     {

@@ -262,6 +262,17 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "io.obj.companions.files",
+      "test": "pinned_obj_files_comparison",
+      "directory": "obj-files-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

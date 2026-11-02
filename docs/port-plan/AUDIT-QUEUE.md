@@ -1,5 +1,11 @@
 # Port PR audit and integration queue
 
+Continuation 2026-11-02 from clean main `cb0b480` after #35: new queue
+[#36](https://github.com/flyboy-byte/ScanRuler/pull/36), complete companion file
+selection/identity/byte state. Local 87-case source evidence is committed; inspect
+final hosted results independently. Earlier numbered rows below are history.
+No PR is merged by this continuation.
+
 Updated 2026-11-02 UTC. PRs #1–#34 are merged into `main` (`28dfeae`) and none is open. #26–#30
 (baseline, PLY, error envelope), #31/#32/#34 (OBJ and its Chrome comparison) and #33 (the PLY
 negative-count text fix from an independent 282,000-file fuzz) were merged bottom-up with merge commits

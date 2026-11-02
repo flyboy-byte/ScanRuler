@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust companion file selection** (2026-11-02): preserve complete file classification, first-model selection, companion identity across repeated bundles and ordered original bytes, with 87 exact source-state comparisons. Directory traversal, codecs and public imports remain separate.
+
 - **OBJ in actual Rust browser Wasm** (2026-11-02): compare complete parser and material/decoded-image helpers in Chrome, retaining all earlier cases for 564 total comparisons and 18 protocol checks; record full raw evidence and two unchanged large native-only OBJ workloads.
 
 - **Rust OBJ mesh parser** (2026-11-02): port the complete geometry/UV/material body and decoded texture continuation, comparing 81 source cases exactly, including first-corner binding and full progress boundaries. File/image ingress and commands remain open.

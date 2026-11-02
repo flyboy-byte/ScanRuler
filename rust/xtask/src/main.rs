@@ -182,6 +182,7 @@ const ORACLE_TESTS: &[&str] = &[
     "pinned_engine_error_comparison",
     "pinned_obj_texture_comparison",
     "pinned_obj_mesh_comparison",
+    "pinned_obj_files_comparison",
 ];
 
 fn validate_oracle_discovery(list: &str) -> Result<(), String> {
