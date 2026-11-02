@@ -4,7 +4,7 @@
 # and the licence policy in ../CONTRIBUTING.md before it lands.
 [workspace]
 resolver = "3"
-members = ["crates/port-core", "crates/port-engine", "crates/port-io", "crates/port-cli", "xtask"]
+members = ["crates/port-core", "crates/port-engine", "crates/port-io", "crates/port-cli", "crates/port-wasm-probe", "xtask"]
 
 [workspace.package]
 version = "0.0.0"

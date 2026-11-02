@@ -67,7 +67,7 @@ def status_markdown(report):
     lines = ['# Current Rust port status', '', 'Generated from canonical unit files and ci/native-suites.json; do not hand-edit.', '',
              f"Reference: `{report['reference_sha']}`.", '',
              f"Native coverage inventory: **{report['native_suites']} suites / {report['native_case_identities_including_refusals']} case identities including refusals**. This counts declared cases, not successful measurements or feature completion.", '',
-             'No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Browser-Wasm execution, engine/session/UI integration and the exact-base numerical ratchet remain open.', '',
+             'No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Bounded [browser-Wasm coverage](oracle/BROWSER-WASM.md) is separate from engine/session/UI integration and the still-open exact-base numerical ratchet.', '',
              '| State | Units |', '| --- | ---: |']
     lines += [f'| {state} | {count} |' for state, count in report['unit_states'].items()]
     lines += ['', '| Unit | State | Tested implementation | PR |', '| --- | --- | --- | --- |']

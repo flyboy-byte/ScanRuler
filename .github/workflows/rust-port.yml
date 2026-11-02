@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 # Separate fast checks, actual native source assertions and source-catalog contracts.
-# None of these implement browser-Wasm parity or the P37 exact-base numerical ratchet.
+# Bounded real Chrome-Wasm execution is required too; full product parity and P37 remain open.
 name: Rust port validation
 on:
   pull_request:
@@ -91,9 +91,51 @@ jobs:
           node-version: 22
       - name: Negative validators and immutable captured snapshots
         run: node --test docs/port-plan/oracle/catalog-contract.test.mjs docs/port-plan/oracle/browser-catalog-contract.test.mjs
+  browser-wasm:
+    needs: [native-oracle]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Hosted Rust Wasm toolchain
+        run: |
+          rustup toolchain install stable --profile minimal --target wasm32-unknown-unknown
+          rustup default stable
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - name: Original browser-driver dependency (oracle tooling only)
+        run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: native-source-${{ github.sha }}
+          path: rust/target
+      - name: Build safe private test ABI (not the product ABI)
+        working-directory: rust
+        run: cargo xtask wasm-probe
+      - name: Comparator negative tests
+        run: node --test docs/port-plan/oracle/browser-wasm-contract.test.mjs
+      - name: Execute Rust Wasm in real Chrome and compare all declared inputs
+        run: node docs/port-plan/oracle/run-browser-wasm.mjs
+      - name: Retain module identity, complete raw outputs and browser report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-wasm-${{ github.sha }}
+          path: |
+            rust/target/browser-wasm/
+            rust/target/wasm32-unknown-unknown/debug/port_wasm_probe.wasm
+            rust/target/wasm32-unknown-unknown/debug/port_wasm_probe.candidate.txt
+            rust/target/wasm32-unknown-unknown/debug/port_wasm_probe.rustc.txt
+          if-no-files-found: error
+          retention-days: 30
   gate:
     if: always()
-    needs: [fast, native-oracle, catalog-contracts]
+    needs: [fast, native-oracle, catalog-contracts, browser-wasm]
     runs-on: ubuntu-24.04
     timeout-minutes: 2
     steps:
@@ -102,7 +144,9 @@ jobs:
           FAST: ${{ needs.fast.result }}
           NATIVE: ${{ needs.native-oracle.result }}
           CATALOG: ${{ needs.catalog-contracts.result }}
+          BROWSER_WASM: ${{ needs.browser-wasm.result }}
         run: |
           test "$FAST" = success
           test "$NATIVE" = success
           test "$CATALOG" = success
+          test "$BROWSER_WASM" = success

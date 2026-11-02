@@ -10,7 +10,8 @@ and [the plan](../docs/port-plan/HANDOFF.md).
 | `port-engine` | Session, commands, jobs, history | Empty |
 | `port-io` | Formats and the `.scanruler` project reader/writer | STL binary/ASCII dispatch and triangle extraction (P06); no welding/session loader |
 | `port-cli` | `scanruler-rs`, native front end for differential runs | Prints a banner |
-| `xtask` | Project tasks | `ci`, `oracle`, `pin`, `plan`, `wasm`, `env` |
+| `port-wasm-probe` | Private bounded browser-runtime test ABI | Three operations, no unsafe Rust or third-party dependencies; not product integration |
+| `xtask` | Project tasks | `ci`, `oracle`, `pin`, `plan`, `wasm`, `wasm-probe`, `env` |
 
 ```bash
 cargo xtask ci     # the fast gate; same thing CI runs
@@ -76,7 +77,7 @@ Current operations and exact test/evidence identities live in the canonical unit
 under docs/port-plan/plan/units. Start with the [ordered audit queue](../docs/port-plan/AUDIT-QUEUE.md)
 for parent-first PR review, source symbols, reports, known gaps and complete run commands.
 These are partial library ports: port-engine is still empty, the CLI is a banner,
-and no Rust UI or browser-Wasm runtime parity is claimed. No child unit is accepted.
+and no Rust UI or whole-product runtime parity is claimed. Bounded Chrome execution for three library operations is documented below. No child unit is accepted.
 
 ## Curved fit versus plane
 
@@ -128,7 +129,7 @@ soup indices before ignoring them and retaining adjacency built before winding
 flips. Typed parsed input transfers owned arrays; caller limits bound raw vertices,
 indices and neighbors. Fifty cases compare complete graph/error/progress output
 exactly, including 36 successful graphs. STL command/session integration, metadata
-handling beyond this source body and browser-Wasm execution remain open.
+handling beyond this source body remain open. The fixed graph corpus executes in Chrome under the runtime harness below.
 
 ## Closed-shell parity
 
@@ -149,5 +150,15 @@ minimum-area rectangle, projected center, oriented residual extremes, full
 statistics and the original ordered region. Extents and normal votes use every
 original mark even when clipping reduces usedPoints. Fifty-one independent source
 cases cover the complete result and fixed-angle probes under a preregistered
-comparison budget. Seeded region growth, public commands/history and browser-Wasm
-runtime remain open. See fit.plane.selection and its evidence report.
+comparison budget. This corpus also executes in Chrome; seeded region growth,
+public commands/history and broader runtime coverage remain open. See fit.plane.selection and its evidence report.
+
+## Actual browser-Wasm execution
+
+`cargo xtask wasm-probe` compiles a safe private buffer/word test ABI with a hard
+64 MiB linear-memory maximum. The required Chrome CI lane runs the existing TLS
+plane, full mesh graph and marked-plane inputs against original/native/Wasm data.
+The verified 114-case scope and immutable report are in
+[the runtime guide](../docs/port-plan/oracle/BROWSER-WASM.md). This narrows the
+compile-only gap for those operations; it does not implement UI/session commands,
+all-unit runtime parity or a stable production ABI. Node smoke is diagnostic only.

@@ -1,0 +1,8 @@
+{
+  "contract": "browser.wasm.corpus.v1",
+  "suites": [
+    {"unit":"fit.plane.tls","directory":"plane-diff","mode":1,"cases":13},
+    {"unit":"geometry.mesh.graph","directory":"mesh-graph-diff","mode":2,"cases":50},
+    {"unit":"fit.plane.selection","directory":"marked-plane-diff","mode":3,"cases":51}
+  ]
+}

@@ -33,6 +33,6 @@ look in the repository. It is meant to be read in order, and each page stands on
 
 ## Honest status
 
-As of 2026-11-01, bounded geometry/format operations are implemented and compared natively. The full mesh-graph library pipeline exists; the engine is empty, the CLI is a banner and no Rust UI exists. Wasm compiles but browser-Wasm runtime parity is open. No numerical unit is accepted. Original browser/headless catalog metadata is captured, not complete command execution parity.
+As of 2026-11-01, bounded geometry/format operations are implemented and compared natively. The full mesh-graph library pipeline exists; the engine is empty, the CLI is a banner and no Rust UI exists. Actual Chrome-Wasm comparison now covers the TLS/mesh-graph/marked-plane subset; wider runtime coverage and UI/session parity remain open. No numerical unit is accepted. Original browser/headless catalog metadata is captured, not complete command execution parity.
 
 Start at the [generated status](../port-plan/STATUS.md), [audit queue](../port-plan/AUDIT-QUEUE.md) and [next implementation increments](../port-plan/IMPLEMENTATION-PLAN.md). Historical scaffold-only statements in the story refer to 2026-10-31, not current implementation status.

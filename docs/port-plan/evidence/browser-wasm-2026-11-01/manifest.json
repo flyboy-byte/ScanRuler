@@ -1,0 +1,14 @@
+{
+  "contract": "browser.wasm.evidence.v1",
+  "run": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41375102435",
+  "source_head_sha": "43e397793d301143984243e05cca7f3a76e6937a",
+  "candidate_sha": "00fd1a69af98c7bacc91da747483ac0ccbfb70c6",
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "report_sha256": "9de61cc88876ba9c4a4db0228507f90ed7c0748bb7257c9e52b5bbe20161da65",
+  "module_sha256": "68303a86412f3a142d1a807ea420060eae4b69573215a64830b60c64982f074a",
+  "module_bytes": 3968791,
+  "case_identities": 114,
+  "successful_values": 90,
+  "source_refusals": 24,
+  "protocol_checks": 10
+}

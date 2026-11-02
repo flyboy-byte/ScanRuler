@@ -28,7 +28,8 @@ The immutable [observed CI snapshot](evidence/2026-11-01-review-ci.json) records
 | [#20](https://github.com/flyboy-byte/ScanRuler/pull/20) | Complete mesh graph | `codex/port-mesh-selection` | SUCCESS / SUCCESS |
 | [#21](https://github.com/flyboy-byte/ScanRuler/pull/21) | Closed-shell parity | `codex/port-mesh-graph` | SUCCESS / SUCCESS |
 | [#22](https://github.com/flyboy-byte/ScanRuler/pull/22) | CI/status/docs and remaining implementation plan | #21 plus local joins of #1/#13/#14 | Full hosted gates passed; see continuation below |
-| [#23](https://github.com/flyboy-byte/ScanRuler/pull/23) | Complete marked-selection plane element | #22 | 51 local source cases; hosted validation pending |
+| [#23](https://github.com/flyboy-byte/ScanRuler/pull/23) | Complete marked-selection plane element | #22 | 51 source cases; check current head |
+| [#24](https://github.com/flyboy-byte/ScanRuler/pull/24) | Actual Rust geometry in Chrome Wasm | #23 | Hosted 114-case runtime / strict gate passed; immutable report retained |
 
 ## Merge order and evidence
 
@@ -41,3 +42,5 @@ The original source unit timing test reNetworkCreases.test.ts:209 has an unchang
 For #22, validate all new lanes and negative tests, generated inventory freshness, exact SHA raw evidence, original snapshot recapture and successful/failing source diagnostics. Local system Rust policy remains; Node 22 is oracle-only. No upstream source/tests/locks, deploy, legal or repository settings are changed.
 
 Checkpoint 2026-11-01: #22 final hosted Rust gate 41370201083, both original catalog recaptures 41370201138/41370201212 and every independent original lane/aggregate 41370201074 passed. The CI separation is exercised on hosted Node 22. #23 adds fit.plane.selection: 45 successful full elements, six source refusals, original-region retention after clipping, and fixed angle probes. Current generated inventory is eighteen suites / 686 case identities including refusals. No numerical child accepted and no PR merged.
+
+Runtime checkpoint 2026-11-01: #24 actual Chrome-Wasm and strict Rust gate passed run 41375102435 at CI merge 00fd1a69af98c7bacc91da747483ac0ccbfb70c6 (head 43e3977). TLS/mesh graph/marked-plane inputs: 114, including 90 successful value cases and 24 source refusals; ten bounded protocol checks. Node 22.23.4, Chrome 156.0.8078.47, Rust 1.99.1. Full report/module/case hashes under evidence/browser-wasm-2026-11-01/. No imports, page errors, source-fed Rust outputs or numerical budget changes. All numerical units remain unaccepted; broader runtime, commands and P37 remain open.

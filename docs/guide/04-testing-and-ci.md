@@ -11,11 +11,12 @@
 | Raw evidence | `ci_report.py evidence --candidate <sha>` | Full case/file inventory at exact checkout; not an independent numerical comparator |
 | Original catalogs | validator tests and real capture workflows | Immutable core/all browser/headless schemas and context; not Rust commands |
 | Original app | source-tests, source-mcp, source-browser | All original tests/build/browser checks; independent lanes and strict final gate |
-| Browser-Wasm / generic diff / exact-base ratchet | P36/P37 | Not implemented; no green substitute |
+| Browser-Wasm | `cargo xtask wasm-probe` and required Chrome lane | Implemented for 114 TLS/graph/marked inputs; 90 successful values / 24 refusals |
+| Generic diff / exact-base ratchet | P36/P37 | Not implemented; no green substitute |
 
-Fast checks and actual native comparisons now have distinct results. The final Rust `gate` requires every Rust lane; original `test-and-build` requires all original lanes. Failed or skipped required lanes remain red. Source timing failures no longer block collecting independent MCP/browser results; no threshold is changed. Main validations are never cancelled by later commits. SHA-named raw evidence/log artifacts are retained thirty days. See [the executable CI contract](../port-plan/CI-AND-REGRESSIONS.md) for exact commands and limitations.
+Fast checks and actual native comparisons now have distinct results. The final Rust `gate` requires fast/native/catalog/browser-Wasm lanes; original `test-and-build` requires all original lanes. Failed or skipped required lanes remain red. Source timing failures no longer block collecting independent MCP/browser results; no threshold is changed. Main validations are never cancelled by later commits. SHA-named raw evidence/log artifacts are retained thirty days. See [the executable CI contract](../port-plan/CI-AND-REGRESSIONS.md) for exact commands and limitations.
 
-A green native gate is evidence for its fixed native corpus, not browser runtime or whole-product parity. [STATUS.md](../port-plan/STATUS.md) counts canonical inventory, while the [audit queue](../port-plan/AUDIT-QUEUE.md) records observed run outcomes. Neither can stand in for the other.
+A green native gate is evidence for its fixed native corpus. The separate browser-Wasm lane now exercises a bounded three-operation subset; neither establishes whole-product parity. [STATUS.md](../port-plan/STATUS.md) counts canonical inventory, while the [audit queue](../port-plan/AUDIT-QUEUE.md) records observed run outcomes. Neither can stand in for the other.
 
 ## How "matches the original" is proven
 
