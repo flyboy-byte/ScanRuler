@@ -1,0 +1,127 @@
+{
+  "note": "Maps units to work lanes for tools/next_task.py. Order is the priority between lanes of the same readiness class. Edit when units are added; the tool reports any unit not covered.",
+  "lanes": [
+    {
+      "id": "A",
+      "name": "Baseline and corpus (critical path)",
+      "units": [
+        "P00",
+        "P01",
+        "P02",
+        "P03",
+        "baseline.reproducibility",
+        "catalog.browser",
+        "catalog.headless",
+        "ci.integration"
+      ],
+      "touches": "docs/port-plan/evidence, fixtures, .github"
+    },
+    {
+      "id": "H",
+      "name": "Import breadth",
+      "units": [
+        "io.ply",
+        "io.obj",
+        "io.threemf"
+      ],
+      "touches": "rust/crates/port-io"
+    },
+    {
+      "id": "C",
+      "name": "Paired harness and ratchet",
+      "units": [
+        "P36",
+        "P37",
+        "P38",
+        "harness.oracle.gate",
+        "harness.wasm.runtime"
+      ],
+      "touches": "rust/xtask, ci/, port-wasm-probe (one agent at a time)"
+    },
+    {
+      "id": "B",
+      "name": "Session contract",
+      "units": [
+        "P05",
+        "engine.session.contract"
+      ],
+      "touches": "spec doc, then rust/crates/port-engine"
+    },
+    {
+      "id": "D",
+      "name": "Measurement slice",
+      "units": [
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "engine.measurement.slice"
+      ],
+      "touches": "port-engine, port-cli, port-io"
+    },
+    {
+      "id": "E",
+      "name": "Projects and history",
+      "units": [
+        "P16",
+        "P17",
+        "project.measurement.compatibility"
+      ],
+      "touches": "rust/crates/port-io"
+    },
+    {
+      "id": "M",
+      "name": "MCP",
+      "units": [
+        "P18"
+      ],
+      "touches": "new crate, mcp wire compatibility"
+    },
+    {
+      "id": "G",
+      "name": "Kernel spikes",
+      "units": [
+        "P04",
+        "P31",
+        "P32",
+        "P33",
+        "P34",
+        "P35"
+      ],
+      "touches": "new crates; ~/solidcore is a candidate"
+    },
+    {
+      "id": "F",
+      "name": "Viewer spike",
+      "units": [
+        "P24"
+      ],
+      "touches": "new crate or example"
+    },
+    {
+      "id": "L",
+      "name": "Later measurement families, workspaces, release",
+      "units": [
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P19",
+        "P20",
+        "P21",
+        "P22",
+        "P23",
+        "P25",
+        "P26",
+        "P27",
+        "P28",
+        "P29",
+        "P30",
+        "P39"
+      ],
+      "touches": "depends on the lanes above"
+    }
+  ]
+}

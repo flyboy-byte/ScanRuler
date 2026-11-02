@@ -203,7 +203,43 @@ fn validate_oracle_discovery(list: &str) -> Result<(), String> {
     Ok(())
 }
 
+/// The original app needs Node 22 or newer. The system Node may be older, so the oracle
+/// gate re-runs itself once under `fnm exec --using=22` (a user-space install, nothing
+/// global changes) and otherwise fails with the reason. Node is oracle-only.
+fn ensure_oracle_node() -> Result<bool, String> {
+    let version = capture("node", &["-v"]);
+    let major = version
+        .trim_start_matches('v')
+        .split('.')
+        .next()
+        .and_then(|m| m.parse::<u32>().ok());
+    if major.is_some_and(|m| m >= 22) {
+        return Ok(false);
+    }
+    if std::env::var_os("SCANRULER_ORACLE_REEXEC").is_some() {
+        return Err(format!(
+            "Node {version} is below 22 even under fnm; run `fnm install 22`"
+        ));
+    }
+    let status = Command::new("fnm")
+        .args(["exec", "--using=22", "--", "cargo", "xtask", "oracle"])
+        .env("SCANRULER_ORACLE_REEXEC", "1")
+        .current_dir(workspace())
+        .status()
+        .map_err(|e| {
+            format!("Node {version} is below 22 and fnm could not start ({e}); install Node 22 (e.g. `fnm install 22`)")
+        })?;
+    if status.success() {
+        Ok(true)
+    } else {
+        Err("oracle failed under Node 22 (see output above)".into())
+    }
+}
+
 fn oracle() -> Result<(), String> {
+    if ensure_oracle_node()? {
+        return Ok(());
+    }
     pin()?;
     let output = Command::new("cargo")
         .args([

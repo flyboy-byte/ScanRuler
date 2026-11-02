@@ -4,7 +4,7 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 21,
-    "planned": 44
+    "planned": 47
   },
   "native_suites": 18,
   "native_case_identities_including_refusals": 686,
@@ -649,6 +649,26 @@
       ]
     },
     {
+      "id": "io.obj",
+      "status": "planned",
+      "parent": "P06",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Texture image decoding needs a recorded pure-Rust dependency decision (P35 purity audit)."
+      ]
+    },
+    {
+      "id": "io.ply",
+      "status": "planned",
+      "parent": "P06",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Needs the P03 corpus entries for each PLY variant before acceptance; scoped from the 2026-11-02 import-format audit."
+      ]
+    },
+    {
       "id": "io.stl.binary",
       "status": "implemented",
       "parent": "P06",
@@ -670,6 +690,16 @@
       "open_items": [
         "Browser-Wasm runtime comparisons remain unbuilt; wasm32 library compilation passes only.",
         "P05/G0 contracts and general P36 paired harness/coverage ratchet remain open; no promotion to accepted or full scan import."
+      ]
+    },
+    {
+      "id": "io.threemf",
+      "status": "planned",
+      "parent": "P06",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Deflate/zip: decide own implementation versus an audited pure-Rust crate before coding."
       ]
     },
     {
