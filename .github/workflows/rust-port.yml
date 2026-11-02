@@ -129,3 +129,10 @@ jobs:
           name: curvature-gate-comparison
           path: rust/target/curvature-gate-diff/
           retention-days: 7
+      - name: Retain adjacency evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mesh-adjacency-comparison
+          path: rust/target/adjacency-diff/
+          retention-days: 7
