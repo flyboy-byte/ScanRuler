@@ -1,0 +1,38 @@
+{
+  "id": "engine.session.registry",
+  "parent": "engine.session.contract",
+  "title": "Port owned command registration, catalog and schema admission",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "engine.schema.validate",
+    "engine.error.envelope"
+  ],
+  "soft_depends_on": [
+    "engine.session.contract"
+  ],
+  "scope": "Complete registerCommands/listCommands/runsHeadless and start admission before scheduling, preserving partial registration failures, cleanup behavior, exact ordered metadata and coerced arguments. No command body, queue/history or fake public command.",
+  "acceptance": [
+    "Independently executed complete pinned registry module compares full catalog/headless/error/admission state after each operation, including all140 original command definitions and fixed seeded inputs.",
+    "Source observations precede Rust; deliberate metadata/error/value changes fail; native/Wasm compile, bounded owned storage and explicit remaining session integration."
+  ],
+  "owner": "Codex",
+  "branch": "codex/session-registry",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/registry.ts"
+  ],
+  "symbols": [
+    "registerCommands",
+    "listCommands",
+    "runsHeadless",
+    "start (admission)"
+  ],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Live scheduler/history/settle/timeout/jobs, arbitrary shared definition mutation, locale/platform acceptance and public command execution remain separate session continuations."
+  ]
+}

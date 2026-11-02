@@ -13,7 +13,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | baseline-captured | 2 |
 | implemented | 36 |
 | planned | 49 |
-| specified | 1 |
+| specified | 2 |
 
 | Unit | State | Tested implementation | PR |
 | --- | --- | --- | --- |
@@ -65,6 +65,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [engine.measurement.slice](plan/units/engine.measurement.slice.json) | planned | — | — |
 | [engine.schema.validate](plan/units/engine.schema.validate.json) | implemented | `d3f9945` | [#42](https://github.com/flyboy-byte/ScanRuler/pull/42) |
 | [engine.session.contract](plan/units/engine.session.contract.json) | specified | — | — |
+| [engine.session.registry](plan/units/engine.session.registry.json) | specified | — | — |
 | [fit.curvature.gate](plan/units/fit.curvature.gate.json) | implemented | `f46eeb1` | [#16](https://github.com/flyboy-byte/ScanRuler/pull/16) |
 | [fit.linalg.solve](plan/units/fit.linalg.solve.json) | implemented | `46e0992` | [#7](https://github.com/flyboy-byte/ScanRuler/pull/7) |
 | [fit.plane.clip](plan/units/fit.plane.clip.json) | implemented | `4c8b4cf` | [#9](https://github.com/flyboy-byte/ScanRuler/pull/9) |

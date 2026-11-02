@@ -5,7 +5,7 @@
     "baseline-captured": 2,
     "implemented": 36,
     "planned": 49,
-    "specified": 1
+    "specified": 2
   },
   "native_suites": 26,
   "native_case_identities_including_refusals": 2015,
@@ -459,7 +459,18 @@
       "open_items": [
         "Spec drafted in SESSION-CONTRACT.md from registry, state, types, historyStore, activity, schema, stalePage, host.sessionBusy and the worker files; still to read: stateSections.ts, agentLink.ts, rest of host.ts.",
         "Original-derived scenario traces (spec section 8) and the Rust session are unimplemented; no session acceptance claim.",
-        "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text."
+        "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
+        "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
+      ]
+    },
+    {
+      "id": "engine.session.registry",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Live scheduler/history/settle/timeout/jobs, arbitrary shared definition mutation, locale/platform acceptance and public command execution remain separate session continuations."
       ]
     },
     {
