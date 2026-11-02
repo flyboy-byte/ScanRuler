@@ -1,0 +1,38 @@
+{
+  "id": "io.obj.companions.drop",
+  "parent": "io.obj.companions",
+  "title": "Port dropped-folder traversal and file-read failures",
+  "gate": "G3",
+  "status": "planned",
+  "depends_on": [
+    "io.obj.companions.files"
+  ],
+  "soft_depends_on": [
+    "P03",
+    "P36"
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/app/scanFiles.ts"
+  ],
+  "symbols": [
+    "droppedFiles",
+    "fileOf",
+    "childrenOf"
+  ],
+  "rust_paths": [],
+  "scope": "Complete droppedFiles/fileOf/childrenOf including fallback, one-level directory traversal, batches and ordered platform errors. Thin platform callbacks only.",
+  "acceptance": [
+    "Preserve complete original successful/refused state and order; resource failures remain distinct.",
+    "Fixed licensed source cases and full result evidence precede Rust; no hidden browser/foreign codec in product."
+  ],
+  "evidence": [],
+  "open_items": [
+    "No implementation or image dependency adoption claimed."
+  ],
+  "resolved_items": []
+}

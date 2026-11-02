@@ -56,6 +56,11 @@ refusals), with 18 protocol probes. Both full-size OBJ progress cases remain in
 native comparisons. OBJ output/state bytes are exact; historical browser proofs
 and all earlier numerical budgets remain unchanged.
 
+Companion file selection adds 87 exact classification/identity/byte-state traces,
+bringing the native inventory to 24 suites /1,278 identities. These are input
+bookkeeping observations, not new working import commands or numerical results.
+Browser coverage remains the separate 564-case roster until that follow-up lands.
+
 Numerical comparisons remain in the existing Rust tests with their original fixed budgets and cases. The inventory reporter hashes raw files; it does **not** reinterpret values, declare a refusal successful geometry, compare against the exact PR base, or replace P36/P37. Canonical case edits and changed input/output hashes still need review; there is no automatic accepted-case ratchet yet.
 
 Artifacts are SHA-named and retained 30 days: Rust fast logs/environment, every `*-diff` raw directory plus native manifest/log, original unit/MCP logs and successful/failing browser diagnostics. Catalog snapshots remain committed and hashed. Main runs use unique run IDs and are never cancelled by a newer commit. Only superseded PR runs are cancelled. Explicit Bash enables pipefail so log capture cannot hide a failed command. No build-output/golden cache is introduced.

@@ -53,6 +53,12 @@ CI results are separated: Rust fast checks, native oracle assertions/raw evidenc
 
 ## Review and next implementation
 
+Continuation from clean `main` `cb0b480` after #35: #36 ports the complete
+classification/bundle/association/byte-preservation slice with 87 exact native
+source states (24 suites /1,278 identities). `io.obj.companions.files` owns it;
+drop traversal, codec audit/decoding and actual Wasm remain explicit follow-ups.
+This continuation does not merge PRs.
+
 PR #31 ports the complete decoded-RGBA OBJ material/texture helper module, with
 144 exact source observations. PR #32 implements the complete parseOBJ continuation with 81 exact source cases.
 PR #34 adds actual Chrome/Wasm OBJ comparisons with 564 total cases and 18 protocol checks.
