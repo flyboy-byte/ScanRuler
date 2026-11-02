@@ -22,6 +22,7 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 | 15 | #18 (base #17 branch) | Directed disjoint sets and mesh components | evidence/2026-11-01-components.md; 51 cases / 1557 complete state snapshots |
 | 16 | #19 (base #18 branch) | Ordered mesh selection filtering/remapping | evidence/2026-11-01-mesh-selection.md; 62 full-output cases |
 | 17 | #20 (base #19 branch) | Complete parsed mesh graph pipeline | evidence/2026-11-01-mesh-graph.md; 36 full states + 14 exact refusals |
+| 18 | #21 (base #20 branch) | Bit-welded closed-shell parity | evidence/2026-11-01-closed-shells.md; 64 flag/private-ID/hash cases |
 | independent | [#13](https://github.com/flyboy-byte/ScanRuler/pull/13) | Frozen original headless catalog | Actual built-engine core/all evidence; hosted capture passed |
 | after #13 | [#14](https://github.com/flyboy-byte/ScanRuler/pull/14) | Browser catalog capture | Actual original Chrome core/all captured; evidence and immutable schema guards on #14 |
 
@@ -59,3 +60,5 @@ Follow-on checkpoint: #14 final immutable browser recapture passed 41356255484; 
 #18 hosted Rust gate passed 41365788747; original-app CI pending at the checkpoint. #19 adds 62 exact selection cases; local fast and fifteen-suite source gates pass (521 case identities including refusals). Original source/tests remain unchanged and no PRs merged.
 
 #19 hosted Rust gate passed 41366118494; original-app CI pending at the checkpoint. #20 integrates existing helpers without changes and passes the full local sixteen-suite gate (571 identities including refusals), plus 26 ordinary tests. Audit adjacency-before-winding order, source validation/error/progress and explicit host ownership/budgets. P06 still requires mapping/queries/runtime/session work.
+
+#20 hosted Rust gate passed 41366668479; original-app CI pending at the checkpoint. #21 adds 64 exact closure/private-state cases; local fast and seventeen-suite source gates pass (635 identities including refusals). Inspect signed-zero distinction, ignored tails and original even-edge probabilistic semantics; no manifold guarantee or acceptance.
