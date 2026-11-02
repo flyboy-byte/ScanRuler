@@ -14,8 +14,8 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 | 7 | #8 (base #7 branch) | Fixed-selection plane fitting | evidence/2026-11-01-plane.md; 13 paired cases |
 | 8 | #9 (base #8 branch) | Shared clipping and clipped plane fits | evidence/2026-11-01-clip.md; 19 value/selection cases |
 | 9 | #10 (base #9 branch) | Complete extents/bounds, shared helpers | evidence/2026-11-01-bounds.md; 12 cases + 106 core regressions |
-
 | 10 | #11 (base #10 branch) | Area, surface/volume centroids and closure | evidence/2026-11-01-centroid.md; 23 paired cases |
+| 11 | #12 (base #11 branch) | PRNG, median consensus and robust plane fit | evidence/2026-11-01-ransac.md; 50 draw/value/state cases |
 
 Audit/merge in dependency order. After a parent merges, retarget the child to main and inspect the resulting diff before review; preserve each unit's tested SHA/evidence. Never merge a child against an unmerged parent branch as a substitute for landing on main. Regenerate backlog.json from canonical units when resolving generated-index conflicts; preserve independent P39 documentation updates from #1.
 
@@ -38,3 +38,5 @@ cargo test -p port-io --tests -- --ignored --nocapture
 Oracle tests require Node and the frozen Git object. Inspect each raw target/*-diff run and its candidate identity, not only test counts. Shared-helper changes in #10 refresh plane/clipping/orientation evidence while retaining historical unit evidence. Mesh surface/volume centroid and closure behavior are now implemented in the follow-on unit; no engine/session or browser-Wasm runtime feature exists yet.
 
 Hosted Rust gates observed passing: #9 run 41349387428; #10 run 41349751575. Targeted native source comparisons are distinct from unresolved original-app timing CI and browser-Wasm execution.
+
+Hosted Rust gate observed passing: #11 run 41350575050. Confirmed #6 original-app failure is the same unchanged reNetworkCreases.test.ts:209 timing gate, 1996.27 ms vs 1500 ms (run 41348317870); no source expectation was relaxed.

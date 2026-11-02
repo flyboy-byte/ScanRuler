@@ -142,3 +142,13 @@ jobs:
           name: mesh-centroid-comparison
           path: rust/target/centroid-diff/
           retention-days: 7
+      - name: Robust plane pinned-original comparison (native)
+        working-directory: rust
+        run: cargo test -p port-core --test ransac pinned_ransac_comparison -- --ignored --nocapture
+      - name: Retain robust plane evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: robust-plane-comparison
+          path: rust/target/ransac-diff/
+          retention-days: 7

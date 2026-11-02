@@ -1,0 +1,19 @@
+# Autonomous port run checkpoint — 2026-11-01
+
+User instruction: keep porting until session credit limits stop work; produce bounded PRs with tests/docs so Claude Code can audit and merge. Goal remains active. No merges, deployments, upstream contributions or legal/contact actions performed.
+
+Start at AUDIT-QUEUE.md for the ordered PR table and runnable gates, then canonical plan/units/*.json and each unit's evidence report. Do not infer acceptance from the number of PRs. This run created #4–#12 on top of earlier #2/#3. #1 is an independent documentation refinement.
+
+Current branch: codex/port-ransac-plane (PR #12). Exact source implementation SHA is recorded in fit.plane.ransac.json, along with 50 raw case identities. Every code PR is stacked on the previous code branch; #2 targets main. After a parent lands, retarget/review the child against main before merging. Regenerate backlog.json from affected canonical units rather than manually merging duplicated generated rows. Preserve independent P39 updates from #1. Use explicit `--repo flyboy-byte/ScanRuler` on gh calls; gh's fork default can select upstream.
+
+Implemented library operations: binary/ASCII STL; exact-bit welding/index-degenerate filtering; weighted vertex normals; outward winding correction; dense linear solvers; fixed-selection TLS planes, shared clipping/clipped planes and robust consensus planes; full extents/bounds; surface/volume centroid and area. Pure-Rust shared norm/extent/tetrahedral arithmetic is reused. No dependencies added. Original TypeScript source/tests and frozen 2cd89c6 pin remain unchanged. README's partial-port section is updated; the entire upstream README section is verified unchanged.
+
+No complete Rust app: engine empty, CLI banner, no Rust UI, browser-Wasm execution, G0/P05 acceptance, generic P36 paired-runner/ratchet or complete modelling kernel. Child units stay implemented, not accepted. Targeted native oracle suites execute actual frozen bodies with annotations removed; local Node is 20.20.2 and hosted suites provision Node 22. All native fixtures are independently supplied; no original output is fed into Rust. Numerical budgets were pre-registered before plane/clipping/bounds/centroid/RANSAC runs; no tolerance/seed/case relaxation.
+
+The usage skill failed before any reliable reading (script key-shadowing bug). Do not claim a known credit balance or repeatedly poll it. Continue within the user's authorized port/PR scope until the actual session limit intervenes.
+
+Known separate failure: unchanged original-app reNetworkCreases.test.ts:209 exceeds its 1500 ms wall-time threshold (1516.53, 1894.01 and 1996.27 ms observed). Rust gates for #4–#11 were observed green; their run links are in AUDIT-QUEUE.md. Inspect each current head's CI; do not waive/redesign the source timing expectation. New PR head checks may still be running.
+
+Complete local audit from rust/: cargo xtask ci; cargo test -p port-core --tests -- --ignored --nocapture; cargo test -p port-io --tests -- --ignored --nocapture. Oracle tests require the pinned Git object and Node. Raw paired files live under target/*-diff/run-* and are uploaded for seven days; hashes/reproducers remain in Git. Accepted-unit exact-base ratchet is still unbuilt.
+
+Next priorities: inspect current PR CI and fix genuine port failures; complete G0 original catalog/headless evidence (P00–P03/P02) and browser-Wasm runtime harness rather than treating helper coverage as command/application parity. For further feature work, audit remaining plane splitting/region growth and bounded engine command/session integration before claiming a user-visible measurement workflow. Preserve source formulas and caller continuations; add a unique unit/PR rather than extending already reviewed claims invisibly.

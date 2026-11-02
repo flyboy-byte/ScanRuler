@@ -24,4 +24,5 @@ pub mod normals;
 mod numeric;
 pub mod orientation;
 pub mod plane;
+pub mod ransac;
 pub mod weld;
