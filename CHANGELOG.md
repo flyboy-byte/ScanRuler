@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **PLY in actual Rust browser Wasm** (2026-11-02): extend the bounded source/native/Chrome comparisons to 341 cases, retaining exact PLY data/progress/IEEE bits and all previous cases; record the sole large native-only workload and complete raw evidence.
+
 - **Rust binary PLY import** (2026-11-02): complete both byte orders and the full PLY dispatcher, with 168 exact source comparisons including every scalar alias, two-pass faces, IEEE edge cases and real progress boundaries. Keep all existing ASCII comparisons.
 
 - **Rust ASCII PLY import** (2026-11-02): port complete header and ASCII mesh decoding with winding preservation, face fans and source numeric/property behavior; compare 60 independent cases exactly. Binary PLY and session integration remain open.

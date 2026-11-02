@@ -151,3 +151,47 @@ test('missing, stale and corrupt PLY sidecars fail before browser execution', as
     assert.throws(() => verifyNativeCaseFiles(4, files, badLength))
   }
 })
+test('committed expanded Chrome proof reproduces all source/native/Wasm comparisons', async () => {
+  const { readFileSync } = await import('node:fs')
+  const { createHash } = await import('node:crypto')
+  const { gunzipSync } = await import('node:zlib')
+  const base = new URL('../evidence/browser-wasm-ply-2026-11-02/', import.meta.url)
+  const read = name => readFileSync(new URL(name, base))
+  const hash = b => createHash('sha256').update(b).digest('hex')
+  const manifest = JSON.parse(read('manifest.json')), report = JSON.parse(read('report.json'))
+  assert.equal(hash(read('report.json')), manifest.report_sha256)
+  assert.equal(hash(read('corpus.json')), manifest.corpus_sha256)
+  assert.equal(hash(read('raw.json.gz')), manifest.raw_gzip_sha256)
+  const bytes = gunzipSync(read('raw.json.gz'))
+  assert.equal(hash(bytes), manifest.raw_decoded_sha256)
+  const raw = JSON.parse(bytes), definitions = JSON.parse(read('corpus.json')).suites
+  validateBrowserRoster(definitions)
+  assert.equal(report.status, 'passed'); assert.equal(report.runtime, 'chrome-wasm')
+  assert.equal(report.candidate_sha, manifest.candidate_sha); assert.equal(report.reference_sha, manifest.reference_sha)
+  assert.equal(report.browser.moduleSha256, manifest.module_sha256); assert.equal(report.module_sha256, manifest.module_sha256)
+  assert.deepEqual(report.browser.imports, []); assert.deepEqual(report.page_errors, [])
+  assert.match(report.browser.version, /^Chrome\//); assert.match(report.node, /^v22\./)
+  assert.equal(report.cases.length, 341); assert.equal(raw.length, 341)
+  assert.equal(report.successful_value_cases, 287); assert.equal(report.source_refusal_cases, 54)
+  assert.equal(report.negative_protocol_checks.length, 13)
+  assert.deepEqual(report.excluded_native_cases, manifest.excluded_native_cases)
+  assert.deepEqual(report.excluded_native_cases.map(c => c.unit + '/' + c.id), ['io.ply.binary/le-vertex-progress'])
+  const expected = manifest.units.flatMap(u => u.case_ids.map(id => u.unit + '/' + id)).sort()
+  assert.equal(new Set(expected).size, 341)
+  assert.deepEqual(report.cases.map(c => c.unit + '/' + c.id).sort(), expected)
+  assert.deepEqual(raw.map(c => c.unit + '/' + c.id).sort(), expected)
+  for (const item of raw) {
+    const c = report.cases.find(c => c.unit === item.unit && c.id === item.id)
+    const mode = definitions.find(d => d.unit === c.unit).mode
+    const files = Object.fromEntries(Object.entries(item.files).map(([name, hex]) => [name, Buffer.from(hex, 'hex')]))
+    const original = mode === 4 ? files['original.packet.bin'] : files['original.bin']
+    const native = mode === 4 ? files['rust.packet.bin'] : files['rust.bin']
+    if (mode === 4) {
+      assert.deepEqual(original, plyPacket(files['original.bin'], files['original.progress-or-error.txt']))
+      assert.deepEqual(native, plyPacket(files['rust.bin'], files['rust.progress-or-error.txt']))
+    }
+    for (const [bytes, key] of [[files['input.bin'], 'input_sha256'], [original, 'original_sha256'],
+      [native, 'native_sha256'], [files['wasm.bin'], 'wasm_sha256']]) assert.equal(hash(bytes), c[key])
+    compareOutput(mode, original, native); compareOutput(mode, original, files['wasm.bin']); compareOutput(mode, native, files['wasm.bin'])
+  }
+})

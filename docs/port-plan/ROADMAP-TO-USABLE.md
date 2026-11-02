@@ -70,8 +70,9 @@ M4 is listed after M3 because the harness can start as soon as P03 lands (see th
 makes M3 trustworthy, so build it in parallel and do not call M3 done without it.
 
 Import checkpoint 2026-11-02 UTC: the STL and all three PLY encoding bodies now
-have bounded native source comparisons. PLY does not yet have real browser-Wasm
-coverage or a public engine command, and `scanruler-rs info` is still unimplemented.
+have bounded native source comparisons. PLY also has actual Chrome-Wasm coverage
+apart from one explicitly native-only large workload. There is no public engine
+import command, and `scanruler-rs info` is still unimplemented.
 These library bodies do not complete M2 or replace the session work needed by M3.
 
 ## 4. Getting MCP solid
