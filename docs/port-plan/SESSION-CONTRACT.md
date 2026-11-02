@@ -4,7 +4,8 @@
 Written 2026-11-02 from the pinned original (`2cd89c6`). Every statement below is tagged: **DOCUMENTED** (read in
 the named source file at the pin), **INFERRED** (our reading of that code) or **DESIGN** (our choice for the Rust
 port, not the original's behaviour). This is a specification, not an implementation. It does not change any rule in
-`HANDOFF.md` and it does not claim acceptance: the traces in section 8 are what would prove it, and none exists yet.
+`HANDOFF.md` and it does not claim acceptance: the complete traces in section8 are what would prove it. Bounded registry/admission and history-recording
+traces now exist in their canonical children; full session acceptance remains unmet.
 `ARCHITECTURE.md` ("Commands, history and background work") states the intent; this file states the observed rules
 the Rust session has to reproduce.
 
@@ -183,7 +184,8 @@ DOCUMENTED (`historyStore.ts`), the rules the Rust history reproduces:
 - **Recording clears redo.** A new step empties `future`.
 - **Groups.** Within one `beginHistoryGroup`/`endHistoryGroup` span, consecutive steps in the same workspace merge
   into the previous entry (earliest `before` wins per key, latest `after` wins), only when there is no redo.
-- **Nesting.** `historyAction` inside another action or while restoring or the main store is busy or the configured hook blocks runs the job without a
+- **Nesting.** `historyAction` inside another sync action, while an async wrapper is paused, while restoring,
+  or while the main store is busy or the configured hook blocks runs the job without a
   step; the outermost action records one step. This is not every condition of historyBlocked: participant/editor
   blocking does not itself suppress historyAction. `historyAsync` checks **only paused or restoring**, ignoring
   sync depth, store busy and the hook guard; otherwise it holds paused for its duration. Nested/concurrent async

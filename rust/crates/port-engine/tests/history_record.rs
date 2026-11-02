@@ -1,10 +1,18 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //! Real-source recording traces, including graph payload and reference identity.
 #![allow(clippy::unwrap_used, clippy::expect_used, clippy::panic)]
+use port_engine::error::{CommandError, CommandErrorCode};
 use port_engine::history_record::{
-    Cell, Compare, Entry, Guards, HistoryError, Limits, Patch, Recorder, Section, Snapshot, Token,
+    Cell, Compare, Entry, Guards, HistoryError as RecordingError, Limits, Patch, Recorder, Section,
+    Snapshot, Token,
 };
 use std::sync::Arc;
+#[derive(Debug, Clone)]
+enum Fault {
+    Text(Text),
+    Command(CommandError),
+}
+type HistoryError = RecordingError<Fault>;
 include!("support/value_wire.rs");
 struct Case {
     id: &'static str,
@@ -86,6 +94,7 @@ struct Doc {
     participant: bool,
     log: Vec<Text>,
     capture: usize,
+    fail_code: Value,
     fail: usize,
 }
 impl Doc {
@@ -146,13 +155,14 @@ impl Doc {
             participant: false,
             log: Vec::new(),
             capture: 0,
+            fail_code: Value::Undefined,
             fail: 0,
         }
     }
     fn held(&self, h: &Recorder) -> bool {
         h.state.restoring || h.paused() || self.busy || self.hook || self.participant
     }
-    fn capture(&mut self, h: &Recorder) -> Result<Snapshot, HistoryError> {
+    fn capture(&mut self, h: &Recorder) -> Result<Snapshot, Fault> {
         let mut order: Vec<_> = (0..self.slots.len()).collect();
         order.sort_by_key(|&i| {
             if self.slots[i].key == txt("scope") {
@@ -176,7 +186,7 @@ impl Doc {
                 .concat(),
             );
             if self.capture == self.fail {
-                return Err(HistoryError::Capture(txt("capture failed 🦀")));
+                return Err(make_fault(&self.fail_code, txt("capture failed 🦀")));
             }
             let s = &self.slots[i];
             sections.push(Section {
@@ -271,6 +281,16 @@ impl Doc {
         ])
     }
 }
+fn make_fault(code: &Value, message: Text) -> Fault {
+    if matches!(code, Value::Undefined) {
+        return Fault::Text(message);
+    }
+    let code = CommandErrorCode::ALL
+        .into_iter()
+        .find(|c| c.as_str().encode_utf16().eq(units(code).iter().copied()))
+        .unwrap();
+    Fault::Command(CommandError::from_utf16(code, &message, 4096).unwrap())
+}
 struct Body {
     token: Result<Option<Token>, HistoryError>,
     leave: Vec<Value>,
@@ -282,9 +302,14 @@ struct Driver {
 }
 fn user_error(e: HistoryError) -> Value {
     match e {
-        HistoryError::Capture(message) => obj(vec![
+        HistoryError::Capture(Fault::Text(message)) => obj(vec![
             ("name", string("Error")),
             ("message", Value::String(message)),
+        ]),
+        HistoryError::Capture(Fault::Command(e)) => obj(vec![
+            ("name", string(e.name())),
+            ("message", Value::String(e.message_units().to_vec())),
+            ("code", string(e.code().as_str())),
         ]),
         e => panic!("unexpected host refusal {e:?}"),
     }
@@ -353,9 +378,15 @@ impl Driver {
                 self.doc.log.push(txt(&format!("set:{i}")));
             }
             "workspace" => self.doc.workspace = units(get(op, "value")).to_vec(),
-            "group" => self.history.begin_group()?,
+            "group" => self
+                .history
+                .begin_group()
+                .map_err(|e| e.map_capture(Fault::Text))?,
             "end_group" => self.history.end_group(),
-            "clear" => self.history.clear()?,
+            "clear" => self
+                .history
+                .clear()
+                .map_err(|e| e.map_capture(Fault::Text))?,
             "mode" => self.doc.slots[int(get(op, "section"))].identity = flag(get(op, "identity")),
             "flags" => {
                 let f = get(op, "value");
@@ -371,18 +402,22 @@ impl Driver {
                     }
                 }
             }
-            "capture_fail" => self.doc.fail = self.doc.capture + int(get(op, "offset")),
+            "capture_fail" => {
+                self.doc.fail = self.doc.capture + int(get(op, "offset"));
+                self.doc.fail_code = get(op, "code").clone();
+            }
             "seed_future" => {
                 self.history.state.future = vec![self.history.state.past.last().unwrap().clone()]
             }
             "throw" => {
-                return Err(HistoryError::Capture(
+                return Err(HistoryError::Capture(make_fault(
+                    get(op, "code"),
                     if matches!(get(op, "message"), Value::Undefined) {
                         txt("body failed 🦀")
                     } else {
                         units(get(op, "message")).to_vec()
                     },
-                ));
+                )));
             }
             "sync" => {
                 let label = units(get(op, "label"));
@@ -513,7 +548,7 @@ fn pinned_history_record_comparison() {
     assert!(sha.status.success());
     std::fs::write(run.join("candidate.txt"), sha.stdout).unwrap();
     let mut identity = String::from(
-        "contract: engine.session.history.record.bytes.v1\nreference: 2cd89c6769a10c27ee7754b477ada521c9ef5cb7\ncomparison: full patch graph identities/payloads, bookkeeping/workspace/capture order and held state\nseeds: 1,7,99,1079\n",
+        "contract: engine.session.history.record.bytes.v1\nreference: 2cd89c6769a10c27ee7754b477ada521c9ef5cb7\ncomparison: full patch graph identities/payloads, bookkeeping/workspace/capture order and held state\nseeds: 1,7,99,1109\n",
     );
     for (label, program, args) in [
         ("dirty", "git", vec!["status", "--porcelain"]),
@@ -545,7 +580,7 @@ fn pinned_history_record_comparison() {
         String::from_utf8_lossy(&prepared.stderr)
     );
     let cases = cases();
-    assert_eq!(cases.len(), 107);
+    assert_eq!(cases.len(), 110);
     let mut input = Vec::new();
     for c in &cases {
         n(&mut input, c.input.len());
@@ -625,7 +660,7 @@ fn pinned_history_record_comparison() {
     }
     assert_eq!(offset, original.stdout.len());
     println!(
-        "107 complete history recording scenarios; raw {}",
+        "110 complete history recording scenarios; raw {}",
         run.display()
     );
 }
@@ -644,16 +679,20 @@ fn metadata_limits_and_domain_bound_completions_are_safe() {
     let mut a = Recorder::default();
     let mut b = Recorder::default();
     let token_a = a
-        .begin_async(&txt("a"), &txt("elements"), |_| Ok(snapshot.clone()))
+        .begin_async(&txt("a"), &txt("elements"), |_| {
+            Ok::<_, Text>(snapshot.clone())
+        })
         .unwrap()
         .unwrap();
     let token_b = b
-        .begin_async(&txt("b"), &txt("elements"), |_| Ok(snapshot.clone()))
+        .begin_async(&txt("b"), &txt("elements"), |_| {
+            Ok::<_, Text>(snapshot.clone())
+        })
         .unwrap()
         .unwrap();
     assert!(matches!(
-        b.finish(token_a.clone(), |_| Ok(snapshot.clone())),
-        Err(HistoryError::InvalidToken)
+        b.finish(token_a.clone(), |_| Ok::<_, Text>(snapshot.clone())),
+        Err(RecordingError::InvalidToken)
     ));
     assert!(b.paused());
     let stale = token_a.clone();
@@ -663,17 +702,17 @@ fn metadata_limits_and_domain_bound_completions_are_safe() {
     assert!(a.paused());
     a.finish(token_a, |h| {
         assert!(!h.paused());
-        Ok(snapshot.clone())
+        Ok::<_, Text>(snapshot.clone())
     })
     .unwrap();
     assert!(a.state.past.is_empty());
     assert!(matches!(
-        a.finish(stale, |_| Ok(snapshot.clone())),
-        Err(HistoryError::InvalidToken)
+        a.finish(stale, |_| Ok::<_, Text>(snapshot.clone())),
+        Err(RecordingError::InvalidToken)
     ));
     b.finish(token_b, |h| {
         assert!(!h.paused());
-        Ok(snapshot.clone())
+        Ok::<_, Text>(snapshot.clone())
     })
     .unwrap();
     assert!(b.state.past.is_empty());
@@ -711,10 +750,27 @@ fn metadata_limits_and_domain_bound_completions_are_safe() {
     ] {
         let mut h = Recorder::new(limits);
         assert!(matches!(
-            h.begin_async(&txt("a"), &txt("elements"), |_| Ok(snapshot.clone())),
-            Err(HistoryError::Limit)
+            h.begin_async(&txt("a"), &txt("elements"), |_| Ok::<_, Text>(
+                snapshot.clone()
+            )),
+            Err(RecordingError::Limit)
         ));
         assert!(!h.paused());
         assert_eq!(h.epoch(), 0);
     }
+}
+
+#[test]
+fn opaque_command_capture_fault_keeps_code_and_lossless_message() {
+    let mut h = Recorder::default();
+    let expected =
+        CommandError::from_utf16(CommandErrorCode::InvalidInput, &[0xd800, 65], 10).unwrap();
+    let result = h.begin_async(&txt("capture"), &txt("elements"), |_| Err(expected.clone()));
+    match result {
+        Err(RecordingError::Capture(actual)) => assert_eq!(actual, expected),
+        _ => panic!("opaque fault was changed"),
+    }
+    assert!(!h.paused());
+    assert!(h.state.past.is_empty());
+    assert_eq!(h.state.revision, 0);
 }

@@ -79,7 +79,7 @@ fn builtin(key: &[u16]) -> bool {
     .iter()
     .any(|s| key.iter().copied().eq(s.encode_utf16()))
 }
-fn fields_equal(a: &Cell, b: &Cell) -> Result<bool, HistoryError> {
+fn fields_equal<E>(a: &Cell, b: &Cell) -> Result<bool, HistoryError<E>> {
     let (Cell::Object(a), Cell::Object(b)) = (a, b) else {
         return Err(HistoryError::InvalidSnapshot);
     };
@@ -192,9 +192,10 @@ pub struct Guards {
     /// Original configureHistory hooks.blocked().
     pub hook_blocked: bool,
 }
-/// Safe host/capture failure, separate from a command error envelope.
+/// Host failure or an unchanged caller-owned capture fault. CommandError codes
+/// and other error payloads need not be reduced to Display/message strings.
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub enum HistoryError {
+pub enum HistoryError<E = Text> {
     /// Explicit metadata/count/counter budget exceeded.
     Limit,
     /// Fallible reservation failed.
@@ -203,8 +204,20 @@ pub enum HistoryError {
     InvalidSnapshot,
     /// Repeated completion or a token from another recorder.
     InvalidToken,
-    /// The actual section capture failed; preserve full message units.
-    Capture(Text),
+    /// The actual section capture failed; preserve its opaque caller-owned error.
+    Capture(E),
+}
+impl<E> HistoryError<E> {
+    /// Map only the opaque capture fault; host failures keep their identity.
+    pub fn map_capture<F>(self, map: impl FnOnce(E) -> F) -> HistoryError<F> {
+        match self {
+            Self::Limit => HistoryError::Limit,
+            Self::Allocation => HistoryError::Allocation,
+            Self::InvalidSnapshot => HistoryError::InvalidSnapshot,
+            Self::InvalidToken => HistoryError::InvalidToken,
+            Self::Capture(e) => HistoryError::Capture(map(e)),
+        }
+    }
 }
 #[derive(Clone, Copy)]
 enum Kind {
@@ -251,18 +264,18 @@ fn is(key: &[u16], s: &str) -> bool {
 fn identity(s: &Section) -> bool {
     s.compare == Compare::Identity || is(&s.key, "scope") || is(&s.key, "scan")
 }
-fn spend(left: &mut usize, n: usize) -> Result<(), HistoryError> {
+fn spend<E>(left: &mut usize, n: usize) -> Result<(), HistoryError<E>> {
     *left = left.checked_sub(n).ok_or(HistoryError::Limit)?;
     Ok(())
 }
-fn scalar_budget(c: &Cell, cells: &mut usize, units: &mut usize) -> Result<(), HistoryError> {
+fn scalar_budget<E>(c: &Cell, cells: &mut usize, units: &mut usize) -> Result<(), HistoryError<E>> {
     spend(cells, 1)?;
     if let Cell::String(s) = c {
         spend(units, s.len())?;
     }
     Ok(())
 }
-fn snapshot_check(s: &Snapshot, l: Limits) -> Result<(), HistoryError> {
+fn snapshot_check<E>(s: &Snapshot, l: Limits) -> Result<(), HistoryError<E>> {
     if s.sections.len() > l.sections {
         return Err(HistoryError::Limit);
     }
@@ -299,7 +312,7 @@ fn snapshot_check(s: &Snapshot, l: Limits) -> Result<(), HistoryError> {
     }
     Ok(())
 }
-fn spread(first: &Patch, second: &Patch) -> Result<Patch, HistoryError> {
+fn spread<E>(first: &Patch, second: &Patch) -> Result<Patch, HistoryError<E>> {
     let mut out = Vec::new();
     out.try_reserve(first.len().saturating_add(second.len()))
         .map_err(|_| HistoryError::Allocation)?;
@@ -375,13 +388,13 @@ impl Recorder {
     }
     /// Open a sync wrapper. A skipped wrapper still runs its body, but has no
     /// token and must not capture or record a step.
-    pub fn begin_sync(
+    pub fn begin_sync<E>(
         &mut self,
         label: &[u16],
         workspace: &[u16],
         guards: Guards,
-        capture: impl FnOnce(&Self) -> Result<Snapshot, HistoryError>,
-    ) -> Result<Option<Token>, HistoryError> {
+        capture: impl FnOnce(&Self) -> Result<Snapshot, E>,
+    ) -> Result<Option<Token>, HistoryError<E>> {
         if self.depth > 0
             || self.paused > 0
             || self.state.restoring
@@ -394,24 +407,24 @@ impl Recorder {
     }
     /// Open an async wrapper: source checks only paused/restoring, ignoring sync
     /// depth, store busy, participant blocking and the hook guard.
-    pub fn begin_async(
+    pub fn begin_async<E>(
         &mut self,
         label: &[u16],
         workspace: &[u16],
-        capture: impl FnOnce(&Self) -> Result<Snapshot, HistoryError>,
-    ) -> Result<Option<Token>, HistoryError> {
+        capture: impl FnOnce(&Self) -> Result<Snapshot, E>,
+    ) -> Result<Option<Token>, HistoryError<E>> {
         if self.paused > 0 || self.state.restoring {
             return Ok(None);
         }
         self.begin(Kind::Async, label, workspace, capture)
     }
-    fn begin(
+    fn begin<E>(
         &mut self,
         kind: Kind,
         label: &[u16],
         workspace: &[u16],
-        capture: impl FnOnce(&Self) -> Result<Snapshot, HistoryError>,
-    ) -> Result<Option<Token>, HistoryError> {
+        capture: impl FnOnce(&Self) -> Result<Snapshot, E>,
+    ) -> Result<Option<Token>, HistoryError<E>> {
         if self.pending.len() >= self.limits.pending
             || label.len() > self.limits.text
             || workspace.len() > self.limits.text
@@ -422,7 +435,7 @@ impl Recorder {
         self.pending
             .try_reserve(1)
             .map_err(|_| HistoryError::Allocation)?;
-        let before = capture(self)?;
+        let before = capture(self).map_err(HistoryError::Capture)?;
         snapshot_check(&before, self.limits)?;
         self.next = id;
         self.pending.push(Pending {
@@ -445,11 +458,11 @@ impl Recorder {
     /// Finish once even if the body failed. Counters drop BEFORE after-capture,
     /// just like the original finally block; capture failure leaves body changes
     /// in the document and creates no step. A stale epoch drops the record.
-    pub fn finish(
+    pub fn finish<E>(
         &mut self,
         token: Token,
-        capture: impl FnOnce(&Self) -> Result<Snapshot, HistoryError>,
-    ) -> Result<(), HistoryError> {
+        capture: impl FnOnce(&Self) -> Result<Snapshot, E>,
+    ) -> Result<(), HistoryError<E>> {
         if !Arc::ptr_eq(&token.domain, &self.domain) {
             return Err(HistoryError::InvalidToken);
         }
@@ -463,10 +476,10 @@ impl Recorder {
             Kind::Sync => self.depth -= 1,
             Kind::Async => self.paused -= 1,
         };
-        let after = capture(self)?;
+        let after = capture(self).map_err(HistoryError::Capture)?;
         self.record(pending, after)
     }
-    fn record(&mut self, p: Pending, after: Snapshot) -> Result<(), HistoryError> {
+    fn record<E>(&mut self, p: Pending, after: Snapshot) -> Result<(), HistoryError<E>> {
         if p.generation != self.epoch {
             return Ok(());
         }

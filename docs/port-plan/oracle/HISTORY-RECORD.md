@@ -1,9 +1,9 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # History recording comparison
 
-`engine.session.history.record`, original2cd89c6, PR #46.107 fixed scenarios,
-including48 seeded cases (12 per seed1/7/99/1039). Source-only captures precede
-Rust and preserve the first103 scenarios before four edge-case additions.
+`engine.session.history.record`, original2cd89c6, PR #46.110 fixed scenarios,
+including48 seeded cases (12 per seed1/7/99/1039). Initial source-only captures precede Rust; expansions preserve103 then107
+scenarios before typed-error additions.
 
 The immutable original historyStore and actual stores are Vite-bundled from a
 fresh /tmp git archive, without reached stubs or original edits. Compiled code is

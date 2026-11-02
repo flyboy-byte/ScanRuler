@@ -592,6 +592,21 @@
       "id": "surrogate-section-key",
       "bytes": 6595,
       "sha256": "5c371d4c03b4c5fe3f6b970325ec729d34cf70cf13a69af03715e42eecc60a9d"
+    },
+    {
+      "id": "typed-capture-fault",
+      "bytes": 6723,
+      "sha256": "c570b51f4fff84ecf6fbc431ad19a18b8a5e90bd690e0c9a54b2d6dd4911cd5c"
+    },
+    {
+      "id": "typed-body-fault",
+      "bytes": 6717,
+      "sha256": "f3e90b197c32267e29b4e83e454f8b42247f7fab090e676e7d2923439c553155"
+    },
+    {
+      "id": "typed-async-body-fault",
+      "bytes": 6769,
+      "sha256": "8acd9540112b0e5c0edbd31eb7e3654a6693ade2962fa34cd613f3ad19673028"
     }
   ]
 }

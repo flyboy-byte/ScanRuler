@@ -107,4 +107,7 @@ vec![
     Case { id: "array-nan-identity", input: include_bytes!("../../../../../docs/port-plan/fixtures/history-record/array-nan-identity.bin") },
     Case { id: "numeric-field-order", input: include_bytes!("../../../../../docs/port-plan/fixtures/history-record/numeric-field-order.bin") },
     Case { id: "surrogate-section-key", input: include_bytes!("../../../../../docs/port-plan/fixtures/history-record/surrogate-section-key.bin") },
+    Case { id: "typed-capture-fault", input: include_bytes!("../../../../../docs/port-plan/fixtures/history-record/typed-capture-fault.bin") },
+    Case { id: "typed-body-fault", input: include_bytes!("../../../../../docs/port-plan/fixtures/history-record/typed-body-fault.bin") },
+    Case { id: "typed-async-body-fault", input: include_bytes!("../../../../../docs/port-plan/fixtures/history-record/typed-async-body-fault.bin") },
 ]

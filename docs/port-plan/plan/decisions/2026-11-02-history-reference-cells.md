@@ -48,11 +48,12 @@ ordinary data, object-shaped default-comparison sections; identity sections may
 hold scalars or composites. Arbitrary mutable/reentrant/executable JavaScript
 captures, changing key sets, non-object default captures and __proto__ section
 setter semantics are outside this typed boundary. They are not silently accepted
-or labelled ported. Captures can fail with lossless messages. Host invalid tokens/
+or labelled ported. Captures return generic opaque faults unchanged, including typed CommandError
+codes and lossless message units; no conversion to Display is imposed. Host invalid tokens/
 quotas remain distinct from original capture/body faults. No new backend/session
 epoch policy is adopted; this is only the original private history epoch.
 
-Evidence:107 complete independently run original traces, with the first103 fixed
+Evidence:110 complete independently run original traces, with the first103 fixed
 inputs/source observations preserved. Real full original history/store modules
 run controlled fixture bodies and genuine participant callbacks. Each output
 contains complete before/after patches, actual graph identity AND recursively
