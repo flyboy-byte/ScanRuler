@@ -1,6 +1,16 @@
 # Port PR audit and integration queue
 
-Updated 2026-11-02. **Historical: #1–#24 are all merged into `main` (`0940fd2`) and no PR is open.** The table records the base and hosted outcome each PR had when merged; for new PRs use `gh pr list -R flyboy-byte/scanruler` and ROADMAP-TO-USABLE.md. (Original text follows.) The owner will review from #1 upward. No row authorizes a merge. Current implementation state is generated in [STATUS.md](STATUS.md); the latest concrete next work is in [IMPLEMENTATION-PLAN.md](IMPLEMENTATION-PLAN.md).
+Updated 2026-11-02 UTC. PRs #1–#25 are merged into `main` (`551b3a9`). The next
+stack is [#26](https://github.com/flyboy-byte/ScanRuler/pull/26) (baseline evidence,
+base `main`), then [#27](https://github.com/flyboy-byte/ScanRuler/pull/27) (ASCII PLY,
+base #26). No new PR has been merged by this session. Read their live checks;
+local baseline unit failures are preserved in `evidence/baseline-2026-11-02/`.
+Current implementation state is generated in [STATUS.md](STATUS.md).
+
+The table below is the **historical first-batch checkpoint**, not current branch
+bases or a live badge. Its earlier “no PR open/no PR merged” statements describe
+that checkpoint. For live claims use `gh pr list -R flyboy-byte/scanruler` and
+ROADMAP-TO-USABLE.md. No row authorizes a merge.
 
 The immutable [observed CI snapshot](evidence/2026-11-01-review-ci.json) records exact heads, run links and capture time for #1–#21. It is not a live badge. Earlier attempt/run history is retained in [the prior queue](evidence/2026-11-01-audit-queue-before22.md).
 

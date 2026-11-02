@@ -3,11 +3,11 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 22,
-    "planned": 46
+    "implemented": 23,
+    "planned": 47
   },
-  "native_suites": 18,
-  "native_case_identities_including_refusals": 686,
+  "native_suites": 19,
+  "native_case_identities_including_refusals": 746,
   "accepted_units": [],
   "units": [
     {
@@ -662,13 +662,37 @@
       ]
     },
     {
+      "id": "io.ply.ascii",
+      "status": "implemented",
+      "parent": "io.ply",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/27",
+      "tested_sha": "737d3c314691e1e63ddc3d517002476e382fe418",
+      "open_items": [
+        "Binary body explicitly unported at the recognized encoding boundary; io.ply.binary owns the continuation. Parent io.ply remains planned.",
+        "Browser-Wasm runtime comparisons and public scan/session/history integration remain unimplemented for this parser.",
+        "Caller byte/vertex/triangle/work limits and fallible allocation are explicit host guards; huge hostile workloads are not executed in the original oracle.",
+        "Full P03 licensed/adversarial corpus and acceptance gates remain open; no accepted state or end-to-end import claim."
+      ]
+    },
+    {
+      "id": "io.ply.binary",
+      "status": "planned",
+      "parent": "io.ply",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Not implemented. ASCII unit returns an explicit unported error at this call boundary."
+      ]
+    },
+    {
       "id": "io.ply",
       "status": "planned",
       "parent": "P06",
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "Needs the P03 corpus entries for each PLY variant before acceptance; scoped from the 2026-11-02 import-format audit."
+        "Needs the P03 corpus entries for each PLY variant before acceptance; scoped from the 2026-11-02 import-format audit.",
+        "2026-11-02: bounded ASCII/header and binary continuations tracked under io.ply.ascii and io.ply.binary; parent remains planned until both and broader acceptance complete."
       ]
     },
     {

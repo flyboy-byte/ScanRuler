@@ -22,7 +22,9 @@
       "units": [
         "io.ply",
         "io.obj",
-        "io.threemf"
+        "io.threemf",
+        "io.ply.ascii",
+        "io.ply.binary"
       ],
       "touches": "rust/crates/port-io"
     },

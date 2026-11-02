@@ -1,0 +1,38 @@
+{
+  "id": "io.ply.binary",
+  "parent": "io.ply",
+  "title": "Port binary PLY scalar/stride/list and face sizing bodies",
+  "gate": "G3",
+  "status": "planned",
+  "depends_on": [
+    "io.ply.ascii"
+  ],
+  "soft_depends_on": [
+    "P03",
+    "P36"
+  ],
+  "scope": "Complete source parseBinaryBody, both endian encodings, all supported scalar aliases, fixed/list strides, two-pass faces, skipped elements and progress.",
+  "acceptance": [
+    "Independently compare original/native/browser outputs and refusals for both byte orders and every scalar alias, list layout and progress boundary.",
+    "Preserve two-pass sizing/fill order and original malformed-input observations within explicit resource limits."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/parsers/ply.ts"
+  ],
+  "symbols": [
+    "parseBinaryBody",
+    "readScalar"
+  ],
+  "rust_paths": [
+    "rust/crates/port-io/src/ply_ascii.rs"
+  ],
+  "evidence": [],
+  "open_items": [
+    "Not implemented. ASCII unit returns an explicit unported error at this call boundary."
+  ]
+}

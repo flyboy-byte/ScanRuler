@@ -57,6 +57,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+      - name: Original TypeScript compiler for the PLY reference adapter only
+        run: npm ci
       - name: Run every required native source suite
         working-directory: rust
         run: |

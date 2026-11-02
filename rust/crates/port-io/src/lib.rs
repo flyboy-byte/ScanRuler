@@ -4,3 +4,6 @@
 
 pub mod stl;
 pub mod stl_dispatch;
+
+/// Source-faithful ASCII PLY import; binary is an explicit unported boundary.
+pub mod ply_ascii;

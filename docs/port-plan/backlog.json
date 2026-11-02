@@ -4418,6 +4418,166 @@
       ]
     },
     {
+      "id": "io.ply.ascii",
+      "parent": "io.ply",
+      "title": "Port complete ASCII PLY header and body",
+      "gate": "G3",
+      "status": "implemented",
+      "depends_on": [
+        "io.stl.dispatch"
+      ],
+      "soft_depends_on": [
+        "P03",
+        "P36"
+      ],
+      "scope": "Complete source parsePLY header and parseAsciiBody, including face fans, property/list skips, cursor and Uint32 conversion, UTF-8 and keep-winding. Binary branch returns an explicit unported boundary.",
+      "acceptance": [
+        "Compare complete independent original/native float32/index/optional-winding bytes plus exact progress and source refusals on all fixed case IDs; exact bytes are fixed before comparison.",
+        "Keep source operation order, repeated elements, numeric-prefix semantics and malformed successful outputs; bounded host errors are distinct from source errors.",
+        "Compile on native/Wasm; browser runtime and scan/session integration remain explicit follow-ups."
+      ],
+      "owner": "Codex",
+      "branch": "codex/port-ply-ascii",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/27",
+      "implemented_commit": "737d3c314691e1e63ddc3d517002476e382fe418",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/parsers/ply.ts"
+      ],
+      "symbols": [
+        "parsePLY (header and ASCII branch)",
+        "parseAsciiBody",
+        "indexOfAscii"
+      ],
+      "rust_paths": [
+        "rust/crates/port-io/src/ply_ascii.rs",
+        "rust/crates/port-io/tests/ply_ascii.rs"
+      ],
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-02-ply-ascii-cases.json",
+          "candidate_sha": "737d3c314691e1e63ddc3d517002476e382fe418",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "triangle",
+            "crlf",
+            "unicode-comment",
+            "keep-winding",
+            "keep-winding-whitespace",
+            "keep-winding-suffix",
+            "header-bom",
+            "body-bom",
+            "invalid-utf8-comment",
+            "xyz-reordered",
+            "ignored-normals-colors",
+            "unknown-ascii-types",
+            "list-before-coordinates",
+            "coordinate-list-remains-zero",
+            "duplicate-coordinate-property",
+            "quad-fan",
+            "face-singular-alias",
+            "two-face-lists",
+            "face-extra-properties",
+            "unknown-element-list",
+            "face-before-vertices",
+            "no-face-index-property",
+            "short-face-zero",
+            "short-face-one",
+            "short-face-two",
+            "negative-indices-wrap",
+            "missing-coordinate-tokens",
+            "missing-index-tokens",
+            "nan-list-poisons-cursor",
+            "negative-list-cursor",
+            "numeric-prefixes",
+            "non-js-whitespace",
+            "js-whitespace",
+            "zero-vertices",
+            "nan-vertex-count",
+            "nan-face-count",
+            "negative-face-count",
+            "negative-vertex-count",
+            "first-duplicate-face-zero",
+            "missing-z",
+            "missing-vertex",
+            "missing-faces",
+            "zero-faces",
+            "unknown-format",
+            "empty",
+            "bad-signature",
+            "missing-end",
+            "no-final-newline",
+            "tag-in-comment",
+            "property-before-element",
+            "header-limit-accepted",
+            "header-limit-refused",
+            "repeated-vertices",
+            "repeated-faces-append",
+            "unknown-negative-element",
+            "missing-format",
+            "seed-1",
+            "seed-7",
+            "seed-99",
+            "seed-1039"
+          ]
+        },
+        {
+          "kind": "report",
+          "location": "evidence/2026-11-02-ply-ascii.md",
+          "candidate_sha": "737d3c314691e1e63ddc3d517002476e382fe418"
+        }
+      ],
+      "open_items": [
+        "Binary body explicitly unported at the recognized encoding boundary; io.ply.binary owns the continuation. Parent io.ply remains planned.",
+        "Browser-Wasm runtime comparisons and public scan/session/history integration remain unimplemented for this parser.",
+        "Caller byte/vertex/triangle/work limits and fallible allocation are explicit host guards; huge hostile workloads are not executed in the original oracle.",
+        "Full P03 licensed/adversarial corpus and acceptance gates remain open; no accepted state or end-to-end import claim."
+      ],
+      "resolved_items": [
+        "2026-11-02: 60 exact complete original/native parser comparisons (46 outputs / 14 source refusals), seeds 1/7/99/1039; no input/seed/tolerance reductions.",
+        "Existing source-compatible UTF-8/whitespace/parseFloat helpers reused from STL with visibility-only changes; no numerical formulas altered."
+      ]
+    },
+    {
+      "id": "io.ply.binary",
+      "parent": "io.ply",
+      "title": "Port binary PLY scalar/stride/list and face sizing bodies",
+      "gate": "G3",
+      "status": "planned",
+      "depends_on": [
+        "io.ply.ascii"
+      ],
+      "soft_depends_on": [
+        "P03",
+        "P36"
+      ],
+      "scope": "Complete source parseBinaryBody, both endian encodings, all supported scalar aliases, fixed/list strides, two-pass faces, skipped elements and progress.",
+      "acceptance": [
+        "Independently compare original/native/browser outputs and refusals for both byte orders and every scalar alias, list layout and progress boundary.",
+        "Preserve two-pass sizing/fill order and original malformed-input observations within explicit resource limits."
+      ],
+      "owner": null,
+      "branch": null,
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/parsers/ply.ts"
+      ],
+      "symbols": [
+        "parseBinaryBody",
+        "readScalar"
+      ],
+      "rust_paths": [
+        "rust/crates/port-io/src/ply_ascii.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Not implemented. ASCII unit returns an explicit unported error at this call boundary."
+      ]
+    },
+    {
       "id": "io.ply",
       "parent": "P06",
       "title": "Port PLY mesh import (ASCII and binary variants)",
@@ -4446,7 +4606,8 @@
       "rust_paths": [],
       "evidence": [],
       "open_items": [
-        "Needs the P03 corpus entries for each PLY variant before acceptance; scoped from the 2026-11-02 import-format audit."
+        "Needs the P03 corpus entries for each PLY variant before acceptance; scoped from the 2026-11-02 import-format audit.",
+        "2026-11-02: bounded ASCII/header and binary continuations tracked under io.ply.ascii and io.ply.binary; parent remains planned until both and broader acceptance complete."
       ]
     },
     {

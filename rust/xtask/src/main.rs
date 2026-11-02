@@ -177,6 +177,7 @@ const ORACLE_TESTS: &[&str] = &[
     "pinned_weld_comparison",
     "pinned_original_comparison",
     "pinned_stl_dispatch_comparison",
+    "pinned_ply_ascii_comparison",
 ];
 
 fn validate_oracle_discovery(list: &str) -> Result<(), String> {
