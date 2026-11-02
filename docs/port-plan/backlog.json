@@ -2354,7 +2354,9 @@
       "symbols": [],
       "rust_paths": [],
       "soft_depends_on": [],
-      "open_items": [],
+      "open_items": [
+        "Partial 2026-11-01: refreshed stale handoff/CI/contributor guidance against the existing scaffold and hosted evidence; see plan/findings/2026-11-01-handoff-scaffold-drift.md. No lifecycle promotion: Rust checker replacement, paired harness and acceptance remain open."
+      ],
       "claim_pr": null
     },
     {
