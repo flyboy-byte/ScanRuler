@@ -93,6 +93,19 @@ def generate():
     v[key]=[value,'false'] if s.get('type')=='array' else value
    s=obj(p,list(p)[:rand(len(p)+1)],names={'field':'field','slots':['radius','id']})
    add(f'seed-{seed}-{i:02d}',s,v,seed=seed)
+ for key in ['constructor','__proto__','toString','valueOf','hasOwnProperty','__defineGetter__','toLocaleString']:
+  add('prototype-'+key.replace('_','z'),obj({},[key]),{key:'true'})
+  add('inherited-'+key.replace('_','z'),obj({},[key]),{})
+ for i,name in enumerate(['0o77','-0x10','+0b1','0b2','0x','Infinity','-Infinity','inf','NaN','1_000','1e-2','.5','+1','1.',' 1 \ufeff','\u2028','\u200b','1e309','\ud800','false']):
+  add(f'id-number-{i:02d}',obj({'id':{'type':'number'},'name':{'type':'string'}}),{'id':name})
+ for seed in [1,7,99,1039]:
+  state=seed;props={};value={}
+  for i in range(64):
+   state=(6364136223846793005*state+1442695040888963407)&((1<<64)-1)
+   x=struct.unpack('<d',struct.pack('<Q',state))[0]
+   if not __import__('math').isfinite(x):x=1e-7
+   props[str(i)]={'type':'number',('minimum' if x>0 else 'maximum'):x,'default':x};value[str(i)]=0
+  add(f'number-seed-{seed}',obj(props),value,seed=seed)
  manifest=dict(schema=1,reference_sha=PIN,license='AGPL-3.0-only',seeds=[1,7,99,1039],commands=len(catalog),comparison='exact VLD1 errors UTF16, coerced typed value, schema UTF16 JSON length and depth, budget and original faults',cases=rows)
  (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
  table='// SPDX-License-Identifier: AGPL-3.0-only\nvec![\n'+''.join('    Case { id: "'+r['id']+'", input: include_bytes!("../../../../../docs/port-plan/fixtures/schema/'+r['id']+'.bin") },\n' for r in rows)+']\n'
