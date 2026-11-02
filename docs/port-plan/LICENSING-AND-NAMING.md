@@ -95,6 +95,19 @@ in a decision file before P16 or P18 is accepted.
 7. **Fonts and kernels.** Keep OFL text if fonts ship; otherwise choose different fonts. The P35 audit proves
    no LGPL kernel remains in the pure-Rust build.
 
+## 5a. Name choice (owner decision, 2026-11-03)
+
+**RulerCraft** is the chosen working name for the eventual rebrand. **Nothing changes until the project is
+more mature**: no rename of the repository, crates, binary, wasm exports, README title or any file, and the
+section 5 parking rules above stay in force. This records the choice only.
+
+Why: a web and GitHub search on 2026-11-03 found no product or repository using it. `MeshCraft` was set
+aside because an AI mesh-generation research project and several repositories already use it; `GaugeCraft`
+(one empty repository) is the fallback. That search is not trademark clearance: before use, search the
+USPTO database for the exact mark in classes 9 and 42 and consider a lawyer's read (section 6, question 5).
+The `*craft` pattern also echoes SolidCraft, so check with its owners before presenting it as part of that
+family.
+
 ## 6. Open questions only an owner or a lawyer can close
 
 1. Will Stefan grant anything beyond the AGPL, or accept the port, and under what name terms? Logan's
