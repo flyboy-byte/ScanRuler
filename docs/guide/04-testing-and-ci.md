@@ -7,7 +7,7 @@
 | --- | --- | --- |
 | Plan/status | `cargo xtask plan` or plan workflow | Canonical metadata, generated freshness and negative tooling tests; not parity |
 | Rust fast | `cargo xtask ci` | fmt/lints, ordinary native tests, pin/plan/status and Wasm compilation |
-| Native source | `cargo xtask oracle` | All seventeen required suites; 635 declared case identities including refusals |
+| Native source | `cargo xtask oracle` | All registered required suites; see the generated status inventory for case identities including refusals |
 | Raw evidence | `ci_report.py evidence --candidate <sha>` | Full case/file inventory at exact checkout; not an independent numerical comparator |
 | Original catalogs | validator tests and real capture workflows | Immutable core/all browser/headless schemas and context; not Rust commands |
 | Original app | source-tests, source-mcp, source-browser | All original tests/build/browser checks; independent lanes and strict final gate |

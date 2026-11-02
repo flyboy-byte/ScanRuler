@@ -32,7 +32,7 @@ cargo xtask env    # toolchain versions to record with any result
 
 It does not compare anything with the original app. That harness (`cargo xtask diff`,
 `diff-ci`) is planned under P36 to P39, and the disabled example workflow is designed to fail
-until it exists. A green `ci` run is not parity. `cargo xtask oracle` separately discovers all seventeen
+until it exists. A green `ci` run is not parity. `cargo xtask oracle` separately discovers all registered
 required native oracle entrypoints, rejects missing/duplicate discovery, then runs
 all ignored core/IO integration tests without filtering their cases. It requires
 Node and the frozen Git object. It does not implement the general P36 ratchet or
@@ -140,3 +140,14 @@ Incomplete coordinate/index tails are ignored. Explicit budgets, fallible storag
 and consumed-index guards bound the host. Sixty-four source fixtures compare
 flags/count, private welded IDs and exact hash words, including raw NaN payloads.
 Browser-Wasm execution and viewer-cap/other downstream integration remain open.
+
+## Marked-selection plane elements
+
+`marked_plane::fit_plane_on_selection` completes the original marked-plane
+continuation: minimum twenty marks, clipped fit, surface-facing normal, sampled
+minimum-area rectangle, projected center, oriented residual extremes, full
+statistics and the original ordered region. Extents and normal votes use every
+original mark even when clipping reduces usedPoints. Fifty-one independent source
+cases cover the complete result and fixed-angle probes under a preregistered
+comparison budget. Seeded region growth, public commands/history and browser-Wasm
+runtime remain open. See fit.plane.selection and its evidence report.

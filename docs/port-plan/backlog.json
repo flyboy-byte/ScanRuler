@@ -3059,7 +3059,7 @@
       "parent": "P07",
       "title": "Complete marked-selection plane element continuation",
       "gate": "G2",
-      "status": "planned",
+      "status": "implemented",
       "depends_on": [
         "fit.plane.clip",
         "geometry.mesh.graph"
@@ -3073,21 +3073,95 @@
         "Original/Rust full center/normal/bases/extents/statistics/extremes/region and refusal messages compare independently.",
         "Preserve original selection versus clipped used-point meanings; do not return the numerical plane early."
       ],
-      "owner": null,
-      "branch": null,
-      "claim_pr": null,
-      "implemented_commit": null,
+      "owner": "Codex",
+      "branch": "codex/port-marked-plane",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/23",
+      "implemented_commit": "e5c342c38a2cf1f3bde72065de1e63917500e9a7",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [
         "src/core/fit/fitPlaneFromSeed.ts",
         "src/core/fit/selection.ts",
-        "src/core/fit/linalg.ts"
+        "src/core/fit/linalg.ts",
+        "src/core/vec.ts"
       ],
-      "symbols": [],
-      "rust_paths": [],
-      "evidence": [],
+      "symbols": [
+        "fitPlaneOnSelection",
+        "requireSelection (surface/minimum-20 path)",
+        "patchExtents (private co-port)",
+        "orientToSurface (private co-port)",
+        "orientedExtremes (private co-port)",
+        "orthoBasis/cross/normalizeOrZ (private co-port)"
+      ],
+      "rust_paths": [
+        "rust/crates/port-core/src/marked_plane.rs",
+        "rust/crates/port-core/tests/marked_plane.rs"
+      ],
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-01-marked-plane-cases.csv",
+          "candidate_sha": "e5c342c38a2cf1f3bde72065de1e63917500e9a7",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "coincident",
+            "collinear",
+            "duplicate_collapsed",
+            "duplicate_valid",
+            "insufficient_0",
+            "insufficient_1",
+            "insufficient_19",
+            "outliers_seed_1039_nan_vote-1",
+            "outliers_seed_1039_nan_vote1",
+            "outliers_seed_1039_none_vote-1",
+            "outliers_seed_1039_none_vote1",
+            "outliers_seed_1039_normal_vote-1",
+            "outliers_seed_1039_normal_vote1",
+            "outliers_seed_1039_tight_vote-1",
+            "outliers_seed_1039_tight_vote1",
+            "outliers_seed_1_nan_vote-1",
+            "outliers_seed_1_nan_vote1",
+            "outliers_seed_1_none_vote-1",
+            "outliers_seed_1_none_vote1",
+            "outliers_seed_1_normal_vote-1",
+            "outliers_seed_1_normal_vote1",
+            "outliers_seed_1_tight_vote-1",
+            "outliers_seed_1_tight_vote1",
+            "outliers_seed_7_nan_vote-1",
+            "outliers_seed_7_nan_vote1",
+            "outliers_seed_7_none_vote-1",
+            "outliers_seed_7_none_vote1",
+            "outliers_seed_7_normal_vote-1",
+            "outliers_seed_7_normal_vote1",
+            "outliers_seed_7_tight_vote-1",
+            "outliers_seed_7_tight_vote1",
+            "outliers_seed_99_nan_vote-1",
+            "outliers_seed_99_nan_vote1",
+            "outliers_seed_99_none_vote-1",
+            "outliers_seed_99_none_vote1",
+            "outliers_seed_99_normal_vote-1",
+            "outliers_seed_99_normal_vote1",
+            "outliers_seed_99_tight_vote-1",
+            "outliers_seed_99_tight_vote1",
+            "rotated_tfalse_vote-1",
+            "rotated_tfalse_vote1",
+            "rotated_ttrue_vote-1",
+            "rotated_ttrue_vote1",
+            "sampling_4095",
+            "sampling_4096",
+            "sampling_4097",
+            "sampling_8193",
+            "square_down",
+            "square_nan",
+            "square_up",
+            "square_zero"
+          ]
+        }
+      ],
       "open_items": [
-        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+        "Browser-Wasm runtime, general P36/P37 report/ratchet and G0/P05 remain open; no lifecycle acceptance.",
+        "Seeded fitPlaneFromSeed/region growth and public engine element.fit_marked/session/history command integration remain unimplemented.",
+        "Host validates packed graph buffers/indices/point budgets. Returned region is an owned copy; arbitrary JS buffer aliasing is not exposed.",
+        "The source extent-failure message/body is retained, but that branch is not reached by the current full-fit corpus; wider adversarial/private-helper branch evidence remains open."
       ]
     },
     {
