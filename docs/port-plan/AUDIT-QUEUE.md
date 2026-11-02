@@ -19,6 +19,7 @@ Updated 2026-11-01. Nothing here authorizes merging. Review source behavior agai
 | 12 | #15 (base #12 branch) | Discovery-guarded native oracle gate | evidence/2026-11-01-native-oracle-gate.md |
 | 13 | #16 (base #15 branch) | Curved-fit versus plane gate and residual RMS | evidence/2026-11-01-curvature-gate.md; 80 exact value/state cases |
 | 14 | #17 (base #16 branch) | Ordered vertex adjacency | evidence/2026-11-01-adjacency.md; 56 complete-array cases |
+| 15 | #18 (base #17 branch) | Directed disjoint sets and mesh components | evidence/2026-11-01-components.md; 51 cases / 1557 complete state snapshots |
 | independent | [#13](https://github.com/flyboy-byte/ScanRuler/pull/13) | Frozen original headless catalog | Actual built-engine core/all evidence; hosted capture passed |
 | after #13 | [#14](https://github.com/flyboy-byte/ScanRuler/pull/14) | Browser catalog capture | Actual original Chrome core/all captured; evidence and immutable schema guards on #14 |
 
@@ -50,3 +51,5 @@ Submission checkpoint 2026-11-01: #13 current-head checks all passed (original-a
 Follow-on checkpoint: #14 final immutable browser recapture passed 41356255484; its separate original-app test fails the same reNetworkCreases.test.ts:209 threshold (1553.30 ms vs 1500 ms; 41356255460). #15 current-head Rust gate passed 41356313339 and complete original-app CI passed 41356313288. #16 adds 80 exact curvature/RMS cases to the discovery roster (twelve suites, 352 identities including refusals). No original source threshold changes.
 
 #16 hosted Rust gate passed run 41365187936 (twelve source suites); original-app CI was pending at the checkpoint. #17 adds complete mesh adjacency, 56 exact array cases and a weld-to-adjacency integration check; local thirteen-suite gate passes, 408 case identities including refusals. Original-app CI must be checked independently.
+
+#17 hosted Rust gate passed 41365449719; original-app CI pending at the checkpoint. #18 adds 51 exact parent/query cases (1557 complete state snapshots); all fourteen native suites pass locally, 459 case identities including refusals. PRs remain unmerged and units unaccepted.
