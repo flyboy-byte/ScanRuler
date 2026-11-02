@@ -21,19 +21,37 @@ numerical work. **Verified 2026-11-02 on this machine:** `cargo xtask oracle` pa
 Node 22.23.4 / Rust 1.99.1. That is a local result, not parity: the harness still lacks the exact-base
 ratchet (P37) and covers library functions, not application workflows.
 
-## 2. Workflow
+## 2. Workflow (no prompt or handoff needed)
 
-Work comes from `plan/units/*.json`, taken in the lane order in `AGENT-OPERATIONS.md` (claim with a draft
-PR, branch from `main`, one unit per PR, merge commits, the integrator merges). The loop for an agent:
+State lives in the repo: `plan/units/*.json` (what is done and what is open), `plan/lanes.json` (priority
+between lanes), the PRs (who has claimed what), and this file. A session that is given no task runs
 
-1. Read the unit and its source paths in the original.
-2. Write the comparison first: independent input cases, with the observable outputs, **before** the port
-   (preregister tolerances from the original's own tests).
-3. Port the whole body, run original and Rust on independent copies, compare values and state.
-4. Prove the comparison can fail (alter a Rust value, see it rejected).
-5. Update the unit JSON with the tested SHA, evidence and open scope; regenerate the aggregates; open the PR.
+```bash
+python3 docs/port-plan/tools/next_task.py --root docs/port-plan
+```
 
-Nothing is accepted by a count of PRs or cases.
+and takes the first unclaimed unit it prints (ready, then startable, then prototype-only; a prototype-only unit
+may be built ahead of its dependencies but cannot be integrated past them). Hot files shared between lanes
+(`rust/xtask`, `ci/native-suites.json`, `.github/workflows`) belong to one open PR at a time.
+
+1. **Claim** by opening a draft PR from `origin/main` titled with the unit id; check open PRs first.
+2. **Compare before porting:** write the independent cases and tolerances first (from the original's own tests),
+   port the whole body, run original and Rust on independent copies, compare values and state, and show the
+   comparison fails on a deliberately wrong Rust value.
+3. **Record in the unit JSON** (tested SHA, evidence, open scope), then `port_plan.py render` and
+   `ci_report.py status`. Findings and decisions are new uniquely named files. The PR body is the report.
+   No separate handoff file. Regenerate generated files, never hand-merge them.
+4. **Stacking:** one unit per PR from `main`. An unattended multi-PR session may stack its own PRs in order and
+   says so in the first PR body.
+5. **Merging** is the integrator's job and only when Logan asks: read the diff and unit JSON, require the
+   hosted Rust, plan, license and (where touched) oracle and Wasm checks, accept the upstream job failing
+   *only* on the known `reNetworkCreases.test.ts:209` wall-time test after reading the log, `gh pr merge N -R
+   flyboy-byte/scanruler --merge` (never squash), retarget children to `main`, resolve CHANGELOG conflicts by
+   keeping both, then confirm `main` CI and that the original tree has no diff against `reference/2cd89c6`.
+6. **Never without Logan:** merge or push to `main`, force-push, delete branches or tags, contact Stefan or
+   anyone upstream, sign the CLA, deploy, change repo settings, add a dependency (decision file first), edit
+   the original TypeScript, loosen a tolerance or seed, or raise the 1500 ms threshold. Licensing, naming and
+   the rename are parked (`LICENSING-AND-NAMING.md`).
 
 ## 3. The ladder to "I can try it" (milestones, in order)
 
