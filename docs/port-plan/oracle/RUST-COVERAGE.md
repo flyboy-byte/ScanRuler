@@ -25,8 +25,13 @@ The normal comparison assertions remain authoritative. Exact-candidate raw
 inventory is validated after the instrumented run. All profiles merge with the
 installed llvm-profdata; llvm-cov exports both complete JSON regions and LCOV
 line counts. Report line/count sets come directly from LCOV DA records and are
-checked against LF/LH totals. Source text hashes, owning implemented units,
+retained separately from LF/LH totals; the observed multi-object export
+disagrees on29 owned files, so both counts and a discrepancy flag remain
+explicit. No denominator/percentage is inferred; see the LLVM line-record
+decision. Source text hashes, owning implemented units,
 unreached lines and uninstrumented lines are reported per owned production file.
+Inline cfg(test) sections are marked separately because file-level exports
+include unexecuted ordinary test bodies and the inline differential harness.
 The source inventory includes files with no emitted records as explicitly
 unknown. Comments/declarations/uninstantiated code are not inferred covered.
 
@@ -45,3 +50,10 @@ reproduce them with the command, not from regenerated expected values. The CI
 fast gate replays committed line data and rejects malformed/changed evidence.
 Independent fuzz, browser profiles, static branch data and exact-base ratchet
 remain separate. No source formula, tolerance, seed or passing case changes.
+
+Observed attempt: the first complete instrumented26-suite/2015-case run passed
+all assertions and exact-SHA raw inventory at e2c3d00. Report parsing initially
+refused LLVM’s DA-versus-LF/LH discrepancy. Both original exports and the failure
+are retained; the reporting-only correction records both metrics and preserves
+the unknown interpretation, without rerunning/changing a comparison or source
+result. Report regeneration and independent raw-JSON summary checks verify it.

@@ -14,7 +14,7 @@ def parse_lcov(text):
   if line.startswith('SF:'):
    name=line[3:]
    if name in files:raise ValueError('Duplicate LCOV source')
-   current={'lines':{},'branches':[]};files[name]=current
+   current={'lines':{},'branches':[],'summary_lines':None,'summary_hits':None};files[name]=current
   elif line.startswith('DA:'):
    if current is None:raise ValueError('Line without source')
    fields=line[3:].split(',');n,count=int(fields[0]),int(fields[1])
@@ -24,10 +24,15 @@ def parse_lcov(text):
    if current is None:raise ValueError('Branch without source')
    current['branches'].append(line[5:])
   elif line.startswith('LF:'):
-   if current is None or int(line[3:])!=len(current['lines']):raise ValueError('LCOV line total')
+   if current is None or current['summary_lines'] is not None:raise ValueError('LCOV line total')
+   current['summary_lines']=int(line[3:])
   elif line.startswith('LH:'):
-   if current is None or int(line[3:])!=sum(c>0 for c in current['lines'].values()):raise ValueError('LCOV hit total')
-  elif line=='end_of_record':current=None
+   if current is None or current['summary_hits'] is not None:raise ValueError('LCOV hit total')
+   current['summary_hits']=int(line[3:])
+  elif line=='end_of_record':
+   if current is None or current['summary_lines'] is None or current['summary_hits'] is None:raise ValueError('Missing LCOV totals')
+   if not 0<=current['summary_hits']<=current['summary_lines'] or current['summary_lines']<len(current['lines']):raise ValueError('Invalid LCOV totals')
+   current=None
  if not files or current is not None:raise ValueError('Empty/unfinished LCOV')
  return files
 
@@ -47,15 +52,20 @@ def summarize(lcov,metadata,sources):
   p=source['path'];item=by_relative.get(p);lines=item['lines'] if item else {};line_count=len(source['text'].splitlines())
   if any(n>line_count for n in lines):raise ValueError('Coverage line beyond source')
   covered=sorted(n for n,c in lines.items()if c>0);missed=sorted(n for n,c in lines.items()if c==0)
-  files.append(dict(path=p,sha256=sha(source['text'].encode()),units=source['units'],status='measured' if lines else 'no-emitted-instrumented-lines',instrumented_lines=len(lines),reached=covered,unreached=missed,uninstrumented=[n for n in range(1,line_count+1)if n not in lines],branch_records=item['branches'] if item else []))
+  inline_start=next((i for i,line in enumerate(source['text'].splitlines(),1)if line.strip()=='#[cfg(test)]'),None)
+  # Current owned files put their inline test modules at the end. Do not infer
+  # their boundaries: retain all file data, and expose the marker as a caution.
+  inline_test_lines=[n for n in lines if inline_start is not None and n>=inline_start]
+  discrepancy=bool(item and (item['summary_lines']!=len(lines) or item['summary_hits']!=len(covered)))
+  files.append(dict(llvm_summary_lines=item['summary_lines'] if item else None,llvm_summary_hits=item['summary_hits'] if item else None,line_summary_disagrees_with_explicit_records=discrepancy,inline_test_section_marker=inline_start,inline_test_instrumented_lines=sorted(inline_test_lines),path=p,sha256=sha(source['text'].encode()),units=source['units'],status='measured' if lines else 'no-emitted-instrumented-lines',instrumented_lines=len(lines),reached=covered,unreached=missed,uninstrumented=[n for n in range(1,line_count+1)if n not in lines],branch_records=item['branches'] if item else []))
  if not any(f['instrumented_lines']for f in files):raise ValueError('No owned source coverage')
  branches=any(f['branch_records']for f in files)
  return dict(contract='rust.coverage.report.v1',candidate_sha=metadata['candidate_sha'],reference_sha=metadata['reference_sha'],toolchain=metadata['toolchain'],native_suites=metadata['native_suites'],native_cases=metadata['native_cases'],ordinary_tests_included=False,files=files,branch_metric='LLVM emitted branch records only; not an exhaustive static denominator' if branches else 'Unavailable: stable -C instrument-coverage emits regions/lines, no branch records in this run. Branch reach is unknown, not 100%.',acceptance_claimed=False)
 
 def markdown(report):
- lines=['<!-- SPDX-License-Identifier: AGPL-3.0-only -->','# Rust differential corpus coverage — 2026-11-02','',f"Candidate `{report['candidate_sha']}`; original `{report['reference_sha']}`.", '',f"Only mandatory differential tests: {report['native_suites']} suites /{report['native_cases']} identities. Ordinary unit tests are excluded. LLVM LCOV line counts are used directly, not inferred from successful test status.",'','| Rust source | Instrumented lines reached / total | Unreached lines |','| --- | ---: | --- |']
- for f in report['files']:lines.append(f"| {f['path']} | {len(f['reached'])} / {f['instrumented_lines']} | {', '.join(map(str,f['unreached'])) or ('none measured' if f['instrumented_lines'] else 'unknown: no emitted coverage')} |")
- lines+=['',report['branch_metric'],'','Uninstrumented lines (comments, declarations, code not emitted/instantiated) are listed separately in report.json, never presumed covered or executable. Every measured source is hashed and mapped to canonical owning units. Missing owners/files remain explicit. Host allocation/depth/work guards may be unexecuted by the source comparison corpus; ordinary host tests are deliberately not blended into this report.','', 'The system toolchain is recorded, not an immutable release pin. No tests, tolerances, seeds, outputs or source code were weakened. No acceptance or exact-base ratchet claim.','']
+ lines=['<!-- SPDX-License-Identifier: AGPL-3.0-only -->','# Rust differential corpus coverage — 2026-11-02','',f"Candidate `{report['candidate_sha']}`; original `{report['reference_sha']}`.", '',f"Only mandatory differential tests: {report['native_suites']} suites /{report['native_cases']} identities. Ordinary unit tests are excluded from execution. File-level records can include their unexecuted inline bodies. LLVM explicit DA line counts are retained separately from LLVM LF/LH summary counters; discrepancies are reported, never normalized away.",'','| Rust source | Instrumented lines reached / total | Unreached explicit DA lines | LLVM LF / LH | DA/summary discrepancy |','| --- | ---: | --- | ---: | --- |']
+ for f in report['files']:lines.append(f"| {f['path']} | {len(f['reached'])} / {f['instrumented_lines']} | {', '.join(map(str,f['unreached'])) or ('none measured' if f['instrumented_lines'] else 'unknown: no emitted coverage')} | {f['llvm_summary_lines']} / {f['llvm_summary_hits']} | {f['line_summary_disagrees_with_explicit_records']} |")
+ lines+=['',report['branch_metric'],'','LLVM LF/LH counters can disagree with explicit DA records for these multi-object exports. Both are preserved, with unresolved interpretation flagged per file; no denominator or pass percentage is inferred. Inline cfg(test) section markers and their instrumented lines are also explicit (some differential harnesses live there). Uninstrumented lines (comments, declarations, code not emitted/instantiated) are listed separately in report.json, never presumed covered or executable. Every measured source is hashed and mapped to canonical owning units. Missing owners/files remain explicit. Host allocation/depth/work guards may be unexecuted by the source comparison corpus; ordinary host tests are deliberately not blended into this report.','', 'The system toolchain is recorded, not an immutable release pin. No tests, tolerances, seeds, outputs or source code were weakened. No acceptance or exact-base ratchet claim.','']
  return '\n'.join(lines)
 
 def source_inventory():
