@@ -90,7 +90,11 @@ the logic ourselves where it is small and security-sensitive; otherwise allow a 
 passes the licence policy and the P35 purity audit, one crate per PR with its decision file. A crate that
 wraps C or C++ never counts. No candidate has been audited yet; none is named here on purpose.
 
-## 7. What is deliberately not here
+## 7. Parked
+
+Licensing, trademarks and the rename (`LICENSING-AND-NAMING.md`) wait for the project to mature and for Stefan's reply to the owner's email. Nothing is distributed meanwhile.
+
+## 8. What is deliberately not here
 
 No release dates, no completion percentage, no promise that a milestone is near. The honest status today
 is in `STATUS.md`: 21 units implemented, none accepted, no Rust engine, project reader or UI yet.

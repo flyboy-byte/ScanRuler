@@ -35,6 +35,8 @@ Original command baselines were captured in real Node 22 headless engines and Ch
 
 The unchanged original has both green hosted full runs and a repeatable intermittent timing failure in `reNetworkCreases.test.ts:209` (1500 ms limit). The audit queue retains exact runs/results. No threshold, seed or test is waived. Missing private scans remain skips. The older scaffold-only handoff and baseline observations are history, not current status.
 
+Licensing, trademark and rename questions are **parked** by the owner until the project is more mature and Stefan has replied to Logan's email about the SolidCraft integration; see [LICENSING-AND-NAMING.md](LICENSING-AND-NAMING.md) (reference only). Starting prompts for each work lane: [prompts/README.md](prompts/README.md).
+
 ## Working and validating
 
 Local host: system Rust, no rustup; Node is oracle-only (user-space `fnm` Node 22; `cargo xtask oracle` selects it itself). Hosted jobs provision Rust stable and Node 22 and record versions. The hosted Rust toolchain is not yet locked to an immutable release; record that reproducibility gap under P00. Do not change local machine setup based on hosted installation commands.

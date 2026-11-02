@@ -24,6 +24,8 @@ they disagree, those win and this file is fixed.
 
 ## 2. Lanes and their real dependencies
 
+Per-lane starting prompts are in [prompts/](prompts/README.md).
+
 Dependencies below are copied from `plan/units/*.json` (`depends_on`) on 2026-11-02. Per `IMPLEMENTATION-PLAN.md`
 they are **contract dependencies**: you may prototype ahead of an unaccepted dependency, but your unit cannot
 be integrated or accepted past it. Say in the draft PR which dependency you are building ahead of.
@@ -35,10 +37,11 @@ be integrated or accepted past it. Say in the draft PR which dependency you are 
 | C. Paired harness | P36, then P37 | P36: P00 to P03; P37: P36 | `rust/xtask`, `ci/`, `port-wasm-probe` | The generic original-versus-Rust runner, then the exact-base ratchet. Prove it rejects a deliberately wrong Rust value. Browser-Wasm coverage extends the existing 114-input corpus with independent inputs only. |
 | D. Measurement slice | P06, P07, P08 | P06: P05; P07: P06, P36; P08: P05 | `port-engine`, `port-cli`, `port-io` | Typed scan import plus plane fit through a command registry, with undo. Reuse the merged STL, mesh-graph and plane code; do not add a second pipeline. |
 | E. Project compatibility | P16 | P03, P08 | `port-io` | Original schema-1 archives, bounded decompression, unknown plugin data preserved. |
+| H. Import breadth | `io.ply`, `io.obj`, `io.threemf` | each: `io.stl.dispatch` (implemented); soft P03 | `port-io` | Can start now with generated and adversarial files. Codec dependencies follow `plan/decisions/2026-11-02-pure-rust-dependency-default.md`. One format per PR. |
 | F. Viewer spike | P24 | P09 (integrates P07 and P08) | new crate or example | Large-graph render, picking, overlays, native and Wasm. Evidence, not a UI. Late in the chain; prototype only. |
 | G. Kernel spikes | P04, then P31 to P35 | P04: P03, P36; P31: P04, P05; P34 also P06; P35 last | new crate; `~/solidcore` is a candidate | Per-operation matrix: supported, partial, missing, incorrect, timeout, unknown. No C or C++ wrappers. Prototyping now is allowed and encouraged; acceptance waits. |
 
-Suggested order: **A first** (it unblocks the rest and nobody else can finish without it), with **B as a spec and
+Suggested order: **A first** (and **H** now, since it needs only the already-merged STL work) (it unblocks the rest and nobody else can finish without it), with **B as a spec and
 G as a prototype spike** in parallel, because they edit different files. Then C, then D
 and E. Hot files that more than one lane edits (`rust/xtask/src/main.rs`, `ci/native-suites.json`,
 `.github/workflows/*`) belong to one lane at a time; say in the draft PR if you need one.

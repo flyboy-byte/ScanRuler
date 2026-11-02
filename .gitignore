@@ -25,3 +25,6 @@ dist/
 
 # Temporary port-plan Python tooling
 /docs/port-plan/tools/__pycache__/
+
+# Real scans for local testing only (never committed; tests report them as skipped when absent)
+/fixtures/private/
