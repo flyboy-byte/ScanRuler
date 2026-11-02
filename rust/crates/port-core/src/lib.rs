@@ -20,6 +20,7 @@ pub mod adjacency;
 pub mod bounds;
 pub mod centroid;
 pub mod clip;
+pub mod closed_shells;
 pub mod components;
 pub mod curvature_gate;
 pub mod linear;

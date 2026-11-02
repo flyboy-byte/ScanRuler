@@ -32,7 +32,7 @@ cargo xtask env    # toolchain versions to record with any result
 
 It does not compare anything with the original app. That harness (`cargo xtask diff`,
 `diff-ci`) is planned under P36 to P39, and the disabled example workflow is designed to fail
-until it exists. A green `ci` run is not parity. `cargo xtask oracle` separately discovers all sixteen
+until it exists. A green `ci` run is not parity. `cargo xtask oracle` separately discovers all seventeen
 required native oracle entrypoints, rejects missing/duplicate discovery, then runs
 all ignored core/IO integration tests without filtering their cases. It requires
 Node and the frozen Git object. It does not implement the general P36 ratchet or
@@ -129,3 +129,14 @@ flips. Typed parsed input transfers owned arrays; caller limits bound raw vertic
 indices and neighbors. Fifty cases compare complete graph/error/progress output
 exactly, including 36 successful graphs. STL command/session integration, metadata
 handling beyond this source body and browser-Wasm execution remain open.
+
+## Closed-shell parity
+
+`closed_shells::closed_shells` retains the original two-word edge-parity criterion,
+including private exact-bit welding that canonicalizes signed zero. This differs
+from the general mesh welder. Even-edge parity is probabilistic and does not
+guarantee manifoldness; repeated/degenerate triangles keep original outcomes.
+Incomplete coordinate/index tails are ignored. Explicit budgets, fallible storage
+and consumed-index guards bound the host. Sixty-four source fixtures compare
+flags/count, private welded IDs and exact hash words, including raw NaN payloads.
+Browser-Wasm execution and viewer-cap/other downstream integration remain open.

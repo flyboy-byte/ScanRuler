@@ -3111,6 +3111,121 @@
       ]
     },
     {
+      "id": "geometry.closed.shells",
+      "parent": "P06",
+      "title": "Port complete bit-welded closed-shell parity classification",
+      "gate": "G2",
+      "status": "implemented",
+      "depends_on": [
+        "geometry.components"
+      ],
+      "soft_depends_on": [
+        "P05",
+        "P36"
+      ],
+      "scope": "Complete closedShells plus private weldIds/hash3/edgeHash; original two-word edge parity, not manifold classification.",
+      "acceptance": [
+        "Independent original/native/browser-Wasm full triangle flags/count, private welded IDs and exact hash outputs compare on fixed/seeded bit/topology fixtures.",
+        "Retain signed-zero canonicalization, raw bit semantics and ignored tails; malformed consumed indices and storage capacity fail safely."
+      ],
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/geometry/closedShells.ts"
+      ],
+      "symbols": [
+        "closedShells",
+        "weldIds (private co-port)",
+        "hash3 (private co-port)",
+        "edgeHash (private co-port)"
+      ],
+      "rust_paths": [
+        "rust/crates/port-core/src/closed_shells.rs"
+      ],
+      "owner": "Codex",
+      "branch": "codex/port-closed-shells",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/21",
+      "implemented_commit": "fd11f984482cdc41409fc1902a4fa7e111c409d4",
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-01-closed-shells-cases.csv",
+          "candidate_sha": "fd11f984482cdc41409fc1902a4fa7e111c409d4",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "coordinate_tail",
+            "degenerate_closed_parity",
+            "disconnected_closed",
+            "duplicate_even_parity",
+            "empty",
+            "empty_indices",
+            "ignored_index_tail",
+            "raw_bits_7f800000",
+            "raw_bits_7fa00001",
+            "raw_bits_7fc00001",
+            "raw_bits_ffc00001",
+            "seed_1039_n17_repeatfalse_sfalse",
+            "seed_1039_n17_repeatfalse_strue",
+            "seed_1039_n17_repeattrue_sfalse",
+            "seed_1039_n17_repeattrue_strue",
+            "seed_1039_n1_repeatfalse_sfalse",
+            "seed_1039_n1_repeatfalse_strue",
+            "seed_1039_n1_repeattrue_sfalse",
+            "seed_1039_n1_repeattrue_strue",
+            "seed_1039_n64_repeatfalse_sfalse",
+            "seed_1039_n64_repeatfalse_strue",
+            "seed_1039_n64_repeattrue_sfalse",
+            "seed_1039_n64_repeattrue_strue",
+            "seed_1_n17_repeatfalse_sfalse",
+            "seed_1_n17_repeatfalse_strue",
+            "seed_1_n17_repeattrue_sfalse",
+            "seed_1_n17_repeattrue_strue",
+            "seed_1_n1_repeatfalse_sfalse",
+            "seed_1_n1_repeatfalse_strue",
+            "seed_1_n1_repeattrue_sfalse",
+            "seed_1_n1_repeattrue_strue",
+            "seed_1_n64_repeatfalse_sfalse",
+            "seed_1_n64_repeatfalse_strue",
+            "seed_1_n64_repeattrue_sfalse",
+            "seed_1_n64_repeattrue_strue",
+            "seed_7_n17_repeatfalse_sfalse",
+            "seed_7_n17_repeatfalse_strue",
+            "seed_7_n17_repeattrue_sfalse",
+            "seed_7_n17_repeattrue_strue",
+            "seed_7_n1_repeatfalse_sfalse",
+            "seed_7_n1_repeatfalse_strue",
+            "seed_7_n1_repeattrue_sfalse",
+            "seed_7_n1_repeattrue_strue",
+            "seed_7_n64_repeatfalse_sfalse",
+            "seed_7_n64_repeatfalse_strue",
+            "seed_7_n64_repeattrue_sfalse",
+            "seed_7_n64_repeattrue_strue",
+            "seed_99_n17_repeatfalse_sfalse",
+            "seed_99_n17_repeatfalse_strue",
+            "seed_99_n17_repeattrue_sfalse",
+            "seed_99_n17_repeattrue_strue",
+            "seed_99_n1_repeatfalse_sfalse",
+            "seed_99_n1_repeatfalse_strue",
+            "seed_99_n1_repeattrue_sfalse",
+            "seed_99_n1_repeattrue_strue",
+            "seed_99_n64_repeatfalse_sfalse",
+            "seed_99_n64_repeatfalse_strue",
+            "seed_99_n64_repeattrue_sfalse",
+            "seed_99_n64_repeattrue_strue",
+            "tetra_indexed",
+            "tetra_missing_face",
+            "tetra_split_zerofalse",
+            "tetra_split_zerotrue",
+            "triangle"
+          ]
+        }
+      ],
+      "open_items": [
+        "Browser-Wasm runtime, viewer caps/downstream classification integration, G0/P05 and generic P36 ratchet remain open.",
+        "Original hash-parity behavior is preserved, including even nonmanifold/duplicate/degenerate cases; no stronger watertight/manifold guarantee.",
+        "Rust typed u32 indices and bounded vertex/triangle storage do not expose arbitrary JS numeric objects or emulate invalid/cyclic host behavior."
+      ]
+    },
+    {
       "id": "geometry.components",
       "parent": "P06",
       "title": "Port directed disjoint sets and mesh vertex components",

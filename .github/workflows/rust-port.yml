@@ -157,3 +157,10 @@ jobs:
           name: mesh-graph-comparison
           path: rust/target/mesh-graph-diff/
           retention-days: 7
+      - name: Retain closed-shell evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: closed-shells-comparison
+          path: rust/target/closed-shells-diff/
+          retention-days: 7
