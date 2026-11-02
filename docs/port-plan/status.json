@@ -3,8 +3,8 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 38,
-    "planned": 49,
+    "implemented": 39,
+    "planned": 48,
     "specified": 1
   },
   "native_suites": 28,
@@ -737,13 +737,15 @@
     },
     {
       "id": "harness.fuzz.standing",
-      "status": "planned",
+      "status": "implemented",
       "parent": "P36",
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "Reference harness was scratch-only (see plan/findings/2026-11-02-ply-stl-independent-fuzz.md for method); it must be rewritten in-repo, not copied from /tmp.",
-        "Touches rust/xtask and .github: one open PR at a time."
+        "OBJ generator and comparison are not added; PLY and STL only.",
+        "Reproducers are not minimized.",
+        "Scheduled hosted job not added (touches .github; one PR at a time).",
+        "Host-limit refusals (H1 to H3) and original timeouts are counted in their own classes and remain an owner decision."
       ]
     },
     {

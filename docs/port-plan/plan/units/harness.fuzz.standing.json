@@ -3,7 +3,7 @@
   "parent": "P36",
   "title": "Standing seeded mutation fuzz against the original (cargo xtask fuzz)",
   "gate": "G3",
-  "status": "planned",
+  "status": "implemented",
   "depends_on": [
     "harness.oracle.gate"
   ],
@@ -16,8 +16,8 @@
     "PLY and STL run reproduces the 2026-11-02 audit result (zero divergences after PR #33) from the committed generator and records the seed set; OBJ is added in the same PR or the next.",
     "A scheduled hosted job runs fresh seeds; findings become files under plan/findings and a failing regression test, never a looser comparison."
   ],
-  "owner": null,
-  "branch": null,
+  "owner": "Claude",
+  "branch": "claude/fuzz-standing",
   "claim_pr": null,
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
@@ -27,10 +27,23 @@
     "src/core/parsers/obj.ts"
   ],
   "symbols": [],
-  "rust_paths": [],
-  "evidence": [],
+  "rust_paths": [
+    "rust/crates/port-io/tests/fuzz_standing.rs",
+    "rust/xtask/src/main.rs",
+    "docs/port-plan/oracle/fuzz-batch.cjs"
+  ],
+  "evidence": [
+    {
+      "kind": "report",
+      "location": "plan/findings/2026-11-03-standing-fuzz-first-run.md",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "summary": "ply seeds 1,7,99 x 10000 and stl seeds 1,7,99 x 30000: 0 divergences; selfcheck seed 1 x 300 reports 194 (stl) and 108 (ply) divergences"
+    }
+  ],
   "open_items": [
-    "Reference harness was scratch-only (see plan/findings/2026-11-02-ply-stl-independent-fuzz.md for method); it must be rewritten in-repo, not copied from /tmp.",
-    "Touches rust/xtask and .github: one open PR at a time."
+    "OBJ generator and comparison are not added; PLY and STL only.",
+    "Reproducers are not minimized.",
+    "Scheduled hosted job not added (touches .github; one PR at a time).",
+    "Host-limit refusals (H1 to H3) and original timeouts are counted in their own classes and remain an owner decision."
   ]
 }

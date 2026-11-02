@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust standing fuzz** (2026-11-03): `cargo xtask fuzz <ply|stl> --seed N --cases M` compares seeded mutated inputs against the frozen original (success, progress and error text, output bytes) with host-limit refusals and original timeouts counted apart; first run 120,000 cases, 0 divergences. OBJ, minimized reproducers and a scheduled job remain open.
+
 - **Rust history recording** (2026-11-02): preserve identity-aware changes, grouped steps, clear, sync/async wrappers, typed capture faults and late epoch drops across 110 exact source scenarios and 1,095 full observations. Undo/redo restoration and complete session integration remain separate.
 
 - **Rust registry and admission** (2026-11-02): preserve complete command registration/catalog/headless behavior, partial failures and coerced arguments on refusal, with350 exact source scenarios across all140 definitions. Session scheduling/history and public feature bodies remain separate.

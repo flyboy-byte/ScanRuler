@@ -216,7 +216,7 @@ fn validate_oracle_discovery(list: &str) -> Result<(), String> {
 /// The original app needs Node 22 or newer. The system Node may be older, so the oracle
 /// gate re-runs itself once under `fnm exec --using=22` (a user-space install, nothing
 /// global changes) and otherwise fails with the reason. Node is oracle-only.
-fn ensure_oracle_node() -> Result<bool, String> {
+fn ensure_oracle_node(task_args: &[String]) -> Result<bool, String> {
     let version = capture("node", &["-v"]);
     let major = version
         .trim_start_matches('v')
@@ -232,7 +232,8 @@ fn ensure_oracle_node() -> Result<bool, String> {
         ));
     }
     let status = Command::new("fnm")
-        .args(["exec", "--using=22", "--", "cargo", "xtask", "oracle"])
+        .args(["exec", "--using=22", "--", "cargo", "xtask"])
+        .args(task_args)
         .env("SCANRULER_ORACLE_REEXEC", "1")
         .current_dir(workspace())
         .status()
@@ -262,7 +263,7 @@ fn oracle_args() -> Vec<&'static str> {
 }
 
 fn oracle() -> Result<(), String> {
-    if ensure_oracle_node()? {
+    if ensure_oracle_node(&["oracle".to_string()])? {
         return Ok(());
     }
     pin()?;
@@ -287,6 +288,77 @@ fn oracle() -> Result<(), String> {
     let mut args = oracle_args();
     args.extend(["--no-fail-fast", "--", "--ignored", "--nocapture"]);
     run("cargo", &args, &workspace())
+}
+
+const FUZZ_USAGE: &str =
+    "usage: cargo xtask fuzz <ply|stl> [--seed N] [--cases N] [--out DIR] [--selfcheck]";
+
+/// Standing seeded mutation fuzz of a parser against the frozen original. `--selfcheck`
+/// deliberately corrupts the Rust output and requires the comparison to report divergences.
+fn fuzz(args: &[String]) -> Result<(), String> {
+    let unit = args.first().ok_or(FUZZ_USAGE)?;
+    if unit != "ply" && unit != "stl" {
+        return Err(format!("unknown parser unit {unit:?}; {FUZZ_USAGE}"));
+    }
+    let mut seed = "1".to_string();
+    let mut cases = "500".to_string();
+    let mut out = None;
+    let mut selfcheck = false;
+    let mut rest = args[1..].iter();
+    while let Some(flag) = rest.next() {
+        match flag.as_str() {
+            "--seed" => seed = rest.next().ok_or(FUZZ_USAGE)?.clone(),
+            "--cases" => cases = rest.next().ok_or(FUZZ_USAGE)?.clone(),
+            "--out" => out = Some(rest.next().ok_or(FUZZ_USAGE)?.clone()),
+            "--selfcheck" => selfcheck = true,
+            other => return Err(format!("unknown option {other:?}; {FUZZ_USAGE}")),
+        }
+    }
+    for (name, value) in [("seed", &seed), ("cases", &cases)] {
+        if value.parse::<u64>().is_err() {
+            return Err(format!("--{name} must be a non-negative integer"));
+        }
+    }
+    let mut task = vec!["fuzz".to_string()];
+    task.extend(args.iter().cloned());
+    if ensure_oracle_node(&task)? {
+        return Ok(());
+    }
+    pin()?;
+    let mut command = Command::new("cargo");
+    command
+        .args([
+            "test",
+            "-p",
+            "port-io",
+            "--test",
+            "fuzz_standing",
+            "--",
+            "--ignored",
+            "--nocapture",
+        ])
+        .env("SCANRULER_FUZZ_UNIT", unit)
+        .env("SCANRULER_FUZZ_SEED", &seed)
+        .env("SCANRULER_FUZZ_CASES", &cases)
+        .current_dir(workspace());
+    if let Some(dir) = out {
+        command.env("SCANRULER_FUZZ_OUT", dir);
+    }
+    if selfcheck {
+        command.env("SCANRULER_FUZZ_SABOTAGE", "1");
+    }
+    println!(
+        "\n$ fuzz {unit} seed={seed} cases={cases}{}",
+        if selfcheck { " (selfcheck)" } else { "" }
+    );
+    let status = command
+        .status()
+        .map_err(|e| format!("could not start cargo: {e}"))?;
+    if status.success() {
+        Ok(())
+    } else {
+        Err(format!("fuzz {unit} failed ({status})"))
+    }
 }
 
 fn wasm_probe() -> Result<(), String> {
@@ -326,7 +398,8 @@ fn wasm_probe() -> Result<(), String> {
 }
 
 fn main() -> ExitCode {
-    let task = std::env::args().nth(1).unwrap_or_default();
+    let args: Vec<String> = std::env::args().skip(1).collect();
+    let task = args.first().cloned().unwrap_or_default();
     let result = match task.as_str() {
         "ci" => ci(),
         "oracle" => oracle(),
@@ -334,11 +407,12 @@ fn main() -> ExitCode {
         "plan" => plan(),
         "wasm" => wasm(),
         "wasm-probe" => wasm_probe(),
+        "fuzz" => fuzz(&args[1..]),
         "env" => {
             env();
             Ok(())
         }
-        _ => Err("usage: cargo xtask <ci|oracle|pin|plan|wasm|wasm-probe|env>".to_string()),
+        _ => Err("usage: cargo xtask <ci|oracle|fuzz|pin|plan|wasm|wasm-probe|env>".to_string()),
     };
     match result {
         Ok(()) => ExitCode::SUCCESS,
