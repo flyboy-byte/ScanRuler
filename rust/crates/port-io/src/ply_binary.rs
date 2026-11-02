@@ -71,7 +71,9 @@ fn loops(n: f64, max: usize) -> Result<usize, PlyError> {
 }
 fn vertex_count(n: f64, limits: PlyLimits) -> Result<usize, PlyError> {
     if n < 0.0 {
-        return Err(PlyError::InvalidArrayLength(format!("{}", n * 3.0)));
+        return Err(PlyError::InvalidArrayLength(
+            crate::ply_ascii::js_number_string(n * 3.0),
+        ));
     }
     loops(n, limits.max_vertices)
 }
