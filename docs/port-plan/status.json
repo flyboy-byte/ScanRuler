@@ -4,7 +4,8 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 29,
-    "planned": 47
+    "planned": 47,
+    "specified": 1
   },
   "native_suites": 23,
   "native_case_identities_including_refusals": 1191,
@@ -688,13 +689,24 @@
       ]
     },
     {
+      "id": "io.obj.companions.files",
+      "status": "specified",
+      "parent": "io.obj.companions",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Specify and capture source cases before porting; native/Wasm runtime evidence pending."
+      ]
+    },
+    {
       "id": "io.obj.companions",
       "status": "planned",
       "parent": "io.obj",
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "No image decoder dependency selected/audited; no implementation claim."
+        "Complete file-selection/identity/byte-preservation slice tracked in io.obj.companions.files; drop traversal and image decoding remain separate continuations.",
+        "No PNG/JPEG/BMP/WebP image decoder selected or audited. Browser decode/canvas behavior, malformed-image omission and 3MF packed images remain open; parent stays planned."
       ]
     },
     {

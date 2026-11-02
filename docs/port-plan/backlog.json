@@ -4613,6 +4613,53 @@
       ]
     },
     {
+      "id": "io.obj.companions.files",
+      "parent": "io.obj.companions",
+      "title": "Port complete file classification, bundle identity and companion byte preservation",
+      "gate": "G3",
+      "status": "specified",
+      "depends_on": [
+        "io.obj.mesh"
+      ],
+      "soft_depends_on": [
+        "P03",
+        "P36"
+      ],
+      "owner": "Codex",
+      "branch": "codex/obj-companion-files",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/formats.ts",
+        "src/app/scanFiles.ts"
+      ],
+      "symbols": [
+        "extensionOf",
+        "isModelFile",
+        "isTextureFile",
+        "is3mfFile",
+        "isStepFile",
+        "isReferenceFile",
+        "isImageFile",
+        "bundleFiles",
+        "companionsOf",
+        "companionBytes"
+      ],
+      "rust_paths": [
+        "rust/crates/port-io/src/scan_files.rs"
+      ],
+      "scope": "Complete source classification and file bundle/companion byte functions over an owned ingress file set with stable local identity; preserve duplicate identities, first-model/fallback and retained associations across calls. No decoder/drop traversal or engine session state.",
+      "acceptance": [
+        "Independent fixed original/Rust traces compare selection identity, all association state and ordered complete names/bytes, including repeated bundles and duplicates.",
+        "Bounded fallible owned data with explicit host limits and atomic association replacement; no dependency or product integration claim."
+      ],
+      "evidence": [],
+      "open_items": [
+        "Specify and capture source cases before porting; native/Wasm runtime evidence pending."
+      ]
+    },
+    {
       "parent": "io.obj",
       "gate": "G3",
       "status": "planned",
@@ -4649,7 +4696,8 @@
       ],
       "rust_paths": [],
       "open_items": [
-        "No image decoder dependency selected/audited; no implementation claim."
+        "Complete file-selection/identity/byte-preservation slice tracked in io.obj.companions.files; drop traversal and image decoding remain separate continuations.",
+        "No PNG/JPEG/BMP/WebP image decoder selected or audited. Browser decode/canvas behavior, malformed-image omission and 3MF packed images remain open; parent stays planned."
       ]
     },
     {

@@ -27,7 +27,8 @@
         "io.ply.binary",
         "io.obj.texture",
         "io.obj.mesh",
-        "io.obj.companions"
+        "io.obj.companions",
+        "io.obj.companions.files"
       ],
       "touches": "rust/crates/port-io"
     },

@@ -35,6 +35,7 @@
   ],
   "rust_paths": [],
   "open_items": [
-    "No image decoder dependency selected/audited; no implementation claim."
+    "Complete file-selection/identity/byte-preservation slice tracked in io.obj.companions.files; drop traversal and image decoding remain separate continuations.",
+    "No PNG/JPEG/BMP/WebP image decoder selected or audited. Browser decode/canvas behavior, malformed-image omission and 3MF packed images remain open; parent stays planned."
   ]
 }
