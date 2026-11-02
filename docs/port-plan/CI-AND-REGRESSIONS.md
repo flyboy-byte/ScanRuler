@@ -4,7 +4,9 @@
 
 The default reference is Stefan's pinned original code. CI proves that Rust preserves it and that previously established behavior stays covered. Rust compilation, test counts, status-only agreement or a beautiful screenshot cannot replace differential evidence. Source algorithm changes and source rebaselines are separate reviewed changes.
 
-Proposed local interface to implement in Rust: `cargo xtask ci` for the normal gate, `cargo xtask diff --unit <id>` for targeted comparison, and `cargo xtask diff --baseline <report-dir>` for the exact-base ratchet. These commands **do not exist yet**. P36–P39 establish the harness, contracts, CI and maintained plan process. Bootstrap templates fail if invoked before those commands exist; they must not report fake passing builds.
+Current fast-gate interface: `cd rust && cargo xtask ci` runs the pin/plan checks, formatting, clippy, workspace tests and wasm32 library compilation. It exists in `rust/xtask/src/main.rs` and is run by `.github/workflows/rust-port.yml`. It does not run differential comparisons or browser-Wasm execution.
+
+Remaining proposed comparison interface: `cargo xtask diff --unit <id>` for targeted comparison, and `cargo xtask diff --baseline <report-dir>` for the exact-base ratchet. The `diff` and `diff-ci` commands **do not exist yet**. P36–P39 establish the harness, contracts, CI and maintained plan process. Bootstrap templates fail if invoked before those commands exist; they must not report fake passing builds.
 
 ## Paired-runner protocol
 
