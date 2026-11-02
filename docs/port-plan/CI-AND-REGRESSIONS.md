@@ -1,6 +1,6 @@
 # CI and regression contracts
 
-Updated 2026-11-01. The frozen original is authoritative. No workflow change in this integration alters a numerical formula, tolerance, seed, source test or timing threshold.
+Updated 2026-11-02. The frozen original is authoritative. No workflow change in this integration alters a numerical formula, tolerance, seed, source test or timing threshold.
 
 ## Executable gates
 
@@ -24,6 +24,11 @@ Updated 2026-11-01. The frozen original is authoritative. No workflow change in 
 ## Native evidence and status
 
 `ci/native-suites.json` maps all required Rust entrypoints to canonical units and raw directories. The reporter verifies the manifest agrees with Rust discovery and all numerical unit inventories. It rejects missing/duplicate suites, stale candidate identity, missing/extra case IDs and absent input/original/Rust files, including compared progress/count sidecars on successful cases. The two STL adapters retain their existing explicitly enumerated refusal/error artifacts; legitimate zero-length values are permitted but missing files are not.
+
+ASCII PLY adds 60 exact parser cases (46 outputs / 14 source refusals), bringing
+the native inventory to 19 suites / 746 identities. Its adapter uses the pinned
+original TypeScript compiler after lock-preserving `npm ci`, solely as reference
+tooling. Binary PLY and actual browser-Wasm execution of this parser remain open.
 
 Numerical comparisons remain in the existing Rust tests with their original fixed budgets and cases. The inventory reporter hashes raw files; it does **not** reinterpret values, declare a refusal successful geometry, compare against the exact PR base, or replace P36/P37. Canonical case edits and changed input/output hashes still need review; there is no automatic accepted-case ratchet yet.
 
@@ -83,4 +88,4 @@ Use Node 22 for CI reproduction and real original captures. Local native math ru
 
 The disabled `repo-bootstrap` product-gate example describes the future generic ratchet; it is not the active workflow. Release deployment remains unchanged and no Rust release workflow is activated. Branch protection settings need the owner's separate review after these check names are proven on hosted CI.
 
-The browser-wasm lane depends on the successful native-oracle artifact, checks exact candidate/reference/input hashes, builds its own dependency-free Rust module and uses real Chrome. Source/native outputs never cross into the browser payload; only fixture inputs do. Safe scalar-buffer functions retain unsafe_code=forbid. The private linker exports are not the product ABI. Exact corpus/budgets/limits and actual evidence are recorded in oracle/BROWSER-WASM.md; a Node-Wasm smoke cannot satisfy this lane. Native metadata inventories remain 18 suites / 686 identities; browser coverage is a separate 114-case subset, not additional native numerical cases.
+The browser-wasm lane depends on the successful native-oracle artifact, checks exact candidate/reference/input hashes, builds its own dependency-free Rust module and uses real Chrome. Source/native outputs never cross into the browser payload; only fixture inputs do. Safe scalar-buffer functions retain unsafe_code=forbid. The private linker exports are not the product ABI. Exact corpus/budgets/limits and actual evidence are recorded in oracle/BROWSER-WASM.md; a Node-Wasm smoke cannot satisfy this lane. The current native inventory is generated in STATUS.md; browser coverage remains a separate 114-case subset, not additional native numerical cases.

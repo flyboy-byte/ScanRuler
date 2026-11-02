@@ -3,7 +3,7 @@
   "parent": "io.ply",
   "title": "Port complete ASCII PLY header and body",
   "gate": "G3",
-  "status": "specified",
+  "status": "implemented",
   "depends_on": [
     "io.stl.dispatch"
   ],
@@ -19,8 +19,8 @@
   ],
   "owner": "Codex",
   "branch": "codex/port-ply-ascii",
-  "claim_pr": null,
-  "implemented_commit": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/27",
+  "implemented_commit": "737d3c314691e1e63ddc3d517002476e382fe418",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/core/parsers/ply.ts"
@@ -34,10 +34,89 @@
     "rust/crates/port-io/src/ply_ascii.rs",
     "rust/crates/port-io/tests/ply_ascii.rs"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "kind": "differential",
+      "location": "evidence/2026-11-02-ply-ascii-cases.json",
+      "candidate_sha": "737d3c314691e1e63ddc3d517002476e382fe418",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "case_ids": [
+        "triangle",
+        "crlf",
+        "unicode-comment",
+        "keep-winding",
+        "keep-winding-whitespace",
+        "keep-winding-suffix",
+        "header-bom",
+        "body-bom",
+        "invalid-utf8-comment",
+        "xyz-reordered",
+        "ignored-normals-colors",
+        "unknown-ascii-types",
+        "list-before-coordinates",
+        "coordinate-list-remains-zero",
+        "duplicate-coordinate-property",
+        "quad-fan",
+        "face-singular-alias",
+        "two-face-lists",
+        "face-extra-properties",
+        "unknown-element-list",
+        "face-before-vertices",
+        "no-face-index-property",
+        "short-face-zero",
+        "short-face-one",
+        "short-face-two",
+        "negative-indices-wrap",
+        "missing-coordinate-tokens",
+        "missing-index-tokens",
+        "nan-list-poisons-cursor",
+        "negative-list-cursor",
+        "numeric-prefixes",
+        "non-js-whitespace",
+        "js-whitespace",
+        "zero-vertices",
+        "nan-vertex-count",
+        "nan-face-count",
+        "negative-face-count",
+        "negative-vertex-count",
+        "first-duplicate-face-zero",
+        "missing-z",
+        "missing-vertex",
+        "missing-faces",
+        "zero-faces",
+        "unknown-format",
+        "empty",
+        "bad-signature",
+        "missing-end",
+        "no-final-newline",
+        "tag-in-comment",
+        "property-before-element",
+        "header-limit-accepted",
+        "header-limit-refused",
+        "repeated-vertices",
+        "repeated-faces-append",
+        "unknown-negative-element",
+        "missing-format",
+        "seed-1",
+        "seed-7",
+        "seed-99",
+        "seed-1039"
+      ]
+    },
+    {
+      "kind": "report",
+      "location": "evidence/2026-11-02-ply-ascii.md",
+      "candidate_sha": "737d3c314691e1e63ddc3d517002476e382fe418"
+    }
+  ],
   "open_items": [
-    "Binary branch explicitly unported here; tracked separately under io.ply.binary.",
-    "56 fixed cases, seeds 1/7/99/1039; source values captured before first Rust comparison.",
-    "Browser-Wasm comparisons, public scan commands and full P03 corpus not provided by this unit."
+    "Binary body explicitly unported at the recognized encoding boundary; io.ply.binary owns the continuation. Parent io.ply remains planned.",
+    "Browser-Wasm runtime comparisons and public scan/session/history integration remain unimplemented for this parser.",
+    "Caller byte/vertex/triangle/work limits and fallible allocation are explicit host guards; huge hostile workloads are not executed in the original oracle.",
+    "Full P03 licensed/adversarial corpus and acceptance gates remain open; no accepted state or end-to-end import claim."
+  ],
+  "resolved_items": [
+    "2026-11-02: 60 exact complete original/native parser comparisons (46 outputs / 14 source refusals), seeds 1/7/99/1039; no input/seed/tolerance reductions.",
+    "Existing source-compatible UTF-8/whitespace/parseFloat helpers reused from STL with visibility-only changes; no numerical formulas altered."
   ]
 }

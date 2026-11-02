@@ -203,6 +203,18 @@
         "input.bin",
         "original.bin"
       ]
+    },
+    {
+      "unit": "io.ply.ascii",
+      "test": "pinned_ply_ascii_comparison",
+      "directory": "ply-ascii-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.progress-or-error.txt",
+        "rust.progress-or-error.txt"
+      ]
     }
   ]
 }

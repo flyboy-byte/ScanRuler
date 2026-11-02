@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust ASCII PLY import** (2026-11-02): port complete header and ASCII mesh decoding with winding preservation, face fans and source numeric/property behavior; compare 60 independent cases exactly. Binary PLY and session integration remain open.
+
 - **Original baseline inventory** (2026-11-02): retain complete local/hosted reference observations, explain every excluded test, verify six repeatable generated fixtures and reject missing evidence without hiding original failures.
 
 - **Actual Rust in browser Wasm** (2026-11-01): require Chrome execution of existing TLS/mesh-graph/marked-plane inputs, comparing full source/native/Wasm results through a safe bounded private test ABI; 114 cases and memory/codec checks verified.

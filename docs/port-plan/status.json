@@ -3,12 +3,11 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 22,
-    "planned": 47,
-    "specified": 1
+    "implemented": 23,
+    "planned": 47
   },
-  "native_suites": 18,
-  "native_case_identities_including_refusals": 686,
+  "native_suites": 19,
+  "native_case_identities_including_refusals": 746,
   "accepted_units": [],
   "units": [
     {
@@ -664,14 +663,15 @@
     },
     {
       "id": "io.ply.ascii",
-      "status": "specified",
+      "status": "implemented",
       "parent": "io.ply",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/27",
+      "tested_sha": "737d3c314691e1e63ddc3d517002476e382fe418",
       "open_items": [
-        "Binary branch explicitly unported here; tracked separately under io.ply.binary.",
-        "56 fixed cases, seeds 1/7/99/1039; source values captured before first Rust comparison.",
-        "Browser-Wasm comparisons, public scan commands and full P03 corpus not provided by this unit."
+        "Binary body explicitly unported at the recognized encoding boundary; io.ply.binary owns the continuation. Parent io.ply remains planned.",
+        "Browser-Wasm runtime comparisons and public scan/session/history integration remain unimplemented for this parser.",
+        "Caller byte/vertex/triangle/work limits and fallible allocation are explicit host guards; huge hostile workloads are not executed in the original oracle.",
+        "Full P03 licensed/adversarial corpus and acceptance gates remain open; no accepted state or end-to-end import claim."
       ]
     },
     {
