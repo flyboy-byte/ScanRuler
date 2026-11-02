@@ -143,6 +143,13 @@ fn pinned_ply_ascii_comparison() {
             progress.push_str(s);
             progress.push('\n');
         });
+        // The new all-encoding dispatcher must preserve every existing ASCII
+        // value and refusal, not merely delegate to a branch with a matching status.
+        let mut dispatcher_progress = String::new();
+        let dispatcher = port_io::ply::read_ply(c.input, limits(), |s| {
+            dispatcher_progress.push_str(s);
+            dispatcher_progress.push('\n');
+        });
         let mut child = Command::new("node")
             .arg(root.join("docs/port-plan/oracle/ply-ascii.cjs"))
             .current_dir(&root)
@@ -168,6 +175,36 @@ fn pinned_ply_ascii_comparison() {
         // Retain both outputs before any assertion, including an unexpected host failure.
         std::fs::write(dir.join("rust.bin"), &raw).unwrap();
         std::fs::write(dir.join("rust.progress-or-error.txt"), &progress).unwrap();
+        let dispatched = match &dispatcher {
+            Ok(mesh) => payload(mesh),
+            Err(e) => {
+                dispatcher_progress.push_str(&format!("{e}\n"));
+                Vec::new()
+            }
+        };
+        std::fs::write(dir.join("dispatcher.bin"), &dispatched).unwrap();
+        std::fs::write(
+            dir.join("dispatcher.progress-or-error.txt"),
+            &dispatcher_progress,
+        )
+        .unwrap();
+        assert_eq!(
+            dispatcher.is_ok(),
+            c.success,
+            "{}: dispatcher outcome",
+            c.id
+        );
+        assert_eq!(
+            dispatched, original.stdout,
+            "{}: dispatcher full values",
+            c.id
+        );
+        assert_eq!(
+            dispatcher_progress.as_bytes(),
+            original.stderr,
+            "{}: dispatcher progress/refusal",
+            c.id
+        );
         assert_eq!(
             candidate.is_ok(),
             c.success,

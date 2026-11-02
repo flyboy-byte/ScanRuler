@@ -25,10 +25,13 @@ Updated 2026-11-02. The frozen original is authoritative. No workflow change in 
 
 `ci/native-suites.json` maps all required Rust entrypoints to canonical units and raw directories. The reporter verifies the manifest agrees with Rust discovery and all numerical unit inventories. It rejects missing/duplicate suites, stale candidate identity, missing/extra case IDs and absent input/original/Rust files, including compared progress/count sidecars on successful cases. The two STL adapters retain their existing explicitly enumerated refusal/error artifacts; legitimate zero-length values are permitted but missing files are not.
 
-ASCII PLY adds 60 exact parser cases (46 outputs / 14 source refusals), bringing
-the native inventory to 19 suites / 746 identities. Its adapter uses the pinned
+ASCII PLY adds 60 exact parser cases (46 outputs / 14 source refusals), and binary
+PLY adds 168 (152 outputs / 16 refusals), bringing the native inventory to 20
+suites / 914 identities. The adapter uses the pinned
 original TypeScript compiler after lock-preserving `npm ci`, solely as reference
-tooling. Binary PLY and actual browser-Wasm execution of this parser remain open.
+tooling. The binary body/full dispatcher are implemented; actual browser-Wasm PLY
+execution remains open. ASCII artifacts require full-dispatcher value/progress
+sidecars in addition to the original ASCII-entrypoint comparisons.
 
 Numerical comparisons remain in the existing Rust tests with their original fixed budgets and cases. The inventory reporter hashes raw files; it does **not** reinterpret values, declare a refusal successful geometry, compare against the exact PR base, or replace P36/P37. Canonical case edits and changed input/output hashes still need review; there is no automatic accepted-case ratchet yet.
 

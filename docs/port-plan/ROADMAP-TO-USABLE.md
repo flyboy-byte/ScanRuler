@@ -69,6 +69,11 @@ may be built ahead of its dependencies but cannot be integrated past them). Hot 
 M4 is listed after M3 because the harness can start as soon as P03 lands (see the lanes); it is the item that
 makes M3 trustworthy, so build it in parallel and do not call M3 done without it.
 
+Import checkpoint 2026-11-02 UTC: the STL and all three PLY encoding bodies now
+have bounded native source comparisons. PLY does not yet have real browser-Wasm
+coverage or a public engine command, and `scanruler-rs info` is still unimplemented.
+These library bodies do not complete M2 or replace the session work needed by M3.
+
 ## 4. Getting MCP solid
 
 Finding (2026-11-02, verified in `mcp/tests/client.js` and `main.test.js`): the original's MCP tests start the
@@ -115,4 +120,5 @@ Licensing, trademarks and the rename (`LICENSING-AND-NAMING.md`) wait for the pr
 ## 8. What is deliberately not here
 
 No release dates, no completion percentage, no promise that a milestone is near. The honest status today
-is in `STATUS.md`: 21 units implemented, none accepted, no Rust engine, project reader or UI yet.
+is generated in `STATUS.md`; there is still no working Rust engine command flow,
+project reader or UI. Library implementation is distinct from acceptance.

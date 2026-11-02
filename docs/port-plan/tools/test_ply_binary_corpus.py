@@ -4,9 +4,36 @@ import json
 from pathlib import Path
 import re
 import unittest
+import gzip
 
 
 class BinaryPlyCorpusTests(unittest.TestCase):
+    def test_committed_output_bytes_hashes_and_progress_are_complete(self):
+        root = Path(__file__).resolve().parents[3]
+        folder = root / 'docs/port-plan/evidence/ply-binary-2026-11-02'
+        report = json.loads((folder / 'report.json').read_text())
+        manifest = json.loads((root / 'docs/port-plan/fixtures/ply-binary/manifest.json').read_text())
+        self.assertEqual([c['id'] for c in report['cases']], [c['id'] for c in manifest['cases']])
+        for case in report['cases']:
+            self.assertEqual(case['files']['input.bin']['sha256'], case['sha256'])
+            for name, item in case['files'].items():
+                if name == 'input.bin':
+                    continue
+                if 'gzip' in item:
+                    packed = (folder / item['gzip']).read_bytes()
+                    self.assertEqual(hashlib.sha256(packed).hexdigest(), item['gzip_sha256'])
+                    raw = gzip.decompress(packed)
+                else:
+                    raw = bytes.fromhex(item['hex'])
+                self.assertEqual(len(raw), item['bytes'])
+                self.assertEqual(hashlib.sha256(raw).hexdigest(), item['sha256'])
+            for a, b in [('original.bin', 'rust.bin'), ('original.progress-or-error.txt', 'rust.progress-or-error.txt')]:
+                self.assertEqual(case['files'][a]['sha256'], case['files'][b]['sha256'])
+        for id, message in [('le-vertex-progress', 'Reading PLY vertices… 100%\n'),
+                            ('le-face-progress', 'Reading PLY faces… 100%\n')]:
+            case = next(c for c in report['cases'] if c['id'] == id)
+            self.assertEqual(bytes.fromhex(case['files']['original.progress-or-error.txt']['hex']).decode(), message)
+
     def test_all_alias_roles_endians_and_progress_inputs_are_retained(self):
         root = Path(__file__).resolve().parents[3]
         directory = root / 'docs/port-plan/fixtures/ply-binary'

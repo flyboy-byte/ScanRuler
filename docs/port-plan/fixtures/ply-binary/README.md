@@ -23,7 +23,7 @@ infinity, subnormal and quiet/signaling float32/float64 values.
 
 Both source progress boundaries run at **1,048,577 records**, not a reduced count
 or injected callback. The vertex case uses zero char coordinates (3,145,731 body
-bytes including one face); the face case needs no face property bytes, as in the
+coordinate bytes, plus 13 face bytes); the face case needs no face property bytes, as in the
 source. These are generated analytic input bytes, not large real scans.
 
 Compare full PLY1 coordinate/index/count/winding bytes, all progress and all
