@@ -4139,7 +4139,7 @@
       "parent": "P36",
       "title": "Execute initial plane and mesh corpus as actual browser Wasm",
       "gate": "G2",
-      "status": "planned",
+      "status": "specified",
       "depends_on": [
         "fit.plane.tls",
         "geometry.mesh.graph"
@@ -4149,22 +4149,26 @@
         "P03",
         "P05"
       ],
-      "scope": "Real Rust-Wasm execution with independent original/native/browser inputs and bounded result/error memory boundary.",
+      "scope": "Actual Rust Wasm in Chrome for the existing TLS plane, complete mesh graph and marked-plane corpora, bounded safe test ABI and independent source/native/browser inputs. Not product ABI or all-unit runtime acceptance.",
       "acceptance": [
         "Source/native/Wasm values and state compare on the same immutable IDs/inputs; deliberate runtime failures propagate.",
         "Record browser/toolchain and memory bounds; no JavaScript numerical implementation or compile-only substitute."
       ],
-      "owner": null,
-      "branch": null,
-      "claim_pr": null,
+      "owner": "Codex",
+      "branch": "codex/browser-wasm-comparisons",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/24",
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [],
       "symbols": [],
-      "rust_paths": [],
+      "rust_paths": [
+        "rust/crates/port-wasm-probe/src/lib.rs",
+        "rust/xtask/src/main.rs"
+      ],
       "evidence": [],
       "open_items": [
-        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+        "Actual hosted Chrome validation pending; Node smoke/compilation alone cannot establish runtime evidence.",
+        "Other numerical units, public engine/UI/history/project/jobs, generic P36 report, P37 exact-base ratchet, P35/P39 remain open."
       ]
     },
     {

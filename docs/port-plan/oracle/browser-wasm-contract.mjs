@@ -66,6 +66,10 @@ export function negativePackets() {
   const check = (ok, name) => { if (!ok) throw Error(name); checks.push(name) }
   check(a.reset(1) === 0 && a.push(0, 4) === 0 && a.run() === 0 && a.length() === 1, 'valid empty TLS reference case')
   check(a.word(0xffffffff) === 0, 'out-of-range word read bounded')
+  const memoryBefore = a.memory.buffer.byteLength
+  let memoryRefused = false
+  try { a.memory.grow(1025) } catch { memoryRefused = true }
+  check(memoryRefused && a.memory.buffer.byteLength === memoryBefore, 'linear memory hard limit enforced')
   check(a.push(0, 0) !== 0 && a.run() !== 0 && a.length() === 0, 'bad write cannot reuse previous output')
   check(a.reset(99) !== 0 && a.run() !== 0 && a.length() === 0, 'unknown mode fails')
   check(a.reset(1) === 0 && a.run() !== 0 && a.length() === 0, 'truncated packet fails')

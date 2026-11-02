@@ -12,7 +12,8 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | --- | ---: |
 | baseline-captured | 2 |
 | implemented | 20 |
-| planned | 45 |
+| planned | 44 |
+| specified | 1 |
 
 | Unit | State | Tested implementation | PR |
 | --- | --- | --- | --- |
@@ -78,7 +79,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [geometry.normals.orient](plan/units/geometry.normals.orient.json) | implemented | `4c8b4cf` | [#6](https://github.com/flyboy-byte/ScanRuler/pull/6) |
 | [geometry.selection](plan/units/geometry.selection.json) | implemented | `3f56d3e` | [#19](https://github.com/flyboy-byte/ScanRuler/pull/19) |
 | [harness.oracle.gate](plan/units/harness.oracle.gate.json) | implemented | `eeb2136` | [#15](https://github.com/flyboy-byte/ScanRuler/pull/15) |
-| [harness.wasm.runtime](plan/units/harness.wasm.runtime.json) | planned | — | — |
+| [harness.wasm.runtime](plan/units/harness.wasm.runtime.json) | specified | — | [#24](https://github.com/flyboy-byte/ScanRuler/pull/24) |
 | [io.mesh.weld](plan/units/io.mesh.weld.json) | implemented | `53d6408` | [#4](https://github.com/flyboy-byte/ScanRuler/pull/4) |
 | [io.stl.binary](plan/units/io.stl.binary.json) | implemented | `5ee3881` | [#2](https://github.com/flyboy-byte/ScanRuler/pull/2) |
 | [io.stl.dispatch](plan/units/io.stl.dispatch.json) | implemented | `77683bf` | [#3](https://github.com/flyboy-byte/ScanRuler/pull/3) |

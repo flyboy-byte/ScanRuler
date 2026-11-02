@@ -4,7 +4,8 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 20,
-    "planned": 45
+    "planned": 44,
+    "specified": 1
   },
   "native_suites": 18,
   "native_case_identities_including_refusals": 686,
@@ -623,12 +624,13 @@
     },
     {
       "id": "harness.wasm.runtime",
-      "status": "planned",
+      "status": "specified",
       "parent": "P36",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/24",
       "tested_sha": null,
       "open_items": [
-        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+        "Actual hosted Chrome validation pending; Node smoke/compilation alone cannot establish runtime evidence.",
+        "Other numerical units, public engine/UI/history/project/jobs, generic P36 report, P37 exact-base ratchet, P35/P39 remain open."
       ]
     },
     {
