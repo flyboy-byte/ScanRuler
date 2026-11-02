@@ -184,6 +184,7 @@ const ORACLE_TESTS: &[&str] = &[
     "pinned_obj_mesh_comparison",
     "pinned_obj_files_comparison",
     "pinned_drop_files_comparison",
+    "pinned_schema_comparison",
 ];
 
 fn validate_oracle_discovery(list: &str) -> Result<(), String> {

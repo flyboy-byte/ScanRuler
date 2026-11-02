@@ -1,5 +1,11 @@
 # Port PR audit and integration queue
 
+Continuation 2026-11-02 from main `3d9b482` after owner integration through #41:
+[#42](https://github.com/flyboy-byte/ScanRuler/pull/42) ports `engine.schema.validate`
+with 697 complete native observations (26 suites /2015 identities). Session
+contract ownership remains with the owner’s other agent. Earlier review-stack
+entries below are historical; this continuation does not merge PRs.
+
 Final continuation checkpoint 2026-11-02: review **#36 → #37 → #39 → #40**.
 Latest #36 `ac02df4`, #37 `7dd1ace`, #39 `8bb0ae0` have successful Rust, plan,
 license, original source/MCP/browser and aggregate checks; CLA is skipped, not

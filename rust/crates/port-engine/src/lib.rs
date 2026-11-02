@@ -4,3 +4,6 @@
 //! `docs/port-plan/ARCHITECTURE.md` ("Commands, history and background work").
 
 pub mod error;
+
+pub mod schema;
+pub mod schema_value;
