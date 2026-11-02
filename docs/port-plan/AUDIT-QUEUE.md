@@ -27,7 +27,8 @@ The immutable [observed CI snapshot](evidence/2026-11-01-review-ci.json) records
 | [#19](https://github.com/flyboy-byte/ScanRuler/pull/19) | Mesh selection preservation | `codex/port-mesh-components` | SUCCESS / FAILURE |
 | [#20](https://github.com/flyboy-byte/ScanRuler/pull/20) | Complete mesh graph | `codex/port-mesh-selection` | SUCCESS / SUCCESS |
 | [#21](https://github.com/flyboy-byte/ScanRuler/pull/21) | Closed-shell parity | `codex/port-mesh-graph` | SUCCESS / SUCCESS |
-| [#22](https://github.com/flyboy-byte/ScanRuler/pull/22) | CI/status/docs and remaining implementation plan | #21 plus local joins of #1/#13/#14 | New validation pending; no acceptance claim |
+| [#22](https://github.com/flyboy-byte/ScanRuler/pull/22) | CI/status/docs and remaining implementation plan | #21 plus local joins of #1/#13/#14 | Full hosted gates passed; see continuation below |
+| [#23](https://github.com/flyboy-byte/ScanRuler/pull/23) | Complete marked-selection plane element | #22 | 51 local source cases; hosted validation pending |
 
 ## Merge order and evidence
 
@@ -38,3 +39,5 @@ Every numerical unit JSON links its actual implementation SHA and report/case ha
 The original source unit timing test reNetworkCreases.test.ts:209 has an unchanged 1500 ms threshold. Known #18/#19 failures were verified as 1729.82/1753.32 ms (runs 41365788786/41366118457); #16/#17/#20/#21 full original CI passed at the captured heads. Older failures and raw links remain in the previous queue. Do not suppress the test or raise its threshold. #22 collects MCP/browser results independently while the strict original aggregate remains red on any failure.
 
 For #22, validate all new lanes and negative tests, generated inventory freshness, exact SHA raw evidence, original snapshot recapture and successful/failing source diagnostics. Local system Rust policy remains; Node 22 is oracle-only. No upstream source/tests/locks, deploy, legal or repository settings are changed.
+
+Checkpoint 2026-11-01: #22 final hosted Rust gate 41370201083, both original catalog recaptures 41370201138/41370201212 and every independent original lane/aggregate 41370201074 passed. The CI separation is exercised on hosted Node 22. #23 adds fit.plane.selection: 45 successful full elements, six source refusals, original-region retention after clipping, and fixed angle probes. Current generated inventory is eighteen suites / 686 case identities including refusals. No numerical child accepted and no PR merged.

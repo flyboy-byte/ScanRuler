@@ -3,11 +3,11 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 19,
-    "planned": 46
+    "implemented": 20,
+    "planned": 45
   },
-  "native_suites": 17,
-  "native_case_identities_including_refusals": 635,
+  "native_suites": 18,
+  "native_case_identities_including_refusals": 686,
   "accepted_units": [],
   "units": [
     {
@@ -478,12 +478,15 @@
     },
     {
       "id": "fit.plane.selection",
-      "status": "planned",
+      "status": "implemented",
       "parent": "P07",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/23",
+      "tested_sha": "e5c342c38a2cf1f3bde72065de1e63917500e9a7",
       "open_items": [
-        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+        "Browser-Wasm runtime, general P36/P37 report/ratchet and G0/P05 remain open; no lifecycle acceptance.",
+        "Seeded fitPlaneFromSeed/region growth and public engine element.fit_marked/session/history command integration remain unimplemented.",
+        "Host validates packed graph buffers/indices/point budgets. Returned region is an owned copy; arbitrary JS buffer aliasing is not exposed.",
+        "The source extent-failure message/body is retained, but that branch is not reached by the current full-fit corpus; wider adversarial/private-helper branch evidence remains open."
       ]
     },
     {

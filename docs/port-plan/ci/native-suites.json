@@ -193,6 +193,16 @@
         "input.bin",
         "original.bin"
       ]
+    },
+    {
+      "unit": "fit.plane.selection",
+      "test": "pinned_marked_plane_comparison",
+      "directory": "marked-plane-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin"
+      ]
     }
   ]
 }

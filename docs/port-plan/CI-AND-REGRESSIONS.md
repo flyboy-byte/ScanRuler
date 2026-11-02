@@ -22,7 +22,7 @@ Updated 2026-11-01. The frozen original is authoritative. No workflow change in 
 
 ## Native evidence and status
 
-`ci/native-suites.json` maps all seventeen required Rust entrypoints to canonical units and raw directories. The reporter verifies the manifest agrees with Rust discovery and all numerical unit inventories. It rejects missing/duplicate suites, stale candidate identity, missing/extra case IDs and absent input/original/Rust files, including compared progress/count sidecars on successful cases. The two STL adapters retain their existing explicitly enumerated refusal/error artifacts; legitimate zero-length values are permitted but missing files are not.
+`ci/native-suites.json` maps all required Rust entrypoints to canonical units and raw directories. The reporter verifies the manifest agrees with Rust discovery and all numerical unit inventories. It rejects missing/duplicate suites, stale candidate identity, missing/extra case IDs and absent input/original/Rust files, including compared progress/count sidecars on successful cases. The two STL adapters retain their existing explicitly enumerated refusal/error artifacts; legitimate zero-length values are permitted but missing files are not.
 
 Numerical comparisons remain in the existing Rust tests with their original fixed budgets and cases. The inventory reporter hashes raw files; it does **not** reinterpret values, declare a refusal successful geometry, compare against the exact PR base, or replace P36/P37. Canonical case edits and changed input/output hashes still need review; there is no automatic accepted-case ratchet yet.
 

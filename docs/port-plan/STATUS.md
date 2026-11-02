@@ -4,15 +4,15 @@ Generated from canonical unit files and ci/native-suites.json; do not hand-edit.
 
 Reference: `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
 
-Native coverage inventory: **17 suites / 635 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
+Native coverage inventory: **18 suites / 686 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
 
 No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Browser-Wasm execution, engine/session/UI integration and the exact-base numerical ratchet remain open.
 
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 19 |
-| planned | 46 |
+| implemented | 20 |
+| planned | 45 |
 
 | Unit | State | Tested implementation | PR |
 | --- | --- | --- | --- |
@@ -66,7 +66,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [fit.linalg.solve](plan/units/fit.linalg.solve.json) | implemented | `46e0992` | [#7](https://github.com/flyboy-byte/ScanRuler/pull/7) |
 | [fit.plane.clip](plan/units/fit.plane.clip.json) | implemented | `4c8b4cf` | [#9](https://github.com/flyboy-byte/ScanRuler/pull/9) |
 | [fit.plane.ransac](plan/units/fit.plane.ransac.json) | implemented | `2490952` | [#12](https://github.com/flyboy-byte/ScanRuler/pull/12) |
-| [fit.plane.selection](plan/units/fit.plane.selection.json) | planned | — | — |
+| [fit.plane.selection](plan/units/fit.plane.selection.json) | implemented | `e5c342c` | [#23](https://github.com/flyboy-byte/ScanRuler/pull/23) |
 | [fit.plane.tls](plan/units/fit.plane.tls.json) | implemented | `4c8b4cf` | [#8](https://github.com/flyboy-byte/ScanRuler/pull/8) |
 | [geometry.adjacency](plan/units/geometry.adjacency.json) | implemented | `74dd926` | [#17](https://github.com/flyboy-byte/ScanRuler/pull/17) |
 | [geometry.bounds](plan/units/geometry.bounds.json) | implemented | `4c8b4cf` | [#10](https://github.com/flyboy-byte/ScanRuler/pull/10) |
