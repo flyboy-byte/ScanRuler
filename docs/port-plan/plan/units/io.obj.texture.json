@@ -1,0 +1,44 @@
+{
+  "parent": "io.obj",
+  "gate": "G3",
+  "status": "specified",
+  "depends_on": [
+    "io.stl.dispatch"
+  ],
+  "soft_depends_on": [
+    "P03",
+    "P36"
+  ],
+  "owner": "Codex",
+  "branch": "codex/obj-texture-core",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "evidence": [],
+  "id": "io.obj.texture",
+  "title": "Port complete OBJ material and decoded-image texture helpers",
+  "scope": "Complete baseName, parseMtl, mtllibNames, sampleTexture and bakeObjTexture on decoded RGBA inputs; preserve source formulas, lookup/ordering/missing/applied state. No PNG/JPEG or platform file reading.",
+  "acceptance": [
+    "Independently compare all complete helper values/state, ordered maps/notes and every RGB/output byte on fixed seeded inputs, including source rounding and missing data.",
+    "Bounded work/inputs/output and safe host errors; native/Wasm compile, with browser runtime explicitly separate.",
+    "Do not claim parent OBJ import or file/image decoding complete before the parser/companion continuations land."
+  ],
+  "source_paths": [
+    "src/core/parsers/objTexture.ts"
+  ],
+  "symbols": [
+    "baseName",
+    "parseMtl",
+    "mtllibNames",
+    "sampleTexture",
+    "bakeObjTexture"
+  ],
+  "rust_paths": [
+    "rust/crates/port-io/src/obj_texture.rs",
+    "rust/crates/port-io/tests/obj_texture.rs"
+  ],
+  "open_items": [
+    "144 fixed input cases and seeds 1/7/99/1039 declared before implementation; exact OTX1 outputs, no tolerance.",
+    "OBJ parsing, platform file bundling, image decoding and browser runtime remain separate follow-ups."
+  ]
+}

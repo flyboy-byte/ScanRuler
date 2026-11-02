@@ -4,7 +4,8 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 26,
-    "planned": 46
+    "planned": 48,
+    "specified": 1
   },
   "native_suites": 21,
   "native_case_identities_including_refusals": 966,
@@ -677,13 +678,45 @@
       ]
     },
     {
+      "id": "io.obj.companions",
+      "status": "planned",
+      "parent": "io.obj",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "No image decoder dependency selected/audited; no implementation claim."
+      ]
+    },
+    {
       "id": "io.obj",
       "status": "planned",
       "parent": "P06",
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "Texture image decoding needs a recorded pure-Rust dependency decision (P35 purity audit)."
+        "Texture image decoding needs a recorded pure-Rust dependency decision (P35 purity audit).",
+        "2026-11-02: bounded continuations tracked as io.obj.texture, io.obj.mesh and io.obj.companions; parent remains planned until full import acceptance."
+      ]
+    },
+    {
+      "id": "io.obj.mesh",
+      "status": "planned",
+      "parent": "io.obj",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Not implemented. Reuse io.obj.texture rather than omitting its continuation."
+      ]
+    },
+    {
+      "id": "io.obj.texture",
+      "status": "specified",
+      "parent": "io.obj",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "144 fixed input cases and seeds 1/7/99/1039 declared before implementation; exact OTX1 outputs, no tolerance.",
+        "OBJ parsing, platform file bundling, image decoding and browser runtime remain separate follow-ups."
       ]
     },
     {

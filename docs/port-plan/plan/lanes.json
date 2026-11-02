@@ -24,7 +24,10 @@
         "io.obj",
         "io.threemf",
         "io.ply.ascii",
-        "io.ply.binary"
+        "io.ply.binary",
+        "io.obj.texture",
+        "io.obj.mesh",
+        "io.obj.companions"
       ],
       "touches": "rust/crates/port-io"
     },
