@@ -3,12 +3,11 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 26,
-    "planned": 48,
-    "specified": 1
+    "implemented": 27,
+    "planned": 48
   },
-  "native_suites": 21,
-  "native_case_identities_including_refusals": 966,
+  "native_suites": 22,
+  "native_case_identities_including_refusals": 1110,
   "accepted_units": [],
   "units": [
     {
@@ -710,13 +709,15 @@
     },
     {
       "id": "io.obj.texture",
-      "status": "specified",
+      "status": "implemented",
       "parent": "io.obj",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/31",
+      "tested_sha": "219059c2c719879bfce24fb75cfe69cdf3ef6abb",
       "open_items": [
-        "144 fixed input cases and seeds 1/7/99/1039 declared before implementation; exact OTX1 outputs, no tolerance.",
-        "OBJ parsing, platform file bundling, image decoding and browser runtime remain separate follow-ups."
+        "Actual browser-Wasm helper execution remains open; compile checks do not establish runtime acceptance.",
+        "OBJ mesh parsing, platform file bundling, PNG/JPEG decoding and public commands remain in io.obj.mesh/io.obj.companions and engine units; parent io.obj stays planned.",
+        "Broader Unicode table/version, arbitrary JS UTF16 filename and non-u32 raster-shape interoperability belong to companion ingress/platform acceptance, not this valid-UTF8/u32 helper API.",
+        "Large-file/performance acceptance remains open; explicit byte/name/count/work caps are host safeguards, not source numerical tolerances."
       ]
     },
     {

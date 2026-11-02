@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust OBJ material/texture helpers** (2026-11-02): port complete MTL lookup, filename matching and decoded-RGBA baking with 144 exact source comparisons. Mesh parsing, image decoding and command integration remain separate.
+
 - **Rust engine error envelopes** (2026-11-02): preserve the twelve original command codes and lossless message/JSON fields, with 52 exact source comparisons including lone UTF-16 surrogates; session, registry and job/history integration remain open.
 
 - **PLY in actual Rust browser Wasm** (2026-11-02): extend the bounded source/native/Chrome comparisons to 341 cases, retaining exact PLY data/progress/IEEE bits and all previous cases; record the sole large native-only workload and complete raw evidence.

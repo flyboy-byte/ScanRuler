@@ -1,6 +1,6 @@
 # Rust port handoff — start here
 
-Updated 2026-11-01. This packet supersedes the preliminary migration phases in `../context/TANGENCY-RUST-ASSESSMENT.md`. It is the entry point to the plan and evidence inventory; the Rust scaffold is in `../../rust/`.
+Updated 2026-11-02. This packet supersedes the preliminary migration phases in `../context/TANGENCY-RUST-ASSESSMENT.md`. It is the entry point to the plan and evidence inventory; the Rust scaffold is in `../../rust/`.
 
 ## User intent and current decisions
 
@@ -53,6 +53,12 @@ CI results are separated: Rust fast checks, native oracle assertions/raw evidenc
 
 ## Review and next implementation
 
+PR #31 ports the complete decoded-RGBA OBJ material/texture helper module, with
+144 exact source observations. io.obj.mesh owns the parseOBJ continuation and
+io.obj.companions owns file bundling/PNG-JPEG ingress; parent io.obj stays planned.
+The independent fuzz agent writes only to /tmp; its separate PLY fixes must not be
+folded into these OBJ changes.
+
 PR #30 starts the engine foundation with the original twelve-code error envelope
 and 52 exact field/JSON observations, preserving UTF-16 messages. Session ownership
 and execution are still absent. Reuse this type in engine.session.contract; do not
@@ -72,7 +78,7 @@ failures and a worker timeout. The independent hosted main run passes. All
 exclusions and six repeatable fixture recipes are inventoried. This does not
 complete G0 or the full P03 corpus; do not relabel the local unit run green.
 
-PRs #1–#25 are merged into main at `551b3a9`. The new open stack is #26 → #27 → #28 → #29 → #30; see AUDIT-QUEUE.md and inspect live checks. No new PR has been merged by this session. New work follows ROADMAP-TO-USABLE.md section 2. No deploy, legal signature or upstream contact is authorized by this plan. Existing user authorization covers fork PR submissions and, when Logan asks for it, integration per ROADMAP-TO-USABLE.md section 2.
+PRs #1–#30 are merged into main at `fabac0d`, with its checks passed. The next open queue starts at #31 for io.obj.texture; see AUDIT-QUEUE.md and inspect live checks. This continuation has not merged anything. New work follows ROADMAP-TO-USABLE.md section 2. No deploy, legal signature or upstream contact is authorized by this plan. Existing user authorization covers fork PR submissions and, when Logan asks for it, integration per ROADMAP-TO-USABLE.md section 2.
 
 The marked-plane element continuation is now implemented under fit.plane.selection; public command/history integration is still absent. Prioritize reproducible reference/fixture contracts, the remaining P05 session/error/history contract and wider browser-Wasm coverage, then a bounded engine import/plane command slice. Use the implementation plan's concrete exit conditions. Keep the kernel/purity capability spike parallel and explicit; more helper ports cannot substitute for command/session or kernel evidence.
 
