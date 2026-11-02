@@ -1,0 +1,36 @@
+{
+  "id": "harness.fuzz.standing",
+  "parent": "P36",
+  "title": "Standing seeded mutation fuzz against the original (cargo xtask fuzz)",
+  "gate": "G3",
+  "status": "planned",
+  "depends_on": [
+    "harness.oracle.gate"
+  ],
+  "soft_depends_on": [
+    "P37"
+  ],
+  "scope": "Turn the 2026-11-02 PLY/STL audit harness into a repeatable command: a seed and unit name generate mutated inputs (truncation at every byte, byte substitution/insert/delete, header-token dictionary, count and type edits, Unicode and encoding edge cases, random model-based files), run the original and Rust on independent copies and compare success, full error and progress text and output bytes. Covers every parser/import unit; divergences and host-limit refusals are reported in separate classes.",
+  "acceptance": [
+    "Command runs a named parser unit at a given seed and case count, prints case/divergence counts and writes minimal reproducers outside the repo; a deliberately wrong Rust value is reported as a divergence.",
+    "PLY and STL run reproduces the 2026-11-02 audit result (zero divergences after PR #33) from the committed generator and records the seed set; OBJ is added in the same PR or the next.",
+    "A scheduled hosted job runs fresh seeds; findings become files under plan/findings and a failing regression test, never a looser comparison."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/parsers/ply.ts",
+    "src/core/parsers/stl.ts",
+    "src/core/parsers/obj.ts"
+  ],
+  "symbols": [],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Reference harness was scratch-only (see plan/findings/2026-11-02-ply-stl-independent-fuzz.md for method); it must be rewritten in-repo, not copied from /tmp.",
+    "Touches rust/xtask and .github: one open PR at a time."
+  ]
+}
