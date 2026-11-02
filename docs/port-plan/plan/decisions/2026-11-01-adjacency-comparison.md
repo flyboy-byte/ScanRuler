@@ -1,0 +1,3 @@
+# Mesh adjacency comparison contract — 2026-11-01
+
+Before implementation: port the full frozen geometry/adjacency.ts::buildAdjacency body. Compare complete CSR offsets and ordered neighbor lists byte-for-byte on independent indexed triangle fixtures, including empty/isolated vertices, duplicates, repeated corners, shared/nonmanifold edges and seeded random inputs. No sorting/deduplication or tolerance. Seeds 1, 7, 99, 1039 remain fixed. Rust adds explicit triangle/index/storage-budget guards before allocation; valid source inputs retain exact neighbor append order. Raw inputs and original/Rust arrays plus candidate identity must remain inspectable. Native evidence is not Wasm execution, region-growing or complete P06 acceptance.
