@@ -26,7 +26,19 @@ def capture(metadata,wasm_metadata,lock):
                 for n,line in enumerate(text.splitlines(),1):
                     if re.search(r'extern\s+"C"|rustc-link-lib|cc::Build|cmake|libloading',line):ffi.append(dict(path=relative,line=n))
         builds=[dict(path=Path(t['src_path']).name,sha256=sha(Path(t['src_path']).read_bytes())) for t in p['targets'] if 'custom-build' in t['kind']]
-        rows.append(dict(package=key(p),license=p['license'],repository=p['repository'],source=p['source'],checksum=checksums[(p['name'],p['version'])],features=nodes[p['id']]['features'],dependencies=sorted(key(packages[d['pkg']]) for d in nodes[p['id']]['deps']),license_files=[dict(path=f.name,bytes=f.stat().st_size,sha256=sha(f.read_bytes()))for f in sorted(licenses)],manifest_sha256=sha(Path(p['manifest_path']).read_bytes()),source_tree_sha256=sha(json.dumps(tree,separators=(',',':')).encode()),build_scripts=builds,foreign_code_files=foreign,ffi_scan_locations=ffi))
+        preferred=[f for f in licenses if 'MIT' in f.name.upper()]
+        if preferred:
+            chosen=sorted(preferred)[0];option='MIT';required=['permission is hereby granted','the software is provided']
+        elif 'BSD-3-Clause' in p['license']:
+            chosen=folder/'LICENSE.md';option='BSD-3-Clause';required=['redistribution and use in source and binary forms','neither the name']
+        elif p['license']=='Zlib':
+            chosen=folder/'LICENSE';option='Zlib';required=['permission is granted to anyone','origin of this software']
+        else:
+            chosen=folder/'LICENSE.md';option='MIT';required=['permission is hereby granted','the software is provided']
+        normalized=' '.join(chosen.read_text().lower().split())
+        if not all(part in normalized for part in required):raise ValueError('License text requires review: '+key(p))
+        review=dict(option=option,path=chosen.name,sha256=sha(chosen.read_bytes()),scope='Declared allowlist option and actual shipped grant/disclaimer checked; retain notices on adoption.')
+        rows.append(dict(package=key(p),license=p['license'],selected_license_review=review,repository=p['repository'],source=p['source'],checksum=checksums[(p['name'],p['version'])],features=nodes[p['id']]['features'],dependencies=sorted(key(packages[d['pkg']]) for d in nodes[p['id']]['deps']),license_files=[dict(path=f.name,bytes=f.stat().st_size,sha256=sha(f.read_bytes()))for f in sorted(licenses)],manifest_sha256=sha(Path(p['manifest_path']).read_bytes()),source_tree_sha256=sha(json.dumps(tree,separators=(',',':')).encode()),build_scripts=builds,foreign_code_files=foreign,ffi_scan_locations=ffi))
     wm={n['id']:n for n in wasm['resolve']['nodes']};wp={p['id']:p for p in wasm['packages']}
     native_graph={key(p):sorted(nodes[p['id']]['features'])for p in native['packages']if p.get('source')}
     wasm_graph={key(p):sorted(wm[p['id']]['features'])for p in wasm['packages']if p.get('source')and p['id']in wm}

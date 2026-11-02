@@ -3,12 +3,13 @@
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { createServer } from 'node:http'
 import { fileURLToPath } from 'node:url'
-import { resolve } from 'node:path'
+import { resolve, dirname } from 'node:path'
 import { build } from 'esbuild'
 import puppeteer from 'puppeteer-core'
+const outputArgument = process.argv.indexOf('--out')
 const root = fileURLToPath(new URL('../../../', import.meta.url))
 const ref = '2cd89c6769a10c27ee7754b477ada521c9ef5cb7'
 assert.equal(Number(process.versions.node.split('.')[0]), 22)
@@ -52,7 +53,9 @@ try {
   }
   assert.deepEqual(errors, [])
   report.page_errors = errors; report.status = 'captured-source-only'
-  writeFileSync(resolve(root, 'docs/port-plan/evidence/2026-11-02-image-source.json'), JSON.stringify(report, null, 2) + '\n')
+  const outputPath = outputArgument >= 0 ? resolve(process.argv[outputArgument + 1]) : resolve(root, 'rust/target/image-audit-source/report.json')
+  mkdirSync(dirname(outputPath), { recursive: true })
+  writeFileSync(outputPath, JSON.stringify(report, null, 2) + '\n')
 } finally {
   if (browser) await browser.close()
   server.closeAllConnections(); await new Promise(r => server.close(r))

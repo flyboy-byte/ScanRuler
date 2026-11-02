@@ -30,3 +30,13 @@ No C/C++ codec enters the delivered product. Pillow/native browser codecs are
 reference/fixture tools only. No CLA, naming/licensing-policy change, release or
 external contact is part of this decision. Final audit verdict and unresolved
 scope will be recorded after measurements; image implementation remains planned.
+
+## Measured verdict — 2026-11-02
+
+**Reject direct application adoption of this raw decoder.** The exact graph
+passes this bounded license/purity/build review, but only 8 decoded images match
+Chrome exactly; 28 differ in pixels and 2 in decoded presence. The 18 agreed
+omissions do not establish pixel parity. Full source/candidate data is retained
+in the measured finding and audit reports. The trial is complete; image decoder
+implementation remains planned with explicit alpha, JPEG, 16-bit and truncation
+continuations. No application dependency has been added.
