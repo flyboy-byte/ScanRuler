@@ -4631,7 +4631,7 @@
     {
       "parent": "io.obj",
       "gate": "G3",
-      "status": "planned",
+      "status": "specified",
       "depends_on": [
         "io.obj.texture"
       ],
@@ -4639,8 +4639,8 @@
         "P03",
         "P36"
       ],
-      "owner": null,
-      "branch": null,
+      "owner": "Codex",
+      "branch": "codex/obj-mesh-parser",
       "claim_pr": null,
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
@@ -4662,7 +4662,8 @@
         "rust/crates/port-io/src/obj.rs"
       ],
       "open_items": [
-        "Not implemented. Reuse io.obj.texture rather than omitting its continuation."
+        "81 fixed original-captured inputs declared before Rust implementation: 53 outputs /28 refusals; four seeds and full million-line progress/short-UTF16-line boundary cases.",
+        "Platform/image decoding and actual browser-Wasm parser runtime remain separate; reuse the complete io.obj.texture continuation."
       ]
     },
     {

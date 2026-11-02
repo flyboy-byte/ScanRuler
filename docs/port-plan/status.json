@@ -4,7 +4,8 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 27,
-    "planned": 48
+    "planned": 47,
+    "specified": 1
   },
   "native_suites": 22,
   "native_case_identities_including_refusals": 1110,
@@ -699,12 +700,13 @@
     },
     {
       "id": "io.obj.mesh",
-      "status": "planned",
+      "status": "specified",
       "parent": "io.obj",
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "Not implemented. Reuse io.obj.texture rather than omitting its continuation."
+        "81 fixed original-captured inputs declared before Rust implementation: 53 outputs /28 refusals; four seeds and full million-line progress/short-UTF16-line boundary cases.",
+        "Platform/image decoding and actual browser-Wasm parser runtime remain separate; reuse the complete io.obj.texture continuation."
       ]
     },
     {
