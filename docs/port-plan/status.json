@@ -3,12 +3,11 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 25,
-    "planned": 46,
-    "specified": 1
+    "implemented": 26,
+    "planned": 46
   },
-  "native_suites": 20,
-  "native_case_identities_including_refusals": 914,
+  "native_suites": 21,
+  "native_case_identities_including_refusals": 966,
   "accepted_units": [],
   "units": [
     {
@@ -412,14 +411,14 @@
     },
     {
       "id": "engine.error.envelope",
-      "status": "specified",
+      "status": "implemented",
       "parent": "P05",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/30",
+      "tested_sha": "f509ae2b667560a9a3532b50df14c149f3b2f562",
       "open_items": [
-        "52 original observations captured before implementation; exact complete ERR1 field frames, seeds 1/7/99/1039.",
-        "Registry asCommandError, errorMessage arbitrary-value coercion, stacks/prototypes and mutable Error objects are not ported by this bounded envelope.",
-        "Actual browser runtime and public session/commands/history integration remain open."
+        "Actual browser-Wasm envelope execution remains open; compile coverage is not runtime acceptance.",
+        "Registry normalization, arbitrary thrown-value/errorMessage coercion, stale-page detection, mutable JS Error/prototype/stack semantics are outside this bounded constructor/toJSON envelope.",
+        "Session ownership, commands, jobs/history and project integration remain unimplemented; 52 observations do not mean 52 working commands."
       ]
     },
     {
@@ -439,7 +438,8 @@
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+        "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
+        "Source-derived mutation/refusal/late-job traces, owned scan buffers, revisions/epochs and history lanes still require implementation; no session acceptance claim."
       ]
     },
     {

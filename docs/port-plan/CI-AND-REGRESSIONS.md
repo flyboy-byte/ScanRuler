@@ -33,6 +33,12 @@ tooling. The binary body/full dispatcher and bounded actual browser-Wasm PLY
 execution are implemented. ASCII artifacts require full-dispatcher value/progress
 sidecars in addition to the original ASCII-entrypoint comparisons.
 
+The engine error envelope adds 52 complete code/name/message/display/JSON
+observations, bringing the inventory to 21 suites / 966 identities. These are
+constructed error-object states, not 52 working commands. All fields are exact;
+source refusals, numerical comparisons and protocol observations retain their
+separate meanings. The envelope's browser runtime remains open.
+
 Numerical comparisons remain in the existing Rust tests with their original fixed budgets and cases. The inventory reporter hashes raw files; it does **not** reinterpret values, declare a refusal successful geometry, compare against the exact PR base, or replace P36/P37. Canonical case edits and changed input/output hashes still need review; there is no automatic accepted-case ratchet yet.
 
 Artifacts are SHA-named and retained 30 days: Rust fast logs/environment, every `*-diff` raw directory plus native manifest/log, original unit/MCP logs and successful/failing browser diagnostics. Catalog snapshots remain committed and hashed. Main runs use unique run IDs and are never cancelled by a newer commit. Only superseded PR runs are cancelled. Explicit Bash enables pipefail so log capture cannot hide a failed command. No build-output/golden cache is introduced.

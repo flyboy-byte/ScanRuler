@@ -6,7 +6,8 @@ base `main`), then [#27](https://github.com/flyboy-byte/ScanRuler/pull/27) (ASCI
 base #26), then [#28](https://github.com/flyboy-byte/ScanRuler/pull/28) (binary PLY
 and full dispatcher, base #27), then
 [#29](https://github.com/flyboy-byte/ScanRuler/pull/29) (actual browser-Wasm PLY,
-base #28). No new PR has been merged by this session. Read their live checks;
+base #28), then [#30](https://github.com/flyboy-byte/ScanRuler/pull/30) (typed
+engine error envelopes, base #29). No new PR has been merged by this session. Read their live checks;
 local baseline unit failures are preserved in `evidence/baseline-2026-11-02/`.
 Current implementation state is generated in [STATUS.md](STATUS.md).
 

@@ -148,6 +148,11 @@ fn pinned_engine_error_comparison() {
             c.id,
             String::from_utf8_lossy(&original.stderr)
         );
+        assert!(
+            original.stderr.is_empty(),
+            "{}: unexpected source diagnostics",
+            c.id
+        );
         assert_eq!(
             candidate, original.stdout,
             "{}: complete error state/JSON",

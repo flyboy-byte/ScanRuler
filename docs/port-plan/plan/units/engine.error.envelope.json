@@ -3,7 +3,7 @@
   "parent": "P05",
   "title": "Port typed command error envelope and lossless JSON messages",
   "gate": "G2",
-  "status": "specified",
+  "status": "implemented",
   "depends_on": [
     "baseline.reproducibility"
   ],
@@ -18,8 +18,8 @@
   ],
   "owner": "Codex",
   "branch": "codex/engine-error-envelope",
-  "claim_pr": null,
-  "implemented_commit": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/30",
+  "implemented_commit": "f509ae2b667560a9a3532b50df14c149f3b2f562",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/commands/types.ts"
@@ -33,10 +33,80 @@
     "rust/crates/port-engine/src/error.rs",
     "rust/crates/port-engine/tests/error_envelope.rs"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "kind": "differential",
+      "location": "evidence/2026-11-02-engine-errors.json",
+      "candidate_sha": "f509ae2b667560a9a3532b50df14c149f3b2f562",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "case_ids": [
+        "code-00-empty",
+        "code-00-escaping",
+        "code-00-unicode",
+        "code-00-surrogates",
+        "code-01-empty",
+        "code-01-escaping",
+        "code-01-unicode",
+        "code-01-surrogates",
+        "code-02-empty",
+        "code-02-escaping",
+        "code-02-unicode",
+        "code-02-surrogates",
+        "code-03-empty",
+        "code-03-escaping",
+        "code-03-unicode",
+        "code-03-surrogates",
+        "code-04-empty",
+        "code-04-escaping",
+        "code-04-unicode",
+        "code-04-surrogates",
+        "code-05-empty",
+        "code-05-escaping",
+        "code-05-unicode",
+        "code-05-surrogates",
+        "code-06-empty",
+        "code-06-escaping",
+        "code-06-unicode",
+        "code-06-surrogates",
+        "code-07-empty",
+        "code-07-escaping",
+        "code-07-unicode",
+        "code-07-surrogates",
+        "code-08-empty",
+        "code-08-escaping",
+        "code-08-unicode",
+        "code-08-surrogates",
+        "code-09-empty",
+        "code-09-escaping",
+        "code-09-unicode",
+        "code-09-surrogates",
+        "code-10-empty",
+        "code-10-escaping",
+        "code-10-unicode",
+        "code-10-surrogates",
+        "code-11-empty",
+        "code-11-escaping",
+        "code-11-unicode",
+        "code-11-surrogates",
+        "seed-1",
+        "seed-7",
+        "seed-99",
+        "seed-1039"
+      ]
+    },
+    {
+      "kind": "report",
+      "location": "evidence/2026-11-02-engine-errors.md",
+      "candidate_sha": "f509ae2b667560a9a3532b50df14c149f3b2f562"
+    }
+  ],
   "open_items": [
-    "52 original observations captured before implementation; exact complete ERR1 field frames, seeds 1/7/99/1039.",
-    "Registry asCommandError, errorMessage arbitrary-value coercion, stacks/prototypes and mutable Error objects are not ported by this bounded envelope.",
-    "Actual browser runtime and public session/commands/history integration remain open."
+    "Actual browser-Wasm envelope execution remains open; compile coverage is not runtime acceptance.",
+    "Registry normalization, arbitrary thrown-value/errorMessage coercion, stale-page detection, mutable JS Error/prototype/stack semantics are outside this bounded constructor/toJSON envelope.",
+    "Session ownership, commands, jobs/history and project integration remain unimplemented; 52 observations do not mean 52 working commands."
+  ],
+  "resolved_items": [
+    "2026-11-02: all twelve original codes and 52 fixed messages compare code/name/message/display/JSON bytes exactly; seeds 1/7/99/1039 unchanged.",
+    "Owned UTF16 messages preserve lone surrogates and exact JSON escaping; host limits/fallible buffers are explicit and do not silently truncate or replace wire text."
   ]
 }
