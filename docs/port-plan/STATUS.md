@@ -4,16 +4,15 @@ Generated from canonical unit files and ci/native-suites.json; do not hand-edit.
 
 Reference: `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
 
-Native coverage inventory: **24 suites / 1278 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
+Native coverage inventory: **25 suites / 1318 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
 
 No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Bounded [browser-Wasm coverage](oracle/BROWSER-WASM.md) is separate from engine/session/UI integration and the still-open exact-base numerical ratchet.
 
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 32 |
+| implemented | 33 |
 | planned | 52 |
-| specified | 1 |
 
 | Unit | State | Tested implementation | PR |
 | --- | --- | --- | --- |
@@ -89,7 +88,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [harness.wasm.ply](plan/units/harness.wasm.ply.json) | implemented | `8bc7363` | [#29](https://github.com/flyboy-byte/ScanRuler/pull/29) |
 | [harness.wasm.runtime](plan/units/harness.wasm.runtime.json) | implemented | `00fd1a6` | [#24](https://github.com/flyboy-byte/ScanRuler/pull/24) |
 | [io.mesh.weld](plan/units/io.mesh.weld.json) | implemented | `53d6408` | [#4](https://github.com/flyboy-byte/ScanRuler/pull/4) |
-| [io.obj.companions.drop](plan/units/io.obj.companions.drop.json) | specified | — | [#40](https://github.com/flyboy-byte/ScanRuler/pull/40) |
+| [io.obj.companions.drop](plan/units/io.obj.companions.drop.json) | implemented | `a4cb8de` | [#40](https://github.com/flyboy-byte/ScanRuler/pull/40) |
 | [io.obj.companions.files](plan/units/io.obj.companions.files.json) | implemented | `f0a3e9e` | [#36](https://github.com/flyboy-byte/ScanRuler/pull/36) |
 | [io.obj.companions.image_audit](plan/units/io.obj.companions.image_audit.json) | implemented | `87d2318` | [#39](https://github.com/flyboy-byte/ScanRuler/pull/39) |
 | [io.obj.companions.images](plan/units/io.obj.companions.images.json) | planned | — | — |

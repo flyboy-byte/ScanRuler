@@ -1,5 +1,9 @@
 # Port PR audit and integration queue
 
+[#40](https://github.com/flyboy-byte/ScanRuler/pull/40) continues after #39 with
+complete bounded async drop traversal and 40 exact source traces. Review order
+is #36 → #37 → #39 → #40; actual DOM adapter runtime remains a follow-up.
+
 Current continuation queue: #36 → #37 → [#39](https://github.com/flyboy-byte/ScanRuler/pull/39).
 #39 is the exact dependency/source-pixel audit, with direct decoder adoption
 rejected and no application dependencies changed. Main’s #38 verification docs

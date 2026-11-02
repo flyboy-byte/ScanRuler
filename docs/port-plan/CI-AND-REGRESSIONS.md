@@ -69,6 +69,13 @@ Artifacts are SHA-named and retained 30 days: Rust fast logs/environment, every 
 
 Generated [STATUS.md](STATUS.md) and `status.json` describe canonical declared state, not the latest CI result. `AUDIT-QUEUE.md` records observed run outcomes. The generated backlog and status must be refreshed after canonical changes. Python remains temporary bootstrap tooling until P39's Rust replacement; it is not shipped application logic.
 
+## Drop callback comparison
+
+Drop traversal adds 40 exact result/error/callback traces, bringing native scope
+to 25 suites /1,318 identities. Pending futures and host budgets are tested
+separately. Actual DOM adapter/Wasm callback execution remains open; no new
+working command or browser case is claimed.
+
 ## Image candidate audit observations
 
 The image audit is separate from application parity inventory: 56 encoded inputs

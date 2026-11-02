@@ -273,6 +273,17 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "io.obj.companions.drop",
+      "test": "pinned_drop_files_comparison",
+      "directory": "drop-files-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

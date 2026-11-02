@@ -4807,7 +4807,7 @@
       "parent": "io.obj.companions",
       "title": "Port dropped-folder traversal and file-read failures",
       "gate": "G3",
-      "status": "specified",
+      "status": "implemented",
       "depends_on": [
         "io.obj.companions.files"
       ],
@@ -4818,7 +4818,7 @@
       "owner": "Codex",
       "branch": "codex/drop-files",
       "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/40",
-      "implemented_commit": null,
+      "implemented_commit": "a4cb8deac025cda2d67406698d414c9ce5b67051",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [
         "src/app/scanFiles.ts"
@@ -4836,11 +4836,64 @@
         "Fixed original/native traces compare every returned file identity, complete platform error fields and all callback order, before implementation.",
         "Bounded safe Rust async control flow with resource/allocation failures distinct from platform errors; no new runtime/dependency/session store."
       ],
-      "evidence": [],
-      "open_items": [
-        "Actual DOM adapter/browser callback execution and broader live-list/late-platform behavior remain integration follow-ups; this unit ports the complete snapshot/callback algorithm."
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-02-drop-files.json",
+          "candidate_sha": "a4cb8deac025cda2d67406698d414c9ce5b67051",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "null",
+            "empty",
+            "fallback",
+            "no-entries",
+            "non-file-items",
+            "one-directory",
+            "multiple-batches",
+            "batch-error-before-file-reads",
+            "one-level-only",
+            "duplicate-directory-readers",
+            "both-flags",
+            "no-entry-flags",
+            "mixed-top-order",
+            "file-error",
+            "entry-error",
+            "reader-error",
+            "batch-error",
+            "child-file-error",
+            "missing-getter",
+            "missing-entry-with-directory",
+            "after-empty-ignored",
+            "duplicate-child-identities",
+            "getters-before-traversal",
+            "unicode-error-fields",
+            "seed-1-0",
+            "seed-1-1",
+            "seed-1-2",
+            "seed-1-3",
+            "seed-7-0",
+            "seed-7-1",
+            "seed-7-2",
+            "seed-7-3",
+            "seed-99-0",
+            "seed-99-1",
+            "seed-99-2",
+            "seed-99-3",
+            "seed-1039-0",
+            "seed-1039-1",
+            "seed-1039-2",
+            "seed-1039-3"
+          ]
+        }
       ],
-      "resolved_items": []
+      "open_items": [
+        "Actual DOM adapter/browser callback runtime and broader mutable live-list/platform/cancellation behavior remain integration follow-ups; Wasm compilation is not runtime acceptance.",
+        "No file decoding, public engine import/history/session or accepted-unit claim."
+      ],
+      "resolved_items": [
+        "2026-11-02: all40 original/native full DRP1 file identities/errors/callback traces match exactly (24 successful results /16 opaque platform failures).",
+        "Complete source batching/fallback/order and fileOf/childrenOf errors preserved; pending-once async callbacks and every host budget tested separately."
+      ]
     },
     {
       "id": "io.obj.companions.files",
