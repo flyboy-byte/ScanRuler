@@ -16,3 +16,4 @@ pub const REFERENCE_SHA: &str = "2cd89c6769a10c27ee7754b477ada521c9ef5cb7";
 
 /// The upstream application version at [`REFERENCE_SHA`].
 pub const REFERENCE_APP_VERSION: &str = "0.9.2";
+pub mod weld;

@@ -3,7 +3,7 @@
   "parent": "P06",
   "title": "Port exact-bit triangle soup welding and index-degenerate filtering",
   "gate": "G2",
-  "status": "planned",
+  "status": "implemented",
   "depends_on": [
     "P05",
     "io.stl.dispatch"
@@ -25,14 +25,42 @@
     "hash3",
     "filterDegenerateTriangles"
   ],
-  "rust_paths": [],
-  "owner": null,
-  "branch": null,
-  "claim_pr": null,
-  "evidence": [],
-  "implemented_commit": null,
+  "rust_paths": [
+    "rust/crates/port-core/src/weld.rs",
+    "rust/crates/port-core/tests/weld.rs"
+  ],
+  "owner": "Codex",
+  "branch": "codex/port-mesh-weld",
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/4",
+  "evidence": [
+    {
+      "kind": "differential",
+      "location": "evidence/2026-11-01-weld-cases.csv",
+      "candidate_sha": "53d64085bb3573b70e8668aa604ab1d0997bc715",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "case_ids": [
+        "bits_0",
+        "bits_1",
+        "bits_2",
+        "bits_3",
+        "bits_4",
+        "bits_5",
+        "bits_6",
+        "empty",
+        "progress",
+        "repeated",
+        "seed_1",
+        "seed_1039",
+        "seed_7",
+        "seed_99",
+        "triangle"
+      ]
+    }
+  ],
+  "implemented_commit": "53d64085bb3573b70e8668aa604ab1d0997bc715",
   "open_items": [
-    "Audit the full source and input guards before implementing; signed-zero identity follows pinned bits rather than a newer upstream fix.",
-    "Define and compare the owned positions/indices contract before claiming successful indexed scan import."
+    "Browser-Wasm runtime comparison remains unbuilt; native comparison and wasm32 compilation only.",
+    "Shared P05/G0 contracts and P36 general harness/coverage ratchet remain open.",
+    "Host rejects incomplete triples and oversized table capacity explicitly; those resource/domain guards are not original successful input parity."
   ]
 }

@@ -62,3 +62,13 @@ jobs:
           path: rust/target/stl-dispatch-diff/
           if-no-files-found: warn
           retention-days: 7
+      - name: Exact-bit welding pinned-original comparison (native)
+        working-directory: rust
+        run: cargo test -p port-core --test weld pinned_weld_comparison -- --ignored --nocapture
+      - name: Retain welding evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mesh-weld-comparison
+          path: rust/target/weld-diff/
+          retention-days: 7
