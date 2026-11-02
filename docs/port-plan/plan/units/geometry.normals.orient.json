@@ -66,7 +66,8 @@
     "Browser-Wasm runtime comparison, G0/P05 and generic P36 ratchet remain open.",
     "Open/non-finite meshes and threshold-adjacent fuzz corpus remain to be compared; implemented, not accepted.",
     "No automatic pipeline/session integration; a file with settled winding must retain its source caller bypass.",
-    "Future bounds/centroid work should reuse/audit these co-ported reductions rather than silently duplicating them."
+    "Future bounds/centroid work should reuse/audit these co-ported reductions rather than silently duplicating them.",
+    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
   ],
   "history": [
     {

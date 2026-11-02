@@ -1,5 +1,11 @@
 # Port PR audit and integration queue
 
+Coverage continuation: review #42 → [#43](https://github.com/flyboy-byte/ScanRuler/pull/43).
+#43 archives1422 exact instrumented original replays, eight complete module maps
+and every unreached/unknown location. It changes no Rust bodies; full native
+checkpointfa711af remains the input/result authority. Independent fuzz and
+static condition coverage remain open.
+
 Continuation 2026-11-02 from main `3d9b482` after owner integration through #41:
 [#42](https://github.com/flyboy-byte/ScanRuler/pull/42) ports `engine.schema.validate`
 with 697 complete native observations (26 suites /2015 identities). Session

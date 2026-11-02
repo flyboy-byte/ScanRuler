@@ -92,7 +92,7 @@ jobs:
         with:
           node-version: 22
       - name: Negative validators and immutable captured snapshots
-        run: node --test docs/port-plan/oracle/catalog-contract.test.mjs docs/port-plan/oracle/browser-catalog-contract.test.mjs
+        run: node --test docs/port-plan/oracle/catalog-contract.test.mjs docs/port-plan/oracle/browser-catalog-contract.test.mjs docs/port-plan/oracle/original-coverage.test.cjs
   browser-wasm:
     needs: [native-oracle]
     runs-on: ubuntu-24.04

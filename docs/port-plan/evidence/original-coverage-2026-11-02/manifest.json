@@ -1,0 +1,20 @@
+{
+  "contract": "original.coverage.bundle.v1",
+  "candidate_sha": "96c776c2abe15e184b1dd39c21a13387c88d59fa",
+  "native_candidate_sha": "fa711afd2275c22279b287ede832c165c51b4a1e",
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "files": {
+    "raw.json.gz": {
+      "bytes": 146508,
+      "sha256": "21c3f09786f0be0b8566b911261a1010dd79c081aceddf8e0af648e4d72417d7"
+    },
+    "report.json": {
+      "bytes": 173599,
+      "sha256": "0967f05ba05d6dadd83461217b21ab5a76dad55c10d014a83e00fd4a74f9c47c"
+    },
+    "report.md": {
+      "bytes": 2691,
+      "sha256": "0c3e452771cffcaa70fbd16bf4d45b863f754d46ee34c2f128cc89d50e24c7fe"
+    }
+  }
+}

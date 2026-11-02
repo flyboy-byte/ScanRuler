@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Original corpus coverage** (2026-11-02): archive Node22 precise V8/source-map reach for 1422 unchanged original replays across eight full modules; retain every unreached block and eighteen unmapped source paths as explicit follow-ups. No static branch denominator or acceptance claim.
+
 - **Rust command schema validation** (2026-11-02): preserve exact ordered refusals, sequential boolean coercion, names/id guidance and UTF-16 schema weights, with 697 complete source comparisons across every core/plugin command schema. Session/registry and actual browser runtime remain separate.
 
 - **Rust dropped-folder traversal** (2026-11-02): preserve complete asynchronous getter/batch/file ordering, browser fallback and opaque platform failures, with 40 exact source traces and bounded resource/pending-future tests. Actual DOM adapter runtime remains open.

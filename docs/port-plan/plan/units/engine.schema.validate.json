@@ -750,7 +750,8 @@
     "Actual browser-Wasm validation runtime remains open; wasm32 compile is not execution.",
     "Session/registry integration, schema registration budget enforcement and input wire decoding remain owned by engine.session.contract; no working command is claimed.",
     "Owned dense acyclic ordinary data only; no getters/proxies/custom prototypes/functions/holes/shared identities. Malformed schema types and duplicate keys are explicit host refusals.",
-    "Independent schema fuzzing, line/branch coverage and exact-base differential ratchet remain separate evidence; no accepted status."
+    "Independent schema fuzzing, line/branch coverage and exact-base differential ratchet remain separate evidence; no accepted status.",
+    "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
   ],
   "resolved_items": [
     "2026-11-02: dependency-free owned UTF16 Value preserves undefined/null/bytes/nonfinite/signed-zero and ordinary inherited-field behavior.",

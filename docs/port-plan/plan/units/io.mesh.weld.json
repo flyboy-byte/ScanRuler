@@ -61,6 +61,7 @@
   "open_items": [
     "Browser-Wasm runtime comparison remains unbuilt; native comparison and wasm32 compilation only.",
     "Shared P05/G0 contracts and P36 general harness/coverage ratchet remain open.",
-    "Host rejects incomplete triples and oversized table capacity explicitly; those resource/domain guards are not original successful input parity."
+    "Host rejects incomplete triples and oversized table capacity explicitly; those resource/domain guards are not original successful input parity.",
+    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
   ]
 }

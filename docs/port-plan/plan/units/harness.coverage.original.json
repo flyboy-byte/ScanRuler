@@ -3,7 +3,7 @@
   "parent": "P36",
   "title": "Measure which branches of the original the comparison corpus reaches",
   "gate": "G3",
-  "status": "planned",
+  "status": "implemented",
   "depends_on": [
     "harness.oracle.gate"
   ],
@@ -15,10 +15,10 @@
     "Report lists, per original source file, lines and branches reached versus not reached by the committed corpus, reproducibly under Node 22.",
     "Unreached branches in ported units are tracked as open items in the unit JSON; the report is generated, not hand-edited."
   ],
-  "owner": null,
-  "branch": null,
-  "claim_pr": null,
-  "implemented_commit": null,
+  "owner": "Codex",
+  "branch": "codex/original-coverage",
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/43",
+  "implemented_commit": "96c776c2abe15e184b1dd39c21a13387c88d59fa",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/core/parsers/ply.ts",
@@ -27,8 +27,27 @@
   ],
   "symbols": [],
   "rust_paths": [],
-  "evidence": [],
+  "evidence": [
+    {
+      "kind": "report",
+      "location": "evidence/original-coverage-2026-11-02/report.json",
+      "candidate_sha": "96c776c2abe15e184b1dd39c21a13387c88d59fa",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7"
+    },
+    {
+      "kind": "report",
+      "location": "oracle/ORIGINAL-COVERAGE.md",
+      "candidate_sha": "96c776c2abe15e184b1dd39c21a13387c88d59fa"
+    }
+  ],
   "open_items": [
-    "Needs a decision on the coverage tool (c8 is already a Node-side dev tool; no product dependency)."
+    "18 source paths remain unmapped, primarily stripped/concatenated geometry helpers; their complete comparisons still run in the native gate but source reach is unknown.",
+    "V8 observed block union is not a static branch/condition denominator; uncalled bodies may conceal unenumerated branches. No percentage or accepted status is claimed.",
+    "Independent fuzz campaign and Chrome-only image/browser corpora are not included in this native report.",
+    "Mapped zero-count ranges/unreached lines remain explicit corpus or continuation targets; see plan/findings/2026-11-02-original-coverage.md."
+  ],
+  "resolved_items": [
+    "2026-11-02: no added dependencies; use built-in Node22 inspector V8 detailed coverage plus pinned TypeScript source maps.",
+    "1422 inputs from ten suites replay complete original outputs/status/progress unchanged; eight full source modules map and raw ranges/maps are archived."
   ]
 }

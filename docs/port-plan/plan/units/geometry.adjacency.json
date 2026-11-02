@@ -99,6 +99,7 @@
   "open_items": [
     "Browser-Wasm runtime, G0/P05 and generic P36 exact-base ratchet remain open.",
     "Region traversal, source/render mapping, spatial queries and engine command/session integration are not implemented by this unit.",
-    "Rust rejects budgets/offset counts above u32 capacity; it does not emulate original malformed/out-of-range typed-array writes or oversized wrapping graphs."
+    "Rust rejects budgets/offset counts above u32 capacity; it does not emulate original malformed/out-of-range typed-array writes or oversized wrapping graphs.",
+    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
   ]
 }

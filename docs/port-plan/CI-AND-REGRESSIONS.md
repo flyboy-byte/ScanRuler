@@ -69,6 +69,16 @@ Artifacts are SHA-named and retained 30 days: Rust fast logs/environment, every 
 
 Generated [STATUS.md](STATUS.md) and `status.json` describe canonical declared state, not the latest CI result. `AUDIT-QUEUE.md` records observed run outcomes. The generated backlog and status must be refreshed after canonical changes. Python remains temporary bootstrap tooling until P39's Rust replacement; it is not shipped application logic.
 
+## Original source coverage diagnostic
+
+`oracle/ORIGINAL-COVERAGE.md` documents the reproducible V8/compiler-map report:
+1422 exact original replays, eight mapped modules,18 unmapped source paths.
+Observed block-union metrics retain zero-count ranges and partial/unreached lines;
+uncalled bodies may conceal unenumerated branches. No coverage threshold or
+acceptance gate is invented. Five regeneration/hash/mutation tests are required
+in catalog-contracts; raw maps/ranges and generated gaps are committed. Native
+comparison inventory and browser runtime are unchanged.
+
 ## Command schema comparison
 
 The required native roster includes697 exact validator states:320 accepted,

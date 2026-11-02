@@ -65,7 +65,8 @@
     "Browser-Wasm runtime and wider/extreme/nonfinite plane geometry remain unverified.",
     "P05/G0 and generic P36 exact-base ratchet remain open.",
     "No robust starts, two-plane split, region growth or engine/session integration.",
-    "Other fitted shapes must reuse this shared generic body and add model-specific comparison evidence."
+    "Other fitted shapes must reuse this shared generic body and add model-specific comparison evidence.",
+    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
   ],
   "history": [
     {

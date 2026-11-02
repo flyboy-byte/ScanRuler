@@ -106,6 +106,7 @@
   "open_items": [
     "Browser-Wasm runtime, G0/P05 and generic P36 exact-base ratchet remain open.",
     "No edit/undo/project/session command or source/render mapping integration acceptance.",
-    "Typed Rust IDs/maps expose u32/i32 arrays, not arbitrary JavaScript numeric objects."
+    "Typed Rust IDs/maps expose u32/i32 arrays, not arbitrary JavaScript numeric objects.",
+    "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list."
   ]
 }

@@ -220,7 +220,8 @@
   "open_items": [
     "Real browser-Wasm execution for PLY remains open; native and Wasm compilation do not imply runtime acceptance.",
     "Public scan/session commands, history, projects and full P03 adversarial/corpus acceptance remain open.",
-    "Caller resource guards are separate from source semantics; unbounded hostile allocations are not run in the original."
+    "Caller resource guards are separate from source semantics; unbounded hostile allocations are not run in the original.",
+    "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance."
   ],
   "resolved_items": [
     "2026-11-02: complete source binary body and full read_ply dispatcher implemented, preserving both endian paths, 16 aliases, fixed/list records, two-pass/replacing faces, unknown-offset behavior and all source progress branches.",
