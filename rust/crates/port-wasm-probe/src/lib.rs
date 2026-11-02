@@ -20,7 +20,7 @@ static STATE: Mutex<State> = Mutex::new(State {
     output: Vec::new(),
 });
 
-/// Reset all observable state for mode 1 (TLS), 2 (mesh graph), or 3 (marked plane).
+/// Reset state for mode 1 (TLS), 2 (mesh graph), 3 (marked plane), or 4 (raw PLY).
 pub extern "C" fn scanruler_wasm_reset(kind: u32) -> u32 {
     let Ok(mut s) = STATE.lock() else {
         return 255;
@@ -28,7 +28,7 @@ pub extern "C" fn scanruler_wasm_reset(kind: u32) -> u32 {
     s.input.clear();
     s.output.clear();
     s.kind = kind;
-    s.failed = !(1..=3).contains(&kind);
+    s.failed = !(1..=4).contains(&kind);
     u32::from(s.failed)
 }
 /// Append one to four little-endian input bytes; a failed write poisons this run.
@@ -299,6 +299,61 @@ fn execute(kind: u32, bytes: &[u8]) -> Result<Vec<u8>, ()> {
                 o.number(a.sin())?;
             }
         }
+        4 => {
+            let mut events = String::new();
+            let mut event_failure = false;
+            let parsed = port_io::ply::read_ply(
+                bytes,
+                port_io::ply::PlyLimits {
+                    max_bytes: MAX_INPUT,
+                    max_vertices: MAX_POINTS,
+                    max_triangles: MAX_POINTS,
+                    max_work: 4_000_000,
+                },
+                |s| {
+                    if s.len() + 1 > MAX_OUTPUT.saturating_sub(events.len())
+                        || events.try_reserve(s.len() + 1).is_err()
+                    {
+                        event_failure = true;
+                    } else {
+                        events.push_str(s);
+                        events.push('\n');
+                    }
+                },
+            );
+            if event_failure {
+                return Err(());
+            }
+            match parsed {
+                Ok(mesh) => {
+                    o.bytes(&[0])?;
+                    o.word(16 + 4 * (mesh.positions.len() + mesh.indices.len()))?;
+                    o.bytes(b"PLY1")?;
+                    o.word(usize::from(mesh.keep_winding))?;
+                    o.word(mesh.positions.len())?;
+                    o.word(mesh.indices.len())?;
+                    for v in mesh.positions {
+                        o.bytes(&v.to_bits().to_le_bytes())?;
+                    }
+                    for v in mesh.indices {
+                        o.bytes(&v.to_le_bytes())?;
+                    }
+                }
+                Err(
+                    port_io::ply::PlyError::ResourceLimit
+                    | port_io::ply::PlyError::Allocation
+                    | port_io::ply::PlyError::BinaryNotPorted,
+                ) => return Err(()),
+                Err(error) => {
+                    o.bytes(&[2])?;
+                    o.word(0)?;
+                    let message = format!("{error}\n");
+                    events.try_reserve(message.len()).map_err(|_| ())?;
+                    events.push_str(&message);
+                }
+            }
+            o.text(&events)?;
+        }
         _ => return Err(()),
     }
     Ok(o.0)
@@ -316,6 +371,18 @@ mod tests {
         assert_eq!(out, Ok(vec![0]));
         let mut o = Output(Vec::new());
         assert!(o.bytes(&vec![0; MAX_OUTPUT + 1]).is_err());
+    }
+    #[test]
+    fn ply_source_refusal_and_host_failure_are_distinct() {
+        let source = execute(4, &[]).expect("source refusal is a completed comparison result");
+        assert_eq!(source[0], 2);
+        assert_eq!(&source[1..5], &[0; 4]);
+        assert_eq!(&source[9..], b"Not a valid PLY file.\n");
+        let huge = b"ply\nformat ascii 1.0\nelement vertex 10001\nproperty float x\nproperty float y\nproperty float z\nelement face 1\nend_header\n";
+        assert!(
+            execute(4, huge).is_err(),
+            "host budget must not become a source refusal"
+        );
     }
     #[test]
     fn failed_write_clears_output_until_reset() {

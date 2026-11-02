@@ -1,0 +1,56 @@
+{
+  "id": "harness.wasm.ply",
+  "parent": "P36",
+  "title": "Compare complete PLY parser values and progress in actual browser Wasm",
+  "gate": "G2",
+  "status": "implemented",
+  "depends_on": [
+    "harness.wasm.runtime",
+    "io.ply.ascii",
+    "io.ply.binary"
+  ],
+  "soft_depends_on": [
+    "P03",
+    "P37"
+  ],
+  "scope": "Safe private raw-PLY codec plus current-SHA source/native/browser comparisons for all 60 ASCII and 167 binary cases; explicit million-vertex runtime budget exclusion, retaining all native and existing browser inputs.",
+  "acceptance": [
+    "Actual Chrome executes independent raw inputs only; exact complete PLY output/progress/refusals match original and native, including IEEE bits.",
+    "No source outputs enter Rust; all raw outputs retained before assertions; malformed/changed output and missing/stale sidecars fail.",
+    "Existing 114 browser cases and their tolerances remain unchanged; one new workload exclusion is explicit and cannot hide a previously passing browser case."
+  ],
+  "owner": "Codex",
+  "branch": "codex/wasm-ply-runtime",
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/29",
+  "implemented_commit": "8bc73636b40a095f67a0e31f1cf4839daf13c789",
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/parsers/ply.ts"
+  ],
+  "symbols": [
+    "parsePLY",
+    "parseAsciiBody",
+    "parseBinaryBody"
+  ],
+  "rust_paths": [
+    "rust/crates/port-wasm-probe/src/lib.rs",
+    "rust/crates/port-wasm-probe/Cargo.toml"
+  ],
+  "evidence": [
+    {
+      "kind": "runtime-comparison",
+      "location": "evidence/browser-wasm-ply-2026-11-02/manifest.json",
+      "candidate_sha": "8bc73636b40a095f67a0e31f1cf4839daf13c789"
+    }
+  ],
+  "open_items": [
+    "io.ply.binary/le-vertex-progress remains native-only: input/output exceed the existing private ABI caps. This exclusion is explicit, not a passing browser case.",
+    "Public engine/session/history/project/UI integration and broader runtime platforms/corpora remain open.",
+    "Generic P36 protocol, P37 exact-base ratchet and P39 Rust replacement of temporary oracle tooling remain open; no numerical unit accepted."
+  ],
+  "resolved_items": [
+    "2026-11-02: actual Chrome executes all 341 source/native/Wasm comparisons (287 outputs /54 source refusals), preserving all original 114 browser cases and their budgets.",
+    "All PLY payload/progress/error bytes, including IEEE bits, match exactly; million-face progress case passes in browser.",
+    "13 protocol checks pass; module imports and browser page errors are empty; complete raw evidence committed as hashed deterministic gzip."
+  ]
+}

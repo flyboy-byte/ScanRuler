@@ -3,7 +3,7 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 24,
+    "implemented": 25,
     "planned": 46
   },
   "native_suites": 20,
@@ -625,6 +625,18 @@
       "open_items": [
         "General P36 independent adapter protocol, browser-Wasm execution, accepted-unit exact-base ratchet and G0/P05 remain open.",
         "Discovery guard freezes entrypoint names, not all case identities; individual suites enforce their own case/value contracts."
+      ]
+    },
+    {
+      "id": "harness.wasm.ply",
+      "status": "implemented",
+      "parent": "P36",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/29",
+      "tested_sha": "8bc73636b40a095f67a0e31f1cf4839daf13c789",
+      "open_items": [
+        "io.ply.binary/le-vertex-progress remains native-only: input/output exceed the existing private ABI caps. This exclusion is explicit, not a passing browser case.",
+        "Public engine/session/history/project/UI integration and broader runtime platforms/corpora remain open.",
+        "Generic P36 protocol, P37 exact-base ratchet and P39 Rust replacement of temporary oracle tooling remain open; no numerical unit accepted."
       ]
     },
     {

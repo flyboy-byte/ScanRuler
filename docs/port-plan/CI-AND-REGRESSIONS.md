@@ -10,7 +10,7 @@ Updated 2026-11-02. The frozen original is authoritative. No workflow change in 
 | `Rust port validation / fast` | `cargo xtask ci` | Native ordinary tests, fmt/lints, plan/status and Wasm **compile** pass |
 | `Rust port validation / native-oracle` | `cargo xtask oracle`, then raw evidence inventory | Every required native source suite passed and its full current-case artifacts exist at the exact checkout SHA |
 | `Rust port validation / catalog-contracts` | original headless/browser snapshot and negative validators | Immutable captured metadata remains valid, not command execution or Rust parity |
-| `Rust port validation / browser-wasm` | actual Chrome running three Rust library corpora plus hostile codec/memory probes | All 114 source/native/browser cases passed; not UI or all-unit browser parity |
+| `Rust port validation / browser-wasm` | actual Chrome running five Rust library corpora plus hostile codec/memory probes | All 341 declared source/native/browser cases pass; one new native-only PLY workload explicit; not UI/all-unit parity |
 | `Rust port validation / gate` | all four Rust lanes, even if another fails/skips | All required lanes succeeded; existing check ID `gate` retained |
 | `CI / source-tests` | plugin/unit boundaries, complete `npm test` | Original unit checks pass, including unchanged timing limits |
 | `CI / source-mcp` | complete separate MCP suite | Original agent tests pass independently of unit-test timing |
@@ -29,8 +29,8 @@ ASCII PLY adds 60 exact parser cases (46 outputs / 14 source refusals), and bina
 PLY adds 168 (152 outputs / 16 refusals), bringing the native inventory to 20
 suites / 914 identities. The adapter uses the pinned
 original TypeScript compiler after lock-preserving `npm ci`, solely as reference
-tooling. The binary body/full dispatcher are implemented; actual browser-Wasm PLY
-execution remains open. ASCII artifacts require full-dispatcher value/progress
+tooling. The binary body/full dispatcher and bounded actual browser-Wasm PLY
+execution are implemented. ASCII artifacts require full-dispatcher value/progress
 sidecars in addition to the original ASCII-entrypoint comparisons.
 
 Numerical comparisons remain in the existing Rust tests with their original fixed budgets and cases. The inventory reporter hashes raw files; it does **not** reinterpret values, declare a refusal successful geometry, compare against the exact PR base, or replace P36/P37. Canonical case edits and changed input/output hashes still need review; there is no automatic accepted-case ratchet yet.
@@ -91,4 +91,4 @@ Use Node 22 for CI reproduction and real original captures. Local native math ru
 
 The disabled `repo-bootstrap` product-gate example describes the future generic ratchet; it is not the active workflow. Release deployment remains unchanged and no Rust release workflow is activated. Branch protection settings need the owner's separate review after these check names are proven on hosted CI.
 
-The browser-wasm lane depends on the successful native-oracle artifact, checks exact candidate/reference/input hashes, builds its own dependency-free Rust module and uses real Chrome. Source/native outputs never cross into the browser payload; only fixture inputs do. Safe scalar-buffer functions retain unsafe_code=forbid. The private linker exports are not the product ABI. Exact corpus/budgets/limits and actual evidence are recorded in oracle/BROWSER-WASM.md; a Node-Wasm smoke cannot satisfy this lane. The current native inventory is generated in STATUS.md; browser coverage remains a separate 114-case subset, not additional native numerical cases.
+The browser-wasm lane depends on the successful native-oracle artifact, checks exact candidate/reference/input and PLY progress hashes, builds its own module from owned Rust crates and uses real Chrome. Source/native outputs never cross into the browser payload; only fixture inputs do. Safe scalar-buffer functions retain unsafe_code=forbid. The private linker exports are not the product ABI. Exact corpus/budgets/limits and actual evidence are recorded in oracle/BROWSER-WASM.md; a Node-Wasm smoke cannot satisfy this lane. The current native inventory is generated in STATUS.md; browser coverage remains a separate 341-case subset, not additional native numerical cases. The sole new excluded workload is io.ply.binary/le-vertex-progress above private ABI limits; no old browser case is excluded.

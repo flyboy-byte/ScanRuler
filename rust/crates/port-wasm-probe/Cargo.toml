@@ -10,5 +10,6 @@ publish = false
 crate-type = ["cdylib", "rlib"]
 [dependencies]
 port-core = { path = "../port-core" }
+port-io = { path = "../port-io" }
 [lints]
 workspace = true

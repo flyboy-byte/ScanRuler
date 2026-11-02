@@ -36,7 +36,8 @@
         "P37",
         "P38",
         "harness.oracle.gate",
-        "harness.wasm.runtime"
+        "harness.wasm.runtime",
+        "harness.wasm.ply"
       ],
       "touches": "rust/xtask, ci/, port-wasm-probe (one agent at a time)"
     },
