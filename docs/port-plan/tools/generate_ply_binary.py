@@ -63,6 +63,7 @@ for e, prefix in [('<','le'),('>','be')]:
     add(prefix+'-scalar-bounds',['element vertex 3','property char x','property uint y','property double z']+face(),b''.join(pack('char',[-128+i],e)+pack('uint',[4294967295-i],e)+pack('double',[-0.0 if i==0 else 1/3],e) for i in range(3))+tri,e)
     # Source Float32Array stores quiet signaling NaNs after Number widening.
     add(prefix+'-float-special-bits',vertex()+face(),b''.join(struct.pack(e+'I',v) for v in [0x80000000,0x7f800000,0xff800000,0x7fc12345,0xffc54321,0x7f812345,1,0x7f7fffff,0x00800000])+tri,e)
+    add(prefix+'-double-special-bits',vertex('double')+face(),b''.join(struct.pack(e+'Q',v) for v in [0x8000000000000000,0x7ff0000000000000,0xfff0000000000000,0x7ff8123456789000,0xfff8123456789000,0x7ff0123456789000,1,0x7fefffffffffffff,0x0010000000000000])+tri,e)
     for seed in [1,7,99,1039]:
         s=seed;values=[]
         for _ in range(72):

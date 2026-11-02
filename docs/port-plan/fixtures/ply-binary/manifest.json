@@ -479,6 +479,12 @@
       "sha256": "4dba5ffa31054f30f52047a29ae62cce9af475458ebe48ced3b2f0d16672105f"
     },
     {
+      "id": "le-double-special-bits",
+      "success": true,
+      "bytes": 257,
+      "sha256": "796826acda1dfc2b395f0f3319d4296e5fc7ac1efbc08a7deeb9f31632646810"
+    },
+    {
       "id": "le-seed-1",
       "success": true,
       "bytes": 853,
@@ -969,6 +975,12 @@
       "success": true,
       "bytes": 215,
       "sha256": "2f04970c8c6dcf523f0a4dd092aa4160f9a82a5b71a1d54d308a110b0a5e3c99"
+    },
+    {
+      "id": "be-double-special-bits",
+      "success": true,
+      "bytes": 254,
+      "sha256": "f9245790a3b1afa4ea2d72270c8d9be45cd9f3aa57d24dd0f1aae2ff1f26692f"
     },
     {
       "id": "be-seed-1",
