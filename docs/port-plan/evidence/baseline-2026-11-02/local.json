@@ -1,0 +1,528 @@
+{
+  "schema": 1,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "candidate_sha": "0a42dcaf1912e8f24b1c3292be83d2f22fc16e77",
+  "observed_at": "2026-11-02T05:17:22.274063+00:00",
+  "environment": {
+    "system": "Linux",
+    "release": "7.2.11-zen1-1-zen",
+    "machine": "x86_64",
+    "node": "v22.23.4",
+    "npm": "10.9.9",
+    "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13) (Arch Linux rust 1:1.99.1-1)",
+    "chrome": "Google Chrome 156.0.8078.79"
+  },
+  "original_paths_identical": [
+    "src",
+    "tests",
+    "scripts",
+    "plugins",
+    "mcp/src",
+    "mcp/tests",
+    "package.json",
+    "package-lock.json",
+    "mcp/package.json",
+    "mcp/package-lock.json",
+    "vite.config.ts",
+    "tsconfig.json",
+    "index.html"
+  ],
+  "locks": {
+    "package-lock.json": "d82b29e9f0986b32722411dd2fff4c1aaa8104c4d13b72428c998afc012a0c5c",
+    "mcp/package-lock.json": "127fb3246cd6a464ee47e45c5ee0e28e00e2776a7b6e254dfa6b9999417504c1",
+    "rust/Cargo.lock": "44f0f197954b83bd58227a2ed898c67576c4b71af43f6ce3faae9e0df928fe40"
+  },
+  "exclusion_contract_sha256": "74055722cb412c296fb3ebecb47068c6655ecc194f7aad3c14f47c0d55d402a0",
+  "unit_results_sha256": "aa0cf666acb031ac4d53e7a20ad2eed52c8481d00b8b312b5c3669c8f0a6d832",
+  "unit_results": {
+    "total": 3109,
+    "passed": 3080,
+    "failed": 4,
+    "excluded": [
+      {
+        "source": "tests/agentBallbar.test.ts",
+        "name": "ballbar.stl through the commands fits both balls, measures the centre distance, reports it, and undoes it",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!FILE.exists)('ballbar.stl through the commands', () => {",
+            "reason": "Private root scan fixture absent: ballbar.stl."
+          }
+        ]
+      },
+      {
+        "source": "tests/align.test.ts",
+        "name": "best fit to a nominal part recovers a random pose of the nominal against itself",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!NOMINAL.exists)('best fit to a nominal part', () => {",
+            "reason": "Private root scan fixture absent: side bracket left.stl."
+          }
+        ]
+      },
+      {
+        "source": "tests/align.test.ts",
+        "name": "best fit to a nominal part solves from three hand-picked pairs and refuses a collinear pick",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!NOMINAL.exists)('best fit to a nominal part', () => {",
+            "reason": "Private root scan fixture absent: side bracket left.stl."
+          }
+        ]
+      },
+      {
+        "source": "tests/align.test.ts",
+        "name": "best fit to a nominal part against the real scan recovers a random pose of the scan and measures the same part",
+        "status": "pending",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!NOMINAL.exists)('best fit to a nominal part', () => {",
+            "reason": "Private root scan fixture absent: side bracket left.stl."
+          },
+          {
+            "guard": "describe.skipIf(!SCAN.exists)('against the real scan', () => {",
+            "reason": "Private root scan fixture absent: block-marius.stl."
+          }
+        ]
+      },
+      {
+        "source": "tests/ballbar.test.ts",
+        "name": "ballbar.stl acceptance matches the GOM Inspect reference measurement",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!FILE.exists)('ballbar.stl acceptance', () => {",
+            "reason": "Private root scan fixture absent: ballbar.stl."
+          }
+        ]
+      },
+      {
+        "source": "tests/wireSlots.test.ts",
+        "name": "wire slots colours a real scan without a single conflict",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "it.skipIf(!FILE.exists)('colours a real scan without a single conflict', () => {",
+            "reason": "Private root scan fixture absent: ballbar.stl."
+          }
+        ]
+      },
+      {
+        "source": "plugins/mesh-tools/tests/reduce.test.ts",
+        "name": "ballbar.stl reduction reduces a real scan to a few thousand triangles within 0.05 mm",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!BALLBAR.exists)('ballbar.stl reduction', () => {",
+            "reason": "Private root scan fixture absent: ballbar.stl."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reClampLevels.test.ts",
+        "name": "the clamp\u2019s base in one sketch of four levels fits the deck and three levels into one sketch, extruded and joined with no step between them",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!file)('the clamp\u2019s base in one sketch of four levels', () => {",
+            "reason": "Optional private project/scan input RE_CLAMP absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reCutElsewhere.test.ts",
+        "name": "the lamp\u2019s shield holes cut \u00b130, warn of the nick 10 mm on along the lower bore; cut \u00b16, do not",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!shield)('the lamp\u2019s shield holes', () => {",
+            "reason": "Optional private project/scan input RE_LAMP_SHIELD absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reGrowth.test.ts",
+        "name": "growth benchmark builds 0 bodies a feature at a time",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!SCALE)('growth benchmark', () => {",
+            "reason": "Optional source benchmark; opt-in RE_GROWTH absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reJoycon.test.ts",
+        "name": "the Joy-Con, 04-details answers the inset cut\u2019s split, and the cut that takes all of a piece",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!file)('the Joy-Con, 04-details', () => {",
+            "reason": "Optional private project/scan input RE_JOYCON absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reJoycon.test.ts",
+        "name": "the Joy-Con, 04-details round-trips the stick\u2019s dome",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!file)('the Joy-Con, 04-details', () => {",
+            "reason": "Optional private project/scan input RE_JOYCON absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reJoyconReads.test.ts",
+        "name": "the Joy-Con\u2019s reads on the real scan accepts the Path\u2019s tangents by the fit\u2019s own sigma, and refuses the notch\u2019s",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!DIR)('the Joy-Con\u2019s reads on the real scan', () => {",
+            "reason": "Optional private project/scan input JOYCON_DIR absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reJoyconReads.test.ts",
+        "name": "the Joy-Con\u2019s reads on the real scan reads the D-pad keys\u2019 top rounds at the default reach",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!DIR)('the Joy-Con\u2019s reads on the real scan', () => {",
+            "reason": "Optional private project/scan input JOYCON_DIR absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reLampSplit.test.ts",
+        "name": "the lamp, 02-stuck-split refuses the split between two skins that meet inside the prism, in seconds",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!file)('the lamp, 02-stuck-split', () => {",
+            "reason": "Optional private project/scan input RE_LAMP absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reLoftFold.test.ts",
+        "name": "the rumble pak\u2019s folded hump as saved, builds the loft",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!PROJECT)('the rumble pak\u2019s folded hump', () => {",
+            "reason": "Optional private project/scan input RE_FOLD_PROJECT absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reLoftFold.test.ts",
+        "name": "the rumble pak\u2019s folded hump with the z 24 sketch added, fails at the loft",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!PROJECT)('the rumble pak\u2019s folded hump', () => {",
+            "reason": "Optional private project/scan input RE_FOLD_PROJECT absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reNetworkBench.test.ts",
+        "name": "patch network bench fits and builds thirty patches at Auto in under ten seconds",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!process.env.RE_NETWORK_BENCH)('patch network bench', () => {",
+            "reason": "Optional source benchmark; opt-in RE_NETWORK_BENCH absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reShortEdges.test.ts",
+        "name": "the rumble pak\u2019s nose corner 'two rounds': the plain body check reads it back, and the export mends only what reads back open",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!project)('the rumble pak\u2019s nose corner', () => {",
+            "reason": "Optional private project/scan input RE_SHORT_EDGE_PROJECT absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reShortEdges.test.ts",
+        "name": "the rumble pak\u2019s nose corner 'one round': the plain body check reads it back, and the export mends only what reads back open",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!project)('the rumble pak\u2019s nose corner', () => {",
+            "reason": "Optional private project/scan input RE_SHORT_EDGE_PROJECT absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reShortEdges.test.ts",
+        "name": "the rumble pak\u2019s nose corner 'saved': the plain body check reads it back, and the export mends only what reads back open",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!project)('the rumble pak\u2019s nose corner', () => {",
+            "reason": "Optional private project/scan input RE_SHORT_EDGE_PROJECT absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reStepsCommands.test.ts",
+        "name": "a saved project\u2019s steps between features says what  has",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!checkpoint || !existsSync(checkpoint))('a saved project\u2019s steps between features', () => {",
+            "reason": "Optional private project/scan input RE_STEPS_CHECKPOINT absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reSurfaceStrays.test.ts",
+        "name": "the lamp\u2019s flange region names the cup and the gutter, and a refit with their boxes left out builds",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!lamp)('the lamp\u2019s flange region', () => {",
+            "reason": "Optional private project/scan input RE_LAMP absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reToolBytes.test.ts",
+        "name": "tool bytes prints the size of every reverse.* tool definition",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!process.env.RE_TOOL_BYTES)('tool bytes', () => {",
+            "reason": "Optional private project/scan input RE_TOOL_BYTES absent in the default run."
+          }
+        ]
+      },
+      {
+        "source": "plugins/reverse/tests/reTubeTrace.test.ts",
+        "name": "a real tube reads what it reads",
+        "status": "skipped",
+        "source_guards": [
+          {
+            "guard": "describe.skipIf(!scan || !existsSync(scan) || starts.length === 0)('a real tube', () => {",
+            "reason": "Optional private project/scan input RE_TUBE_SCAN and RE_TUBE_RUNS absent in the default run."
+          }
+        ]
+      }
+    ],
+    "observed_statuses": {
+      "passed": 3080,
+      "skipped": 24,
+      "pending": 1,
+      "failed": 4
+    },
+    "reported_summary": {
+      "numTotalTests": 3109,
+      "numPassedTests": 3080,
+      "numFailedTests": 4,
+      "numPendingTests": 24,
+      "numTodoTests": 0,
+      "success": false
+    },
+    "failures": [
+      {
+        "source": "tests/objTexture.test.ts",
+        "name": "STEP opened as the scan is cut into a grid fine enough to work on, and stays a cube"
+      },
+      {
+        "source": "tests/volumeDeviation.test.ts",
+        "name": "the deviation as volumes does not patch over a hole the part has whose wall the scan saw but never joined to its mouth"
+      },
+      {
+        "source": "plugins/reverse/tests/reBuild.test.ts",
+        "name": "a shell the thick solid gives up on fails a wall the inward offset breaks up at, says the wall that fits, and leaves the body whole"
+      },
+      {
+        "source": "plugins/reverse/tests/reNetworkCreases.test.ts",
+        "name": "suggest creases reads 320,000 triangles in a box of a 2-million-triangle scan in well under a second"
+      }
+    ]
+  },
+  "runs": [
+    {
+      "id": "unit",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile=/tmp/scanruler-baseline-current/unit-results.json"
+      ],
+      "exit_code": 1,
+      "log": "unit.log",
+      "sha256": "2d487562746fcc82604418402ed69a4c09ea830fab32899f060a84b74152349d",
+      "bytes": 212074
+    },
+    {
+      "id": "plugin-boundary",
+      "command": [
+        "node",
+        "scripts/check-plugin-boundary.mjs"
+      ],
+      "exit_code": 0,
+      "log": "plugin-boundary.log",
+      "sha256": "8b2614ab21d5efad8fba0e9a0eda8d82880f92ec269c82de990f89790105ec0b",
+      "bytes": 65
+    },
+    {
+      "id": "display-units",
+      "command": [
+        "node",
+        "scripts/check-units.mjs"
+      ],
+      "exit_code": 0,
+      "log": "display-units.log",
+      "sha256": "5177cb5804a97742fbb172c8e538c9cef563d1f028225992c3d8dba1b81f4ead",
+      "bytes": 55
+    },
+    {
+      "id": "mcp",
+      "command": [
+        "npm",
+        "--prefix",
+        "mcp",
+        "test"
+      ],
+      "exit_code": 0,
+      "log": "mcp.log",
+      "sha256": "b5c6b7d1735cd41f14413a3c992aa2048178524ce646b08ea5a4f077f2f5bd40",
+      "bytes": 30366
+    },
+    {
+      "id": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "log": "build.log",
+      "sha256": "6f6e514062d9fb00bc61a01d29c0e008269e919511350557e98139ca7dab354f",
+      "bytes": 5872
+    },
+    {
+      "id": "browser",
+      "command": [
+        "npm",
+        "run",
+        "e2e:ci"
+      ],
+      "exit_code": 0,
+      "log": "browser.log",
+      "sha256": "d4b2697d30c8474cf7b17cfb021150f8d461066f9b67cc614364d5b847dbe0dd",
+      "bytes": 35119
+    }
+  ],
+  "all_original_commands_passed": false,
+  "generated_fixtures": {
+    "schema": 1,
+    "generator_sha256": "6ece9208b0d710a289ceee790517a09395d98062dde16a04843a7ba36de1dce1",
+    "license_source": "LICENSE",
+    "assets": [
+      {
+        "id": "ball-pair",
+        "recipe": "ballPairScan({distance:148.64,r:7.96,rings:48,segments:96})",
+        "seed": null,
+        "units": "mm",
+        "license": "AGPL-3.0-only",
+        "source": "scripts/e2e-fixtures.mjs",
+        "bytes": 902484,
+        "triangles": 18048,
+        "sha256": "2427e49b51d495f11aed1a5a0dbc291ff84ed4dd6e5890c7b2035c9a0f69e196",
+        "repeated_bytes_equal": true
+      },
+      {
+        "id": "fillet-ring",
+        "recipe": "filletRingScan({R:25,r:3,radial:240,tube:24})",
+        "seed": null,
+        "units": "mm",
+        "license": "AGPL-3.0-only",
+        "source": "scripts/e2e-fixtures.mjs",
+        "bytes": 960084,
+        "triangles": 19200,
+        "sha256": "7dc64e09f446b046946418a452203d31345d262820bf790c3803d72bb9f17a4f",
+        "repeated_bytes_equal": true
+      },
+      {
+        "id": "turned-block",
+        "recipe": "turnedBlockScan()",
+        "seed": null,
+        "units": "mm",
+        "license": "AGPL-3.0-only",
+        "source": "scripts/e2e-fixtures.mjs",
+        "bytes": 345684,
+        "triangles": 6912,
+        "sha256": "1b4347c5629b9997f4e529347839c0e77287322235d2dcd0fbbf540dd33612a4",
+        "repeated_bytes_equal": true
+      },
+      {
+        "id": "noisy-closed-box",
+        "recipe": "noisyBoxScan({seed:7,noise:0.02,holes:false})",
+        "seed": 7,
+        "units": "mm",
+        "license": "AGPL-3.0-only",
+        "source": "scripts/e2e-fixtures.mjs",
+        "bytes": 1680084,
+        "triangles": 33600,
+        "sha256": "62f407d79cc52c53a7c0274394059569192c17dc3c7b87cc30af9693d88594ae",
+        "repeated_bytes_equal": true
+      },
+      {
+        "id": "noisy-open-box",
+        "recipe": "noisyBoxScan({seed:7,noise:0.02,holes:true})",
+        "seed": 7,
+        "units": "mm",
+        "license": "AGPL-3.0-only",
+        "source": "scripts/e2e-fixtures.mjs",
+        "bytes": 1672884,
+        "triangles": 33456,
+        "sha256": "4aac3a67ee86e599f18f045d9c21a85a39d32eab5ad9a729f4239554072b071e",
+        "repeated_bytes_equal": true
+      },
+      {
+        "id": "notched-block",
+        "recipe": "notchedBlockScan()",
+        "seed": null,
+        "units": "mm",
+        "license": "AGPL-3.0-only",
+        "source": "scripts/e2e-fixtures.mjs",
+        "bytes": 584084,
+        "triangles": 11680,
+        "sha256": "1f324c6660c2386ea685511e27900a617cf696f451b1e3bad3f3d9b112d99e06",
+        "repeated_bytes_equal": true
+      }
+    ]
+  },
+  "private_root_fixtures": [
+    {
+      "name": "ballbar.stl",
+      "present": false,
+      "redistribution": "not authorized; no private bytes or hashes collected"
+    },
+    {
+      "name": "side bracket left.stl",
+      "present": false,
+      "redistribution": "not authorized; no private bytes or hashes collected"
+    },
+    {
+      "name": "block-marius.stl",
+      "present": false,
+      "redistribution": "not authorized; no private bytes or hashes collected"
+    }
+  ]
+}
