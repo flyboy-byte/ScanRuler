@@ -37,6 +37,7 @@ try {
   await page.goto(`http://127.0.0.1:${server.address().port}/`)
   await page.addScriptTag({ content: Buffer.from(code).toString('utf8') })
   report.browser = await browser.version()
+  report.platform = await page.evaluate(() => ({ userAgent: navigator.userAgent, offscreenCanvas: typeof OffscreenCanvas !== 'undefined' }))
   for (const c of manifest.cases) {
     const bytes = readFileSync(resolve(root, 'docs/port-plan/fixtures/image-audit', c.id + '.bin'))
     assert.equal(hash(bytes), c.sha256)

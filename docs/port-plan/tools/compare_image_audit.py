@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: AGPL-3.0-only
 """Candidate audit only: preserve every exact mismatch, never bless its output."""
-import argparse,collections,hashlib,json,struct,subprocess,time
+import argparse,collections,hashlib,json,platform,struct,subprocess,time
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3];BASE=ROOT/'docs/port-plan'
 def sha(b):return hashlib.sha256(b).hexdigest()
@@ -44,7 +44,14 @@ def compare(binary,out):
             a=bytes.fromhex(s['source']['rgba_hex']);b=bytes.fromhex(observed['rgba_hex']);bad=[i for i,(x,y)in enumerate(zip(a,b))if x!=y]
             row['different_bytes']=len(bad);row['first_difference']=dict(offset=bad[0],source=a[bad[0]],candidate=b[bad[0]]);row['max_abs_byte_difference']=max(abs(a[i]-b[i])for i in bad)
         rows.append(row)
-    report=dict(contract='image.audit.comparison.v1',reference_sha=source['reference_sha'],candidate_sha=candidate_sha,source_capture_sha256=sha(source_path.read_bytes()),candidate_binary_sha256=sha(binary.read_bytes()),coordinator_sha256=sha(Path(__file__).read_bytes()),rustc=subprocess.check_output(['rustc','--version'],text=True).strip(),seeds=manifest['seeds'],comparison='exact presence/dimensions/every RGBA byte; no tolerance or normalization',counts=dict(sorted(collections.Counter(c['verdict']for c in rows).items())),cases=rows,status='completed-candidate-audit-not-a-port')
+    cpu={}
+    cpuinfo=Path('/proc/cpuinfo')
+    if cpuinfo.exists():
+        for line in cpuinfo.read_text().splitlines():
+            if ':' in line:
+                key,value=line.split(':',1)
+                if key.strip()in ['model name','flags']and key.strip()not in cpu:cpu[key.strip()]=value.strip()
+    report=dict(architecture=platform.machine(),cpu=cpu,contract='image.audit.comparison.v1',reference_sha=source['reference_sha'],candidate_sha=candidate_sha,source_capture_sha256=sha(source_path.read_bytes()),candidate_binary_sha256=sha(binary.read_bytes()),coordinator_sha256=sha(Path(__file__).read_bytes()),rustc=subprocess.check_output(['rustc','--version'],text=True).strip(),seeds=manifest['seeds'],comparison='exact presence/dimensions/every RGBA byte; no tolerance or normalization',counts=dict(sorted(collections.Counter(c['verdict']for c in rows).items())),cases=rows,status='completed-candidate-audit-not-a-port')
     out.write_text(json.dumps(report,indent=2)+'\n');(run/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(report['counts']);print(run)
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--binary',type=Path,required=True);p.add_argument('--out',type=Path,required=True);a=p.parse_args();compare(a.binary,a.out)
