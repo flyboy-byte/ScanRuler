@@ -4,7 +4,8 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 31,
-    "planned": 50
+    "planned": 49,
+    "specified": 1
   },
   "native_suites": 24,
   "native_case_identities_including_refusals": 1278,
@@ -723,12 +724,12 @@
     },
     {
       "id": "io.obj.companions.image_audit",
-      "status": "planned",
+      "status": "specified",
       "parent": "io.obj.companions",
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "No implementation or image dependency adoption claimed."
+        "Candidate-only dependency and source-pixel audit in progress; no application dependency or decoder implementation adopted."
       ]
     },
     {

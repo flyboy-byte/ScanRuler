@@ -12,7 +12,8 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | --- | ---: |
 | baseline-captured | 2 |
 | implemented | 31 |
-| planned | 50 |
+| planned | 49 |
+| specified | 1 |
 
 | Unit | State | Tested implementation | PR |
 | --- | --- | --- | --- |
@@ -86,7 +87,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [io.mesh.weld](plan/units/io.mesh.weld.json) | implemented | `53d6408` | [#4](https://github.com/flyboy-byte/ScanRuler/pull/4) |
 | [io.obj.companions.drop](plan/units/io.obj.companions.drop.json) | planned | — | — |
 | [io.obj.companions.files](plan/units/io.obj.companions.files.json) | implemented | `f0a3e9e` | [#36](https://github.com/flyboy-byte/ScanRuler/pull/36) |
-| [io.obj.companions.image_audit](plan/units/io.obj.companions.image_audit.json) | planned | — | — |
+| [io.obj.companions.image_audit](plan/units/io.obj.companions.image_audit.json) | specified | — | — |
 | [io.obj.companions.images](plan/units/io.obj.companions.images.json) | planned | — | — |
 | [io.obj.companions](plan/units/io.obj.companions.json) | planned | — | — |
 | [io.obj](plan/units/io.obj.json) | planned | — | — |

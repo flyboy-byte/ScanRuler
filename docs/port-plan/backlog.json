@@ -4862,9 +4862,9 @@
     {
       "id": "io.obj.companions.image_audit",
       "parent": "io.obj.companions",
-      "title": "Audit pure-Rust image decoding and browser pixel contracts",
+      "title": "Audit exact pure-Rust image candidate and original browser pixel contract",
       "gate": "G3",
-      "status": "planned",
+      "status": "specified",
       "depends_on": [
         "io.obj.companions.files"
       ],
@@ -4872,8 +4872,8 @@
         "P03",
         "P36"
       ],
-      "owner": null,
-      "branch": null,
+      "owner": "Codex",
+      "branch": "codex/image-codec-audit",
       "claim_pr": null,
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
@@ -4885,14 +4885,15 @@
         "decodeImage"
       ],
       "rust_paths": [],
-      "scope": "Record image codec/transitive purity and license choices before adoption; source browser pixel corpus must cover canvas alpha/color behavior and malformed omission.",
+      "scope": "Exact selected PNG/JPEG/BMP/WebP dependency/license/purity graph plus independent original browser pixel/omission corpus and candidate-only native/Wasm build/decoder spike; no application adoption.",
       "acceptance": [
-        "Preserve complete original successful/refused state and order; resource failures remain distinct.",
-        "Fixed licensed source cases and full result evidence precede Rust; no hidden browser/foreign codec in product."
+        "Freeze exact package/checksum/feature closure and license files; inspect build/FFI paths and compile candidate natively and for wasm32 without foreign codecs.",
+        "Capture independently authored original full decoded pixels/omissions before the candidate comparison; retain exact mismatches and no relaxed tolerance.",
+        "Record a concrete adoption decision and unresolved pixel/platform/resource behavior; do not claim a port or add application dependencies."
       ],
       "evidence": [],
       "open_items": [
-        "No implementation or image dependency adoption claimed."
+        "Candidate-only dependency and source-pixel audit in progress; no application dependency or decoder implementation adopted."
       ],
       "resolved_items": []
     },
