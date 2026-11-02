@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust curvature discrimination** (2026-11-01): port finite-residual RMS and the original curved-fit versus plane decision with exact threshold, nonfinite and callback-order comparisons.
+
 - **Rust native regression gate** (2026-11-01): one discovery-guarded command runs all eleven existing source suites; CI retains all raw evidence and fails if a required suite disappears.
 
 - **Rust robust plane estimation** (2026-11-01): port deterministic mulberry32 sampling, shared median consensus and clipped robust planes, with fifty independent PRNG/value/inlier comparisons and unchanged source thresholds.

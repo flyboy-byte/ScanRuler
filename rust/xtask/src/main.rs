@@ -144,6 +144,7 @@ const ORACLE_TESTS: &[&str] = &[
     "pinned_bounds_comparison",
     "pinned_centroid_comparison",
     "pinned_clip_comparison",
+    "pinned_curvature_gate_comparison",
     "pinned_linear_comparison",
     "pinned_normals_comparison",
     "pinned_orientation_comparison",

@@ -19,6 +19,7 @@ pub const REFERENCE_APP_VERSION: &str = "0.9.2";
 pub mod bounds;
 pub mod centroid;
 pub mod clip;
+pub mod curvature_gate;
 pub mod linear;
 pub mod normals;
 mod numeric;
