@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust closed-shell parity** (2026-11-01): port complete source closure flags with original signed-zero bit welding, disjoint sets and edge hashes; sixty-four exact flag/private-state comparisons.
+
 - **Rust complete mesh graphs** (2026-11-01): integrate the original validation, welding/filtering, adjacency, normals/orientation and bounds pipeline; compare full graph state, progress and refusal text on fifty source cases.
 
 - **Rust mesh selections** (2026-11-01): port triangle membership filtering and vertex selection remapping with original order, duplicate, tail and out-of-range behavior; sixty-two exact source comparisons.
