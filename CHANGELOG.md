@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust connected components** (2026-11-01): port directed disjoint sets, path halving and triangle components with exact parent-state/query comparisons and bounded host guards.
+
 - **Rust mesh adjacency** (2026-11-01): port complete ordered vertex-neighbor CSR arrays with bounded storage, exact duplicate handling and fifty-six independent source comparisons.
 
 - **Rust curvature discrimination** (2026-11-01): port finite-residual RMS and the original curved-fit versus plane decision with exact threshold, nonfinite and callback-order comparisons.

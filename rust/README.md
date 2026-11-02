@@ -6,7 +6,7 @@ and [the plan](../docs/port-plan/HANDOFF.md).
 
 | Crate | Role | Contents today |
 |-------|------|----------------|
-| `port-core` | Pure core: no DOM, files or global state | Welding, adjacency, bounds/centroids, normals/orientation, dense solves, TLS/clipped planes and curvature discrimination; initial units/IDs/transforms and pin |
+| `port-core` | Pure core: no DOM, files or global state | Welding, adjacency/components, bounds/centroids, normals/orientation, dense solves, TLS/clipped planes and curvature discrimination; initial units/IDs/transforms and pin |
 | `port-engine` | Session, commands, jobs, history | Empty |
 | `port-io` | Formats and the `.scanruler` project reader/writer | STL binary/ASCII dispatch and triangle extraction (P06); no welding/session loader |
 | `port-cli` | `scanruler-rs`, native front end for differential runs | Prints a banner |
@@ -32,7 +32,7 @@ cargo xtask env    # toolchain versions to record with any result
 
 It does not compare anything with the original app. That harness (`cargo xtask diff`,
 `diff-ci`) is planned under P36 to P39, and the disabled example workflow is designed to fail
-until it exists. A green `ci` run is not parity. `cargo xtask oracle` separately discovers all thirteen
+until it exists. A green `ci` run is not parity. `cargo xtask oracle` separately discovers all fourteen
 required native oracle entrypoints, rejects missing/duplicate discovery, then runs
 all ignored core/IO integration tests without filtering their cases. It requires
 Node and the frozen Git object. It does not implement the general P36 ratchet or
@@ -97,3 +97,14 @@ reservations bound storage; source offset arithmetic is exact in the admitted
 u32 range. Fifty-six source cases compare both complete arrays, including four
 fixed seeds. A local pipeline check feeds the existing weld output into adjacency.
 Region growth, source/render mapping and command/session integration remain open.
+
+## Directed connected components
+
+`components` ports `findRoot`, `makeUnionFind` and `vertexComponents`: path halving
+and root directions remain observable in read-only parent state. Factory unions
+put a's root under b's; mesh triangles put second/third roots under the first.
+Standalone invalid/cyclic chains and invalid union indices fail before mutation.
+Storage is fallible and capped by caller budget and signed Int32 parent capacity.
+Fifty-one independent source fixtures compare complete parent state and every
+query result after each operation. Browser-Wasm execution and downstream shell/
+region/command integration remain open.

@@ -136,3 +136,10 @@ jobs:
           name: mesh-adjacency-comparison
           path: rust/target/adjacency-diff/
           retention-days: 7
+      - name: Retain component evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mesh-components-comparison
+          path: rust/target/components-diff/
+          retention-days: 7
