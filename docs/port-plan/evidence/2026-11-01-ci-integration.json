@@ -1,19 +1,20 @@
 {
   "contract": "ci.integration.validation.v1",
-  "candidate_sha": "2e3e4ee6f1652a87fcb0047d3cbfa9af6199d219",
+  "candidate_sha": "f43ffae5a4f3d6b1d457ee19fcd20131e0949e12",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "checks": {
-    "cargo_xtask_ci": "passed: 27 ordinary Rust tests, 11 bootstrap negative tests, fmt/clippy and Wasm compilation",
+    "cargo_xtask_ci": "passed: 27 ordinary Rust tests, 12 bootstrap negative tests, fmt/clippy and Wasm compilation",
     "cargo_xtask_oracle": "passed: all 17 required suites; no numerical/seed/tolerance changes",
     "current_raw_inventory": {
       "suites": 17,
       "cases_including_refusals": 635,
-      "manifest_sha256": "2d7fc0b916ee2bda6b48f6cb983e0ecbf91c543e2bf01808bd63b41ef5ebbdfb",
+      "manifest_sha256": "f078ca92b8364f7ef64d8818a19ba6a292380cd5d9055a90859d5160286b5142",
       "path": "rust/target/ci/native-evidence.json"
     },
     "node_catalog_tests": "22 passed, 0 failed/skipped",
     "workflow_yaml": "all active workflows parsed; changed workflows read-only, main runs unique; explicit Bash pipeline semantics",
-    "original_source_diff": "no src/plugins/tests/mcp/npm-lock or Rust numerical crate changes; original README section preserved"
+    "original_source_diff": "no src/plugins/tests/mcp/npm-lock or Rust numerical crate changes; original README section preserved",
+    "artifact_sidecars": "Passed: successful STL/weld progress and binary count records are required; negative deletion test added."
   },
   "environment": {
     "rust": "system 1.99.1",
@@ -23,5 +24,13 @@
     "Hosted PR22 lanes still running at this evidence checkpoint; inspect current checks.",
     "Current artifact inventory is not the P37 exact-base numerical coverage ratchet.",
     "Browser-Wasm execution, full command/session/UI and required kernel/purity endpoint remain open."
-  ]
+  ],
+  "hosted_preliminary": {
+    "run": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41369595151",
+    "scope": "Earlier a5c1c27 head: fast/native/catalog/final Rust gate passed; stricter sidecar revision pending new hosted run.",
+    "catalog_recaptures": [
+      "https://github.com/flyboy-byte/ScanRuler/actions/runs/41369595089",
+      "https://github.com/flyboy-byte/ScanRuler/actions/runs/41369595158"
+    ]
+  }
 }

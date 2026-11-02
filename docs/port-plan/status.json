@@ -400,7 +400,7 @@
       "status": "implemented",
       "parent": "P38",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/22",
-      "tested_sha": "2e3e4ee6f1652a87fcb0047d3cbfa9af6199d219",
+      "tested_sha": "f43ffae5a4f3d6b1d457ee19fcd20131e0949e12",
       "open_items": [
         "Hosted new lane outcomes pending at the local evidence checkpoint; current PR checks must be inspected.",
         "Browser-Wasm runtime, exact-base numerical ratchet and Rust replacement for Python bootstrap remain open."

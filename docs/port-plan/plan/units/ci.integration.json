@@ -22,7 +22,7 @@
   "owner": "Codex",
   "branch": "codex/ci-status-plan-refresh",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/22",
-  "implemented_commit": "2e3e4ee6f1652a87fcb0047d3cbfa9af6199d219",
+  "implemented_commit": "f43ffae5a4f3d6b1d457ee19fcd20131e0949e12",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [],
   "symbols": [],
@@ -33,7 +33,7 @@
     {
       "kind": "test",
       "location": "evidence/2026-11-01-ci-integration.json",
-      "candidate_sha": "2e3e4ee6f1652a87fcb0047d3cbfa9af6199d219"
+      "candidate_sha": "f43ffae5a4f3d6b1d457ee19fcd20131e0949e12"
     }
   ],
   "open_items": [
