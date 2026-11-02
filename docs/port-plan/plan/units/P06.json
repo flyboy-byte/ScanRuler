@@ -45,6 +45,8 @@
   "symbols": [],
   "rust_paths": [],
   "soft_depends_on": [],
-  "open_items": [],
+  "open_items": [
+    "Partial 2026-11-01: io.stl.binary implements the parseBinary helper with native bit/progress comparisons; parent remains planned. io.stl.dispatch tracks format detection/ASCII continuation; welding/indexing/session integration remain open."
+  ],
   "claim_pr": null
 }

@@ -1,0 +1,38 @@
+{
+  "id": "io.stl.dispatch",
+  "parent": "P06",
+  "title": "Port STL format detection and ASCII continuation",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": [
+    "io.stl.binary"
+  ],
+  "soft_depends_on": [
+    "P36"
+  ],
+  "scope": "Port parseSTL and parseAscii faithfully, including exact-size binary precedence for solid headers, fallback count, TextDecoder, ECMAScript whitespace/parseFloat semantics and refusals. Integrate the binary decoder without silently omitting ASCII.",
+  "acceptance": [
+    "Pinned original/native/browser-Wasm comparisons cover binary/ASCII detection, malformed/short input, ignored trailers and float32 output.",
+    "Explicit limits and bounded errors; helper progress behavior remains covered."
+  ],
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/parsers/stl.ts"
+  ],
+  "symbols": [
+    "parseSTL",
+    "parseAscii"
+  ],
+  "rust_paths": [
+    "rust/crates/port-io/src/stl.rs"
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "evidence": [],
+  "implemented_commit": null,
+  "open_items": [
+    "Do not implement only a binary early return and call the full dispatcher ported.",
+    "Preserve JS parseFloat prefix handling and Unicode whitespace rather than substituting Rust parse without comparison."
+  ]
+}

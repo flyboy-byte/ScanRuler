@@ -1,0 +1,349 @@
+{
+  "contract": "io.stl.binary.bits.v1",
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "candidate_sha": "5ee3881d887a4720c6a7cf5ca7a675333e6e8e62",
+  "oracle_node": "20.20.2 (local; CI configured for Node 22)",
+  "source_sha256": "5d010557ac00c17aa8c95c54137e6c2a0fd24b8a6426e283891f2323e7392013",
+  "generator": "rust/crates/port-io/tests/binary_stl.rs fixture; LCG 1664525/1013904223; seeds 0,1,7,99,42,43,17,5",
+  "comparison": "exact little-endian float32 bytes and progress UTF-8; no tolerance; refusal excluded from successful value coverage",
+  "raw_directory": "rust/target/stl-diff/run-1793560095513643890",
+  "cases": [
+    {
+      "id": "empty",
+      "triangle_count": 0,
+      "result": "pass",
+      "files": {
+        "count.txt": {
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        "input.bin": {
+          "bytes": 84,
+          "sha256": "8063cbe41de1c31564b647a74a0a743a1c87d16123c8f3c4e2adc9b495c5dfbc"
+        },
+        "original.bin": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "original.progress-or-error.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "rust.bin": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "rust.progress.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "empty_no_header",
+      "triangle_count": 0,
+      "result": "pass",
+      "files": {
+        "count.txt": {
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        "input.bin": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "original.bin": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "original.progress-or-error.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "rust.bin": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "rust.progress.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "ieee754",
+      "triangle_count": 1,
+      "result": "pass",
+      "files": {
+        "count.txt": {
+          "bytes": 1,
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        "input.bin": {
+          "bytes": 134,
+          "sha256": "c9f0e22731589a4f77bdccf1b743dbb5f265e7a181ba211191e6bf6c4c0a708c"
+        },
+        "original.bin": {
+          "bytes": 36,
+          "sha256": "babd236416c5f02cb5b2747534db749a1900e60ae837c40ed1bfae7077a9a282"
+        },
+        "original.progress-or-error.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "rust.bin": {
+          "bytes": 36,
+          "sha256": "babd236416c5f02cb5b2747534db749a1900e60ae837c40ed1bfae7077a9a282"
+        },
+        "rust.progress.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "missing_final_attributes",
+      "triangle_count": 1,
+      "result": "pass",
+      "files": {
+        "count.txt": {
+          "bytes": 1,
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        "input.bin": {
+          "bytes": 132,
+          "sha256": "9968640a4352dfd874b27f695b2501362ad9f6da151583b124e3cf0aac46cfac"
+        },
+        "original.bin": {
+          "bytes": 36,
+          "sha256": "ab7995a825d93c0066c08ab5dcc9043f16d9bd6b5523f575613c91cde2aa7330"
+        },
+        "original.progress-or-error.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "rust.bin": {
+          "bytes": 36,
+          "sha256": "ab7995a825d93c0066c08ab5dcc9043f16d9bd6b5523f575613c91cde2aa7330"
+        },
+        "rust.progress.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "one",
+      "triangle_count": 1,
+      "result": "pass",
+      "files": {
+        "count.txt": {
+          "bytes": 1,
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        "input.bin": {
+          "bytes": 134,
+          "sha256": "82e234d45e5486fa1626b0c3d0aa8f608a2f255a85c0c0fb4e0c5166223f2f5e"
+        },
+        "original.bin": {
+          "bytes": 36,
+          "sha256": "588388dd2dfcec407224d34211b3e02fcad45424d778d4e947e98d7e3ade36d8"
+        },
+        "original.progress-or-error.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "rust.bin": {
+          "bytes": 36,
+          "sha256": "588388dd2dfcec407224d34211b3e02fcad45424d778d4e947e98d7e3ade36d8"
+        },
+        "rust.progress.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "progress",
+      "triangle_count": 262146,
+      "result": "pass",
+      "files": {
+        "count.txt": {
+          "bytes": 6,
+          "sha256": "4091a54649b756911a43550aaf3fe5fc6ed5d665f44ad0988cc8fdd359d44e79"
+        },
+        "input.bin": {
+          "bytes": 13107384,
+          "sha256": "fa25cc570171556148877c78762e7a0525a236147e3ca0b3150dd26682474840"
+        },
+        "original.bin": {
+          "bytes": 9437256,
+          "sha256": "4ee802d8666f9315d523215e716a021aa0c396371d7a7c21fa9b055def7698a3"
+        },
+        "original.progress-or-error.txt": {
+          "bytes": 20,
+          "sha256": "7d898ba3606b0d7e4a5058eab38d659d432814d3985d73e0ce33b40eb7271a15"
+        },
+        "rust.bin": {
+          "bytes": 9437256,
+          "sha256": "4ee802d8666f9315d523215e716a021aa0c396371d7a7c21fa9b055def7698a3"
+        },
+        "rust.progress.txt": {
+          "bytes": 20,
+          "sha256": "7d898ba3606b0d7e4a5058eab38d659d432814d3985d73e0ce33b40eb7271a15"
+        }
+      }
+    },
+    {
+      "id": "progress_twice",
+      "triangle_count": 524290,
+      "result": "pass",
+      "files": {
+        "count.txt": {
+          "bytes": 6,
+          "sha256": "04fc3394733c46e076145bd4e8ceefdecb7c158c6bae2d14f1592b9e9f0b9bc7"
+        },
+        "input.bin": {
+          "bytes": 26214584,
+          "sha256": "eb3bdf937dc4311deba3e8b646bbe921624df6ee693fe8d46d8e396b6a2fdf0d"
+        },
+        "original.bin": {
+          "bytes": 18874440,
+          "sha256": "3853a4569d21fc43c0853b8d06319cda2488781fbc2109ae6d70c3729d27f58e"
+        },
+        "original.progress-or-error.txt": {
+          "bytes": 39,
+          "sha256": "b3923b0c3a857b890f51294fff820084f3c4791a61bdf99e6759d104e7dec8b6"
+        },
+        "rust.bin": {
+          "bytes": 18874440,
+          "sha256": "3853a4569d21fc43c0853b8d06319cda2488781fbc2109ae6d70c3729d27f58e"
+        },
+        "rust.progress.txt": {
+          "bytes": 39,
+          "sha256": "b3923b0c3a857b890f51294fff820084f3c4791a61bdf99e6759d104e7dec8b6"
+        }
+      }
+    },
+    {
+      "id": "seed_7",
+      "triangle_count": 41,
+      "result": "pass",
+      "files": {
+        "count.txt": {
+          "bytes": 2,
+          "sha256": "3d914f9348c9cc0ff8a79716700b9fcd4d2f3e711608004eb8f138bcba7f14d9"
+        },
+        "input.bin": {
+          "bytes": 2134,
+          "sha256": "fb36f6c55f14566e0710647d6b9cf77bbde1e4fa04669581300c54ee4e2a816a"
+        },
+        "original.bin": {
+          "bytes": 1476,
+          "sha256": "bd404561ea79b1ad2037b8604f48efb809946fc2d8c60677dfa3dcd7028c5372"
+        },
+        "original.progress-or-error.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "rust.bin": {
+          "bytes": 1476,
+          "sha256": "bd404561ea79b1ad2037b8604f48efb809946fc2d8c60677dfa3dcd7028c5372"
+        },
+        "rust.progress.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "seed_99",
+      "triangle_count": 257,
+      "result": "pass",
+      "files": {
+        "count.txt": {
+          "bytes": 3,
+          "sha256": "4c970004b0678d439f177e77d3cabdb7e9a44df770948ddc2467cbc76b7211c3"
+        },
+        "input.bin": {
+          "bytes": 12934,
+          "sha256": "a5f4edebf9be0ae6f251cca0e50031940ba6982be423db4a8a6fdf9b3de16a8a"
+        },
+        "original.bin": {
+          "bytes": 9252,
+          "sha256": "27f346d73d7bcd18ec6199f0da27bc322d3a5080874f33c40d087e4c28906c8f"
+        },
+        "original.progress-or-error.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "rust.bin": {
+          "bytes": 9252,
+          "sha256": "27f346d73d7bcd18ec6199f0da27bc322d3a5080874f33c40d087e4c28906c8f"
+        },
+        "rust.progress.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "trailer",
+      "triangle_count": 2,
+      "result": "pass",
+      "files": {
+        "count.txt": {
+          "bytes": 1,
+          "sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+        },
+        "input.bin": {
+          "bytes": 199,
+          "sha256": "3268fe2d4d1b03365b617f605e47fc25a969da367513f49bf899863a95846377"
+        },
+        "original.bin": {
+          "bytes": 72,
+          "sha256": "54f8c36f91c573321276ef2da8ac44c827726cc9800399fe8f8148c2c92da301"
+        },
+        "original.progress-or-error.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "rust.bin": {
+          "bytes": 72,
+          "sha256": "54f8c36f91c573321276ef2da8ac44c827726cc9800399fe8f8148c2c92da301"
+        },
+        "rust.progress.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "truncated",
+      "triangle_count": 1,
+      "result": "refusal",
+      "files": {
+        "count.txt": {
+          "bytes": 1,
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        "input.bin": {
+          "bytes": 131,
+          "sha256": "d367e8be9eb342df9fd9f890c99b1a955f774f74183a2adf81b238bcb9527c05"
+        },
+        "original.bin": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "original.progress-or-error.txt": {
+          "bytes": 11,
+          "sha256": "9029247c3954a277202fb38b5c275f3a2ea07f470928d4162277aca06ba9fb00"
+        },
+        "rust.progress.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ]
+}

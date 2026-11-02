@@ -2,7 +2,8 @@
 # Fast product gate for the Rust port: fmt, clippy, tests, wasm32 check and the plan
 # checks, all through `cargo xtask ci`. This is NOT the parity gate: the differential
 # suites against the original (`cargo xtask diff-ci`) do not exist yet, so a green run
-# here proves the scaffold builds and nothing about numerical parity. See
+# here proves the fast checks only. A separate step compares the binary STL helper
+# against the frozen original; it does not establish whole-product parity. See
 # docs/port-plan/CI-AND-REGRESSIONS.md and repo-bootstrap/.github/workflows/port-gate.yml.example.
 name: Rust port (fast gate)
 on:
@@ -25,6 +26,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
+          fetch-depth: 0 # the frozen source commit is the STL comparison oracle
       - name: Toolchain and wasm32 target
         run: |
           rustup toolchain install stable --profile minimal --component rustfmt,clippy --target wasm32-unknown-unknown
@@ -35,3 +37,17 @@ jobs:
       - name: Fast gate
         working-directory: rust
         run: cargo xtask ci
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Binary STL pinned-original comparison (native)
+        working-directory: rust
+        run: cargo test -p port-io --test binary_stl pinned_original_comparison -- --ignored --nocapture
+      - name: Retain raw binary STL comparison evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: binary-stl-comparison
+          path: rust/target/stl-diff/
+          if-no-files-found: warn
+          retention-days: 7
