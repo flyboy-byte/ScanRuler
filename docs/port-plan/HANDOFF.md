@@ -53,6 +53,11 @@ CI results are separated: Rust fast checks, native oracle assertions/raw evidenc
 
 ## Review and next implementation
 
+PR #40 ports complete async droppedFiles/fileOf/childrenOf over thin platform
+callbacks, with 40 exact native full-result/error/call-order traces. Actual DOM
+adapter runtime remains open. Review stack #36 → #37 → #39 → #40. Native
+inventory is 25 suites /1,318 identities; actual Chrome remains 651 cases.
+
 PR #39 audits the next image codec choice on top of #36/#37. Its exact
 22-package image0.25.10 candidate builds natively and for Wasm, but raw pixels
 fail the frozen source contract: 8 exact images /28 pixel mismatches /18 agreed

@@ -1,5 +1,19 @@
 # Port PR audit and integration queue
 
+Final continuation checkpoint 2026-11-02: review **#36 → #37 → #39 → #40**.
+Latest #36 `ac02df4`, #37 `7dd1ace`, #39 `8bb0ae0` have successful Rust, plan,
+license, original source/MCP/browser and aggregate checks; CLA is skipped, not
+signed. [Exact heads and check links](evidence/2026-11-02-review-stack.json).
+#40 passed the complete local 25-suite /1,318-identity source gate and raw
+inventory at `a9f8826`, plus fast gate and existing browser proof regressions.
+Its final hosted checks are still independent/pending. No PR was merged into
+main by this continuation. Earlier source timing failure and harness attempt
+remain documented; they were not hidden by dropping comparisons or thresholds.
+
+[#40](https://github.com/flyboy-byte/ScanRuler/pull/40) continues after #39 with
+complete bounded async drop traversal and 40 exact source traces. Review order
+is #36 → #37 → #39 → #40; actual DOM adapter runtime remains a follow-up.
+
 Current continuation queue: #36 → #37 → [#39](https://github.com/flyboy-byte/ScanRuler/pull/39).
 #39 is the exact dependency/source-pixel audit, with direct decoder adoption
 rejected and no application dependencies changed. Main’s #38 verification docs

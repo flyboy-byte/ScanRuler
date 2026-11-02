@@ -3,11 +3,11 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 32,
-    "planned": 53
+    "implemented": 33,
+    "planned": 52
   },
-  "native_suites": 24,
-  "native_case_identities_including_refusals": 1278,
+  "native_suites": 25,
+  "native_case_identities_including_refusals": 1318,
   "accepted_units": [],
   "units": [
     {
@@ -742,12 +742,13 @@
     },
     {
       "id": "io.obj.companions.drop",
-      "status": "planned",
+      "status": "implemented",
       "parent": "io.obj.companions",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/40",
+      "tested_sha": "a4cb8deac025cda2d67406698d414c9ce5b67051",
       "open_items": [
-        "No implementation or image dependency adoption claimed."
+        "Actual DOM adapter/browser callback runtime and broader mutable live-list/platform/cancellation behavior remain integration follow-ups; Wasm compilation is not runtime acceptance.",
+        "No file decoding, public engine import/history/session or accepted-unit claim."
       ]
     },
     {
