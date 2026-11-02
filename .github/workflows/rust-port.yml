@@ -43,11 +43,22 @@ jobs:
       - name: Binary STL pinned-original comparison (native)
         working-directory: rust
         run: cargo test -p port-io --test binary_stl pinned_original_comparison -- --ignored --nocapture
+      - name: Full STL dispatch pinned-original comparison (native)
+        working-directory: rust
+        run: cargo test -p port-io --test stl_dispatch pinned_stl_dispatch_comparison -- --ignored --nocapture
       - name: Retain raw binary STL comparison evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: binary-stl-comparison
           path: rust/target/stl-diff/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Retain raw STL dispatch comparison evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stl-dispatch-comparison
+          path: rust/target/stl-dispatch-diff/
           if-no-files-found: warn
           retention-days: 7

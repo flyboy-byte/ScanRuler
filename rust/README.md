@@ -8,7 +8,7 @@ and [the plan](../docs/port-plan/HANDOFF.md).
 |-------|------|----------------|
 | `port-core` | Pure core: no DOM, files or global state | Units, JSON-safe ids, rigid transforms, the reference pin |
 | `port-engine` | Session, commands, jobs, history | Empty |
-| `port-io` | Formats and the `.scanruler` project reader/writer | Binary STL triangle decoder (`io.stl.binary`, under P06); no format dispatcher yet |
+| `port-io` | Formats and the `.scanruler` project reader/writer | STL binary/ASCII dispatch and triangle extraction (P06); no welding/session loader |
 | `port-cli` | `scanruler-rs`, native front end for differential runs | Prints a banner |
 | `xtask` | Project tasks | `ci`, `pin`, `plan`, `wasm`, `env` |
 
@@ -37,8 +37,8 @@ until it exists. A green `ci` run is not parity.
 
 `port_io::stl::read_binary_triangles` ports the original `parseBinary` helper:
 explicit triangle count, owned f32 coordinates, progress callbacks and a caller
-triangle budget. It does not yet detect file format, read ASCII, weld a mesh or
-load a session. Those continuations remain open under P06.
+triangle budget. The separate dispatcher below adds format detection and ASCII parsing; welding
+and session loading remain open under P06.
 
 Run the independent live reference comparison (Node is oracle-only):
 
@@ -50,3 +50,17 @@ This requires Git history containing the frozen reference commit. CI uses Node 2
 The ordinary fast gate explicitly ignores this test when the oracle is unavailable;
 CI runs it separately and fails on missing tools or source. Native comparison is
 not browser-Wasm runtime parity; the Wasm library is compile-checked only.
+
+`port_io::stl_dispatch::read_stl` now provides the complete STL dispatcher and
+ASCII extraction, with explicit byte/triangle budgets. It retains the original's
+permissive `vertex` matching, numeric-prefix parsing and binary-before-text rules.
+This returns an unwelded triangle soup; mesh indexing/session loading remain open.
+
+```bash
+cargo test -p port-io --test stl_dispatch pinned_stl_dispatch_comparison -- --ignored --nocapture
+```
+
+This second native suite compares 82 cases (69 successful outputs, 13 original
+refusals), including Unicode whitespace, malformed UTF-8, IEEE numeric boundaries
+and the 512-byte prefix cutoff. Its raw evidence is under
+`rust/target/stl-dispatch-diff/` and uploaded separately in CI.

@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust STL format reader** (2026-11-01): add binary/ASCII format detection, ASCII numeric-prefix and Unicode handling, explicit resource limits, and 82 comparisons against the pinned original. Mesh welding and session loading remain open.
+
 - **Rust binary STL decoder** (2026-11-01): port triangle coordinate decoding and progress callbacks with bounded resource errors, seeded comparisons against the frozen original, and retained raw CI evidence. Full STL dispatch and scan loading remain in progress.
 - **Rust port planning** (2026-11-01): refresh the contributor handoff and CI guidance to reflect the existing workspace, hosted original baseline and remaining comparison prerequisites.
 

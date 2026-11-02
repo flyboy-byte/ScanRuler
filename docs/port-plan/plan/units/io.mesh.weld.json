@@ -1,0 +1,38 @@
+{
+  "id": "io.mesh.weld",
+  "parent": "P06",
+  "title": "Port exact-bit triangle soup welding and index-degenerate filtering",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": [
+    "P05",
+    "io.stl.dispatch"
+  ],
+  "soft_depends_on": [
+    "P36"
+  ],
+  "scope": "Port weldTriangleSoup, hash3 and filterDegenerateTriangles from the pinned source, preserving first-seen vertex/index order and exact-bit comparison. Consume parser outputs with explicit budgets and return owned buffers; no scene/session mutation.",
+  "acceptance": [
+    "Independent original/native/browser-Wasm comparisons include repeated vertices, signed zero, non-finite payloads, collisions, empty input, progress and degenerate triangle indices.",
+    "Preserve baseline behavior even where later upstream changes exist; bounded allocation and indexing errors."
+  ],
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/geometry/weld.ts"
+  ],
+  "symbols": [
+    "weldTriangleSoup",
+    "hash3",
+    "filterDegenerateTriangles"
+  ],
+  "rust_paths": [],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "evidence": [],
+  "implemented_commit": null,
+  "open_items": [
+    "Audit the full source and input guards before implementing; signed-zero identity follows pinned bits rather than a newer upstream fix.",
+    "Define and compare the owned positions/indices contract before claiming successful indexed scan import."
+  ]
+}
