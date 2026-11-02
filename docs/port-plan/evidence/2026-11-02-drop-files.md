@@ -1,6 +1,6 @@
 # Complete drop traversal — 2026-11-02
 
-PR #40, io.obj.companions.drop. Source-captured40 independent callback traces
+PR #40, io.obj.companions.drop. Source-captured 40 independent callback traces
 precede Rust implementation. Complete pinned droppedFiles/fileOf/childrenOf
 bodies execute against authored snapshots; Rust receives independent copies.
 Every DRP1 byte matches: complete file identities, platform name/message errors
