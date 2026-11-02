@@ -102,3 +102,13 @@ jobs:
           name: linear-solver-comparison
           path: rust/target/linear-diff/
           retention-days: 7
+      - name: Fixed-selection plane pinned-original comparison (native)
+        working-directory: rust
+        run: cargo test -p port-core --test plane pinned_plane_comparison -- --ignored --nocapture
+      - name: Retain plane fit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: plane-fit-comparison
+          path: rust/target/plane-diff/
+          retention-days: 7

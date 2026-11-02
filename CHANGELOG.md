@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust fixed-selection plane fit** (2026-11-01): port covariance/TLS fitting and signed residuals with private Jacobi dependencies, pre-registered numerical comparisons and explicit unported robust-fitting continuations.
+
 - **Rust dense linear solvers** (2026-11-01): port Cholesky and partial-pivot elimination with exact solution and mutated-matrix comparisons, explicit shape/resource errors and unchanged source thresholds.
 
 - **Rust winding correction** (2026-11-01): port the source signed-volume orientation heuristic, flipping normals and triangle winding together; fifteen independent full-state comparisons.

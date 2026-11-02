@@ -1,0 +1,68 @@
+{
+  "id": "fit.plane.tls",
+  "parent": "P07",
+  "title": "Port fixed-selection total-least-squares plane fitting",
+  "gate": "G2",
+  "status": "implemented",
+  "depends_on": [
+    "P05"
+  ],
+  "soft_depends_on": [
+    "P36",
+    "P06"
+  ],
+  "scope": "Complete fitPlaneTLS and planeResidual, with minimal private centroidOf/symmetricEigen3/normalizeOrZ dependencies. No clipping/RANSAC/two-plane split or general eigensolver API claim.",
+  "acceptance": [
+    "Independent original/native/browser-Wasm presence, plane fields and every selected residual under the pre-registered fixed comparison contract.",
+    "Retain Jacobi sweeps/pairs/order, covariance accumulation, eigenvector direction and source refusals."
+  ],
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/fit/plane.ts",
+    "src/core/fit/linalg.ts"
+  ],
+  "symbols": [
+    "fitPlaneTLS",
+    "planeResidual",
+    "centroidOf (private co-port)",
+    "symmetricEigen3 (private co-port)",
+    "normalizeOrZ (private co-port)"
+  ],
+  "rust_paths": [
+    "rust/crates/port-core/src/plane.rs",
+    "rust/crates/port-core/tests/plane.rs"
+  ],
+  "owner": "Codex",
+  "branch": "codex/port-plane-tls",
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/8",
+  "implemented_commit": "8ce7bb8b0112f64cda772a30724b81ce8977efa3",
+  "evidence": [
+    {
+      "kind": "differential",
+      "location": "evidence/2026-11-01-plane-cases.csv",
+      "candidate_sha": "8ce7bb8b0112f64cda772a30724b81ce8977efa3",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "case_ids": [
+        "coincident",
+        "collinear",
+        "empty",
+        "horizontal",
+        "insufficient",
+        "tilted_1039_false",
+        "tilted_1039_true",
+        "tilted_1_false",
+        "tilted_1_true",
+        "tilted_7_false",
+        "tilted_7_true",
+        "tilted_99_false",
+        "tilted_99_true"
+      ]
+    }
+  ],
+  "open_items": [
+    "Browser-Wasm runtime, general eigensolver coverage, extreme/nonfinite/near-collinear corpus and broader normal orientations remain open.",
+    "G0/P05 and general P36 exact-base ratchet remain incomplete.",
+    "Clipping, robust starts, splitting, selection growth and engine/session integration are missing continuations tracked by parent P07.",
+    "The compensated norm is the explicit Math.hypot portability boundary; further platforms must satisfy the frozen tolerance without relaxation."
+  ]
+}

@@ -19,4 +19,5 @@ pub const REFERENCE_APP_VERSION: &str = "0.9.2";
 pub mod linear;
 pub mod normals;
 pub mod orientation;
+pub mod plane;
 pub mod weld;
