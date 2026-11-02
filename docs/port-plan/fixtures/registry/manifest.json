@@ -9,7 +9,7 @@
     1039
   ],
   "commands": 140,
-  "comparison": "exact REG1 full result/error/coerced args/catalog/headless state after every operation",
+  "comparison": "exact REG3 full result/error/afterInput mutation/body target/coerced args/catalog/headless state after every operation",
   "cases": [
     {
       "id": "command-align.auto",
@@ -1227,6 +1227,11 @@
       "bytes": 4039,
       "sha256": "956b7a0e6bfda39c84a380c2b2e5f836af5d35842f64e9128fd2b48fc619124a",
       "seed": 1039
+    },
+    {
+      "id": "refused-coercion",
+      "bytes": 760,
+      "sha256": "3020a2b1210eb634b3d11d7d10cd0550f193399d9cfbf3727008307b4808f30d"
     }
   ]
 }

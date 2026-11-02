@@ -209,4 +209,5 @@ vec![
     Case { id: "seed-1039-5", input: include_bytes!("../../../../../docs/port-plan/fixtures/registry/seed-1039-5.bin") },
     Case { id: "seed-1039-6", input: include_bytes!("../../../../../docs/port-plan/fixtures/registry/seed-1039-6.bin") },
     Case { id: "seed-1039-7", input: include_bytes!("../../../../../docs/port-plan/fixtures/registry/seed-1039-7.bin") },
+    Case { id: "refused-coercion", input: include_bytes!("../../../../../docs/port-plan/fixtures/registry/refused-coercion.bin") },
 ]

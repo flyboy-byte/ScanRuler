@@ -55,6 +55,7 @@ def generate():
    for i in range(8):
     state=(1664525*state+1013904223)&0xffffffff;ds.append(command(alphabet[state%len(alphabet)],readOnly=bool(state&1),headless=bool(state&2)))
    ops=[reg([i])for i in range(len(ds))]+[dict(op='list')];add(f'seed-{seed}-{case}',ds,ops,seed=seed)
- manifest=dict(schema=1,license='AGPL-3.0-only',reference_sha='2cd89c6769a10c27ee7754b477ada521c9ef5cb7',seeds=[1,7,99,1039],commands=140,comparison='exact REG1 full result/error/coerced args/catalog/headless state after every operation',cases=rows);(OUT/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+ add('refused-coercion',[command()],[reg(),dict(op='admit',name='probe.read',input={'flag':'true','extra':1}),dict(op='admit',name='probe.read',input={'flag':'false','extra':2})])
+ manifest=dict(schema=1,license='AGPL-3.0-only',reference_sha='2cd89c6769a10c27ee7754b477ada521c9ef5cb7',seeds=[1,7,99,1039],commands=140,comparison='exact REG3 full result/error/afterInput mutation/body target/coerced args/catalog/headless state after every operation',cases=rows);(OUT/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
  table='// SPDX-License-Identifier: AGPL-3.0-only\nvec![\n'+''.join('    Case { id: "'+c['id']+'", input: include_bytes!("../../../../../docs/port-plan/fixtures/registry/'+c['id']+'.bin") },\n'for c in rows)+']\n';(ROOT/'rust/crates/port-engine/tests/support/registry_cases.rs').write_text(table);print(len(rows),'registry scenarios')
 if __name__=='__main__':generate()

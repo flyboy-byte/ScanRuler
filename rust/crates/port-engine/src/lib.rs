@@ -7,3 +7,5 @@ pub mod error;
 
 pub mod schema;
 pub mod schema_value;
+
+pub mod registry;
