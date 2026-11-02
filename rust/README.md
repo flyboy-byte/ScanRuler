@@ -6,7 +6,7 @@ and [the plan](../docs/port-plan/HANDOFF.md).
 
 | Crate | Role | Contents today |
 |-------|------|----------------|
-| `port-core` | Pure core: no DOM, files or global state | Welding, bounds/centroids, normals/orientation, dense solves, TLS/clipped planes; initial units/IDs/transforms and pin |
+| `port-core` | Pure core: no DOM, files or global state | Welding, bounds/centroids, normals/orientation, dense solves, TLS/clipped planes and curvature discrimination; initial units/IDs/transforms and pin |
 | `port-engine` | Session, commands, jobs, history | Empty |
 | `port-io` | Formats and the `.scanruler` project reader/writer | STL binary/ASCII dispatch and triangle extraction (P06); no welding/session loader |
 | `port-cli` | `scanruler-rs`, native front end for differential runs | Prints a banner |
@@ -32,7 +32,7 @@ cargo xtask env    # toolchain versions to record with any result
 
 It does not compare anything with the original app. That harness (`cargo xtask diff`,
 `diff-ci`) is planned under P36 to P39, and the disabled example workflow is designed to fail
-until it exists. A green `ci` run is not parity. `cargo xtask oracle` separately discovers all eleven
+until it exists. A green `ci` run is not parity. `cargo xtask oracle` separately discovers all twelve
 required native oracle entrypoints, rejects missing/duplicate discovery, then runs
 all ignored core/IO integration tests without filtering their cases. It requires
 Node and the frozen Git object. It does not implement the general P36 ratchet or
@@ -77,3 +77,13 @@ under docs/port-plan/plan/units. Start with the [ordered audit queue](../docs/po
 for parent-first PR review, source symbols, reports, known gaps and complete run commands.
 These are partial library ports: port-engine is still empty, the CLI is a banner,
 and no Rust UI or browser-Wasm runtime parity is claimed. No child unit is accepted.
+
+## Curved fit versus plane
+
+`curvature_gate::rms_over` retains finite residual filtering, selection/callback
+order, duplicates and overflow behavior. `curved_beyond_plane` reuses TLS and the
+source factor 1.1; a refused plane continues with true. NaN/negative/infinite
+curved RMS values retain source comparison semantics. Invalid shape/selection
+fails before callbacks. This helper does not fit a sphere/cylinder or provide a
+user-facing command. Eighty independent source cases compare exact bytes,
+including adjacent floating-point values at the decision boundary.
