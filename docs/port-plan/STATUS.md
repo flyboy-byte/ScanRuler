@@ -4,16 +4,16 @@ Generated from canonical unit files and ci/native-suites.json; do not hand-edit.
 
 Reference: `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
 
-Native coverage inventory: **27 suites / 2365 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
+Native coverage inventory: **28 suites / 2475 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
 
 No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Bounded [browser-Wasm coverage](oracle/BROWSER-WASM.md) is separate from engine/session/UI integration and the still-open exact-base numerical ratchet.
 
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 37 |
+| implemented | 38 |
 | planned | 49 |
-| specified | 2 |
+| specified | 1 |
 
 | Unit | State | Tested implementation | PR |
 | --- | --- | --- | --- |
@@ -65,7 +65,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [engine.measurement.slice](plan/units/engine.measurement.slice.json) | planned | — | — |
 | [engine.schema.validate](plan/units/engine.schema.validate.json) | implemented | `d3f9945` | [#42](https://github.com/flyboy-byte/ScanRuler/pull/42) |
 | [engine.session.contract](plan/units/engine.session.contract.json) | specified | — | [#45](https://github.com/flyboy-byte/ScanRuler/pull/45) |
-| [engine.session.history.record](plan/units/engine.session.history.record.json) | specified | — | — |
+| [engine.session.history.record](plan/units/engine.session.history.record.json) | implemented | `b5c2c40` | [#46](https://github.com/flyboy-byte/ScanRuler/pull/46) |
 | [engine.session.registry](plan/units/engine.session.registry.json) | implemented | `bdc24fe` | [#45](https://github.com/flyboy-byte/ScanRuler/pull/45) |
 | [fit.curvature.gate](plan/units/fit.curvature.gate.json) | implemented | `f46eeb1` | [#16](https://github.com/flyboy-byte/ScanRuler/pull/16) |
 | [fit.linalg.solve](plan/units/fit.linalg.solve.json) | implemented | `46e0992` | [#7](https://github.com/flyboy-byte/ScanRuler/pull/7) |

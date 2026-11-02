@@ -1,5 +1,13 @@
 # Port PR audit and integration queue
 
+2026-11-02 review continuation: [#45](https://github.com/flyboy-byte/ScanRuler/pull/45)
+then [#46](https://github.com/flyboy-byte/ScanRuler/pull/46). #46 adds bounded
+identity-aware history recording/group/clear and sync/async wrapper behavior,
+with 110 exact full original/Rust scenarios and 1,095 observations. Native
+inventory is 28 suites / 2,475 case identities. The parent session contract
+remains specified. Undo/redo restoration, scheduler, actual commands and CLI
+workflow are the next work; neither PR completes M3.
+
 Session continuation from main4ff736f: [#45](https://github.com/flyboy-byte/ScanRuler/pull/45)
 ports complete registration/catalog/headless and schema admission, with350 exact
 full operation scenarios. Parent engine.session.contract is now owned by Codex

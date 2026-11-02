@@ -7,7 +7,8 @@ scenarios before typed-error additions.
 
 The immutable original historyStore and actual stores are Vite-bundled from a
 fresh /tmp git archive, without reached stubs or original edits. Compiled code is
-under ignored history-reference. Fixture participants supply typed immutable graph
+archived under evidence/history-record-oracle-2026-11-02 with Node/lock
+provenance (and under ignored history-reference). Fixture participants supply typed immutable graph
 cells, pure captures and controllable promises; the actual historyAction/
 historyAsync/group/clear/record bodies execute. `seed_future` authors bookkeeping
 through the original public store on each engine's OWN prior entry; it does not
