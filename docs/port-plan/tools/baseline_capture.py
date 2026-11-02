@@ -14,10 +14,12 @@ import re
 import os
 import shutil
 import subprocess
+from collections import Counter
 
 REFERENCE = '2cd89c6769a10c27ee7754b477ada521c9ef5cb7'
 ORIGINAL = ['src', 'tests', 'scripts', 'plugins', 'mcp/src', 'mcp/tests',
-            'package.json', 'package-lock.json', 'mcp/package.json', 'mcp/package-lock.json']
+            'package.json', 'package-lock.json', 'mcp/package.json', 'mcp/package-lock.json',
+            'vite.config.ts', 'tsconfig.json', 'index.html']
 GUARD = re.compile(r'\b(?:describe|it|test)\.(?:skipIf|runIf|skip|todo)\b')
 REQUIRED = {'plugin-boundary', 'display-units', 'unit', 'mcp', 'build', 'browser'}
 
@@ -65,6 +67,9 @@ def unit_results(root, data, contract):
                                'status': t['status'], 'source_guards': matches})
     return {'total': len(tests), 'passed': sum(t['status'] == 'passed' for t in tests),
             'failed': sum(t['status'] == 'failed' for t in tests), 'excluded': exclusions,
+            'observed_statuses': dict(Counter(t['status'] for t in tests)),
+            'reported_summary': {k: data.get(k) for k in ['numTotalTests', 'numPassedTests',
+                                 'numFailedTests', 'numPendingTests', 'numTodoTests', 'success']},
             'failures': [{'source': t['source'], 'name': t['fullName']} for t in tests if t['status'] == 'failed']}
 
 
