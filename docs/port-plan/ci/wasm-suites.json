@@ -1,5 +1,5 @@
 {
-  "contract": "browser.wasm.corpus.v3",
+  "contract": "browser.wasm.corpus.v4",
   "suites": [
     {
       "unit": "fit.plane.tls",
@@ -58,6 +58,12 @@
           "reason": "Full-size million-line OBJ input exceeds the existing private ABI 1 MiB input cap; retained unchanged in native comparisons; larger browser progress workloads remain open."
         }
       ]
+    },
+    {
+      "unit": "io.obj.companions.files",
+      "directory": "obj-files-diff",
+      "mode": 7,
+      "cases": 87
     }
   ]
 }

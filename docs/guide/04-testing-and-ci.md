@@ -11,7 +11,7 @@
 | Raw evidence | `ci_report.py evidence --candidate <sha>` | Full case/file inventory at exact checkout; not an independent numerical comparator |
 | Original catalogs | validator tests and real capture workflows | Immutable core/all browser/headless schemas and context; not Rust commands |
 | Original app | source-tests, source-mcp, source-browser | All original tests/build/browser checks; independent lanes and strict final gate |
-| Browser-Wasm | `cargo xtask wasm-probe` and required Chrome lane | 564 TLS/graph/marked/PLY/OBJ inputs; 482 complete outputs/helper states / 82 refusals. One PLY and two OBJ workloads stay native-only. |
+| Browser-Wasm | `cargo xtask wasm-probe` and required Chrome lane | 651 TLS/graph/marked/PLY/OBJ/file-state inputs; 569 complete outputs/helper states /82 refusals. One PLY and two OBJ workloads stay native-only. |
 | Generic diff / exact-base ratchet | P36/P37 | Not implemented; no green substitute |
 
 Fast checks and actual native comparisons now have distinct results. The final Rust `gate` requires fast/native/catalog/browser-Wasm lanes; original `test-and-build` requires all original lanes. Failed or skipped required lanes remain red. Source timing failures no longer block collecting independent MCP/browser results; no threshold is changed. Main validations are never cancelled by later commits. SHA-named raw evidence/log artifacts are retained thirty days. See [the executable CI contract](../port-plan/CI-AND-REGRESSIONS.md) for exact commands and limitations.

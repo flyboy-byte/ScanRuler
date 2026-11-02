@@ -23,7 +23,7 @@ const native = json(resolve(target, 'ci/native-evidence.json'))
 assert.equal(native.candidate_sha, candidate, 'stale native evidence')
 assert.equal(native.reference_sha, reference)
 const roster = json(resolve(root, 'docs/port-plan/ci/wasm-suites.json'))
-assert.equal(roster.contract, 'browser.wasm.corpus.v3', 'historical corpus cannot satisfy current browser gate')
+assert.equal(roster.contract, 'browser.wasm.corpus.v4', 'historical corpus cannot satisfy current browser gate')
 const defs = roster.suites
 validateBrowserRoster(defs, roster.contract)
 const unitPaths = resolve(root, 'docs/port-plan/plan/units')
@@ -45,7 +45,7 @@ for (const def of defs) {
     cases.push({ def, id, files })
   }
 }
-assert.equal(cases.length, 564, 'empty/trimmed browser corpus')
+assert.equal(cases.length, 651, 'empty/trimmed browser corpus')
 const report = { contract: 'browser.wasm.comparison.v1', candidate_sha: candidate, reference_sha: reference,
   runtime: smoke ? 'diagnostic-node-wasm-not-browser' : 'chrome-wasm', node: process.version,
   rustc: read(modulePath.replace(/\.wasm$/, '.rustc.txt')).toString().trim(), module_sha256: hash(moduleBytes),
@@ -119,7 +119,7 @@ try {
   delete report.active_case
   report.successful_value_cases = report.cases.filter(c => c.result === 'successful_values').length
   report.source_refusal_cases = report.cases.length - report.successful_value_cases
-  assert.equal(report.successful_value_cases, 482)
+  assert.equal(report.successful_value_cases, 569)
   assert.equal(report.source_refusal_cases, 82)
   report.status = 'passed'
 } catch (error) {

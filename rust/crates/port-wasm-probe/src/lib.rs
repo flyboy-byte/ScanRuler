@@ -2,6 +2,7 @@
 //! Private safe test ABI for independent browser execution of frozen input packets.
 //! Not a product interface: linker exports use checked v0 symbol suffixes.
 use std::sync::Mutex;
+mod files;
 mod obj;
 
 const MAX_INPUT: usize = 1 << 20;
@@ -21,7 +22,7 @@ static STATE: Mutex<State> = Mutex::new(State {
     output: Vec::new(),
 });
 
-/// Reset state for mode 1 (TLS), 2 (mesh graph), 3 (marked plane), 4 (raw PLY), 5 (OBJ), or 6 (OBJ helpers).
+/// Reset state for mode 1 (TLS), 2 (mesh graph), 3 (marked plane), 4 (raw PLY), 5 (OBJ), 6 (OBJ helpers), or 7 (companion file states).
 pub extern "C" fn scanruler_wasm_reset(kind: u32) -> u32 {
     let Ok(mut s) = STATE.lock() else {
         return 255;
@@ -29,7 +30,7 @@ pub extern "C" fn scanruler_wasm_reset(kind: u32) -> u32 {
     s.input.clear();
     s.output.clear();
     s.kind = kind;
-    s.failed = !(1..=6).contains(&kind);
+    s.failed = !(1..=7).contains(&kind);
     u32::from(s.failed)
 }
 /// Append one to four little-endian input bytes; a failed write poisons this run.
@@ -356,6 +357,7 @@ fn execute(kind: u32, bytes: &[u8]) -> Result<Vec<u8>, ()> {
             o.text(&events)?;
         }
         5 | 6 => return obj::execute(kind, bytes),
+        7 => return files::execute(bytes),
         _ => return Err(()),
     }
     Ok(o.0)

@@ -16,21 +16,25 @@ export function verifyNativeCaseFiles(mode, files, metadata) {
   }
 }
 
-export function validateBrowserRoster(defs, contract = 'browser.wasm.corpus.v3') {
-  assert.ok(['browser.wasm.corpus.v2', 'browser.wasm.corpus.v3'].includes(contract), 'unknown browser roster contract')
-  const current = contract === 'browser.wasm.corpus.v3'
-  assert.equal(defs.length, current ? 7 : 5, 'missing browser suite')
+export function validateBrowserRoster(defs, contract = 'browser.wasm.corpus.v4') {
+  assert.ok(['browser.wasm.corpus.v2', 'browser.wasm.corpus.v3', 'browser.wasm.corpus.v4'].includes(contract), 'unknown browser roster contract')
+  const files = contract === 'browser.wasm.corpus.v4'
+  const current = contract !== 'browser.wasm.corpus.v2'
+  assert.equal(defs.length, files ? 8 : current ? 7 : 5, 'missing browser suite')
   assert.equal(new Set(defs.map(s => s.unit)).size, defs.length, 'duplicate browser unit')
-  assert.deepEqual(defs.map(s => s.mode).sort(), current ? [1, 2, 3, 4, 4, 5, 6] : [1, 2, 3, 4, 4], 'changed browser codecs')
+  assert.deepEqual(defs.map(s => s.mode).sort(), files ? [1, 2, 3, 4, 4, 5, 6, 7] : current ? [1, 2, 3, 4, 4, 5, 6] : [1, 2, 3, 4, 4], 'changed browser codecs')
   assert.deepEqual(defs.slice(0, 5).map(s => [s.unit, s.directory, s.mode, s.cases]), [
     ['fit.plane.tls', 'plane-diff', 1, 13], ['geometry.mesh.graph', 'mesh-graph-diff', 2, 50],
     ['fit.plane.selection', 'marked-plane-diff', 3, 51], ['io.ply.ascii', 'ply-ascii-diff', 4, 60],
     ['io.ply.binary', 'ply-binary-diff', 4, 167],
   ], 'previous browser coverage changed')
-  if (current) assert.deepEqual(defs.slice(5).map(s => [s.unit, s.directory, s.mode, s.cases]), [
+  if (current) assert.deepEqual(defs.slice(5, 7).map(s => [s.unit, s.directory, s.mode, s.cases]), [
     ['io.obj.texture', 'obj-texture-diff', 6, 144], ['io.obj.mesh', 'obj-mesh-diff', 5, 79],
   ], 'changed OBJ browser coverage')
-  assert.equal(defs.reduce((n, s) => n + s.cases, 0), current ? 564 : 341, 'trimmed browser coverage')
+  if (files) assert.deepEqual(defs.slice(7).map(s => [s.unit, s.directory, s.mode, s.cases]), [
+    ['io.obj.companions.files', 'obj-files-diff', 7, 87],
+  ], 'changed file-state browser coverage')
+  assert.equal(defs.reduce((n, s) => n + s.cases, 0), files ? 651 : current ? 564 : 341, 'trimmed browser coverage')
 }
 
 export function selectBrowserCases(def, nativeIds) {

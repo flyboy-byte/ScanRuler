@@ -46,6 +46,7 @@
         "harness.wasm.runtime",
         "harness.wasm.ply",
         "harness.wasm.obj",
+        "harness.wasm.files",
         "harness.fuzz.standing",
         "harness.coverage.original",
         "harness.coverage.rust",

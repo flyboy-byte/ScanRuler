@@ -10,7 +10,7 @@ Updated 2026-11-02. The frozen original is authoritative. No workflow change in 
 | `Rust port validation / fast` | `cargo xtask ci` | Native ordinary tests, fmt/lints, plan/status and Wasm **compile** pass |
 | `Rust port validation / native-oracle` | `cargo xtask oracle`, then raw evidence inventory | Every required native source suite passed and its full current-case artifacts exist at the exact checkout SHA |
 | `Rust port validation / catalog-contracts` | original headless/browser snapshot and negative validators | Immutable captured metadata remains valid, not command execution or Rust parity |
-| `Rust port validation / browser-wasm` | actual Chrome running seven Rust library corpora plus hostile codec/memory probes | All 564 declared source/native/browser cases pass; three native-only workloads explicit; not UI/all-unit parity |
+| `Rust port validation / browser-wasm` | actual Chrome running eight Rust library corpora plus hostile codec/memory probes | All 651 declared source/native/browser cases pass; three native-only workloads explicit; not UI/all-unit parity |
 | `Rust port validation / gate` | all four Rust lanes, even if another fails/skips | All required lanes succeeded; existing check ID `gate` retained |
 | `CI / source-tests` | plugin/unit boundaries, complete `npm test` | Original unit checks pass, including unchanged timing limits |
 | `CI / source-mcp` | complete separate MCP suite | Original agent tests pass independently of unit-test timing |
@@ -51,7 +51,7 @@ source-captured million-line progress fixtures are real full-size inputs; no
 previous parser/helper comparison is removed or replaced by status-only checks.
 
 Actual Chrome additionally compares all 144 helper states and 79 parser inputs,
-bringing browser coverage to 564 cases (482 outputs/helper states /82 source
+bringing browser coverage to 564 cases (482 outputs/helper states / 82 source
 refusals), with 18 protocol probes. Both full-size OBJ progress cases remain in
 native comparisons. OBJ output/state bytes are exact; historical browser proofs
 and all earlier numerical budgets remain unchanged.
@@ -59,7 +59,9 @@ and all earlier numerical budgets remain unchanged.
 Companion file selection adds 87 exact classification/identity/byte-state traces,
 bringing the native inventory to 24 suites /1,278 identities. These are input
 bookkeeping observations, not new working import commands or numerical results.
-Browser coverage remains the separate 564-case roster until that follow-up lands.
+Actual Chrome also runs all 87 of these states; the separate runtime roster is
+651 cases (569 complete outputs/helper states / 82 refusals) with 24 protocol
+checks. No native case is counted twice.
 
 Numerical comparisons remain in the existing Rust tests with their original fixed budgets and cases. The inventory reporter hashes raw files; it does **not** reinterpret values, declare a refusal successful geometry, compare against the exact PR base, or replace P36/P37. Canonical case edits and changed input/output hashes still need review; there is no automatic accepted-case ratchet yet.
 
@@ -119,4 +121,4 @@ Use Node 22 for CI reproduction and real original captures. Local native math ru
 
 The disabled `repo-bootstrap` product-gate example describes the future generic ratchet; it is not the active workflow. Release deployment remains unchanged and no Rust release workflow is activated. Branch protection settings need the owner's separate review after these check names are proven on hosted CI.
 
-The browser-wasm lane depends on the successful native-oracle artifact, checks exact candidate/reference/input and PLY progress hashes, builds its own module from owned Rust crates and uses real Chrome. Source/native outputs never cross into the browser payload; only fixture inputs do. Safe scalar-buffer functions retain unsafe_code=forbid. The private linker exports are not the product ABI. Exact corpus/budgets/limits and actual evidence are recorded in oracle/BROWSER-WASM.md; a Node-Wasm smoke cannot satisfy this lane. The current native inventory is generated in STATUS.md; browser coverage remains a separate 564-case subset, not additional native numerical cases. The explicit exclusions are io.ply.binary/le-vertex-progress and io.obj.mesh/{line-progress,short-unicode-line-skips-progress}, above private ABI limits; no old browser case is excluded.
+The browser-wasm lane depends on the successful native-oracle artifact, checks exact candidate/reference/input and PLY progress hashes, builds its own module from owned Rust crates and uses real Chrome. Source/native outputs never cross into the browser payload; only fixture inputs do. Safe scalar-buffer functions retain unsafe_code=forbid. The private linker exports are not the product ABI. Exact corpus/budgets/limits and actual evidence are recorded in oracle/BROWSER-WASM.md; a Node-Wasm smoke cannot satisfy this lane. The current native inventory is generated in STATUS.md; browser coverage remains a separate 651-case subset, not additional native numerical cases. The explicit exclusions are io.ply.binary/le-vertex-progress and io.obj.mesh/{line-progress,short-unicode-line-skips-progress}, above private ABI limits; no old browser case is excluded.

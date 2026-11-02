@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // Test comparison only. No geometry, source-result injection or product runtime.
 import assert from 'node:assert/strict'
+import { validateFileOutput } from './browser-wasm-files.mjs'
 // Envelope only, assembled after independent execution; never a Rust input.
 export function plyPacket(payload, events) {
   assert.ok(Buffer.isBuffer(payload) && Buffer.isBuffer(events), 'missing PLY output/progress sidecar')
@@ -50,6 +51,7 @@ function validateObjOutput(mode, bytes) {
   assert.equal(at, bytes.length, 'trailing OBJ state')
 }
 export function successfulOutput(mode, bytes) {
+  if (mode === 7) { validateFileOutput(bytes); return true }
   if (mode === 5 || mode === 6) { validateObjOutput(mode, bytes); return mode === 6 || bytes[4] === 0 }
   return mode === 1 ? bytes[0] === 1 : bytes[0] === 0
 }
@@ -71,7 +73,9 @@ export function compareOutput(mode, expected, actual) {
       worst = Math.max(worst, error)
     }
   }
-  if (mode === 5 || mode === 6) {
+  if (mode === 7) {
+    validateFileOutput(expected); validateFileOutput(actual); exact(expected, actual)
+  } else if (mode === 5 || mode === 6) {
     validateObjOutput(mode, expected); validateObjOutput(mode, actual); exact(expected, actual)
   } else if (mode === 4) {
     assert.ok(expected.length >= 9, 'malformed PLY envelope')
@@ -158,6 +162,14 @@ export function negativePackets() {
   check(a.reset(6) === 0 && a.push(5, 1) === 0 && a.push(0xffffffff, 4) === 0 && a.run() !== 0 && a.length() === 0, 'oversized OBJ refs fail before allocation')
   check(a.reset(5) === 0 && a.push(0, 4) === 0 && a.push(0, 1) === 0 && a.run() === 0 && a.word(0) === 0x314a424f && (a.word(4) & 255) === 2, 'OBJ source refusal is a completed result')
   check(a.reset(6) === 0 && a.push(1, 1) === 0 && a.push(0, 4) === 0 && a.run() === 0 && a.word(0) === 0x3158544f, 'OBJ helper recovers after failed packet')
+  check(a.reset(7) === 0 && a.run() !== 0 && a.length() === 0, 'truncated file-state packet fails without output')
+  check(a.reset(7) === 0 && a.push(255, 1) === 0 && a.run() !== 0 && a.length() === 0, 'unknown file-state mode fails without output')
+  check(a.reset(7) === 0 && a.push(1, 1) === 0 && a.push(0xffffffff, 4) === 0 && a.run() !== 0 && a.length() === 0, 'oversized file declaration fails before allocation')
+  check(a.reset(7) === 0, 'reset before invalid file identity')
+  const badFileId = [1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,0,0,1,0,0,0]
+  for (const byte of badFileId) if (a.push(byte, 1) !== 0) throw Error('small file-state packet refused')
+  check(a.run() !== 0 && a.length() === 0, 'invalid file identity fails without output')
+  check(a.reset(7) === 0 && a.push(0, 1) === 0 && a.push(0, 4) === 0 && a.run() === 0 && a.word(0) === 0x31534c46, 'file-state codec recovers with complete classifier result')
   return checks
 }
 
