@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 65,
+    "implemented": 66,
     "planned": 47,
-    "specified": 2
+    "specified": 1
   },
   "verification_levels": {
-    "fixed-corpus": 48,
+    "fixed-corpus": 49,
     "fuzzed": 4,
-    "none": 64
+    "none": 63
   },
-  "native_suites": 51,
-  "native_case_identities_including_refusals": 9578,
+  "native_suites": 52,
+  "native_case_identities_including_refusals": 9834,
   "accepted_units": [],
   "units": [
     {
@@ -578,14 +578,15 @@
     },
     {
       "id": "engine.session.activity.state",
-      "status": "specified",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/86",
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "tested_sha": "c1357c868eb60aa0d43b66a8269c4280ae0e9bc6",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "c1357c868eb60aa0d43b66a8269c4280ae0e9bc6",
       "open_items": [
-        "Implement and capture original-first fixed cases; full guarded/interrupt/native owner/browser integration remains open."
+        "Full guarded/interrupt/current assignment/cleanup and progress-after-abort routing remain unported; wire this single store into the native owner.",
+        "Arbitrary Zustand partial functions/replace, host snapshot mutation, React hooks/middleware and browser-Wasm store execution are outside this typed command-patch scope."
       ]
     },
     {
