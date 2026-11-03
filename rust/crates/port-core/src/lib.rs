@@ -39,3 +39,6 @@ pub mod js_number;
 
 /// Own Date millisecond clipping and Gregorian UTC timestamp conversion.
 pub mod js_date;
+
+/// Exact source fixed-three-decimal number text.
+pub mod js_fixed;

@@ -16096,7 +16096,7 @@
       ],
       "owner": "Codex",
       "branch": "codex/number-fixed3",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/92",
       "implemented_commit": null,
       "evidence": [],
       "open_items": [

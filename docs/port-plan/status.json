@@ -1533,7 +1533,7 @@
       "id": "math.number.fixed3",
       "status": "specified",
       "parent": "P07",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/92",
       "tested_sha": null,
       "verification": "none",
       "verification_tested_sha": null,
