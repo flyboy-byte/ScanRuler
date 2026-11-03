@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **UTC regression census**: compare a complete negative Gregorian period against the original Date converter, adding 1,600 cases while preserving all 311 prior records and leaving production code unchanged.
+
 - **Rust UTC timestamps**: own bounded Date clipping and Gregorian ISO formatting, including extended years and lazy stale-page conversion; 311 full original timestamp/error/state comparisons. OS current-time acquisition remains separate.
 
 - **Rust command fault normalization**: preserve typed error identity, stale-page classification/state and failed fallback across 304 full pinned-registry comparisons. General native String conversion and registry execution remain separate.

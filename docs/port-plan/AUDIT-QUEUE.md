@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-03: [#74](https://github.com/flyboy-byte/ScanRuler/pull/74) follows #68 and adds a fixed full negative-year Gregorian census. All old311 records remain byte-exact; the expanded1911-case suite compares full states with unchanged production code. See oracle/UTC-PERIOD.md.
+
 2026-11-02: [#68](https://github.com/flyboy-byte/ScanRuler/pull/68) follows #65 and supplies own Date clipping/UTC formatting and lazy stale-page adapter, with 311 full source timestamp/state cases. OS clock acquisition stays open; see oracle/CLOCK-UTC.md.
 
 2026-11-02: [#65](https://github.com/flyboy-byte/ScanRuler/pull/65) follows #60 → #61 → #63 and ports asCommandError composition with 304 full pinned source identity/envelope/page/effect traces. Actual registry execution remains open; see oracle/ERROR-NORMALIZE.md.

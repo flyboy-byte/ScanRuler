@@ -11,3 +11,8 @@ for years-400..-1. Input construction uses Python date arithmetic for1600..1999
 and an exact five-period day offset, without reading either engine's answers.
 The real original Date converter remains the oracle. This is a fixed census,
 not a fuzzing, coverage-review, browser or whole-session acceptance claim.
+
+Result: the additional1600 source/native states match; all prior311 case records
+are byte-identical across input/original/Rust files and hashes. The live corpus
+now has1911 identities. Production code and existing comparison budgets remain
+unchanged. Full-gate and hosted results are recorded in the PR body/Checks.

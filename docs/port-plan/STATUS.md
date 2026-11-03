@@ -4,7 +4,7 @@ Generated from canonical unit files and ci/native-suites.json; do not hand-edit.
 
 Reference: `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
 
-Native coverage inventory: **36 suites / 4202 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
+Native coverage inventory: **36 suites / 5802 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
 
 No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Bounded [browser-Wasm coverage](oracle/BROWSER-WASM.md) is separate from engine/session/UI integration and the still-open exact-base numerical ratchet.
 
@@ -64,7 +64,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [engine.error.envelope](plan/units/engine.error.envelope.json) | implemented | `f509ae2` | [#30](https://github.com/flyboy-byte/ScanRuler/pull/30) |
 | [engine.measurement.slice](plan/units/engine.measurement.slice.json) | planned | — | — |
 | [engine.schema.validate](plan/units/engine.schema.validate.json) | implemented | `d3f9945` | [#42](https://github.com/flyboy-byte/ScanRuler/pull/42) |
-| [engine.session.clock.utc](plan/units/engine.session.clock.utc.json) | implemented | `56cb66a` | [#68](https://github.com/flyboy-byte/ScanRuler/pull/68) |
+| [engine.session.clock.utc](plan/units/engine.session.clock.utc.json) | implemented | `cf0543a` | [#68](https://github.com/flyboy-byte/ScanRuler/pull/68) |
 | [engine.session.contract](plan/units/engine.session.contract.json) | specified | — | [#45](https://github.com/flyboy-byte/ScanRuler/pull/45) |
 | [engine.session.error.normalize](plan/units/engine.session.error.normalize.json) | implemented | `6dcf191` | [#65](https://github.com/flyboy-byte/ScanRuler/pull/65) |
 | [engine.session.history.guards](plan/units/engine.session.history.guards.json) | implemented | `1504212` | [#53](https://github.com/flyboy-byte/ScanRuler/pull/53) |
