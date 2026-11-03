@@ -2,13 +2,13 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 3,
-    "implemented": 44,
+    "baseline-captured": 2,
+    "implemented": 45,
     "planned": 48,
     "specified": 1
   },
-  "native_suites": 31,
-  "native_case_identities_including_refusals": 3095,
+  "native_suites": 32,
+  "native_case_identities_including_refusals": 3403,
   "accepted_units": [],
   "units": [
     {
@@ -528,10 +528,10 @@
     },
     {
       "id": "engine.session.stale.detect",
-      "status": "baseline-captured",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/60",
-      "tested_sha": null,
+      "tested_sha": "7cd55a7f870101cd671a798d366b2503f18b73fc",
       "open_items": [
         "Page stale timestamp, staleError construction and full asCommandError normalization are separate continuations.",
         "Error messages are owned UTF16 text; arbitrary mutable JS message coercion/getters and browser preload listener runtime are not represented."

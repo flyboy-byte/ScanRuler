@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust stale-import classification**: preserve all four messages, ASCII case semantics, typed-error exclusion and unchanged page state in 308 exact pinned-source comparisons. Page timestamp and error normalization remain separate.
+
 - **Rust DEFLATE and ZIP reader** (2026-11-03): own pure-Rust inflate and unzip that reproduces the original's `fflate` 0.8.3 `unzipSync`, including its lenient behaviour on damaged archives; 30,000 generated and mutated archives, 0 divergences. 3MF reading itself and PNG/JPEG decoding remain separate.
 
 - **Rust global restore orchestration**: preserve capture/hook/apply order, workspace, stack movement, late-epoch invalidation and partial-failure state across 216 full typed-boundary source traces. Concrete family restore and queue integration remain required.
