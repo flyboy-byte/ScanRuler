@@ -3502,6 +3502,45 @@
       ]
     },
     {
+      "id": "engine.session.command.deadline",
+      "parent": "engine.session.contract",
+      "title": "Port command deadline races, abort reasons and late-result handling",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [
+        "engine.error.envelope"
+      ],
+      "soft_depends_on": [
+        "engine.session.registry",
+        "engine.session.import.queue"
+      ],
+      "scope": "Complete limited() race over an owned timer/body event boundary, preserving registration/reaction order, shared timeout reason, timer cleanup and late body handling. Clock backend scheduling and retaining/driving body tasks remain required integration. Reuse one shared owned JS numeric formatter.",
+      "acceptance": [
+        "Full original limited body runs deterministic injected-clock schedules before Rust; compare successful/error values, abort identity, clock requests/cleanup, late state and event order, including simultaneous outcomes.",
+        "Native ownership/capability bounds, shared formatter callers, Wasm and full source gates pass without dropping inputs or tolerances."
+      ],
+      "owner": "Codex",
+      "branch": "codex/command-deadline",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/registry.ts",
+        "src/commands/types.ts"
+      ],
+      "symbols": [
+        "limited",
+        "COMMAND_TIMEOUT_MS"
+      ],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Actual native/browser timer backend policy, executor and command integration remain required.",
+        "The owner must retain body work after a caller timeout; timeout does not authorize dropping partial effects or adding a new session-epoch policy.",
+        "Typed clock registration/clear are trusted and serial; host timer resource failures and arbitrary Promise subclasses remain outside this admitted boundary."
+      ]
+    },
+    {
       "id": "engine.session.contract",
       "parent": "P05",
       "title": "Specify and implement bounded engine session and mutation contracts",
