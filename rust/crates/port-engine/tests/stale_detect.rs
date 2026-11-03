@@ -12,7 +12,9 @@ fn observe(line: &str) -> String {
     let parts: Vec<_> = line.split('\t').collect();
     let text: Vec<_> = parts[2]
         .as_bytes()
-        .chunks_exact(4)
+        .as_chunks::<4>()
+        .0
+        .iter()
         .map(|h| u16::from_str_radix(std::str::from_utf8(h).unwrap(), 16).unwrap())
         .collect();
     let fault = match parts[1] {
