@@ -4,14 +4,14 @@ Generated from canonical unit files and ci/native-suites.json; do not hand-edit.
 
 Reference: `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
 
-Native coverage inventory: **30 suites / 2879 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
+Native coverage inventory: **31 suites / 3095 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
 
 No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Bounded [browser-Wasm coverage](oracle/BROWSER-WASM.md) is separate from engine/session/UI integration and the still-open exact-base numerical ratchet.
 
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 41 |
+| implemented | 42 |
 | planned | 49 |
 | specified | 1 |
 
@@ -68,6 +68,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [engine.session.history.guards](plan/units/engine.session.history.guards.json) | implemented | `1504212` | [#53](https://github.com/flyboy-byte/ScanRuler/pull/53) |
 | [engine.session.history.local](plan/units/engine.session.history.local.json) | implemented | `123e43e` | [#52](https://github.com/flyboy-byte/ScanRuler/pull/52) |
 | [engine.session.history.record](plan/units/engine.session.history.record.json) | implemented | `b5c2c40` | [#46](https://github.com/flyboy-byte/ScanRuler/pull/46) |
+| [engine.session.history.restore](plan/units/engine.session.history.restore.json) | implemented | `84e49dd` | [#54](https://github.com/flyboy-byte/ScanRuler/pull/54) |
 | [engine.session.registry](plan/units/engine.session.registry.json) | implemented | `bdc24fe` | [#45](https://github.com/flyboy-byte/ScanRuler/pull/45) |
 | [fit.curvature.gate](plan/units/fit.curvature.gate.json) | implemented | `f46eeb1` | [#16](https://github.com/flyboy-byte/ScanRuler/pull/16) |
 | [fit.linalg.solve](plan/units/fit.linalg.solve.json) | implemented | `46e0992` | [#7](https://github.com/flyboy-byte/ScanRuler/pull/7) |

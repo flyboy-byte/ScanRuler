@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-02: review #52 → #53 → [#54](https://github.com/flyboy-byte/ScanRuler/pull/54). #54 ports global restore orchestration over typed capture/apply, with 216 exact source traces; roster31/3095. Concrete family restoration, queue and real command integration remain required.
+
 2026-11-02: review #52 then [#53](https://github.com/flyboy-byte/ScanRuler/pull/53). #53 ports complete history blocking and editor-work predicates with 212 original/Rust observations; native roster30/2879. Global restoration remains the next continuation.
 
 2026-11-02: [#52](https://github.com/flyboy-byte/ScanRuler/pull/52) ports local editor history selection/dispatch from main522f10c, independently of #51. All 192 full source observations match; native roster29/2667. The parent session stays specified; global restoration and family guards are next.

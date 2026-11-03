@@ -27,7 +27,8 @@
         "engine.session.registry",
         "engine.session.history.record",
         "engine.session.history.local",
-        "engine.session.history.guards"
+        "engine.session.history.guards",
+        "engine.session.history.restore"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },
