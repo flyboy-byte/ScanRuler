@@ -1,0 +1,52 @@
+{
+  "schema": "port.verification.fixed.v1",
+  "candidate_sha": "7402ddfdb5c911b0301ce9adc72a53e4b40a77c3",
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "scope_units": [
+    "harness.verification.levels"
+  ],
+  "case_ids": [
+    "test_verification.VerificationTests.test_accepted_lower_grades_never_pass",
+    "test_verification.VerificationTests.test_canary_payload_hash_and_missing_fields",
+    "test_verification.VerificationTests.test_canary_zero_divergences_rejected",
+    "test_verification.VerificationTests.test_coverage_needs_both_unchanged_engine_profiles",
+    "test_verification.VerificationTests.test_coverage_requires_review_beyond_raw_counts",
+    "test_verification.VerificationTests.test_duplicate_campaign_cannot_inflate_evidence",
+    "test_verification.VerificationTests.test_empty_fixed_and_wrong_reference",
+    "test_verification.VerificationTests.test_existing_accepted_open_item_and_dependency_gates_remain",
+    "test_verification.VerificationTests.test_explicit_none_and_fixed_positive",
+    "test_verification.VerificationTests.test_fixed_tooling_positive_and_log_hash",
+    "test_verification.VerificationTests.test_fixed_tooling_rejects_zero_failed_or_wrong_case_run",
+    "test_verification.VerificationTests.test_generated_status_distinguishes_lifecycle_and_evidence_snapshot",
+    "test_verification.VerificationTests.test_identical_canary_payloads_are_rejected",
+    "test_verification.VerificationTests.test_log_hash_and_counter_spoofing",
+    "test_verification.VerificationTests.test_missing_corruption_payload_is_not_canary_evidence",
+    "test_verification.VerificationTests.test_missing_fuzz_link_and_no_fixed_basis",
+    "test_verification.VerificationTests.test_missing_or_nonfailing_canary",
+    "test_verification.VerificationTests.test_missing_owned_source_hash_rejected",
+    "test_verification.VerificationTests.test_ordinary_divergence_is_not_fuzzed",
+    "test_verification.VerificationTests.test_positive_fuzz_and_reviewed_accepted_metadata",
+    "test_verification.VerificationTests.test_refusals_or_host_limits_alone_are_not_successes",
+    "test_verification.VerificationTests.test_stale_source_or_generator_invalidates_high_grade",
+    "test_verification.VerificationTests.test_status_only_fuzz_not_supported",
+    "test_verification.VerificationTests.test_task_picker_prints_verification",
+    "test_verification.VerificationTests.test_truncated_gzip_is_validation_error",
+    "test_verification.VerificationTests.test_unknown_and_missing_level",
+    "test_verification.VerificationTests.test_unsafe_evidence_path_rejected",
+    "test_verification.VerificationTests.test_wrong_fuzz_scope_pin_candidate_and_schema",
+    "test_verification.VerificationTests.test_zero_and_nonpartitioning_fuzz_counts"
+  ],
+  "runner": "python-unittest",
+  "command": "python3 -m unittest discover -v -s docs/port-plan/tools -p test_verification.py",
+  "passed": true,
+  "log": "unittest.log",
+  "log_sha256": "e3a00483ce3c62acb23bd13724ca84754b411b976e91eb91f72d905373f18d04",
+  "source_hashes": {
+    "docs/port-plan/tools/verification.py": "df70c3f851bfb42f88835e4dddc5a31d490df441009d63ffaf5cfc9f3ec41112",
+    "docs/port-plan/tools/test_verification.py": "3e4196565a22f8f76ab08caadf0507160749147e1f1d4689e1cd9c8fd996cb6f",
+    "docs/port-plan/tools/port_plan.py": "a3851a71bf9dc0d085bef5ffa708b6cb91a02b229a497ed783f67ca9403b718b",
+    "docs/port-plan/tools/ci_report.py": "b29c34d78686c8e152abf31a2378e052b4548f75920f702b3ac3d451d5ce73ef",
+    "docs/port-plan/tools/next_task.py": "6c104904f036c3a8ffcbc526a13ab420869bbd0176e0d91187be8e590c574343"
+  },
+  "meaning": "Tool metadata/negative controls, not numerical or runtime parity."
+}

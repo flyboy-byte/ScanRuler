@@ -3,14 +3,14 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 57,
+    "implemented": 58,
     "planned": 47,
-    "specified": 2
+    "specified": 1
   },
   "verification_levels": {
-    "fixed-corpus": 40,
+    "fixed-corpus": 41,
     "fuzzed": 4,
-    "none": 64
+    "none": 63
   },
   "native_suites": 44,
   "native_case_identities_including_refusals": 6854,
@@ -1128,12 +1128,12 @@
     },
     {
       "id": "harness.verification.levels",
-      "status": "specified",
+      "status": "implemented",
       "parent": "P36",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/76",
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "tested_sha": "7402ddfdb5c911b0301ce9adc72a53e4b40a77c3",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "7402ddfdb5c911b0301ce9adc72a53e4b40a77c3",
       "open_items": []
     },
     {

@@ -3,7 +3,7 @@
   "parent": "P36",
   "title": "Record a verification level on each unit so implemented is not read as verified",
   "gate": "G3",
-  "status": "specified",
+  "status": "implemented",
   "depends_on": [
     "harness.fuzz.standing"
   ],
@@ -19,12 +19,33 @@
   "owner": "Codex",
   "branch": "codex/verification-levels",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/76",
-  "implemented_commit": null,
+  "implemented_commit": "7402ddfdb5c911b0301ce9adc72a53e4b40a77c3",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [],
   "symbols": [],
   "rust_paths": [],
-  "evidence": [],
+  "evidence": [
+    {
+      "kind": "report",
+      "location": "VERIFICATION.md",
+      "candidate_sha": "7402ddfdb5c911b0301ce9adc72a53e4b40a77c3"
+    },
+    {
+      "kind": "report",
+      "location": "evidence/verification-tools-2026-11-03/report.json",
+      "candidate_sha": "7402ddfdb5c911b0301ce9adc72a53e4b40a77c3"
+    }
+  ],
   "open_items": [],
-  "verification": "none"
+  "verification": "fixed-corpus",
+  "verification_evidence": [
+    {
+      "kind": "fixed-corpus",
+      "location": "evidence/verification-tools-2026-11-03/report.json"
+    }
+  ],
+  "resolved_items": [
+    "2026-11-03: explicit independent levels on all108 units; evidence support/integrity validation, accepted gate, generated status and task display.",
+    "Retained29 passing positive/negative tooling controls; fresh6000-input normal PLY/STL campaign plus corruption payloads, no ordinary divergence."
+  ]
 }

@@ -11,17 +11,17 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 57 |
+| implemented | 58 |
 | planned | 47 |
-| specified | 2 |
+| specified | 1 |
 
 Verification labels describe scoped evidence snapshots, not whole-feature/runtime acceptance.
 
 | Verification | Units |
 | --- | ---: |
-| fixed-corpus | 40 |
+| fixed-corpus | 41 |
 | fuzzed | 4 |
-| none | 64 |
+| none | 63 |
 
 | Unit | State | Verification | Tested implementation | Verification snapshot | PR |
 | --- | --- | --- | --- | --- | --- |
@@ -111,7 +111,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [harness.fuzz.minimize](plan/units/harness.fuzz.minimize.json) | implemented | none | `32c45a9` | — | [#51](https://github.com/flyboy-byte/ScanRuler/pull/51) |
 | [harness.fuzz.standing](plan/units/harness.fuzz.standing.json) | implemented | none | — | — | — |
 | [harness.oracle.gate](plan/units/harness.oracle.gate.json) | implemented | none | `eeb2136` | — | [#15](https://github.com/flyboy-byte/ScanRuler/pull/15) |
-| [harness.verification.levels](plan/units/harness.verification.levels.json) | specified | none | — | — | [#76](https://github.com/flyboy-byte/ScanRuler/pull/76) |
+| [harness.verification.levels](plan/units/harness.verification.levels.json) | implemented | fixed-corpus | `7402ddf` | `7402ddf` | [#76](https://github.com/flyboy-byte/ScanRuler/pull/76) |
 | [harness.wasm.files](plan/units/harness.wasm.files.json) | implemented | none | `dbe8fcc` | — | [#37](https://github.com/flyboy-byte/ScanRuler/pull/37) |
 | [harness.wasm.obj](plan/units/harness.wasm.obj.json) | implemented | none | `239012c` | — | [#34](https://github.com/flyboy-byte/ScanRuler/pull/34) |
 | [harness.wasm.ply](plan/units/harness.wasm.ply.json) | implemented | none | `8bc7363` | — | [#29](https://github.com/flyboy-byte/ScanRuler/pull/29) |
