@@ -5506,6 +5506,114 @@
       ]
     },
     {
+      "id": "engine.session.settle.run",
+      "parent": "engine.session.contract",
+      "title": "Port deferred-work settling over stable callbacks",
+      "gate": "G2",
+      "status": "implemented",
+      "depends_on": [
+        "engine.session.registry"
+      ],
+      "scope": "Complete settle over a stable ordered typed callback slice, with exact name/readOnly arguments, synchronous error suppression, null when no waits and concurrent all-waits completion with rejected work suppressed. Registration/live Set mutation is a separate owning unit.",
+      "acceptance": [
+        "Full original registry graph compares invocation order, argument values, synchronous throws, no-work and mixed successful/rejected pending completions.",
+        "Borrowed opaque native errors, bounded metadata and explicit executor ownership; all earlier native cases remain required."
+      ],
+      "owner": "Codex",
+      "branch": "codex/settle-run",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/66",
+      "implemented_commit": "96914060dad2aa8d75a8d8e2d553dfa1cef6e44d",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/registry.ts"
+      ],
+      "symbols": [
+        "settle"
+      ],
+      "rust_paths": [
+        "rust/crates/port-engine/src/settle.rs",
+        "rust/crates/port-engine/tests/settle_run.rs"
+      ],
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-02-settle.json.gz",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "case-000",
+            "case-001",
+            "case-002",
+            "case-003",
+            "case-004",
+            "case-005",
+            "case-006",
+            "case-007",
+            "case-008",
+            "case-009",
+            "case-010",
+            "case-011",
+            "case-012",
+            "case-013",
+            "case-014",
+            "case-015",
+            "case-016",
+            "case-017",
+            "case-018",
+            "case-019",
+            "case-020",
+            "case-021",
+            "case-022",
+            "case-023",
+            "case-024",
+            "case-025",
+            "case-026",
+            "case-027",
+            "case-028",
+            "case-029",
+            "case-030",
+            "case-031",
+            "case-032",
+            "case-033",
+            "case-034",
+            "case-035",
+            "case-036",
+            "case-037",
+            "case-038",
+            "case-039",
+            "case-040",
+            "case-041",
+            "case-042",
+            "case-043",
+            "case-044",
+            "case-045",
+            "case-046",
+            "case-047",
+            "case-048",
+            "case-049",
+            "case-050",
+            "case-051",
+            "case-052",
+            "case-053",
+            "case-054",
+            "case-055",
+            "case-056",
+            "case-057",
+            "case-058",
+            "case-059",
+            "case-060",
+            "case-061",
+            "case-062",
+            "case-063"
+          ],
+          "candidate_sha": "96914060dad2aa8d75a8d8e2d553dfa1cef6e44d"
+        }
+      ],
+      "open_items": [
+        "registerSettle function identity/live Set mutation is a separate continuation; stable callbacks cannot mutate registration during a run.",
+        "The executor must retain/poll all started work. Full registry execution, platform promise turns and cancellation/termination integration remain separate."
+      ]
+    },
+    {
       "id": "fit.curvature.gate",
       "parent": "P07",
       "title": "Port curved-fit versus plane discrimination and residual RMS",

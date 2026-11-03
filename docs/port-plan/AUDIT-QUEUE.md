@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-02: [#66](https://github.com/flyboy-byte/ScanRuler/pull/66) follows #59 and ports only the stable-callback settlement body with 64 full pinned concurrent-wait traces. Registration/live Set mutation and executor ownership remain explicit in oracle/SETTLE-RUN.md.
+
 2026-11-02: [#59](https://github.com/flyboy-byte/ScanRuler/pull/59) follows #57 with command deadline reaction ordering at the owned clock/body boundary:291 cases /2037 observations, all earlier288 retained; roster34/3551. Physical timers, executor and command integration remain open.
 
 2026-11-02: [#57](https://github.com/flyboy-byte/ScanRuler/pull/57) follows #55 with the import queue class over owned futures, 67 source schedules /755 observations; roster33/3260. Prior #52–#54 were owner-merged. Source timing failures remain visible and unchanged; actual runtime/command integration stays required.
