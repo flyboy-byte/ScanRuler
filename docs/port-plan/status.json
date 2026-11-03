@@ -2,10 +2,10 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 2,
+    "baseline-captured": 3,
     "implemented": 47,
     "planned": 48,
-    "specified": 2
+    "specified": 1
   },
   "native_suites": 34,
   "native_case_identities_including_refusals": 3587,
@@ -465,9 +465,9 @@
     },
     {
       "id": "engine.session.error.normalize",
-      "status": "specified",
+      "status": "baseline-captured",
       "parent": "engine.session.contract",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/65",
       "tested_sha": null,
       "open_items": [
         "General native String conversion, actual clocks and complete registry execution remain separate.",
