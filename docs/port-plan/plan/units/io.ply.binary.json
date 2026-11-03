@@ -228,5 +228,12 @@
     "2026-11-02: complete source binary body and full read_ply dispatcher implemented, preserving both endian paths, 16 aliases, fixed/list records, two-pass/replacing faces, unknown-offset behavior and all source progress branches.",
     "Initial 166 preregistered source inputs retained; two additive original-captured double-IEEE cases give 168 comparisons, 152 complete outputs /16 refusals.",
     "No formulas, seeds, tolerances or original source changed; full existing ASCII cases retained and strengthened for the full dispatcher."
+  ],
+  "verification": "fuzzed",
+  "verification_evidence": [
+    {
+      "kind": "fuzz-campaign",
+      "location": "evidence/verification-fuzz-2026-11-03/report.json"
+    }
   ]
 }

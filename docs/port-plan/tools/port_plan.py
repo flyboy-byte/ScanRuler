@@ -5,14 +5,16 @@ import copy
 import json
 import re
 from pathlib import Path
+import verification
 
 
-def validate(metadata, units):
+def validate(metadata, units, root=None):
     errors = []
     by_id = {}
     statuses = set(metadata.get("statuses", []))
     for unit in units:
         key = unit.get("id", "")
+        errors.extend(verification.validate(unit, metadata.get("baseline"), root))
         if not re.fullmatch(r"(?:P\d{2}|[a-z][a-z0-9_]*(?:\.[a-z0-9_]+)+)", key):
             errors.append(f"invalid unit ID {key!r}")
         if key in by_id:
@@ -71,7 +73,7 @@ def validate(metadata, units):
 
 def selftest():
     meta = {"baseline": "a" * 40, "statuses": ["planned", "compared", "accepted"]}
-    base = {"id": "P00", "title": "Baseline", "scope": "Prepare reference", "acceptance": ["Captured"], "status": "planned", "depends_on": [], "reference_sha": meta["baseline"], "evidence": [], "implemented_commit": None, "open_items": []}
+    base = {"id": "P00", "title": "Baseline", "scope": "Prepare reference", "acceptance": ["Captured"], "status": "planned", "depends_on": [], "reference_sha": meta["baseline"], "evidence": [], "implemented_commit": None, "open_items": [], "verification": "none"}
     if validate(meta, [base]):
         raise SystemExit("selftest: valid planned unit rejected")
     mutants = []
@@ -82,8 +84,14 @@ def selftest():
     mutants += [changed(depends_on=["P99"]), changed(depends_on=["P00"]), changed(status="accepted"), changed(reference_sha="b" * 40), changed(title=""), [base, copy.deepcopy(base)]]
     proof = {"kind": "differential", "location": "artifact://example", "candidate_sha": "c" * 40, "reference_sha": meta["baseline"], "case_ids": ["plane.exact.1"]}
     good = changed(status="accepted", implemented_commit="c" * 40, evidence=[proof])
-    if validate(meta, good):
-        raise SystemExit("selftest: valid evidence metadata rejected")
+    good[0]["verification"] = "fixed-corpus"
+    if not validate(meta, good):
+        raise SystemExit("selftest: accepted without reviewed coverage escaped")
+    mutants.append(copy.deepcopy(good))
+    supported = copy.deepcopy(good)
+    supported[0]["status"] = "compared"
+    if validate(meta, supported):
+        raise SystemExit("selftest: valid fixed-corpus metadata rejected")
     bad = copy.deepcopy(good)
     bad[0]["open_items"] = ["missing success path"]
     mutants.append(bad)
@@ -93,6 +101,7 @@ def selftest():
     bad = copy.deepcopy(good)
     bad[0]["evidence"][0]["case_ids"] = []
     mutants.append(bad)
+    mutants += [changed(verification="compiled"), changed(verification="fuzzed"), changed(verification="coverage-reviewed"), changed(verification=None)]
     for index, mutant in enumerate(mutants):
         if not validate(meta, mutant):
             raise SystemExit(f"selftest: invalid plan mutation {index} escaped")
@@ -117,7 +126,7 @@ def main():
         if path.stem != unit.get("id"):
             raise SystemExit(f"Unit filename/ID mismatch: {path}")
         units.append(unit)
-    errors = validate(metadata, units)
+    errors = validate(metadata, units, args.root)
     if errors:
         raise SystemExit("Plan invalid:\n" + "\n".join(errors))
     if args.command == "check-generated" and metadata.get("tasks") != units:

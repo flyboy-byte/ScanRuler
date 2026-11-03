@@ -121,5 +121,12 @@
     "2026-11-02: 60 exact complete original/native parser comparisons (46 outputs / 14 source refusals), seeds 1/7/99/1039; no input/seed/tolerance reductions.",
     "Existing source-compatible UTF-8/whitespace/parseFloat helpers reused from STL with visibility-only changes; no numerical formulas altered.",
     "2026-11-02: shared header factored under io.ply.binary; all 60 existing cases now compare full dispatcher values and progress as well as the ASCII entrypoint. Original implementation evidence remains immutable."
+  ],
+  "verification": "fuzzed",
+  "verification_evidence": [
+    {
+      "kind": "fuzz-campaign",
+      "location": "evidence/verification-fuzz-2026-11-03/report.json"
+    }
   ]
 }

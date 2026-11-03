@@ -233,5 +233,6 @@
   "open_items": [
     "Complete historyBlocked family guards and global restoration remain required.",
     "Actual family editors, dynamic participant lifecycle and browser runtime remain integration work."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

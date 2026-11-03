@@ -49,7 +49,8 @@
         "Decision: no rustup (plan/decisions/2026-10-31-no-rustup.md); Node is oracle-only (plan/decisions/2026-10-31-node-is-oracle-only.md).",
         "Checkpoint 2026-11-01: hosted Node 22/Chrome versions and frozen lock hashes now exist in headless/browser catalog evidence. Local Node remains 20.20.2; hosted Rust stable is not immutable-version-pinned. Parent stays planned pending consolidated reproducibility/skip/fixture evidence."
       ],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P01",
@@ -82,7 +83,8 @@
       "resolved_items": [
         "Open: npm run build:engine (headless) not run; per-skip reasons not individually verified; browser/OS/CPU details and lockfile hashes not recorded; raw log not archived.",
         "2026-11-01: original npm run build:engine exits 0 on Node 22.23.4 in separate clean frozen checkout, run 41352758112; evidence/headless-2026-11-01 retains logs, lock hashes and runtime context. This does not retroactively fill the original full-suite run environment."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "P02",
@@ -109,7 +111,8 @@
       "open_items": [
         "Checkpoint 2026-11-01: catalog.headless and catalog.browser are baseline-captured with matching 72 core / 140 all-plugin registered schemas. Nested feature variants and complete operation execution coverage remain open; parent stays planned."
       ],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P03",
@@ -542,7 +545,8 @@
       "open_items": [
         "Checkpoint 2026-11-01: 635 declared native case identities and per-unit raw/hash evidence exist. Whole-corpus license/provenance/input/observable/seed schema and broader fixture map remain incomplete."
       ],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P04",
@@ -568,7 +572,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P05",
@@ -596,7 +601,8 @@
       "open_items": [
         "Checkpoint 2026-11-01: native/Wasm-compile workspace and bounded geometry libraries exist; engine.session.contract owns remaining session/error/revision/history interfaces. Native helper tests do not complete P05."
       ],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P06",
@@ -650,7 +656,8 @@
         "Partial 2026-11-01 at 77683bf: io.stl.dispatch implements full binary/ASCII dispatch with 82 native source comparisons. Welding/indexing is the next bounded unit (io.mesh.weld); session integration and browser-Wasm runtime comparisons remain open.",
         "Integration checkpoint 2026-11-01: geometry.mesh.graph now implements complete buildMeshGraph over bounded typed input, composing implemented weld/filter, adjacency, normals/orientation and extents. Earlier partial notes are historical. Parent remains planned: browser-Wasm runtime, source/render mapping, spatial queries and parser/session command integration remain open."
       ],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P07",
@@ -682,7 +689,8 @@
       "open_items": [
         "Checkpoint 2026-11-01: TLS/clipped/robust numerical planes exist. fitPlaneOnSelection still needs normal voting, patch extents, oriented extremes and full element fields; fit.plane.selection owns that bounded continuation. Seeded/other-shape paths remain open."
       ],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P08",
@@ -779,7 +787,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P09",
@@ -805,7 +814,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P10",
@@ -853,7 +863,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P11",
@@ -884,7 +895,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P12",
@@ -922,7 +934,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P13",
@@ -950,7 +963,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P14",
@@ -981,7 +995,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P15",
@@ -1033,7 +1048,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P16",
@@ -1068,7 +1084,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P17",
@@ -1113,7 +1130,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P18",
@@ -1211,7 +1229,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P19",
@@ -1253,7 +1272,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P20",
@@ -1286,7 +1306,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P21",
@@ -1471,7 +1492,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P22",
@@ -1513,7 +1535,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P23",
@@ -1601,7 +1624,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P24",
@@ -1662,7 +1686,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P25",
@@ -1798,7 +1823,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P26",
@@ -2020,7 +2046,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P27",
@@ -2046,7 +2073,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P28",
@@ -2076,7 +2104,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P29",
@@ -2106,7 +2135,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P30",
@@ -2131,7 +2161,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P31",
@@ -2157,7 +2188,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P32",
@@ -2182,7 +2214,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P33",
@@ -2207,7 +2240,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P34",
@@ -2234,7 +2268,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P35",
@@ -2263,7 +2298,8 @@
       "rust_paths": [],
       "soft_depends_on": [],
       "open_items": [],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P36",
@@ -2293,7 +2329,8 @@
       "open_items": [
         "Checkpoint 2026-11-01: seventeen required native suites and current-artifact inventory exist. General versioned paired protocol and actual browser-Wasm execution remain open; harness.wasm.runtime scopes the first real runtime comparison."
       ],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P37",
@@ -2320,7 +2357,8 @@
       "open_items": [
         "Checkpoint 2026-11-01: discovery/case/file freshness checks reject omissions within a current run. They do not compare against the exact target base or freeze all input/seed/observable coverage; this workstream is unimplemented."
       ],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P38",
@@ -2350,7 +2388,8 @@
       "open_items": [
         "Checkpoint 2026-11-01: CI integration PR22 separates Rust fast/native/catalog and original tests/MCP/browser lanes, preserves strict aggregate checks and main-run evidence. P36/P37/browser-Wasm and full acceptance gates remain incomplete."
       ],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "P39",
@@ -2379,7 +2418,8 @@
         "Partial 2026-11-01: refreshed stale handoff/CI/contributor guidance against the existing scaffold and hosted evidence; see plan/findings/2026-11-01-handoff-scaffold-drift.md. No lifecycle promotion: Rust checker replacement, paired harness and acceptance remain open.",
         "Checkpoint 2026-11-01: generated backlog/status freshness and evidence-backed docs are enforced by temporary Python tools. Rust replacement and general accepted-unit reporting remain open; no lifecycle promotion."
       ],
-      "claim_pr": null
+      "claim_pr": null,
+      "verification": "none"
     },
     {
       "id": "baseline.reproducibility",
@@ -2433,7 +2473,8 @@
       "resolved_items": [
         "2026-11-02: full original checks observed on Node 22 with unchanged source; MCP/build/browser/boundaries pass, unit failures preserved.",
         "2026-11-02: 22 source guard sites inventoried, every individual exclusion explained; six source fixture recipes reproduce identical bytes twice with provenance/hashes."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "catalog.browser",
@@ -2487,7 +2528,8 @@
       "open_items": [
         "Production-bundle equivalence, broader MCP command execution and nested feature variants remain open.",
         "G0/P00/P01 prerequisites and Rust coordinator/purity endpoint remain incomplete."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "catalog.headless",
@@ -2541,7 +2583,8 @@
         "Browser core/all-plugin runtime catalogs and nested feature variants remain open under P02; these snapshots are headless-only.",
         "Static 140 command names reconcile exactly with all-plugin headless registry; browser contexts and descriptor differences still require review.",
         "P00/P01 full/local baseline and whole-port Rust coordinator/tooling migration remain incomplete."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "ci.integration",
@@ -2584,7 +2627,8 @@
       "open_items": [
         "Hosted new lane outcomes pending at the local evidence checkpoint; current PR checks must be inspected.",
         "Browser-Wasm runtime, exact-base numerical ratchet and Rust replacement for Python bootstrap remain open."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "engine.error.envelope",
@@ -2698,7 +2742,8 @@
       "resolved_items": [
         "2026-11-02: all twelve original codes and 52 fixed messages compare code/name/message/display/JSON bytes exactly; seeds 1/7/99/1039 unchanged.",
         "Owned UTF16 messages preserve lone surrogates and exact JSON escaping; host limits/fallible buffers are explicit and do not silently truncate or replace wire text."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.measurement.slice",
@@ -2737,7 +2782,8 @@
       "evidence": [],
       "open_items": [
         "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "engine.schema.validate",
@@ -3499,7 +3545,8 @@
         "2026-11-02: dependency-free owned UTF16 Value preserves undefined/null/bytes/nonfinite/signed-zero and ordinary inherited-field behavior.",
         "All 697 complete source states match exactly, including minimal/full success and null refusal for every one of 140 core/plugin command schemas; original 659 observations retained.",
         "Original oneOf sequential mutation, names/id messaging, UTF16 schema size/depth and original empty-oneOf fault are compared; deliberate wrong error line and missing tail rejected."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.activity.guard",
@@ -3737,7 +3784,8 @@
       "open_items": [
         "Activity running/progress state, plugin busy/watch/stop functions and full registry execution remain separate.",
         "Owned guard objects exclude mutable JS busy-property getters/replacement and arbitrary prototype mutation."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.activity.stores",
@@ -3860,7 +3908,8 @@
       "open_items": [
         "watchSession subscriptions, plugin busy store registration and full engine session wiring remain separate.",
         "Readonly owned arrays exclude arbitrary mutable JS array/getter/prototype behavior; actual browser runtime remains required."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.activity.watch",
@@ -4048,7 +4097,8 @@
       "open_items": [
         "Native plugin busy registry must supply its current ordered store-array snapshot; actual plugin registration and full engine wiring remain separate.",
         "Owned readonly store arrays and typed callbacks exclude arbitrary JS property/prototype mutation. Actual browser watch runtime remains required."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.clock.utc",
@@ -6004,7 +6054,8 @@
       "open_items": [
         "Actual OS current-time acquisition, browser clock wiring and complete registry execution remain separate.",
         "Source native Date semantics are captured under pinned Node22; actual Chrome-Wasm timestamp corpus execution remains required."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.command.deadline",
@@ -6348,7 +6399,8 @@
         "Actual native/browser timer backend policy, executor and command integration remain required.",
         "The owner must retain body work after a caller timeout; timeout does not authorize dropping partial effects or adding a new session-epoch policy.",
         "Typed clock registration/clear are trusted and serial; host timer resource failures and arbitrary Promise subclasses remain outside this admitted boundary."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.contract",
@@ -6390,7 +6442,8 @@
         "Bounded registry, history recording/local/guards/restore/core capture-apply, import queue and deadline reactions have source traces. Typed family integration, error normalization, executor/worker lifecycle and real command traces remain required; no session acceptance claim.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "engine.session.error.normalize",
@@ -6741,7 +6794,8 @@
       "open_items": [
         "General native String conversion, actual clocks and complete registry execution remain separate.",
         "Owned message boundaries exclude mutable/reentrant Error.message getters and external prototype mutation."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.history.core",
@@ -6890,7 +6944,8 @@
         "Real typed family-state integration, scan swapping/remeasurement and actual session commands remain required.",
         "Stable owned data and non-prototype participant keys exclude arbitrary executable JS/prototype behavior.",
         "Adapter-only exports expose private source bodies without changing their implementation."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.history.guards",
@@ -7151,7 +7206,8 @@
       "open_items": [
         "Global restoration, full family editor/state integration and actual browser runtime remain required.",
         "Stable typed snapshots and callbacks exclude executable JS getters and reentrant participant-list mutation."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.history.local",
@@ -7388,7 +7444,8 @@
       "open_items": [
         "Complete historyBlocked family guards and global restoration remain required.",
         "Actual family editors, dynamic participant lifecycle and browser runtime remain integration work."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.history.record",
@@ -7562,7 +7619,8 @@
         "Native source comparisons only; wasm32 compile is not actual browser history execution.",
         "Typed stable section data and pure captures are the owned boundary; dynamic JS getters, prototypes and reentrant capture are outside this slice.",
         "Session-level asset budgeting and full allocation-failure isolation remain integration work."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.history.restore",
@@ -7827,7 +7885,8 @@
         "Concrete measure/flat/deviation/thickness capture and apply, remeasurement and scan/source restoration remain required.",
         "Typed runRestore owns a single-use job; arbitrary reentrant JS and concurrent/multiple job invocation are not represented.",
         "Import queue, command integration and actual browser runtime remain open."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.import.queue",
@@ -7945,7 +8004,8 @@
         "Native/Wasm executor and concrete restore/import integration remain required.",
         "Abandoned Rust futures are host failures, not a source cancellation feature; engine termination policy remains required.",
         "Typed callback errors represent source exceptions; arbitrary Rust panic/OOM isolation is not exhaustive."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.registry",
@@ -8359,7 +8419,8 @@
         "2026-11-02: complete registration/catalog/headless functions and start-admission prefix compare350 full operation scenarios on independent original/Rust inputs.",
         "Nontransactional failure, repeat cleanup/reregistration, exact metadata order/presence, body target and caller coercion on refused input preserved.",
         "Complete real original registry/history/activity/schema graph is bundled from the pin; no reached behavioral stubs, new dependencies or original source changes."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.settle.registry",
@@ -8521,7 +8582,8 @@
       "open_items": [
         "Actual executor must retain/drain started work; browser promise turns, full registry command wiring and runtime cancellation/termination remain separate.",
         "Owned immutable metadata excludes arbitrary JS getters/prototype replacement; ordinary Rust Arc/Rc allocation is not process-wide OOM isolation."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.settle.run",
@@ -8629,7 +8691,8 @@
       "open_items": [
         "registerSettle function identity/live Set mutation is a separate continuation; stable callbacks cannot mutate registration during a run.",
         "The executor must retain/poll all started work. Full registry execution, platform promise turns and cancellation/termination integration remain separate."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.stale.clock",
@@ -8740,7 +8803,8 @@
       "open_items": [
         "UTC ISO formatting and the lazy millisecond adapter are implemented by engine.session.clock.utc; actual OS clock acquisition, browser preload listener and full registry execution remain separate.",
         "Clock sampling is synchronous and non-reentrant; executable JS Date constructor reentrancy is outside this boundary."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.stale.detect",
@@ -9093,7 +9157,8 @@
       "open_items": [
         "Page stale timestamp, staleError construction and full asCommandError normalization are separate continuations.",
         "Error messages are owned UTF16 text; arbitrary mutable JS message coercion/getters and browser preload listener runtime are not represented."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.session.stale.error",
@@ -9260,7 +9325,8 @@
       "open_items": [
         "Arbitrary JS String coercion is supplied by the typed host boundary; native conversion of primitive/array/object thrown values remains separate.",
         "Actual platform clock conversion, browser preload hook and registry asCommandError integration remain required."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "fit.curvature.gate",
@@ -9393,7 +9459,8 @@
         "Invalid Rust packed-shape/selection errors precede callbacks; arbitrary JS host objects/callback ABI are not exposed.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "fit.linalg.solve",
@@ -9466,7 +9533,8 @@
         "No fit caller wired; Jacobi eigen decomposition and fixed-selection plane fit remain separate units.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "fit.plane.clip",
@@ -9573,7 +9641,8 @@
             }
           ]
         }
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "fit.plane.ransac",
@@ -9678,7 +9747,8 @@
         "Typed Rust options require nonnegative integer work counts and explicit budgets; arbitrary JavaScript callback/primitive ABI is not exposed.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "fit.plane.selection",
@@ -9791,7 +9861,8 @@
         "Runtime checkpoint 2026-11-01: existing registered cases execute in actual Chrome via harness.wasm.runtime; see evidence/browser-wasm-2026-11-01/report.json at candidate 00fd1a69af98c7bacc91da747483ac0ccbfb70c6. No lifecycle acceptance promotion.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "fit.plane.tls",
@@ -9893,7 +9964,8 @@
             }
           ]
         }
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "geometry.adjacency",
@@ -9999,7 +10071,8 @@
         "Rust rejects budgets/offset counts above u32 capacity; it does not emulate original malformed/out-of-range typed-array writes or oversized wrapping graphs.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "geometry.bounds",
@@ -10063,7 +10136,8 @@
         "No broad centroid, scene or engine integration is claimed.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "geometry.centroid",
@@ -10139,7 +10213,8 @@
         "Incomplete triangle indices are explicit Rust input-domain errors; partial JS triangle tails are not compared.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "geometry.closed.shells",
@@ -10256,7 +10331,8 @@
         "Rust typed u32 indices and bounded vertex/triangle storage do not expose arbitrary JS numeric objects or emulate invalid/cyclic host behavior.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "geometry.components",
@@ -10358,7 +10434,8 @@
         "Factory uses a conservative i32::MAX vertex cap plus caller budget. Standalone u32 parent chains are validated before source path halving.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "geometry.mesh.graph",
@@ -10465,7 +10542,8 @@
         "Runtime checkpoint 2026-11-01: existing registered cases execute in actual Chrome via harness.wasm.runtime; see evidence/browser-wasm-2026-11-01/report.json at candidate 00fd1a69af98c7bacc91da747483ac0ccbfb70c6. No lifecycle acceptance promotion.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "geometry.normals.compute",
@@ -10529,7 +10607,8 @@
       ],
       "resolved_items": [
         "2026-11-01: orientation and minimal volume/extent dependencies implemented separately as geometry.normals.orient; no browser-Wasm acceptance implied."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "geometry.normals.orient",
@@ -10633,7 +10712,8 @@
             }
           ]
         }
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "geometry.selection",
@@ -10746,7 +10826,8 @@
         "Typed Rust IDs/maps expose u32/i32 arrays, not arbitrary JavaScript numeric objects.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "harness.coverage.original",
@@ -10799,7 +10880,8 @@
       "resolved_items": [
         "2026-11-02: no added dependencies; use built-in Node22 inspector V8 detailed coverage plus pinned TypeScript source maps.",
         "1422 inputs from ten suites replay complete original outputs/status/progress unchanged; eight full source modules map and raw ranges/maps are archived."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "harness.coverage.rust",
@@ -10849,7 +10931,8 @@
         "2026-11-02: installed Arch Rust/LLVM profile merge/export works without rustup or new packages.",
         "All26 native original/Rust suites /2015 cases pass at instrumented e2c3d0010700899a47c6ec6c454d5cb3299b1141; exact-SHA raw inventory complete, ordinary tests excluded from execution.",
         "Reporter be43ab8 preserves398 explicit zero-count DA lines, source/owning-unit identities and every raw coverage discrepancy rather than inventing a percent gate."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "harness.fuzz.minimize",
@@ -10884,7 +10967,8 @@
       "acceptance": [
         "Deterministic bounded reduction preserves success/refusal and all differing observation categories; limits/timeouts never preserve a mismatch.",
         "Real PLY and STL sabotage selfchecks shrink a reproducer and retain independent complete outcomes; ordinary tests cover budget and predicate preservation."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "harness.fuzz.standing",
@@ -10933,7 +11017,8 @@
         "Reproducers are not minimized.",
         "Scheduled hosted job not added (touches .github; one PR at a time).",
         "Host-limit refusals (H1 to H3) and original timeouts are counted in their own classes and remain an owner decision."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "harness.oracle.gate",
@@ -10970,7 +11055,8 @@
       "open_items": [
         "General P36 independent adapter protocol, browser-Wasm execution, accepted-unit exact-base ratchet and G0/P05 remain open.",
         "Discovery guard freezes entrypoint names, not all case identities; individual suites enforce their own case/value contracts."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "harness.verification.levels",
@@ -10988,21 +11074,19 @@
       "scope": "Add a verification field to unit files with ordered levels (none, fixed-corpus, fuzzed, coverage-reviewed) and require the top level for accepted. The status table and next_task.py show the level.",
       "acceptance": [
         "Plan checker rejects accepted without the top level and rejects a level its evidence does not support; selftest includes the mutations.",
-        "Existing implemented units are labelled honestly from their current evidence (PLY and STL: fuzzed after PR #33; others fixed-corpus)."
+        "Existing implemented units are labelled from qualifying evidence: four PLY/STL parser child units are fuzzed with retained exact-candidate campaigns; native differential units are at least fixed-corpus. Tooling without a qualifying retained run stays none."
       ],
       "owner": "Codex",
       "branch": "codex/verification-levels",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/76",
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [],
       "symbols": [],
       "rust_paths": [],
       "evidence": [],
-      "open_items": [
-        "Single owner of verification schema/status migration in this PR; all existing evidence and lifecycle states remain authoritative.",
-        "Fresh structured fuzz evidence is needed where historical prose lacks an exact tested candidate; coverage-reviewed must not be inferred from raw coverage counts."
-      ]
+      "open_items": [],
+      "verification": "none"
     },
     {
       "id": "harness.wasm.files",
@@ -11061,7 +11145,8 @@
         "2026-11-02: all651 independent source/native/Chrome comparisons pass (569 complete outputs/helper states,82 source refusals), preserving all earlier564 cases and budgets.",
         "All87 file-state cases compare exactly; full raw proof, historical v2/v3 replay and strict mutation/shape/retention checks are committed.",
         "24 bounded protocol checks pass; no module imports/page errors. Clean exact-candidate native24-suite inventory and module/browser hashes match."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "harness.wasm.obj",
@@ -11120,7 +11205,8 @@
         "2026-11-02: actual Chrome passes all 564 independent source/native/Wasm cases: 482 complete outputs/helper states and 82 source refusals. All old 341 cases and budgets retained.",
         "All 144 helper and 79 parser browser states match exactly, including full float32/color bytes, ordered texture notes and progress/refusals. Two full-size OBJ workloads remain native-only.",
         "18 bounded protocol checks pass; zero module imports/page errors. Complete hashed raw proof replays independently; historical v2 proof remains immutable and cannot satisfy live v3."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "harness.wasm.ply",
@@ -11176,7 +11262,8 @@
         "2026-11-02: actual Chrome executes all 341 source/native/Wasm comparisons (287 outputs /54 source refusals), preserving all original 114 browser cases and their budgets.",
         "All PLY payload/progress/error bytes, including IEEE bits, match exactly; million-face progress case passes in browser.",
         "13 protocol checks pass; module imports and browser page errors are empty; complete raw evidence committed as hashed deterministic gzip."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "harness.wasm.runtime",
@@ -11338,7 +11425,8 @@
         "Actual Chrome execution is verified for the 114 named TLS/mesh-graph/marked-plane inputs only; wider platforms/adversarial corpora and other numerical units remain open.",
         "Private linker-export test ABI is not a stable production engine/UI interface; commands/history/projects/jobs remain unimplemented.",
         "Generic P36 report protocol, P37 exact-base numerical ratchet, P35 whole-product purity and P39 Rust tooling replacement remain open."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "io.inflate",
@@ -11386,7 +11474,8 @@
         "Per-entry limits only; io.threemf adds the original's own limits.",
         "Chrome execution of fflate not compared (Node 22 only).",
         "Decision: plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "io.mesh.weld",
@@ -11454,7 +11543,8 @@
         "Host rejects incomplete triples and oversized table capacity explicitly; those resource/domain guards are not original successful input parity.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "io.obj.companions.drop",
@@ -11549,7 +11639,8 @@
       "resolved_items": [
         "2026-11-02: all40 original/native full DRP1 file identities/errors/callback traces match exactly (24 successful results /16 opaque platform failures).",
         "Complete source batching/fallback/order and fileOf/childrenOf errors preserved; pending-once async callbacks and every host budget tested separately."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "io.obj.companions.files",
@@ -11701,7 +11792,8 @@
         "2026-11-02: all 87 fixed full original/Rust observations match exactly, including state after every operation, identity, ordered names/data and registry constants.",
         "Resource/invalid-ID guards preserve state; snapshots are independent copies; changed/missing full-result canaries reject divergence.",
         "2026-11-02: all87 complete file states also pass in actual Chrome; see harness.wasm.files and evidence/browser-wasm-files-2026-11-02/manifest.json."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "io.obj.companions.image_audit",
@@ -11750,7 +11842,8 @@
         "2026-11-02: exact 22-package PNG/JPEG/BMP/WebP candidate graph, shipped licenses, native/Wasm builds and no-import link proof reviewed; no application dependency adopted.",
         "56 independent image inputs and full original Chrome pixels captured before the candidate; fresh source recapture matches all 56 states.",
         "Candidate trial complete:8 exact images,28 pixel mismatches,18 agreed omissions,2 presence mismatches. Direct raw decoder adoption rejected; all counterexamples and mutation-sensitive audit tests retained."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "io.obj.companions.images",
@@ -11790,7 +11883,8 @@
         "Complete the ordered MTL/image continuation, strict resource limits, actual Wasm pixels and broader platform/corpus acceptance.",
         "Decoders are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md: PNG on io.inflate, then a libjpeg-faithful JPEG decoder."
       ],
-      "resolved_items": []
+      "resolved_items": [],
+      "verification": "none"
     },
     {
       "parent": "io.obj",
@@ -11832,7 +11926,8 @@
         "Complete file-selection/identity/byte-preservation slice tracked in io.obj.companions.files; drop traversal and image decoding remain separate continuations.",
         "Image candidate audit under io.obj.companions.image_audit is complete, but raw decoder pixel compatibility failed and no dependency is adopted. Browser canvas/PNG/JPEG/BMP/WebP semantics, malformed omission and 3MF packed images remain open; parent stays planned."
       ],
-      "resolved_items": []
+      "resolved_items": [],
+      "verification": "none"
     },
     {
       "id": "io.obj",
@@ -11867,7 +11962,8 @@
       "open_items": [
         "Texture image decoding needs a recorded pure-Rust dependency decision (P35 purity audit).",
         "2026-11-02: bounded continuations tracked as io.obj.texture, io.obj.mesh and io.obj.companions; parent remains planned until full import acceptance."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "parent": "io.obj",
@@ -12008,7 +12104,8 @@
         "2026-11-02: full parseOBJ body and complete decoded texture continuation ported with exact 81 independent source cases (53 outputs /28 refusals), seeds retained.",
         "Real million-line progress and short-UTF16-line skip behavior compare exactly; huge forward indices use sparse first-UV state without dense allocation by index.",
         "2026-11-02: harness.wasm.obj compares 79 exact complete states in actual Chrome; see evidence/browser-wasm-obj-2026-11-02/manifest.json. Both full-size OBJ progress workloads remain native-only."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "parent": "io.obj",
@@ -12219,7 +12316,8 @@
         "2026-11-02: all five original helper bodies implemented and 144 complete string/map/note/color/buffer states compare exactly; original observations precede implementation.",
         "Seeds 1/7/99/1039 unchanged; no tolerance, color normalization or missing-data fallback invented. No PLY implementation file changed.",
         "2026-11-02: harness.wasm.obj compares 144 exact complete states in actual Chrome; see evidence/browser-wasm-obj-2026-11-02/manifest.json. Both full-size OBJ progress workloads remain native-only."
-      ]
+      ],
+      "verification": "fixed-corpus"
     },
     {
       "id": "io.ply.ascii",
@@ -12344,6 +12442,13 @@
         "2026-11-02: 60 exact complete original/native parser comparisons (46 outputs / 14 source refusals), seeds 1/7/99/1039; no input/seed/tolerance reductions.",
         "Existing source-compatible UTF-8/whitespace/parseFloat helpers reused from STL with visibility-only changes; no numerical formulas altered.",
         "2026-11-02: shared header factored under io.ply.binary; all 60 existing cases now compare full dispatcher values and progress as well as the ASCII entrypoint. Original implementation evidence remains immutable."
+      ],
+      "verification": "fuzzed",
+      "verification_evidence": [
+        {
+          "kind": "fuzz-campaign",
+          "location": "evidence/verification-fuzz-2026-11-03/report.json"
+        }
       ]
     },
     {
@@ -12576,6 +12681,13 @@
         "2026-11-02: complete source binary body and full read_ply dispatcher implemented, preserving both endian paths, 16 aliases, fixed/list records, two-pass/replacing faces, unknown-offset behavior and all source progress branches.",
         "Initial 166 preregistered source inputs retained; two additive original-captured double-IEEE cases give 168 comparisons, 152 complete outputs /16 refusals.",
         "No formulas, seeds, tolerances or original source changed; full existing ASCII cases retained and strengthened for the full dispatcher."
+      ],
+      "verification": "fuzzed",
+      "verification_evidence": [
+        {
+          "kind": "fuzz-campaign",
+          "location": "evidence/verification-fuzz-2026-11-03/report.json"
+        }
       ]
     },
     {
@@ -12609,7 +12721,8 @@
       "open_items": [
         "Both source parser bodies and full dispatcher implemented in io.ply.ascii/io.ply.binary, with independent native evidence; this umbrella remains planned for broader native/browser import acceptance.",
         "Real browser-Wasm parsing, public scan/session integration and P03 corpus acceptance remain open."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "io.stl.binary",
@@ -12678,6 +12791,13 @@
         "Dispatcher and ASCII continuation tracked separately as io.stl.dispatch.",
         "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
+      ],
+      "verification": "fuzzed",
+      "verification_evidence": [
+        {
+          "kind": "fuzz-campaign",
+          "location": "evidence/verification-fuzz-2026-11-03/report.json"
+        }
       ]
     },
     {
@@ -12819,6 +12939,13 @@
       "resolved_items": [
         "2026-11-01: complete parseSTL/parseAscii bodies ported, including binary precedence, fallback, ECMAScript whitespace/parseFloat prefix handling and UTF-8 replacement/BOM behavior. No missing dispatcher continuation.",
         "2026-11-01: hosted Rust gate and both native source suites pass on Node 22.23.4 at PR head 458d9d8 (run 41346035132); browser-Wasm runtime remains unverified."
+      ],
+      "verification": "fuzzed",
+      "verification_evidence": [
+        {
+          "kind": "fuzz-campaign",
+          "location": "evidence/verification-fuzz-2026-11-03/report.json"
+        }
       ]
     },
     {
@@ -12852,7 +12979,8 @@
       "evidence": [],
       "open_items": [
         "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate."
-      ]
+      ],
+      "verification": "none"
     },
     {
       "id": "project.measurement.compatibility",
@@ -12888,7 +13016,8 @@
       "evidence": [],
       "open_items": [
         "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
-      ]
+      ],
+      "verification": "none"
     }
   ],
   "goal": {

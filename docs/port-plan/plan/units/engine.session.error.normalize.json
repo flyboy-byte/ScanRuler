@@ -347,5 +347,6 @@
   "open_items": [
     "General native String conversion, actual clocks and complete registry execution remain separate.",
     "Owned message boundaries exclude mutable/reentrant Error.message getters and external prototype mutation."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

@@ -50,5 +50,6 @@
   "resolved_items": [
     "2026-11-02: full original checks observed on Node 22 with unchanged source; MCP/build/browser/boundaries pass, unit failures preserved.",
     "2026-11-02: 22 source guard sites inventoried, every individual exclusion explained; six source fixture recipes reproduce identical bytes twice with provenance/hashes."
-  ]
+  ],
+  "verification": "none"
 }

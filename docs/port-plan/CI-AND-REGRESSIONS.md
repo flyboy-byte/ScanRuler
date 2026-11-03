@@ -21,6 +21,10 @@ Updated 2026-11-02. The frozen original is authoritative. No workflow change in 
 
 `cargo xtask diff`, `diff-ci`, the general paired report protocol and exact-base numerical coverage ratchet **remain unbuilt**. Wider browser-Wasm coverage also remains incomplete. Bounded actual browser execution is implemented in oracle/BROWSER-WASM.md; the remaining planned contracts below are not implemented CI claims. No check here authorizes merging or sets branch protection/repository settings.
 
+## Verification labels
+
+Every canonical unit has a separate `verification` label. Plan/status validation rejects missing labels, unsupported evidence and acceptance below coverage-reviewed. Retained fuzz logs, source hashes and corruption payloads support the four PLY/STL child-unit labels; the checker does not execute campaigns or authenticate reviewers. [VERIFICATION.md](VERIFICATION.md) describes each gate, migration scope and limitations.
+
 ## Native evidence and status
 
 `ci/native-suites.json` maps all required Rust entrypoints to canonical units and raw directories. The reporter verifies the manifest agrees with Rust discovery and all numerical unit inventories. It rejects missing/duplicate suites, stale candidate identity, missing/extra case IDs and absent input/original/Rust files, including compared progress/count sidecars on successful cases. The two STL adapters retain their existing explicitly enumerated refusal/error artifacts; legitimate zero-length values are permitted but missing files are not.

@@ -7,6 +7,11 @@
     "planned": 47,
     "specified": 2
   },
+  "verification_levels": {
+    "fixed-corpus": 40,
+    "fuzzed": 4,
+    "none": 64
+  },
   "native_suites": 44,
   "native_case_identities_including_refusals": 6854,
   "accepted_units": [],
@@ -17,6 +22,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Done 2026-10-31 (no evidence record yet): full checkout at the pinned commit, local branch port/rust-baseline, upstream remote added, Rust workspace scaffold passes cargo xtask ci (native + wasm32 check).",
         "Open: Node 22 for the oracle is not installed (Node 20.20.2 present); record the version used for every baseline run.",
@@ -32,6 +39,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Partial 2026-10-31 (record: evidence/2026-10-31-hosted-ci-baseline.md, run 41243336713 at fabc28e): hosted Node 22 run of the unchanged original is green (371/384 files, 3084 tests, 24 skipped; mcp 123/123; build; e2e:ci). Status stays planned: not a local run, no implemented commit.",
         "Open: reproduce locally once Node 22 is installed (use the .oracle worktree, UPSTREAM-SYNC.md).",
@@ -44,6 +53,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Checkpoint 2026-11-01: catalog.headless and catalog.browser are baseline-captured with matching 72 core / 140 all-plugin registered schemas. Nested feature variants and complete operation execution coverage remain open; parent stays planned."
       ]
@@ -54,6 +65,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Checkpoint 2026-11-01: 635 declared native case identities and per-unit raw/hash evidence exist. Whole-corpus license/provenance/input/observable/seed schema and broader fixture map remain incomplete."
       ]
@@ -64,6 +77,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -72,6 +87,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Checkpoint 2026-11-01: native/Wasm-compile workspace and bounded geometry libraries exist; engine.session.contract owns remaining session/error/revision/history interfaces. Native helper tests do not complete P05."
       ]
@@ -82,6 +99,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Partial 2026-11-01: io.stl.binary implements the parseBinary helper with native bit/progress comparisons; parent remains planned. io.stl.dispatch tracks format detection/ASCII continuation; welding/indexing/session integration remain open.",
         "Partial 2026-11-01 at 77683bf: io.stl.dispatch implements full binary/ASCII dispatch with 82 native source comparisons. Welding/indexing is the next bounded unit (io.mesh.weld); session integration and browser-Wasm runtime comparisons remain open.",
@@ -94,6 +113,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Checkpoint 2026-11-01: TLS/clipped/robust numerical planes exist. fitPlaneOnSelection still needs normal voting, patch extents, oriented extremes and full element fields; fit.plane.selection owns that bounded continuation. Seeded/other-shape paths remain open."
       ]
@@ -104,6 +125,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -112,6 +135,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -120,6 +145,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -128,6 +155,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -136,6 +165,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -144,6 +175,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -152,6 +185,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -160,6 +195,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -168,6 +205,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -176,6 +215,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -184,6 +225,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -192,6 +235,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -200,6 +245,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -208,6 +255,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -216,6 +265,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -224,6 +275,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -232,6 +285,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -240,6 +295,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -248,6 +305,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -256,6 +315,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -264,6 +325,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -272,6 +335,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -280,6 +345,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -288,6 +355,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -296,6 +365,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -304,6 +375,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -312,6 +385,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -320,6 +395,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": []
     },
     {
@@ -328,6 +405,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Checkpoint 2026-11-01: seventeen required native suites and current-artifact inventory exist. General versioned paired protocol and actual browser-Wasm execution remain open; harness.wasm.runtime scopes the first real runtime comparison."
       ]
@@ -338,6 +417,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Checkpoint 2026-11-01: discovery/case/file freshness checks reject omissions within a current run. They do not compare against the exact target base or freeze all input/seed/observable coverage; this workstream is unimplemented."
       ]
@@ -348,6 +429,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Checkpoint 2026-11-01: CI integration PR22 separates Rust fast/native/catalog and original tests/MCP/browser lanes, preserves strict aggregate checks and main-run evidence. P36/P37/browser-Wasm and full acceptance gates remain incomplete."
       ]
@@ -358,6 +441,8 @@
       "parent": null,
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Partial 2026-11-01: refreshed stale handoff/CI/contributor guidance against the existing scaffold and hosted evidence; see plan/findings/2026-11-01-handoff-scaffold-drift.md. No lifecycle promotion: Rust checker replacement, paired harness and acceptance remain open.",
         "Checkpoint 2026-11-01: generated backlog/status freshness and evidence-backed docs are enforced by temporary Python tools. Rust replacement and general accepted-unit reporting remain open; no lifecycle promotion."
@@ -369,6 +454,8 @@
       "parent": "P00",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/26",
       "tested_sha": "0a42dcaf1912e8f24b1c3292be83d2f22fc16e77",
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Complete local original unit run remains red: four failures and one unhandled worker timeout; all raw outcomes retained. Separate hosted main run passes.",
         "Private scans and optional project/benchmark inputs absent; 25 excluded individual entries remain excluded, not passing.",
@@ -383,6 +470,8 @@
       "parent": "P02",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/14",
       "tested_sha": "8f327ee96cebe12d0a5113daadb62f9ee8f3cf59",
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Production-bundle equivalence, broader MCP command execution and nested feature variants remain open.",
         "G0/P00/P01 prerequisites and Rust coordinator/purity endpoint remain incomplete."
@@ -394,6 +483,8 @@
       "parent": "P02",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/13",
       "tested_sha": "8b9084f27f5d0678cf62d1c883c78dc0d13f8fb8",
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Browser core/all-plugin runtime catalogs and nested feature variants remain open under P02; these snapshots are headless-only.",
         "Static 140 command names reconcile exactly with all-plugin headless registry; browser contexts and descriptor differences still require review.",
@@ -406,6 +497,8 @@
       "parent": "P38",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/22",
       "tested_sha": "f43ffae5a4f3d6b1d457ee19fcd20131e0949e12",
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Hosted new lane outcomes pending at the local evidence checkpoint; current PR checks must be inspected.",
         "Browser-Wasm runtime, exact-base numerical ratchet and Rust replacement for Python bootstrap remain open."
@@ -417,6 +510,8 @@
       "parent": "P05",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/30",
       "tested_sha": "f509ae2b667560a9a3532b50df14c149f3b2f562",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "f509ae2b667560a9a3532b50df14c149f3b2f562",
       "open_items": [
         "Actual browser-Wasm envelope execution remains open; compile coverage is not runtime acceptance.",
         "Registry normalization, arbitrary thrown-value/errorMessage coercion, stale-page detection, mutable JS Error/prototype/stack semantics are outside this bounded constructor/toJSON envelope.",
@@ -431,6 +526,8 @@
       "parent": "P08",
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
       ]
@@ -441,6 +538,8 @@
       "parent": "P05",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/42",
       "tested_sha": "d3f99454e8889a1e47e5e50a5f1c51da9d109743",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "d3f99454e8889a1e47e5e50a5f1c51da9d109743",
       "open_items": [
         "Actual browser-Wasm validation runtime remains open; wasm32 compile is not execution.",
         "Session/registry integration, schema registration budget enforcement and input wire decoding remain owned by engine.session.contract; no working command is claimed.",
@@ -456,6 +555,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/70",
       "tested_sha": "c458f7a8e1b8db72c7d54ac4e996cae4e6fb8b9d",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "c458f7a8e1b8db72c7d54ac4e996cae4e6fb8b9d",
       "open_items": [
         "Activity running/progress state, plugin busy/watch/stop functions and full registry execution remain separate.",
         "Owned guard objects exclude mutable JS busy-property getters/replacement and arbitrary prototype mutation."
@@ -467,6 +568,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/71",
       "tested_sha": "97dcd7f6d26250a21b6984c6c309e4d867eac88b",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "97dcd7f6d26250a21b6984c6c309e4d867eac88b",
       "open_items": [
         "watchSession subscriptions, plugin busy store registration and full engine session wiring remain separate.",
         "Readonly owned arrays exclude arbitrary mutable JS array/getter/prototype behavior; actual browser runtime remains required."
@@ -478,6 +581,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/72",
       "tested_sha": "7f2c709ab20a3ad4aa131d7117f3d1665073b11a",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "7f2c709ab20a3ad4aa131d7117f3d1665073b11a",
       "open_items": [
         "Native plugin busy registry must supply its current ordered store-array snapshot; actual plugin registration and full engine wiring remain separate.",
         "Owned readonly store arrays and typed callbacks exclude arbitrary JS property/prototype mutation. Actual browser watch runtime remains required."
@@ -489,6 +594,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/68",
       "tested_sha": "cf0543a3dc0c027eece6566ab8491be20f2308e8",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "cf0543a3dc0c027eece6566ab8491be20f2308e8",
       "open_items": [
         "Actual OS current-time acquisition, browser clock wiring and complete registry execution remain separate.",
         "Source native Date semantics are captured under pinned Node22; actual Chrome-Wasm timestamp corpus execution remains required."
@@ -500,6 +607,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/59",
       "tested_sha": "b3566ac17f9f01ac4273375ea3b6045a8064c427",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "b3566ac17f9f01ac4273375ea3b6045a8064c427",
       "open_items": [
         "Actual native/browser timer backend policy, executor and command integration remain required.",
         "The owner must retain body work after a caller timeout; timeout does not authorize dropping partial effects or adding a new session-epoch policy.",
@@ -512,6 +621,8 @@
       "parent": "P05",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/45",
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Spec drafted in SESSION-CONTRACT.md from registry, state, types, historyStore, activity, schema, stalePage, host.sessionBusy and the worker files; still to read: stateSections.ts, agentLink.ts, rest of host.ts.",
         "Bounded registry, history recording/local/guards/restore/core capture-apply, import queue and deadline reactions have source traces. Typed family integration, error normalization, executor/worker lifecycle and real command traces remain required; no session acceptance claim.",
@@ -525,6 +636,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/65",
       "tested_sha": "6dcf191d81ffbc3c3413ee9145e29565591a8cfa",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "6dcf191d81ffbc3c3413ee9145e29565591a8cfa",
       "open_items": [
         "General native String conversion, actual clocks and complete registry execution remain separate.",
         "Owned message boundaries exclude mutable/reentrant Error.message getters and external prototype mutation."
@@ -536,6 +649,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/55",
       "tested_sha": "c2795e1f83c1d92b4e6300cb3db22833cdb84d25",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "c2795e1f83c1d92b4e6300cb3db22833cdb84d25",
       "open_items": [
         "Real typed family-state integration, scan swapping/remeasurement and actual session commands remain required.",
         "Stable owned data and non-prototype participant keys exclude arbitrary executable JS/prototype behavior.",
@@ -548,6 +663,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/53",
       "tested_sha": "1504212e6661c11b66f98360912180a1b3a82d02",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "1504212e6661c11b66f98360912180a1b3a82d02",
       "open_items": [
         "Global restoration, full family editor/state integration and actual browser runtime remain required.",
         "Stable typed snapshots and callbacks exclude executable JS getters and reentrant participant-list mutation."
@@ -559,6 +676,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/52",
       "tested_sha": "123e43e9a78b187bc39b141b682facd328ef1225",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "123e43e9a78b187bc39b141b682facd328ef1225",
       "open_items": [
         "Complete historyBlocked family guards and global restoration remain required.",
         "Actual family editors, dynamic participant lifecycle and browser runtime remain integration work."
@@ -570,6 +689,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/46",
       "tested_sha": "b5c2c40cddc6e139542d96230db87a7587f68c9e",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "b5c2c40cddc6e139542d96230db87a7587f68c9e",
       "open_items": [
         "Stable typed section capture is the boundary; complete family capture/apply and dynamic participant lifecycle remain session integration.",
         "Undo/redo travel, restore hooks and local histories are a distinct next bounded continuation.",
@@ -585,6 +706,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/54",
       "tested_sha": "84e49dde65ee9afb38c8e649f76eb84d1356cc80",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "84e49dde65ee9afb38c8e649f76eb84d1356cc80",
       "open_items": [
         "Concrete measure/flat/deviation/thickness capture and apply, remeasurement and scan/source restoration remain required.",
         "Typed runRestore owns a single-use job; arbitrary reentrant JS and concurrent/multiple job invocation are not represented.",
@@ -597,6 +720,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/57",
       "tested_sha": "f2390352ca757f63a0b8528d84128060cbeaa5be",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "f2390352ca757f63a0b8528d84128060cbeaa5be",
       "open_items": [
         "Native/Wasm executor and concrete restore/import integration remain required.",
         "Abandoned Rust futures are host failures, not a source cancellation feature; engine termination policy remains required.",
@@ -609,6 +734,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/45",
       "tested_sha": "bdc24fe374eebbd98c2852a22b50f7dbcd68212e",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "bdc24fe374eebbd98c2852a22b50f7dbcd68212e",
       "open_items": [
         "No public feature command or scheduler is implemented; successful admission hands body key/coerced input to engine.session.contract for queue/scene/settle/history/timeouts/jobs integration.",
         "Native source comparisons only; wasm32 compile is not actual registry browser runtime.",
@@ -623,6 +750,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/67",
       "tested_sha": "84e083e252a9a7dcbd265eaf70e6722e7b3cc896",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "84e083e252a9a7dcbd265eaf70e6722e7b3cc896",
       "open_items": [
         "Actual executor must retain/drain started work; browser promise turns, full registry command wiring and runtime cancellation/termination remain separate.",
         "Owned immutable metadata excludes arbitrary JS getters/prototype replacement; ordinary Rust Arc/Rc allocation is not process-wide OOM isolation."
@@ -634,6 +763,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/66",
       "tested_sha": "96914060dad2aa8d75a8d8e2d553dfa1cef6e44d",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "96914060dad2aa8d75a8d8e2d553dfa1cef6e44d",
       "open_items": [
         "registerSettle function identity/live Set mutation is a separate continuation; stable callbacks cannot mutate registration during a run.",
         "The executor must retain/poll all started work. Full registry execution, platform promise turns and cancellation/termination integration remain separate."
@@ -645,6 +776,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/61",
       "tested_sha": "8a6d137afa21605099871495e61610f4a74d3cc3",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "8a6d137afa21605099871495e61610f4a74d3cc3",
       "open_items": [
         "UTC ISO formatting and the lazy millisecond adapter are implemented by engine.session.clock.utc; actual OS clock acquisition, browser preload listener and full registry execution remain separate.",
         "Clock sampling is synchronous and non-reentrant; executable JS Date constructor reentrancy is outside this boundary."
@@ -656,6 +789,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/60",
       "tested_sha": "7cd55a7f870101cd671a798d366b2503f18b73fc",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "7cd55a7f870101cd671a798d366b2503f18b73fc",
       "open_items": [
         "Page stale timestamp, staleError construction and full asCommandError normalization are separate continuations.",
         "Error messages are owned UTF16 text; arbitrary mutable JS message coercion/getters and browser preload listener runtime are not represented."
@@ -667,6 +802,8 @@
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/63",
       "tested_sha": "4ce6c9d5dd72365dc53eba1e2304a28f61498952",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "4ce6c9d5dd72365dc53eba1e2304a28f61498952",
       "open_items": [
         "Arbitrary JS String coercion is supplied by the typed host boundary; native conversion of primitive/array/object thrown values remains separate.",
         "Actual platform clock conversion, browser preload hook and registry asCommandError integration remain required."
@@ -678,6 +815,8 @@
       "parent": "P07",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/16",
       "tested_sha": "f46eeb1134a10debf9ec7cdf9bf139633c7b04fb",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "f46eeb1134a10debf9ec7cdf9bf139633c7b04fb",
       "open_items": [
         "Browser-Wasm runtime, wider orientation/threshold corpus, G0/P05 and generic P36 exact-base ratchet remain open.",
         "No sphere/cylinder/cone/torus fit or engine-command acceptance.",
@@ -692,6 +831,8 @@
       "parent": "P07",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/7",
       "tested_sha": "46e0992dea8fa2dd77ccea3a93e4ee65ee30815d",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "46e0992dea8fa2dd77ccea3a93e4ee65ee30815d",
       "open_items": [
         "Browser-Wasm runtime, non-finite/extreme numerical corpus and near-pivot seeded depth remain open.",
         "P05/G0 and generic P36 harness/ratchet remain incomplete.",
@@ -706,6 +847,8 @@
       "parent": "P07",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/9",
       "tested_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
       "open_items": [
         "Browser-Wasm runtime and wider/extreme/nonfinite plane geometry remain unverified.",
         "P05/G0 and generic P36 exact-base ratchet remain open.",
@@ -721,6 +864,8 @@
       "parent": "P07",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/12",
       "tested_sha": "2490952aa3edce0e889e5fe4f36246466df9cd4a",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "2490952aa3edce0e889e5fe4f36246466df9cd4a",
       "open_items": [
         "Browser-Wasm runtime, wider/nonfinite/adversarial/threshold-edge corpus and generic P36 exact-base ratchet remain open.",
         "G0/P05 and engine/session/click-region integration remain incomplete.",
@@ -736,6 +881,8 @@
       "parent": "P07",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/23",
       "tested_sha": "e5c342c38a2cf1f3bde72065de1e63917500e9a7",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "e5c342c38a2cf1f3bde72065de1e63917500e9a7",
       "open_items": [
         "Wider browser-Wasm coverage, general P36/P37 report/ratchet and G0/P05 remain open; no lifecycle acceptance.",
         "Seeded fitPlaneFromSeed/region growth and public engine element.fit_marked/session/history command integration remain unimplemented.",
@@ -752,6 +899,8 @@
       "parent": "P07",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/8",
       "tested_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
       "open_items": [
         "Wider browser-Wasm coverage, general eigensolver coverage, extreme/nonfinite/near-collinear corpus and broader normal orientations remain open.",
         "G0/P05 and general P36 exact-base ratchet remain incomplete.",
@@ -768,6 +917,8 @@
       "parent": "P06",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/17",
       "tested_sha": "74dd9266ef7ebf147496e4c8297772b42bee8dcb",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "74dd9266ef7ebf147496e4c8297772b42bee8dcb",
       "open_items": [
         "Browser-Wasm runtime, G0/P05 and generic P36 exact-base ratchet remain open.",
         "Region traversal, source/render mapping, spatial queries and engine command/session integration are not implemented by this unit.",
@@ -782,6 +933,8 @@
       "parent": "P06",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/10",
       "tested_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
       "open_items": [
         "Browser-Wasm runtime, broad nonfinite corpus, G0/P05 and generic P36 ratchet remain open.",
         "No broad centroid, scene or engine integration is claimed.",
@@ -795,6 +948,8 @@
       "parent": "P06",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/11",
       "tested_sha": "1473fe4a5a30c34b091b22ad86509d21c685c5d1",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "1473fe4a5a30c34b091b22ad86509d21c685c5d1",
       "open_items": [
         "Browser-Wasm runtime, closure-threshold-adjacent/nonfinite/extreme corpus and general P36 ratchet remain open.",
         "G0/P05 and engine/session integration remain incomplete; this is not a mesh topology/closure proof.",
@@ -809,6 +964,8 @@
       "parent": "P06",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/21",
       "tested_sha": "fd11f984482cdc41409fc1902a4fa7e111c409d4",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "fd11f984482cdc41409fc1902a4fa7e111c409d4",
       "open_items": [
         "Browser-Wasm runtime, viewer caps/downstream classification integration, G0/P05 and generic P36 ratchet remain open.",
         "Original hash-parity behavior is preserved, including even nonmanifold/duplicate/degenerate cases; no stronger watertight/manifold guarantee.",
@@ -823,6 +980,8 @@
       "parent": "P06",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/18",
       "tested_sha": "66997f8ad0e0cb15148fcc2aa6d6c093e3f9b467",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "66997f8ad0e0cb15148fcc2aa6d6c093e3f9b467",
       "open_items": [
         "Browser-Wasm runtime, G0/P05, P06 caller integration and generic P36 exact-base ratchet remain open.",
         "Owned factory parent state is read-only; arbitrary JS numeric-array ABI, external parent mutations and malformed cyclic/out-of-range source behavior are not exposed.",
@@ -837,6 +996,8 @@
       "parent": "P06",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/20",
       "tested_sha": "6cfda5b8a50a754dbca8f0226eab1ceee5ed8cdc",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "6cfda5b8a50a754dbca8f0226eab1ceee5ed8cdc",
       "open_items": [
         "Wider browser-Wasm coverage, G0/P05, general P36 exact-base ratchet and P06 source/render mapping/spatial queries remain open.",
         "Parser/STL-to-session command integration, undo/project state and cancellation/jobs are not implemented by this library unit.",
@@ -852,6 +1013,8 @@
       "parent": "P06",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/5",
       "tested_sha": "4a5aac469e5fafc4b3689aeb593df860990cbce9",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "4a5aac469e5fafc4b3689aeb593df860990cbce9",
       "open_items": [
         "Browser-Wasm runtime and generic P36 ratchet remain open; native finite fixture corpus and wasm32 compilation only.",
         "Non-finite/extreme overflow geometry corpus is not yet verified; do not claim all numeric inputs accepted.",
@@ -866,6 +1029,8 @@
       "parent": "P06",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/6",
       "tested_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "4c8b4cfd0258f8676f4e0c95b107a6dea9ef8b82",
       "open_items": [
         "Browser-Wasm runtime comparison, G0/P05 and generic P36 ratchet remain open.",
         "Open/non-finite meshes and threshold-adjacent fuzz corpus remain to be compared; implemented, not accepted.",
@@ -881,6 +1046,8 @@
       "parent": "P06",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/19",
       "tested_sha": "3f56d3ee7683b5700446300382a87022cab558bc",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "3f56d3ee7683b5700446300382a87022cab558bc",
       "open_items": [
         "Browser-Wasm runtime, G0/P05 and generic P36 exact-base ratchet remain open.",
         "No edit/undo/project/session command or source/render mapping integration acceptance.",
@@ -895,6 +1062,8 @@
       "parent": "P36",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/43",
       "tested_sha": "96c776c2abe15e184b1dd39c21a13387c88d59fa",
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "18 source paths remain unmapped, primarily stripped/concatenated geometry helpers; their complete comparisons still run in the native gate but source reach is unknown.",
         "V8 observed block union is not a static branch/condition denominator; uncalled bodies may conceal unenumerated branches. No percentage or accepted status is claimed.",
@@ -908,6 +1077,8 @@
       "parent": "P36",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/44",
       "tested_sha": "be43ab8afa369bf49a779339e82de7878d416a56",
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Static branch reach is unknown: stable instrument-coverage emits no branch records in this run; do not call this exhaustive branch coverage.",
         "LLVM DA line records disagree with LF/LH summaries on29 owned files; both are retained and raw JSON summaries cross-checked. Interpretation remains unresolved.",
@@ -921,6 +1092,8 @@
       "parent": "harness.fuzz.standing",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/51",
       "tested_sha": "32c45a91f23e1912f76c5cbdf7c01f5fe4c6f584",
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "A bounded deletion reducer does not guarantee a globally minimal input."
       ]
@@ -931,6 +1104,8 @@
       "parent": "P36",
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "OBJ generator and comparison are not added; PLY and STL only.",
         "Reproducers are not minimized.",
@@ -944,6 +1119,8 @@
       "parent": "P36",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/15",
       "tested_sha": "eeb21367b4bb0c7a27dd02910cba10201dd5a9e1",
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "General P36 independent adapter protocol, browser-Wasm execution, accepted-unit exact-base ratchet and G0/P05 remain open.",
         "Discovery guard freezes entrypoint names, not all case identities; individual suites enforce their own case/value contracts."
@@ -953,12 +1130,11 @@
       "id": "harness.verification.levels",
       "status": "specified",
       "parent": "P36",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/76",
       "tested_sha": null,
-      "open_items": [
-        "Single owner of verification schema/status migration in this PR; all existing evidence and lifecycle states remain authoritative.",
-        "Fresh structured fuzz evidence is needed where historical prose lacks an exact tested candidate; coverage-reviewed must not be inferred from raw coverage counts."
-      ]
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": []
     },
     {
       "id": "harness.wasm.files",
@@ -966,6 +1142,8 @@
       "parent": "P36",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/37",
       "tested_sha": "dbe8fcc78b1b6efefe2e6eb11f8d05c5bf049d44",
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Broader platform/large-file/async-I/O/public engine/project/UI acceptance remains open; no decoder/drop traversal or accepted numerical unit claim.",
         "Three existing native-only PLY/OBJ workloads remain above unchanged private ABI caps; none counts as a browser pass.",
@@ -978,6 +1156,8 @@
       "parent": "P36",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/34",
       "tested_sha": "239012c9648f645a3039856e5c511857fb62e691",
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Three explicit native-only workloads remain above unchanged private ABI caps: PLY vertex progress and both OBJ million-line progress fixtures. None counts as a browser pass.",
         "Image-file decoding/bundling, public commands/session/history/projects/UI, broader runtime platforms and generic P36/P37/P39 remain open. No numerical unit is accepted."
@@ -989,6 +1169,8 @@
       "parent": "P36",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/29",
       "tested_sha": "8bc73636b40a095f67a0e31f1cf4839daf13c789",
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "io.ply.binary/le-vertex-progress remains native-only: input/output exceed the existing private ABI caps. This exclusion is explicit, not a passing browser case.",
         "Public engine/session/history/project/UI integration and broader runtime platforms/corpora remain open.",
@@ -1001,6 +1183,8 @@
       "parent": "P36",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/24",
       "tested_sha": "00fd1a69af98c7bacc91da747483ac0ccbfb70c6",
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Actual Chrome execution is verified for the 114 named TLS/mesh-graph/marked-plane inputs only; wider platforms/adversarial corpora and other numerical units remain open.",
         "Private linker-export test ABI is not a stable production engine/UI interface; commands/history/projects/jobs remain unimplemented.",
@@ -1013,6 +1197,8 @@
       "parent": "P06",
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Not in ci/native-suites.json: no registered case inventory; runs as an extra ignored test under cargo xtask oracle.",
         "Not wired to cargo xtask fuzz; zip64 and encrypted entries reached only by random mutation.",
@@ -1027,6 +1213,8 @@
       "parent": "P06",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/4",
       "tested_sha": "53d64085bb3573b70e8668aa604ab1d0997bc715",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "53d64085bb3573b70e8668aa604ab1d0997bc715",
       "open_items": [
         "Browser-Wasm runtime comparison remains unbuilt; native comparison and wasm32 compilation only.",
         "Shared P05/G0 contracts and P36 general harness/coverage ratchet remain open.",
@@ -1041,6 +1229,8 @@
       "parent": "io.obj.companions",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/40",
       "tested_sha": "a4cb8deac025cda2d67406698d414c9ce5b67051",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "a4cb8deac025cda2d67406698d414c9ce5b67051",
       "open_items": [
         "Actual DOM adapter/browser callback runtime and broader mutable live-list/platform/cancellation behavior remain integration follow-ups; Wasm compilation is not runtime acceptance.",
         "No file decoding, public engine import/history/session or accepted-unit claim.",
@@ -1054,6 +1244,8 @@
       "parent": "io.obj.companions",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/36",
       "tested_sha": "f0a3e9e77b3219effa0f326a9e09ec2b7d412e3c",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "f0a3e9e77b3219effa0f326a9e09ec2b7d412e3c",
       "open_items": [
         "Bounded actual Chrome execution is recorded by harness.wasm.files; broader platform/workload and public import acceptance remain open.",
         "Platform drop traversal/async file errors, image decoding, 3MF packed companions and public import/session/project integration remain outside this owned-byte slice.",
@@ -1068,6 +1260,8 @@
       "parent": "io.obj.companions",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/39",
       "tested_sha": "87d2318da99751b0b57f893861c2580c7bf574ae",
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "The audit is implemented, not decoder acceptance. io.obj.companions.images owns faithful alpha/canvas, JPEG, 16-bit conversion, omission/limits and actual Wasm pixel continuations.",
         "Wider image profiles/Exif/animation/interlacing/hostile-workload and independent audit remain open; this bounded candidate review does not accept P35 or a public import feature."
@@ -1079,6 +1273,8 @@
       "parent": "io.obj.companions",
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "No application dependency adoption or decoder implementation claimed. image0.25.10 candidate audit rejects direct use:28 pixel mismatches and 2 presence mismatches on 56 original inputs.",
         "Use the fixed alpha atlas/JPEG/16-bit/truncation counterexamples. Derive faithful conversion/decoder behavior before adoption; do not loosen byte comparison or feed source pixels into Rust.",
@@ -1092,6 +1288,8 @@
       "parent": "io.obj",
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Complete file-selection/identity/byte-preservation slice tracked in io.obj.companions.files; drop traversal and image decoding remain separate continuations.",
         "Image candidate audit under io.obj.companions.image_audit is complete, but raw decoder pixel compatibility failed and no dependency is adopted. Browser canvas/PNG/JPEG/BMP/WebP semantics, malformed omission and 3MF packed images remain open; parent stays planned."
@@ -1103,6 +1301,8 @@
       "parent": "P06",
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Texture image decoding needs a recorded pure-Rust dependency decision (P35 purity audit).",
         "2026-11-02: bounded continuations tracked as io.obj.texture, io.obj.mesh and io.obj.companions; parent remains planned until full import acceptance."
@@ -1114,6 +1314,8 @@
       "parent": "io.obj",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/32",
       "tested_sha": "58aeacb529da621506b59f0b3aa7735d07173d4a",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "58aeacb529da621506b59f0b3aa7735d07173d4a",
       "open_items": [
         "Broader browser workloads/platforms and public import acceptance remain open; bounded runtime coverage is tracked by harness.wasm.obj, not whole-unit acceptance.",
         "Platform file-set bundling, PNG/JPEG decoding and public engine/session/project integration remain separate under io.obj.companions and engine units.",
@@ -1128,6 +1330,8 @@
       "parent": "io.obj",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/31",
       "tested_sha": "219059c2c719879bfce24fb75cfe69cdf3ef6abb",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "219059c2c719879bfce24fb75cfe69cdf3ef6abb",
       "open_items": [
         "Broader browser workloads/platforms and public import acceptance remain open; bounded runtime coverage is tracked by harness.wasm.obj, not whole-unit acceptance.",
         "OBJ mesh parsing, platform file bundling, PNG/JPEG decoding and public commands remain in io.obj.mesh/io.obj.companions and engine units; parent io.obj stays planned.",
@@ -1143,6 +1347,8 @@
       "parent": "io.ply",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/27",
       "tested_sha": "737d3c314691e1e63ddc3d517002476e382fe418",
+      "verification": "fuzzed",
+      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
       "open_items": [
         "Binary continuation is implemented separately in io.ply.binary; the ASCII-only convenience entrypoint retains a distinct binary boundary, and ply::read_ply dispatches all encodings.",
         "Browser-Wasm runtime comparisons and public scan/session/history integration remain unimplemented for this parser.",
@@ -1158,6 +1364,8 @@
       "parent": "io.ply",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/28",
       "tested_sha": "98d39fc4cb54ae1c523da619e54164f5d99f9105",
+      "verification": "fuzzed",
+      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
       "open_items": [
         "Real browser-Wasm execution for PLY remains open; native and Wasm compilation do not imply runtime acceptance.",
         "Public scan/session commands, history, projects and full P03 adversarial/corpus acceptance remain open.",
@@ -1172,6 +1380,8 @@
       "parent": "P06",
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Both source parser bodies and full dispatcher implemented in io.ply.ascii/io.ply.binary, with independent native evidence; this umbrella remains planned for broader native/browser import acceptance.",
         "Real browser-Wasm parsing, public scan/session integration and P03 corpus acceptance remain open."
@@ -1183,6 +1393,8 @@
       "parent": "P06",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/2",
       "tested_sha": "5ee3881d887a4720c6a7cf5ca7a675333e6e8e62",
+      "verification": "fuzzed",
+      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
       "open_items": [
         "Native Node 22 comparisons were observed passing in subsequent full Rust gates; original local implementation evidence used Node 20.20.2. See AUDIT-QUEUE.md for immutable hosted run links.",
         "Browser-Wasm runtime comparison is not built; only wasm32 compile check passes. P36 general paired harness/coverage ratchet remains open.",
@@ -1198,6 +1410,8 @@
       "parent": "P06",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/3",
       "tested_sha": "77683bf515590ac3f5cb8a9c3552ec64700ce44a",
+      "verification": "fuzzed",
+      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
       "open_items": [
         "Browser-Wasm runtime comparisons remain unbuilt; wasm32 library compilation passes only.",
         "P05/G0 contracts and general P36 paired harness/coverage ratchet remain open; no promotion to accepted or full scan import.",
@@ -1211,6 +1425,8 @@
       "parent": "P06",
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate."
       ]
@@ -1221,6 +1437,8 @@
       "parent": "P16",
       "pr": null,
       "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
       "open_items": [
         "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
       ]

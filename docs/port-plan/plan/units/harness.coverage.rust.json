@@ -46,5 +46,6 @@
     "2026-11-02: installed Arch Rust/LLVM profile merge/export works without rustup or new packages.",
     "All26 native original/Rust suites /2015 cases pass at instrumented e2c3d0010700899a47c6ec6c454d5cb3299b1141; exact-SHA raw inventory complete, ordinary tests excluded from execution.",
     "Reporter be43ab8 preserves398 explicit zero-count DA lines, source/owning-unit identities and every raw coverage discrepancy rather than inventing a percent gate."
-  ]
+  ],
+  "verification": "none"
 }

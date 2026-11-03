@@ -7,6 +7,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import verification
 
 ROOT = Path(__file__).resolve().parents[3]
 PLAN = ROOT / 'docs/port-plan'
@@ -55,12 +56,19 @@ def status(root=ROOT):
     plan = root / 'docs/port-plan'
     all_units = units(plan)
     suites = roster(root)
+    baseline = json.loads((plan / 'reference-pin.json').read_text())['commit']
+    for unit in all_units:
+        problems = verification.validate(unit, baseline, plan)
+        if problems:
+            raise ValueError('; '.join(problems))
     return {'contract': 'port.status.v1', 'reference_sha': json.loads((plan / 'reference-pin.json').read_text())['commit'],
             'unit_states': dict(sorted(Counter(u['status'] for u in all_units).items())),
+            'verification_levels': dict(sorted(Counter(u['verification'] for u in all_units).items())),
             'native_suites': len(suites), 'native_case_identities_including_refusals': sum(len(s['case_ids']) for s in suites),
             'accepted_units': [u['id'] for u in all_units if u['status'] == 'accepted'],
             'units': [{'id': u['id'], 'status': u['status'], 'parent': u.get('parent'), 'pr': u.get('claim_pr'),
-                       'tested_sha': u.get('implemented_commit'), 'open_items': u.get('open_items', [])} for u in all_units]}
+                       'tested_sha': u.get('implemented_commit'), 'verification': u['verification'],
+                       'verification_tested_sha': verification.candidate(u, plan), 'open_items': u.get('open_items', [])} for u in all_units]}
 
 
 def status_markdown(report):
@@ -70,11 +78,14 @@ def status_markdown(report):
              'No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Bounded [browser-Wasm coverage](oracle/BROWSER-WASM.md) is separate from engine/session/UI integration and the still-open exact-base numerical ratchet.', '',
              '| State | Units |', '| --- | ---: |']
     lines += [f'| {state} | {count} |' for state, count in report['unit_states'].items()]
-    lines += ['', '| Unit | State | Tested implementation | PR |', '| --- | --- | --- | --- |']
+    lines += ['', 'Verification labels describe scoped evidence snapshots, not whole-feature/runtime acceptance.', '', '| Verification | Units |', '| --- | ---: |']
+    lines += [f'| {level} | {count} |' for level, count in report['verification_levels'].items()]
+    lines += ['', '| Unit | State | Verification | Tested implementation | Verification snapshot | PR |', '| --- | --- | --- | --- | --- | --- |']
     for u in report['units']:
         sha = f"`{u['tested_sha'][:7]}`" if u['tested_sha'] else '—'
         pr = f"[#{u['pr'].split('/')[-1]}]({u['pr']})" if u['pr'] else '—'
-        lines.append(f"| [{u['id']}](plan/units/{u['id']}.json) | {u['status']} | {sha} | {pr} |")
+        proof_sha = f"`{u['verification_tested_sha'][:7]}`" if u['verification_tested_sha'] else '—'
+        lines.append(f"| [{u['id']}](plan/units/{u['id']}.json) | {u['status']} | {u['verification']} | {sha} | {proof_sha} | {pr} |")
     return '\n'.join(lines) + '\n'
 
 

@@ -1952,5 +1952,6 @@
   "open_items": [
     "Actual OS current-time acquisition, browser clock wiring and complete registry execution remain separate.",
     "Source native Date semantics are captured under pinned Node22; actual Chrome-Wasm timestamp corpus execution remains required."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

@@ -36,5 +36,6 @@
     "Complete the ordered MTL/image continuation, strict resource limits, actual Wasm pixels and broader platform/corpus acceptance.",
     "Decoders are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md: PNG on io.inflate, then a libjpeg-faithful JPEG decoder."
   ],
-  "resolved_items": []
+  "resolved_items": [],
+  "verification": "none"
 }

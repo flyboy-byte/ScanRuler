@@ -29,5 +29,6 @@
   "resolved_items": [
     "Open: npm run build:engine (headless) not run; per-skip reasons not individually verified; browser/OS/CPU details and lockfile hashes not recorded; raw log not archived.",
     "2026-11-01: original npm run build:engine exits 0 on Node 22.23.4 in separate clean frozen checkout, run 41352758112; evidence/headless-2026-11-01 retains logs, lock hashes and runtime context. This does not retroactively fill the original full-suite run environment."
-  ]
+  ],
+  "verification": "none"
 }

@@ -38,5 +38,6 @@
     "Bounded registry, history recording/local/guards/restore/core capture-apply, import queue and deadline reactions have source traces. Typed family integration, error normalization, executor/worker lifecycle and real command traces remain required; no session acceptance claim.",
     "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
     "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
-  ]
+  ],
+  "verification": "none"
 }

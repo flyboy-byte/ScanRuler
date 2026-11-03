@@ -98,5 +98,6 @@
         }
       ]
     }
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

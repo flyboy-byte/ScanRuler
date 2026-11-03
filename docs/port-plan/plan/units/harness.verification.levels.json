@@ -14,19 +14,17 @@
   "scope": "Add a verification field to unit files with ordered levels (none, fixed-corpus, fuzzed, coverage-reviewed) and require the top level for accepted. The status table and next_task.py show the level.",
   "acceptance": [
     "Plan checker rejects accepted without the top level and rejects a level its evidence does not support; selftest includes the mutations.",
-    "Existing implemented units are labelled honestly from their current evidence (PLY and STL: fuzzed after PR #33; others fixed-corpus)."
+    "Existing implemented units are labelled from qualifying evidence: four PLY/STL parser child units are fuzzed with retained exact-candidate campaigns; native differential units are at least fixed-corpus. Tooling without a qualifying retained run stays none."
   ],
   "owner": "Codex",
   "branch": "codex/verification-levels",
-  "claim_pr": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/76",
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [],
   "symbols": [],
   "rust_paths": [],
   "evidence": [],
-  "open_items": [
-    "Single owner of verification schema/status migration in this PR; all existing evidence and lifecycle states remain authoritative.",
-    "Fresh structured fuzz evidence is needed where historical prose lacks an exact tested candidate; coverage-reviewed must not be inferred from raw coverage counts."
-  ]
+  "open_items": [],
+  "verification": "none"
 }

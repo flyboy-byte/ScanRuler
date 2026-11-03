@@ -119,5 +119,6 @@
   "open_items": [
     "watchSession subscriptions, plugin busy store registration and full engine session wiring remain separate.",
     "Readonly owned arrays exclude arbitrary mutable JS array/getter/prototype behavior; actual browser runtime remains required."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

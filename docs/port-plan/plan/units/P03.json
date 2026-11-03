@@ -429,5 +429,6 @@
   "open_items": [
     "Checkpoint 2026-11-01: 635 declared native case identities and per-unit raw/hash evidence exist. Whole-corpus license/provenance/input/observable/seed schema and broader fixture map remain incomplete."
   ],
-  "claim_pr": null
+  "claim_pr": null,
+  "verification": "none"
 }

@@ -410,5 +410,6 @@
     "2026-11-02: complete registration/catalog/headless functions and start-admission prefix compare350 full operation scenarios on independent original/Rust inputs.",
     "Nontransactional failure, repeat cleanup/reregistration, exact metadata order/presence, body target and caller coercion on refused input preserved.",
     "Complete real original registry/history/activity/schema graph is bundled from the pin; no reached behavioral stubs, new dependencies or original source changes."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

@@ -163,5 +163,6 @@
   "open_items": [
     "Arbitrary JS String coercion is supplied by the typed host boundary; native conversion of primitive/array/object thrown values remains separate.",
     "Actual platform clock conversion, browser preload hook and registry asCommandError integration remain required."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

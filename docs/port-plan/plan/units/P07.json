@@ -28,5 +28,6 @@
   "open_items": [
     "Checkpoint 2026-11-01: TLS/clipped/robust numerical planes exist. fitPlaneOnSelection still needs normal voting, patch extents, oriented extremes and full element fields; fit.plane.selection owns that bounded continuation. Seeded/other-shape paths remain open."
   ],
-  "claim_pr": null
+  "claim_pr": null,
+  "verification": "none"
 }

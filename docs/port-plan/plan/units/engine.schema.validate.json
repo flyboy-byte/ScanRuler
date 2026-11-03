@@ -758,5 +758,6 @@
     "2026-11-02: dependency-free owned UTF16 Value preserves undefined/null/bytes/nonfinite/signed-zero and ordinary inherited-field behavior.",
     "All 697 complete source states match exactly, including minimal/full success and null refusal for every one of 140 core/plugin command schemas; original 659 observations retained.",
     "Original oneOf sequential mutation, names/id messaging, UTF16 schema size/depth and original empty-oneOf fault are compared; deliberate wrong error line and missing tail rejected."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }
