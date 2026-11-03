@@ -32,7 +32,9 @@
     {
       "kind": "report",
       "location": "NATIVE-TASK-OWNER.md",
-      "summary": "New Rust host task mechanism with nine lifetime/wake/admission/destructor tests; not a paired source-runtime claim."
+      "summary": "New Rust host task mechanism with nine lifetime/wake/admission/destructor tests; not a paired source-runtime claim.",
+      "candidate_sha": "b1a1f366d3dfc784f514a92adf0ed38e57110289",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7"
     }
   ],
   "open_items": [
