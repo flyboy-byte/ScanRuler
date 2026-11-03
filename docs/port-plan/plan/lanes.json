@@ -44,7 +44,8 @@
         "engine.session.clock.utc",
         "engine.session.activity.plugins",
         "engine.session.activity.stop",
-        "engine.session.scene.queue"
+        "engine.session.scene.queue",
+        "engine.session.execute.lifecycle"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },

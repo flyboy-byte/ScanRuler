@@ -5,12 +5,12 @@
     "baseline-captured": 2,
     "implemented": 61,
     "planned": 47,
-    "specified": 1
+    "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 44,
     "fuzzed": 4,
-    "none": 63
+    "none": 64
   },
   "native_suites": 47,
   "native_case_identities_including_refusals": 7297,
@@ -669,6 +669,18 @@
       "open_items": [
         "General native String conversion, actual clocks and complete registry execution remain separate.",
         "Owned message boundaries exclude mutable/reentrant Error.message getters and external prototype mutation."
+      ]
+    },
+    {
+      "id": "engine.session.execute.lifecycle",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Implement complete orchestration at typed provider boundary; guarded body/history/deadline integration and actual session commands remain separate."
       ]
     },
     {
