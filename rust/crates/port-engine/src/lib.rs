@@ -26,3 +26,6 @@ pub mod page_stale;
 
 /// Stale-page envelope construction with source-ordered host effects.
 pub mod stale_error;
+
+/// Command fault normalization preserving typed error identity and stale state.
+pub mod error_normalize;
