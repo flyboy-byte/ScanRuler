@@ -17,6 +17,7 @@ saves carry the same number as `appVersion`. How a release is cut is in
 - Rust port: complete clipped free/held-radius sphere fitting and signed radial statistics with independent original comparisons (PR #89). Seeded growth, full element fields and commands remain open.
 - **Rust command labels**: preserve full Unicode lowercase, unpaired UTF-16, custom/nullish/empty fallback and lazy provider effects across a complete code-point/context census. Command/history runtime integration remains separate.
 - Rust port: command activity start/progress/clear publication with live listener identity, reentrant state delivery and exact faults (PR #86); full session runtime remains open.
+- Rust port: plugin state-section registration and live full/brief readout with exact conversion faults and plain-object prototype behavior (PR #87); native session composition remains open.
 
 - **Port review handoff**: retain current exact PR heads, open/merged dependencies and required-check states with negative snapshot controls; document remaining runtime ownership and source branch tests. No feature body or numerical policy changes.
 

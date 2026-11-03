@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 71,
+    "implemented": 72,
     "planned": 47,
     "specified": 2
   },
   "verification_levels": {
-    "fixed-corpus": 53,
+    "fixed-corpus": 54,
     "fuzzed": 4,
     "none": 65
   },
-  "native_suites": 56,
-  "native_case_identities_including_refusals": 22746,
+  "native_suites": 57,
+  "native_case_identities_including_refusals": 22938,
   "accepted_units": [],
   "units": [
     {
@@ -918,6 +918,19 @@
       "open_items": [
         "Arbitrary JS String coercion is supplied by the typed host boundary; native conversion of primitive/array/object thrown values remains separate.",
         "Actual platform clock conversion, browser preload hook and registry asCommandError integration remain required."
+      ]
+    },
+    {
+      "id": "engine.state.sections",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/87",
+      "tested_sha": "05406f20864b3e9f5dfabc527dc9aab0902fab9a",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "05406f20864b3e9f5dfabc527dc9aab0902fab9a",
+      "open_items": [
+        "Full session.state composition and actual native plugin installation/session ownership remain required.",
+        "Arbitrary host objects, executable inherited setters/getters, general prototype lookup and browser-Wasm readout execution remain outside this owned-data scope."
       ]
     },
     {

@@ -76,3 +76,5 @@ pub mod workspaces;
 pub mod command_label;
 /// Command-driven activity publication and live listeners.
 pub mod activity_state;
+/// Live plugin readout sections and plain-object assignment semantics.
+pub mod state_sections;
