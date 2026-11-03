@@ -23,3 +23,6 @@ pub mod import_queue;
 
 /// Command deadline races and abort/timer cleanup at the owned event boundary.
 pub mod command_deadline;
+
+/// Deferred-work settlement over stable ordered callbacks.
+pub mod settle;
