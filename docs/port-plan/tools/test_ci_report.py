@@ -98,8 +98,8 @@ class InventoryTests(unittest.TestCase):
     def test_current_roster_and_status_are_deterministic(self):
         value = report.status()
         self.assertEqual(value, report.status())
-        self.assertEqual(value['native_suites'], 51)
-        self.assertEqual(value['native_case_identities_including_refusals'], 9578)
+        self.assertEqual(value['native_suites'], 52)
+        self.assertEqual(value['native_case_identities_including_refusals'], 11138)
 
     def test_roster_rejects_missing_duplicate_or_unknown_suite(self):
         with tempfile.TemporaryDirectory() as directory:

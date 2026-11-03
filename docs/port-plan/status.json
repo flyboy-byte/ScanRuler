@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 65,
+    "implemented": 66,
     "planned": 47,
-    "specified": 2
+    "specified": 1
   },
   "verification_levels": {
-    "fixed-corpus": 48,
+    "fixed-corpus": 49,
     "fuzzed": 4,
-    "none": 64
+    "none": 63
   },
-  "native_suites": 51,
-  "native_case_identities_including_refusals": 9578,
+  "native_suites": 52,
+  "native_case_identities_including_refusals": 11138,
   "accepted_units": [],
   "units": [
     {
@@ -1011,14 +1011,15 @@
     },
     {
       "id": "fit.sphere.clipped",
-      "status": "specified",
+      "status": "implemented",
       "parent": "P07",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/89",
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "tested_sha": "03369e07efdb03c9164d6ac4bf01e0e47bfca27d",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "03369e07efdb03c9164d6ac4bf01e0e47bfca27d",
       "open_items": [
-        "Capture pre-registered original corpus and port complete fixed-selection body; seeded growth/full element-output/commands and browser runtime are separate."
+        "Actual browser-Wasm sphere execution and the generic exact-base numerical ratchet remain unverified; Wasm compilation alone grants no runtime acceptance.",
+        "Seeded/RANSAC/growth, full selection normal voting/extents/element fields, commands/session/project/CLI integration remain unported for spheres."
       ]
     },
     {
