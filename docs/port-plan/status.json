@@ -2,10 +2,10 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 2,
+    "baseline-captured": 3,
     "implemented": 48,
     "planned": 48,
-    "specified": 2
+    "specified": 1
   },
   "native_suites": 35,
   "native_case_identities_including_refusals": 3891,
@@ -452,9 +452,9 @@
     },
     {
       "id": "engine.session.clock.utc",
-      "status": "specified",
+      "status": "baseline-captured",
       "parent": "engine.session.contract",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/68",
       "tested_sha": null,
       "open_items": [
         "Actual OS current-time acquisition, browser clock wiring and complete registry execution remain separate.",
