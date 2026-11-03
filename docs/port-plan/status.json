@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 60,
+    "implemented": 61,
     "planned": 47,
-    "specified": 2
+    "specified": 1
   },
   "verification_levels": {
-    "fixed-corpus": 43,
+    "fixed-corpus": 44,
     "fuzzed": 4,
-    "none": 64
+    "none": 63
   },
-  "native_suites": 46,
-  "native_case_identities_including_refusals": 7177,
+  "native_suites": 47,
+  "native_case_identities_including_refusals": 7297,
   "accepted_units": [],
   "units": [
     {
@@ -774,14 +774,16 @@
     },
     {
       "id": "engine.session.scene.queue",
-      "status": "specified",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/79",
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "tested_sha": "ac221ed63f3e40453bbd9402ae9c6c014e9f6618",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "ac221ed63f3e40453bbd9402ae9c6c014e9f6618",
       "open_items": [
-        "Compare complete helper; command deadline/executor/actual viewport runtime integration remain separate."
+        "Full command executor/deadline and native runtime scheduling remain required.",
+        "Native watchSession/command guard/registry integration and browser execution remain required.",
+        "Typed owned callbacks exclude JS getters/prototypes; resource refusals are host limits, not original results."
       ]
     },
     {

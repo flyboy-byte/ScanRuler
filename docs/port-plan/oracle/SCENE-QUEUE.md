@@ -14,7 +14,7 @@ direct promise/future identity, synchronous vs asynchronous faults, caller resul
 error identity, states at stable scheduling boundaries and zero unhandled rejection.
 Inputs, full raw pairs and the full pinned registry graph/map/provenance are retained.
 No original output is a Rust input. The source-map test permits only the private
-inScene observation export and verifies every original module byte.
+inScene observation export and verifies the original registry module byte for byte.
 
 The private native queue reuses ImportQueue with no exposed listeners. Notification
 bodies therefore have no effects; the scene adapter adds no duplicate queue scheduler.

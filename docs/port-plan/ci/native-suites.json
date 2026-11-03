@@ -515,6 +515,17 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "engine.session.scene.queue",
+      "test": "pinned_scene_queue_comparison",
+      "directory": "scene-queue-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

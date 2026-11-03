@@ -4,7 +4,7 @@ from pathlib import Path
 PLAN=Path(__file__).resolve().parents[1]
 def load(name):return json.loads(gzip.decompress((PLAN/'evidence'/name).read_bytes()))
 class SceneQueueCorpusTests(unittest.TestCase):
-    def test_full_guard_identity_values_and_callback_state(self):
+    def test_full_scene_route_identity_and_caller_state(self):
         source=load('2026-11-03-scene-queue-source.json.gz');paired=load('2026-11-03-scene-queue.json.gz');inputs=(PLAN/'fixtures/scene-queue/cases.tsv').read_bytes()
         self.assertEqual(hashlib.sha256(inputs).hexdigest(),source['input_sha256']);self.assertEqual(len(paired['cases']),120);self.assertEqual(len(inputs.splitlines()),120);original=[]
         for line,case in zip(inputs.splitlines(),paired['cases']):
@@ -17,7 +17,7 @@ class SceneQueueCorpusTests(unittest.TestCase):
                 self.assertEqual(len(frame.split(b'|')),4);self.assertTrue(frame.endswith(b'|0'))
             original.append(values['original.bin'])
         self.assertEqual(b''.join(original).hex(),source['original_hex'])
-    def test_original_complete_activity_module_and_reproducible_inputs(self):
+    def test_original_complete_registry_module_and_reproducible_inputs(self):
         folder=PLAN/'evidence/scene-queue-oracle-2026-11-03';p=json.loads((folder/'provenance.json').read_text())
         for name,key in [('registry.mjs','bundle_sha256'),('registry.mjs.map','source_map_sha256')]:self.assertEqual(hashlib.sha256(gzip.decompress((folder/(name+'.gz')).read_bytes())).hexdigest(),p[key])
         m=json.loads(gzip.decompress((folder/'registry.mjs.map.gz').read_bytes()));contents=[text for name,text in zip(m['sources'],m['sourcesContent'])if name.endswith('/src/commands/registry.ts')]
