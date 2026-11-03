@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust deferred-work settling**: call every stable callback, preserve exact next-command metadata, suppress failures and await all concurrent work in 64 full original comparisons. Registration mutation and executor wiring remain separate.
+
 - **Port plan CI**: fetch the immutable original Git tree for source-map provenance tests; retain every proof assertion.
 
 - **Rust command deadlines**: preserve race ordering, shared abort reasons, timer cleanup and late outcomes with291 original schedules /2037 full observations. Reuse the existing number formatter without changing parser behavior.

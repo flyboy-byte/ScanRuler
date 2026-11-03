@@ -15,7 +15,7 @@
   "owner": "Codex",
   "branch": "codex/settle-run",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/66",
-  "implemented_commit": null,
+  "implemented_commit": "96914060dad2aa8d75a8d8e2d553dfa1cef6e44d",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/commands/registry.ts"
@@ -97,7 +97,8 @@
         "case-061",
         "case-062",
         "case-063"
-      ]
+      ],
+      "candidate_sha": "96914060dad2aa8d75a8d8e2d553dfa1cef6e44d"
     }
   ],
   "open_items": [

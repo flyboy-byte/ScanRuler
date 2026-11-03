@@ -2,13 +2,13 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 3,
-    "implemented": 46,
+    "baseline-captured": 2,
+    "implemented": 47,
     "planned": 49,
     "specified": 1
   },
-  "native_suites": 34,
-  "native_case_identities_including_refusals": 3551,
+  "native_suites": 35,
+  "native_case_identities_including_refusals": 3615,
   "accepted_units": [],
   "units": [
     {
@@ -564,10 +564,10 @@
     },
     {
       "id": "engine.session.settle.run",
-      "status": "baseline-captured",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/66",
-      "tested_sha": null,
+      "tested_sha": "96914060dad2aa8d75a8d8e2d553dfa1cef6e44d",
       "open_items": [
         "registerSettle function identity/live Set mutation is a separate continuation; stable callbacks cannot mutate registration during a run.",
         "The executor must retain/poll all started work. Full registry execution, platform promise turns and cancellation/termination integration remain separate."
