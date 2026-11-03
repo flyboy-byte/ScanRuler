@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-03: [#77](https://github.com/flyboy-byte/ScanRuler/pull/77) follows #76 and ports plugin busy registration/lookup with 96 complete source map/value/effect traces. Async stop invocation and session integration stay open; see oracle/PLUGIN-BUSY.md.
+
 2026-11-03: [#76](https://github.com/flyboy-byte/ScanRuler/pull/76) follows the combined [#75](https://github.com/flyboy-byte/ScanRuler/pull/75) integration. It adds explicit evidence labels across the canonical inventory, negative validation tests and fresh PLY/STL fuzz proofs. Read [VERIFICATION.md](VERIFICATION.md) before interpreting the labels. No accepted unit or new application feature is claimed.
 
 2026-11-03: [Cross-stack review handoff](REVIEW-HANDOFF-2026-11-03.md) records observed exact heads/checks, merge order, retained failures and the next actual execution work. It is a dated snapshot; refresh live Checks before merging.
