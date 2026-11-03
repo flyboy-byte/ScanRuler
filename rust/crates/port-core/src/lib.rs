@@ -42,3 +42,5 @@ pub mod js_date;
 
 /// Exact source fixed-three-decimal number text.
 pub mod js_fixed;
+/// Complete fixed-selection free/held-radius sphere fitting.
+pub mod sphere;

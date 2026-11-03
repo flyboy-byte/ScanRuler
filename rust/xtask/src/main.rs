@@ -160,6 +160,7 @@ fn wasm() -> Result<(), String> {
 // coverage review; an empty or filtered Cargo run must never appear successful.
 const ORACLE_TESTS: &[&str] = &[
     "pinned_fixed3_comparison",
+    "pinned_sphere_comparison",
     "pinned_workspaces_comparison",
     "pinned_recent_store_comparison",
     "pinned_recent_result_comparison",

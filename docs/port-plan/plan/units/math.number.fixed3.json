@@ -5,7 +5,9 @@
   "gate": "G2",
   "status": "implemented",
   "depends_on": [],
-  "soft_depends_on": [],
+  "soft_depends_on": [
+    "fit.sphere.clipped"
+  ],
   "scope": "Owned IEEE f64 Number.toFixed(3) string conversion at the sphere heldRefusal call sites. Exact binary rational rounding with ties choosing the larger positive integer before sign, negative-zero/special-value/exponent-threshold behavior. Reuse existing number_string for the source abs>=1e21 branch; no general arbitrary-fraction toFixed API or boxed JS object semantics.",
   "acceptance": [
     "Original intrinsic at both verified pinned call-site expressions runs first on authored signed-zero/subnormal/tie/ULP/threshold/special and fixed random bit inputs; exact complete output strings, input/primitive category and stable IDs compare, with no numerical tolerance.",

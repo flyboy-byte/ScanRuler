@@ -8,6 +8,7 @@ saves carry the same number as `appVersion`. How a release is cut is in
 ## Unreleased
 
 - Rust port: exact primitive Number.toFixed(3) for original sphere refusal text, with rational tie rounding and special/threshold cases (PR #92). Full marked-sphere caller remains open.
+- Rust port: complete clipped free/held-radius sphere fitting and signed radial statistics with independent original comparisons (PR #89). Seeded growth, full element fields and commands remain open.
 
 - **Port review handoff**: retain current exact PR heads, open/merged dependencies and required-check states with negative snapshot controls; document remaining runtime ownership and source branch tests. No feature body or numerical policy changes.
 

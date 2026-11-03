@@ -101,7 +101,8 @@
         "P08",
         "P09",
         "engine.measurement.slice",
-        "math.number.fixed3"
+        "math.number.fixed3",
+        "fit.sphere.clipped"
       ],
       "touches": "port-engine, port-cli, port-io"
     },
