@@ -71,3 +71,12 @@ pub mod recent_store;
 
 /// Public/internal workspace names over current installed-plugin metadata.
 pub mod workspaces;
+
+/// Command-driven activity publication and live listeners.
+pub mod activity_state;
+/// Lossless Unicode command-label text and source-compatible provider ordering.
+pub mod command_label;
+/// Live plugin readout sections and plain-object assignment semantics.
+pub mod state_sections;
+/// Bounded native cooperative task ownership and wake delivery.
+pub mod tasks;

@@ -39,3 +39,15 @@ pub mod js_number;
 
 /// Own Date millisecond clipping and Gregorian UTC timestamp conversion.
 pub mod js_date;
+
+/// Exact source fixed-three-decimal number text.
+pub mod js_fixed;
+/// Complete fixed-selection free/held-radius sphere fitting.
+pub mod sphere;
+
+/// Lossless Unicode command-label text and source-compatible provider ordering.
+pub mod js_string;
+/// Complete marked-sphere element output/refusal continuation.
+pub mod marked_sphere;
+/// Shared fixed-selection marking-size guard.
+pub mod selection;

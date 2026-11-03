@@ -3,7 +3,7 @@
 
 fn main() {
     println!(
-        "scanruler-rs {}: port of ScanRuler {} ({}); nothing is ported yet.",
+        "scanruler-rs {}: ScanRuler {} library port ({}); scan/fit/undo/save CLI is not implemented.",
         env!("CARGO_PKG_VERSION"),
         port_core::REFERENCE_APP_VERSION,
         &port_core::REFERENCE_SHA[..7],

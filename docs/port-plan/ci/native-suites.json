@@ -570,6 +570,87 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "math.number.fixed3",
+      "test": "pinned_fixed3_comparison",
+      "directory": "fixed-number-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "descriptor.tsv",
+        "original.bin",
+        "original.category.txt",
+        "rust.category.txt",
+        "original.after.bin",
+        "rust.after.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "fit.sphere.clipped",
+      "test": "pinned_sphere_comparison",
+      "directory": "sphere-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "descriptor.tsv",
+        "original.bin",
+        "original.after.bin",
+        "rust.after.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "fit.sphere.selection",
+      "test": "pinned_marked_sphere_comparison",
+      "directory": "marked-sphere-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "descriptor.tsv",
+        "original.bin",
+        "original.after.bin",
+        "rust.after.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.command.label",
+      "test": "pinned_command_label_comparison",
+      "directory": "command-label-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "descriptor.tsv",
+        "original.bin",
+        "original.status.txt",
+        "rust.status.txt",
+        "original.effects.txt",
+        "rust.effects.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.activity.state",
+      "test": "pinned_activity_state_comparison",
+      "directory": "activity-state-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.state.sections",
+      "test": "pinned_state_sections_comparison",
+      "directory": "state-sections-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

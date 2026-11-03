@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 65,
-    "planned": 47,
-    "specified": 1
+    "implemented": 74,
+    "planned": 48,
+    "specified": 2
   },
   "verification_levels": {
-    "fixed-corpus": 48,
+    "fixed-corpus": 54,
     "fuzzed": 4,
-    "none": 63
+    "none": 68
   },
-  "native_suites": 51,
-  "native_case_identities_including_refusals": 9578,
+  "native_suites": 57,
+  "native_case_identities_including_refusals": 22938,
   "accepted_units": [],
   "units": [
     {
@@ -505,6 +505,18 @@
       ]
     },
     {
+      "id": "ci.integration.nov03",
+      "status": "specified",
+      "parent": "ci.integration",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/95",
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Validate the combined tree and capture actual integrated outcomes; owner reviews/merges public PRs. Generic exact-base numerical ratchet, actual session and M3 remain unimplemented."
+      ]
+    },
+    {
       "id": "engine.error.envelope",
       "status": "implemented",
       "parent": "P05",
@@ -530,6 +542,32 @@
       "verification_tested_sha": null,
       "open_items": [
         "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ]
+    },
+    {
+      "id": "engine.runtime.reactions",
+      "status": "planned",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "First runtime continuation after #95: claim and implement against existing original deadline/execute corpora; generic task ownership alone is not paired JS promise semantics.",
+        "Full guarded/interrupt/history/activity/current/progress integration, real platform timers, actual family state/commands/projects/CLI and browser engine runtime remain required."
+      ]
+    },
+    {
+      "id": "engine.runtime.tasks",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/88",
+      "tested_sha": "b1a1f366d3dfc784f514a92adf0ed38e57110289",
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Wire source-connected body/deadline/history/guarded/interrupt/execute futures and exact reaction ordering into this session owner; dropping caller observation must never drop body work.",
+        "Real platform timers, full original-versus-native command state/effect traces, browser-Wasm runtime execution and actual usable CLI/session remain unimplemented."
       ]
     },
     {
@@ -574,6 +612,19 @@
         "Async stopPluginWork invocation and pending waits are not implemented by this unit.",
         "Native watchSession/command guard/registry integration and browser execution remain required.",
         "Typed owned callbacks exclude JS getters/prototypes; resource refusals are host limits, not original results."
+      ]
+    },
+    {
+      "id": "engine.session.activity.state",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/86",
+      "tested_sha": "c1357c868eb60aa0d43b66a8269c4280ae0e9bc6",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "c1357c868eb60aa0d43b66a8269c4280ae0e9bc6",
+      "open_items": [
+        "Full guarded/interrupt/current assignment/cleanup and progress-after-abort routing remain unported; wire this single store into the native owner.",
+        "Arbitrary Zustand partial functions/replace, host snapshot mutation, React hooks/middleware and browser-Wasm store execution are outside this typed command-patch scope."
       ]
     },
     {
@@ -644,6 +695,20 @@
       ]
     },
     {
+      "id": "engine.session.command.label",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/85",
+      "tested_sha": "eb23a9d7446c3b1e0b10df9776d93eb06d56d5c1",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "eb23a9d7446c3b1e0b10df9776d93eb06d56d5c1",
+      "open_items": [
+        "Full guarded/interrupt/history/timer/late-body execution and actual runtime integration remain required.",
+        "Actual browser-Wasm label execution and broader toolchain Unicode profiles remain open; mismatching versions fail explicitly.",
+        "Typed owned title/custom providers exclude arbitrary JS host objects/property semantics outside the declared boundary."
+      ]
+    },
+    {
       "id": "engine.session.contract",
       "status": "specified",
       "parent": "P05",
@@ -652,8 +717,8 @@
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
-        "Spec drafted from registry/state/types/history/activity/schema/stalePage/worker files. stateSections.ts was read 2026-11-03 and remains unported; agentLink.ts and the remaining host.ts still need review.",
-        "Scoped registration/history/queues/deadline/settle/activity/plugin/stale/error/clock/execute/recent/workspace libraries have native source comparisons. Concrete family/session ownership, full guarded/interrupt/history/default-label execution, actual timers/late bodies/reaction attachment, worker lifecycle, real commands/project/CLI/browser integration remain required; no session acceptance claim.",
+        "2026-11-03: bounded stateSections registration/readout is implemented under engine.state.sections; actual session.state composition remains open. agentLink.ts and remaining host.ts still need review.",
+        "Scoped registry/history/queues/deadline/settle/plugin/stale/error/clock/execute/recent/workspace/label/activity/readout libraries and native task ownership exist. Complete source-ordered reactions (engine.runtime.reactions), guarded/interrupt/history/native family ownership, real timers/late progress/commands/projects/CLI/browser runtime remain required; no session acceptance.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
       ]
@@ -894,6 +959,19 @@
       ]
     },
     {
+      "id": "engine.state.sections",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/87",
+      "tested_sha": "05406f20864b3e9f5dfabc527dc9aab0902fab9a",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "05406f20864b3e9f5dfabc527dc9aab0902fab9a",
+      "open_items": [
+        "Full session.state composition and actual native plugin installation/session ownership remain required.",
+        "Arbitrary host objects, executable inherited setters/getters, general prototype lookup and browser-Wasm readout execution remain outside this owned-data scope."
+      ]
+    },
+    {
       "id": "engine.state.workspaces",
       "status": "implemented",
       "parent": "engine.session.contract",
@@ -1007,6 +1085,32 @@
         "Runtime checkpoint 2026-11-01: existing registered cases execute in actual Chrome via harness.wasm.runtime; see evidence/browser-wasm-2026-11-01/report.json at candidate 00fd1a69af98c7bacc91da747483ac0ccbfb70c6. No lifecycle acceptance promotion.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
+      ]
+    },
+    {
+      "id": "fit.sphere.clipped",
+      "status": "implemented",
+      "parent": "P07",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/89",
+      "tested_sha": "03369e07efdb03c9164d6ac4bf01e0e47bfca27d",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "03369e07efdb03c9164d6ac4bf01e0e47bfca27d",
+      "open_items": [
+        "2026-11-03: all1560 sphere cases now execute in actual Chrome Wasm under harness.wasm.sphere evidence/browser-wasm-sphere-2026-11-03/manifest.json. Broader profiles and generic exact-base numerical ratchet remain unverified; no feature/runtime acceptance.",
+        "Seeded/RANSAC/growth, full selection normal voting/extents/element fields, commands/session/project/CLI integration remain unported for spheres."
+      ]
+    },
+    {
+      "id": "fit.sphere.selection",
+      "status": "implemented",
+      "parent": "P07",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/93",
+      "tested_sha": "6cc198f1306de27df9504c9ad553d6e084e411a6",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "6cc198f1306de27df9504c9ad553d6e084e411a6",
+      "open_items": [
+        "2026-11-03: all2220 marked-sphere cases execute in actual Chrome Wasm under harness.wasm.marked.sphere. Seeded/RANSAC/growth/guides and actual command/session/history/project/CLI integration remain unimplemented.",
+        "Owned positions/settings/region boundaries exclude arbitrary JS property getters/boxed settings. Generic exact-base ratchet and broader platform profiles remain open."
       ]
     },
     {
@@ -1249,6 +1353,19 @@
       ]
     },
     {
+      "id": "harness.wasm.marked.sphere",
+      "status": "implemented",
+      "parent": "P36",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/94",
+      "tested_sha": "3f72f196fd9d2c5c6e12438ca22a708f568656ac",
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Broader platform profiles, full standalone fixed3 browser corpus and actual session/command/history/project/UI/CLI integration remain open; no accepted feature or M3.",
+        "The three original native-only workload exclusions and generic P36/P37/tooling replacement continuations remain unchanged."
+      ]
+    },
+    {
       "id": "harness.wasm.obj",
       "status": "implemented",
       "parent": "P36",
@@ -1287,6 +1404,19 @@
         "Actual Chrome execution is verified for the 114 named TLS/mesh-graph/marked-plane inputs only; wider platforms/adversarial corpora and other numerical units remain open.",
         "Private linker-export test ABI is not a stable production engine/UI interface; commands/history/projects/jobs remain unimplemented.",
         "Generic P36 report protocol, P37 exact-base numerical ratchet, P35 whole-product purity and P39 Rust tooling replacement remain open."
+      ]
+    },
+    {
+      "id": "harness.wasm.sphere",
+      "status": "implemented",
+      "parent": "P36",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/90",
+      "tested_sha": "c33011c1d24db4dc5b66459f70aada6ea8d02a13",
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Actual command/session/UI/CLI execution, seeded sphere/growth/full element fields and broader platform profiles remain unimplemented; no accepted feature or M3 claim.",
+        "The three historical native-only workloads remain above unchanged private ABI caps; generic P36/P37 and Rust replacement of temporary test tooling remain open."
       ]
     },
     {
@@ -1527,6 +1657,19 @@
       "verification_tested_sha": null,
       "open_items": [
         "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate."
+      ]
+    },
+    {
+      "id": "math.number.fixed3",
+      "status": "implemented",
+      "parent": "P07",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/92",
+      "tested_sha": "3ae1787091398112b4b7159269078e51d953dae5",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "3ae1787091398112b4b7159269078e51d953dae5",
+      "open_items": [
+        "2026-11-03: fixed3 executes through2220 actual Chrome marked-sphere cases, including exact tie/threshold refusals (harness.wasm.marked.sphere). The standalone8492-case formatter browser corpus and full command/session/CLI remain unimplemented.",
+        "General fraction-count toFixed and arbitrary boxed/prototype JS method semantics are outside this owned primitive boundary."
       ]
     },
     {

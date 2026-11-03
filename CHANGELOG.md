@@ -7,6 +7,19 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- Rust port: complete marked-sphere input-only Wasm codec and4431-case full browser roster, preserving every earlier case/budget (PR #94); actual execution proof is tracked separately.
+
+- Rust port: full marked-sphere output/refusals, known-diameter checks and exact original-region recipe identity; shared marking-size guard retains plane behavior (PR #93). Commands/seeded paths remain open.
+
+- Rust port: exact primitive Number.toFixed(3) for original sphere refusal text, with rational tie rounding and special/threshold cases (PR #92). Full marked-sphere caller remains open.
+- Rust port: input-only sphere Wasm probe and mandatory full1560-case browser roster, preserving all earlier651 cases and budgets (PR #90); actual Chrome evidence is tracked separately.
+
+- Rust port: complete clipped free/held-radius sphere fitting and signed radial statistics with independent original comparisons (PR #89). Seeded growth, full element fields and commands remain open.
+- **Rust command labels**: preserve full Unicode lowercase, unpaired UTF-16, custom/nullish/empty fallback and lazy provider effects across a complete code-point/context census. Command/history runtime integration remains separate.
+- Rust port: command activity start/progress/clear publication with live listener identity, reentrant state delivery and exact faults (PR #86); full session runtime remains open.
+- Rust port: plugin state-section registration and live full/brief readout with exact conversion faults and plain-object prototype behavior (PR #87); native session composition remains open.
+- Rust port: bounded native cooperative owner retains pending work independently of caller tickets, with FIFO thread-safe wake tokens and finite turns (PR #88). Command/timer/history integration remains open.
+
 - **Port review handoff**: retain current exact PR heads, open/merged dependencies and required-check states with negative snapshot controls; document remaining runtime ownership and source branch tests. No feature body or numerical policy changes.
 
 - **Rust workspace metadata**: preserve exact public/internal names, installed ordering, empty/duplicate ids and live independent name arrays across 306 original state/plugin cases. Plugin discovery/full state runtime remain separate.
