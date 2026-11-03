@@ -5,7 +5,7 @@
     "baseline-captured": 2,
     "implemented": 44,
     "planned": 49,
-    "specified": 1
+    "specified": 2
   },
   "native_suites": 32,
   "native_case_identities_including_refusals": 3193,
@@ -522,6 +522,18 @@
         "Concrete measure/flat/deviation/thickness capture and apply, remeasurement and scan/source restoration remain required.",
         "Typed runRestore owns a single-use job; arbitrary reentrant JS and concurrent/multiple job invocation are not represented.",
         "Import queue, command integration and actual browser runtime remain open."
+      ]
+    },
+    {
+      "id": "engine.session.import.queue",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Native/Wasm executor and concrete restore/import integration remain required.",
+        "Abandoned Rust futures are host failures, not a source cancellation feature; engine termination policy remains required.",
+        "Typed callback errors represent source exceptions; arbitrary Rust panic/OOM isolation is not exhaustive."
       ]
     },
     {

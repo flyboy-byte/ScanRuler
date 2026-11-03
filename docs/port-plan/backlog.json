@@ -4630,6 +4630,45 @@
       ]
     },
     {
+      "id": "engine.session.import.queue",
+      "parent": "engine.session.contract",
+      "title": "Port import queue serialization and listener/promise behavior",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [
+        "engine.error.envelope"
+      ],
+      "soft_depends_on": [
+        "engine.session.history.restore"
+      ],
+      "scope": "Complete ImportQueue pending/busy, ordered jobs, completion failure recovery and live listener identity/order over owned standard Rust futures. Runtime task driving and host abandonment remain explicit integration boundaries.",
+      "acceptance": [
+        "Full pinned original class executes controlled job/listener traces before Rust. Compare pending/busy, all jobs/results and callback order, including listener errors and reentrant registration/enqueue.",
+        "Native bounded metadata/opaque error ownership and Wasm checks; no dependencies or second mutable business store."
+      ],
+      "owner": "Codex",
+      "branch": "codex/import-queue",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/app/importQueue.ts"
+      ],
+      "symbols": [
+        "ImportQueue.run",
+        "ImportQueue.subscribe",
+        "ImportQueue.busy",
+        "ImportQueue.changed"
+      ],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Native/Wasm executor and concrete restore/import integration remain required.",
+        "Abandoned Rust futures are host failures, not a source cancellation feature; engine termination policy remains required.",
+        "Typed callback errors represent source exceptions; arbitrary Rust panic/OOM isolation is not exhaustive."
+      ]
+    },
+    {
       "id": "engine.session.registry",
       "parent": "engine.session.contract",
       "title": "Port owned command registration, catalog and schema admission",
