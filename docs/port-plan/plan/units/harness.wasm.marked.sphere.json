@@ -3,7 +3,7 @@
   "parent": "P36",
   "title": "Execute complete marked-sphere outputs and FitErrors in Chrome Wasm",
   "gate": "G3",
-  "status": "specified",
+  "status": "implemented",
   "depends_on": [
     "harness.wasm.sphere",
     "fit.sphere.selection"
@@ -21,7 +21,7 @@
   "owner": "Codex",
   "branch": "codex/wasm-marked-sphere",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/94",
-  "implemented_commit": null,
+  "implemented_commit": "3f72f196fd9d2c5c6e12438ca22a708f568656ac",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/core/fit/fitSphereFromSeed.ts",
@@ -36,9 +36,20 @@
     "rust/crates/port-wasm-probe/src/sphere.rs",
     "rust/crates/port-wasm-probe/src/marked_sphere.rs"
   ],
-  "evidence": [],
-  "open_items": [
-    "Implement and execute full input-only Chrome comparison; actual session/command/seeded/UI/CLI integration remains separate."
+  "evidence": [
+    {
+      "kind": "runtime-comparison",
+      "location": "evidence/browser-wasm-marked-sphere-2026-11-03/manifest.json",
+      "candidate_sha": "3f72f196fd9d2c5c6e12438ca22a708f568656ac"
+    }
   ],
-  "verification": "none"
+  "open_items": [
+    "Broader platform profiles, full standalone fixed3 browser corpus and actual session/command/history/project/UI/CLI integration remain open; no accepted feature or M3.",
+    "The three original native-only workload exclusions and generic P36/P37/tooling replacement continuations remain unchanged."
+  ],
+  "verification": "none",
+  "resolved_items": [
+    "2026-11-03: actual Chrome executes all4431 cases, preserving all2211 prior cases and adding every2220 marked-sphere value/held/region/identity/FitError comparison.",
+    "1952 successful outputs/helper states and2479 source refusals remain distinct.36 protocol checks pass, with zero module imports/page errors; complete raw proof and exact identities retained."
+  ]
 }

@@ -31,3 +31,7 @@ real marked-sphere calls; it is not the complete8492-case standalone formatter
 browser corpus or engine/session/command/history/project/UI/CLI functionality.
 Seeded sphere/growth/guides, broader profiles, generic exact-base ratchet and
 accepted-feature/M3 gates remain open.
+
+## Actual Chrome checkpoint
+
+Clean implementation3f72f196fd9d2c5c6e12438ca22a708f568656ac passes all4431 original/native/Chrome cases and36 protocol checks:1952 model/helper outputs and2479 exact source refusals. No module imports/page errors. Complete raw proof/corpus/report/module/browser/native/candidate identities are retained in evidence/browser-wasm-marked-sphere-2026-11-03/. Historical and current full proofs replay in comparator regressions. Node22/system Rust/installed stable Chrome profiles are recorded in the manifest/report. This includes the real fixed3 formatter through marked-sphere refusal calls, not the standalone8492-case formatter browser corpus.
