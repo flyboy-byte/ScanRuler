@@ -100,7 +100,8 @@
         "P07",
         "P08",
         "P09",
-        "engine.measurement.slice"
+        "engine.measurement.slice",
+        "fit.sphere.clipped"
       ],
       "touches": "port-engine, port-cli, port-io"
     },

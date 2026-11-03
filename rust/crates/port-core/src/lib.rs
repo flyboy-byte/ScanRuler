@@ -39,3 +39,6 @@ pub mod js_number;
 
 /// Own Date millisecond clipping and Gregorian UTC timestamp conversion.
 pub mod js_date;
+
+/// Complete fixed-selection free/held-radius sphere fitting.
+pub mod sphere;
