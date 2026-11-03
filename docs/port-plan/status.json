@@ -1306,7 +1306,7 @@
       "id": "harness.wasm.sphere",
       "status": "specified",
       "parent": "P36",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/90",
       "tested_sha": null,
       "verification": "none",
       "verification_tested_sha": null,
