@@ -6824,6 +6824,42 @@
       "verification": "fixed-corpus"
     },
     {
+      "id": "engine.session.command.label",
+      "parent": "engine.session.contract",
+      "title": "Port lossless Unicode command history labels and lazy fallback",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [],
+      "scope": "Complete Agent-label expression in guarded/interrupt at owned UTF16 title/custom-label boundaries. Preserve single receiver-bound custom callback, nullish vs empty result, lazy title access, full Unicode lowercase and unpaired UTF16. Reuse Rust Unicode17 with explicit source/toolchain version gates; full command/history runtime remains separate.",
+      "acceptance": [
+        "Exact pinned expression is verified in both guarded/interrupt, executed before Rust on authored callback/error/Unicode cases and complete scalar/context census blocks; compare full inputs, values and effects.",
+        "No ASCII/lossy fallback or source-generated expectations feed Rust; explicit native limits remain host errors. Native and Wasm compile gates plus all existing comparisons stay required."
+      ],
+      "owner": "Codex",
+      "branch": "codex/command-label",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/registry.ts",
+        "src/commands/types.ts"
+      ],
+      "symbols": [
+        "interrupt history label expression",
+        "guarded history label expression"
+      ],
+      "rust_paths": [
+        "rust/crates/port-core/src/js_string.rs",
+        "rust/crates/port-engine/src/command_label.rs",
+        "rust/crates/port-engine/tests/command_label.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Implement bounded expression and Unicode comparisons; full guarded/interrupt/history/timers and actual browser runtime remain separate."
+      ],
+      "verification": "none"
+    },
+    {
       "id": "engine.session.contract",
       "parent": "P05",
       "title": "Specify and implement bounded engine session and mutation contracts",

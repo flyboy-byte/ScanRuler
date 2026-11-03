@@ -5,12 +5,12 @@
     "baseline-captured": 2,
     "implemented": 65,
     "planned": 47,
-    "specified": 1
+    "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 48,
     "fuzzed": 4,
-    "none": 63
+    "none": 64
   },
   "native_suites": 51,
   "native_case_identities_including_refusals": 9578,
@@ -641,6 +641,18 @@
         "Actual native/browser timer backend policy, executor and command integration remain required.",
         "The owner must retain body work after a caller timeout; timeout does not authorize dropping partial effects or adding a new session-epoch policy.",
         "Typed clock registration/clear are trusted and serial; host timer resource failures and arbitrary Promise subclasses remain outside this admitted boundary."
+      ]
+    },
+    {
+      "id": "engine.session.command.label",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Implement bounded expression and Unicode comparisons; full guarded/interrupt/history/timers and actual browser runtime remain separate."
       ]
     },
     {

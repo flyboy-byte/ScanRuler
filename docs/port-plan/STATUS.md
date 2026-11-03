@@ -13,7 +13,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | baseline-captured | 2 |
 | implemented | 65 |
 | planned | 47 |
-| specified | 1 |
+| specified | 2 |
 
 Verification labels describe scoped evidence snapshots, not whole-feature/runtime acceptance.
 
@@ -21,7 +21,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | --- | ---: |
 | fixed-corpus | 48 |
 | fuzzed | 4 |
-| none | 63 |
+| none | 64 |
 
 | Unit | State | Verification | Tested implementation | Verification snapshot | PR |
 | --- | --- | --- | --- | --- | --- |
@@ -79,6 +79,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [engine.session.activity.watch](plan/units/engine.session.activity.watch.json) | implemented | fixed-corpus | `7f2c709` | `7f2c709` | [#72](https://github.com/flyboy-byte/ScanRuler/pull/72) |
 | [engine.session.clock.utc](plan/units/engine.session.clock.utc.json) | implemented | fixed-corpus | `cf0543a` | `cf0543a` | [#68](https://github.com/flyboy-byte/ScanRuler/pull/68) |
 | [engine.session.command.deadline](plan/units/engine.session.command.deadline.json) | implemented | fixed-corpus | `b3566ac` | `b3566ac` | [#59](https://github.com/flyboy-byte/ScanRuler/pull/59) |
+| [engine.session.command.label](plan/units/engine.session.command.label.json) | specified | none | — | — | — |
 | [engine.session.contract](plan/units/engine.session.contract.json) | specified | none | — | — | [#45](https://github.com/flyboy-byte/ScanRuler/pull/45) |
 | [engine.session.error.normalize](plan/units/engine.session.error.normalize.json) | implemented | fixed-corpus | `6dcf191` | `6dcf191` | [#65](https://github.com/flyboy-byte/ScanRuler/pull/65) |
 | [engine.session.execute.lifecycle](plan/units/engine.session.execute.lifecycle.json) | implemented | fixed-corpus | `e6dce90` | `e6dce90` | [#80](https://github.com/flyboy-byte/ScanRuler/pull/80) |
