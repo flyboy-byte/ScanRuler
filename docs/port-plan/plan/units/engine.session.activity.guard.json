@@ -15,7 +15,7 @@
   "owner": "Codex",
   "branch": "codex/activity-guard",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/70",
-  "implemented_commit": null,
+  "implemented_commit": "c458f7a8e1b8db72c7d54ac4e996cae4e6fb8b9d",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/commands/activity.ts"
@@ -227,7 +227,8 @@
         "case-189",
         "case-190",
         "case-191"
-      ]
+      ],
+      "candidate_sha": "c458f7a8e1b8db72c7d54ac4e996cae4e6fb8b9d"
     }
   ],
   "open_items": [

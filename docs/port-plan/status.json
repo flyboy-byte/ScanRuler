@@ -2,13 +2,13 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 3,
-    "implemented": 49,
+    "baseline-captured": 2,
+    "implemented": 50,
     "planned": 48,
     "specified": 1
   },
-  "native_suites": 36,
-  "native_case_identities_including_refusals": 3731,
+  "native_suites": 37,
+  "native_case_identities_including_refusals": 3923,
   "accepted_units": [],
   "units": [
     {
@@ -452,10 +452,10 @@
     },
     {
       "id": "engine.session.activity.guard",
-      "status": "baseline-captured",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/70",
-      "tested_sha": null,
+      "tested_sha": "c458f7a8e1b8db72c7d54ac4e996cae4e6fb8b9d",
       "open_items": [
         "Activity running/progress state, plugin busy/watch/stop functions and full registry execution remain separate.",
         "Owned guard objects exclude mutable JS busy-property getters/replacement and arbitrary prototype mutation."

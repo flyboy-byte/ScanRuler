@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-02: [#70](https://github.com/flyboy-byte/ScanRuler/pull/70) follows #67 and ports command guard identity/configuration/unconditional cleanup with 192 full source traces. Running/progress and plugin functions stay separate; oracle/ACTIVITY-GUARD.md records the boundary.
+
 2026-11-02: [#67](https://github.com/flyboy-byte/ScanRuler/pull/67) follows #66 and adds registration identity/live mutation over its wait component, with 116 full source traces and reproducible seed inputs. oracle/SETTLE-REGISTRY.md records runtime/resource limits.
 
 2026-11-02: [#66](https://github.com/flyboy-byte/ScanRuler/pull/66) follows #59 and ports only the stable-callback settlement body with 64 full pinned concurrent-wait traces. Registration/live Set mutation and executor ownership remain explicit in oracle/SETTLE-RUN.md.
