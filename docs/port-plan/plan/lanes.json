@@ -48,7 +48,8 @@
         "engine.session.execute.lifecycle",
         "engine.session.recent.result.data",
         "engine.session.recent.store",
-        "engine.state.workspaces"
+        "engine.state.workspaces",
+        "engine.runtime.tasks"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },

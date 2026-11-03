@@ -5,12 +5,12 @@
     "baseline-captured": 2,
     "implemented": 65,
     "planned": 47,
-    "specified": 1
+    "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 48,
     "fuzzed": 4,
-    "none": 63
+    "none": 64
   },
   "native_suites": 51,
   "native_case_identities_including_refusals": 9578,
@@ -530,6 +530,18 @@
       "verification_tested_sha": null,
       "open_items": [
         "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ]
+    },
+    {
+      "id": "engine.runtime.tasks",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Implement the bounded owner; then wire real deadline/history/guarded/interrupt futures and late effects. No paired runtime or browser execution claim."
       ]
     },
     {

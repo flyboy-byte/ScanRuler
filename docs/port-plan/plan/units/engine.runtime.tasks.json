@@ -1,0 +1,36 @@
+{
+  "id": "engine.runtime.tasks",
+  "parent": "engine.session.contract",
+  "title": "Own and drain native tasks independently of caller observation",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "engine.session.command.deadline",
+    "engine.session.execute.lifecycle"
+  ],
+  "scope": "Native/Wasm cooperative task ownership and bounded wake queue over owned non-Send futures. Start admitted tasks eagerly, retain pending work without an observation ticket, drain in FIFO wake order with bounded turns, and accept cross-thread wakes without exposing document state to threads. This is a new Rust host mechanism, not a claimed port of a pinned source function.",
+  "acceptance": [
+    "Meaningful native tests prove caller-ticket drop leaves late work running, synchronous first polling, FIFO/deduplicated/self/cross-thread wake behavior, reentrant task submission, completed-slot reuse with stale wakers, admission/depth/turn bounds and explicit non-idle finish refusal.",
+    "Full fast/native/Wasm gates pass; source deadline/guarded integration and end-to-end original comparisons remain explicit continuations, with verification none until actual paired runtime evidence."
+  ],
+  "owner": "Codex",
+  "branch": "codex/native-task-owner",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/registry.ts"
+  ],
+  "symbols": [
+    "Native runtime continuation for limited/execute body ownership (new host code)"
+  ],
+  "rust_paths": [
+    "rust/crates/port-engine/src/tasks.rs",
+    "rust/crates/port-engine/tests/tasks.rs"
+  ],
+  "evidence": [],
+  "open_items": [
+    "Implement the bounded owner; then wire real deadline/history/guarded/interrupt futures and late effects. No paired runtime or browser execution claim."
+  ],
+  "verification": "none"
+}
