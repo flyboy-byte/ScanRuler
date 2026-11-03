@@ -68,14 +68,14 @@ impl<S: ?Sized, T: ?Sized, E> Clone for Entry<'_, S, T, E> {
         }
     }
 }
-struct Inner<'a, S: ?Sized, T: ?Sized, E> {
-    entries: RefCell<Vec<Option<Entry<'a, S, T, E>>>>,
-    limits: Limits,
-    depth: Cell<usize>,
+pub(crate) struct Inner<'a, S: ?Sized, T: ?Sized, E> {
+    pub(crate) entries: RefCell<Vec<Option<Entry<'a, S, T, E>>>>,
+    pub(crate) limits: Limits,
+    pub(crate) depth: Cell<usize>,
 }
 /// Shared ordered registry, safe for callback reentry without borrowing across callbacks.
 pub struct Plugins<'a, S: ?Sized, T: ?Sized, E> {
-    inner: Rc<Inner<'a, S, T, E>>,
+    pub(crate) inner: Rc<Inner<'a, S, T, E>>,
 }
 impl<S: ?Sized, T: ?Sized, E> Clone for Plugins<'_, S, T, E> {
     fn clone(&self) -> Self {

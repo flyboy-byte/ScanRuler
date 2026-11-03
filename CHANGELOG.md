@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust plugin stopping**: preserve live check/stop mutation, shared done identity, concurrent waits and fault suppression with 227 full original traces. Command executor integration remains open.
+
 - **Rust plugin busy metadata**: preserve duplicate errors, function/array/stop identity, old cleanup and live first-busy lookup with 96 full original comparisons. Async stop invocation remains separate.
 
 - **Port verification evidence**: separate lifecycle from fixed-corpus, fuzzed and coverage-reviewed labels; reject unsupported grades and retain exact-candidate PLY/STL fuzz logs and corruption reproducers. No unit is accepted.
