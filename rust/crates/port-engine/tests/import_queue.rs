@@ -350,7 +350,7 @@ fn controlled_jobs_settle_on_all_input_schedules() {
     }
 }
 #[test]
-#[ignore = "live original history recording comparison requires Node 22 and pinned TypeScript dependency"]
+#[ignore = "live original import queue comparison requires Node 22 and pinned TypeScript dependency"]
 fn pinned_import_queue_comparison() {
     use std::io::Write;
     use std::process::{Command, Stdio};
@@ -371,7 +371,7 @@ fn pinned_import_queue_comparison() {
     assert!(sha.status.success());
     std::fs::write(run.join("candidate.txt"), sha.stdout).unwrap();
     let mut identity = String::from(
-        "contract: engine.session.import.queue.bytes.v1\nreference: 2cd89c6769a10c27ee7754b477ada521c9ef5cb7\ncomparison: full patch graph identities/payloads, bookkeeping/workspace/capture order and held state\nseeds: 1,7,99,1039\n",
+        "contract: engine.session.import.queue.bytes.v1\nreference: 2cd89c6769a10c27ee7754b477ada521c9ef5cb7\ncomparison: full pending/busy, ordered notifications/jobs/results and opaque outcomes\nseeds: 1,7,99,1039\n",
     );
     for (label, program, args) in [
         ("dirty", "git", vec!["status", "--porcelain"]),
@@ -461,7 +461,7 @@ fn pinned_import_queue_comparison() {
         );
         assert!(
             candidate == observed,
-            "{}: complete history patches and graph data",
+            "{}: complete queue state, callback order and returned outcomes",
             c.id
         );
         if c.id == "fifo" {
@@ -482,8 +482,178 @@ fn pinned_import_queue_comparison() {
                 "missing results must fail"
             );
         }
-        println!("{}: all original history state compared exactly", c.id);
+        println!(
+            "{}: all original queue state and outcomes compared exactly",
+            c.id
+        );
     }
     assert_eq!(offset, original.stdout.len());
     println!("67 complete import queue scenarios; raw {}", run.display());
+}
+
+fn ready<T>(future: impl Future<Output = T>) -> T {
+    let mut future = std::pin::pin!(future);
+    let mut cx = Context::from_waker(Waker::noop());
+    match future.as_mut().poll(&mut cx) {
+        Poll::Ready(result) => result,
+        Poll::Pending => panic!("expected completed owned future"),
+    }
+}
+#[test]
+fn scoped_jobs_and_non_clone_errors_keep_ownership() {
+    #[derive(Debug)]
+    struct Fault {
+        owner: Rc<()>,
+        message: Text,
+    }
+    let q = ImportQueue::<Fault>::default();
+    let mut value = 0;
+    let run = q
+        .run(|| async {
+            value += 1;
+            Ok::<_, Fault>(value)
+        })
+        .unwrap();
+    assert_eq!(ready(run).unwrap(), 1);
+    assert_eq!(value, 1);
+    let owner = Rc::new(());
+    let e = Fault {
+        owner: owner.clone(),
+        message: vec![0xd800, 65],
+    };
+    let run = q.run(move || std::future::ready(Err::<(), _>(e))).unwrap();
+    match ready(run) {
+        Err(QueueError::Callback(error)) => {
+            assert!(Rc::ptr_eq(&owner, &error.owner));
+            assert_eq!(error.message, vec![0xd800, 65]);
+        }
+        other => panic!("{other:?}"),
+    }
+    assert_eq!(q.pending(), 0);
+    assert!(!q.busy());
+    assert!(!q.abandoned());
+}
+#[test]
+fn callback_prefix_fault_and_host_bounds_are_distinct() {
+    use port_engine::import_queue::QueueLimits;
+    let q = ImportQueue::<Text>::default();
+    let called = Cell::new(false);
+    let s = q.subscribe(Rc::new(|| Err(vec![0xd800]))).unwrap();
+    let result = q.run(|| {
+        called.set(true);
+        std::future::ready(Ok::<_, Text>(()))
+    });
+    assert!(matches!(result,Err(QueueError::Callback(e))if e==vec![0xd800]));
+    assert!(!called.get());
+    assert_eq!(q.pending(), 1);
+    s.unsubscribe();
+    assert_eq!(
+        ready(q.run(|| std::future::ready(Ok::<_, Text>(7))).unwrap()),
+        Ok(7)
+    );
+    assert_eq!(
+        q.pending(),
+        1,
+        "source prefix failure retains the increment"
+    );
+    let q = ImportQueue::<Text>::new(QueueLimits {
+        pending: 0,
+        ..QueueLimits::default()
+    });
+    assert!(matches!(
+        q.run(|| std::future::ready(Ok::<_, Text>(()))),
+        Err(QueueError::Limit)
+    ));
+    assert_eq!(q.pending(), 0);
+    let q = ImportQueue::<Text>::new(QueueLimits {
+        registrations: 0,
+        ..QueueLimits::default()
+    });
+    assert!(matches!(
+        q.subscribe(Rc::new(|| Ok(()))),
+        Err(QueueError::Limit)
+    ));
+    let q = ImportQueue::<Text>::new(QueueLimits {
+        visits: 0,
+        ..QueueLimits::default()
+    });
+    let visits = Rc::new(Cell::new(0));
+    let count = visits.clone();
+    let _s = q
+        .subscribe(Rc::new(move || {
+            count.set(count.get() + 1);
+            Ok(())
+        }))
+        .unwrap();
+    assert!(matches!(
+        q.run(|| std::future::ready(Ok::<_, Text>(()))),
+        Err(QueueError::Limit)
+    ));
+    assert_eq!(visits.get(), 0);
+}
+#[test]
+fn unused_unsubscribe_capability_does_not_end_subscription() {
+    let q = ImportQueue::<Text>::default();
+    let count = Rc::new(Cell::new(0));
+    let c = count.clone();
+    drop(
+        q.subscribe(Rc::new(move || {
+            c.set(c.get() + 1);
+            Ok(())
+        }))
+        .unwrap(),
+    );
+    ready(q.run(|| std::future::ready(Ok::<_, Text>(()))).unwrap()).unwrap();
+    assert_eq!(count.get(), 2);
+    let weak = q.downgrade();
+    drop(q);
+    assert!(weak.upgrade().is_none());
+}
+#[test]
+fn abandoned_job_wakes_and_quarantines_dependents_without_running_them() {
+    use std::{
+        sync::{
+            Arc,
+            atomic::{AtomicUsize, Ordering},
+        },
+        task::Wake,
+    };
+    struct Count(AtomicUsize);
+    impl Wake for Count {
+        fn wake(self: Arc<Self>) {
+            self.0.fetch_add(1, Ordering::SeqCst);
+        }
+    }
+    let q = ImportQueue::<Text>::default();
+    let ran = Cell::new(false);
+    let first = q.run(std::future::pending::<Result<(), Text>>).unwrap();
+    let mut second = Box::pin(
+        q.run(|| {
+            ran.set(true);
+            std::future::ready(Ok::<_, Text>(()))
+        })
+        .unwrap(),
+    );
+    let count = Arc::new(Count(AtomicUsize::new(0)));
+    let waker = Waker::from(count.clone());
+    let mut cx = Context::from_waker(&waker);
+    assert!(second.as_mut().poll(&mut cx).is_pending());
+    drop(first);
+    assert!(q.abandoned());
+    assert!(q.busy());
+    assert_eq!(count.0.load(Ordering::SeqCst), 1);
+    assert!(matches!(
+        second.as_mut().poll(&mut cx),
+        Poll::Ready(Err(QueueError::Abandoned))
+    ));
+    assert!(!ran.get());
+    assert_eq!(q.pending(), 2);
+    assert!(matches!(
+        second.as_mut().poll(&mut cx),
+        Poll::Ready(Err(QueueError::Completed))
+    ));
+    assert!(matches!(
+        q.run(|| std::future::ready(Ok::<_, Text>(()))),
+        Err(QueueError::Abandoned)
+    ));
 }
