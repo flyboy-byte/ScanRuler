@@ -5,12 +5,12 @@
     "baseline-captured": 2,
     "implemented": 67,
     "planned": 47,
-    "specified": 1
+    "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 50,
     "fuzzed": 4,
-    "none": 63
+    "none": 64
   },
   "native_suites": 53,
   "native_case_identities_including_refusals": 19630,
@@ -1020,6 +1020,18 @@
       "open_items": [
         "Actual browser-Wasm sphere execution and the generic exact-base numerical ratchet remain unverified; Wasm compilation alone grants no runtime acceptance.",
         "Seeded/RANSAC/growth, full selection normal voting/extents/element fields, commands/session/project/CLI integration remain unported for spheres."
+      ]
+    },
+    {
+      "id": "fit.sphere.selection",
+      "status": "specified",
+      "parent": "P07",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Capture original-first full selection traces and implement all output/refusal continuations; command/session integration and seeded paths/browser selection execution remain separate."
       ]
     },
     {

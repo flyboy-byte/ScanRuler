@@ -14646,6 +14646,53 @@
       "verification": "fixed-corpus"
     },
     {
+      "id": "fit.sphere.selection",
+      "parent": "P07",
+      "title": "Port complete marked-sphere selection output and refusals",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [
+        "fit.sphere.clipped",
+        "math.number.fixed3"
+      ],
+      "scope": "Full fitSphereOnSelection, heldRadius/heldLimit/heldTooFar/heldRefusal/sphereOutput and minimal shared requireSelection guard. Preserve raw original-region identity versus clipped used counts, every held/free output, exact source FitError text, numerical/default guards and known-diameter boundary order. Co-port one shared selection guard and reuse it from existing plane wrapper without changing its noun/message.",
+      "acceptance": [
+        "Full pinned source dependency graph executes unmodified selection body; compare independent Float32/Uint32/settings packets, complete fields and optional held output, original region identity/order, used count versus original region size, every refusal class/message and unchanged inputs.",
+        "Seeded/guide/RANSAC branches remain explicitly unported. Scalar budget stays1e-10 absolute plus1e-10*abs(reference), exact discrete/presence/messages/zero signs/nonfinite classes. Old sphere/plane/formatter comparisons and native/Wasm gates all remain required."
+      ],
+      "owner": "Codex",
+      "branch": "codex/marked-sphere",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/fit/fitSphereFromSeed.ts",
+        "src/core/fit/selection.ts",
+        "src/core/fit/errors.ts"
+      ],
+      "symbols": [
+        "fitSphereOnSelection",
+        "heldRadius",
+        "heldLimit",
+        "heldTooFar",
+        "heldRefusal",
+        "sphereOutput",
+        "requireSelection"
+      ],
+      "rust_paths": [
+        "rust/crates/port-core/src/marked_sphere.rs",
+        "rust/crates/port-core/src/selection.rs",
+        "rust/crates/port-core/src/marked_plane.rs",
+        "rust/crates/port-core/tests/marked_sphere.rs",
+        "rust/crates/port-core/tests/common/sphere_input.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Capture original-first full selection traces and implement all output/refusal continuations; command/session integration and seeded paths/browser selection execution remain separate."
+      ],
+      "verification": "none"
+    },
+    {
       "id": "geometry.adjacency",
       "parent": "P06",
       "title": "Port complete ordered vertex-to-vertex mesh adjacency",

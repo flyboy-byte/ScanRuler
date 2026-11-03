@@ -13,7 +13,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | baseline-captured | 2 |
 | implemented | 67 |
 | planned | 47 |
-| specified | 1 |
+| specified | 2 |
 
 Verification labels describe scoped evidence snapshots, not whole-feature/runtime acceptance.
 
@@ -21,7 +21,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | --- | ---: |
 | fixed-corpus | 50 |
 | fuzzed | 4 |
-| none | 63 |
+| none | 64 |
 
 | Unit | State | Verification | Tested implementation | Verification snapshot | PR |
 | --- | --- | --- | --- | --- | --- |
@@ -105,6 +105,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [fit.plane.selection](plan/units/fit.plane.selection.json) | implemented | fixed-corpus | `e5c342c` | `e5c342c` | [#23](https://github.com/flyboy-byte/ScanRuler/pull/23) |
 | [fit.plane.tls](plan/units/fit.plane.tls.json) | implemented | fixed-corpus | `4c8b4cf` | `4c8b4cf` | [#8](https://github.com/flyboy-byte/ScanRuler/pull/8) |
 | [fit.sphere.clipped](plan/units/fit.sphere.clipped.json) | implemented | fixed-corpus | `03369e0` | `03369e0` | [#89](https://github.com/flyboy-byte/ScanRuler/pull/89) |
+| [fit.sphere.selection](plan/units/fit.sphere.selection.json) | specified | none | — | — | — |
 | [geometry.adjacency](plan/units/geometry.adjacency.json) | implemented | fixed-corpus | `74dd926` | `74dd926` | [#17](https://github.com/flyboy-byte/ScanRuler/pull/17) |
 | [geometry.bounds](plan/units/geometry.bounds.json) | implemented | fixed-corpus | `4c8b4cf` | `4c8b4cf` | [#10](https://github.com/flyboy-byte/ScanRuler/pull/10) |
 | [geometry.centroid](plan/units/geometry.centroid.json) | implemented | fixed-corpus | `1473fe4` | `1473fe4` | [#11](https://github.com/flyboy-byte/ScanRuler/pull/11) |
