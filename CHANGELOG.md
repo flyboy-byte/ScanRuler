@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust history guards**: preserve running-job and held-editor blocking, empty draft behavior, callback order and opaque errors with 212 complete original comparisons.
+
 - **Rust local editor undo/redo**: preserve first-active selection, workspace-before-action and opaque callback failures with 192 exact original traces. Global restoration and full family guards remain separate.
 - **Fuzz reproducer reduction**: opt-in bounded PLY/STL shrinking preserves mismatch categories and retains original inputs and complete reduced outcomes.
 
