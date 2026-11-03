@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust DEFLATE and ZIP reader** (2026-11-03): own pure-Rust inflate and unzip that reproduces the original's `fflate` 0.8.3 `unzipSync`, including its lenient behaviour on damaged archives; 30,000 generated and mutated archives, 0 divergences. 3MF reading itself and PNG/JPEG decoding remain separate.
+
 - **Fuzz reproducer reduction**: opt-in bounded PLY/STL shrinking preserves mismatch categories and retains original inputs and complete reduced outcomes.
 
 - **Rust standing fuzz** (2026-11-03): `cargo xtask fuzz <ply|stl> --seed N --cases M` compares seeded mutated inputs against the frozen original (success, progress and error text, output bytes) with host-limit refusals and original timeouts counted apart; first run 120,000 cases, 0 divergences. OBJ, minimized reproducers and a scheduled job remain open.
