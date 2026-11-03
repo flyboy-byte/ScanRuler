@@ -5,12 +5,12 @@
     "baseline-captured": 2,
     "implemented": 66,
     "planned": 47,
-    "specified": 1
+    "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 49,
     "fuzzed": 4,
-    "none": 63
+    "none": 64
   },
   "native_suites": 52,
   "native_case_identities_including_refusals": 11138,
@@ -1300,6 +1300,18 @@
         "Actual Chrome execution is verified for the 114 named TLS/mesh-graph/marked-plane inputs only; wider platforms/adversarial corpora and other numerical units remain open.",
         "Private linker-export test ABI is not a stable production engine/UI interface; commands/history/projects/jobs remain unimplemented.",
         "Generic P36 report protocol, P37 exact-base numerical ratchet, P35 whole-product purity and P39 Rust tooling replacement remain open."
+      ]
+    },
+    {
+      "id": "harness.wasm.sphere",
+      "status": "specified",
+      "parent": "P36",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Implement and execute the input-only codec with full raw browser proof; engine/session/command integration remains separate."
       ]
     },
     {
