@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-02: [#59](https://github.com/flyboy-byte/ScanRuler/pull/59) follows #57 with command deadline reaction ordering at the owned clock/body boundary:291 cases /2037 observations, all earlier288 retained; roster34/3551. Physical timers, executor and command integration remain open.
+
 2026-11-02: [#57](https://github.com/flyboy-byte/ScanRuler/pull/57) follows #55 with the import queue class over owned futures, 67 source schedules /755 observations; roster33/3260. Prior #52–#54 were owner-merged. Source timing failures remain visible and unchanged; actual runtime/command integration stays required.
 
 2026-11-02: review #52 → #53 → #54 → [#55](https://github.com/flyboy-byte/ScanRuler/pull/55). #55 ports complete core capture/apply over borrowed owned data: all73 fields, 98 cases /490 full observations; roster32/3193. Family models, queue/worker lifecycle and commands remain integration work.

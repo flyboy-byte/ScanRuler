@@ -3,12 +3,12 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 45,
+    "implemented": 46,
     "planned": 49,
-    "specified": 2
+    "specified": 1
   },
-  "native_suites": 33,
-  "native_case_identities_including_refusals": 3260,
+  "native_suites": 34,
+  "native_case_identities_including_refusals": 3551,
   "accepted_units": [],
   "units": [
     {
@@ -452,10 +452,10 @@
     },
     {
       "id": "engine.session.command.deadline",
-      "status": "specified",
+      "status": "implemented",
       "parent": "engine.session.contract",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/59",
+      "tested_sha": "b3566ac17f9f01ac4273375ea3b6045a8064c427",
       "open_items": [
         "Actual native/browser timer backend policy, executor and command integration remain required.",
         "The owner must retain body work after a caller timeout; timeout does not authorize dropping partial effects or adding a new session-epoch policy.",
@@ -470,7 +470,7 @@
       "tested_sha": null,
       "open_items": [
         "Spec drafted in SESSION-CONTRACT.md from registry, state, types, historyStore, activity, schema, stalePage, host.sessionBusy and the worker files; still to read: stateSections.ts, agentLink.ts, rest of host.ts.",
-        "Bounded registry, recording, local dispatch, guards and restore orchestration have source traces. Complete family capture/apply, queue/worker lifecycle and real command traces remain required; no session acceptance claim.",
+        "Bounded registry, history recording/local/guards/restore/core capture-apply, import queue and deadline reactions have source traces. Typed family integration, error normalization, executor/worker lifecycle and real command traces remain required; no session acceptance claim.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
       ]
