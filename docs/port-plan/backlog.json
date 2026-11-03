@@ -8859,7 +8859,7 @@
       ],
       "owner": "Codex",
       "branch": "codex/scene-queue",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/79",
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [

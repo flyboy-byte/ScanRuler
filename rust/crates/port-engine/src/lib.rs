@@ -56,3 +56,6 @@ pub mod plugin_busy;
 
 /// Live asynchronous plugin stopping, shared done capability and owned waits.
 pub mod plugin_stop;
+
+/// Direct command routing and serialized viewport turns.
+pub mod scene_queue;
