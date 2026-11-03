@@ -1,0 +1,37 @@
+{
+  "id": "engine.session.history.restore",
+  "parent": "engine.session.contract",
+  "title": "Port global history restore orchestration and failure boundaries",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "engine.session.history.record",
+    "engine.session.history.local",
+    "engine.session.history.guards"
+  ],
+  "scope": "Complete global travel orchestration over typed capture/apply callbacks and a linear owned runRestore host. Preserve entry movement, hook order, epoch/revision, prior snapshots, partial effects and restore errors. Concrete family capture/apply and import queue integration remain separate continuations.",
+  "acceptance": [
+    "Original full module traces compare both directions, hook/capture/application failures, partial effects, workspace and complete owned entry/patch/previous-state data.",
+    "RunRestore scope, empty history, restored flag cleanup, bounded owned metadata and native/Wasm checks are explicit."
+  ],
+  "owner": "Codex",
+  "branch": "codex/history-restore",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/state/historyStore.ts",
+    "src/app/useProjectHistory.ts",
+    "src/app/importQueue.ts"
+  ],
+  "symbols": [
+    "travel (global orchestration)"
+  ],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Concrete measure/flat/deviation/thickness capture and apply, remeasurement and scan/source restoration remain required.",
+    "Typed runRestore owns a single-use job; arbitrary reentrant JS and concurrent/multiple job invocation are not represented.",
+    "Import queue, command integration and actual browser runtime remain open."
+  ]
+}

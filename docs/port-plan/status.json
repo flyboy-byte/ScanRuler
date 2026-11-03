@@ -5,7 +5,7 @@
     "baseline-captured": 2,
     "implemented": 41,
     "planned": 49,
-    "specified": 1
+    "specified": 2
   },
   "native_suites": 30,
   "native_case_identities_including_refusals": 2879,
@@ -498,6 +498,18 @@
         "Native source comparisons only; wasm32 compile is not actual browser history execution.",
         "Typed stable section data and pure captures are the owned boundary; dynamic JS getters, prototypes and reentrant capture are outside this slice.",
         "Session-level asset budgeting and full allocation-failure isolation remain integration work."
+      ]
+    },
+    {
+      "id": "engine.session.history.restore",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Concrete measure/flat/deviation/thickness capture and apply, remeasurement and scan/source restoration remain required.",
+        "Typed runRestore owns a single-use job; arbitrary reentrant JS and concurrent/multiple job invocation are not represented.",
+        "Import queue, command integration and actual browser runtime remain open."
       ]
     },
     {
