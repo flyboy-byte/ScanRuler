@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-02: review #52 → #53 → #54 → [#55](https://github.com/flyboy-byte/ScanRuler/pull/55). #55 ports complete core capture/apply over borrowed owned data: all73 fields, 98 cases /490 full observations; roster32/3193. Family models, queue/worker lifecycle and commands remain integration work.
+
 2026-11-02: review #52 → #53 → [#54](https://github.com/flyboy-byte/ScanRuler/pull/54). #54 ports global restore orchestration over typed capture/apply, with 216 exact source traces; roster31/3095. Concrete family restoration, queue and real command integration remain required.
 
 2026-11-02: review #52 then [#53](https://github.com/flyboy-byte/ScanRuler/pull/53). #53 ports complete history blocking and editor-work predicates with 212 original/Rust observations; native roster30/2879. Global restoration remains the next continuation.

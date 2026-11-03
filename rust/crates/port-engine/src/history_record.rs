@@ -557,3 +557,6 @@ impl Recorder {
 
 /// Global restoration orchestration over owned typed capture/apply callbacks.
 pub mod restore;
+
+/// Concrete core capture/patch rules over borrowed owned data.
+pub mod core;
