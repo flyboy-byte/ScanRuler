@@ -3,12 +3,12 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 40,
+    "implemented": 41,
     "planned": 49,
     "specified": 1
   },
-  "native_suites": 28,
-  "native_case_identities_including_refusals": 2475,
+  "native_suites": 29,
+  "native_case_identities_including_refusals": 2667,
   "accepted_units": [],
   "units": [
     {
@@ -461,6 +461,17 @@
         "Original-derived scenario traces (spec section 8) and the Rust session are unimplemented; no session acceptance claim.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
+      ]
+    },
+    {
+      "id": "engine.session.history.local",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/52",
+      "tested_sha": "123e43e9a78b187bc39b141b682facd328ef1225",
+      "open_items": [
+        "Complete historyBlocked family guards and global restoration remain required.",
+        "Actual family editors, dynamic participant lifecycle and browser runtime remain integration work."
       ]
     },
     {

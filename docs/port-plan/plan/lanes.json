@@ -25,7 +25,8 @@
         "engine.error.envelope",
         "engine.schema.validate",
         "engine.session.registry",
-        "engine.session.history.record"
+        "engine.session.history.record",
+        "engine.session.history.local"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },
