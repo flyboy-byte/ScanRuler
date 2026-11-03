@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 61,
+    "implemented": 62,
     "planned": 47,
-    "specified": 2
+    "specified": 1
   },
   "verification_levels": {
-    "fixed-corpus": 44,
+    "fixed-corpus": 45,
     "fuzzed": 4,
-    "none": 64
+    "none": 63
   },
-  "native_suites": 47,
-  "native_case_identities_including_refusals": 7297,
+  "native_suites": 48,
+  "native_case_identities_including_refusals": 8497,
   "accepted_units": [],
   "units": [
     {
@@ -673,14 +673,16 @@
     },
     {
       "id": "engine.session.execute.lifecycle",
-      "status": "specified",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/80",
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "tested_sha": "e6dce90d996ca2d5882c9e0c78b300b5838b2cc9",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "e6dce90d996ca2d5882c9e0c78b300b5838b2cc9",
       "open_items": [
-        "Implement complete orchestration at typed provider boundary; guarded body/history/deadline integration and actual session commands remain separate."
+        "Full guarded command/history/deadline provider and native runtime integration remain required.",
+        "Native watchSession/command guard/registry integration and browser execution remain required.",
+        "Typed owned callbacks exclude JS getters/prototypes; resource refusals are host limits, not original results."
       ]
     },
     {
