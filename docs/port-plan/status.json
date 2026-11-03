@@ -3,12 +3,12 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 39,
+    "implemented": 40,
     "planned": 49,
-    "specified": 2
+    "specified": 1
   },
-  "native_suites": 28,
-  "native_case_identities_including_refusals": 2475,
+  "native_suites": 29,
+  "native_case_identities_including_refusals": 2667,
   "accepted_units": [],
   "units": [
     {
@@ -465,10 +465,10 @@
     },
     {
       "id": "engine.session.history.local",
-      "status": "specified",
+      "status": "implemented",
       "parent": "engine.session.contract",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/52",
+      "tested_sha": "123e43e9a78b187bc39b141b682facd328ef1225",
       "open_items": [
         "Complete historyBlocked family guards and global restoration remain required.",
         "Actual family editors, dynamic participant lifecycle and browser runtime remain integration work."

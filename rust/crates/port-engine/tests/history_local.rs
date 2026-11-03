@@ -209,3 +209,34 @@ fn pinned_history_local_comparison() {
         dir.display()
     );
 }
+
+#[test]
+fn opaque_faults_and_host_limits() {
+    struct Fault;
+    impl LocalHistory<Vec<u16>> for Fault {
+        fn active(&mut self) -> Result<bool, Vec<u16>> {
+            Err(vec![0xd800, 65])
+        }
+        fn workspace(&self) -> &[u16] {
+            panic!("workspace after fault")
+        }
+        fn step(&mut self, _: Direction) -> Result<(), Vec<u16>> {
+            panic!("action after fault")
+        }
+    }
+    let mut fault = Fault;
+    assert_eq!(
+        history_local::active(&mut [&mut fault]),
+        Err(LocalError::Callback(vec![0xd800, 65]))
+    );
+    let mut faults: Vec<_> = (0..=history_local::MAX_LOCALS).map(|_| Fault).collect();
+    let mut refs: Vec<&mut dyn LocalHistory<Vec<u16>>> = faults
+        .iter_mut()
+        .map(|f| f as &mut dyn LocalHistory<Vec<u16>>)
+        .collect();
+    assert_eq!(history_local::active(&mut refs), Err(LocalError::Limit));
+    assert_eq!(
+        history_local::dispatch(true, &mut refs, Direction::Redo, |_| panic!("blocked")),
+        Ok(Dispatch::Blocked)
+    );
+}

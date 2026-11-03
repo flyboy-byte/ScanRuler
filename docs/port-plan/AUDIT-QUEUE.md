@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-02: [#52](https://github.com/flyboy-byte/ScanRuler/pull/52) ports local editor history selection/dispatch from main522f10c, independently of #51. All 192 full source observations match; native roster29/2667. The parent session stays specified; global restoration and family guards are next.
+
 2026-11-02 review continuation: [#45](https://github.com/flyboy-byte/ScanRuler/pull/45)
 then [#46](https://github.com/flyboy-byte/ScanRuler/pull/46). #46 adds bounded
 identity-aware history recording/group/clear and sync/async wrapper behavior,
