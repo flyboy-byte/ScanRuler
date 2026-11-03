@@ -42,7 +42,8 @@
         "engine.session.stale.error",
         "engine.session.error.normalize",
         "engine.session.clock.utc",
-        "engine.session.activity.plugins"
+        "engine.session.activity.plugins",
+        "engine.session.activity.stop"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },

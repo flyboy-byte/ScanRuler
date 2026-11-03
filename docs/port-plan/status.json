@@ -5,12 +5,12 @@
     "baseline-captured": 2,
     "implemented": 59,
     "planned": 47,
-    "specified": 1
+    "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 42,
     "fuzzed": 4,
-    "none": 63
+    "none": 64
   },
   "native_suites": 45,
   "native_case_identities_including_refusals": 6950,
@@ -574,6 +574,18 @@
         "Async stopPluginWork invocation and pending waits are not implemented by this unit.",
         "Native watchSession/command guard/registry integration and browser execution remain required.",
         "Typed owned callbacks exclude JS getters/prototypes; resource refusals are host limits, not original results."
+      ]
+    },
+    {
+      "id": "engine.session.activity.stop",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Implement scoped live stopping and waits; engine scheduling/integration remains separate."
       ]
     },
     {

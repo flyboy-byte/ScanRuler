@@ -3934,6 +3934,43 @@
       "verification": "fixed-corpus"
     },
     {
+      "id": "engine.session.activity.stop",
+      "parent": "engine.session.contract",
+      "title": "Port live plugin stopping and concurrent suppressed waits",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [
+        "engine.session.activity.plugins",
+        "engine.session.settle.run"
+      ],
+      "scope": "Complete stopPluginWork body: live ordered stops, current check truthiness, suppression of synchronous/asynchronous faults, identical done capability and concurrent completion. Reuse required wait ownership; full executor remains separate.",
+      "acceptance": [
+        "Complete pinned activity source compares full synchronous start and asynchronous resolve/reject/pending traces on independent schedules.",
+        "Live registration deletion/addition/re-addition during checks/stops is preserved; every started future is retained through host refusals and late completion."
+      ],
+      "owner": "Codex",
+      "branch": "codex/plugin-stop",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/activity.ts"
+      ],
+      "symbols": [
+        "stopPluginWork"
+      ],
+      "rust_paths": [
+        "rust/crates/port-engine/src/plugin_stop.rs",
+        "rust/crates/port-engine/src/plugin_busy.rs",
+        "rust/crates/port-engine/tests/plugin_stop.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Implement scoped live stopping and waits; engine scheduling/integration remains separate."
+      ],
+      "verification": "none"
+    },
+    {
       "id": "engine.session.activity.stores",
       "parent": "engine.session.contract",
       "title": "Port session watch-store source identity and conditional release",
