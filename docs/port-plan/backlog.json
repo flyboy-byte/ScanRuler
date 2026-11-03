@@ -8470,8 +8470,8 @@
         "Generated and adversarial 3MF corpus (zip bombs, bad paths, missing parts, unit variants) compares original against Rust on geometry, units, refusals and limits.",
         "The inflate/zip implementation is pure Rust and passes the P35 purity audit; the choice is a recorded decision, not an assumption."
       ],
-      "owner": null,
-      "branch": null,
+      "owner": "Claude",
+      "branch": "claude/io-threemf",
       "claim_pr": null,
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
