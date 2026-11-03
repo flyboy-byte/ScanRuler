@@ -1,0 +1,11 @@
+{
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "cases": 628,
+  "unicode": "17.0",
+  "input_sha256": "c092983387a486f985b22336c44d9a578d941fc21cbe1191fc6a326661b08fe6",
+  "original_sha256": "48c29880b36d30c32c27043c27854b7ae699999ae6184697af0860837035d206",
+  "original_log": "original.tsv.gz",
+  "prior_prefix_bytes": 202407472,
+  "prior_prefix_sha256": "570b4363c2d11393222b42d41cb2bcdc911a4f4648d17bc1ba2f2e2526e30084",
+  "meaning": "Exact original expression captured before native comparisons; full input/value/effects. Complete code-point/context blocks plus appended title-fault probes preserve every old byte."
+}

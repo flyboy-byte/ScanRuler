@@ -39,3 +39,6 @@ pub mod js_number;
 
 /// Own Date millisecond clipping and Gregorian UTC timestamp conversion.
 pub mod js_date;
+
+/// Lossless Unicode command-label text and source-compatible provider ordering.
+pub mod js_string;
