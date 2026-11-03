@@ -13035,6 +13035,46 @@
       "verification": "fixed-corpus"
     },
     {
+      "id": "fit.sphere.clipped",
+      "parent": "P07",
+      "title": "Port complete clipped free and held-radius sphere fitting",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [
+        "fit.plane.clip"
+      ],
+      "scope": "Complete sphere.ts fixed-selection algebraic initialization, geometric free refinement, held-radius Gauss-Newton centre fit and clipped statistics/free companion. Reuse existing solveLinear, shared clippedRefit and compensated norm boundary. No seeded/RANSAC/growth/selection-output element or command/session integration.",
+      "acceptance": [
+        "Original-first independent Float32 positions and ordered Uint32 selections compare complete input bytes, all sphere/free fields, optional presence, used IDs, sigma/span/min/max, numerical refusals and input immutability. Full pinned source modules, stable seeds/case IDs and no candidate-generated expectations.",
+        "Pre-registered scalar comparator: absolute 1e-10 plus relative 1e-10 times absolute reference; exact optional/used IDs and nonfinite classes/signed zero. Preserve source formulas/order/guards/default iterations150/50/clipping12. Native/Wasm compile and all current native comparisons remain required; actual browser execution tracked separately."
+      ],
+      "owner": "Codex",
+      "branch": "codex/sphere-clipped",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/fit/sphere.ts",
+        "src/core/fit/linalg.ts",
+        "src/core/fit/clip.ts"
+      ],
+      "symbols": [
+        "fitSphereAlgebraic",
+        "refineSphereGeometric",
+        "fitSphereCentre",
+        "fitSphereClipped"
+      ],
+      "rust_paths": [
+        "rust/crates/port-core/src/sphere.rs",
+        "rust/crates/port-core/tests/sphere.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Capture pre-registered original corpus and port complete fixed-selection body; seeded growth/full element-output/commands and browser runtime are separate."
+      ],
+      "verification": "none"
+    },
+    {
       "id": "geometry.adjacency",
       "parent": "P06",
       "title": "Port complete ordered vertex-to-vertex mesh adjacency",

@@ -5,12 +5,12 @@
     "baseline-captured": 2,
     "implemented": 65,
     "planned": 47,
-    "specified": 1
+    "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 48,
     "fuzzed": 4,
-    "none": 63
+    "none": 64
   },
   "native_suites": 51,
   "native_case_identities_including_refusals": 9578,
@@ -1007,6 +1007,18 @@
         "Runtime checkpoint 2026-11-01: existing registered cases execute in actual Chrome via harness.wasm.runtime; see evidence/browser-wasm-2026-11-01/report.json at candidate 00fd1a69af98c7bacc91da747483ac0ccbfb70c6. No lifecycle acceptance promotion.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
+      ]
+    },
+    {
+      "id": "fit.sphere.clipped",
+      "status": "specified",
+      "parent": "P07",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Capture pre-registered original corpus and port complete fixed-selection body; seeded growth/full element-output/commands and browser runtime are separate."
       ]
     },
     {
