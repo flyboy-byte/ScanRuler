@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 63,
+    "implemented": 64,
     "planned": 47,
     "specified": 1
   },
   "verification_levels": {
-    "fixed-corpus": 46,
+    "fixed-corpus": 47,
     "fuzzed": 4,
     "none": 63
   },
-  "native_suites": 49,
-  "native_case_identities_including_refusals": 8910,
+  "native_suites": 50,
+  "native_case_identities_including_refusals": 9272,
   "accepted_units": [],
   "units": [
     {
@@ -781,6 +781,20 @@
       "open_items": [
         "General host-object/getter/toJSON/prototype/function/BigInt/cyclic non-JSON conversion remains unported outside the owned acyclic input domain.",
         "Recent outcome lifecycle and actual command/browser integration remain required.",
+        "Typed owned callbacks exclude JS getters/prototypes; resource refusals are host limits, not original results."
+      ]
+    },
+    {
+      "id": "engine.session.recent.store",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/82",
+      "tested_sha": "e61e7f8e90b1f4f72d49e0cc8947b472fdfb024d",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "e61e7f8e90b1f4f72d49e0cc8947b472fdfb024d",
+      "open_items": [
+        "Executor must attach, retain and deliver once-only completion reactions; this store does not own/poll caller runs.",
+        "General non-JSON host conversion and actual command/browser integration remain required.",
         "Typed owned callbacks exclude JS getters/prototypes; resource refusals are host limits, not original results."
       ]
     },

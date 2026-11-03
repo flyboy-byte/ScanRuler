@@ -65,3 +65,6 @@ pub mod execute;
 
 /// Retained owned JSON-data copies, byte summaries and exact size thresholds.
 pub mod recent_result;
+
+/// Recent record/reaction state, bounded eviction and shallow readout snapshots.
+pub mod recent_store;
