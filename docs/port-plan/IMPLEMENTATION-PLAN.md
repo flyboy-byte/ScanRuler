@@ -43,3 +43,7 @@ measurement/import/session/project ownership for M3. The source-specific failure
 and progress ordering is recorded in
 plan/findings/2026-11-03-registry-execution-continuations.md. Do not reimplement
 reviewed helpers or erase typed/runtime boundaries to make the CLI look complete.
+
+## Second-pass runtime handoff — 2026-11-03
+
+Read [NEXT-RUNTIME-IMPLEMENTATION-2026-11-03.md](NEXT-RUNTIME-IMPLEMENTATION-2026-11-03.md) for implemented scopes, concrete remaining guarded/interrupt/family/command/project ownership and required source branch tests. [The refreshed queue](REVIEW-QUEUE-2026-11-03-SECOND-PASS.md) records exact observed heads and open/merged dependencies. Earlier dated findings remain historical; no acceptance or M3 claim.
