@@ -2,13 +2,13 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 3,
-    "implemented": 46,
+    "baseline-captured": 2,
+    "implemented": 47,
     "planned": 48,
     "specified": 1
   },
-  "native_suites": 33,
-  "native_case_identities_including_refusals": 3467,
+  "native_suites": 34,
+  "native_case_identities_including_refusals": 3587,
   "accepted_units": [],
   "units": [
     {
@@ -550,10 +550,10 @@
     },
     {
       "id": "engine.session.stale.error",
-      "status": "baseline-captured",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/63",
-      "tested_sha": null,
+      "tested_sha": "4ce6c9d5dd72365dc53eba1e2304a28f61498952",
       "open_items": [
         "Arbitrary JS String coercion is supplied by the typed host boundary; native conversion of primitive/array/object thrown values remains separate.",
         "Actual platform clock conversion, browser preload hook and registry asCommandError integration remain required."

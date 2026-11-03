@@ -16,7 +16,7 @@
   "owner": "Codex",
   "branch": "codex/stale-error",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/63",
-  "implemented_commit": null,
+  "implemented_commit": "4ce6c9d5dd72365dc53eba1e2304a28f61498952",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/commands/stalePage.ts",
@@ -156,7 +156,8 @@
         "case-117",
         "case-118",
         "case-119"
-      ]
+      ],
+      "candidate_sha": "4ce6c9d5dd72365dc53eba1e2304a28f61498952"
     }
   ],
   "open_items": [

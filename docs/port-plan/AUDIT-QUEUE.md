@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-02: review #60 → #61 → [#63](https://github.com/flyboy-byte/ScanRuler/pull/63). #63 ports staleError envelope and clock/message failure ordering with 120 exact source traces. The general String conversion boundary remains explicit in oracle/STALE-ERROR.md; registry wiring is separate.
+
 2026-11-02: review #60 then [#61](https://github.com/flyboy-byte/ScanRuler/pull/61). #61 adds only first-stale timestamp/get/reset with 64 exact source clock/error/state sequences. Host time conversion and error normalization remain open; oracle/STALE-CLOCK.md records the boundary.
 
 2026-11-02: [#60](https://github.com/flyboy-byte/ScanRuler/pull/60) is independent of the history/deadline stack, based on mainc3b4674. It ports only stale-import classification: 308 exact source result/page-state traces. Page clock and full error normalization remain separate. See oracle/STALE-DETECT.md.
