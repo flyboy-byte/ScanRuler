@@ -1604,7 +1604,7 @@
     }
   ],
   "open_items": [
-    "Actual browser-Wasm sphere execution and the generic exact-base numerical ratchet remain unverified; Wasm compilation alone grants no runtime acceptance.",
+    "2026-11-03: all1560 sphere cases now execute in actual Chrome Wasm under harness.wasm.sphere evidence/browser-wasm-sphere-2026-11-03/manifest.json. Broader profiles and generic exact-base numerical ratchet remain unverified; no feature/runtime acceptance.",
     "Seeded/RANSAC/growth, full selection normal voting/extents/element fields, commands/session/project/CLI integration remain unported for spheres."
   ],
   "verification": "fixed-corpus"

@@ -3,6 +3,8 @@
 2026-11-03: [#93](https://github.com/flyboy-byte/ScanRuler/pull/93), based on #92/#89, ports full marked-sphere output and exact refusals; see oracle/MARKED-SPHERE.md. Seeded/browser selection/engine command continuations remain explicit.
 
 2026-11-03: [#92](https://github.com/flyboy-byte/ScanRuler/pull/92) ports exact fixed3 number strings needed by marked-sphere refusals; see oracle/FIXED3.md. Claude’s separate #91 upstream drift ledger does not change the pinned baseline.
+2026-11-03: [#90](https://github.com/flyboy-byte/ScanRuler/pull/90), based on #89, adds all1560 sphere cases to the input-only browser-Wasm gate; live v5 requires2211 cases. See oracle/SPHERE-WASM.md for scope and actual-execution requirements.
+
 2026-11-03: [#89](https://github.com/flyboy-byte/ScanRuler/pull/89) ports complete fixed-selection free/held sphere fit and clipping; see oracle/SPHERE.md. Seeded/selection-shell/command/browser continuations remain explicit.
 
 2026-11-03: [#84](https://github.com/flyboy-byte/ScanRuler/pull/84) follows #83 and refreshes [the live-observed queue](REVIEW-QUEUE-2026-11-03-SECOND-PASS.md) and [next runtime implementation boundaries](NEXT-RUNTIME-IMPLEMENTATION-2026-11-03.md). Main is moving as the owner merges earlier PRs; refresh exact heads/checks before integration. This snapshot and its negative tests do not authorize merging or claim acceptance.

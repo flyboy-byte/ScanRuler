@@ -1,0 +1,44 @@
+{
+  "id": "harness.wasm.marked.sphere",
+  "parent": "P36",
+  "title": "Execute complete marked-sphere outputs and FitErrors in Chrome Wasm",
+  "gate": "G3",
+  "status": "specified",
+  "depends_on": [
+    "harness.wasm.sphere",
+    "fit.sphere.selection"
+  ],
+  "soft_depends_on": [
+    "P03",
+    "P37"
+  ],
+  "scope": "Input-only marked-sphere codec and full original/native/Chrome comparison of all2220 selection cases, preserving all2211 prior browser cases. Live v6 requires4431 cases; no expected/source/native values enter the page or Rust.",
+  "acceptance": [
+    "Actual Chrome compares complete element/held/used/region/identity and exact FitError brand/name/message on all2220 independent inputs. Retain full raw bytes and module/browser/candidate/native identities.",
+    "Preserve all old2211 cases, historical v2/v3/v4/v5 proofs, all prior budgets/protocol checks/three workload exclusions and hard1MiB/30000scalar/10000point/64MiB caps. Marked-sphere scalar budget remains1e-10 absolute/relative; messages/discrete/zero/nonfinite classes exact.",
+    "Malformed codec/output, trimmed roster, missing/stale/corrupt sidecars/proofs fail closed; no session/command/UI/CLI acceptance."
+  ],
+  "owner": "Codex",
+  "branch": "codex/wasm-marked-sphere",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/fit/fitSphereFromSeed.ts",
+    "src/core/fit/selection.ts",
+    "src/core/fit/errors.ts"
+  ],
+  "symbols": [
+    "fitSphereOnSelection browser-Wasm execution"
+  ],
+  "rust_paths": [
+    "rust/crates/port-wasm-probe/src/lib.rs",
+    "rust/crates/port-wasm-probe/src/sphere.rs",
+    "rust/crates/port-wasm-probe/src/marked_sphere.rs"
+  ],
+  "evidence": [],
+  "open_items": [
+    "Implement and execute full input-only Chrome comparison; actual session/command/seeded/UI/CLI integration remains separate."
+  ],
+  "verification": "none"
+}

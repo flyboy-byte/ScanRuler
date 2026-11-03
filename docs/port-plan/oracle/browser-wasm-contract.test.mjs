@@ -115,11 +115,13 @@ test('browser roster preserves prior cases and only the declared new workload ex
       assert.throws(() => selectBrowserCases({ ...def, excluded: [{ id: ids[0], reason: 'unreviewed' }] }, ids))
     }
   }
-  assert.equal(count, 651)
+  assert.equal(count, 2211)
   assert.throws(() => validateBrowserRoster(defs.slice(0, 5)))
   validateBrowserRoster(defs.slice(0, 5), 'browser.wasm.corpus.v2')
   assert.throws(() => validateBrowserRoster(defs.slice(0, 7)))
   validateBrowserRoster(defs.slice(0, 7), 'browser.wasm.corpus.v3')
+  assert.throws(() => validateBrowserRoster(defs.slice(0, 8)))
+  validateBrowserRoster(defs.slice(0, 8), 'browser.wasm.corpus.v4')
   assert.throws(() => validateBrowserRoster(defs.slice(1)))
 })
 test('PLY mismatches retain raw sidecars and actual Wasm before failing', async () => {
@@ -159,6 +161,7 @@ for (const [folder, total, successes, refusals, protocol, excluded] of [
   ['browser-wasm-ply-2026-11-02', 341, 287, 54, 13, ['io.ply.binary/le-vertex-progress']],
   ['browser-wasm-obj-2026-11-02', 564, 482, 82, 18, ['io.ply.binary/le-vertex-progress', 'io.obj.mesh/line-progress', 'io.obj.mesh/short-unicode-line-skips-progress']],
   ['browser-wasm-files-2026-11-02', 651, 569, 82, 24, ['io.ply.binary/le-vertex-progress', 'io.obj.mesh/line-progress', 'io.obj.mesh/short-unicode-line-skips-progress']],
+  ['browser-wasm-sphere-2026-11-03', 2211, 1193, 1018, 30, ['io.ply.binary/le-vertex-progress', 'io.obj.mesh/line-progress', 'io.obj.mesh/short-unicode-line-skips-progress']],
 ]) test(folder + ': complete committed Chrome proof replays all source/native/Wasm results', async () => {
   const { readFileSync } = await import('node:fs')
   const { createHash } = await import('node:crypto')
@@ -206,6 +209,7 @@ for (const [folder, total, successes, refusals, protocol, excluded] of [
     }
     for (const [bytes, key] of [[files['input.bin'], 'input_sha256'], [original, 'original_sha256'],
       [native, 'native_sha256'], [files['wasm.bin'], 'wasm_sha256']]) assert.equal(hash(bytes), c[key])
+    if (mode === 8) { assert.deepEqual(files['input.bin'], files['original.after.bin']); assert.deepEqual(files['input.bin'], files['rust.after.bin']); assert.equal(files['descriptor.tsv'].toString().split('\t')[0], c.id); assert.equal(files['original.stderr.txt'].length, 0) }
     compareOutput(mode, original, native); compareOutput(mode, original, files['wasm.bin']); compareOutput(mode, native, files['wasm.bin'])
     assert.equal(c.result, successfulOutput(mode, files['wasm.bin']) ? 'successful_values' : 'source_refusal')
   }
@@ -304,4 +308,36 @@ test('file-state mismatch retains exact independent input and all three outputs'
     await assert.rejects(retainAndCompare(dir, 7, files, wrong))
     for (const [name, bytes] of Object.entries({ ...files, 'wasm.bin': wrong })) assert.deepEqual(readFileSync(join(dir, name)), bytes)
   } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('sphere preserves complete native corpus under its separately frozen budget', async () => {
+  const {readFileSync}=await import('node:fs'),{gunzipSync}=await import('node:zlib')
+  const proof=JSON.parse(gunzipSync(readFileSync(new URL('../evidence/2026-11-03-sphere.json.gz',import.meta.url))))
+  let successes=0
+  for(const c of proof.cases){const original=Buffer.from(c.files['original.bin'].hex,'hex'),native=Buffer.from(c.files['rust.bin'].hex,'hex');compareOutput(8,original,native);successes+=Number(successfulOutput(8,native))}
+  assert.equal(proof.cases.length,1560);assert.equal(successes,624)
+  const original=Buffer.from(proof.cases.find(c=>c.files['original.bin'].hex.startsWith('01')).files['original.bin'].hex,'hex')
+  const within=Buffer.from(original);within.writeDoubleLE(original.readDoubleLE(1)+1e-11,1);compareOutput(8,original,within)
+  const old=tls(),changedOld=tls();changedOld.writeDoubleLE(old.readDoubleLE(1)+1e-11,1);assert.throws(()=>compareOutput(1,old,changedOld),'older tighter budget must not change')
+  for(const offset of [1,69]){const changed=Buffer.from(original);if(offset===1)changed.writeDoubleLE(37,offset);else changed.writeUInt32LE(37,offset);assert.throws(()=>compareOutput(8,original,changed))}
+  const sign=Buffer.from(original);sign.writeDoubleLE(-0,1);assert.throws(()=>compareOutput(8,original,sign))
+  const nonfinite=Buffer.from(original);nonfinite.writeDoubleLE(NaN,1);assert.throws(()=>compareOutput(8,original,nonfinite))
+})
+test('malformed sphere result counts/presence/trailing bytes fail even against themselves',()=>{
+  for(const b of [Buffer.alloc(0),Buffer.from([2]),Buffer.from([0,0]),Buffer.from([1])])assert.throws(()=>compareOutput(8,b,b))
+  const valid=Buffer.alloc(70);valid[0]=1
+  assert.equal(compareOutput(8,valid,valid),0)
+  const count=Buffer.from(valid);count.writeUInt32LE(0xffffffff,65)
+  const present=Buffer.from(valid);present[69]=2
+  for(const b of [count,present,Buffer.concat([valid,Buffer.from([0])])])assert.throws(()=>compareOutput(8,b,b))
+})
+test('sphere native descriptors and post-input metadata are mandatory before Chrome',async()=>{
+  const {createHash}=await import('node:crypto')
+  const files=Object.fromEntries(nativeFileNames(8).map(name=>[name,Buffer.from(name)]))
+  const metadata={files:Object.fromEntries(Object.entries(files).map(([name,b])=>[name,{bytes:b.length,sha256:createHash('sha256').update(b).digest('hex')}]))}
+  verifyNativeCaseFiles(8,files,metadata)
+  for(const name of nativeFileNames(8)){
+    const missing={...files};delete missing[name];assert.throws(()=>verifyNativeCaseFiles(8,missing,metadata))
+    assert.throws(()=>verifyNativeCaseFiles(8,{...files,[name]:Buffer.from('corrupt')},metadata))
+  }
 })

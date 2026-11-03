@@ -10,6 +10,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 - Rust port: full marked-sphere output/refusals, known-diameter checks and exact original-region recipe identity; shared marking-size guard retains plane behavior (PR #93). Commands/seeded paths remain open.
 
 - Rust port: exact primitive Number.toFixed(3) for original sphere refusal text, with rational tie rounding and special/threshold cases (PR #92). Full marked-sphere caller remains open.
+- Rust port: input-only sphere Wasm probe and mandatory full1560-case browser roster, preserving all earlier651 cases and budgets (PR #90); actual Chrome evidence is tracked separately.
+
 - Rust port: complete clipped free/held-radius sphere fitting and signed radial statistics with independent original comparisons (PR #89). Seeded growth, full element fields and commands remain open.
 
 - **Port review handoff**: retain current exact PR heads, open/merged dependencies and required-check states with negative snapshot controls; document remaining runtime ownership and source branch tests. No feature body or numerical policy changes.

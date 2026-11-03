@@ -14640,7 +14640,7 @@
         }
       ],
       "open_items": [
-        "Actual browser-Wasm sphere execution and the generic exact-base numerical ratchet remain unverified; Wasm compilation alone grants no runtime acceptance.",
+        "2026-11-03: all1560 sphere cases now execute in actual Chrome Wasm under harness.wasm.sphere evidence/browser-wasm-sphere-2026-11-03/manifest.json. Broader profiles and generic exact-base numerical ratchet remain unverified; no feature/runtime acceptance.",
         "Seeded/RANSAC/growth, full selection normal voting/extents/element fields, commands/session/project/CLI integration remain unported for spheres."
       ],
       "verification": "fixed-corpus"
@@ -18125,6 +18125,50 @@
       "verification": "none"
     },
     {
+      "id": "harness.wasm.marked.sphere",
+      "parent": "P36",
+      "title": "Execute complete marked-sphere outputs and FitErrors in Chrome Wasm",
+      "gate": "G3",
+      "status": "specified",
+      "depends_on": [
+        "harness.wasm.sphere",
+        "fit.sphere.selection"
+      ],
+      "soft_depends_on": [
+        "P03",
+        "P37"
+      ],
+      "scope": "Input-only marked-sphere codec and full original/native/Chrome comparison of all2220 selection cases, preserving all2211 prior browser cases. Live v6 requires4431 cases; no expected/source/native values enter the page or Rust.",
+      "acceptance": [
+        "Actual Chrome compares complete element/held/used/region/identity and exact FitError brand/name/message on all2220 independent inputs. Retain full raw bytes and module/browser/candidate/native identities.",
+        "Preserve all old2211 cases, historical v2/v3/v4/v5 proofs, all prior budgets/protocol checks/three workload exclusions and hard1MiB/30000scalar/10000point/64MiB caps. Marked-sphere scalar budget remains1e-10 absolute/relative; messages/discrete/zero/nonfinite classes exact.",
+        "Malformed codec/output, trimmed roster, missing/stale/corrupt sidecars/proofs fail closed; no session/command/UI/CLI acceptance."
+      ],
+      "owner": "Codex",
+      "branch": "codex/wasm-marked-sphere",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/fit/fitSphereFromSeed.ts",
+        "src/core/fit/selection.ts",
+        "src/core/fit/errors.ts"
+      ],
+      "symbols": [
+        "fitSphereOnSelection browser-Wasm execution"
+      ],
+      "rust_paths": [
+        "rust/crates/port-wasm-probe/src/lib.rs",
+        "rust/crates/port-wasm-probe/src/sphere.rs",
+        "rust/crates/port-wasm-probe/src/marked_sphere.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Implement and execute full input-only Chrome comparison; actual session/command/seeded/UI/CLI integration remains separate."
+      ],
+      "verification": "none"
+    },
+    {
       "id": "harness.wasm.obj",
       "parent": "P36",
       "title": "Compare complete OBJ parser and texture helper states in real browser Wasm",
@@ -18403,6 +18447,61 @@
         "Generic P36 report protocol, P37 exact-base numerical ratchet, P35 whole-product purity and P39 Rust tooling replacement remain open."
       ],
       "verification": "none"
+    },
+    {
+      "id": "harness.wasm.sphere",
+      "parent": "P36",
+      "title": "Execute complete fixed-selection sphere corpus in Chrome Wasm",
+      "gate": "G3",
+      "status": "implemented",
+      "depends_on": [
+        "harness.wasm.files",
+        "fit.sphere.clipped"
+      ],
+      "soft_depends_on": [
+        "P03",
+        "P37"
+      ],
+      "scope": "Private input-only sphere codec and complete original/native/Chrome Wasm comparison of all1560 sphere cases, preserving all651 prior browser cases and budgets. New v5 live roster requires2211 cases; no source/native outputs cross the page boundary.",
+      "acceptance": [
+        "All1560 full sphere outputs/presence/used IDs/statistics/free values compare against source and native in actual Chrome; record complete raw bytes and module/browser/native identities.",
+        "Preserve old651 cases, historical v2/v3/v4 evidence, unchanged old numeric budgets/three exclusions and hard input/output/point/memory caps. Sphere mode uses pre-registered1e-10 absolute/relative budget, exact IDs/optionals/nonfinite classes/signed zero.",
+        "Negative/malformed codec/comparator/trim/stale/proof checks fail closed; no browser/session/command/UI acceptance inferred."
+      ],
+      "owner": "Codex",
+      "branch": "codex/wasm-sphere",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/90",
+      "implemented_commit": "c33011c1d24db4dc5b66459f70aada6ea8d02a13",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/fit/sphere.ts",
+        "src/core/fit/clip.ts",
+        "src/core/fit/linalg.ts"
+      ],
+      "symbols": [
+        "fitSphereClipped browser-Wasm execution"
+      ],
+      "rust_paths": [
+        "rust/crates/port-wasm-probe/src/lib.rs",
+        "rust/crates/port-wasm-probe/src/sphere.rs"
+      ],
+      "evidence": [
+        {
+          "kind": "runtime-comparison",
+          "location": "evidence/browser-wasm-sphere-2026-11-03/manifest.json",
+          "candidate_sha": "c33011c1d24db4dc5b66459f70aada6ea8d02a13"
+        }
+      ],
+      "open_items": [
+        "Actual command/session/UI/CLI execution, seeded sphere/growth/full element fields and broader platform profiles remain unimplemented; no accepted feature or M3 claim.",
+        "The three historical native-only workloads remain above unchanged private ABI caps; generic P36/P37 and Rust replacement of temporary test tooling remain open."
+      ],
+      "verification": "none",
+      "resolved_items": [
+        "2026-11-03: complete2211-case original/native/actual Chrome corpus passes, preserving all651 old cases and adding all1560 sphere cases.1193 model/helper successes and1018 source refusals remain distinct.",
+        "30 protocol checks pass, zero module imports/page errors; full raw proof and exact candidate/native/module/browser identities retained.",
+        "Initial default-launcher attempt failed before comparisons; unchanged checkpoint passed via installed google-chrome-stable CHROME override. Failure report retained separately."
+      ]
     },
     {
       "id": "io.inflate",
