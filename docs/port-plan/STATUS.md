@@ -13,7 +13,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | baseline-captured | 2 |
 | implemented | 65 |
 | planned | 47 |
-| specified | 1 |
+| specified | 2 |
 
 Verification labels describe scoped evidence snapshots, not whole-feature/runtime acceptance.
 
@@ -21,7 +21,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | --- | ---: |
 | fixed-corpus | 48 |
 | fuzzed | 4 |
-| none | 63 |
+| none | 64 |
 
 | Unit | State | Verification | Tested implementation | Verification snapshot | PR |
 | --- | --- | --- | --- | --- | --- |
@@ -139,4 +139,5 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [io.stl.binary](plan/units/io.stl.binary.json) | implemented | fuzzed | `5ee3881` | `60bf04b` | [#2](https://github.com/flyboy-byte/ScanRuler/pull/2) |
 | [io.stl.dispatch](plan/units/io.stl.dispatch.json) | implemented | fuzzed | `77683bf` | `60bf04b` | [#3](https://github.com/flyboy-byte/ScanRuler/pull/3) |
 | [io.threemf](plan/units/io.threemf.json) | planned | none | — | — | — |
+| [math.number.fixed3](plan/units/math.number.fixed3.json) | specified | none | — | — | — |
 | [project.measurement.compatibility](plan/units/project.measurement.compatibility.json) | planned | none | — | — | — |

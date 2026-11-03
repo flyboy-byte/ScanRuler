@@ -5,12 +5,12 @@
     "baseline-captured": 2,
     "implemented": 65,
     "planned": 47,
-    "specified": 1
+    "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 48,
     "fuzzed": 4,
-    "none": 63
+    "none": 64
   },
   "native_suites": 51,
   "native_case_identities_including_refusals": 9578,
@@ -1527,6 +1527,18 @@
       "verification_tested_sha": null,
       "open_items": [
         "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate."
+      ]
+    },
+    {
+      "id": "math.number.fixed3",
+      "status": "specified",
+      "parent": "P07",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Capture original-first corpus, implement exact bounded fixed3 and retain all paired output bytes; full sphere selection and actual browser execution remain open."
       ]
     },
     {

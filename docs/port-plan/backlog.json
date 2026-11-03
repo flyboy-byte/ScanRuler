@@ -16071,6 +16071,40 @@
       "verification": "none"
     },
     {
+      "id": "math.number.fixed3",
+      "parent": "P07",
+      "title": "Port exact Number.toFixed(3) for source measurement refusals",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [],
+      "soft_depends_on": [],
+      "scope": "Owned IEEE f64 Number.toFixed(3) string conversion at the sphere heldRefusal call sites. Exact binary rational rounding with ties choosing the larger positive integer before sign, negative-zero/special-value/exponent-threshold behavior. Reuse existing number_string for the source abs>=1e21 branch; no general arbitrary-fraction toFixed API or boxed JS object semantics.",
+      "acceptance": [
+        "Original intrinsic at both verified pinned call-site expressions runs first on authored signed-zero/subnormal/tie/ULP/threshold/special and fixed random bit inputs; exact complete output strings, input/primitive category and stable IDs compare, with no numerical tolerance.",
+        "No Rust float formatting or candidate-derived expected strings. Bounded u128 exact rational arithmetic for abs<1e21; all existing native/Wasm gates remain required. Sphere selection/caller integration remains separate."
+      ],
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/fit/fitSphereFromSeed.ts"
+      ],
+      "symbols": [
+        "Number.prototype.toFixed(3) in heldRefusal free/known diameter text"
+      ],
+      "rust_paths": [
+        "rust/crates/port-core/src/js_fixed.rs",
+        "rust/crates/port-core/tests/js_fixed.rs"
+      ],
+      "owner": "Codex",
+      "branch": "codex/number-fixed3",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "evidence": [],
+      "open_items": [
+        "Capture original-first corpus, implement exact bounded fixed3 and retain all paired output bytes; full sphere selection and actual browser execution remain open."
+      ],
+      "verification": "none"
+    },
+    {
       "id": "project.measurement.compatibility",
       "parent": "P16",
       "title": "Round-trip legacy measurement projects without losing unknown data",
