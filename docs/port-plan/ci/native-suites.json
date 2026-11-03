@@ -570,6 +570,21 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "engine.session.command.label",
+      "test": "pinned_command_label_comparison",
+      "directory": "command-label-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "descriptor.tsv",
+        "original.bin",
+        "original.status.txt",
+        "rust.status.txt",
+        "original.effects.txt",
+        "rust.effects.txt"
+      ]
     }
   ]
 }

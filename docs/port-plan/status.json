@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 65,
+    "implemented": 66,
     "planned": 47,
-    "specified": 2
+    "specified": 1
   },
   "verification_levels": {
-    "fixed-corpus": 48,
+    "fixed-corpus": 49,
     "fuzzed": 4,
-    "none": 64
+    "none": 63
   },
-  "native_suites": 51,
-  "native_case_identities_including_refusals": 9578,
+  "native_suites": 52,
+  "native_case_identities_including_refusals": 10218,
   "accepted_units": [],
   "units": [
     {
@@ -645,14 +645,16 @@
     },
     {
       "id": "engine.session.command.label",
-      "status": "specified",
+      "status": "implemented",
       "parent": "engine.session.contract",
-      "pr": null,
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/85",
+      "tested_sha": "eb23a9d7446c3b1e0b10df9776d93eb06d56d5c1",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "eb23a9d7446c3b1e0b10df9776d93eb06d56d5c1",
       "open_items": [
-        "Implement bounded expression and Unicode comparisons; full guarded/interrupt/history/timers and actual browser runtime remain separate."
+        "Full guarded/interrupt/history/timer/late-body execution and actual runtime integration remain required.",
+        "Actual browser-Wasm label execution and broader toolchain Unicode profiles remain open; mismatching versions fail explicitly.",
+        "Typed owned title/custom providers exclude arbitrary JS host objects/property semantics outside the declared boundary."
       ]
     },
     {
