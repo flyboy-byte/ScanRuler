@@ -3740,6 +3740,37 @@
       ]
     },
     {
+      "id": "engine.session.activity.stores",
+      "parent": "engine.session.contract",
+      "title": "Port session watch-store source identity and conditional release",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [],
+      "scope": "Complete watchSessionStores and its sessionStores ownership over shared readonly arrays of store handles. Preserve container/member identity, ordering/duplicates, conditional old cleanup and fresh empty arrays after successful release. No subscription calls in this unit.",
+      "acceptance": [
+        "Full pinned activity module compares array/member identity and cleanup states before Rust, including same-content distinct arrays and old cleanup after reconfiguration.",
+        "Dropped cleanup does not release; borrowed opaque store handles and every previous native corpus remain required."
+      ],
+      "owner": "Codex",
+      "branch": "codex/watch-stores",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/activity.ts"
+      ],
+      "symbols": [
+        "watchSessionStores",
+        "sessionStores"
+      ],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "watchSession subscriptions, plugin busy store registration and full engine session wiring remain separate.",
+        "Readonly owned arrays exclude arbitrary mutable JS array/getter/prototype behavior; actual browser runtime remains required."
+      ]
+    },
+    {
       "id": "engine.session.command.deadline",
       "parent": "engine.session.contract",
       "title": "Port command deadline races, abort reasons and late-result handling",
