@@ -136,7 +136,7 @@ fn text(s: &str) -> Text {
     s.encode_utf16().collect()
 }
 fn check<E>(fields: &Fields, limits: Limits) -> Result<(), CoreError<E>> {
-    if fields.len() > limits.fields {
+    if fields.len() > limits.fields || fields.len() > limits.cells {
         return Err(CoreError::Limit);
     }
     let mut units = 0usize;
@@ -174,7 +174,7 @@ fn merge<E>(target: &mut Fields, patch: &Fields, limits: Limits) -> Result<(), C
 }
 fn picked<E>(fields: &Fields, keys: &[&str], limits: Limits) -> Result<Cell, CoreError<E>> {
     check(fields, limits)?;
-    if keys.len() > limits.fields {
+    if keys.len() > limits.fields || keys.len() > limits.cells {
         return Err(CoreError::Limit);
     }
     let mut picked = Vec::new();
@@ -221,7 +221,14 @@ pub fn capture<E>(
         value: get_scan().map_err(CoreError::Callback)?,
         compare: Compare::Identity,
     });
-    Ok(Snapshot { sections })
+    let snapshot = Snapshot { sections };
+    super::snapshot_check(&snapshot, limits).map_err(|error| match error {
+        super::HistoryError::Limit => CoreError::Limit,
+        super::HistoryError::Allocation => CoreError::Allocation,
+        super::HistoryError::Capture(e) => CoreError::Callback(e),
+        _ => CoreError::InvalidData,
+    })?;
+    Ok(snapshot)
 }
 fn truthy(c: &Cell) -> bool {
     match c {

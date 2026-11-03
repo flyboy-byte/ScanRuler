@@ -386,15 +386,13 @@ fn change_version(value: &mut Value) -> bool {
     match value {
         Value::Array(a) => {
             for v in a {
-                if let Value::Array(pair) = v {
-                    if pair.len() == 2
-                        && matches!(&pair[0],Value::String(k)if k.iter().copied().eq("subjectVersion".encode_utf16()))
-                    {
-                        if let Value::Number(n) = &mut pair[1] {
-                            *n += 1.;
-                            return true;
-                        }
-                    }
+                if let Value::Array(pair) = v
+                    && pair.len() == 2
+                    && matches!(&pair[0],Value::String(k)if k.iter().copied().eq("subjectVersion".encode_utf16()))
+                    && let Value::Number(n) = &mut pair[1]
+                {
+                    *n += 1.;
+                    return true;
                 }
                 if change_version(v) {
                     return true;
@@ -544,4 +542,67 @@ fn pinned_history_core_comparison() {
         "98 complete core capture/apply scenarios; raw {}",
         run.display()
     );
+}
+
+#[test]
+fn metadata_limits_and_shared_capture_payloads() {
+    let shared = Arc::new(vec![7u8; 2_100_000]);
+    let bytes = Cell::Bytes(shared.clone());
+    let mut measure = vec![
+        (txt("elements"), bytes.clone()),
+        (txt("opaque"), Cell::Number(9.)),
+    ];
+    let mut flat = Vec::new();
+    let mut deviation = Vec::new();
+    let mut thickness = Vec::new();
+    let stores = Stores {
+        measure: &mut measure,
+        flat: &mut flat,
+        deviation: &mut deviation,
+        thickness: &mut thickness,
+    };
+    let snapshot = core::capture(
+        &stores,
+        Limits::default(),
+        || Ok::<_, Text>(bytes.clone()),
+        || Ok(Cell::Null),
+    )
+    .unwrap();
+    assert!(snapshot.sections[4].value.strict_equal(&bytes));
+    let Cell::Object(fields) = &snapshot.sections[0].value else {
+        panic!("picked object")
+    };
+    assert!(core::get(fields, "elements").strict_equal(&bytes));
+    assert!(matches!(core::get(fields, "opaque"), Cell::Undefined));
+    assert_eq!(
+        Arc::strong_count(&shared),
+        5,
+        "payload references are shared, not copied"
+    );
+    for limits in [
+        Limits {
+            sections: 0,
+            ..Limits::default()
+        },
+        Limits {
+            fields: 0,
+            ..Limits::default()
+        },
+        Limits {
+            cells: 0,
+            ..Limits::default()
+        },
+        Limits {
+            units: 0,
+            ..Limits::default()
+        },
+    ] {
+        let result = core::capture::<Text>(
+            &stores,
+            limits,
+            || panic!("scope after rejected budget"),
+            || panic!("scan after rejected budget"),
+        );
+        assert!(matches!(result, Err(CoreError::Limit)));
+    }
 }
