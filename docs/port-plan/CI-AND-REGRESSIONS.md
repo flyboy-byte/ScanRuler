@@ -184,3 +184,12 @@ The browser-wasm lane depends on the successful native-oracle artifact, checks e
 ## Fuzz reproducer reduction
 
 `cargo xtask fuzz ply --seed 1 --cases 20 --selfcheck --minimize --out /tmp/scanruler-reduce` verifies the optional bounded reducer. Use `stl` for STL; omit selfcheck for real comparisons. Original reproducers are retained, and timeouts/host refusals cannot satisfy reduction. See [FUZZ-MINIMIZE.md](oracle/FUZZ-MINIMIZE.md).
+
+## Source unit scheduling experiment — 2026-11-02
+
+The single-worker source-tests configuration retains the complete suite,
+every existing assertion and20-minute job limit. The dated finding
+`plan/findings/2026-11-02-source-worker-scheduling.md` pre-registers two complete
+hosted passes before promotion and retains the known failures. Both independent
+runs passed at643bd5b (371files/13existing skips each); full evidence is retained. It is a runner
+scheduling experiment, not a numerical tolerance change or a proven flake cure.
