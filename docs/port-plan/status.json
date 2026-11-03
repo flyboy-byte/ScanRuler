@@ -4,8 +4,8 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 57,
-    "planned": 48,
-    "specified": 1
+    "planned": 47,
+    "specified": 2
   },
   "native_suites": 44,
   "native_case_identities_including_refusals": 6854,
@@ -951,12 +951,13 @@
     },
     {
       "id": "harness.verification.levels",
-      "status": "planned",
+      "status": "specified",
       "parent": "P36",
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "Edits tools/port_plan.py, the generated status and every unit file: coordinate so only one PR changes them."
+        "Single owner of verification schema/status migration in this PR; all existing evidence and lifecycle states remain authoritative.",
+        "Fresh structured fuzz evidence is needed where historical prose lacks an exact tested candidate; coverage-reviewed must not be inferred from raw coverage counts."
       ]
     },
     {

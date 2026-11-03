@@ -3,7 +3,7 @@
   "parent": "P36",
   "title": "Record a verification level on each unit so implemented is not read as verified",
   "gate": "G3",
-  "status": "planned",
+  "status": "specified",
   "depends_on": [
     "harness.fuzz.standing"
   ],
@@ -16,8 +16,8 @@
     "Plan checker rejects accepted without the top level and rejects a level its evidence does not support; selftest includes the mutations.",
     "Existing implemented units are labelled honestly from their current evidence (PLY and STL: fuzzed after PR #33; others fixed-corpus)."
   ],
-  "owner": null,
-  "branch": null,
+  "owner": "Codex",
+  "branch": "codex/verification-levels",
   "claim_pr": null,
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
@@ -26,6 +26,7 @@
   "rust_paths": [],
   "evidence": [],
   "open_items": [
-    "Edits tools/port_plan.py, the generated status and every unit file: coordinate so only one PR changes them."
+    "Single owner of verification schema/status migration in this PR; all existing evidence and lifecycle states remain authoritative.",
+    "Fresh structured fuzz evidence is needed where historical prose lacks an exact tested candidate; coverage-reviewed must not be inferred from raw coverage counts."
   ]
 }
