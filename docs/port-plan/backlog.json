@@ -9677,6 +9677,42 @@
       "verification": "fixed-corpus"
     },
     {
+      "id": "engine.session.recent.result.data",
+      "parent": "engine.session.contract",
+      "title": "Port retained owned-data results, byte summaries and exact JSON size thresholds",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [
+        "engine.schema.validate"
+      ],
+      "scope": "keptResult over the existing owned acyclic schema Value domain: undefined, null, booleans, doubles, UTF16 strings, dense arrays, unique enumerable fields and bytes. Preserve normalized deep copy, own-key order, exact JSON character count and 16000-unit omission. Arbitrary JS getters/toJSON/prototypes/cycles and non-JSON classification remain outside this typed input domain.",
+      "acceptance": [
+        "Original keptResult runs source-first on independent owned-data/number/UTF16/order/size cases; compare full normalized value types, number bits, key order and omitted messages.",
+        "Source limits/unknown host values are never reported as ordinary non-JSON or successful parity; all existing corpora and formatter callers remain required."
+      ],
+      "owner": "Codex",
+      "branch": "codex/recent-result",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/registry.ts"
+      ],
+      "symbols": [
+        "keptResult",
+        "RECENT_RESULT_CHARS"
+      ],
+      "rust_paths": [
+        "rust/crates/port-engine/src/recent_result.rs",
+        "rust/crates/port-engine/tests/recent_result.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Implement owned-data branch; arbitrary host-object/cyclic non-JSON conversion and recent-outcome lifecycle remain separate."
+      ],
+      "verification": "none"
+    },
+    {
       "id": "engine.session.registry",
       "parent": "engine.session.contract",
       "title": "Port owned command registration, catalog and schema admission",

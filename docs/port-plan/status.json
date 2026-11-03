@@ -5,12 +5,12 @@
     "baseline-captured": 2,
     "implemented": 62,
     "planned": 47,
-    "specified": 1
+    "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 45,
     "fuzzed": 4,
-    "none": 63
+    "none": 64
   },
   "native_suites": 48,
   "native_case_identities_including_refusals": 8497,
@@ -768,6 +768,18 @@
         "Native/Wasm executor and concrete restore/import integration remain required.",
         "Abandoned Rust futures are host failures, not a source cancellation feature; engine termination policy remains required.",
         "Typed callback errors represent source exceptions; arbitrary Rust panic/OOM isolation is not exhaustive."
+      ]
+    },
+    {
+      "id": "engine.session.recent.result.data",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Implement owned-data branch; arbitrary host-object/cyclic non-JSON conversion and recent-outcome lifecycle remain separate."
       ]
     },
     {
