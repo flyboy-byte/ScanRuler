@@ -5,12 +5,12 @@
     "baseline-captured": 2,
     "implemented": 58,
     "planned": 47,
-    "specified": 1
+    "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 41,
     "fuzzed": 4,
-    "none": 63
+    "none": 64
   },
   "native_suites": 44,
   "native_case_identities_including_refusals": 6854,
@@ -560,6 +560,18 @@
       "open_items": [
         "Activity running/progress state, plugin busy/watch/stop functions and full registry execution remain separate.",
         "Owned guard objects exclude mutable JS busy-property getters/replacement and arbitrary prototype mutation."
+      ]
+    },
+    {
+      "id": "engine.session.activity.plugins",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Implement and compare the complete scoped bodies; asynchronous stop invocation and engine integration remain separate."
       ]
     },
     {

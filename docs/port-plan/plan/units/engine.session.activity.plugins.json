@@ -1,0 +1,39 @@
+{
+  "id": "engine.session.activity.plugins",
+  "parent": "engine.session.contract",
+  "title": "Port plugin busy registration, identity cleanup and live first-busy lookup",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "engine.session.activity.stores"
+  ],
+  "scope": "Complete registerBusy/pluginBusy and associated ordered check/store/stop metadata; preserve exact check identity, duplicate IDs, live mutation and suppressed check errors. Stop invocation belongs to a separate unit.",
+  "acceptance": [
+    "Pinned complete activity source runs independent identity/order/mutation inputs first; compare full map states, returned messages, cleanup and callback effects.",
+    "Old cleanup matches function identity, not registration generation; delete/re-add is visited live and bounded resource refusals stay separate."
+  ],
+  "owner": "Codex",
+  "branch": "codex/plugin-busy",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/activity.ts"
+  ],
+  "symbols": [
+    "registerBusy",
+    "pluginBusy",
+    "busyChecks",
+    "busyStores",
+    "busyStops"
+  ],
+  "rust_paths": [
+    "rust/crates/port-engine/src/plugin_busy.rs",
+    "rust/crates/port-engine/tests/plugin_busy.rs"
+  ],
+  "evidence": [],
+  "open_items": [
+    "Implement and compare the complete scoped bodies; asynchronous stop invocation and engine integration remain separate."
+  ],
+  "verification": "none"
+}
