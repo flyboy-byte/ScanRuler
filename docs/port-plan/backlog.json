@@ -7857,7 +7857,7 @@
       "parent": "P06",
       "title": "Own DEFLATE decoder and ZIP reader, compared with fflate",
       "gate": "G3",
-      "status": "planned",
+      "status": "implemented",
       "depends_on": [
         "io.stl.dispatch"
       ],
@@ -7870,8 +7870,8 @@
         "A deliberately wrong Rust byte is reported as a divergence; seeded mutation fuzz of archives runs through cargo xtask fuzz with zero divergences or recorded host-limit classes.",
         "No third-party dependency; passes the P35 purity audit."
       ],
-      "owner": null,
-      "branch": null,
+      "owner": "Claude",
+      "branch": "claude/io-inflate",
       "claim_pr": null,
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
@@ -7879,10 +7879,24 @@
         "src/core/parsers/threemf.ts"
       ],
       "symbols": [],
-      "rust_paths": [],
-      "evidence": [],
+      "rust_paths": [
+        "rust/crates/port-io/src/inflate.rs",
+        "rust/crates/port-io/tests/zip_inflate.rs",
+        "docs/port-plan/oracle/fflate-zip.cjs"
+      ],
+      "evidence": [
+        {
+          "kind": "report",
+          "location": "plan/findings/2026-11-03-inflate-zip-first-run.md",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "summary": "fflate 0.8.3 unzipSync vs Rust: 30,000 archives (seeds 1,7,99), 0 divergences; sabotage check reports 721"
+        }
+      ],
       "open_items": [
-        "fflate version in the pinned lockfile must be recorded before the corpus is built.",
+        "Not in ci/native-suites.json: no registered case inventory; runs as an extra ignored test under cargo xtask oracle.",
+        "Not wired to cargo xtask fuzz; zip64 and encrypted entries reached only by random mutation.",
+        "Per-entry limits only; io.threemf adds the original's own limits.",
+        "Chrome execution of fflate not compared (Node 22 only).",
         "Decision: plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md."
       ]
     },
