@@ -11,6 +11,7 @@
 2026-11-03: [#85](https://github.com/flyboy-byte/ScanRuler/pull/85) starts from merged mainfaf115b and ports the shared command-label expression with 640 complete Unicode/input/value/effect blocks. Full guarded/interrupt runtime remains separate; see oracle/COMMAND-LABEL.md.
 2026-11-03: [#86](https://github.com/flyboy-byte/ScanRuler/pull/86) ports command-driven activity publication, snapshot identity and live synchronous listeners; see oracle/ACTIVITY-STATE.md. It does not port full guarded/interrupt or accept the session.
 2026-11-03: [#87](https://github.com/flyboy-byte/ScanRuler/pull/87) ports stateSections registration/readout over owned data; see oracle/STATE-SECTIONS.md. Full session.state/native installation/browser execution remain open.
+2026-11-03: [#88](https://github.com/flyboy-byte/ScanRuler/pull/88) adds native task ownership, explicitly unpaired host machinery; see NATIVE-TASK-OWNER.md. #85 labels, #86 activity publication and #87 state readout are parallel main-based PRs and must be preserved together when merged.
 
 2026-11-03: [#84](https://github.com/flyboy-byte/ScanRuler/pull/84) follows #83 and refreshes [the live-observed queue](REVIEW-QUEUE-2026-11-03-SECOND-PASS.md) and [next runtime implementation boundaries](NEXT-RUNTIME-IMPLEMENTATION-2026-11-03.md). Main is moving as the owner merges earlier PRs; refresh exact heads/checks before integration. This snapshot and its negative tests do not authorize merging or claim acceptance.
 

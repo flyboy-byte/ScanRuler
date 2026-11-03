@@ -51,7 +51,8 @@
         "engine.state.workspaces",
         "engine.session.command.label",
         "engine.session.activity.state",
-        "engine.state.sections"
+        "engine.state.sections",
+        "engine.runtime.tasks"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },

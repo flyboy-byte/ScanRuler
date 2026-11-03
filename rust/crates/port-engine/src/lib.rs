@@ -78,3 +78,5 @@ pub mod command_label;
 pub mod activity_state;
 /// Live plugin readout sections and plain-object assignment semantics.
 pub mod state_sections;
+/// Bounded native cooperative task ownership and wake delivery.
+pub mod tasks;

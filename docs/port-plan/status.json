@@ -3,14 +3,14 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 72,
+    "implemented": 73,
     "planned": 47,
     "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 54,
     "fuzzed": 4,
-    "none": 65
+    "none": 66
   },
   "native_suites": 57,
   "native_case_identities_including_refusals": 22938,
@@ -530,6 +530,19 @@
       "verification_tested_sha": null,
       "open_items": [
         "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ]
+    },
+    {
+      "id": "engine.runtime.tasks",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/88",
+      "tested_sha": "b1a1f366d3dfc784f514a92adf0ed38e57110289",
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Wire source-connected body/deadline/history/guarded/interrupt/execute futures and exact reaction ordering into this session owner; dropping caller observation must never drop body work.",
+        "Real platform timers, full original-versus-native command state/effect traces, browser-Wasm runtime execution and actual usable CLI/session remain unimplemented."
       ]
     },
     {
