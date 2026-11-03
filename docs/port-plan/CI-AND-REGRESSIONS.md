@@ -187,8 +187,9 @@ The browser-wasm lane depends on the successful native-oracle artifact, checks e
 
 ## Source unit scheduling experiment — 2026-11-02
 
-The proposed single-worker source-tests configuration retains the complete suite,
+The single-worker source-tests configuration retains the complete suite,
 every existing assertion and20-minute job limit. The dated finding
 `plan/findings/2026-11-02-source-worker-scheduling.md` pre-registers two complete
-hosted passes before promotion and retains the known failures. It is a runner
+hosted passes before promotion and retains the known failures. Both independent
+runs passed at643bd5b (371files/13existing skips each); full evidence is retained. It is a runner
 scheduling experiment, not a numerical tolerance change or a proven flake cure.

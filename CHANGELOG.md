@@ -7,7 +7,7 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
-- **Source CI scheduling**: propose running the entire unchanged unit suite in one worker to reduce contention around the existing timing assertion; every check, threshold and job budget stays required.
+- **Source CI scheduling**: run the entire unchanged unit suite in one worker to reduce contention around the existing timing assertion; every check, threshold and job budget stays required.
 
 - **Port plan CI**: fetch the immutable original Git tree for source-map provenance tests; retain every proof assertion.
 
