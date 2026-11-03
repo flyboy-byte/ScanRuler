@@ -4,14 +4,14 @@ Generated from canonical unit files and ci/native-suites.json; do not hand-edit.
 
 Reference: `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
 
-Native coverage inventory: **47 suites / 7297 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
+Native coverage inventory: **48 suites / 8497 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
 
 No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Bounded [browser-Wasm coverage](oracle/BROWSER-WASM.md) is separate from engine/session/UI integration and the still-open exact-base numerical ratchet.
 
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 61 |
+| implemented | 62 |
 | planned | 47 |
 | specified | 1 |
 
@@ -19,7 +19,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 
 | Verification | Units |
 | --- | ---: |
-| fixed-corpus | 44 |
+| fixed-corpus | 45 |
 | fuzzed | 4 |
 | none | 63 |
 
@@ -81,6 +81,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [engine.session.command.deadline](plan/units/engine.session.command.deadline.json) | implemented | fixed-corpus | `b3566ac` | `b3566ac` | [#59](https://github.com/flyboy-byte/ScanRuler/pull/59) |
 | [engine.session.contract](plan/units/engine.session.contract.json) | specified | none | — | — | [#45](https://github.com/flyboy-byte/ScanRuler/pull/45) |
 | [engine.session.error.normalize](plan/units/engine.session.error.normalize.json) | implemented | fixed-corpus | `6dcf191` | `6dcf191` | [#65](https://github.com/flyboy-byte/ScanRuler/pull/65) |
+| [engine.session.execute.lifecycle](plan/units/engine.session.execute.lifecycle.json) | implemented | fixed-corpus | `e6dce90` | `e6dce90` | [#80](https://github.com/flyboy-byte/ScanRuler/pull/80) |
 | [engine.session.history.core](plan/units/engine.session.history.core.json) | implemented | fixed-corpus | `c2795e1` | `c2795e1` | [#55](https://github.com/flyboy-byte/ScanRuler/pull/55) |
 | [engine.session.history.guards](plan/units/engine.session.history.guards.json) | implemented | fixed-corpus | `1504212` | `1504212` | [#53](https://github.com/flyboy-byte/ScanRuler/pull/53) |
 | [engine.session.history.local](plan/units/engine.session.history.local.json) | implemented | fixed-corpus | `123e43e` | `123e43e` | [#52](https://github.com/flyboy-byte/ScanRuler/pull/52) |
