@@ -788,7 +788,7 @@
       "id": "engine.session.recent.store",
       "status": "specified",
       "parent": "engine.session.contract",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/82",
       "tested_sha": null,
       "verification": "none",
       "verification_tested_sha": null,

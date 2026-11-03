@@ -89,7 +89,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [engine.session.history.restore](plan/units/engine.session.history.restore.json) | implemented | fixed-corpus | `84e49dd` | `84e49dd` | [#54](https://github.com/flyboy-byte/ScanRuler/pull/54) |
 | [engine.session.import.queue](plan/units/engine.session.import.queue.json) | implemented | fixed-corpus | `f239035` | `f239035` | [#57](https://github.com/flyboy-byte/ScanRuler/pull/57) |
 | [engine.session.recent.result.data](plan/units/engine.session.recent.result.data.json) | implemented | fixed-corpus | `4fb6a53` | `4fb6a53` | [#81](https://github.com/flyboy-byte/ScanRuler/pull/81) |
-| [engine.session.recent.store](plan/units/engine.session.recent.store.json) | specified | none | — | — | — |
+| [engine.session.recent.store](plan/units/engine.session.recent.store.json) | specified | none | — | — | [#82](https://github.com/flyboy-byte/ScanRuler/pull/82) |
 | [engine.session.registry](plan/units/engine.session.registry.json) | implemented | fixed-corpus | `bdc24fe` | `bdc24fe` | [#45](https://github.com/flyboy-byte/ScanRuler/pull/45) |
 | [engine.session.scene.queue](plan/units/engine.session.scene.queue.json) | implemented | fixed-corpus | `ac221ed` | `ac221ed` | [#79](https://github.com/flyboy-byte/ScanRuler/pull/79) |
 | [engine.session.settle.registry](plan/units/engine.session.settle.registry.json) | implemented | fixed-corpus | `84e083e` | `84e083e` | [#67](https://github.com/flyboy-byte/ScanRuler/pull/67) |
