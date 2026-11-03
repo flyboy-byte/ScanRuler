@@ -35,7 +35,9 @@ jobs:
       - name: Complete original unit suite
         run: |
           mkdir -p e2e-out/source-tests
-          npm test 2>&1 | tee e2e-out/source-tests/unit-tests.log
+          # Avoid competing test files inside this timing-sensitive VM.
+          # Every source test and its original time/accuracy assertions still run.
+          npm test -- --maxWorkers=1 --minWorkers=1 --no-file-parallelism 2>&1 | tee e2e-out/source-tests/unit-tests.log
       - name: Retain source unit diagnostics
         if: always()
         uses: actions/upload-artifact@v4
