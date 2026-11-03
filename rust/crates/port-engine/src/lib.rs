@@ -71,3 +71,6 @@ pub mod recent_store;
 
 /// Public/internal workspace names over current installed-plugin metadata.
 pub mod workspaces;
+
+/// Bounded native cooperative task ownership and wake delivery.
+pub mod tasks;

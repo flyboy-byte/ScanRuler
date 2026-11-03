@@ -2802,7 +2802,7 @@
       ],
       "owner": "Codex",
       "branch": "codex/native-task-owner",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/88",
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [
