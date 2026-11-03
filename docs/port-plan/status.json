@@ -5,7 +5,7 @@
     "baseline-captured": 2,
     "implemented": 46,
     "planned": 48,
-    "specified": 1
+    "specified": 2
   },
   "native_suites": 33,
   "native_case_identities_including_refusals": 3467,
@@ -546,6 +546,17 @@
       "open_items": [
         "Page stale timestamp, staleError construction and full asCommandError normalization are separate continuations.",
         "Error messages are owned UTF16 text; arbitrary mutable JS message coercion/getters and browser preload listener runtime are not represented."
+      ]
+    },
+    {
+      "id": "engine.session.stale.error",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Arbitrary JS String coercion is supplied by the typed host boundary; native conversion of primitive/array/object thrown values remains separate.",
+        "Actual platform clock conversion, browser preload hook and registry asCommandError integration remain required."
       ]
     },
     {

@@ -5359,6 +5359,41 @@
       ]
     },
     {
+      "id": "engine.session.stale.error",
+      "parent": "engine.session.contract",
+      "title": "Port stale-page error construction and failure ordering",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [
+        "engine.session.stale.clock",
+        "engine.error.envelope"
+      ],
+      "scope": "Complete staleError over owned UTF16 caught-error messages or synchronous fallible string-coercion suppliers, using the first-stale clock state. Preserve marking before coercion, exact prefix/code/name and failures without rollback.",
+      "acceptance": [
+        "Full pinned original compares clock/coercion logs, errors, exact UTF16 envelope and page state.",
+        "Host allocation/text limits remain distinct; no rollback after a successful page mark."
+      ],
+      "owner": "Codex",
+      "branch": "codex/stale-error",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/stalePage.ts",
+        "src/commands/types.ts"
+      ],
+      "symbols": [
+        "staleError",
+        "STALE_PAGE"
+      ],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Arbitrary JS String coercion is supplied by the typed host boundary; native conversion of primitive/array/object thrown values remains separate.",
+        "Actual platform clock conversion, browser preload hook and registry asCommandError integration remain required."
+      ]
+    },
+    {
       "id": "fit.curvature.gate",
       "parent": "P07",
       "title": "Port curved-fit versus plane discrimination and residual RMS",

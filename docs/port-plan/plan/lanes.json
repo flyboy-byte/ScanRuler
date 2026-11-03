@@ -30,7 +30,8 @@
         "engine.session.history.guards",
         "engine.session.history.restore",
         "engine.session.stale.detect",
-        "engine.session.stale.clock"
+        "engine.session.stale.clock",
+        "engine.session.stale.error"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },
