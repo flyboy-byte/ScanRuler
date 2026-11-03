@@ -1,0 +1,33 @@
+{
+  "id": "engine.session.settle.registry",
+  "parent": "engine.session.contract",
+  "title": "Port settlement registration and live callback iteration",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "engine.session.settle.run"
+  ],
+  "scope": "Complete registerSettle function identity, explicit unsubscribe and live Set iteration, composing the settlement wait component. Preserve deletion/addition/re-addition during callbacks and old unsubscribe behavior.",
+  "acceptance": [
+    "Full original registry graph compares live registration mutation, exact callback order/arguments and complete wait states.",
+    "Finite metadata/reentrancy bounds, owned subscriptions and non-Clone failures; full existing stable settlement corpus remains required."
+  ],
+  "owner": "Codex",
+  "branch": "codex/settle-registry",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/registry.ts"
+  ],
+  "symbols": [
+    "registerSettle",
+    "settle (live Set iteration)"
+  ],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Actual executor must retain/drain started work; browser promise turns, full registry command wiring and runtime cancellation/termination remain separate.",
+    "Owned immutable metadata excludes arbitrary JS getters/prototype replacement; ordinary Rust Arc/Rc allocation is not process-wide OOM isolation."
+  ]
+}
