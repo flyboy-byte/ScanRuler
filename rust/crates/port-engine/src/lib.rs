@@ -14,3 +14,6 @@ pub mod history_record;
 
 /// Local editor history selection and dispatch.
 pub mod history_local;
+
+/// History travel blocking and editor-work predicates.
+pub mod history_guards;
