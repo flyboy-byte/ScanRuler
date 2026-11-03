@@ -2,6 +2,8 @@
 //! File formats and the `.scanruler` project reader/writer. Parsers return owned data and
 //! never touch a live session. STL binary/ASCII decoding lives here (io.stl.binary/io.stl.dispatch, under P06).
 
+/// DEFLATE and ZIP reading that reproduces the original's fflate behaviour.
+pub mod inflate;
 /// Complete OBJ geometry/decoded-texture parser.
 pub mod obj;
 /// Source OBJ material/decoded-image texture helpers; no image codec dependency.
