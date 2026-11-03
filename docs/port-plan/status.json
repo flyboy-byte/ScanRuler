@@ -2,13 +2,13 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 3,
-    "implemented": 45,
+    "baseline-captured": 2,
+    "implemented": 46,
     "planned": 48,
     "specified": 1
   },
-  "native_suites": 32,
-  "native_case_identities_including_refusals": 3403,
+  "native_suites": 33,
+  "native_case_identities_including_refusals": 3467,
   "accepted_units": [],
   "units": [
     {
@@ -528,10 +528,10 @@
     },
     {
       "id": "engine.session.stale.clock",
-      "status": "baseline-captured",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/61",
-      "tested_sha": null,
+      "tested_sha": "8a6d137afa21605099871495e61610f4a74d3cc3",
       "open_items": [
         "Actual platform clock and UTC ISO formatting adapter, browser preload listener and registry error normalization remain separate.",
         "Clock sampling is synchronous and non-reentrant; executable JS Date constructor reentrancy is outside this boundary."

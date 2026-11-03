@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust stale-page clock state**: retain the first timestamp, skip repeat sampling, reset explicitly and preserve failed-clock state across 64 exact original traces. Platform clock conversion remains separate.
+
 - **Port plan CI**: fetch the immutable original Git tree for source-map provenance tests; retain every proof assertion.
 
 - **Rust stale-import classification**: preserve all four messages, ASCII case semantics, typed-error exclusion and unchanged page state in 308 exact pinned-source comparisons. Page timestamp and error normalization remain separate.
