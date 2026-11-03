@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust plugin busy metadata**: preserve duplicate errors, function/array/stop identity, old cleanup and live first-busy lookup with 96 full original comparisons. Async stop invocation remains separate.
+
 - **Port verification evidence**: separate lifecycle from fixed-corpus, fuzzed and coverage-reviewed labels; reject unsupported grades and retain exact-candidate PLY/STL fuzz logs and corruption reproducers. No unit is accepted.
 
 - **Rust session subscriptions**: preserve store/listener identity, snapshot order, partial failures and repeated ordered cleanup across 144 full original traces. Native plugin registry and full engine integration remain separate.
