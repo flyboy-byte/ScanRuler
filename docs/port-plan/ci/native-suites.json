@@ -361,6 +361,17 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "engine.session.stale.clock",
+      "test": "pinned_stale_clock_comparison",
+      "directory": "stale-clock-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

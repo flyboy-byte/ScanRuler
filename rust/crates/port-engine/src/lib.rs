@@ -20,3 +20,6 @@ pub mod history_guards;
 
 /// Pure stale-import classification, separate from page timestamps.
 pub mod stale_import;
+
+/// First-stale timestamp state, independent of import classification.
+pub mod page_stale;
