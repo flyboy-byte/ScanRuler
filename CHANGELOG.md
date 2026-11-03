@@ -13,6 +13,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 - **Rust DEFLATE and ZIP reader** (2026-11-03): own pure-Rust inflate and unzip that reproduces the original's `fflate` 0.8.3 `unzipSync`, including its lenient behaviour on damaged archives; 30,000 generated and mutated archives, 0 divergences. 3MF reading itself and PNG/JPEG decoding remain separate.
 
+- **Rust live settlement registration**: preserve function identity, old unsubscribe handles, deletion/addition/re-addition during iteration and concurrent waits in 116 exact original comparisons. Executor integration remains separate.
+
 - **Rust deferred-work settling**: call every stable callback, preserve exact next-command metadata, suppress failures and await all concurrent work in 64 full original comparisons. Registration mutation and executor wiring remain separate.
 
 - **Port plan CI**: fetch the immutable original Git tree for source-map provenance tests; retain every proof assertion.

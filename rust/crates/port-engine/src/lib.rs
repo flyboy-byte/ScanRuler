@@ -26,3 +26,6 @@ pub mod command_deadline;
 
 /// Deferred-work settlement over stable ordered callbacks.
 pub mod settle;
+
+/// Function identity and live registration for deferred-work callbacks.
+pub mod settle_registry;

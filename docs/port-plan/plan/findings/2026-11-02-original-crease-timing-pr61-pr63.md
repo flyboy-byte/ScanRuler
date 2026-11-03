@@ -8,3 +8,8 @@ license lanes passed. A single failed-lane rerun was requested for each.
 No threshold, fixture, implementation, seed or CI assertion changed. The PR
 bodies retain original failure links even if the reruns pass. This is the known
 original timing flake, not evidence of source/native numerical disagreement.
+
+Follow-up 2026-11-02: the single PR63 rerun passed, all11 required checks green.
+The single PR61 rerun failed only the same assertion at1563.6990619999997ms;
+370 files passed/13 skipped. No further retry requested. The PR61 body retains
+both failure links; neither assertion nor timing threshold changed.
