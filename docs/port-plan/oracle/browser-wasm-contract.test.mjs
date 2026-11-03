@@ -161,6 +161,7 @@ for (const [folder, total, successes, refusals, protocol, excluded] of [
   ['browser-wasm-ply-2026-11-02', 341, 287, 54, 13, ['io.ply.binary/le-vertex-progress']],
   ['browser-wasm-obj-2026-11-02', 564, 482, 82, 18, ['io.ply.binary/le-vertex-progress', 'io.obj.mesh/line-progress', 'io.obj.mesh/short-unicode-line-skips-progress']],
   ['browser-wasm-files-2026-11-02', 651, 569, 82, 24, ['io.ply.binary/le-vertex-progress', 'io.obj.mesh/line-progress', 'io.obj.mesh/short-unicode-line-skips-progress']],
+  ['browser-wasm-sphere-2026-11-03', 2211, 1193, 1018, 30, ['io.ply.binary/le-vertex-progress', 'io.obj.mesh/line-progress', 'io.obj.mesh/short-unicode-line-skips-progress']],
 ]) test(folder + ': complete committed Chrome proof replays all source/native/Wasm results', async () => {
   const { readFileSync } = await import('node:fs')
   const { createHash } = await import('node:crypto')
@@ -208,6 +209,7 @@ for (const [folder, total, successes, refusals, protocol, excluded] of [
     }
     for (const [bytes, key] of [[files['input.bin'], 'input_sha256'], [original, 'original_sha256'],
       [native, 'native_sha256'], [files['wasm.bin'], 'wasm_sha256']]) assert.equal(hash(bytes), c[key])
+    if (mode === 8) { assert.deepEqual(files['input.bin'], files['original.after.bin']); assert.deepEqual(files['input.bin'], files['rust.after.bin']); assert.equal(files['descriptor.tsv'].toString().split('\t')[0], c.id); assert.equal(files['original.stderr.txt'].length, 0) }
     compareOutput(mode, original, native); compareOutput(mode, original, files['wasm.bin']); compareOutput(mode, native, files['wasm.bin'])
     assert.equal(c.result, successfulOutput(mode, files['wasm.bin']) ? 'successful_values' : 'source_refusal')
   }

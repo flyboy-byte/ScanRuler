@@ -3,9 +3,9 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 66,
+    "implemented": 67,
     "planned": 47,
-    "specified": 2
+    "specified": 1
   },
   "verification_levels": {
     "fixed-corpus": 49,
@@ -1018,7 +1018,7 @@
       "verification": "fixed-corpus",
       "verification_tested_sha": "03369e07efdb03c9164d6ac4bf01e0e47bfca27d",
       "open_items": [
-        "Actual browser-Wasm sphere execution and the generic exact-base numerical ratchet remain unverified; Wasm compilation alone grants no runtime acceptance.",
+        "2026-11-03: all1560 sphere cases now execute in actual Chrome Wasm under harness.wasm.sphere evidence/browser-wasm-sphere-2026-11-03/manifest.json. Broader profiles and generic exact-base numerical ratchet remain unverified; no feature/runtime acceptance.",
         "Seeded/RANSAC/growth, full selection normal voting/extents/element fields, commands/session/project/CLI integration remain unported for spheres."
       ]
     },
@@ -1304,14 +1304,15 @@
     },
     {
       "id": "harness.wasm.sphere",
-      "status": "specified",
+      "status": "implemented",
       "parent": "P36",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/90",
-      "tested_sha": null,
+      "tested_sha": "c33011c1d24db4dc5b66459f70aada6ea8d02a13",
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
-        "Implement and execute the input-only codec with full raw browser proof; engine/session/command integration remains separate."
+        "Actual command/session/UI/CLI execution, seeded sphere/growth/full element fields and broader platform profiles remain unimplemented; no accepted feature or M3 claim.",
+        "The three historical native-only workloads remain above unchanged private ABI caps; generic P36/P37 and Rust replacement of temporary test tooling remain open."
       ]
     },
     {

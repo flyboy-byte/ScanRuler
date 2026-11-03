@@ -35,3 +35,7 @@ This is bounded library execution, not a production ABI or usable command. Seede
 sphere growth, complete selection element fields and session/history/command/UI/
 CLI wiring remain open, as do broader platform profiles and the generic exact-base
 numerical ratchet. No accepted unit or M3 claim.
+
+## Actual Chrome checkpoint
+
+Clean implementation c33011c1d24db4dc5b66459f70aada6ea8d02a13 passed all2211 original/native/Chrome comparisons and30 protocol checks:1193 successful model/helper outputs and1018 source refusals. Zero module imports/page errors. Complete source/native/input/Wasm bytes, hashes, corpus and browser/module/native identities are retained in evidence/browser-wasm-sphere-2026-11-03/. Historical proofs and the new full proof replay in the comparator regression suite. The initial default launcher was absent; its pre-comparison failure report is retained. The unchanged checkpoint passed via the installed google-chrome-stable CHROME override, with no case/budget changes.

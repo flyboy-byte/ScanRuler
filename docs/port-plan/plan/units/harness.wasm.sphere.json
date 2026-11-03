@@ -3,7 +3,7 @@
   "parent": "P36",
   "title": "Execute complete fixed-selection sphere corpus in Chrome Wasm",
   "gate": "G3",
-  "status": "specified",
+  "status": "implemented",
   "depends_on": [
     "harness.wasm.files",
     "fit.sphere.clipped"
@@ -21,7 +21,7 @@
   "owner": "Codex",
   "branch": "codex/wasm-sphere",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/90",
-  "implemented_commit": null,
+  "implemented_commit": "c33011c1d24db4dc5b66459f70aada6ea8d02a13",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/core/fit/sphere.ts",
@@ -35,9 +35,21 @@
     "rust/crates/port-wasm-probe/src/lib.rs",
     "rust/crates/port-wasm-probe/src/sphere.rs"
   ],
-  "evidence": [],
-  "open_items": [
-    "Implement and execute the input-only codec with full raw browser proof; engine/session/command integration remains separate."
+  "evidence": [
+    {
+      "kind": "runtime-comparison",
+      "location": "evidence/browser-wasm-sphere-2026-11-03/manifest.json",
+      "candidate_sha": "c33011c1d24db4dc5b66459f70aada6ea8d02a13"
+    }
   ],
-  "verification": "none"
+  "open_items": [
+    "Actual command/session/UI/CLI execution, seeded sphere/growth/full element fields and broader platform profiles remain unimplemented; no accepted feature or M3 claim.",
+    "The three historical native-only workloads remain above unchanged private ABI caps; generic P36/P37 and Rust replacement of temporary test tooling remain open."
+  ],
+  "verification": "none",
+  "resolved_items": [
+    "2026-11-03: complete2211-case original/native/actual Chrome corpus passes, preserving all651 old cases and adding all1560 sphere cases.1193 model/helper successes and1018 source refusals remain distinct.",
+    "30 protocol checks pass, zero module imports/page errors; full raw proof and exact candidate/native/module/browser identities retained.",
+    "Initial default-launcher attempt failed before comparisons; unchanged checkpoint passed via installed google-chrome-stable CHROME override. Failure report retained separately."
+  ]
 }
