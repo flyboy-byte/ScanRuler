@@ -110,7 +110,7 @@ fn pinned_clock_utc_comparison() {
     assert!(original.stderr.is_empty());
     let output = String::from_utf8(original.stdout).unwrap();
     let originals: Vec<_> = output.split_inclusive('\n').collect();
-    assert_eq!(originals.len(), 311);
+    assert_eq!(originals.len(), 1911);
     let run = std::time::SystemTime::now()
         .duration_since(std::time::UNIX_EPOCH)
         .unwrap()
@@ -153,7 +153,7 @@ fn pinned_clock_utc_comparison() {
         assert_eq!(actual, expected, "{id}");
     }
     println!(
-        "311 exact Date/UTC/clock/error/state observations; {}",
+        "1911 exact Date/UTC/clock/error/state observations; {}",
         dir.display()
     );
 }

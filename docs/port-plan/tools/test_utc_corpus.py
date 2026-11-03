@@ -5,7 +5,7 @@ PLAN=Path(__file__).resolve().parents[1]
 def load(name):return json.loads(gzip.decompress((PLAN/'evidence'/name).read_bytes()))
 class UtcCorpusTests(unittest.TestCase):
     def test_source_native_complete_time_and_state(self):
-        source=load('2026-11-02-utc-source.json.gz');paired=load('2026-11-02-utc.json.gz');inputs=(PLAN/'fixtures/clock-utc/cases.tsv').read_bytes()
+        source=load('2026-11-02-utc-source.json.gz');paired=load('2026-11-02-utc.json.gz');inputs=(PLAN/'fixtures/clock-utc/cases-311.tsv').read_bytes()
         self.assertEqual(hashlib.sha256(inputs).hexdigest(),source['input_sha256']);self.assertEqual(source['seeds'],[1,7,99,1039])
         self.assertEqual(len(inputs.splitlines()),311);self.assertEqual(len(paired['cases']),311);original=[]
         for line,case in zip(inputs.splitlines(),paired['cases']):
@@ -21,4 +21,4 @@ class UtcCorpusTests(unittest.TestCase):
         self.assertTrue(any(b'\tthrow:RangeError:' in v for v in original));self.assertTrue(any(b'\tok:' in v for v in original))
     def test_immutable_seed_inputs_reproduce_independently(self):
         module=runpy.run_path(str(PLAN/'tools/generate_utc_cases.py'))
-        self.assertEqual(module['generate'](),(PLAN/'fixtures/clock-utc/cases.tsv').read_bytes())
+        self.assertEqual(module['generate'](),(PLAN/'fixtures/clock-utc/cases-311.tsv').read_bytes())
