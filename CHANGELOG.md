@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust watched-store source ownership**: preserve readonly container/member identity, duplicates/order and conditional old cleanup across 80 full original traces. Actual subscriptions remain separate.
+
 - **Rust command guards**: preserve object identity, raw busy returns/faults and unconditional old-cleanup reset across 192 full original state traces. Plugin and registry execution integration remain separate.
 
 - **Recording evidence metadata**: derive live seed labels from unchanged fixture IDs, correcting an old 1109/1039 label typo without altering any case or captured result.

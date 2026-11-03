@@ -32,3 +32,6 @@ pub mod settle_registry;
 
 /// Command guard identity, configuration and explicit cleanup.
 pub mod activity_guard;
+
+/// Session watched-store source identity and conditional release.
+pub mod watch_stores;
