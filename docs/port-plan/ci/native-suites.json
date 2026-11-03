@@ -493,6 +493,17 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "engine.session.activity.plugins",
+      "test": "pinned_plugin_busy_comparison",
+      "directory": "plugin-busy-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

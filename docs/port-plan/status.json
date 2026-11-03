@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 58,
+    "implemented": 59,
     "planned": 47,
-    "specified": 2
+    "specified": 1
   },
   "verification_levels": {
-    "fixed-corpus": 41,
+    "fixed-corpus": 42,
     "fuzzed": 4,
-    "none": 64
+    "none": 63
   },
-  "native_suites": 44,
-  "native_case_identities_including_refusals": 6854,
+  "native_suites": 45,
+  "native_case_identities_including_refusals": 6950,
   "accepted_units": [],
   "units": [
     {
@@ -564,14 +564,16 @@
     },
     {
       "id": "engine.session.activity.plugins",
-      "status": "specified",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/77",
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "tested_sha": "d353297c5d5a2ee170c5f9b35107d9b17bcb9ee2",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "d353297c5d5a2ee170c5f9b35107d9b17bcb9ee2",
       "open_items": [
-        "Implement and compare the complete scoped bodies; asynchronous stop invocation and engine integration remain separate."
+        "Async stopPluginWork invocation and pending waits are not implemented by this unit.",
+        "Native watchSession/command guard/registry integration and browser execution remain required.",
+        "Typed owned callbacks exclude JS getters/prototypes; resource refusals are host limits, not original results."
       ]
     },
     {
