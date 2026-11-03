@@ -62,3 +62,6 @@ pub mod scene_queue;
 
 /// Execute preflight, provider wait ordering and shared completion lifetime.
 pub mod execute;
+
+/// Retained owned JSON-data copies, byte summaries and exact size thresholds.
+pub mod recent_result;

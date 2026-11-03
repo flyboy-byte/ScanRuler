@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 62,
+    "implemented": 63,
     "planned": 47,
     "specified": 1
   },
   "verification_levels": {
-    "fixed-corpus": 45,
+    "fixed-corpus": 46,
     "fuzzed": 4,
     "none": 63
   },
-  "native_suites": 48,
-  "native_case_identities_including_refusals": 8497,
+  "native_suites": 49,
+  "native_case_identities_including_refusals": 8910,
   "accepted_units": [],
   "units": [
     {
@@ -768,6 +768,20 @@
         "Native/Wasm executor and concrete restore/import integration remain required.",
         "Abandoned Rust futures are host failures, not a source cancellation feature; engine termination policy remains required.",
         "Typed callback errors represent source exceptions; arbitrary Rust panic/OOM isolation is not exhaustive."
+      ]
+    },
+    {
+      "id": "engine.session.recent.result.data",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/81",
+      "tested_sha": "4fb6a53e7243e539fba7a9b61b929edc85d729e5",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "4fb6a53e7243e539fba7a9b61b929edc85d729e5",
+      "open_items": [
+        "General host-object/getter/toJSON/prototype/function/BigInt/cyclic non-JSON conversion remains unported outside the owned acyclic input domain.",
+        "Recent outcome lifecycle and actual command/browser integration remain required.",
+        "Typed owned callbacks exclude JS getters/prototypes; resource refusals are host limits, not original results."
       ]
     },
     {
