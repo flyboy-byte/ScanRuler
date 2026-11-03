@@ -11,3 +11,6 @@ pub mod schema_value;
 pub mod registry;
 
 pub mod history_record;
+
+/// Local editor history selection and dispatch.
+pub mod history_local;
