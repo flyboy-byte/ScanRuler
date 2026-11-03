@@ -13,6 +13,13 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 - **Rust command guards**: preserve object identity, raw busy returns/faults and unconditional old-cleanup reset across 192 full original state traces. Plugin and registry execution integration remain separate.
 
+
+- **Recording evidence metadata**: derive live seed labels from unchanged fixture IDs, correcting an old 1109/1039 label typo without altering any case or captured result.
+
+- **Source CI scheduling**: run the entire unchanged unit suite in one worker to reduce contention around the existing timing assertion; every check, threshold and job budget stays required.
+
+- **Port plan CI**: fetch the immutable original Git tree for source-map provenance tests; retain every proof assertion.
+
 - **UTC regression census**: compare a complete negative Gregorian period against the original Date converter, adding 1,600 cases while preserving all 311 prior records and leaving production code unchanged.
 
 - **Rust UTC timestamps**: own bounded Date clipping and Gregorian ISO formatting, including extended years and lazy stale-page conversion; 311 full original timestamp/error/state comparisons. OS current-time acquisition remains separate.
