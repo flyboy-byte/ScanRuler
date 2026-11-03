@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust workspace metadata**: preserve exact public/internal names, installed ordering, empty/duplicate ids and live independent name arrays across 306 original state/plugin cases. Plugin discovery/full state runtime remain separate.
+
 - **Rust recent outcome state**: preserve 100-entry eviction, clocks, observer failures and shallow snapshot/payload semantics across 362 complete original schedules. Executor reaction attachment remains separate.
 
 - **Rust retained result data**: preserve normalized copies, byte summaries, UTF-16 JSON sizes and exact omission thresholds across 413 full original data cases. General host-object/non-JSON conversion remains separate.
