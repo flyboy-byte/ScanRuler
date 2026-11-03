@@ -36,7 +36,12 @@
         "engine.session.settle.registry",
         "engine.session.activity.guard",
         "engine.session.activity.stores",
-        "engine.session.activity.watch"
+        "engine.session.activity.watch",
+        "engine.session.stale.detect",
+        "engine.session.stale.clock",
+        "engine.session.stale.error",
+        "engine.session.error.normalize",
+        "engine.session.clock.utc"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },

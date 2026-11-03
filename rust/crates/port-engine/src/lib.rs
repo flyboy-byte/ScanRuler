@@ -38,3 +38,15 @@ pub mod watch_stores;
 
 /// Session subscription snapshots, listener identity and ordered teardown.
 pub mod watch_session;
+
+/// Pure stale-import classification, separate from page timestamps.
+pub mod stale_import;
+
+/// First-stale timestamp state, independent of import classification.
+pub mod page_stale;
+
+/// Stale-page envelope construction with source-ordered host effects.
+pub mod stale_error;
+
+/// Command fault normalization preserving typed error identity and stale state.
+pub mod error_normalize;

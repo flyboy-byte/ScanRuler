@@ -3,12 +3,12 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 52,
+    "implemented": 57,
     "planned": 48,
     "specified": 1
   },
-  "native_suites": 39,
-  "native_case_identities_including_refusals": 4147,
+  "native_suites": 44,
+  "native_case_identities_including_refusals": 6854,
   "accepted_units": [],
   "units": [
     {
@@ -484,6 +484,17 @@
       ]
     },
     {
+      "id": "engine.session.clock.utc",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/68",
+      "tested_sha": "cf0543a3dc0c027eece6566ab8491be20f2308e8",
+      "open_items": [
+        "Actual OS current-time acquisition, browser clock wiring and complete registry execution remain separate.",
+        "Source native Date semantics are captured under pinned Node22; actual Chrome-Wasm timestamp corpus execution remains required."
+      ]
+    },
+    {
       "id": "engine.session.command.deadline",
       "status": "implemented",
       "parent": "engine.session.contract",
@@ -506,6 +517,17 @@
         "Bounded registry, history recording/local/guards/restore/core capture-apply, import queue and deadline reactions have source traces. Typed family integration, error normalization, executor/worker lifecycle and real command traces remain required; no session acceptance claim.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
+      ]
+    },
+    {
+      "id": "engine.session.error.normalize",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/65",
+      "tested_sha": "6dcf191d81ffbc3c3413ee9145e29565591a8cfa",
+      "open_items": [
+        "General native String conversion, actual clocks and complete registry execution remain separate.",
+        "Owned message boundaries exclude mutable/reentrant Error.message getters and external prototype mutation."
       ]
     },
     {
@@ -615,6 +637,39 @@
       "open_items": [
         "registerSettle function identity/live Set mutation is a separate continuation; stable callbacks cannot mutate registration during a run.",
         "The executor must retain/poll all started work. Full registry execution, platform promise turns and cancellation/termination integration remain separate."
+      ]
+    },
+    {
+      "id": "engine.session.stale.clock",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/61",
+      "tested_sha": "8a6d137afa21605099871495e61610f4a74d3cc3",
+      "open_items": [
+        "UTC ISO formatting and the lazy millisecond adapter are implemented by engine.session.clock.utc; actual OS clock acquisition, browser preload listener and full registry execution remain separate.",
+        "Clock sampling is synchronous and non-reentrant; executable JS Date constructor reentrancy is outside this boundary."
+      ]
+    },
+    {
+      "id": "engine.session.stale.detect",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/60",
+      "tested_sha": "7cd55a7f870101cd671a798d366b2503f18b73fc",
+      "open_items": [
+        "Page stale timestamp, staleError construction and full asCommandError normalization are separate continuations.",
+        "Error messages are owned UTF16 text; arbitrary mutable JS message coercion/getters and browser preload listener runtime are not represented."
+      ]
+    },
+    {
+      "id": "engine.session.stale.error",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/63",
+      "tested_sha": "4ce6c9d5dd72365dc53eba1e2304a28f61498952",
+      "open_items": [
+        "Arbitrary JS String coercion is supplied by the typed host boundary; native conversion of primitive/array/object thrown values remains separate.",
+        "Actual platform clock conversion, browser preload hook and registry asCommandError integration remain required."
       ]
     },
     {
