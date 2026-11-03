@@ -1,0 +1,32 @@
+{
+  "id": "engine.session.clock.utc",
+  "parent": "engine.session.contract",
+  "title": "Port Date millisecond clipping and UTC ISO timestamp formatting",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "engine.session.stale.clock"
+  ],
+  "scope": "Own pure-Rust Date TimeClip and ISO UTC formatting over f64 milliseconds, plus lazy PageStale timestamp adapter. Preserve calendar boundaries, extended years, invalid-time errors and no sampling after first mark. OS current-time acquisition remains separate.",
+  "acceptance": [
+    "Pinned original markPageStale with real Date.toISOString compares wide seeded millisecond inputs, exact timestamps, errors, clock counts and state before Rust.",
+    "Invalid and bounded-host errors stay distinct; all old clock/normalization corpora remain required."
+  ],
+  "owner": "Codex",
+  "branch": "codex/clock-utc",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/stalePage.ts"
+  ],
+  "symbols": [
+    "markPageStale (Date UTC timestamp boundary)"
+  ],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Actual OS current-time acquisition, browser clock wiring and complete registry execution remain separate.",
+    "Source native Date semantics are captured under pinned Node22; actual Chrome-Wasm timestamp corpus execution remains required."
+  ]
+}

@@ -5,7 +5,7 @@
     "baseline-captured": 2,
     "implemented": 48,
     "planned": 48,
-    "specified": 1
+    "specified": 2
   },
   "native_suites": 35,
   "native_case_identities_including_refusals": 3891,
@@ -448,6 +448,17 @@
         "Independent schema fuzzing, line/branch coverage and exact-base differential ratchet remain separate evidence; no accepted status.",
         "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
+      ]
+    },
+    {
+      "id": "engine.session.clock.utc",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Actual OS current-time acquisition, browser clock wiring and complete registry execution remain separate.",
+        "Source native Date semantics are captured under pinned Node22; actual Chrome-Wasm timestamp corpus execution remains required."
       ]
     },
     {
