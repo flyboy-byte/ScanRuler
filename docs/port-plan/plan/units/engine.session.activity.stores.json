@@ -13,7 +13,7 @@
   "owner": "Codex",
   "branch": "codex/watch-stores",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/71",
-  "implemented_commit": null,
+  "implemented_commit": "97dcd7f6d26250a21b6984c6c309e4d867eac88b",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/commands/activity.ts"
@@ -112,7 +112,8 @@
         "case-077",
         "case-078",
         "case-079"
-      ]
+      ],
+      "candidate_sha": "97dcd7f6d26250a21b6984c6c309e4d867eac88b"
     }
   ],
   "open_items": [

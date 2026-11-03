@@ -2,13 +2,13 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 3,
-    "implemented": 50,
+    "baseline-captured": 2,
+    "implemented": 51,
     "planned": 48,
     "specified": 1
   },
-  "native_suites": 37,
-  "native_case_identities_including_refusals": 3923,
+  "native_suites": 38,
+  "native_case_identities_including_refusals": 4003,
   "accepted_units": [],
   "units": [
     {
@@ -463,10 +463,10 @@
     },
     {
       "id": "engine.session.activity.stores",
-      "status": "baseline-captured",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/71",
-      "tested_sha": null,
+      "tested_sha": "97dcd7f6d26250a21b6984c6c309e4d867eac88b",
       "open_items": [
         "watchSession subscriptions, plugin busy store registration and full engine session wiring remain separate.",
         "Readonly owned arrays exclude arbitrary mutable JS array/getter/prototype behavior; actual browser runtime remains required."
