@@ -2,10 +2,10 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 2,
+    "baseline-captured": 3,
     "implemented": 44,
     "planned": 48,
-    "specified": 2
+    "specified": 1
   },
   "native_suites": 31,
   "native_case_identities_including_refusals": 3095,
@@ -528,9 +528,9 @@
     },
     {
       "id": "engine.session.stale.detect",
-      "status": "specified",
+      "status": "baseline-captured",
       "parent": "engine.session.contract",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/60",
       "tested_sha": null,
       "open_items": [
         "Page stale timestamp, staleError construction and full asCommandError normalization are separate continuations.",
