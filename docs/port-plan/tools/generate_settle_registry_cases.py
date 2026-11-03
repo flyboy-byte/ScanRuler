@@ -11,7 +11,7 @@ def generate():
  for seed in [1,7,99,1039]:
   state=seed
   def rand(n):
-   global state
+   nonlocal state
    state=(1664525*state+1013904223)&0xffffffff;return state%n
   for i in range(8):add([0,1,2],[rand(6)for _ in range(3)],[rand(7)for _ in range(3)],[rand(3)for _ in range(3)],['none','old0','reregister0'][rand(3)])
  return ('\n'.join(rows)+'\n').encode()
