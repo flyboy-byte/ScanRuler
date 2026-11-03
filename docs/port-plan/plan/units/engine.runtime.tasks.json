@@ -3,7 +3,7 @@
   "parent": "engine.session.contract",
   "title": "Own and drain native tasks independently of caller observation",
   "gate": "G2",
-  "status": "specified",
+  "status": "implemented",
   "depends_on": [
     "engine.session.command.deadline",
     "engine.session.execute.lifecycle"
@@ -16,7 +16,7 @@
   "owner": "Codex",
   "branch": "codex/native-task-owner",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/88",
-  "implemented_commit": null,
+  "implemented_commit": "b1a1f366d3dfc784f514a92adf0ed38e57110289",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/commands/registry.ts"
@@ -28,9 +28,16 @@
     "rust/crates/port-engine/src/tasks.rs",
     "rust/crates/port-engine/tests/tasks.rs"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "kind": "report",
+      "location": "NATIVE-TASK-OWNER.md",
+      "summary": "New Rust host task mechanism with nine lifetime/wake/admission/destructor tests; not a paired source-runtime claim."
+    }
+  ],
   "open_items": [
-    "Implement the bounded owner; then wire real deadline/history/guarded/interrupt futures and late effects. No paired runtime or browser execution claim."
+    "Wire source-connected body/deadline/history/guarded/interrupt/execute futures and exact reaction ordering into this session owner; dropping caller observation must never drop body work.",
+    "Real platform timers, full original-versus-native command state/effect traces, browser-Wasm runtime execution and actual usable CLI/session remain unimplemented."
   ],
   "verification": "none"
 }

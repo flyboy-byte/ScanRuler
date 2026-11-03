@@ -3,9 +3,9 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 65,
+    "implemented": 66,
     "planned": 47,
-    "specified": 2
+    "specified": 1
   },
   "verification_levels": {
     "fixed-corpus": 48,
@@ -534,14 +534,15 @@
     },
     {
       "id": "engine.runtime.tasks",
-      "status": "specified",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/88",
-      "tested_sha": null,
+      "tested_sha": "b1a1f366d3dfc784f514a92adf0ed38e57110289",
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
-        "Implement the bounded owner; then wire real deadline/history/guarded/interrupt futures and late effects. No paired runtime or browser execution claim."
+        "Wire source-connected body/deadline/history/guarded/interrupt/execute futures and exact reaction ordering into this session owner; dropping caller observation must never drop body work.",
+        "Real platform timers, full original-versus-native command state/effect traces, browser-Wasm runtime execution and actual usable CLI/session remain unimplemented."
       ]
     },
     {
