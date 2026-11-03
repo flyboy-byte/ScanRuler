@@ -74,3 +74,5 @@ pub mod workspaces;
 
 /// Lossless Unicode command-label text and source-compatible provider ordering.
 pub mod command_label;
+/// Command-driven activity publication and live listeners.
+pub mod activity_state;

@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 70,
+    "implemented": 71,
     "planned": 47,
     "specified": 2
   },
   "verification_levels": {
-    "fixed-corpus": 52,
+    "fixed-corpus": 53,
     "fuzzed": 4,
     "none": 65
   },
-  "native_suites": 55,
-  "native_case_identities_including_refusals": 22490,
+  "native_suites": 56,
+  "native_case_identities_including_refusals": 22746,
   "accepted_units": [],
   "units": [
     {
@@ -574,6 +574,19 @@
         "Async stopPluginWork invocation and pending waits are not implemented by this unit.",
         "Native watchSession/command guard/registry integration and browser execution remain required.",
         "Typed owned callbacks exclude JS getters/prototypes; resource refusals are host limits, not original results."
+      ]
+    },
+    {
+      "id": "engine.session.activity.state",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/86",
+      "tested_sha": "c1357c868eb60aa0d43b66a8269c4280ae0e9bc6",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "c1357c868eb60aa0d43b66a8269c4280ae0e9bc6",
+      "open_items": [
+        "Full guarded/interrupt/current assignment/cleanup and progress-after-abort routing remain unported; wire this single store into the native owner.",
+        "Arbitrary Zustand partial functions/replace, host snapshot mutation, React hooks/middleware and browser-Wasm store execution are outside this typed command-patch scope."
       ]
     },
     {

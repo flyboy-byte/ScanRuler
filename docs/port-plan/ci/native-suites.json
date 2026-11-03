@@ -629,6 +629,17 @@
         "original.effects.txt",
         "rust.effects.txt"
       ]
+    },
+    {
+      "unit": "engine.session.activity.state",
+      "test": "pinned_activity_state_comparison",
+      "directory": "activity-state-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

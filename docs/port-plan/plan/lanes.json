@@ -49,7 +49,8 @@
         "engine.session.recent.result.data",
         "engine.session.recent.store",
         "engine.state.workspaces",
-        "engine.session.command.label"
+        "engine.session.command.label",
+        "engine.session.activity.state"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },
