@@ -476,3 +476,95 @@ fn pinned_history_restore_comparison() {
         dir.display()
     );
 }
+
+struct PendingHost {
+    host: Host,
+    seen: std::rc::Rc<std::cell::Cell<Option<View>>>,
+}
+impl RestoreHost for PendingHost {
+    type Error = Text;
+    fn participants(&self) -> usize {
+        self.host.participants()
+    }
+    fn capture(&mut self, v: View) -> Result<Snapshot, Text> {
+        self.host.capture(v)
+    }
+    fn hook<'a>(
+        &'a mut self,
+        hook: Hook,
+        p: &'a Patch,
+        s: &'a Snapshot,
+        v: View,
+    ) -> RestoreFuture<'a, Result<(), Text>> {
+        if matches!(hook, Hook::BeforeCore) {
+            self.seen.set(Some(v));
+            Box::pin(std::future::pending())
+        } else {
+            self.host.hook(hook, p, s, v)
+        }
+    }
+    fn apply(&mut self, p: &Patch, v: View) -> Result<(), Text> {
+        self.host.apply(p, v)
+    }
+    fn workspace(&mut self, w: &[u16]) -> Result<(), Text> {
+        self.host.workspace(w)
+    }
+    fn status(&mut self, s: Text) -> Result<(), Text> {
+        self.host.status(s)
+    }
+    fn clear_busy(&mut self) {
+        self.host.clear_busy()
+    }
+    fn error(&mut self, e: Text) {
+        self.host.error(e)
+    }
+}
+fn one_record(r: &mut Recorder, h: &mut Host) {
+    let token = r
+        .begin_sync(&text("change"), &text("flat"), Guards::default(), |r| {
+            h.capture(View::from(&r.state))
+        })
+        .unwrap()
+        .unwrap();
+    {
+        let mut d = h.0.borrow_mut();
+        d.alpha = d.pool[1].clone();
+        d.beta = d.pool[4].clone();
+    }
+    r.finish(token, |r| h.capture(View::from(&r.state)))
+        .unwrap();
+}
+#[test]
+fn pending_drop_clears_restore_and_late_tokens_stay_stale() {
+    let shared = std::rc::Rc::new(std::cell::RefCell::new(Document::new()));
+    let mut host = Host(shared.clone());
+    let mut r = Recorder::default();
+    one_record(&mut r, &mut host);
+    let seen = std::rc::Rc::new(std::cell::Cell::new(None));
+    let mut pending = PendingHost {
+        host,
+        seen: seen.clone(),
+    };
+    let mut future = Box::pin(restore::travel(&mut r, &mut pending, false));
+    let mut cx = Context::from_waker(Waker::noop());
+    assert!(future.as_mut().poll(&mut cx).is_pending());
+    assert!(seen.get().unwrap().restoring);
+    drop(future);
+    assert!(!r.state.restoring);
+    assert_eq!(r.epoch(), 1);
+    assert_eq!(r.state.revision, 0);
+    assert_eq!(r.state.past.len(), 1);
+    assert!(r.state.future.is_empty());
+    let token = r
+        .begin_sync(&text("outer"), &text("measure"), Guards::default(), |r| {
+            pending.host.capture(View::from(&r.state))
+        })
+        .unwrap()
+        .unwrap();
+    ready(restore::travel(&mut r, &mut pending.host, false)).unwrap();
+    r.finish(token, |r| pending.host.capture(View::from(&r.state)))
+        .unwrap();
+    assert_eq!(r.state.revision, 1);
+    assert!(r.state.past.is_empty());
+    assert_eq!(r.state.future.len(), 1);
+}

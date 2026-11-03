@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust global restore orchestration**: preserve capture/hook/apply order, workspace, stack movement, late-epoch invalidation and partial-failure state across 216 full typed-boundary source traces. Concrete family restore and queue integration remain required.
+
 - **Rust history guards**: preserve running-job and held-editor blocking, empty draft behavior, callback order and opaque errors with 212 complete original comparisons.
 
 - **Rust local editor undo/redo**: preserve first-active selection, workspace-before-action and opaque callback failures with 192 exact original traces. Global restoration and full family guards remain separate.
