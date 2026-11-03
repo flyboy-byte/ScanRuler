@@ -1,0 +1,33 @@
+{
+  "id": "engine.session.stale.detect",
+  "parent": "engine.session.contract",
+  "title": "Port stale-import classification without changing page state",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "engine.error.envelope"
+  ],
+  "scope": "Complete isStaleImport over owned string-message errors, strings, typed CommandError markers and non-error/non-string negatives. Preserve legacy ASCII regex case semantics and host text bounds. No page timestamp or full error normalization in this unit.",
+  "acceptance": [
+    "Full pinned original predicate compares mixed-case, Unicode/UTF16, substring, negative type and typed-error inputs before Rust.",
+    "Native boundary tests, source proof and required gates preserve input/state and refuse only distinct host limits."
+  ],
+  "owner": "Codex",
+  "branch": "codex/stale-detect",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/stalePage.ts",
+    "src/commands/types.ts"
+  ],
+  "symbols": [
+    "isStaleImport"
+  ],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Page stale timestamp, staleError construction and full asCommandError normalization are separate continuations.",
+    "Error messages are owned UTF16 text; arbitrary mutable JS message coercion/getters and browser preload listener runtime are not represented."
+  ]
+}
