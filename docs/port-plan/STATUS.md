@@ -11,7 +11,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 43 |
+| implemented | 44 |
 | planned | 49 |
 | specified | 1 |
 
