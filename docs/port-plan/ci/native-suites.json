@@ -570,6 +570,22 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "math.number.fixed3",
+      "test": "pinned_fixed3_comparison",
+      "directory": "fixed-number-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "descriptor.tsv",
+        "original.bin",
+        "original.category.txt",
+        "rust.category.txt",
+        "original.after.bin",
+        "rust.after.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

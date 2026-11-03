@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 65,
+    "implemented": 66,
     "planned": 47,
-    "specified": 2
+    "specified": 1
   },
   "verification_levels": {
-    "fixed-corpus": 48,
+    "fixed-corpus": 49,
     "fuzzed": 4,
-    "none": 64
+    "none": 63
   },
-  "native_suites": 51,
-  "native_case_identities_including_refusals": 9578,
+  "native_suites": 52,
+  "native_case_identities_including_refusals": 18070,
   "accepted_units": [],
   "units": [
     {
@@ -1531,14 +1531,15 @@
     },
     {
       "id": "math.number.fixed3",
-      "status": "specified",
+      "status": "implemented",
       "parent": "P07",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/92",
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "tested_sha": "3ae1787091398112b4b7159269078e51d953dae5",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "3ae1787091398112b4b7159269078e51d953dae5",
       "open_items": [
-        "Capture original-first corpus, implement exact bounded fixed3 and retain all paired output bytes; full sphere selection and actual browser execution remain open."
+        "Actual browser fixed3 execution and full marked-sphere selection/command/session/CLI integration remain unimplemented.",
+        "General fraction-count toFixed and arbitrary boxed/prototype JS method semantics are outside this owned primitive boundary."
       ]
     },
     {

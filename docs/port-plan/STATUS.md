@@ -4,24 +4,24 @@ Generated from canonical unit files and ci/native-suites.json; do not hand-edit.
 
 Reference: `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
 
-Native coverage inventory: **51 suites / 9578 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
+Native coverage inventory: **52 suites / 18070 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
 
 No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Bounded [browser-Wasm coverage](oracle/BROWSER-WASM.md) is separate from engine/session/UI integration and the still-open exact-base numerical ratchet.
 
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 65 |
+| implemented | 66 |
 | planned | 47 |
-| specified | 2 |
+| specified | 1 |
 
 Verification labels describe scoped evidence snapshots, not whole-feature/runtime acceptance.
 
 | Verification | Units |
 | --- | ---: |
-| fixed-corpus | 48 |
+| fixed-corpus | 49 |
 | fuzzed | 4 |
-| none | 64 |
+| none | 63 |
 
 | Unit | State | Verification | Tested implementation | Verification snapshot | PR |
 | --- | --- | --- | --- | --- | --- |
@@ -139,5 +139,5 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [io.stl.binary](plan/units/io.stl.binary.json) | implemented | fuzzed | `5ee3881` | `60bf04b` | [#2](https://github.com/flyboy-byte/ScanRuler/pull/2) |
 | [io.stl.dispatch](plan/units/io.stl.dispatch.json) | implemented | fuzzed | `77683bf` | `60bf04b` | [#3](https://github.com/flyboy-byte/ScanRuler/pull/3) |
 | [io.threemf](plan/units/io.threemf.json) | planned | none | — | — | — |
-| [math.number.fixed3](plan/units/math.number.fixed3.json) | specified | none | — | — | [#92](https://github.com/flyboy-byte/ScanRuler/pull/92) |
+| [math.number.fixed3](plan/units/math.number.fixed3.json) | implemented | fixed-corpus | `3ae1787` | `3ae1787` | [#92](https://github.com/flyboy-byte/ScanRuler/pull/92) |
 | [project.measurement.compatibility](plan/units/project.measurement.compatibility.json) | planned | none | — | — | — |
