@@ -3,7 +3,7 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 39,
+    "implemented": 40,
     "planned": 49,
     "specified": 1
   },
@@ -733,6 +733,16 @@
         "LLVM DA line records disagree with LF/LH summaries on29 owned files; both are retained and raw JSON summaries cross-checked. Interpretation remains unresolved.",
         "35 owned source files are listed, including three module files with no emitted executable records and inline cfg(test) sections. Uninstrumented lines are unknown, not covered.",
         "Independent fuzz/browser profiles, immutable toolchain pinning, exact-base coverage ratchet and accepted status remain open."
+      ]
+    },
+    {
+      "id": "harness.fuzz.minimize",
+      "status": "implemented",
+      "parent": "harness.fuzz.standing",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/51",
+      "tested_sha": "32c45a91f23e1912f76c5cbdf7c01f5fe4c6f584",
+      "open_items": [
+        "A bounded deletion reducer does not guarantee a globally minimal input."
       ]
     },
     {

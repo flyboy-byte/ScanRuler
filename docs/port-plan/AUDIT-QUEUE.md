@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-02: [#51](https://github.com/flyboy-byte/ScanRuler/pull/51) adds opt-in bounded PLY/STL reproducer reduction on main522f10c. Both real sabotage checks shrink inputs while preserving mismatches; seed7 real runs have zero divergences (PLY retains two source timeouts). Fast gate passes at32c45a9. See oracle/FUZZ-MINIMIZE.md and the lossless evidence archive.
+
 2026-11-02 review continuation: [#45](https://github.com/flyboy-byte/ScanRuler/pull/45)
 then [#46](https://github.com/flyboy-byte/ScanRuler/pull/46). #46 adds bounded
 identity-aware history recording/group/clear and sync/async wrapper behavior,

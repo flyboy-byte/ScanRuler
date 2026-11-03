@@ -371,6 +371,98 @@ fn original(unit: &str, root: &Path, inputs: &[Vec<u8>]) -> Vec<Outcome> {
     out
 }
 
+// Match categories and success/refusal must survive reduction. Host limits and
+// reference timeouts are never evidence that a reduced input preserves a bug.
+fn signature(o: &Outcome, r: &Outcome) -> Option<(bool, bool, u8)> {
+    if o.timed_out || r.timed_out {
+        return None;
+    }
+    let bits = u8::from(o.ok != r.ok)
+        | (u8::from(o.progress != r.progress) << 1)
+        | (u8::from(o.message != r.message) << 2)
+        | (u8::from(o.output != r.output) << 3);
+    (bits != 0).then_some((o.ok, r.ok, bits))
+}
+
+// Deterministic chunk deletion, with a hard evaluation cap. Every accepted
+// candidate is independently evaluated; no reference answer enters Rust.
+fn reduce(
+    mut input: Vec<u8>,
+    budget: usize,
+    mut preserves: impl FnMut(&[u8]) -> bool,
+) -> (Vec<u8>, usize) {
+    let mut chunk = input.len().max(1);
+    let mut attempts = 0;
+    while chunk > 0 && !input.is_empty() && attempts < budget {
+        let mut offset = 0;
+        while offset < input.len() && attempts < budget {
+            let end = (offset + chunk).min(input.len());
+            let mut candidate = input[..offset].to_vec();
+            candidate.extend_from_slice(&input[end..]);
+            attempts += 1;
+            if preserves(&candidate) {
+                input = candidate;
+            } else {
+                offset = end;
+            }
+        }
+        chunk /= 2;
+    }
+    (input, attempts)
+}
+
+fn save_outcome(dir: &Path, name: &str, value: &Outcome) {
+    std::fs::write(dir.join(format!("{name}.bin")), &value.output).unwrap();
+    std::fs::write(dir.join(format!("{name}.progress.txt")), &value.progress).unwrap();
+    std::fs::write(dir.join(format!("{name}.message.txt")), &value.message).unwrap();
+    std::fs::write(
+        dir.join(format!("{name}.status.txt")),
+        format!("ok={} timeout={}\n", value.ok, value.timed_out),
+    )
+    .unwrap();
+}
+
+#[test]
+fn reducer_preserves_predicate_and_budget() {
+    let input = b"prefix BUG suffix".to_vec();
+    let (reduced, calls) = reduce(input.clone(), 128, |b| b.windows(3).any(|w| w == b"BUG"));
+    assert_eq!(reduced, b"BUG");
+    assert!(calls <= 128);
+    let mut observed = 0;
+    let (same, calls) = reduce(input.clone(), 3, |_| {
+        observed += 1;
+        false
+    });
+    assert_eq!(same, input);
+    assert_eq!((calls, observed), (3, 3));
+    assert_eq!(
+        reduce(Vec::new(), 10, |_| panic!("empty input")),
+        (Vec::new(), 0)
+    );
+    assert_eq!(reduce(vec![1], 0, |_| panic!("zero budget")), (vec![1], 0));
+}
+
+#[test]
+fn mismatch_signature_rejects_timeouts_and_changed_failure_class() {
+    let make = || Outcome {
+        timed_out: false,
+        ok: true,
+        progress: String::new(),
+        message: String::new(),
+        output: vec![1],
+    };
+    let a = make();
+    let mut b = make();
+    assert_eq!(signature(&a, &b), None);
+    b.output[0] = 2;
+    let wanted = signature(&a, &b);
+    assert_eq!(wanted, Some((true, true, 8)));
+    b.ok = false;
+    assert_ne!(signature(&a, &b), wanted);
+    b.timed_out = true;
+    assert_eq!(signature(&a, &b), None);
+}
+
 fn env_or(name: &str, default: &str) -> String {
     std::env::var(name).unwrap_or_else(|_| default.to_string())
 }
@@ -394,6 +486,8 @@ fn fuzz_against_original() {
     let (mut identical_ok, mut identical_err, mut host_limit, mut divergences) =
         (0usize, 0usize, 0usize, 0usize);
     let mut original_timeout = 0usize;
+    let minimize = std::env::var_os("SCANRULER_FUZZ_MINIMIZE").is_some();
+    let mut minimized = false;
     let mut done = 0;
     while done < cases {
         let batch = (cases - done).min(1000);
@@ -436,6 +530,34 @@ fn fuzz_against_original() {
                 std::fs::create_dir_all(&out_dir).unwrap();
                 let name = format!("{unit}-seed{seed}-case{}", done + k);
                 std::fs::write(out_dir.join(format!("{name}.bin")), input).unwrap();
+                if minimize && !minimized {
+                    minimized = true;
+                    let wanted = signature(o, &r).unwrap();
+                    let (small, attempts) = reduce(input.clone(), 128, |candidate| {
+                        let Some(candidate_rust) = rust(&unit, candidate, sabotage) else {
+                            return false;
+                        };
+                        let candidate_original = original(&unit, &root, &[candidate.to_vec()]);
+                        signature(&candidate_original[0], &candidate_rust) == Some(wanted)
+                    });
+                    // Recheck before writing a reduced reproducer. Nondeterminism
+                    // is a failed reduction, never an accepted match.
+                    let small_original = original(&unit, &root, std::slice::from_ref(&small));
+                    let small_rust = rust(&unit, &small, sabotage).unwrap();
+                    assert_eq!(signature(&small_original[0], &small_rust), Some(wanted));
+                    let dir = out_dir.join(format!("{unit}-seed{seed}-case{}-reduced", done + k));
+                    std::fs::create_dir_all(&dir).unwrap();
+                    std::fs::write(dir.join("input.bin"), &small).unwrap();
+                    save_outcome(&dir, "original", &small_original[0]);
+                    save_outcome(&dir, "rust", &small_rust);
+                    std::fs::write(dir.join("reduction.txt"), format!("seed={seed} case={} original_bytes={} reduced_bytes={} attempts={attempts} budget=128 signature={wanted:?} sabotage={sabotage}\n", done+k, input.len(), small.len())).unwrap();
+                    println!(
+                        "reduced reproducer {} -> {} bytes in {attempts} attempts: {}",
+                        input.len(),
+                        small.len(),
+                        dir.display()
+                    );
+                }
                 std::fs::write(
                     out_dir.join(format!("{name}.txt")),
                     format!(

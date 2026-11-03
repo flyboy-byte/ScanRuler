@@ -44,7 +44,8 @@
         "harness.fuzz.standing",
         "harness.coverage.original",
         "harness.coverage.rust",
-        "harness.verification.levels"
+        "harness.verification.levels",
+        "harness.fuzz.minimize"
       ],
       "touches": "rust/xtask, ci/, port-wasm-probe (one agent at a time)"
     },

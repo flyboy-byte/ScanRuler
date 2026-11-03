@@ -290,8 +290,7 @@ fn oracle() -> Result<(), String> {
     run("cargo", &args, &workspace())
 }
 
-const FUZZ_USAGE: &str =
-    "usage: cargo xtask fuzz <ply|stl> [--seed N] [--cases N] [--out DIR] [--selfcheck]";
+const FUZZ_USAGE: &str = "usage: cargo xtask fuzz <ply|stl> [--seed N] [--cases N] [--out DIR] [--selfcheck] [--minimize]";
 
 /// Standing seeded mutation fuzz of a parser against the frozen original. `--selfcheck`
 /// deliberately corrupts the Rust output and requires the comparison to report divergences.
@@ -304,6 +303,7 @@ fn fuzz(args: &[String]) -> Result<(), String> {
     let mut cases = "500".to_string();
     let mut out = None;
     let mut selfcheck = false;
+    let mut minimize = false;
     let mut rest = args[1..].iter();
     while let Some(flag) = rest.next() {
         match flag.as_str() {
@@ -311,6 +311,7 @@ fn fuzz(args: &[String]) -> Result<(), String> {
             "--cases" => cases = rest.next().ok_or(FUZZ_USAGE)?.clone(),
             "--out" => out = Some(rest.next().ok_or(FUZZ_USAGE)?.clone()),
             "--selfcheck" => selfcheck = true,
+            "--minimize" => minimize = true,
             other => return Err(format!("unknown option {other:?}; {FUZZ_USAGE}")),
         }
     }
@@ -343,6 +344,9 @@ fn fuzz(args: &[String]) -> Result<(), String> {
         .current_dir(workspace());
     if let Some(dir) = out {
         command.env("SCANRULER_FUZZ_OUT", dir);
+    }
+    if minimize {
+        command.env("SCANRULER_FUZZ_MINIMIZE", "1");
     }
     if selfcheck {
         command.env("SCANRULER_FUZZ_SABOTAGE", "1");
