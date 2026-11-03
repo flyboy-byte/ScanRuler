@@ -17,3 +17,6 @@ pub mod history_local;
 
 /// History travel blocking and editor-work predicates.
 pub mod history_guards;
+
+/// Pure stale-import classification, separate from page timestamps.
+pub mod stale_import;
