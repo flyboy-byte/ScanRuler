@@ -5,7 +5,7 @@
     "baseline-captured": 2,
     "implemented": 42,
     "planned": 49,
-    "specified": 1
+    "specified": 2
   },
   "native_suites": 31,
   "native_case_identities_including_refusals": 3095,
@@ -461,6 +461,18 @@
         "Bounded registry, recording, local dispatch, guards and restore orchestration have source traces. Complete family capture/apply, queue/worker lifecycle and real command traces remain required; no session acceptance claim.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
+      ]
+    },
+    {
+      "id": "engine.session.history.core",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Real typed family-state integration, scan swapping/remeasurement and actual session commands remain required.",
+        "Stable owned data and non-prototype participant keys exclude arbitrary executable JS/prototype behavior.",
+        "Adapter-only exports expose private source bodies without changing their implementation."
       ]
     },
     {

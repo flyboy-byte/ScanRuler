@@ -1,0 +1,39 @@
+{
+  "id": "engine.session.history.core",
+  "parent": "engine.session.contract",
+  "title": "Port complete core history capture and patch application",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "engine.session.history.record",
+    "engine.session.history.guards",
+    "engine.session.history.restore"
+  ],
+  "scope": "Complete captureCore and apply over borrowed owned data fields, actual typed scope/scan and stable participant callbacks. Preserve every picked field and transient flat/deviation cleanup, version increments and partial callback failures. No second document store or remeasurement implementation.",
+  "acceptance": [
+    "Independently captured original full-module traces compare all captured fields and actual owned data, references, complete patch application, callback order and partial failures.",
+    "Bounds, shared payload ownership, native and Wasm compilation, corpus and full regression gates are explicit."
+  ],
+  "owner": "Codex",
+  "branch": "codex/history-core",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/state/historyStore.ts",
+    "src/state/elementModel.ts",
+    "src/state/flatModel.ts"
+  ],
+  "symbols": [
+    "captureCore",
+    "apply",
+    "pick"
+  ],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Real typed family-state integration, scan swapping/remeasurement and actual session commands remain required.",
+    "Stable owned data and non-prototype participant keys exclude arbitrary executable JS/prototype behavior.",
+    "Adapter-only exports expose private source bodies without changing their implementation."
+  ]
+}
