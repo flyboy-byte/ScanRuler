@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 59,
+    "implemented": 60,
     "planned": 47,
-    "specified": 2
+    "specified": 1
   },
   "verification_levels": {
-    "fixed-corpus": 42,
+    "fixed-corpus": 43,
     "fuzzed": 4,
-    "none": 64
+    "none": 63
   },
-  "native_suites": 45,
-  "native_case_identities_including_refusals": 6950,
+  "native_suites": 46,
+  "native_case_identities_including_refusals": 7177,
   "accepted_units": [],
   "units": [
     {
@@ -578,14 +578,16 @@
     },
     {
       "id": "engine.session.activity.stop",
-      "status": "specified",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/78",
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "tested_sha": "5a7b0360d482d45d788795676037bacb788465f3",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "5a7b0360d482d45d788795676037bacb788465f3",
       "open_items": [
-        "Implement scoped live stopping and waits; engine scheduling/integration remains separate."
+        "Full command executor/done resolution and native runtime scheduling remain required.",
+        "Native watchSession/command guard/registry integration and browser execution remain required.",
+        "Typed owned callbacks exclude JS getters/prototypes; resource refusals are host limits, not original results."
       ]
     },
     {
