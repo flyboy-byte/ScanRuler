@@ -23,3 +23,6 @@ pub mod stale_import;
 
 /// First-stale timestamp state, independent of import classification.
 pub mod page_stale;
+
+/// Stale-page envelope construction with source-ordered host effects.
+pub mod stale_error;
