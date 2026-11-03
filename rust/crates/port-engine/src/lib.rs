@@ -17,3 +17,6 @@ pub mod history_local;
 
 /// History travel blocking and editor-work predicates.
 pub mod history_guards;
+
+/// Serialized import/restore jobs and source-compatible listener notification.
+pub mod import_queue;

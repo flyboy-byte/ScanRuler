@@ -1,0 +1,118 @@
+{
+  "id": "engine.session.import.queue",
+  "parent": "engine.session.contract",
+  "title": "Port import queue serialization and listener/promise behavior",
+  "gate": "G2",
+  "status": "implemented",
+  "depends_on": [
+    "engine.error.envelope"
+  ],
+  "soft_depends_on": [
+    "engine.session.history.restore"
+  ],
+  "scope": "Complete ImportQueue pending/busy, ordered jobs, completion failure recovery and live listener identity/order over owned standard Rust futures. Runtime task driving and host abandonment remain explicit integration boundaries.",
+  "acceptance": [
+    "Full pinned original class executes controlled job/listener traces before Rust. Compare pending/busy, all jobs/results and callback order, including listener errors and reentrant registration/enqueue.",
+    "Native bounded metadata/opaque error ownership and Wasm checks; no dependencies or second mutable business store."
+  ],
+  "owner": "Codex",
+  "branch": "codex/import-queue",
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/57",
+  "implemented_commit": "f2390352ca757f63a0b8528d84128060cbeaa5be",
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/app/importQueue.ts"
+  ],
+  "symbols": [
+    "ImportQueue.run",
+    "ImportQueue.subscribe",
+    "ImportQueue.busy",
+    "ImportQueue.changed"
+  ],
+  "rust_paths": [
+    "rust/crates/port-engine/src/import_queue.rs",
+    "rust/crates/port-engine/tests/import_queue.rs"
+  ],
+  "evidence": [
+    {
+      "kind": "differential",
+      "location": "evidence/2026-11-02-import-queue.json.gz",
+      "candidate_sha": "f2390352ca757f63a0b8528d84128060cbeaa5be",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "case_ids": [
+        "empty",
+        "fifo",
+        "error-next",
+        "immediate",
+        "duplicate-subscription",
+        "old-unsubscribe-new-registration",
+        "repeat-unsubscribe",
+        "registration-order",
+        "listener-fault-1-A",
+        "listener-fault-1-B",
+        "listener-fault-2-A",
+        "listener-fault-2-B",
+        "listener-fault-3-A",
+        "listener-fault-3-B",
+        "remove-during-notify",
+        "add-during-notify",
+        "added-listener-throws",
+        "enqueue-during-notify",
+        "enqueue-then-throw",
+        "seed-1-0",
+        "seed-1-1",
+        "seed-1-2",
+        "seed-1-3",
+        "seed-1-4",
+        "seed-1-5",
+        "seed-1-6",
+        "seed-1-7",
+        "seed-1-8",
+        "seed-1-9",
+        "seed-1-10",
+        "seed-1-11",
+        "seed-7-0",
+        "seed-7-1",
+        "seed-7-2",
+        "seed-7-3",
+        "seed-7-4",
+        "seed-7-5",
+        "seed-7-6",
+        "seed-7-7",
+        "seed-7-8",
+        "seed-7-9",
+        "seed-7-10",
+        "seed-7-11",
+        "seed-99-0",
+        "seed-99-1",
+        "seed-99-2",
+        "seed-99-3",
+        "seed-99-4",
+        "seed-99-5",
+        "seed-99-6",
+        "seed-99-7",
+        "seed-99-8",
+        "seed-99-9",
+        "seed-99-10",
+        "seed-99-11",
+        "seed-1039-0",
+        "seed-1039-1",
+        "seed-1039-2",
+        "seed-1039-3",
+        "seed-1039-4",
+        "seed-1039-5",
+        "seed-1039-6",
+        "seed-1039-7",
+        "seed-1039-8",
+        "seed-1039-9",
+        "seed-1039-10",
+        "seed-1039-11"
+      ]
+    }
+  ],
+  "open_items": [
+    "Native/Wasm executor and concrete restore/import integration remain required.",
+    "Abandoned Rust futures are host failures, not a source cancellation feature; engine termination policy remains required.",
+    "Typed callback errors represent source exceptions; arbitrary Rust panic/OOM isolation is not exhaustive."
+  ]
+}
