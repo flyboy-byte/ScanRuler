@@ -34,6 +34,15 @@ pub enum SettleError {
 pub struct SettleRun<'a, E> {
     waits: Vec<Option<Work<'a, E>>>,
 }
+impl<'a, E> SettleRun<'a, E> {
+    pub(crate) fn from_started(waits: Vec<Option<Work<'a, E>>>) -> Option<Self> {
+        if waits.is_empty() {
+            None
+        } else {
+            Some(Self { waits })
+        }
+    }
+}
 impl<E> Future for SettleRun<'_, E> {
     type Output = ();
     fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<()> {
@@ -75,9 +84,5 @@ pub fn settle<'a, E>(
             waits.push(Some(wait));
         }
     }
-    if waits.is_empty() {
-        Ok(None)
-    } else {
-        Ok(Some(SettleRun { waits }))
-    }
+    Ok(SettleRun::from_started(waits))
 }
