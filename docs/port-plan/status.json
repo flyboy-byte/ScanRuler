@@ -3,12 +3,12 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 42,
+    "implemented": 43,
     "planned": 49,
-    "specified": 2
+    "specified": 1
   },
-  "native_suites": 31,
-  "native_case_identities_including_refusals": 3095,
+  "native_suites": 32,
+  "native_case_identities_including_refusals": 3193,
   "accepted_units": [],
   "units": [
     {
@@ -465,10 +465,10 @@
     },
     {
       "id": "engine.session.history.core",
-      "status": "specified",
+      "status": "implemented",
       "parent": "engine.session.contract",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/55",
+      "tested_sha": "c2795e1f83c1d92b4e6300cb3db22833cdb84d25",
       "open_items": [
         "Real typed family-state integration, scan swapping/remeasurement and actual session commands remain required.",
         "Stable owned data and non-prototype participant keys exclude arbitrary executable JS/prototype behavior.",

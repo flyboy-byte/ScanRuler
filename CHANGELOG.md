@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust core history capture/apply**: preserve all 73 picked fields, shared payload identity, transient flat/deviation cleanup, scope and version ordering, with 98 complete source cases /490 observations.
+
 - **Rust global restore orchestration**: preserve capture/hook/apply order, workspace, stack movement, late-epoch invalidation and partial-failure state across 216 full typed-boundary source traces. Concrete family restore and queue integration remain required.
 
 - **Rust history guards**: preserve running-job and held-editor blocking, empty draft behavior, callback order and opaque errors with 212 complete original comparisons.
