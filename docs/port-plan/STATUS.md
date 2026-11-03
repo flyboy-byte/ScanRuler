@@ -13,7 +13,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | baseline-captured | 2 |
 | implemented | 51 |
 | planned | 48 |
-| specified | 1 |
+| specified | 2 |
 
 | Unit | State | Tested implementation | PR |
 | --- | --- | --- | --- |
@@ -66,6 +66,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [engine.schema.validate](plan/units/engine.schema.validate.json) | implemented | `d3f9945` | [#42](https://github.com/flyboy-byte/ScanRuler/pull/42) |
 | [engine.session.activity.guard](plan/units/engine.session.activity.guard.json) | implemented | `c458f7a` | [#70](https://github.com/flyboy-byte/ScanRuler/pull/70) |
 | [engine.session.activity.stores](plan/units/engine.session.activity.stores.json) | implemented | `97dcd7f` | [#71](https://github.com/flyboy-byte/ScanRuler/pull/71) |
+| [engine.session.activity.watch](plan/units/engine.session.activity.watch.json) | specified | — | — |
 | [engine.session.command.deadline](plan/units/engine.session.command.deadline.json) | implemented | `b3566ac` | [#59](https://github.com/flyboy-byte/ScanRuler/pull/59) |
 | [engine.session.contract](plan/units/engine.session.contract.json) | specified | — | [#45](https://github.com/flyboy-byte/ScanRuler/pull/45) |
 | [engine.session.history.core](plan/units/engine.session.history.core.json) | implemented | `c2795e1` | [#55](https://github.com/flyboy-byte/ScanRuler/pull/55) |

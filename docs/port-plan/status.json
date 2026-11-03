@@ -5,7 +5,7 @@
     "baseline-captured": 2,
     "implemented": 51,
     "planned": 48,
-    "specified": 1
+    "specified": 2
   },
   "native_suites": 38,
   "native_case_identities_including_refusals": 4003,
@@ -470,6 +470,17 @@
       "open_items": [
         "watchSession subscriptions, plugin busy store registration and full engine session wiring remain separate.",
         "Readonly owned arrays exclude arbitrary mutable JS array/getter/prototype behavior; actual browser runtime remains required."
+      ]
+    },
+    {
+      "id": "engine.session.activity.watch",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "Native plugin busy registry must supply its current ordered store-array snapshot; actual plugin registration and full engine wiring remain separate.",
+        "Owned readonly store arrays and typed callbacks exclude arbitrary JS property/prototype mutation. Actual browser watch runtime remains required."
       ]
     },
     {

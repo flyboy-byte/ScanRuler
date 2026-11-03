@@ -1,0 +1,32 @@
+{
+  "id": "engine.session.activity.watch",
+  "parent": "engine.session.contract",
+  "title": "Port session subscription snapshot and ordered teardown",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "engine.session.activity.stores"
+  ],
+  "scope": "Complete watchSession over owned session source arrays, an ordered plugin-store snapshot, also stores and native Watchable callbacks. Preserve identity deduplication, snapshot-before-subscribe order, listener identity, partial subscribe failure and repeated ordered teardown.",
+  "acceptance": [
+    "Full original watchSession compares successful/empty subscriptions, callback faults, listener identity and retained partial state before Rust.",
+    "Source registration callbacks supply actual original plugin store metadata; native plugin registry wiring remains explicit. Host admission precedes all subscribe callbacks."
+  ],
+  "owner": "Codex",
+  "branch": "codex/watch-session",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/activity.ts"
+  ],
+  "symbols": [
+    "watchSession"
+  ],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Native plugin busy registry must supply its current ordered store-array snapshot; actual plugin registration and full engine wiring remain separate.",
+    "Owned readonly store arrays and typed callbacks exclude arbitrary JS property/prototype mutation. Actual browser watch runtime remains required."
+  ]
+}
