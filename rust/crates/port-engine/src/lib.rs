@@ -50,3 +50,6 @@ pub mod stale_error;
 
 /// Command fault normalization preserving typed error identity and stale state.
 pub mod error_normalize;
+
+/// Ordered plugin busy registration and live first-busy lookup.
+pub mod plugin_busy;

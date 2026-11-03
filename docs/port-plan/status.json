@@ -566,7 +566,7 @@
       "id": "engine.session.activity.plugins",
       "status": "specified",
       "parent": "engine.session.contract",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/77",
       "tested_sha": null,
       "verification": "none",
       "verification_tested_sha": null,
