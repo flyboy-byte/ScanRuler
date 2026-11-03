@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-02: [#67](https://github.com/flyboy-byte/ScanRuler/pull/67) follows #66 and adds registration identity/live mutation over its wait component, with 116 full source traces and reproducible seed inputs. oracle/SETTLE-REGISTRY.md records runtime/resource limits.
+
 2026-11-02: [#66](https://github.com/flyboy-byte/ScanRuler/pull/66) follows #59 and ports only the stable-callback settlement body with 64 full pinned concurrent-wait traces. Registration/live Set mutation and executor ownership remain explicit in oracle/SETTLE-RUN.md.
 
 2026-11-02: [#59](https://github.com/flyboy-byte/ScanRuler/pull/59) follows #57 with command deadline reaction ordering at the owned clock/body boundary:291 cases /2037 observations, all earlier288 retained; roster34/3551. Physical timers, executor and command integration remain open.

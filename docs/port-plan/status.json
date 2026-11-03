@@ -2,13 +2,13 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 3,
-    "implemented": 47,
+    "baseline-captured": 2,
+    "implemented": 48,
     "planned": 49,
     "specified": 1
   },
-  "native_suites": 35,
-  "native_case_identities_including_refusals": 3615,
+  "native_suites": 36,
+  "native_case_identities_including_refusals": 3731,
   "accepted_units": [],
   "units": [
     {
@@ -564,10 +564,10 @@
     },
     {
       "id": "engine.session.settle.registry",
-      "status": "baseline-captured",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/67",
-      "tested_sha": null,
+      "tested_sha": "84e083e252a9a7dcbd265eaf70e6722e7b3cc896",
       "open_items": [
         "Actual executor must retain/drain started work; browser promise turns, full registry command wiring and runtime cancellation/termination remain separate.",
         "Owned immutable metadata excludes arbitrary JS getters/prototype replacement; ordinary Rust Arc/Rc allocation is not process-wide OOM isolation."
