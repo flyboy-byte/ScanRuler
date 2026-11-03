@@ -7,6 +7,7 @@ import {createHash} from 'node:crypto'
 import {fileURLToPath} from 'node:url'
 const root=fileURLToPath(new URL('../../../',import.meta.url)),pin='2cd89c6769a10c27ee7754b477ada521c9ef5cb7',require=createRequire(root+'package.json'),ts=require('typescript')
 if(Number(process.versions.node.split('.')[0])!==22)throw Error('Original queue requires Node22')
+for(const path of ['package.json','package-lock.json']){const original=execFileSync('git',['rev-parse',pin+':'+path],{cwd:root,encoding:'utf8'}).trim(),actual=execFileSync('git',['hash-object',path],{cwd:root,encoding:'utf8'}).trim();if(original!==actual)throw Error('Pinned dependency/version changed: '+path)}
 const source=execFileSync('git',['show',pin+':src/app/importQueue.ts'],{cwd:root}),sha=b=>createHash('sha256').update(b).digest('hex')
 const result=ts.transpileModule(source.toString(),{fileName:'src/app/importQueue.ts',compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS,sourceMap:true,inlineSources:true}}),out=root+'rust/target/import-queue-reference'
 mkdirSync(out,{recursive:true});writeFileSync(out+'/queue.cjs',result.outputText);writeFileSync(out+'/queue.cjs.map',result.sourceMapText)

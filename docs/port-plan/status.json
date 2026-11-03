@@ -3,12 +3,12 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 44,
+    "implemented": 45,
     "planned": 49,
-    "specified": 2
+    "specified": 1
   },
-  "native_suites": 32,
-  "native_case_identities_including_refusals": 3193,
+  "native_suites": 33,
+  "native_case_identities_including_refusals": 3260,
   "accepted_units": [],
   "units": [
     {
@@ -526,10 +526,10 @@
     },
     {
       "id": "engine.session.import.queue",
-      "status": "specified",
+      "status": "implemented",
       "parent": "engine.session.contract",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/57",
+      "tested_sha": "f2390352ca757f63a0b8528d84128060cbeaa5be",
       "open_items": [
         "Native/Wasm executor and concrete restore/import integration remain required.",
         "Abandoned Rust futures are host failures, not a source cancellation feature; engine termination policy remains required.",
