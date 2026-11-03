@@ -1,5 +1,5 @@
 {
-  "note": "Maps units to work lanes for tools/next_task.py. Order is the priority between lanes of the same readiness class. Edit when units are added; the tool reports any unit not covered. Order set 2026-11-02: B (session) and C (harness) ahead of H (imports) because the remaining import units wait on dependency decisions (image decoding, zip) while B and C are runnable and unblock the measurement slice, projects and MCP.",
+  "note": "Maps units to work lanes for tools/next_task.py. Order is the priority between lanes of the same readiness class. Edit when units are added; the tool reports any unit not covered. Order set 2026-11-02: B (session) and C (harness) ahead of H (imports) because the remaining import units wait on dependency decisions (image decoding, zip) while B and C are runnable and unblock the measurement slice, projects and MCP. 2026-11-03: the zip and image-codec decisions are made (own code), so lane H units are runnable; io.inflate is added and io.threemf depends on it.",
   "lanes": [
     {
       "id": "A",
@@ -54,6 +54,7 @@
       "units": [
         "io.ply",
         "io.obj",
+        "io.inflate",
         "io.threemf",
         "io.ply.ascii",
         "io.ply.binary",

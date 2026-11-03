@@ -5,7 +5,8 @@
   "gate": "G3",
   "status": "planned",
   "depends_on": [
-    "io.stl.dispatch"
+    "io.stl.dispatch",
+    "io.inflate"
   ],
   "soft_depends_on": [
     "P03"
@@ -27,6 +28,6 @@
   "rust_paths": [],
   "evidence": [],
   "open_items": [
-    "Deflate/zip: decide own implementation versus an audited pure-Rust crate before coding."
+    "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate."
   ]
 }

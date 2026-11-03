@@ -1,0 +1,34 @@
+{
+  "id": "io.inflate",
+  "parent": "P06",
+  "title": "Own DEFLATE decoder and ZIP reader, compared with fflate",
+  "gate": "G3",
+  "status": "planned",
+  "depends_on": [
+    "io.stl.dispatch"
+  ],
+  "soft_depends_on": [
+    "P03"
+  ],
+  "scope": "Pure-Rust DEFLATE (stored, fixed and dynamic blocks) and ZIP central-directory reader with name filtering and strict size, ratio and entry-count limits. Behaviour on valid and malformed archives matches the original's fflate unzipSync, including which inputs it refuses. Shared by io.threemf and PNG decoding.",
+  "acceptance": [
+    "Generated and adversarial corpus (bombs, bad offsets and lengths, truncation, overlapping and duplicate entries, odd flags, zip64 and encrypted entries) compares fflate and Rust on accepted entries and on refusal, with exact bytes.",
+    "A deliberately wrong Rust byte is reported as a divergence; seeded mutation fuzz of archives runs through cargo xtask fuzz with zero divergences or recorded host-limit classes.",
+    "No third-party dependency; passes the P35 purity audit."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/parsers/threemf.ts"
+  ],
+  "symbols": [],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "fflate version in the pinned lockfile must be recorded before the corpus is built.",
+    "Decision: plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md."
+  ]
+}

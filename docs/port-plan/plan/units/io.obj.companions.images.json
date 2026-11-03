@@ -33,7 +33,8 @@
   "open_items": [
     "No application dependency adoption or decoder implementation claimed. image0.25.10 candidate audit rejects direct use:28 pixel mismatches and 2 presence mismatches on 56 original inputs.",
     "Use the fixed alpha atlas/JPEG/16-bit/truncation counterexamples. Derive faithful conversion/decoder behavior before adoption; do not loosen byte comparison or feed source pixels into Rust.",
-    "Complete the ordered MTL/image continuation, strict resource limits, actual Wasm pixels and broader platform/corpus acceptance."
+    "Complete the ordered MTL/image continuation, strict resource limits, actual Wasm pixels and broader platform/corpus acceptance.",
+    "Decoders are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md: PNG on io.inflate, then a libjpeg-faithful JPEG decoder."
   ],
   "resolved_items": []
 }

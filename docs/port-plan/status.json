@@ -4,7 +4,7 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 39,
-    "planned": 48,
+    "planned": 49,
     "specified": 1
   },
   "native_suites": 28,
@@ -817,6 +817,17 @@
       ]
     },
     {
+      "id": "io.inflate",
+      "status": "planned",
+      "parent": "P06",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "fflate version in the pinned lockfile must be recorded before the corpus is built.",
+        "Decision: plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md."
+      ]
+    },
+    {
       "id": "io.mesh.weld",
       "status": "implemented",
       "parent": "P06",
@@ -877,7 +888,8 @@
       "open_items": [
         "No application dependency adoption or decoder implementation claimed. image0.25.10 candidate audit rejects direct use:28 pixel mismatches and 2 presence mismatches on 56 original inputs.",
         "Use the fixed alpha atlas/JPEG/16-bit/truncation counterexamples. Derive faithful conversion/decoder behavior before adoption; do not loosen byte comparison or feed source pixels into Rust.",
-        "Complete the ordered MTL/image continuation, strict resource limits, actual Wasm pixels and broader platform/corpus acceptance."
+        "Complete the ordered MTL/image continuation, strict resource limits, actual Wasm pixels and broader platform/corpus acceptance.",
+        "Decoders are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md: PNG on io.inflate, then a libjpeg-faithful JPEG decoder."
       ]
     },
     {
@@ -1006,7 +1018,7 @@
       "pr": null,
       "tested_sha": null,
       "open_items": [
-        "Deflate/zip: decide own implementation versus an audited pure-Rust crate before coding."
+        "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate."
       ]
     },
     {
