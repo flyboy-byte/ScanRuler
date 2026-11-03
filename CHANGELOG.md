@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust DEFLATE and ZIP reader** (2026-11-03): own pure-Rust inflate and unzip that reproduces the original's `fflate` 0.8.3 `unzipSync`, including its lenient behaviour on damaged archives; 30,000 generated and mutated archives, 0 divergences. 3MF reading itself and PNG/JPEG decoding remain separate.
+
 - **Port plan CI**: fetch the immutable original Git tree for source-map provenance tests; retain every proof assertion.
 
 - **Rust import queue**: preserve serialized jobs, failure recovery, live listener identity/order and opaque outcomes with 67 complete original schedules /755 observations. Runtime integration remains required.
