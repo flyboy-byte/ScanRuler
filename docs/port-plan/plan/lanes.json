@@ -46,7 +46,8 @@
         "engine.session.activity.stop",
         "engine.session.scene.queue",
         "engine.session.execute.lifecycle",
-        "engine.session.recent.result.data"
+        "engine.session.recent.result.data",
+        "engine.session.recent.store"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },

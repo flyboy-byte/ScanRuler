@@ -10137,6 +10137,45 @@
       "verification": "fixed-corpus"
     },
     {
+      "id": "engine.session.recent.store",
+      "parent": "engine.session.contract",
+      "title": "Port recent outcome recording, completion reactions and shallow readouts",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [
+        "engine.session.recent.result.data",
+        "engine.session.clock.utc",
+        "engine.session.error.normalize"
+      ],
+      "scope": "Record/update/readout bodies of remember/recentOutcomes over caller-owned run handles and delivered completion reactions. Preserve exact run identity, source100 oldest eviction, raw since/ISO/duration order, late evicted completion, newest-first job filtering and shallow result/error sharing. Executor attaches and retains once-only reactions; actual promise/runtime integration remains separate.",
+      "acceptance": [
+        "Full pinned original graph runs independent clocks, completion/observer-failure, eviction and shallow-copy schedules first; compare complete retained snapshots and caller/observer state.",
+        "Clock/normalizer evaluation precedes assignment; failed observer leaves caller outcome unchanged. Typed errors, kept data and UTC conversion reuse existing ports; sourcehost limits/abandonment are separate."
+      ],
+      "owner": "Codex",
+      "branch": "codex/recent-store",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/registry.ts"
+      ],
+      "symbols": [
+        "remember",
+        "recentOutcomes",
+        "RECENT_KEPT"
+      ],
+      "rust_paths": [
+        "rust/crates/port-engine/src/recent_store.rs",
+        "rust/crates/port-engine/tests/recent_store.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Implement source recording/update/readout bodies at owned reaction boundary; executor reaction attachment and general non-JSON host conversion remain separate."
+      ],
+      "verification": "none"
+    },
+    {
       "id": "engine.session.registry",
       "parent": "engine.session.contract",
       "title": "Port owned command registration, catalog and schema admission",

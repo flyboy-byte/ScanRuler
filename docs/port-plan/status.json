@@ -5,12 +5,12 @@
     "baseline-captured": 2,
     "implemented": 63,
     "planned": 47,
-    "specified": 1
+    "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 46,
     "fuzzed": 4,
-    "none": 63
+    "none": 64
   },
   "native_suites": 49,
   "native_case_identities_including_refusals": 8910,
@@ -782,6 +782,18 @@
         "General host-object/getter/toJSON/prototype/function/BigInt/cyclic non-JSON conversion remains unported outside the owned acyclic input domain.",
         "Recent outcome lifecycle and actual command/browser integration remain required.",
         "Typed owned callbacks exclude JS getters/prototypes; resource refusals are host limits, not original results."
+      ]
+    },
+    {
+      "id": "engine.session.recent.store",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Implement source recording/update/readout bodies at owned reaction boundary; executor reaction attachment and general non-JSON host conversion remain separate."
       ]
     },
     {
