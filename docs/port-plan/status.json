@@ -739,7 +739,7 @@
       "id": "harness.fuzz.minimize",
       "status": "specified",
       "parent": "harness.fuzz.standing",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/51",
       "tested_sha": null,
       "open_items": [
         "A bounded deletion reducer does not guarantee a globally minimal input."

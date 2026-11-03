@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Fuzz reproducer reduction**: opt-in bounded PLY/STL shrinking preserves mismatch categories and retains original inputs and complete reduced outcomes.
+
 - **Rust standing fuzz** (2026-11-03): `cargo xtask fuzz <ply|stl> --seed N --cases M` compares seeded mutated inputs against the frozen original (success, progress and error text, output bytes) with host-limit refusals and original timeouts counted apart; first run 120,000 cases, 0 divergences. OBJ, minimized reproducers and a scheduled job remain open.
 
 - **Rust history recording** (2026-11-02): preserve identity-aware changes, grouped steps, clear, sync/async wrappers, typed capture faults and late epoch drops across 110 exact source scenarios and 1,095 full observations. Undo/redo restoration and complete session integration remain separate.

@@ -10,7 +10,7 @@
   "scope": "Opt-in deletion reduction of the first PLY/STL mismatch per run, preserving original and Rust success/refusal and every mismatching observation category. Keep unreduced inputs and complete reduced evidence.",
   "owner": "Codex",
   "branch": "codex/fuzz-minimize",
-  "claim_pr": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/51",
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [],
@@ -18,5 +18,9 @@
   "evidence": [],
   "open_items": [
     "A bounded deletion reducer does not guarantee a globally minimal input."
+  ],
+  "acceptance": [
+    "Deterministic bounded reduction preserves success/refusal and all differing observation categories; limits/timeouts never preserve a mismatch.",
+    "Real PLY and STL sabotage selfchecks shrink a reproducer and retain independent complete outcomes; ordinary tests cover budget and predicate preservation."
   ]
 }
