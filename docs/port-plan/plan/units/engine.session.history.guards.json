@@ -1,0 +1,37 @@
+{
+  "id": "engine.session.history.guards",
+  "parent": "engine.session.contract",
+  "title": "Port history blocking and editor-work predicates",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "engine.session.history.record"
+  ],
+  "scope": "Complete historyBlocked, dimHolds, draftHolds and flatDraftHolds over owned typed snapshots and stable participant callbacks. No global restoration or family editor implementation claimed.",
+  "acceptance": [
+    "Original traces compare every guard, short circuit callback order, opaque hook/participant errors and empty-versus-filled editor work.",
+    "Owned native and Wasm boundary checks plus complete required source gate."
+  ],
+  "owner": "Codex",
+  "branch": "codex/history-guards",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/state/historyStore.ts",
+    "src/state/elementModel.ts",
+    "src/state/flatModel.ts"
+  ],
+  "symbols": [
+    "historyBlocked",
+    "dimHolds",
+    "draftHolds",
+    "flatDraftHolds"
+  ],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Global restoration, full family editor/state integration and actual browser runtime remain required.",
+    "Stable typed snapshots and callbacks exclude executable JS getters and reentrant participant-list mutation."
+  ]
+}
