@@ -20,3 +20,6 @@ pub mod history_guards;
 
 /// Serialized import/restore jobs and source-compatible listener notification.
 pub mod import_queue;
+
+/// Command deadline races and abort/timer cleanup at the owned event boundary.
+pub mod command_deadline;
