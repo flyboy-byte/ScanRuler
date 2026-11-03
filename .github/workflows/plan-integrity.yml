@@ -17,6 +17,8 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
+          # Source-map proof tests inspect the immutable original Git tree.
+          fetch-depth: 0
       - run: python3 docs/port-plan/tools/port_plan.py --root docs/port-plan check-generated
       - run: python3 docs/port-plan/tools/port_plan.py selftest
       - run: python3 docs/port-plan/tools/ci_report.py status --check
