@@ -20,5 +20,6 @@ class ActivityStateCorpusTests(unittest.TestCase):
         m=json.loads(gzip.decompress((folder/'activity.mjs.map.gz').read_bytes()));path='src/commands/activity.ts';contents=[text for name,text in zip(m['sources'],m['sourcesContent'])if name.endswith('/'+path)]
         original=subprocess.check_output(['git','show',p['reference_sha']+':'+path],cwd=PLAN.parents[1]).decode();self.assertEqual(contents,[original])
         lock=json.loads((PLAN.parents[1]/'package-lock.json').read_text());self.assertEqual(p['zustand_version'],lock['packages']['node_modules/zustand']['version'])
-        for filename,key in [('vanilla.js','zustand_vanilla_sha256'),('esm/vanilla.mjs','zustand_vanilla_esm_sha256')]:self.assertEqual(hashlib.sha256((PLAN.parents[1]/'node_modules/zustand'/filename).read_bytes()).hexdigest(),p[key])
-        self.assertEqual((PLAN.parents[1]/'rust/licenses/ZUSTAND-MIT.txt').read_bytes(),(PLAN.parents[1]/'node_modules/zustand/LICENSE').read_bytes())
+        for filename,key in [('vanilla.js','zustand_vanilla_sha256'),('esm/vanilla.mjs','zustand_vanilla_esm_sha256')]:self.assertEqual(hashlib.sha256(gzip.decompress((folder/('zustand-vanilla.mjs.gz' if filename.startswith('esm/') else 'zustand-vanilla.js.gz')).read_bytes())).hexdigest(),p[key])
+        self.assertEqual((PLAN.parents[1]/'rust/licenses/ZUSTAND-MIT.txt').read_bytes(),gzip.decompress((folder/'zustand-LICENSE.gz').read_bytes()))
+

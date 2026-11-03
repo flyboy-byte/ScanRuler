@@ -11,7 +11,7 @@ The full pinned activity module is executed with the actual installed Zustand
 vanilla implementation. Its MIT algorithm is attributed in
 rust/licenses/ZUSTAND-MIT.txt; provenance records both CJS/ESM dependency hashes
 and version, plus the original module/source-map/dependency-lock identities.
-No new runtime package is added. The Rust owner is the sole activity store.
+Captured licensed dependency bytes let plan/fast checks run without node_modules; the live oracle builder also requires exact equality with the installed dependency. No new runtime package is added. The Rust owner is the sole activity store.
 
 Notification uses live Set-style callback identity/order. Duplicate subscription
 has one entry; any old cleanup deletes a reintroduced identical callback. Dropping

@@ -44,5 +44,6 @@
   "package_lock_sha256": "d82b29e9f0986b32722411dd2fff4c1aaa8104c4d13b72428c998afc012a0c5c",
   "zustand_version": "5.0.15",
   "zustand_vanilla_sha256": "15dcb1e8a40b51ef580fbb27e05bac872ff0e71f2f2ad4d316d7fb344319453e",
-  "zustand_vanilla_esm_sha256": "27f48c11ca4de834f68c505b695d5e2db1c1ebface7303c0e920ab3957260357"
+  "zustand_vanilla_esm_sha256": "27f48c11ca4de834f68c505b695d5e2db1c1ebface7303c0e920ab3957260357",
+  "zustand_license_sha256": "c1e6e266563517467b1bf874817d23e426f3149252bd7d42758cd697514b8417"
 }
