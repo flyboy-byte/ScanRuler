@@ -3,9 +3,9 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 39,
+    "implemented": 40,
     "planned": 49,
-    "specified": 2
+    "specified": 1
   },
   "native_suites": 28,
   "native_case_identities_including_refusals": 2475,
@@ -737,10 +737,10 @@
     },
     {
       "id": "harness.fuzz.minimize",
-      "status": "specified",
+      "status": "implemented",
       "parent": "harness.fuzz.standing",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/51",
-      "tested_sha": null,
+      "tested_sha": "32c45a91f23e1912f76c5cbdf7c01f5fe4c6f584",
       "open_items": [
         "A bounded deletion reducer does not guarantee a globally minimal input."
       ]
