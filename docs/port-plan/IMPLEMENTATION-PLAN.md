@@ -33,3 +33,13 @@ Keep the original checks, snapshot recaptures and all native comparisons while a
 Each increment gets its own bounded PR: exact source symbols, tests on the implementation SHA, successful values/state plus refusals, known host/API differences, canonical open scope and follow-up. The owner will audit from #1 upward. After a parent lands, retarget the child to main and inspect the resulting diff; do not merge a child into an unmerged parent as a substitute for trunk integration. #22 joins the independent #1/#13/#14 histories with #21 locally; after prior merges its PR should show only the CI/status/docs delta. Regenerate the aggregate after resolving canonical units; never hand-merge stale generated rows.
 
 No delivery date or completion percentage is inferred from case counts. Pause a specific implementation only for a recorded external prerequisite or the owner's instruction; independent scoped work can continue. Preserve null/failed attempts so a fresh reviewer does not re-derive them.
+
+## Integration continuation — 2026-11-03
+
+Use REVIEW-HANDOFF-2026-11-03.md for both pending stacks and exact observed
+heads. The new helpers remain implemented library scopes, not a complete session.
+Next work is native plugin/activity providers, scene/executor routing, then real
+measurement/import/session/project ownership for M3. The source-specific failure
+and progress ordering is recorded in
+plan/findings/2026-11-03-registry-execution-continuations.md. Do not reimplement
+reviewed helpers or erase typed/runtime boundaries to make the CLI look complete.
