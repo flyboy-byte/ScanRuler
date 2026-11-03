@@ -12,7 +12,8 @@
         "baseline.reproducibility",
         "catalog.browser",
         "catalog.headless",
-        "ci.integration"
+        "ci.integration",
+        "ci.integration.nov03"
       ],
       "touches": "docs/port-plan/evidence, fixtures, .github"
     },

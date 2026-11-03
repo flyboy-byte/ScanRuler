@@ -1,0 +1,51 @@
+{
+  "id": "ci.integration.nov03",
+  "parent": "ci.integration",
+  "title": "Preserve runtime/sphere batch union and reviewable next-work handoff",
+  "gate": "contributor-harness-ci",
+  "status": "specified",
+  "depends_on": [
+    "engine.session.command.label",
+    "engine.session.activity.state",
+    "engine.state.sections",
+    "engine.runtime.tasks",
+    "fit.sphere.clipped",
+    "harness.wasm.sphere",
+    "math.number.fixed3",
+    "fit.sphere.selection",
+    "harness.wasm.marked.sphere"
+  ],
+  "soft_depends_on": [
+    "P37",
+    "P39"
+  ],
+  "scope": "Non-rewriting union of the reviewed runtime/sphere batch, preserving every module/canonical unit/suite/case/evidence addition, generated inventories, exact-head checks and clear review/next-task state. Correct stale CLI scaffold banner; no new command/runtime/ratchet or feature acceptance.",
+  "acceptance": [
+    "Native suite/case union exactly preserves all parent inventories; all57 source suites/22938 declared identities and4431 browser cases survive integration with no tolerances/seeds/outputs removed or changed.",
+    "Run full fast/Python/Rust/Clippy/Wasm, native exact-head artifact completeness and actual Chrome gate on the integrated tree; record actual outcomes rather than inherited green heads.",
+    "Durable review DAG, current scope/gaps, unported runtime reaction ordering and first next unclaimed unit are explicit; original source/plugin/dependency/MCP trees remain unchanged."
+  ],
+  "owner": "Codex",
+  "branch": "codex/nov03-integration",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    ".github/workflows",
+    "docs/port-plan/ci",
+    "docs/port-plan/plan/units"
+  ],
+  "symbols": [
+    "Runtime/sphere batch module/unit/corpus union",
+    "Exact-head regression inventory and next-task handoff"
+  ],
+  "rust_paths": [
+    "rust/crates/port-cli/src/main.rs",
+    "rust/xtask/src/main.rs"
+  ],
+  "evidence": [],
+  "open_items": [
+    "Validate the combined tree and capture actual integrated outcomes; owner reviews/merges public PRs. Generic exact-base numerical ratchet, actual session and M3 remain unimplemented."
+  ],
+  "verification": "none"
+}
