@@ -7,6 +7,7 @@
 2026-11-02: review #52 then [#53](https://github.com/flyboy-byte/ScanRuler/pull/53). #53 ports complete history blocking and editor-work predicates with 212 original/Rust observations; native roster30/2879. Global restoration remains the next continuation.
 
 2026-11-02: [#52](https://github.com/flyboy-byte/ScanRuler/pull/52) ports local editor history selection/dispatch from main522f10c, independently of #51. All 192 full source observations match; native roster29/2667. The parent session stays specified; global restoration and family guards are next.
+2026-11-02: [#51](https://github.com/flyboy-byte/ScanRuler/pull/51) adds opt-in bounded PLY/STL reproducer reduction on main522f10c. Both real sabotage checks shrink inputs while preserving mismatches; seed7 real runs have zero divergences (PLY retains two source timeouts). Fast gate passes at32c45a9. See oracle/FUZZ-MINIMIZE.md and the lossless evidence archive.
 
 2026-11-02 review continuation: [#45](https://github.com/flyboy-byte/ScanRuler/pull/45)
 then [#46](https://github.com/flyboy-byte/ScanRuler/pull/46). #46 adds bounded

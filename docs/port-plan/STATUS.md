@@ -88,6 +88,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [geometry.selection](plan/units/geometry.selection.json) | implemented | `3f56d3e` | [#19](https://github.com/flyboy-byte/ScanRuler/pull/19) |
 | [harness.coverage.original](plan/units/harness.coverage.original.json) | implemented | `96c776c` | [#43](https://github.com/flyboy-byte/ScanRuler/pull/43) |
 | [harness.coverage.rust](plan/units/harness.coverage.rust.json) | implemented | `be43ab8` | [#44](https://github.com/flyboy-byte/ScanRuler/pull/44) |
+| [harness.fuzz.minimize](plan/units/harness.fuzz.minimize.json) | implemented | `32c45a9` | [#51](https://github.com/flyboy-byte/ScanRuler/pull/51) |
 | [harness.fuzz.standing](plan/units/harness.fuzz.standing.json) | implemented | — | — |
 | [harness.oracle.gate](plan/units/harness.oracle.gate.json) | implemented | `eeb2136` | [#15](https://github.com/flyboy-byte/ScanRuler/pull/15) |
 | [harness.verification.levels](plan/units/harness.verification.levels.json) | planned | — | — |

@@ -1,0 +1,35 @@
+{
+  "id": "harness.fuzz.minimize",
+  "parent": "harness.fuzz.standing",
+  "title": "Bounded mismatch-preserving fuzz reproducer minimization",
+  "gate": "G3",
+  "status": "implemented",
+  "depends_on": [
+    "harness.fuzz.standing"
+  ],
+  "scope": "Opt-in deletion reduction of the first PLY/STL mismatch per run, preserving original and Rust success/refusal and every mismatching observation category. Keep unreduced inputs and complete reduced evidence.",
+  "owner": "Codex",
+  "branch": "codex/fuzz-minimize",
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/51",
+  "implemented_commit": "32c45a91f23e1912f76c5cbdf7c01f5fe4c6f584",
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "rust_paths": [
+    "rust/crates/port-io/tests/fuzz_standing.rs",
+    "rust/xtask/src/main.rs"
+  ],
+  "evidence": [
+    {
+      "kind": "report",
+      "location": "evidence/2026-11-02-fuzz-minimize.json.gz",
+      "candidate_sha": "32c45a91f23e1912f76c5cbdf7c01f5fe4c6f584"
+    }
+  ],
+  "open_items": [
+    "A bounded deletion reducer does not guarantee a globally minimal input."
+  ],
+  "acceptance": [
+    "Deterministic bounded reduction preserves success/refusal and all differing observation categories; limits/timeouts never preserve a mismatch.",
+    "Real PLY and STL sabotage selfchecks shrink a reproducer and retain independent complete outcomes; ordinary tests cover budget and predicate preservation."
+  ]
+}

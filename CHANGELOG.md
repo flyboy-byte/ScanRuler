@@ -14,6 +14,7 @@ saves carry the same number as `appVersion`. How a release is cut is in
 - **Rust history guards**: preserve running-job and held-editor blocking, empty draft behavior, callback order and opaque errors with 212 complete original comparisons.
 
 - **Rust local editor undo/redo**: preserve first-active selection, workspace-before-action and opaque callback failures with 192 exact original traces. Global restoration and full family guards remain separate.
+- **Fuzz reproducer reduction**: opt-in bounded PLY/STL shrinking preserves mismatch categories and retains original inputs and complete reduced outcomes.
 
 - **Rust standing fuzz** (2026-11-03): `cargo xtask fuzz <ply|stl> --seed N --cases M` compares seeded mutated inputs against the frozen original (success, progress and error text, output bytes) with host-limit refusals and original timeouts counted apart; first run 120,000 cases, 0 divergences. OBJ, minimized reproducers and a scheduled job remain open.
 
