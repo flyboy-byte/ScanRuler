@@ -29,3 +29,6 @@ pub mod settle;
 
 /// Function identity and live registration for deferred-work callbacks.
 pub mod settle_registry;
+
+/// Command guard identity, configuration and explicit cleanup.
+pub mod activity_guard;
