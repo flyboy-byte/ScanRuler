@@ -2,10 +2,10 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 2,
+    "baseline-captured": 3,
     "implemented": 50,
     "planned": 48,
-    "specified": 2
+    "specified": 1
   },
   "native_suites": 37,
   "native_case_identities_including_refusals": 3923,
@@ -463,9 +463,9 @@
     },
     {
       "id": "engine.session.activity.stores",
-      "status": "specified",
+      "status": "baseline-captured",
       "parent": "engine.session.contract",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/71",
       "tested_sha": null,
       "open_items": [
         "watchSession subscriptions, plugin busy store registration and full engine session wiring remain separate.",

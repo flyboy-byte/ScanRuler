@@ -3,7 +3,7 @@
   "parent": "engine.session.contract",
   "title": "Port session watch-store source identity and conditional release",
   "gate": "G2",
-  "status": "specified",
+  "status": "baseline-captured",
   "depends_on": [],
   "scope": "Complete watchSessionStores and its sessionStores ownership over shared readonly arrays of store handles. Preserve container/member identity, ordering/duplicates, conditional old cleanup and fresh empty arrays after successful release. No subscription calls in this unit.",
   "acceptance": [
@@ -12,7 +12,7 @@
   ],
   "owner": "Codex",
   "branch": "codex/watch-stores",
-  "claim_pr": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/71",
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
