@@ -23,6 +23,14 @@ def generate():
  for start in [(dt.date(1,1,1)-epoch).days*86400000-366*86400000,((dt.date(9999,12,31)-epoch).days+1)*86400000]:
   values.extend(float(start+delta) for delta in [-1,0,1,31*86400000,59*86400000,60*86400000])
  return ''.join(f'case-{i:03}\t'+struct.pack('>d',v).hex()+'\n' for i,v in enumerate(values)).encode()
+def generate_period():
+ raw=generate();rows=[];start=len(raw.splitlines());epoch=dt.date(1970,1,1)
+ for year in range(1600,2000):
+  for month,day in [(1,1),(3,1)]:
+   for delta in [-1,0]:
+    ms=(dt.date(year,month,day)-epoch).days*86400000-5*146097*86400000+delta
+    rows.append(f'case-{start+len(rows):03}\t'+struct.pack('>d',float(ms)).hex()+'\n')
+ return raw+''.join(rows).encode()
 if __name__=='__main__':
  folder=Path(__file__).resolve().parents[1]/'fixtures/clock-utc';folder.mkdir(exist_ok=True)
- (folder/'cases.tsv').write_bytes(generate())
+ (folder/'cases.tsv').write_bytes(generate_period())
