@@ -53,3 +53,6 @@ pub mod error_normalize;
 
 /// Ordered plugin busy registration and live first-busy lookup.
 pub mod plugin_busy;
+
+/// Live asynchronous plugin stopping, shared done capability and owned waits.
+pub mod plugin_stop;
