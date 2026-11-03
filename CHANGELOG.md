@@ -7,6 +7,9 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust 3MF import** (2026-11-03): the original's `parse3MF` ported body for body (own XML scanner, units, component and build transforms, mirrored-triangle correction, slicer parts left out, colour and texture groups) on the own pure-Rust zip reader; 24,540 generated, mutated and named packages plus 107 real `.3mf` files read identically by the original and Rust (success or failure, full error and progress text, positions, indices, colours, texture notes), with a sabotage check that fails. Host limits are reported apart from the original's refusals. Not yet in the hosted native suite.
+
+
 - Rust port: complete marked-sphere input-only Wasm codec and4431-case full browser roster, preserving every earlier case/budget (PR #94); actual execution proof is tracked separately.
 
 - Rust port: full marked-sphere output/refusals, known-diameter checks and exact original-region recipe identity; shared marking-size guard retains plane behavior (PR #93). Commands/seeded paths remain open.

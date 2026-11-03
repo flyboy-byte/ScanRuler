@@ -3,8 +3,8 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 74,
-    "planned": 48,
+    "implemented": 75,
+    "planned": 47,
     "specified": 2
   },
   "verification_levels": {
@@ -1649,13 +1649,17 @@
     },
     {
       "id": "io.threemf",
-      "status": "planned",
+      "status": "implemented",
       "parent": "P06",
       "pr": null,
       "tested_sha": null,
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
+        "Not in ci/native-suites.json: no registered case inventory; runs locally as an ignored test (see the finding for the command). Not wired to cargo xtask fuzz (rust/xtask is held by other open PRs).",
+        "Host-limit class: an archive entry whose declared size exceeds the caller's cap is refused where the original reads it (io.inflate allocates the declared size); owner decision with H1 to H3.",
+        "Packed texture images are read by a second unzip in src/app/scanFiles.ts and belong to io.obj.companions.images (own PNG, then JPEG decoder).",
+        "Only Node 22 ran the original; no Chrome execution. No real package from Bambu, Orca, PrusaSlic3r or 3D Builder was available locally.",
         "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate."
       ]
     },

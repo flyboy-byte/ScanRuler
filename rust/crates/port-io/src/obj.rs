@@ -105,7 +105,7 @@ fn decimal_index(s: &str) -> bool {
     !rest.is_empty() && rest.bytes().all(|b| b.is_ascii_digit())
 }
 // Complete String Number grammar used by OBJ, not STL's numeric-prefix parsing.
-fn number(s: &str) -> f64 {
+pub(crate) fn number(s: &str) -> f64 {
     let s = s.trim_matches(js_space);
     if s.is_empty() {
         return 0.0;
