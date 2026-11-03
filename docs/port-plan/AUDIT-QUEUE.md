@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-03: [#83](https://github.com/flyboy-byte/ScanRuler/pull/83) follows #82 and ports complete public/internal workspace mapping and current name enumeration with 306 full original state/plugin metadata cases. Discovery/full state/commands remain separate; see oracle/WORKSPACES.md and the reference-memory finding.
+
 2026-11-03: [#82](https://github.com/flyboy-byte/ScanRuler/pull/82) follows #81 and ports recent record/update/readout state at owned run/reaction boundaries, with 362 full source clock/observer/shallow/eviction traces. Actual executor attachment remains open; see oracle/RECENT-STORE.md.
 
 2026-11-03: [#81](https://github.com/flyboy-byte/ScanRuler/pull/81) follows #80 and ports retained owned-data copies/byte summaries/exact JSON size with 413 full source value/bit/order/length/mutation pairs. General non-JSON host conversion remains explicitly unported; see oracle/RECENT-RESULT.md.

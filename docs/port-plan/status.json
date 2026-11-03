@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 64,
+    "implemented": 65,
     "planned": 47,
     "specified": 1
   },
   "verification_levels": {
-    "fixed-corpus": 47,
+    "fixed-corpus": 48,
     "fuzzed": 4,
     "none": 63
   },
-  "native_suites": 50,
-  "native_case_identities_including_refusals": 9272,
+  "native_suites": 51,
+  "native_case_identities_including_refusals": 9578,
   "accepted_units": [],
   "units": [
     {
@@ -891,6 +891,20 @@
       "open_items": [
         "Arbitrary JS String coercion is supplied by the typed host boundary; native conversion of primitive/array/object thrown values remains separate.",
         "Actual platform clock conversion, browser preload hook and registry asCommandError integration remain required."
+      ]
+    },
+    {
+      "id": "engine.state.workspaces",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/83",
+      "tested_sha": "af44b283254dc0ed46b9742b55bb1227b23a2c26",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "af44b283254dc0ed46b9742b55bb1227b23a2c26",
+      "open_items": [
+        "Native plugin discovery/installation and live metadata ownership remain separately required.",
+        "Full state readout, workspace commands and actual browser/session integration remain required.",
+        "Typed owned callbacks exclude JS getters/prototypes; resource refusals are host limits, not original results."
       ]
     },
     {
