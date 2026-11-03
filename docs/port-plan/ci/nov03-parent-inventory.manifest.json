@@ -1,0 +1,17 @@
+{
+  "snapshot_sha256": "96eb9faa6de900e33284237160d7d9d770facb419a4e5d8b1bfe860b392d4c4b",
+  "gzip_sha256": "54f8c135e3f4b4403a452ecb21e6d9b82a5874014250d2ab2404371f8783fec4",
+  "native_suites": 57,
+  "case_identities": 22938,
+  "source_heads": [
+    "90eefa72def40ebbee01a101a985776e745bd1e5",
+    "d53642339b82db5ada206e8b45a77b0bfc8713c2",
+    "ce169ba47ece90e702c4354c7069857ac51403f2",
+    "24b5295f9bb4d608f34ce052bea0b2795d3177b1",
+    "dc3211ddff17e650a14706abad10dcab53c47bda",
+    "dda3f49576ac8516b7c96a3409b175e8614a6bca",
+    "8930aa4e61cc5d25d90a4e2b5dabe4e7b44b1d73",
+    "39655d16b3b8ef6ab3ad1e6cb4b511996d33bdcb",
+    "8682f74fd70dcf7ddac958d9c774e8a870307279"
+  ]
+}

@@ -1,6 +1,6 @@
 # Implementation frontier and next increments
 
-Updated 2026-11-02. This is the remaining execution sequence after the first numerical PR batch, not a declaration that G0/G2 passed. [STATUS.md](STATUS.md) is generated; canonical units own state. PRs #1–#24 are merged (2026-11-02); the workflow and merge protocol are in [ROADMAP-TO-USABLE.md](ROADMAP-TO-USABLE.md). Nothing here merges a PR or authorizes deployment.
+Updated 2026-11-03. This is the remaining execution sequence after the first numerical PR batch, not a declaration that G0/G2 passed. [STATUS.md](STATUS.md) is generated; canonical units own state. PRs #1–#24 are merged (2026-11-02); the workflow and merge protocol are in [ROADMAP-TO-USABLE.md](ROADMAP-TO-USABLE.md). Nothing here merges a PR or authorizes deployment.
 
 ## Existing reusable base
 
@@ -47,3 +47,7 @@ reviewed helpers or erase typed/runtime boundaries to make the CLI look complete
 ## Second-pass runtime handoff — 2026-11-03
 
 Read [NEXT-RUNTIME-IMPLEMENTATION-2026-11-03.md](NEXT-RUNTIME-IMPLEMENTATION-2026-11-03.md) for implemented scopes, concrete remaining guarded/interrupt/family/command/project ownership and required source branch tests. [The refreshed queue](REVIEW-QUEUE-2026-11-03-SECOND-PASS.md) records exact observed heads and open/merged dependencies. Earlier dated findings remain historical; no acceptance or M3 claim.
+
+## Third-pass frontier — 2026-11-03
+
+The #95 union preserves runtime helpers and the full native/Chrome sphere/marked-sphere/formatter work. See REVIEW-QUEUE-2026-11-03-THIRD-PASS.md. M3 remains unfulfilled. First runtime unit: engine.runtime.reactions, connecting retained bodies to source-ordered completion/race/finally/abort reactions. Then complete guarded/interrupt/history/current/activity/progress over that owner, wire one actual family/session and real engine commands, and implement compatible project/CLI scan→plane→undo→save. A direct kernel call, queued generic future or corrected banner does not meet those gates. Own image codecs and other geometry families remain independent options; source pin and original formulas/cases/budgets stay fixed.

@@ -12,7 +12,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | --- | ---: |
 | baseline-captured | 2 |
 | implemented | 74 |
-| planned | 47 |
+| planned | 48 |
 | specified | 2 |
 
 Verification labels describe scoped evidence snapshots, not whole-feature/runtime acceptance.
@@ -21,7 +21,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | --- | ---: |
 | fixed-corpus | 54 |
 | fuzzed | 4 |
-| none | 67 |
+| none | 68 |
 
 | Unit | State | Verification | Tested implementation | Verification snapshot | PR |
 | --- | --- | --- | --- | --- | --- |
@@ -69,9 +69,10 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [catalog.browser](plan/units/catalog.browser.json) | baseline-captured | none | `8f327ee` | — | [#14](https://github.com/flyboy-byte/ScanRuler/pull/14) |
 | [catalog.headless](plan/units/catalog.headless.json) | baseline-captured | none | `8b9084f` | — | [#13](https://github.com/flyboy-byte/ScanRuler/pull/13) |
 | [ci.integration](plan/units/ci.integration.json) | implemented | none | `f43ffae` | — | [#22](https://github.com/flyboy-byte/ScanRuler/pull/22) |
-| [ci.integration.nov03](plan/units/ci.integration.nov03.json) | specified | none | — | — | — |
+| [ci.integration.nov03](plan/units/ci.integration.nov03.json) | specified | none | — | — | [#95](https://github.com/flyboy-byte/ScanRuler/pull/95) |
 | [engine.error.envelope](plan/units/engine.error.envelope.json) | implemented | fixed-corpus | `f509ae2` | `f509ae2` | [#30](https://github.com/flyboy-byte/ScanRuler/pull/30) |
 | [engine.measurement.slice](plan/units/engine.measurement.slice.json) | planned | none | — | — | — |
+| [engine.runtime.reactions](plan/units/engine.runtime.reactions.json) | planned | none | — | — | — |
 | [engine.runtime.tasks](plan/units/engine.runtime.tasks.json) | implemented | none | `b1a1f36` | — | [#88](https://github.com/flyboy-byte/ScanRuler/pull/88) |
 | [engine.schema.validate](plan/units/engine.schema.validate.json) | implemented | fixed-corpus | `d3f9945` | `d3f9945` | [#42](https://github.com/flyboy-byte/ScanRuler/pull/42) |
 | [engine.session.activity.guard](plan/units/engine.session.activity.guard.json) | implemented | fixed-corpus | `c458f7a` | `c458f7a` | [#70](https://github.com/flyboy-byte/ScanRuler/pull/70) |

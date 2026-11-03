@@ -1,6 +1,6 @@
 # CI and regression contracts
 
-Updated 2026-11-02. The frozen original is authoritative. No workflow change in this integration alters a numerical formula, tolerance, seed, source test or timing threshold.
+Updated 2026-11-03. The frozen original is authoritative. No workflow change in this integration alters a numerical formula, tolerance, seed, source test or timing threshold.
 
 ## Executable gates
 
@@ -10,7 +10,7 @@ Updated 2026-11-02. The frozen original is authoritative. No workflow change in 
 | `Rust port validation / fast` | `cargo xtask ci` | Native ordinary tests, fmt/lints, plan/status and Wasm **compile** pass |
 | `Rust port validation / native-oracle` | `cargo xtask oracle`, then raw evidence inventory | Every required native source suite passed and its full current-case artifacts exist at the exact checkout SHA |
 | `Rust port validation / catalog-contracts` | original headless/browser snapshot and negative validators | Immutable captured metadata remains valid, not command execution or Rust parity |
-| `Rust port validation / browser-wasm` | actual Chrome running eight Rust library corpora plus hostile codec/memory probes | All 651 declared source/native/browser cases pass; three native-only workloads explicit; not UI/all-unit parity |
+| `Rust port validation / browser-wasm` | actual Chrome running ten Rust library corpora plus hostile codec/memory probes | All 4431 declared source/native/browser cases pass; three native-only workloads explicit; not UI/all-unit parity |
 | `Rust port validation / gate` | all four Rust lanes, even if another fails/skips | All required lanes succeeded; existing check ID `gate` retained |
 | `CI / source-tests` | plugin/unit boundaries, complete `npm test` | Original unit checks pass, including unchanged timing limits |
 | `CI / source-mcp` | complete separate MCP suite | Original agent tests pass independently of unit-test timing |
@@ -24,6 +24,8 @@ Updated 2026-11-02. The frozen original is authoritative. No workflow change in 
 ## Verification labels
 
 Every canonical unit has a separate `verification` label. Plan/status validation rejects missing labels, unsupported evidence and acceptance below coverage-reviewed. Retained fuzz logs, source hashes and corruption payloads support the four PLY/STL child-unit labels; the checker does not execute campaigns or authenticate reviewers. [VERIFICATION.md](VERIFICATION.md) describes each gate, migration scope and limitations.
+
+Current integrated inventory:57 required native suites/22938 declared case identities (including refusals),4431 browser inputs and36 protocol checks. See the current generated STATUS.md and third-pass review queue; historical increments below retain their original counts. No general diff/exact-base ratchet or feature acceptance is inferred.
 
 ## Native evidence and status
 
@@ -197,3 +199,7 @@ every existing assertion and20-minute job limit. The dated finding
 hosted passes before promotion and retains the known failures. Both independent
 runs passed at643bd5b (371files/13existing skips each); full evidence is retained. It is a runner
 scheduling experiment, not a numerical tolerance change or a proven flake cure.
+
+## Third-pass parent inventory floor
+
+ci/nov03-parent-inventory.json.gz retains every parent suite/case/file obligation in the #95 batch. Offline negative tests reject missing suites, same-count case replacement, dropped raw-file contracts and new missing-Rust-output exceptions on old cases; additive cases remain allowed. This checks metadata identity obligations, not numerical output equivalence, source-input/seed changes, code coverage or the still-unbuilt exact-base P37 ratchet. It cannot replace cargo xtask oracle or actual browser execution.

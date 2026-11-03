@@ -1,6 +1,6 @@
 # Rust port handoff — start here
 
-Updated 2026-11-02. This packet supersedes the preliminary migration phases in `../context/TANGENCY-RUST-ASSESSMENT.md`. It is the entry point to the plan and evidence inventory; the Rust scaffold is in `../../rust/`.
+Updated 2026-11-03. This packet supersedes the preliminary migration phases in `../context/TANGENCY-RUST-ASSESSMENT.md`. It is the entry point to the plan and evidence inventory; the Rust scaffold is in `../../rust/`.
 
 ## User intent and current decisions
 
@@ -21,13 +21,13 @@ An AGPL port can proceed while the licensing enquiry is pending. Source-informed
 6. `PORTING-PROCESS.md` and `CI-AND-REGRESSIONS.md` for contributor claims, living-plan refinement, authoritative reference comparisons and our CI/regression gates.
 7. Canonical `plan/units/<id>.json`, generated `backlog.json`, `commands.csv`, `features.csv`, `port-map.csv`, and `reference/` for the work inventory/evidence. `repo-bootstrap/` retains historical contributor/CI templates; active workflows live in `../../.github/workflows/` and are described in CI-AND-REGRESSIONS.md.
 
-## Current implementation and evidence — 2026-11-01
+## Current implementation and evidence — 2026-11-03
 
 Read [STATUS.md](STATUS.md) for the generated unit inventory, [AUDIT-QUEUE.md](AUDIT-QUEUE.md) for PR order and hosted outcomes, and [IMPLEMENTATION-PLAN.md](IMPLEMENTATION-PLAN.md) for the next bounded increments. These are different views: canonical `plan/units/*.json` own lifecycle state; an inventory is not a runtime report or a completion percentage.
 
 The pinned baseline remains `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`, app 0.9.2. `main` is the port trunk, `upstream-main` the upstream mirror, and `.oracle` the frozen checkout; see UPSTREAM-SYNC.md. The original TypeScript source/tests and npm locks remain unchanged by the numerical port queue.
 
-Rust library work exists: binary/ASCII STL, ASCII/both-endian binary PLY, welding/filtering, full mesh-graph construction, adjacency/components/selection and shell parity, bounds/centroids, normals/orientation, dense solves, TLS/clipped/robust planes and curvature discrimination, plus complete marked-selection plane element geometry/statistics. All numerical child units remain **implemented, not accepted**. `port-engine` has typed error envelopes, registry/admission, and history recording; the complete session, jobs and history restoration remain unimplemented. The CLI prints a banner; there is no Rust UI or end-to-end Rust scan/fit/project command workflow.
+Rust libraries include the parsing/mesh/linear/plane base, complete clipped free/held spheres and marked-sphere outputs/refusals. Runtime libraries include registration/history/queue/deadline/settle/plugin/execute/recent/workspace/Unicode-label/activity/readout scopes plus a bounded native task owner. The full combined branch has57 required native source suites/22938 declared case identities and4431 actual browser library inputs, with36 protocol checks; generated STATUS.md and runtime proof reports remain authoritative. No unit is accepted. Complete source-ordered reactions, guarded/interrupt/native family ownership, real timers, actual commands/projects and scan/fit/undo/save CLI remain unimplemented. No Rust UI or end-to-end measurement workflow is claimed. Read the [third-pass queue](REVIEW-QUEUE-2026-11-03-THIRD-PASS.md) and runtime continuation below; main may still be awaiting owner integration of #85–#95.
 
 The native suite/case inventory is generated in STATUS.md; case counts include refusals and are not counts of successful numerical measurements. The existing tests compare actual values/state against independently executed frozen bodies. Their fixed cases, seeds and numerical budgets remain authoritative. Actual Chrome-Wasm comparisons cover TLS plane, complete mesh graph, marked plane, both PLY bodies and complete OBJ parser/texture helpers and companion file bookkeeping (651 inputs: 569 complete outputs/helper states / 82 source refusals; one large PLY and two large OBJ workloads explicitly native-only); see oracle/BROWSER-WASM.md and its immutable report. Other numerical units and broader runtime platforms/corpora remain open. The generic P36/P37 paired report/exact-base ratchet remains unbuilt; compilation alone never filled the runtime gap.
 
@@ -131,3 +131,7 @@ PRs #1–#34 are merged into main at `28dfeae` and none is open. See AUDIT-QUEUE
 The marked-plane element continuation is now implemented under fit.plane.selection; public command/history integration is still absent. Prioritize reproducible reference/fixture contracts, the remaining P05 session/error/history contract and wider browser-Wasm coverage, then a bounded engine import/plane command slice. Use the implementation plan's concrete exit conditions. Keep the kernel/purity capability spike parallel and explicit; more helper ports cannot substitute for command/session or kernel evidence.
 
 Update each affected unit with its actual tested SHA, evidence and open scope. Preserve old reports and failed attempts. Generated status never promotes acceptance. The portable `verify.py`/SHA256SUMS bundle validates the historical planning export; it is not the live checker. Use the commands above for this checkout.
+
+## Third-pass continuation — 2026-11-03
+
+#95 combines the reviewed runtime/sphere batch without merging public PRs. Read REVIEW-QUEUE-2026-11-03-THIRD-PASS.md, NEXT-RUNTIME-IMPLEMENTATION-2026-11-03.md and the canonical engine.runtime.reactions unit before the next runtime claim. Future ownership is implemented; Promise reaction ordering and actual session integration are not. Default next_task.py may rank independent dependency-free codecs first; M3 runtime priority is the explicit reactions→guarded/interrupt→family state/commands→project/CLI sequence, with all existing comparisons retained.

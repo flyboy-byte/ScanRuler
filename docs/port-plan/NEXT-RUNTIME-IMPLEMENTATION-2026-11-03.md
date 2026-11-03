@@ -7,7 +7,7 @@ main and PR heads before integration. Codex has not merged any PR.
 
 ## Current implementation and evidence
 
-The combined continuation has 51 required native suites / 9,578 case identities,
+The #95 combined continuation has57 required native suites /22938 case identities,
 including refusals. These are declared library comparisons, not successful feature
 counts or a completion percentage. No unit is accepted. Verification labels remain
 independent of lifecycle; see VERIFICATION.md and generated STATUS.md. Raw coverage
@@ -30,17 +30,16 @@ Implemented scopes added after the earlier handoff:
 Native compilation to Wasm passes, but the new engine scopes have not run in a
 Rust engine browser runtime. The existing browser gate covers eight older library
 corpora; it does not establish these helpers' browser/session/UI parity. The CLI
-still only prints its scaffold banner. That banner's 'nothing is ported' wording
-is stale for the libraries, but there is no scan/fit/undo/save CLI workflow yet.
+now states that libraries exist and the scan/fit/undo/save commands are not implemented. There is no such CLI workflow yet.
 
 ## Next bounded implementation
 
-1. **Complete guarded/interrupt execution over the native owner.** Read the pinned
+1. **Connect source-ordered reactions, then complete guarded/interrupt execution over the native owner.** Read the pinned
    registry bodies and the failure-order finding before claiming symbols. Reuse
    existing error normalization, clocks, deadline reactions, scene/import queues,
    settlers, plugin stopping and execute orchestration. Define who retains every
    body/provider after timeout; do not cancel it by dropping a Rust future.
-2. **Close the remaining label/history boundary.** Preserve custom-label failure,
+2. **Wire the compared label expression into the complete history boundary.** Preserve custom-label failure,
    nullish fallback, exact UTF-16 default-title lowercase and the history=false
    branch. Do not quietly substitute ASCII lowercase, lossy conversion or a label
    stub. Pre-register any bounded split and name every missing continuation.
@@ -69,7 +68,7 @@ raw sampled start. Readouts copy outer fields and share object/array/error paylo
 
 ## Source still needing implementation/review
 
-stateSections.ts has been read; its register/readAll bodies remain unported. It
+stateSections.ts register/readAll bodies now have owned-data native comparisons under engine.state.sections; actual session.state composition remains unported. The source
 uses live maps, function-identity cleanup, catch/error conversion and a plain
 object output. Preserve '__proto__' assignment semantics and failure of String or
 message access inside its catch; do not assume an ordinary Rust map is identical.
@@ -97,3 +96,9 @@ then one unchanged retry passed. #83's per-string original-module import exhaust
 Node heap; bounded configuration contexts preserved every captured byte and all
 306 cases. Older source timing failures remain visible in dated snapshots. None
 of these findings authorizes loosening a limit, trimming a corpus or merging.
+
+## New owned scopes and immediate task — 2026-11-03
+
+#85 labels, #86 activity publication, #87 full/brief readout and #88 retained task ownership close bounded library gaps. #89/#92/#93 add full sphere math, exact fixed3 and complete marked-sphere outputs/refusals; #90/#94 run all4431 library inputs in Chrome with36 protocol checks. This is not an integrated engine. The standalone8492 fixed3 browser corpus is still open; marked-sphere calls exercise its actual formatter through real refusal paths.
+
+First runtime claim is engine.runtime.reactions: use the existing limited/execute original corpora to connect real owned bodies/completion delivery. Read plan/findings/2026-11-03-task-owner-is-not-promise-ordering.md. A generic Rust Ready poll is not a JS microtask, and timeout cannot cancel a losing body. Preserve factory-time array order, abort-listener resolution priority, exact cleanup/normalization faults, queue release and late progress/effects. No separate copied business store or arbitrary yield count substitutes for those comparisons.

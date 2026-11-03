@@ -4,13 +4,13 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 74,
-    "planned": 47,
+    "planned": 48,
     "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 54,
     "fuzzed": 4,
-    "none": 67
+    "none": 68
   },
   "native_suites": 57,
   "native_case_identities_including_refusals": 22938,
@@ -508,7 +508,7 @@
       "id": "ci.integration.nov03",
       "status": "specified",
       "parent": "ci.integration",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/95",
       "tested_sha": null,
       "verification": "none",
       "verification_tested_sha": null,
@@ -542,6 +542,19 @@
       "verification_tested_sha": null,
       "open_items": [
         "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ]
+    },
+    {
+      "id": "engine.runtime.reactions",
+      "status": "planned",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "First runtime continuation after #95: claim and implement against existing original deadline/execute corpora; generic task ownership alone is not paired JS promise semantics.",
+        "Full guarded/interrupt/history/activity/current/progress integration, real platform timers, actual family state/commands/projects/CLI and browser engine runtime remain required."
       ]
     },
     {
@@ -704,8 +717,8 @@
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
-        "Spec drafted from registry/state/types/history/activity/schema/stalePage/worker files. stateSections.ts was read 2026-11-03 and remains unported; agentLink.ts and the remaining host.ts still need review.",
-        "Scoped registration/history/queues/deadline/settle/activity/plugin/stale/error/clock/execute/recent/workspace libraries have native source comparisons. Concrete family/session ownership, full guarded/interrupt/history/default-label execution, actual timers/late bodies/reaction attachment, worker lifecycle, real commands/project/CLI/browser integration remain required; no session acceptance claim.",
+        "2026-11-03: bounded stateSections registration/readout is implemented under engine.state.sections; actual session.state composition remains open. agentLink.ts and remaining host.ts still need review.",
+        "Scoped registry/history/queues/deadline/settle/plugin/stale/error/clock/execute/recent/workspace/label/activity/readout libraries and native task ownership exist. Complete source-ordered reactions (engine.runtime.reactions), guarded/interrupt/history/native family ownership, real timers/late progress/commands/projects/CLI/browser runtime remain required; no session acceptance.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
       ]

@@ -2659,7 +2659,7 @@
       ],
       "owner": "Codex",
       "branch": "codex/nov03-integration",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/95",
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [
@@ -2833,6 +2833,49 @@
       "evidence": [],
       "open_items": [
         "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+      ],
+      "verification": "none"
+    },
+    {
+      "id": "engine.runtime.reactions",
+      "parent": "engine.session.contract",
+      "title": "Connect source-ordered reactions to retained native command bodies",
+      "gate": "G2",
+      "status": "planned",
+      "depends_on": [
+        "engine.runtime.tasks",
+        "engine.session.command.deadline",
+        "engine.session.execute.lifecycle"
+      ],
+      "scope": "Source-connected native reaction ownership and deadline/body continuation over the existing task owner. Preserve eager factory start, asynchronous await/race/finally ordering, factory-time array ties, synchronous abort resolution priority and late body effects/fault consumption. No duplicate business store or generic Rust async select that drops losing bodies.",
+      "acceptance": [
+        "Full pinned limited/execute traces compare independently generated values/state/effects/errors and exact reason identity through the real native task owner, including observation drop, timeout queue release and later body success/failure.",
+        "A body resolved by an abort listener can win before late rejection; both already-settled factory-time promises retain ran-first race array order. Future Ready polling alone cannot substitute for source reaction ordering.",
+        "Bounded admission/wake/drain, native/Wasm compile and all57 existing native suites/4431 browser cases remain required; broader command/session integration stays explicit."
+      ],
+      "owner": null,
+      "branch": null,
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/registry.ts",
+        "src/state/historyStore.ts",
+        "src/commands/activity.ts"
+      ],
+      "symbols": [
+        "limited native ownership/reaction bridge",
+        "execute runtime provider integration"
+      ],
+      "rust_paths": [
+        "rust/crates/port-engine/src/reactions.rs",
+        "rust/crates/port-engine/src/tasks.rs",
+        "rust/crates/port-engine/src/command_deadline.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "First runtime continuation after #95: claim and implement against existing original deadline/execute corpora; generic task ownership alone is not paired JS promise semantics.",
+        "Full guarded/interrupt/history/activity/current/progress integration, real platform timers, actual family state/commands/projects/CLI and browser engine runtime remain required."
       ],
       "verification": "none"
     },
@@ -7951,8 +7994,8 @@
         }
       ],
       "open_items": [
-        "Spec drafted from registry/state/types/history/activity/schema/stalePage/worker files. stateSections.ts was read 2026-11-03 and remains unported; agentLink.ts and the remaining host.ts still need review.",
-        "Scoped registration/history/queues/deadline/settle/activity/plugin/stale/error/clock/execute/recent/workspace libraries have native source comparisons. Concrete family/session ownership, full guarded/interrupt/history/default-label execution, actual timers/late bodies/reaction attachment, worker lifecycle, real commands/project/CLI/browser integration remain required; no session acceptance claim.",
+        "2026-11-03: bounded stateSections registration/readout is implemented under engine.state.sections; actual session.state composition remains open. agentLink.ts and remaining host.ts still need review.",
+        "Scoped registry/history/queues/deadline/settle/plugin/stale/error/clock/execute/recent/workspace/label/activity/readout libraries and native task ownership exist. Complete source-ordered reactions (engine.runtime.reactions), guarded/interrupt/history/native family ownership, real timers/late progress/commands/projects/CLI/browser runtime remain required; no session acceptance.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
       ],
