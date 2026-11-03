@@ -1,0 +1,22 @@
+{
+  "id": "harness.fuzz.minimize",
+  "parent": "harness.fuzz.standing",
+  "title": "Bounded mismatch-preserving fuzz reproducer minimization",
+  "gate": "G3",
+  "status": "specified",
+  "depends_on": [
+    "harness.fuzz.standing"
+  ],
+  "scope": "Opt-in deletion reduction of the first PLY/STL mismatch per run, preserving original and Rust success/refusal and every mismatching observation category. Keep unreduced inputs and complete reduced evidence.",
+  "owner": "Codex",
+  "branch": "codex/fuzz-minimize",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "A bounded deletion reducer does not guarantee a globally minimal input."
+  ]
+}

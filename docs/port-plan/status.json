@@ -5,7 +5,7 @@
     "baseline-captured": 2,
     "implemented": 39,
     "planned": 49,
-    "specified": 1
+    "specified": 2
   },
   "native_suites": 28,
   "native_case_identities_including_refusals": 2475,
@@ -733,6 +733,16 @@
         "LLVM DA line records disagree with LF/LH summaries on29 owned files; both are retained and raw JSON summaries cross-checked. Interpretation remains unresolved.",
         "35 owned source files are listed, including three module files with no emitted executable records and inline cfg(test) sections. Uninstrumented lines are unknown, not covered.",
         "Independent fuzz/browser profiles, immutable toolchain pinning, exact-base coverage ratchet and accepted status remain open."
+      ]
+    },
+    {
+      "id": "harness.fuzz.minimize",
+      "status": "specified",
+      "parent": "harness.fuzz.standing",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "A bounded deletion reducer does not guarantee a globally minimal input."
       ]
     },
     {
