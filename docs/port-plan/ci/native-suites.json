@@ -317,6 +317,39 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "engine.session.history.local",
+      "test": "pinned_history_local_comparison",
+      "directory": "history-local-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.history.guards",
+      "test": "pinned_history_guards_comparison",
+      "directory": "history-guards-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.history.restore",
+      "test": "pinned_history_restore_comparison",
+      "directory": "history-restore-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

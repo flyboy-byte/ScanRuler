@@ -187,6 +187,9 @@ const ORACLE_TESTS: &[&str] = &[
     "pinned_schema_comparison",
     "pinned_registry_comparison",
     "pinned_history_record_comparison",
+    "pinned_history_local_comparison",
+    "pinned_history_guards_comparison",
+    "pinned_history_restore_comparison",
 ];
 
 fn validate_oracle_discovery(list: &str) -> Result<(), String> {

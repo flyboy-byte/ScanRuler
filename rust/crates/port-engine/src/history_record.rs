@@ -2,7 +2,8 @@
 //! Identity-aware history recording from pinned historyStore.ts, over stable
 //! typed section snapshots. A session owns the document; this recorder holds
 //! shared immutable patch references, never another mutable business-state store.
-//! Undo/redo travel, family capture/apply and scheduling are separate continuations.
+//! The restore child supplies global orchestration; concrete family capture/apply
+//! and scheduling remain separate continuations.
 use crate::schema_value::{Text, Value, order};
 use std::{
     collections::{BTreeMap, BTreeSet},
@@ -139,19 +140,19 @@ pub struct Entry {
     /// Zero when outside an explicit group.
     pub group: u64,
 }
-/// Owned bookkeeping used by this recorder and future travel implementation.
+/// Owned bookkeeping used by this recorder and restore implementation.
 /// Patch references share document assets. No current mutable document is here.
 #[derive(Debug, Clone, Default)]
 pub struct State {
     /// Undo entries, oldest first.
     pub past: Vec<Entry>,
-    /// Redo entries, oldest first; future travel owns their movement.
+    /// Redo entries, oldest first; restore owns their movement.
     pub future: Vec<Entry>,
     /// Restore in progress (wrapper suppression only here).
     pub restoring: bool,
     /// Original flag retained but not invented as a recording guard.
     pub importing: bool,
-    /// Changes on clear/travel, not record. Travel is not implemented here.
+    /// Changes on clear/travel, not record.
     pub revision: u64,
 }
 /// Host budgets for recording metadata and examined cells. Large immutable
@@ -553,3 +554,6 @@ impl Recorder {
         Ok(())
     }
 }
+
+/// Global restoration orchestration over owned typed capture/apply callbacks.
+pub mod restore;

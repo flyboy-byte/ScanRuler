@@ -3,12 +3,12 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 41,
+    "implemented": 44,
     "planned": 48,
     "specified": 1
   },
-  "native_suites": 28,
-  "native_case_identities_including_refusals": 2475,
+  "native_suites": 31,
+  "native_case_identities_including_refusals": 3095,
   "accepted_units": [],
   "units": [
     {
@@ -458,9 +458,31 @@
       "tested_sha": null,
       "open_items": [
         "Spec drafted in SESSION-CONTRACT.md from registry, state, types, historyStore, activity, schema, stalePage, host.sessionBusy and the worker files; still to read: stateSections.ts, agentLink.ts, rest of host.ts.",
-        "Original-derived scenario traces (spec section 8) and the Rust session are unimplemented; no session acceptance claim.",
+        "Bounded registry, recording, local dispatch, guards and restore orchestration have source traces. Complete family capture/apply, queue/worker lifecycle and real command traces remain required; no session acceptance claim.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
+      ]
+    },
+    {
+      "id": "engine.session.history.guards",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/53",
+      "tested_sha": "1504212e6661c11b66f98360912180a1b3a82d02",
+      "open_items": [
+        "Global restoration, full family editor/state integration and actual browser runtime remain required.",
+        "Stable typed snapshots and callbacks exclude executable JS getters and reentrant participant-list mutation."
+      ]
+    },
+    {
+      "id": "engine.session.history.local",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/52",
+      "tested_sha": "123e43e9a78b187bc39b141b682facd328ef1225",
+      "open_items": [
+        "Complete historyBlocked family guards and global restoration remain required.",
+        "Actual family editors, dynamic participant lifecycle and browser runtime remain integration work."
       ]
     },
     {
@@ -476,6 +498,18 @@
         "Native source comparisons only; wasm32 compile is not actual browser history execution.",
         "Typed stable section data and pure captures are the owned boundary; dynamic JS getters, prototypes and reentrant capture are outside this slice.",
         "Session-level asset budgeting and full allocation-failure isolation remain integration work."
+      ]
+    },
+    {
+      "id": "engine.session.history.restore",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/54",
+      "tested_sha": "84e49dde65ee9afb38c8e649f76eb84d1356cc80",
+      "open_items": [
+        "Concrete measure/flat/deviation/thickness capture and apply, remeasurement and scan/source restoration remain required.",
+        "Typed runRestore owns a single-use job; arbitrary reentrant JS and concurrent/multiple job invocation are not represented.",
+        "Import queue, command integration and actual browser runtime remain open."
       ]
     },
     {
