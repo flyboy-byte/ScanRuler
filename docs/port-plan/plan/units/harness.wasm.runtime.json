@@ -158,5 +158,6 @@
     "Actual Chrome execution is verified for the 114 named TLS/mesh-graph/marked-plane inputs only; wider platforms/adversarial corpora and other numerical units remain open.",
     "Private linker-export test ABI is not a stable production engine/UI interface; commands/history/projects/jobs remain unimplemented.",
     "Generic P36 report protocol, P37 exact-base numerical ratchet, P35 whole-product purity and P39 Rust tooling replacement remain open."
-  ]
+  ],
+  "verification": "none"
 }

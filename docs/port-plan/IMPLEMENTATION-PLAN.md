@@ -1,13 +1,13 @@
 # Implementation frontier and next increments
 
-Updated 2026-11-02. This is the remaining execution sequence after the first numerical PR batch, not a declaration that G0/G2 passed. [STATUS.md](STATUS.md) is generated; canonical units own state. PRs #1–#24 are merged (2026-11-02); the workflow and merge protocol are in [ROADMAP-TO-USABLE.md](ROADMAP-TO-USABLE.md). Nothing here merges a PR or authorizes deployment.
+Updated 2026-11-03. This is the remaining execution sequence after the first numerical PR batch, not a declaration that G0/G2 passed. [STATUS.md](STATUS.md) is generated; canonical units own state. PRs #1–#24 are merged (2026-11-02); the workflow and merge protocol are in [ROADMAP-TO-USABLE.md](ROADMAP-TO-USABLE.md). Nothing here merges a PR or authorizes deployment.
 
 ## Existing reusable base
 
 The bounded library units implement STL extraction; exact-bit welding and index-degenerate removal; complete parsed-mesh graph construction; ordered adjacency, directed components, selection remaps and hash-parity shell flags; extents/centroids/normals/orientation; dense solves; TLS/clipped/robust planes, curvature discrimination and full marked-selection plane element geometry/statistics. Reuse these modules rather than creating a second solver or graph pipeline. Every unit still has runtime/integration gaps; helper comparisons do not make `scan.open` or `element.fit` available in Rust.
 
 Original core/all browser and headless schema catalogs are captured and agree. They establish command metadata, not executed operation coverage or all feature variants. All original code/locks remain available for comparison. `port-engine` has typed errors, schema validation and owned registry/admission
-(PR #45,350 exact operation scenarios), history recording (#46), and local editor history dispatch (#52,192 exact traces). Complete history guards follow in #53 (212 exact observations). Global orchestration follows in #54 (216 typed-boundary traces); concrete family restoration, queue and session scheduling remain next; the CLI only prints a banner. No Rust UI, persisted session or exact kernel is implemented.
+(PR #45,350 exact operation scenarios), history recording (#46), and local editor history dispatch (#52,192 exact traces). Complete history guards follow in #53 (212 exact observations). Global orchestration follows in #54 (216 typed-boundary traces); core capture/apply follows in #55 (all73 fields, 490 full observations). The queue follows in #57 (67 schedules/755 observations). Deadline reactions follow in #59 (291 schedules/2037 observations). Typed family/remeasurement integration, error normalization, executor and full command scheduling remain next; the CLI only prints a banner. No Rust UI, persisted session or exact kernel is implemented.
 
 ## Ordered vertical slice
 
@@ -33,3 +33,21 @@ Keep the original checks, snapshot recaptures and all native comparisons while a
 Each increment gets its own bounded PR: exact source symbols, tests on the implementation SHA, successful values/state plus refusals, known host/API differences, canonical open scope and follow-up. The owner will audit from #1 upward. After a parent lands, retarget the child to main and inspect the resulting diff; do not merge a child into an unmerged parent as a substitute for trunk integration. #22 joins the independent #1/#13/#14 histories with #21 locally; after prior merges its PR should show only the CI/status/docs delta. Regenerate the aggregate after resolving canonical units; never hand-merge stale generated rows.
 
 No delivery date or completion percentage is inferred from case counts. Pause a specific implementation only for a recorded external prerequisite or the owner's instruction; independent scoped work can continue. Preserve null/failed attempts so a fresh reviewer does not re-derive them.
+
+## Integration continuation — 2026-11-03
+
+Use REVIEW-HANDOFF-2026-11-03.md for both pending stacks and exact observed
+heads. The new helpers remain implemented library scopes, not a complete session.
+Next work is native plugin/activity providers, scene/executor routing, then real
+measurement/import/session/project ownership for M3. The source-specific failure
+and progress ordering is recorded in
+plan/findings/2026-11-03-registry-execution-continuations.md. Do not reimplement
+reviewed helpers or erase typed/runtime boundaries to make the CLI look complete.
+
+## Second-pass runtime handoff — 2026-11-03
+
+Read [NEXT-RUNTIME-IMPLEMENTATION-2026-11-03.md](NEXT-RUNTIME-IMPLEMENTATION-2026-11-03.md) for implemented scopes, concrete remaining guarded/interrupt/family/command/project ownership and required source branch tests. [The refreshed queue](REVIEW-QUEUE-2026-11-03-SECOND-PASS.md) records exact observed heads and open/merged dependencies. Earlier dated findings remain historical; no acceptance or M3 claim.
+
+## Third-pass frontier — 2026-11-03
+
+The #95 union preserves runtime helpers and the full native/Chrome sphere/marked-sphere/formatter work. See REVIEW-QUEUE-2026-11-03-THIRD-PASS.md. M3 remains unfulfilled. First runtime unit: engine.runtime.reactions, connecting retained bodies to source-ordered completion/race/finally/abort reactions. Then complete guarded/interrupt/history/current/activity/progress over that owner, wire one actual family/session and real engine commands, and implement compatible project/CLI scan→plane→undo→save. A direct kernel call, queued generic future or corrected banner does not meet those gates. Own image codecs and other geometry families remain independent options; source pin and original formulas/cases/budgets stay fixed.

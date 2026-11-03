@@ -50,5 +50,6 @@
   "open_items": [
     "Production-bundle equivalence, broader MCP command execution and nested feature variants remain open.",
     "G0/P00/P01 prerequisites and Rust coordinator/purity endpoint remain incomplete."
-  ]
+  ],
+  "verification": "none"
 }

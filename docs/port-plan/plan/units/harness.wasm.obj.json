@@ -55,5 +55,6 @@
     "2026-11-02: actual Chrome passes all 564 independent source/native/Wasm cases: 482 complete outputs/helper states and 82 source refusals. All old 341 cases and budgets retained.",
     "All 144 helper and 79 parser browser states match exactly, including full float32/color bytes, ordered texture notes and progress/refusals. Two full-size OBJ workloads remain native-only.",
     "18 bounded protocol checks pass; zero module imports/page errors. Complete hashed raw proof replays independently; historical v2 proof remains immutable and cannot satisfy live v3."
-  ]
+  ],
+  "verification": "none"
 }

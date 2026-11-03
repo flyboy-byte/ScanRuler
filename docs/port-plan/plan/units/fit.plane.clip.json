@@ -103,5 +103,6 @@
         }
       ]
     }
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

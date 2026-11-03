@@ -170,5 +170,6 @@
     "Native source comparisons only; wasm32 compile is not actual browser history execution.",
     "Typed stable section data and pure captures are the owned boundary; dynamic JS getters, prototypes and reentrant capture are outside this slice.",
     "Session-level asset budgeting and full allocation-failure isolation remain integration work."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

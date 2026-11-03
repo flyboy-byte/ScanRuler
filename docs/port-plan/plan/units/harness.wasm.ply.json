@@ -52,5 +52,6 @@
     "2026-11-02: actual Chrome executes all 341 source/native/Wasm comparisons (287 outputs /54 source refusals), preserving all original 114 browser cases and their budgets.",
     "All PLY payload/progress/error bytes, including IEEE bits, match exactly; million-face progress case passes in browser.",
     "13 protocol checks pass; module imports and browser page errors are empty; complete raw evidence committed as hashed deterministic gzip."
-  ]
+  ],
+  "verification": "none"
 }

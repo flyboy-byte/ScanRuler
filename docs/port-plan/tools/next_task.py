@@ -75,7 +75,8 @@ def show(row, by_id):
     cls, _, _, unit, lane = row
     print(f"\n[{CLASS_NAME[cls]}] {unit['id']}  {unit['title']}   (lane {lane['id']}: {lane['name']})")
     deps = unit.get("depends_on", [])
-    print("  depends on: " + (", ".join(f"{d}={by_id[d]['status']}" for d in deps if d in by_id) or "nothing"))
+    print("  depends on: " + (", ".join(f"{d}={by_id[d]['status']}[{by_id[d].get('verification', 'none')}]" for d in deps if d in by_id) or "nothing"))
+    print(f"  verification: {unit.get('verification', 'none')}")
     print(f"  scope: {unit['scope']}")
     for item in unit["acceptance"]:
         print(f"  accept: {item}")

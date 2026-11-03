@@ -50,5 +50,6 @@
     "Browser core/all-plugin runtime catalogs and nested feature variants remain open under P02; these snapshots are headless-only.",
     "Static 140 command names reconcile exactly with all-plugin headless registry; browser contexts and descriptor differences still require review.",
     "P00/P01 full/local baseline and whole-port Rust coordinator/tooling migration remain incomplete."
-  ]
+  ],
+  "verification": "none"
 }

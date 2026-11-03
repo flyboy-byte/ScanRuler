@@ -23,5 +23,6 @@
   "open_items": [
     "Checkpoint 2026-11-01: discovery/case/file freshness checks reject omissions within a current run. They do not compare against the exact target base or freeze all input/seed/observable coverage; this workstream is unimplemented."
   ],
-  "claim_pr": null
+  "claim_pr": null,
+  "verification": "none"
 }

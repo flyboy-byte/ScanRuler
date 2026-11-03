@@ -9,7 +9,81 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 - **Rust 3MF import** (2026-11-03): the original's `parse3MF` ported body for body (own XML scanner, units, component and build transforms, mirrored-triangle correction, slicer parts left out, colour and texture groups) on the own pure-Rust zip reader; 24,540 generated, mutated and named packages plus 107 real `.3mf` files read identically by the original and Rust (success or failure, full error and progress text, positions, indices, colours, texture notes), with a sabotage check that fails. Host limits are reported apart from the original's refusals. Not yet in the hosted native suite.
 
+
+- Rust port: complete marked-sphere input-only Wasm codec and4431-case full browser roster, preserving every earlier case/budget (PR #94); actual execution proof is tracked separately.
+
+- Rust port: full marked-sphere output/refusals, known-diameter checks and exact original-region recipe identity; shared marking-size guard retains plane behavior (PR #93). Commands/seeded paths remain open.
+
+- Rust port: exact primitive Number.toFixed(3) for original sphere refusal text, with rational tie rounding and special/threshold cases (PR #92). Full marked-sphere caller remains open.
+- Rust port: input-only sphere Wasm probe and mandatory full1560-case browser roster, preserving all earlier651 cases and budgets (PR #90); actual Chrome evidence is tracked separately.
+
+- Rust port: complete clipped free/held-radius sphere fitting and signed radial statistics with independent original comparisons (PR #89). Seeded growth, full element fields and commands remain open.
+- **Rust command labels**: preserve full Unicode lowercase, unpaired UTF-16, custom/nullish/empty fallback and lazy provider effects across a complete code-point/context census. Command/history runtime integration remains separate.
+- Rust port: command activity start/progress/clear publication with live listener identity, reentrant state delivery and exact faults (PR #86); full session runtime remains open.
+- Rust port: plugin state-section registration and live full/brief readout with exact conversion faults and plain-object prototype behavior (PR #87); native session composition remains open.
+- Rust port: bounded native cooperative owner retains pending work independently of caller tickets, with FIFO thread-safe wake tokens and finite turns (PR #88). Command/timer/history integration remains open.
+
+- **Port review handoff**: retain current exact PR heads, open/merged dependencies and required-check states with negative snapshot controls; document remaining runtime ownership and source branch tests. No feature body or numerical policy changes.
+
+- **Rust workspace metadata**: preserve exact public/internal names, installed ordering, empty/duplicate ids and live independent name arrays across 306 original state/plugin cases. Plugin discovery/full state runtime remain separate.
+
+- **Rust recent outcome state**: preserve 100-entry eviction, clocks, observer failures and shallow snapshot/payload semantics across 362 complete original schedules. Executor reaction attachment remains separate.
+
+- **Rust retained result data**: preserve normalized copies, byte summaries, UTF-16 JSON sizes and exact omission thresholds across 413 full original data cases. General host-object/non-JSON conversion remains separate.
+
+- **Rust execution lifecycle**: preserve strict discard/raw busy preflight, stop/settle/deferred ordering and shared done-finally lifetime across 1,200 complete original orchestration traces. Full guarded runtime remains separate.
+
+- **Rust scene queue**: preserve direct future identity, synchronous direct faults and serialized viewport turns with failure recovery across 120 full original schedules. Runtime/viewport integration remains separate.
+
+- **Rust plugin stopping**: preserve live check/stop mutation, shared done identity, concurrent waits and fault suppression with 227 full original traces. Command executor integration remains open.
+
+- **Rust plugin busy metadata**: preserve duplicate errors, function/array/stop identity, old cleanup and live first-busy lookup with 96 full original comparisons. Async stop invocation remains separate.
+
+- **Port verification evidence**: separate lifecycle from fixed-corpus, fuzzed and coverage-reviewed labels; reject unsupported grades and retain exact-candidate PLY/STL fuzz logs and corruption reproducers. No unit is accepted.
+
+- **Rust session subscriptions**: preserve store/listener identity, snapshot order, partial failures and repeated ordered cleanup across 144 full original traces. Native plugin registry and full engine integration remain separate.
+
+- **Rust watched-store source ownership**: preserve readonly container/member identity, duplicates/order and conditional old cleanup across 80 full original traces. Actual subscriptions remain separate.
+
+- **Rust command guards**: preserve object identity, raw busy returns/faults and unconditional old-cleanup reset across 192 full original state traces. Plugin and registry execution integration remain separate.
+
+
+- **Recording evidence metadata**: derive live seed labels from unchanged fixture IDs, correcting an old 1109/1039 label typo without altering any case or captured result.
+
+- **Source CI scheduling**: run the entire unchanged unit suite in one worker to reduce contention around the existing timing assertion; every check, threshold and job budget stays required.
+
+- **Port plan CI**: fetch the immutable original Git tree for source-map provenance tests; retain every proof assertion.
+
+- **UTC regression census**: compare a complete negative Gregorian period against the original Date converter, adding 1,600 cases while preserving all 311 prior records and leaving production code unchanged.
+
+- **Rust UTC timestamps**: own bounded Date clipping and Gregorian ISO formatting, including extended years and lazy stale-page conversion; 311 full original timestamp/error/state comparisons. OS current-time acquisition remains separate.
+
+- **Rust command fault normalization**: preserve typed error identity, stale-page classification/state and failed fallback across 304 full pinned-registry comparisons. General native String conversion and registry execution remain separate.
+
+- **Rust stale-page errors**: preserve exact UTF-16 envelopes and page marking before fallible message conversion, with 120 complete pinned-source state/effect comparisons. General native thrown-value conversion remains separate.
+
+- **Rust stale-page clock state**: retain the first timestamp, skip repeat sampling, reset explicitly and preserve failed-clock state across 64 exact original traces. Platform clock conversion remains separate.
+
+- **Port plan CI**: fetch the immutable original Git tree for source-map provenance tests; retain every proof assertion.
+
+- **Rust stale-import classification**: preserve all four messages, ASCII case semantics, typed-error exclusion and unchanged page state in 308 exact pinned-source comparisons. Page timestamp and error normalization remain separate.
+
+- **Source CI scheduling**: run the entire unchanged unit suite in one worker to reduce contention around the existing timing assertion; every check, threshold and job budget stays required.
+
+- **Recording evidence metadata**: derive live seed labels from unchanged fixture IDs, correcting an old 1109/1039 label typo without altering any case or captured result.
 - **Rust DEFLATE and ZIP reader** (2026-11-03): own pure-Rust inflate and unzip that reproduces the original's `fflate` 0.8.3 `unzipSync`, including its lenient behaviour on damaged archives; 30,000 generated and mutated archives, 0 divergences. 3MF reading itself and PNG/JPEG decoding remain separate.
+
+- **Rust live settlement registration**: preserve function identity, old unsubscribe handles, deletion/addition/re-addition during iteration and concurrent waits in 116 exact original comparisons. Executor integration remains separate.
+
+- **Rust deferred-work settling**: call every stable callback, preserve exact next-command metadata, suppress failures and await all concurrent work in 64 full original comparisons. Registration mutation and executor wiring remain separate.
+
+- **Port plan CI**: fetch the immutable original Git tree for source-map provenance tests; retain every proof assertion.
+
+- **Rust command deadlines**: preserve race ordering, shared abort reasons, timer cleanup and late outcomes with291 original schedules /2037 full observations. Reuse the existing number formatter without changing parser behavior.
+
+- **Rust import queue**: preserve serialized jobs, failure recovery, live listener identity/order and opaque outcomes with 67 complete original schedules /755 observations. Runtime integration remains required.
+
+- **Rust core history capture/apply**: preserve all 73 picked fields, shared payload identity, transient flat/deviation cleanup, scope and version ordering, with 98 complete source cases /490 observations.
 
 - **Rust global restore orchestration**: preserve capture/hook/apply order, workspace, stack movement, late-epoch invalidation and partial-failure state across 216 full typed-boundary source traces. Concrete family restore and queue integration remain required.
 

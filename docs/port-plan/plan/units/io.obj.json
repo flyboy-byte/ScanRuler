@@ -31,5 +31,6 @@
   "open_items": [
     "Texture image decoding needs a recorded pure-Rust dependency decision (P35 purity audit).",
     "2026-11-02: bounded continuations tracked as io.obj.texture, io.obj.mesh and io.obj.companions; parent remains planned until full import acceptance."
-  ]
+  ],
+  "verification": "none"
 }

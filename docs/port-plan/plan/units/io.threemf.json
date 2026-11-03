@@ -47,5 +47,6 @@
     "Packed texture images are read by a second unzip in src/app/scanFiles.ts and belong to io.obj.companions.images (own PNG, then JPEG decoder).",
     "Only Node 22 ran the original; no Chrome execution. No real package from Bambu, Orca, PrusaSlic3r or 3D Builder was available locally.",
     "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate."
-  ]
+  ],
+  "verification": "none"
 }

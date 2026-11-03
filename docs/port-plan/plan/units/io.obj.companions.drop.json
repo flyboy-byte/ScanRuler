@@ -91,5 +91,6 @@
   "resolved_items": [
     "2026-11-02: all40 original/native full DRP1 file identities/errors/callback traces match exactly (24 successful results /16 opaque platform failures).",
     "Complete source batching/fallback/order and fileOf/childrenOf errors preserved; pending-once async callbacks and every host budget tested separately."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

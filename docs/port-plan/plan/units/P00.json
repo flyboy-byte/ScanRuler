@@ -28,5 +28,6 @@
     "Decision: no rustup (plan/decisions/2026-10-31-no-rustup.md); Node is oracle-only (plan/decisions/2026-10-31-node-is-oracle-only.md).",
     "Checkpoint 2026-11-01: hosted Node 22/Chrome versions and frozen lock hashes now exist in headless/browser catalog evidence. Local Node remains 20.20.2; hosted Rust stable is not immutable-version-pinned. Parent stays planned pending consolidated reproducibility/skip/fixture evidence."
   ],
-  "claim_pr": null
+  "claim_pr": null,
+  "verification": "none"
 }

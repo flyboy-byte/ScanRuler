@@ -31,5 +31,6 @@
   "acceptance": [
     "Deterministic bounded reduction preserves success/refusal and all differing observation categories; limits/timeouts never preserve a mismatch.",
     "Real PLY and STL sabotage selfchecks shrink a reproducer and retain independent complete outcomes; ordinary tests cover budget and predicate preservation."
-  ]
+  ],
+  "verification": "none"
 }

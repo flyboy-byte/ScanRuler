@@ -38,5 +38,6 @@
     "Complete file-selection/identity/byte-preservation slice tracked in io.obj.companions.files; drop traversal and image decoding remain separate continuations.",
     "Image candidate audit under io.obj.companions.image_audit is complete, but raw decoder pixel compatibility failed and no dependency is adopted. Browser canvas/PNG/JPEG/BMP/WebP semantics, malformed omission and 3MF packed images remain open; parent stays planned."
   ],
-  "resolved_items": []
+  "resolved_items": [],
+  "verification": "none"
 }

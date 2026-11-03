@@ -1,5 +1,9 @@
 # Actual Rust execution in browser Wasm
 
+2026-11-03: [marked-sphere extension](MARKED-SPHERE-WASM.md) adds all2220 selection cases; live v6 requires4431 cases with all older budgets/exclusions retained. Actual Chrome proof: evidence/browser-wasm-marked-sphere-2026-11-03/manifest.json. Historical v2-v5 proofs below retain their original scope.
+
+2026-11-03: [sphere extension](SPHERE-WASM.md) adds all1560 sphere cases; the live v5 roster requires2211 cases while retaining every earlier651 case and all older budgets/exclusions. Full actual Chrome proof: evidence/browser-wasm-sphere-2026-11-03/manifest.json. This is library execution, not session/command acceptance. Historical checkpoints below retain their original scope.
+
 Scope 2026-11-02: TLS plane (13 cases), complete mesh graph (50), marked-plane
 elements (51), ASCII PLY (60), binary PLY (167), OBJ texture helpers (144) and
 complete OBJ parser (79) and companion file states (87). All earlier 564 browser cases remain unchanged.

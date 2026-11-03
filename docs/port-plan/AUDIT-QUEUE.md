@@ -1,5 +1,66 @@
 # Port PR audit and integration queue
 
+2026-11-03: [#94](https://github.com/flyboy-byte/ScanRuler/pull/94) combines #93/#90 prerequisites and extends the browser gate to all4431 inputs; see oracle/MARKED-SPHERE-WASM.md for scope and actual-execution requirements.
+
+2026-11-03: [#93](https://github.com/flyboy-byte/ScanRuler/pull/93), based on #92/#89, ports full marked-sphere output and exact refusals; see oracle/MARKED-SPHERE.md. Seeded/browser selection/engine command continuations remain explicit.
+
+2026-11-03: [#92](https://github.com/flyboy-byte/ScanRuler/pull/92) ports exact fixed3 number strings needed by marked-sphere refusals; see oracle/FIXED3.md. Claude’s separate #91 upstream drift ledger does not change the pinned baseline.
+2026-11-03: [#90](https://github.com/flyboy-byte/ScanRuler/pull/90), based on #89, adds all1560 sphere cases to the input-only browser-Wasm gate; live v5 requires2211 cases. See oracle/SPHERE-WASM.md for scope and actual-execution requirements.
+
+2026-11-03: [#89](https://github.com/flyboy-byte/ScanRuler/pull/89) ports complete fixed-selection free/held sphere fit and clipping; see oracle/SPHERE.md. Seeded/selection-shell/command/browser continuations remain explicit.
+2026-11-03: [#85](https://github.com/flyboy-byte/ScanRuler/pull/85) starts from merged mainfaf115b and ports the shared command-label expression with 640 complete Unicode/input/value/effect blocks. Full guarded/interrupt runtime remains separate; see oracle/COMMAND-LABEL.md.
+2026-11-03: [#86](https://github.com/flyboy-byte/ScanRuler/pull/86) ports command-driven activity publication, snapshot identity and live synchronous listeners; see oracle/ACTIVITY-STATE.md. It does not port full guarded/interrupt or accept the session.
+2026-11-03: [#87](https://github.com/flyboy-byte/ScanRuler/pull/87) ports stateSections registration/readout over owned data; see oracle/STATE-SECTIONS.md. Full session.state/native installation/browser execution remain open.
+2026-11-03: [#88](https://github.com/flyboy-byte/ScanRuler/pull/88) adds native task ownership, explicitly unpaired host machinery; see NATIVE-TASK-OWNER.md. #85 labels, #86 activity publication and #87 state readout are parallel main-based PRs and must be preserved together when merged.
+
+2026-11-03: [#84](https://github.com/flyboy-byte/ScanRuler/pull/84) follows #83 and refreshes [the live-observed queue](REVIEW-QUEUE-2026-11-03-SECOND-PASS.md) and [next runtime implementation boundaries](NEXT-RUNTIME-IMPLEMENTATION-2026-11-03.md). Main is moving as the owner merges earlier PRs; refresh exact heads/checks before integration. This snapshot and its negative tests do not authorize merging or claim acceptance.
+
+2026-11-03: [#83](https://github.com/flyboy-byte/ScanRuler/pull/83) follows #82 and ports complete public/internal workspace mapping and current name enumeration with 306 full original state/plugin metadata cases. Discovery/full state/commands remain separate; see oracle/WORKSPACES.md and the reference-memory finding.
+
+2026-11-03: [#82](https://github.com/flyboy-byte/ScanRuler/pull/82) follows #81 and ports recent record/update/readout state at owned run/reaction boundaries, with 362 full source clock/observer/shallow/eviction traces. Actual executor attachment remains open; see oracle/RECENT-STORE.md.
+
+2026-11-03: [#81](https://github.com/flyboy-byte/ScanRuler/pull/81) follows #80 and ports retained owned-data copies/byte summaries/exact JSON size with 413 full source value/bit/order/length/mutation pairs. General non-JSON host conversion remains explicitly unported; see oracle/RECENT-RESULT.md.
+
+2026-11-03: [#80](https://github.com/flyboy-byte/ScanRuler/pull/80) follows #79 and ports complete execute orchestration at the owned provider boundary, with 1,200 full source preflight/wait/done/caller traces using native stop/settle providers. Full guarded runtime remains separate; see oracle/EXECUTE.md.
+
+2026-11-03: [#79](https://github.com/flyboy-byte/ScanRuler/pull/79) follows #78 and ports inScene with 120 full source routing/identity/scheduling traces. Non-scene calls stay immediate; failed scene turns release the queue. Runtime/viewport integration remains open; see oracle/SCENE-QUEUE.md.
+
+2026-11-03: [#78](https://github.com/flyboy-byte/ScanRuler/pull/78) follows #77 and ports complete live plugin stopping with 227 full source start/wait/map/effect traces. Every started wait remains owned across a host visit refusal; see oracle/PLUGIN-STOP.md. Executor/done resolution remain separate.
+
+2026-11-03: [#77](https://github.com/flyboy-byte/ScanRuler/pull/77) follows #76 and ports plugin busy registration/lookup with 96 complete source map/value/effect traces. Async stop invocation and session integration stay open; see oracle/PLUGIN-BUSY.md.
+
+2026-11-03: [#76](https://github.com/flyboy-byte/ScanRuler/pull/76) follows the combined [#75](https://github.com/flyboy-byte/ScanRuler/pull/75) integration. It adds explicit evidence labels across the canonical inventory, negative validation tests and fresh PLY/STL fuzz proofs. Read [VERIFICATION.md](VERIFICATION.md) before interpreting the labels. No accepted unit or new application feature is claimed.
+
+2026-11-03: [Cross-stack review handoff](REVIEW-HANDOFF-2026-11-03.md) records observed exact heads/checks, merge order, retained failures and the next actual execution work. It is a dated snapshot; refresh live Checks before merging.
+
+2026-11-03: [#72](https://github.com/flyboy-byte/ScanRuler/pull/72) follows #71 and ports subscription snapshot/identity/ordered teardown with 144 full source traces. Native plugin metadata wiring stays open; oracle/WATCH-SESSION.md records partial-failure and lifetime semantics.
+
+2026-11-03: [#71](https://github.com/flyboy-byte/ScanRuler/pull/71) follows #70 and ports watchSessionStores array/member identity and conditional release with 80 full source traces. Actual subscription and plugin wiring remain separate; oracle/WATCH-STORES.md records the boundary.
+
+2026-11-02: [#70](https://github.com/flyboy-byte/ScanRuler/pull/70) follows #67 and ports command guard identity/configuration/unconditional cleanup with 192 full source traces. Running/progress and plugin functions stay separate; oracle/ACTIVITY-GUARD.md records the boundary.
+
+2026-11-02: [#67](https://github.com/flyboy-byte/ScanRuler/pull/67) follows #66 and adds registration identity/live mutation over its wait component, with 116 full source traces and reproducible seed inputs. oracle/SETTLE-REGISTRY.md records runtime/resource limits.
+
+2026-11-02: [#66](https://github.com/flyboy-byte/ScanRuler/pull/66) follows #59 and ports only the stable-callback settlement body with 64 full pinned concurrent-wait traces. Registration/live Set mutation and executor ownership remain explicit in oracle/SETTLE-RUN.md.
+
+2026-11-02: [#59](https://github.com/flyboy-byte/ScanRuler/pull/59) follows #57 with command deadline reaction ordering at the owned clock/body boundary:291 cases /2037 observations, all earlier288 retained; roster34/3551. Physical timers, executor and command integration remain open.
+
+2026-11-02: [#57](https://github.com/flyboy-byte/ScanRuler/pull/57) follows #55 with the import queue class over owned futures, 67 source schedules /755 observations; roster33/3260. Prior #52–#54 were owner-merged. Source timing failures remain visible and unchanged; actual runtime/command integration stays required.
+
+2026-11-02: review #52 → #53 → #54 → [#55](https://github.com/flyboy-byte/ScanRuler/pull/55). #55 ports complete core capture/apply over borrowed owned data: all73 fields, 98 cases /490 full observations; roster32/3193. Family models, queue/worker lifecycle and commands remain integration work.
+
+2026-11-03: [#74](https://github.com/flyboy-byte/ScanRuler/pull/74) follows #68 and adds a fixed full negative-year Gregorian census. All old311 records remain byte-exact; the expanded1911-case suite compares full states with unchanged production code. See oracle/UTC-PERIOD.md.
+
+2026-11-02: [#68](https://github.com/flyboy-byte/ScanRuler/pull/68) follows #65 and supplies own Date clipping/UTC formatting and lazy stale-page adapter, with 311 full source timestamp/state cases. OS clock acquisition stays open; see oracle/CLOCK-UTC.md.
+
+2026-11-02: [#65](https://github.com/flyboy-byte/ScanRuler/pull/65) follows #60 → #61 → #63 and ports asCommandError composition with 304 full pinned source identity/envelope/page/effect traces. Actual registry execution remains open; see oracle/ERROR-NORMALIZE.md.
+
+2026-11-02: review #60 → #61 → [#63](https://github.com/flyboy-byte/ScanRuler/pull/63). #63 ports staleError envelope and clock/message failure ordering with 120 exact source traces. The general String conversion boundary remains explicit in oracle/STALE-ERROR.md; registry wiring is separate.
+
+2026-11-02: review #60 then [#61](https://github.com/flyboy-byte/ScanRuler/pull/61). #61 adds only first-stale timestamp/get/reset with 64 exact source clock/error/state sequences. Host time conversion and error normalization remain open; oracle/STALE-CLOCK.md records the boundary.
+
+2026-11-02: [#60](https://github.com/flyboy-byte/ScanRuler/pull/60) is independent of the history/deadline stack, based on mainc3b4674. It ports only stale-import classification: 308 exact source result/page-state traces. Page clock and full error normalization remain separate. See oracle/STALE-DETECT.md.
+
 2026-11-02: review #52 → #53 → [#54](https://github.com/flyboy-byte/ScanRuler/pull/54). #54 ports global restore orchestration over typed capture/apply, with 216 exact source traces; roster31/3095. Concrete family restoration, queue and real command integration remain required.
 
 2026-11-02: review #52 then [#53](https://github.com/flyboy-byte/ScanRuler/pull/53). #53 ports complete history blocking and editor-work predicates with 212 original/Rust observations; native roster30/2879. Global restoration remains the next continuation.

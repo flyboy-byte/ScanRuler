@@ -25,5 +25,6 @@
     "Partial 2026-11-01: refreshed stale handoff/CI/contributor guidance against the existing scaffold and hosted evidence; see plan/findings/2026-11-01-handoff-scaffold-drift.md. No lifecycle promotion: Rust checker replacement, paired harness and acceptance remain open.",
     "Checkpoint 2026-11-01: generated backlog/status freshness and evidence-backed docs are enforced by temporary Python tools. Rust replacement and general accepted-unit reporting remain open; no lifecycle promotion."
   ],
-  "claim_pr": null
+  "claim_pr": null,
+  "verification": "none"
 }

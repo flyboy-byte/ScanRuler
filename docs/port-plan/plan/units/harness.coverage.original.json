@@ -49,5 +49,6 @@
   "resolved_items": [
     "2026-11-02: no added dependencies; use built-in Node22 inspector V8 detailed coverage plus pinned TypeScript source maps.",
     "1422 inputs from ten suites replay complete original outputs/status/progress unchanged; eight full source modules map and raw ranges/maps are archived."
-  ]
+  ],
+  "verification": "none"
 }

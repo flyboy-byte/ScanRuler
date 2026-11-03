@@ -137,5 +137,6 @@
     "2026-11-02: full parseOBJ body and complete decoded texture continuation ported with exact 81 independent source cases (53 outputs /28 refusals), seeds retained.",
     "Real million-line progress and short-UTF16-line skip behavior compare exactly; huge forward indices use sparse first-UV state without dense allocation by index.",
     "2026-11-02: harness.wasm.obj compares 79 exact complete states in actual Chrome; see evidence/browser-wasm-obj-2026-11-02/manifest.json. Both full-size OBJ progress workloads remain native-only."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

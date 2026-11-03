@@ -98,8 +98,8 @@ class InventoryTests(unittest.TestCase):
     def test_current_roster_and_status_are_deterministic(self):
         value = report.status()
         self.assertEqual(value, report.status())
-        self.assertEqual(value['native_suites'], 31)
-        self.assertEqual(value['native_case_identities_including_refusals'], 3095)
+        self.assertEqual(value['native_suites'], 57)
+        self.assertEqual(value['native_case_identities_including_refusals'], 22938)
 
     def test_roster_rejects_missing_duplicate_or_unknown_suite(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -120,12 +120,16 @@ class InventoryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             shutil.copytree(report.PLAN / 'plan/units', root / 'plan/units')
+            # Isolate generated-backlog freshness from unrelated local evidence files.
+            for path in (root / 'plan/units').glob('*.json'):
+                unit = json.loads(path.read_text()); unit['verification'] = 'none'
+                path.write_text(json.dumps(unit))
             metadata = json.loads((report.PLAN / 'backlog.json').read_text())
             metadata['tasks'] = []
             (root / 'backlog.json').write_text(json.dumps(metadata))
             result = subprocess.run(['python3', str(report.PLAN / 'tools/port_plan.py'), '--root', str(root), 'check-generated'], capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0)
-            self.assertIn('stale', result.stderr)
+            self.assertIn('Generated backlog is stale', result.stderr)
 
 
 if __name__ == '__main__':

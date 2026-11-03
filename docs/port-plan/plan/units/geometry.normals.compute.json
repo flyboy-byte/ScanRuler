@@ -60,5 +60,6 @@
   ],
   "resolved_items": [
     "2026-11-01: orientation and minimal volume/extent dependencies implemented separately as geometry.normals.orient; no browser-Wasm acceptance implied."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

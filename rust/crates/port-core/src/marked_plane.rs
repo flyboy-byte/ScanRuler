@@ -213,12 +213,8 @@ pub fn fit_plane_on_selection(
     sigma: f64,
     max_points: usize,
 ) -> Result<MarkedPlane, MarkedPlaneError> {
-    if selection.len() < 20 {
-        return Err(MarkedPlaneError::Source(format!(
-            "Paint more of the surface — a fit needs at least 20 marked points, and this selection has {}.",
-            selection.len()
-        )));
-    }
+    crate::selection::require_selection(selection.len(), "surface")
+        .map_err(MarkedPlaneError::Source)?;
     if !positions.len().is_multiple_of(3)
         || normals.len() != positions.len()
         || selection.len() > max_points

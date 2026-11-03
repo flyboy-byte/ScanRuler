@@ -519,6 +519,22 @@ fn payload(b: &[u8]) -> Vec<u8> {
     encode(&mut b, &Value::Array(frames));
     b
 }
+fn fixture_seeds() -> Vec<u64> {
+    cases()
+        .iter()
+        .filter_map(|c| {
+            c.id.strip_prefix("seed-")
+                .map(|tail| tail.split('-').next().unwrap().parse::<u64>().unwrap())
+        })
+        .collect::<std::collections::BTreeSet<_>>()
+        .into_iter()
+        .collect()
+}
+#[test]
+fn identity_seeds_are_the_actual_fixed_fixture_seeds() {
+    assert_eq!(fixture_seeds(), vec![1, 7, 99, 1039]);
+}
+
 #[test]
 fn all_authored_traces_have_complete_typed_recording_state() {
     for c in cases() {
@@ -548,8 +564,16 @@ fn pinned_history_record_comparison() {
     assert!(sha.status.success());
     std::fs::write(run.join("candidate.txt"), sha.stdout).unwrap();
     let mut identity = String::from(
-        "contract: engine.session.history.record.bytes.v1\nreference: 2cd89c6769a10c27ee7754b477ada521c9ef5cb7\ncomparison: full patch graph identities/payloads, bookkeeping/workspace/capture order and held state\nseeds: 1,7,99,1109\n",
+        "contract: engine.session.history.record.bytes.v1\nreference: 2cd89c6769a10c27ee7754b477ada521c9ef5cb7\ncomparison: full patch graph identities/payloads, bookkeeping/workspace/capture order and held state\n",
     );
+    identity.push_str(&format!(
+        "seeds: {}\n",
+        fixture_seeds()
+            .iter()
+            .map(u64::to_string)
+            .collect::<Vec<_>>()
+            .join(",")
+    ));
     for (label, program, args) in [
         ("dirty", "git", vec!["status", "--porcelain"]),
         ("node", "node", vec!["--version"]),

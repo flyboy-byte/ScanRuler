@@ -159,6 +159,19 @@ fn wasm() -> Result<(), String> {
 // Existing source-comparison entrypoints. Removing/renaming one requires explicit
 // coverage review; an empty or filtered Cargo run must never appear successful.
 const ORACLE_TESTS: &[&str] = &[
+    "pinned_marked_sphere_comparison",
+    "pinned_fixed3_comparison",
+    "pinned_sphere_comparison",
+    "pinned_command_label_comparison",
+    "pinned_activity_state_comparison",
+    "pinned_state_sections_comparison",
+    "pinned_workspaces_comparison",
+    "pinned_recent_store_comparison",
+    "pinned_recent_result_comparison",
+    "pinned_execute_comparison",
+    "pinned_scene_queue_comparison",
+    "pinned_plugin_stop_comparison",
+    "pinned_plugin_busy_comparison",
     "closed_shells::tests::pinned_closed_shells_comparison",
     "pinned_adjacency_comparison",
     "pinned_bounds_comparison",
@@ -190,6 +203,19 @@ const ORACLE_TESTS: &[&str] = &[
     "pinned_history_local_comparison",
     "pinned_history_guards_comparison",
     "pinned_history_restore_comparison",
+    "pinned_history_core_comparison",
+    "pinned_import_queue_comparison",
+    "pinned_command_deadline_comparison",
+    "pinned_settle_run_comparison",
+    "pinned_settle_registry_comparison",
+    "pinned_activity_guard_comparison",
+    "pinned_watch_stores_comparison",
+    "pinned_watch_session_comparison",
+    "pinned_stale_detect_comparison",
+    "pinned_stale_clock_comparison",
+    "pinned_stale_error_comparison",
+    "pinned_error_normalize_comparison",
+    "pinned_clock_utc_comparison",
 ];
 
 fn validate_oracle_discovery(list: &str) -> Result<(), String> {

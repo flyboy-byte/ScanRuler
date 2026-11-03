@@ -1,0 +1,21 @@
+# run A: default (hostile) mix, 20000 inputs per format
+# command: npx tsx diff-parsers.mts <pin>/src <current>/src 20000
+STL: 20000 inputs | identical ok 8242, identical error 11758, DIFFER 0
+PLY: 20000 inputs | identical ok 4914, identical error 14803, DIFFER 283
+   pin-ok / new-ok: 283
+   SHORTEST differing input: "ply\nformat ascii 1.0\n\nelement vertex 0\nproperty float x\r\nproperty float y\nproperty float z\n\nelement face 2\nproperty list int int vertex_index\rend_header\nNaN\n4 0 -1 0 0 0.5\n\n"
+      pin: {"kind":"indexed","p":[],"i":[]}
+      new: {"kind":"indexed","p":[],"i":[0,4294967295,0,0,0,0]}
+OBJ: 20000 inputs | identical ok 1204, identical error 18796, DIFFER 0
+total inputs 60000
+
+# run B: well-formed mix, 40000 inputs per format
+# command: NOBADCOUNT=1 PURE=1 npx tsx diff-parsers.mts <pin>/src <current>/src 40000
+STL: 40000 inputs | identical ok 17639, identical error 22361, DIFFER 0
+PLY: 40000 inputs | identical ok 31041, identical error 8721, DIFFER 238
+   pin-ok / new-ok: 238
+   SHORTEST differing input: "ply\nformat ascii 1.0\n\nelement vertex 1\r\nproperty float x\nproperty float y\nproperty float z\r\nelement face 4\r\nproperty list uchar int vertex_index\nend_header\n\n67.266 12.353 -77.733\n5  0 1 0 2.7​0\n3 -100\n3 \t 1 0 1\r\n1 1\r\n"
+      pin: {"kind":"indexed","p":[67.26599884033203,12.352999687194824,-77.73300170898438],"i":[0,1,0,0,0,2,0,2,3]}
+      new: {"kind":"indexed","p":[67.26599884033203,12.352999687194824,-77.73300170898438],"i":[0,1,0,0,0,2,0,2,3,1,0,1]}
+OBJ: 40000 inputs | identical ok 16159, identical error 23841, DIFFER 0
+total inputs 120000

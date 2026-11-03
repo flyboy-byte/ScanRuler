@@ -261,5 +261,6 @@
     "Concrete measure/flat/deviation/thickness capture and apply, remeasurement and scan/source restoration remain required.",
     "Typed runRestore owns a single-use job; arbitrary reentrant JS and concurrent/multiple job invocation are not represented.",
     "Import queue, command integration and actual browser runtime remain open."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

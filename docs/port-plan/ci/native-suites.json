@@ -350,6 +350,307 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "engine.session.history.core",
+      "test": "pinned_history_core_comparison",
+      "directory": "history-core-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.import.queue",
+      "test": "pinned_import_queue_comparison",
+      "directory": "import-queue-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.command.deadline",
+      "test": "pinned_command_deadline_comparison",
+      "directory": "deadline-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.settle.run",
+      "test": "pinned_settle_run_comparison",
+      "directory": "settle-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.settle.registry",
+      "test": "pinned_settle_registry_comparison",
+      "directory": "settle-registry-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.activity.guard",
+      "test": "pinned_activity_guard_comparison",
+      "directory": "guard-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.activity.stores",
+      "test": "pinned_watch_stores_comparison",
+      "directory": "watch-stores-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.activity.watch",
+      "test": "pinned_watch_session_comparison",
+      "directory": "watch-session-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.stale.detect",
+      "test": "pinned_stale_detect_comparison",
+      "directory": "stale-detect-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.stale.clock",
+      "test": "pinned_stale_clock_comparison",
+      "directory": "stale-clock-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.stale.error",
+      "test": "pinned_stale_error_comparison",
+      "directory": "stale-error-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.error.normalize",
+      "test": "pinned_error_normalize_comparison",
+      "directory": "normalize-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.clock.utc",
+      "test": "pinned_clock_utc_comparison",
+      "directory": "utc-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.activity.plugins",
+      "test": "pinned_plugin_busy_comparison",
+      "directory": "plugin-busy-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.activity.stop",
+      "test": "pinned_plugin_stop_comparison",
+      "directory": "plugin-stop-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.scene.queue",
+      "test": "pinned_scene_queue_comparison",
+      "directory": "scene-queue-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.execute.lifecycle",
+      "test": "pinned_execute_comparison",
+      "directory": "execute-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.recent.result.data",
+      "test": "pinned_recent_result_comparison",
+      "directory": "recent-result-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.recent.store",
+      "test": "pinned_recent_store_comparison",
+      "directory": "recent-store-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.state.workspaces",
+      "test": "pinned_workspaces_comparison",
+      "directory": "workspaces-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "math.number.fixed3",
+      "test": "pinned_fixed3_comparison",
+      "directory": "fixed-number-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "descriptor.tsv",
+        "original.bin",
+        "original.category.txt",
+        "rust.category.txt",
+        "original.after.bin",
+        "rust.after.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "fit.sphere.clipped",
+      "test": "pinned_sphere_comparison",
+      "directory": "sphere-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "descriptor.tsv",
+        "original.bin",
+        "original.after.bin",
+        "rust.after.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "fit.sphere.selection",
+      "test": "pinned_marked_sphere_comparison",
+      "directory": "marked-sphere-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "descriptor.tsv",
+        "original.bin",
+        "original.after.bin",
+        "rust.after.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.command.label",
+      "test": "pinned_command_label_comparison",
+      "directory": "command-label-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "descriptor.tsv",
+        "original.bin",
+        "original.status.txt",
+        "rust.status.txt",
+        "original.effects.txt",
+        "rust.effects.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.activity.state",
+      "test": "pinned_activity_state_comparison",
+      "directory": "activity-state-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.state.sections",
+      "test": "pinned_state_sections_comparison",
+      "directory": "state-sections-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

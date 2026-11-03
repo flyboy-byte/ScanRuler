@@ -32,11 +32,18 @@
   ],
   "symbols": [],
   "rust_paths": [],
-  "evidence": [],
+  "evidence": [
+    {
+      "kind": "report",
+      "location": "NEXT-RUNTIME-IMPLEMENTATION-2026-11-03.md",
+      "summary": "Second-pass implementation boundaries and concrete next runtime/source tests; no new runtime or acceptance claim."
+    }
+  ],
   "open_items": [
-    "Spec drafted in SESSION-CONTRACT.md from registry, state, types, historyStore, activity, schema, stalePage, host.sessionBusy and the worker files; still to read: stateSections.ts, agentLink.ts, rest of host.ts.",
-    "Bounded registry, recording, local dispatch, guards and restore orchestration have source traces. Complete family capture/apply, queue/worker lifecycle and real command traces remain required; no session acceptance claim.",
+    "2026-11-03: bounded stateSections registration/readout is implemented under engine.state.sections; actual session.state composition remains open. agentLink.ts and remaining host.ts still need review.",
+    "Scoped registry/history/queues/deadline/settle/plugin/stale/error/clock/execute/recent/workspace/label/activity/readout libraries and native task ownership exist. Complete source-ordered reactions (engine.runtime.reactions), guarded/interrupt/history/native family ownership, real timers/late progress/commands/projects/CLI/browser runtime remain required; no session acceptance.",
     "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
     "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
-  ]
+  ],
+  "verification": "none"
 }
