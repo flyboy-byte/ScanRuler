@@ -194,6 +194,7 @@ const ORACLE_TESTS: &[&str] = &[
     "pinned_stale_clock_comparison",
     "pinned_stale_error_comparison",
     "pinned_error_normalize_comparison",
+    "pinned_clock_utc_comparison",
 ];
 
 fn validate_oracle_discovery(list: &str) -> Result<(), String> {

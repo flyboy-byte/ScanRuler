@@ -43,3 +43,18 @@ impl PageStale {
         self.since = None;
     }
 }
+
+impl PageStale {
+    /// Native Date-millisecond adapter. Conversion is lazy: an already marked
+    /// page neither samples nor validates the new time, even when it is invalid.
+    /// Reading the actual OS current time remains the runtime's responsibility.
+    pub fn mark_millis(
+        &mut self,
+        milliseconds: f64,
+        max_units: usize,
+    ) -> Result<(), MarkError<port_core::js_date::DateError>> {
+        self.mark(max_units, || {
+            port_core::js_date::utc_iso_millis(milliseconds)
+        })
+    }
+}

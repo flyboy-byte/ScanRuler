@@ -33,3 +33,6 @@ pub mod orientation;
 pub mod plane;
 pub mod ransac;
 pub mod weld;
+
+/// Own Date millisecond clipping and Gregorian UTC timestamp conversion.
+pub mod js_date;
