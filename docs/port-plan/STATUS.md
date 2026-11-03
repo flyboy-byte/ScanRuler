@@ -11,9 +11,9 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 69 |
+| implemented | 70 |
 | planned | 47 |
-| specified | 2 |
+| specified | 1 |
 
 Verification labels describe scoped evidence snapshots, not whole-feature/runtime acceptance.
 
@@ -122,7 +122,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [harness.oracle.gate](plan/units/harness.oracle.gate.json) | implemented | none | `eeb2136` | — | [#15](https://github.com/flyboy-byte/ScanRuler/pull/15) |
 | [harness.verification.levels](plan/units/harness.verification.levels.json) | implemented | fixed-corpus | `7402ddf` | `7402ddf` | [#76](https://github.com/flyboy-byte/ScanRuler/pull/76) |
 | [harness.wasm.files](plan/units/harness.wasm.files.json) | implemented | none | `dbe8fcc` | — | [#37](https://github.com/flyboy-byte/ScanRuler/pull/37) |
-| [harness.wasm.marked.sphere](plan/units/harness.wasm.marked.sphere.json) | specified | none | — | — | [#94](https://github.com/flyboy-byte/ScanRuler/pull/94) |
+| [harness.wasm.marked.sphere](plan/units/harness.wasm.marked.sphere.json) | implemented | none | `3f72f19` | — | [#94](https://github.com/flyboy-byte/ScanRuler/pull/94) |
 | [harness.wasm.obj](plan/units/harness.wasm.obj.json) | implemented | none | `239012c` | — | [#34](https://github.com/flyboy-byte/ScanRuler/pull/34) |
 | [harness.wasm.ply](plan/units/harness.wasm.ply.json) | implemented | none | `8bc7363` | — | [#29](https://github.com/flyboy-byte/ScanRuler/pull/29) |
 | [harness.wasm.runtime](plan/units/harness.wasm.runtime.json) | implemented | none | `00fd1a6` | — | [#24](https://github.com/flyboy-byte/ScanRuler/pull/24) |

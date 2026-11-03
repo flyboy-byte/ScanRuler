@@ -3,9 +3,9 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 69,
+    "implemented": 70,
     "planned": 47,
-    "specified": 2
+    "specified": 1
   },
   "verification_levels": {
     "fixed-corpus": 51,
@@ -1031,7 +1031,7 @@
       "verification": "fixed-corpus",
       "verification_tested_sha": "6cc198f1306de27df9504c9ad553d6e084e411a6",
       "open_items": [
-        "Actual browser marked-sphere selection execution, seeded/RANSAC/growth/guides and engine command/session/history/project/CLI integration remain unimplemented.",
+        "2026-11-03: all2220 marked-sphere cases execute in actual Chrome Wasm under harness.wasm.marked.sphere. Seeded/RANSAC/growth/guides and actual command/session/history/project/CLI integration remain unimplemented.",
         "Owned positions/settings/region boundaries exclude arbitrary JS property getters/boxed settings. Generic exact-base ratchet and broader platform profiles remain open."
       ]
     },
@@ -1276,14 +1276,15 @@
     },
     {
       "id": "harness.wasm.marked.sphere",
-      "status": "specified",
+      "status": "implemented",
       "parent": "P36",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/94",
-      "tested_sha": null,
+      "tested_sha": "3f72f196fd9d2c5c6e12438ca22a708f568656ac",
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
-        "Implement and execute full input-only Chrome comparison; actual session/command/seeded/UI/CLI integration remains separate."
+        "Broader platform profiles, full standalone fixed3 browser corpus and actual session/command/history/project/UI/CLI integration remain open; no accepted feature or M3.",
+        "The three original native-only workload exclusions and generic P36/P37/tooling replacement continuations remain unchanged."
       ]
     },
     {
@@ -1589,7 +1590,7 @@
       "verification": "fixed-corpus",
       "verification_tested_sha": "3ae1787091398112b4b7159269078e51d953dae5",
       "open_items": [
-        "Actual browser fixed3 execution and full marked-sphere selection/command/session/CLI integration remain unimplemented.",
+        "2026-11-03: fixed3 executes through2220 actual Chrome marked-sphere cases, including exact tie/threshold refusals (harness.wasm.marked.sphere). The standalone8492-case formatter browser corpus and full command/session/CLI remain unimplemented.",
         "General fraction-count toFixed and arbitrary boxed/prototype JS method semantics are outside this owned primitive boundary."
       ]
     },

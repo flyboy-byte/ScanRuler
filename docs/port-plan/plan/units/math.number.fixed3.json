@@ -8531,7 +8531,7 @@
     }
   ],
   "open_items": [
-    "Actual browser fixed3 execution and full marked-sphere selection/command/session/CLI integration remain unimplemented.",
+    "2026-11-03: fixed3 executes through2220 actual Chrome marked-sphere cases, including exact tie/threshold refusals (harness.wasm.marked.sphere). The standalone8492-case formatter browser corpus and full command/session/CLI remain unimplemented.",
     "General fraction-count toFixed and arbitrary boxed/prototype JS method semantics are outside this owned primitive boundary."
   ],
   "verification": "fixed-corpus"

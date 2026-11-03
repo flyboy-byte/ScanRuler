@@ -2270,7 +2270,7 @@
     }
   ],
   "open_items": [
-    "Actual browser marked-sphere selection execution, seeded/RANSAC/growth/guides and engine command/session/history/project/CLI integration remain unimplemented.",
+    "2026-11-03: all2220 marked-sphere cases execute in actual Chrome Wasm under harness.wasm.marked.sphere. Seeded/RANSAC/growth/guides and actual command/session/history/project/CLI integration remain unimplemented.",
     "Owned positions/settings/region boundaries exclude arbitrary JS property getters/boxed settings. Generic exact-base ratchet and broader platform profiles remain open."
   ],
   "verification": "fixed-corpus"
