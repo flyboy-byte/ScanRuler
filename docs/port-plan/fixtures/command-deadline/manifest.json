@@ -1446,6 +1446,21 @@
       "id": "seed-1039-11",
       "bytes": 359,
       "sha256": "4b76af802f85198264fc596cb42a5b560776d72343548c524622907806624c2f"
+    },
+    {
+      "id": "factory-timer-ignore",
+      "bytes": 355,
+      "sha256": "c6b8418d660729f862ecc6f6e75630a2b15f9ff37f8aca1b4a0ca8b19f17aa46"
+    },
+    {
+      "id": "factory-timer-resolve",
+      "bytes": 357,
+      "sha256": "e69488e140c40ca1d02ac7b0d86842b9d5f3b63fa4d0cc96fa95c1203d0985f8"
+    },
+    {
+      "id": "factory-timer-reject-reason",
+      "bytes": 369,
+      "sha256": "ced52708bf00680e884cf141cb86ec605b270e3555b8e8158af53b5899a9df13"
     }
   ]
 }

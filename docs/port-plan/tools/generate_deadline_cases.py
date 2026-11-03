@@ -21,5 +21,7 @@ def generate():
     ms=struct.unpack('<d',rng.getrandbits(64).to_bytes(8,'little'))[0]
     if math.isfinite(ms):break
    add('seed-'+str(seed)+'-'+str(i),'pending','ignore',ms,['fire','reject','resolve'],kind=['plain','typed','typeerror'][i%3])
+ for policy in ['ignore','resolve','reject-reason']:
+  add('factory-timer-'+policy,'fire-only',policy,1000,['reject','resolve','fire'],kind='typed')
  (OUT/'manifest.json').write_text(json.dumps(dict(reference_sha='2cd89c6769a10c27ee7754b477ada521c9ef5cb7',seeds=[1,7,99,1039],cases=rows),indent=2)+'\n');print(len(rows),'deadline cases')
 if __name__=='__main__':generate()

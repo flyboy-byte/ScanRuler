@@ -117,6 +117,7 @@ impl Actor {
             .as_str()
         {
             "pending" => {}
+            "fire-only" => a.fire(),
             "resolved" => a.resolve(a.value.clone()),
             "rejected" => a.reject(a.body_error.clone()),
             "throw" => {
@@ -327,13 +328,13 @@ fn payload(b: &[u8]) -> Vec<u8> {
 }
 #[test]
 fn all_owned_deadline_events_settle() {
-    assert_eq!(cases().len(), 288);
+    assert_eq!(cases().len(), 291);
     for c in cases() {
         assert!(payload(c.input).starts_with(b"CDL1"), "{}", c.id)
     }
 }
 #[test]
-#[ignore = "live original import queue comparison requires Node 22 and pinned TypeScript dependency"]
+#[ignore = "live original command deadline comparison requires Node 22 and pinned TypeScript dependency"]
 fn pinned_command_deadline_comparison() {
     use std::io::Write;
     use std::process::{Command, Stdio};
@@ -386,7 +387,7 @@ fn pinned_command_deadline_comparison() {
         String::from_utf8_lossy(&prepared.stderr)
     );
     let cases = cases();
-    assert_eq!(cases.len(), 288);
+    assert_eq!(cases.len(), 291);
     let mut input = Vec::new();
     for c in &cases {
         n(&mut input, c.input.len());
@@ -475,7 +476,86 @@ fn pinned_command_deadline_comparison() {
     }
     assert_eq!(offset, original.stdout.len());
     println!(
-        "288 complete command deadline scenarios; raw {}",
+        "291 complete command deadline scenarios; raw {}",
         run.display()
     );
+}
+
+#[test]
+fn abort_capabilities_and_late_non_clone_faults_are_owned() {
+    use std::{cell::Cell, rc::Rc};
+    #[derive(Debug)]
+    struct Fault(Rc<Cell<usize>>);
+    impl Drop for Fault {
+        fn drop(&mut self) {
+            self.0.set(self.0.get() + 1)
+        }
+    }
+    let mut d = Deadline::<(), Fault>::new(&txt("probe.run"), 1234., 1_000_000).unwrap();
+    d.registered(1).unwrap();
+    d.factory_returned().unwrap();
+    let event = d.fire_begin().unwrap().unwrap();
+    let reason = event.reason().clone();
+    assert!(
+        d.begin_clear().is_none(),
+        "abort dispatch must finish first"
+    );
+    assert!(d.outcome().is_none());
+    d.fire_end(event).unwrap();
+    assert_eq!(d.begin_clear(), Some(1));
+    assert!(d.outcome().is_none());
+    d.cleared().unwrap();
+    match d.take_outcome().unwrap() {
+        Completion::Timeout(e) => assert!(Arc::ptr_eq(&e, &reason)),
+        _ => panic!("timeout"),
+    }
+    let drops = Rc::new(Cell::new(0));
+    assert!(!d.body_settled(Err(Fault(drops.clone()))));
+    assert_eq!(drops.get(), 1);
+    assert!(!d.body_settled(Err(Fault(drops.clone()))));
+    assert_eq!(drops.get(), 2);
+    assert!(d.take_outcome().is_none());
+    assert!(d.fire_begin().unwrap().is_none());
+}
+#[test]
+fn timer_tokens_cannot_cross_deadlines_or_complete_twice() {
+    use port_engine::command_deadline::DeadlineError;
+    let mut a = Deadline::<(), ()>::new(&txt("a.run"), 0., 1_000_000).unwrap();
+    let mut b = Deadline::<(), ()>::new(&txt("b.run"), 0., 1_000_000).unwrap();
+    a.registered(1).unwrap();
+    b.registered(1).unwrap();
+    a.factory_returned().unwrap();
+    b.factory_returned().unwrap();
+    let ea = a.fire_begin().unwrap().unwrap();
+    let eb = b.fire_begin().unwrap().unwrap();
+    assert_eq!(a.fire_end(eb.clone()), Err(DeadlineError::InvalidToken));
+    assert!(a.begin_clear().is_none());
+    a.fire_end(ea.clone()).unwrap();
+    assert_eq!(a.fire_end(ea), Err(DeadlineError::InvalidToken));
+    b.fire_end(eb).unwrap();
+}
+#[test]
+fn preexisting_result_waits_for_registration_and_cleanup() {
+    let mut d = Deadline::<Text, Text>::new(&txt("probe.run"), 0., 1_000_000).unwrap();
+    assert!(d.body_settled(Ok(txt("owned result"))));
+    assert!(d.outcome().is_none());
+    d.registered(7).unwrap();
+    let event = d.fire_begin().unwrap().unwrap();
+    d.fire_end(event).unwrap();
+    d.factory_returned().unwrap();
+    assert_eq!(d.begin_clear(), Some(7));
+    assert!(d.outcome().is_none());
+    d.cleared().unwrap();
+    match d.take_outcome().unwrap() {
+        Completion::Body(Ok(value)) => assert_eq!(value, txt("owned result")),
+        _ => panic!("array-order tie"),
+    }
+    assert!(d.abort_reason().is_some());
+    assert!(!d.timer_active());
+    assert!(matches!(
+        Deadline::<(), ()>::new(&txt("too large"), 0., 0),
+        Err(port_engine::command_deadline::DeadlineError::Envelope(
+            port_engine::error::EnvelopeError::MessageLimit
+        ))
+    ));
 }

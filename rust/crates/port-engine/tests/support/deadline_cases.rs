@@ -288,4 +288,7 @@ vec![
     Case { id: "seed-1039-9", input: include_bytes!("../../../../../docs/port-plan/fixtures/command-deadline/seed-1039-9.bin") },
     Case { id: "seed-1039-10", input: include_bytes!("../../../../../docs/port-plan/fixtures/command-deadline/seed-1039-10.bin") },
     Case { id: "seed-1039-11", input: include_bytes!("../../../../../docs/port-plan/fixtures/command-deadline/seed-1039-11.bin") },
+    Case { id: "factory-timer-ignore", input: include_bytes!("../../../../../docs/port-plan/fixtures/command-deadline/factory-timer-ignore.bin") },
+    Case { id: "factory-timer-resolve", input: include_bytes!("../../../../../docs/port-plan/fixtures/command-deadline/factory-timer-resolve.bin") },
+    Case { id: "factory-timer-reject-reason", input: include_bytes!("../../../../../docs/port-plan/fixtures/command-deadline/factory-timer-reject-reason.bin") },
 ]

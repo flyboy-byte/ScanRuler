@@ -28,6 +28,7 @@ while(cursor<bytes.length){
   if(input.mode==='throw'){body={status:'thrown',error:bodyError};doc=-2;log.push({event:'body:thrown',error:error(bodyError)});throw bodyError}
   if(input.mode==='resolved')resolveBody()
   else if(input.mode==='rejected')rejectBody()
+  else if(input.mode==='fire-only')fire()
   else if(input.mode==='fire-resolve'){fire();resolveBody()}
   else if(input.mode==='resolve-fire'){resolveBody();fire()}
   else if(input.mode==='fire-reject'){fire();rejectBody()}

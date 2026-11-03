@@ -59,6 +59,7 @@ pub struct Deadline<T, E> {
     name: Text,
     ms: f64,
     max_units: usize,
+    message_capacity: usize,
     domain: Arc<()>,
     timer: Option<u64>,
     phase: Phase,
@@ -94,6 +95,7 @@ impl<T, E> Deadline<T, E> {
             name: owned,
             ms,
             max_units,
+            message_capacity: bound,
             domain: Arc::new(()),
             timer: None,
             phase: Phase::Register,
@@ -129,7 +131,7 @@ impl<T, E> Deadline<T, E> {
             return false;
         }
         self.body_done = true;
-        if self.phase == Phase::Factory {
+        if self.phase == Phase::Register || self.phase == Phase::Factory {
             self.body = Some(result);
             true
         } else if self.phase == Phase::Racing {
@@ -173,10 +175,7 @@ impl<T, E> Deadline<T, E> {
         self.fired = true;
         let mut message = Vec::new();
         message
-            .try_reserve(
-                self.max_units
-                    .min(self.name.len() + MIDDLE.len() + END.len() + 32),
-            )
+            .try_reserve_exact(self.message_capacity)
             .map_err(|_| DeadlineError::Envelope(EnvelopeError::Allocation))?;
         message.extend_from_slice(&self.name);
         message.extend(MIDDLE.encode_utf16());
