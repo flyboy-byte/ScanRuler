@@ -11,8 +11,8 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 44 |
-| planned | 48 |
+| implemented | 45 |
+| planned | 47 |
 | specified | 1 |
 
 | Unit | State | Tested implementation | PR |
@@ -110,5 +110,5 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [io.ply](plan/units/io.ply.json) | planned | — | — |
 | [io.stl.binary](plan/units/io.stl.binary.json) | implemented | `5ee3881` | [#2](https://github.com/flyboy-byte/ScanRuler/pull/2) |
 | [io.stl.dispatch](plan/units/io.stl.dispatch.json) | implemented | `77683bf` | [#3](https://github.com/flyboy-byte/ScanRuler/pull/3) |
-| [io.threemf](plan/units/io.threemf.json) | planned | — | — |
+| [io.threemf](plan/units/io.threemf.json) | implemented | — | — |
 | [project.measurement.compatibility](plan/units/project.measurement.compatibility.json) | planned | — | — |

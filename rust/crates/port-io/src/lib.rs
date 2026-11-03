@@ -22,3 +22,6 @@ pub mod scan_files;
 
 /// Complete dropped-folder async callback traversal; no DOM adapter or decoder.
 pub mod drop_files;
+
+/// 3MF import (zip container, units, components, slicer parts, colour and textures).
+pub mod threemf;

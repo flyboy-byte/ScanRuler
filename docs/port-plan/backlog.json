@@ -8457,7 +8457,7 @@
       "parent": "P06",
       "title": "Port 3MF import (zip container, units, textures)",
       "gate": "G3",
-      "status": "planned",
+      "status": "implemented",
       "depends_on": [
         "io.stl.dispatch",
         "io.inflate"
@@ -8478,10 +8478,28 @@
       "source_paths": [
         "src/core/parsers/threemf.ts"
       ],
-      "symbols": [],
-      "rust_paths": [],
-      "evidence": [],
+      "symbols": [
+        "parse3MF"
+      ],
+      "rust_paths": [
+        "rust/crates/port-io/src/threemf.rs",
+        "rust/crates/port-io/tests/threemf.rs",
+        "rust/crates/port-io/tests/support/threemf_corpus.rs",
+        "docs/port-plan/oracle/threemf.cjs"
+      ],
+      "evidence": [
+        {
+          "kind": "report",
+          "location": "plan/findings/2026-11-03-threemf-first-run.md",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "summary": "parse3MF vs Rust: 24,540 generated, mutated and named packages (6 seeds) and 107 real .3mf files, 0 divergences; success/refusal, full error and progress text, positions, indices, colours and texture notes compared; sabotage check reports divergences"
+        }
+      ],
       "open_items": [
+        "Not in ci/native-suites.json: no registered case inventory; runs locally as an ignored test (see the finding for the command). Not wired to cargo xtask fuzz (rust/xtask is held by other open PRs).",
+        "Host-limit class: an archive entry whose declared size exceeds the caller's cap is refused where the original reads it (io.inflate allocates the declared size); owner decision with H1 to H3.",
+        "Packed texture images are read by a second unzip in src/app/scanFiles.ts and belong to io.obj.companions.images (own PNG, then JPEG decoder).",
+        "Only Node 22 ran the original; no Chrome execution. No real package from Bambu, Orca, PrusaSlic3r or 3D Builder was available locally.",
         "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate."
       ]
     },

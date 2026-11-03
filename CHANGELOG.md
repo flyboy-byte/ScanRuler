@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust 3MF import** (2026-11-03): the original's `parse3MF` ported body for body (own XML scanner, units, component and build transforms, mirrored-triangle correction, slicer parts left out, colour and texture groups) on the own pure-Rust zip reader; 24,540 generated, mutated and named packages plus 107 real `.3mf` files read identically by the original and Rust (success or failure, full error and progress text, positions, indices, colours, texture notes), with a sabotage check that fails. Host limits are reported apart from the original's refusals. Not yet in the hosted native suite.
+
 - **Rust DEFLATE and ZIP reader** (2026-11-03): own pure-Rust inflate and unzip that reproduces the original's `fflate` 0.8.3 `unzipSync`, including its lenient behaviour on damaged archives; 30,000 generated and mutated archives, 0 divergences. 3MF reading itself and PNG/JPEG decoding remain separate.
 
 - **Rust global restore orchestration**: preserve capture/hook/apply order, workspace, stack movement, late-epoch invalidation and partial-failure state across 216 full typed-boundary source traces. Concrete family restore and queue integration remain required.
