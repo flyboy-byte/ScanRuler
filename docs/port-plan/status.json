@@ -5,7 +5,7 @@
     "baseline-captured": 2,
     "implemented": 46,
     "planned": 49,
-    "specified": 1
+    "specified": 2
   },
   "native_suites": 34,
   "native_case_identities_including_refusals": 3551,
@@ -560,6 +560,17 @@
         "Owned typed data only, no shared/live-mutated definition aliases or executable values. Retained repeatable cleanup handles have an explicit host cap; full session lifecycle must own/drop them.",
         "Default Node22 ICU ordering on valid ASCII names is compared on all140 names and authored/seeded order cases; broader locale/platform acceptance remains open.",
         "Independent fuzz/coverage/strict exact-base ratchet and accepted status remain open."
+      ]
+    },
+    {
+      "id": "engine.session.settle.run",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "registerSettle function identity/live Set mutation is a separate continuation; stable callbacks cannot mutate registration during a run.",
+        "The executor must retain/poll all started work. Full registry execution, platform promise turns and cancellation/termination integration remain separate."
       ]
     },
     {

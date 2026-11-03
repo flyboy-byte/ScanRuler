@@ -1,0 +1,32 @@
+{
+  "id": "engine.session.settle.run",
+  "parent": "engine.session.contract",
+  "title": "Port deferred-work settling over stable callbacks",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "engine.session.registry"
+  ],
+  "scope": "Complete settle over a stable ordered typed callback slice, with exact name/readOnly arguments, synchronous error suppression, null when no waits and concurrent all-waits completion with rejected work suppressed. Registration/live Set mutation is a separate owning unit.",
+  "acceptance": [
+    "Full original registry graph compares invocation order, argument values, synchronous throws, no-work and mixed successful/rejected pending completions.",
+    "Borrowed opaque native errors, bounded metadata and explicit executor ownership; all earlier native cases remain required."
+  ],
+  "owner": "Codex",
+  "branch": "codex/settle-run",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/registry.ts"
+  ],
+  "symbols": [
+    "settle"
+  ],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "registerSettle function identity/live Set mutation is a separate continuation; stable callbacks cannot mutate registration during a run.",
+    "The executor must retain/poll all started work. Full registry execution, platform promise turns and cancellation/termination integration remain separate."
+  ]
+}

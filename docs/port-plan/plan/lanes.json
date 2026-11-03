@@ -31,7 +31,8 @@
         "engine.session.history.restore",
         "engine.session.history.core",
         "engine.session.import.queue",
-        "engine.session.command.deadline"
+        "engine.session.command.deadline",
+        "engine.session.settle.run"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },
