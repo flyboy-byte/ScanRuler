@@ -105,7 +105,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [fit.plane.selection](plan/units/fit.plane.selection.json) | implemented | fixed-corpus | `e5c342c` | `e5c342c` | [#23](https://github.com/flyboy-byte/ScanRuler/pull/23) |
 | [fit.plane.tls](plan/units/fit.plane.tls.json) | implemented | fixed-corpus | `4c8b4cf` | `4c8b4cf` | [#8](https://github.com/flyboy-byte/ScanRuler/pull/8) |
 | [fit.sphere.clipped](plan/units/fit.sphere.clipped.json) | implemented | fixed-corpus | `03369e0` | `03369e0` | [#89](https://github.com/flyboy-byte/ScanRuler/pull/89) |
-| [fit.sphere.selection](plan/units/fit.sphere.selection.json) | specified | none | — | — | — |
+| [fit.sphere.selection](plan/units/fit.sphere.selection.json) | specified | none | — | — | [#93](https://github.com/flyboy-byte/ScanRuler/pull/93) |
 | [geometry.adjacency](plan/units/geometry.adjacency.json) | implemented | fixed-corpus | `74dd926` | `74dd926` | [#17](https://github.com/flyboy-byte/ScanRuler/pull/17) |
 | [geometry.bounds](plan/units/geometry.bounds.json) | implemented | fixed-corpus | `4c8b4cf` | `4c8b4cf` | [#10](https://github.com/flyboy-byte/ScanRuler/pull/10) |
 | [geometry.centroid](plan/units/geometry.centroid.json) | implemented | fixed-corpus | `1473fe4` | `1473fe4` | [#11](https://github.com/flyboy-byte/ScanRuler/pull/11) |

@@ -44,3 +44,8 @@ pub mod js_date;
 pub mod js_fixed;
 /// Complete fixed-selection free/held-radius sphere fitting.
 pub mod sphere;
+
+/// Complete marked-sphere element output/refusal continuation.
+pub mod marked_sphere;
+/// Shared fixed-selection marking-size guard.
+pub mod selection;
