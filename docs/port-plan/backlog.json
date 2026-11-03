@@ -3502,6 +3502,40 @@
       ]
     },
     {
+      "id": "engine.session.activity.guard",
+      "parent": "engine.session.contract",
+      "title": "Port command guard configuration, identity and reset semantics",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [
+        "engine.session.registry"
+      ],
+      "scope": "Complete configureCommands, commandGuard and FREE guard over shared owned guard objects and synchronous fallible busy callbacks. Preserve object identity and unconditional cleanup reset, including old cleanup after a newer configuration.",
+      "acceptance": [
+        "Full pinned activity module compares guard identity, callback returns/errors and reentrant configuration/reset order.",
+        "Dropping cleanup does not reset; opaque non-Clone callback faults and borrowed host lifetimes remain supported."
+      ],
+      "owner": "Codex",
+      "branch": "codex/activity-guard",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/activity.ts"
+      ],
+      "symbols": [
+        "configureCommands",
+        "commandGuard",
+        "FREE"
+      ],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Activity running/progress state, plugin busy/watch/stop functions and full registry execution remain separate.",
+        "Owned guard objects exclude mutable JS busy-property getters/replacement and arbitrary prototype mutation."
+      ]
+    },
+    {
       "id": "engine.session.command.deadline",
       "parent": "engine.session.contract",
       "title": "Port command deadline races, abort reasons and late-result handling",
