@@ -4,24 +4,24 @@ Generated from canonical unit files and ci/native-suites.json; do not hand-edit.
 
 Reference: `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
 
-Native coverage inventory: **53 suites / 19630 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
+Native coverage inventory: **54 suites / 21850 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
 
 No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Bounded [browser-Wasm coverage](oracle/BROWSER-WASM.md) is separate from engine/session/UI integration and the still-open exact-base numerical ratchet.
 
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 67 |
+| implemented | 68 |
 | planned | 47 |
-| specified | 2 |
+| specified | 1 |
 
 Verification labels describe scoped evidence snapshots, not whole-feature/runtime acceptance.
 
 | Verification | Units |
 | --- | ---: |
-| fixed-corpus | 50 |
+| fixed-corpus | 51 |
 | fuzzed | 4 |
-| none | 64 |
+| none | 63 |
 
 | Unit | State | Verification | Tested implementation | Verification snapshot | PR |
 | --- | --- | --- | --- | --- | --- |
@@ -105,7 +105,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [fit.plane.selection](plan/units/fit.plane.selection.json) | implemented | fixed-corpus | `e5c342c` | `e5c342c` | [#23](https://github.com/flyboy-byte/ScanRuler/pull/23) |
 | [fit.plane.tls](plan/units/fit.plane.tls.json) | implemented | fixed-corpus | `4c8b4cf` | `4c8b4cf` | [#8](https://github.com/flyboy-byte/ScanRuler/pull/8) |
 | [fit.sphere.clipped](plan/units/fit.sphere.clipped.json) | implemented | fixed-corpus | `03369e0` | `03369e0` | [#89](https://github.com/flyboy-byte/ScanRuler/pull/89) |
-| [fit.sphere.selection](plan/units/fit.sphere.selection.json) | specified | none | — | — | [#93](https://github.com/flyboy-byte/ScanRuler/pull/93) |
+| [fit.sphere.selection](plan/units/fit.sphere.selection.json) | implemented | fixed-corpus | `6cc198f` | `6cc198f` | [#93](https://github.com/flyboy-byte/ScanRuler/pull/93) |
 | [geometry.adjacency](plan/units/geometry.adjacency.json) | implemented | fixed-corpus | `74dd926` | `74dd926` | [#17](https://github.com/flyboy-byte/ScanRuler/pull/17) |
 | [geometry.bounds](plan/units/geometry.bounds.json) | implemented | fixed-corpus | `4c8b4cf` | `4c8b4cf` | [#10](https://github.com/flyboy-byte/ScanRuler/pull/10) |
 | [geometry.centroid](plan/units/geometry.centroid.json) | implemented | fixed-corpus | `1473fe4` | `1473fe4` | [#11](https://github.com/flyboy-byte/ScanRuler/pull/11) |

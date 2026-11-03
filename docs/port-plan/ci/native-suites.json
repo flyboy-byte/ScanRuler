@@ -600,6 +600,20 @@
         "rust.after.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "fit.sphere.selection",
+      "test": "pinned_marked_sphere_comparison",
+      "directory": "marked-sphere-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "descriptor.tsv",
+        "original.bin",
+        "original.after.bin",
+        "rust.after.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

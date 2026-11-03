@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 67,
+    "implemented": 68,
     "planned": 47,
-    "specified": 2
+    "specified": 1
   },
   "verification_levels": {
-    "fixed-corpus": 50,
+    "fixed-corpus": 51,
     "fuzzed": 4,
-    "none": 64
+    "none": 63
   },
-  "native_suites": 53,
-  "native_case_identities_including_refusals": 19630,
+  "native_suites": 54,
+  "native_case_identities_including_refusals": 21850,
   "accepted_units": [],
   "units": [
     {
@@ -1024,14 +1024,15 @@
     },
     {
       "id": "fit.sphere.selection",
-      "status": "specified",
+      "status": "implemented",
       "parent": "P07",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/93",
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "tested_sha": "6cc198f1306de27df9504c9ad553d6e084e411a6",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "6cc198f1306de27df9504c9ad553d6e084e411a6",
       "open_items": [
-        "Capture original-first full selection traces and implement all output/refusal continuations; command/session integration and seeded paths/browser selection execution remain separate."
+        "Actual browser marked-sphere selection execution, seeded/RANSAC/growth/guides and engine command/session/history/project/CLI integration remain unimplemented.",
+        "Owned positions/settings/region boundaries exclude arbitrary JS property getters/boxed settings. Generic exact-base ratchet and broader platform profiles remain open."
       ]
     },
     {
