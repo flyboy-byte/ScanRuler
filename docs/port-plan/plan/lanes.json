@@ -29,7 +29,8 @@
         "engine.session.history.local",
         "engine.session.history.guards",
         "engine.session.history.restore",
-        "engine.session.stale.detect"
+        "engine.session.stale.detect",
+        "engine.session.stale.clock"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },

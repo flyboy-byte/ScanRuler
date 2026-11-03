@@ -1,0 +1,35 @@
+{
+  "id": "engine.session.stale.clock",
+  "parent": "engine.session.contract",
+  "title": "Port stale-page first-clock timestamp and reset",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "engine.session.stale.detect"
+  ],
+  "scope": "Complete pageStale, markPageStale and resetPageStale over a fallible owned UTC timestamp supplier. Preserve first-call clock sampling, no replacement and reset; platform Date-to-UTC conversion remains an explicit host adapter.",
+  "acceptance": [
+    "Full original source traces compare repeated marks, resets, clock-call counts, errors and all resulting timestamps.",
+    "No page mutation on failed sampling; full existing classifier and native gates remain required."
+  ],
+  "owner": "Codex",
+  "branch": "codex/stale-clock",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/stalePage.ts",
+    "src/commands/types.ts"
+  ],
+  "symbols": [
+    "pageStale",
+    "markPageStale",
+    "resetPageStale"
+  ],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Actual platform clock and UTC ISO formatting adapter, browser preload listener and registry error normalization remain separate.",
+    "Clock sampling is synchronous and non-reentrant; executable JS Date constructor reentrancy is outside this boundary."
+  ]
+}
