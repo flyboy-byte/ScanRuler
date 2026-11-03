@@ -3544,6 +3544,39 @@
       ]
     },
     {
+      "id": "engine.session.history.local",
+      "parent": "engine.session.contract",
+      "title": "Port local editor history selection and undo/redo dispatch",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [
+        "engine.session.history.record"
+      ],
+      "scope": "Complete activeLocalHistory and local-editor branch of travel over an owned participant boundary. Caller supplies the complete historyBlocked result; no global restore or family guard implementation claimed.",
+      "acceptance": [
+        "Independent original traces compare selection, active callback order, short circuit, workspace-before-action, unavailable undo/redo behavior, opaque faults and blocked dispatch.",
+        "Native ownership/error tests, Wasm compile and required regression gates pass."
+      ],
+      "owner": "Codex",
+      "branch": "codex/history-local",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/state/historyStore.ts"
+      ],
+      "symbols": [
+        "activeLocalHistory",
+        "travel (local-editor branch)"
+      ],
+      "rust_paths": [],
+      "evidence": [],
+      "open_items": [
+        "Complete historyBlocked family guards and global restoration remain required.",
+        "Actual family editors, dynamic participant lifecycle and browser runtime remain integration work."
+      ]
+    },
+    {
       "id": "engine.session.history.record",
       "parent": "engine.session.contract",
       "title": "Port identity-aware history recording, grouping and late-step epoch drop",
