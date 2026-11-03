@@ -438,6 +438,61 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "engine.session.stale.detect",
+      "test": "pinned_stale_detect_comparison",
+      "directory": "stale-detect-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.stale.clock",
+      "test": "pinned_stale_clock_comparison",
+      "directory": "stale-clock-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.stale.error",
+      "test": "pinned_stale_error_comparison",
+      "directory": "stale-error-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.error.normalize",
+      "test": "pinned_error_normalize_comparison",
+      "directory": "normalize-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.clock.utc",
+      "test": "pinned_clock_utc_comparison",
+      "directory": "utc-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

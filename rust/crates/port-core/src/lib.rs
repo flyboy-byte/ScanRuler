@@ -36,3 +36,6 @@ pub mod weld;
 
 /// Source-compatible number text shared by parser and command errors.
 pub mod js_number;
+
+/// Own Date millisecond clipping and Gregorian UTC timestamp conversion.
+pub mod js_date;

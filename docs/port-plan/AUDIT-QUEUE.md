@@ -18,6 +18,18 @@
 
 2026-11-02: review #52 → #53 → #54 → [#55](https://github.com/flyboy-byte/ScanRuler/pull/55). #55 ports complete core capture/apply over borrowed owned data: all73 fields, 98 cases /490 full observations; roster32/3193. Family models, queue/worker lifecycle and commands remain integration work.
 
+2026-11-03: [#74](https://github.com/flyboy-byte/ScanRuler/pull/74) follows #68 and adds a fixed full negative-year Gregorian census. All old311 records remain byte-exact; the expanded1911-case suite compares full states with unchanged production code. See oracle/UTC-PERIOD.md.
+
+2026-11-02: [#68](https://github.com/flyboy-byte/ScanRuler/pull/68) follows #65 and supplies own Date clipping/UTC formatting and lazy stale-page adapter, with 311 full source timestamp/state cases. OS clock acquisition stays open; see oracle/CLOCK-UTC.md.
+
+2026-11-02: [#65](https://github.com/flyboy-byte/ScanRuler/pull/65) follows #60 → #61 → #63 and ports asCommandError composition with 304 full pinned source identity/envelope/page/effect traces. Actual registry execution remains open; see oracle/ERROR-NORMALIZE.md.
+
+2026-11-02: review #60 → #61 → [#63](https://github.com/flyboy-byte/ScanRuler/pull/63). #63 ports staleError envelope and clock/message failure ordering with 120 exact source traces. The general String conversion boundary remains explicit in oracle/STALE-ERROR.md; registry wiring is separate.
+
+2026-11-02: review #60 then [#61](https://github.com/flyboy-byte/ScanRuler/pull/61). #61 adds only first-stale timestamp/get/reset with 64 exact source clock/error/state sequences. Host time conversion and error normalization remain open; oracle/STALE-CLOCK.md records the boundary.
+
+2026-11-02: [#60](https://github.com/flyboy-byte/ScanRuler/pull/60) is independent of the history/deadline stack, based on mainc3b4674. It ports only stale-import classification: 308 exact source result/page-state traces. Page clock and full error normalization remain separate. See oracle/STALE-DETECT.md.
+
 2026-11-02: review #52 → #53 → [#54](https://github.com/flyboy-byte/ScanRuler/pull/54). #54 ports global restore orchestration over typed capture/apply, with 216 exact source traces; roster31/3095. Concrete family restoration, queue and real command integration remain required.
 
 2026-11-02: review #52 then [#53](https://github.com/flyboy-byte/ScanRuler/pull/53). #53 ports complete history blocking and editor-work predicates with 212 original/Rust observations; native roster30/2879. Global restoration remains the next continuation.

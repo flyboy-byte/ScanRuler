@@ -13,6 +13,20 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 - **Rust command guards**: preserve object identity, raw busy returns/faults and unconditional old-cleanup reset across 192 full original state traces. Plugin and registry execution integration remain separate.
 
+- **UTC regression census**: compare a complete negative Gregorian period against the original Date converter, adding 1,600 cases while preserving all 311 prior records and leaving production code unchanged.
+
+- **Rust UTC timestamps**: own bounded Date clipping and Gregorian ISO formatting, including extended years and lazy stale-page conversion; 311 full original timestamp/error/state comparisons. OS current-time acquisition remains separate.
+
+- **Rust command fault normalization**: preserve typed error identity, stale-page classification/state and failed fallback across 304 full pinned-registry comparisons. General native String conversion and registry execution remain separate.
+
+- **Rust stale-page errors**: preserve exact UTF-16 envelopes and page marking before fallible message conversion, with 120 complete pinned-source state/effect comparisons. General native thrown-value conversion remains separate.
+
+- **Rust stale-page clock state**: retain the first timestamp, skip repeat sampling, reset explicitly and preserve failed-clock state across 64 exact original traces. Platform clock conversion remains separate.
+
+- **Port plan CI**: fetch the immutable original Git tree for source-map provenance tests; retain every proof assertion.
+
+- **Rust stale-import classification**: preserve all four messages, ASCII case semantics, typed-error exclusion and unchanged page state in 308 exact pinned-source comparisons. Page timestamp and error normalization remain separate.
+
 - **Rust DEFLATE and ZIP reader** (2026-11-03): own pure-Rust inflate and unzip that reproduces the original's `fflate` 0.8.3 `unzipSync`, including its lenient behaviour on damaged archives; 30,000 generated and mutated archives, 0 divergences. 3MF reading itself and PNG/JPEG decoding remain separate.
 
 - **Rust live settlement registration**: preserve function identity, old unsubscribe handles, deletion/addition/re-addition during iteration and concurrent waits in 116 exact original comparisons. Executor integration remains separate.

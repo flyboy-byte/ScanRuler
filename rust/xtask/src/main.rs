@@ -198,6 +198,11 @@ const ORACLE_TESTS: &[&str] = &[
     "pinned_activity_guard_comparison",
     "pinned_watch_stores_comparison",
     "pinned_watch_session_comparison",
+    "pinned_stale_detect_comparison",
+    "pinned_stale_clock_comparison",
+    "pinned_stale_error_comparison",
+    "pinned_error_normalize_comparison",
+    "pinned_clock_utc_comparison",
 ];
 
 fn validate_oracle_discovery(list: &str) -> Result<(), String> {

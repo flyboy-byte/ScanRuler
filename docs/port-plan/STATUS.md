@@ -4,14 +4,14 @@ Generated from canonical unit files and ci/native-suites.json; do not hand-edit.
 
 Reference: `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
 
-Native coverage inventory: **39 suites / 4147 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
+Native coverage inventory: **44 suites / 6854 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
 
 No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Bounded [browser-Wasm coverage](oracle/BROWSER-WASM.md) is separate from engine/session/UI integration and the still-open exact-base numerical ratchet.
 
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 52 |
+| implemented | 57 |
 | planned | 48 |
 | specified | 1 |
 
@@ -67,8 +67,10 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [engine.session.activity.guard](plan/units/engine.session.activity.guard.json) | implemented | `c458f7a` | [#70](https://github.com/flyboy-byte/ScanRuler/pull/70) |
 | [engine.session.activity.stores](plan/units/engine.session.activity.stores.json) | implemented | `97dcd7f` | [#71](https://github.com/flyboy-byte/ScanRuler/pull/71) |
 | [engine.session.activity.watch](plan/units/engine.session.activity.watch.json) | implemented | `7f2c709` | [#72](https://github.com/flyboy-byte/ScanRuler/pull/72) |
+| [engine.session.clock.utc](plan/units/engine.session.clock.utc.json) | implemented | `cf0543a` | [#68](https://github.com/flyboy-byte/ScanRuler/pull/68) |
 | [engine.session.command.deadline](plan/units/engine.session.command.deadline.json) | implemented | `b3566ac` | [#59](https://github.com/flyboy-byte/ScanRuler/pull/59) |
 | [engine.session.contract](plan/units/engine.session.contract.json) | specified | — | [#45](https://github.com/flyboy-byte/ScanRuler/pull/45) |
+| [engine.session.error.normalize](plan/units/engine.session.error.normalize.json) | implemented | `6dcf191` | [#65](https://github.com/flyboy-byte/ScanRuler/pull/65) |
 | [engine.session.history.core](plan/units/engine.session.history.core.json) | implemented | `c2795e1` | [#55](https://github.com/flyboy-byte/ScanRuler/pull/55) |
 | [engine.session.history.guards](plan/units/engine.session.history.guards.json) | implemented | `1504212` | [#53](https://github.com/flyboy-byte/ScanRuler/pull/53) |
 | [engine.session.history.local](plan/units/engine.session.history.local.json) | implemented | `123e43e` | [#52](https://github.com/flyboy-byte/ScanRuler/pull/52) |
@@ -78,6 +80,9 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [engine.session.registry](plan/units/engine.session.registry.json) | implemented | `bdc24fe` | [#45](https://github.com/flyboy-byte/ScanRuler/pull/45) |
 | [engine.session.settle.registry](plan/units/engine.session.settle.registry.json) | implemented | `84e083e` | [#67](https://github.com/flyboy-byte/ScanRuler/pull/67) |
 | [engine.session.settle.run](plan/units/engine.session.settle.run.json) | implemented | `9691406` | [#66](https://github.com/flyboy-byte/ScanRuler/pull/66) |
+| [engine.session.stale.clock](plan/units/engine.session.stale.clock.json) | implemented | `8a6d137` | [#61](https://github.com/flyboy-byte/ScanRuler/pull/61) |
+| [engine.session.stale.detect](plan/units/engine.session.stale.detect.json) | implemented | `7cd55a7` | [#60](https://github.com/flyboy-byte/ScanRuler/pull/60) |
+| [engine.session.stale.error](plan/units/engine.session.stale.error.json) | implemented | `4ce6c9d` | [#63](https://github.com/flyboy-byte/ScanRuler/pull/63) |
 | [fit.curvature.gate](plan/units/fit.curvature.gate.json) | implemented | `f46eeb1` | [#16](https://github.com/flyboy-byte/ScanRuler/pull/16) |
 | [fit.linalg.solve](plan/units/fit.linalg.solve.json) | implemented | `46e0992` | [#7](https://github.com/flyboy-byte/ScanRuler/pull/7) |
 | [fit.plane.clip](plan/units/fit.plane.clip.json) | implemented | `4c8b4cf` | [#9](https://github.com/flyboy-byte/ScanRuler/pull/9) |

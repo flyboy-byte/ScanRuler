@@ -1,0 +1,41 @@
+{
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "node": {
+    "node": "22.23.4",
+    "acorn": "8.16.0",
+    "ada": "2.9.2",
+    "amaro": "1.1.8",
+    "ares": "1.34.9",
+    "brotli": "1.1.0",
+    "cjs_module_lexer": "2.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "modules": "127",
+    "napi": "10",
+    "nbytes": "0.1.3",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.69.0",
+    "openssl": "3.5.9",
+    "simdjson": "4.5.0",
+    "simdutf": "6.4.2",
+    "sqlite": "3.53.4",
+    "tz": "2026e",
+    "undici": "6.29.1",
+    "unicode": "17.0",
+    "uv": "1.51.0",
+    "uvwasi": "0.0.23",
+    "v8": "12.4.254.21-node.57",
+    "zlib": "1.3.1-e00f703",
+    "zstd": "1.5.7"
+  },
+  "typescript": "5.9.3",
+  "files": {
+    "types.ts": "5a304fe31db14ba9227e5d262b65a44568ccc952dedfe1e2a024f3e5959512ed",
+    "types.cjs": "4a5bf9ca9065678696302b7556b4eade687fbefc1cb2f1d3308c2cf3d373c342",
+    "types.cjs.map": "707ef08ebc1ff93db351ca7495a0f079b6b0b93bf147cb03fc70cf7b781117ce",
+    "stalePage.ts": "93ddbd04fbd12058c53e21b8e6a96aa2c80cf43ecfb64cbf3f7e563e562a0588",
+    "stalePage.cjs": "b9a904ff3b61b5ab111cde12d347706544c486bb34e8f0f9c76a4ec471d3c71e",
+    "stalePage.cjs.map": "7fcb999b37ac222443741ee0349e4876be996753fa4e1b9ea7761f8c50609eed"
+  }
+}
