@@ -2,13 +2,13 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 3,
-    "implemented": 48,
+    "baseline-captured": 2,
+    "implemented": 49,
     "planned": 48,
     "specified": 1
   },
-  "native_suites": 35,
-  "native_case_identities_including_refusals": 3891,
+  "native_suites": 36,
+  "native_case_identities_including_refusals": 4202,
   "accepted_units": [],
   "units": [
     {
@@ -452,10 +452,10 @@
     },
     {
       "id": "engine.session.clock.utc",
-      "status": "baseline-captured",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/68",
-      "tested_sha": null,
+      "tested_sha": "56cb66a69fbe7e47ac8572a410b5865178bf348c",
       "open_items": [
         "Actual OS current-time acquisition, browser clock wiring and complete registry execution remain separate.",
         "Source native Date semantics are captured under pinned Node22; actual Chrome-Wasm timestamp corpus execution remains required."
@@ -555,7 +555,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/61",
       "tested_sha": "8a6d137afa21605099871495e61610f4a74d3cc3",
       "open_items": [
-        "Actual platform clock and UTC ISO formatting adapter, browser preload listener and registry error normalization remain separate.",
+        "UTC ISO formatting and the lazy millisecond adapter are implemented by engine.session.clock.utc; actual OS clock acquisition, browser preload listener and full registry execution remain separate.",
         "Clock sampling is synchronous and non-reentrant; executable JS Date constructor reentrancy is outside this boundary."
       ]
     },

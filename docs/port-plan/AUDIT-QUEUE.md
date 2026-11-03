@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-02: [#68](https://github.com/flyboy-byte/ScanRuler/pull/68) follows #65 and supplies own Date clipping/UTC formatting and lazy stale-page adapter, with 311 full source timestamp/state cases. OS clock acquisition stays open; see oracle/CLOCK-UTC.md.
+
 2026-11-02: [#65](https://github.com/flyboy-byte/ScanRuler/pull/65) follows #60 → #61 → #63 and ports asCommandError composition with 304 full pinned source identity/envelope/page/effect traces. Actual registry execution remains open; see oracle/ERROR-NORMALIZE.md.
 
 2026-11-02: review #60 → #61 → [#63](https://github.com/flyboy-byte/ScanRuler/pull/63). #63 ports staleError envelope and clock/message failure ordering with 120 exact source traces. The general String conversion boundary remains explicit in oracle/STALE-ERROR.md; registry wiring is separate.
