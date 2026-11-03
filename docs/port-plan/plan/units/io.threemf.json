@@ -29,5 +29,6 @@
   "evidence": [],
   "open_items": [
     "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate."
-  ]
+  ],
+  "verification": "none"
 }

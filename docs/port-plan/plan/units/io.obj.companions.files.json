@@ -148,5 +148,6 @@
     "2026-11-02: all 87 fixed full original/Rust observations match exactly, including state after every operation, identity, ordered names/data and registry constants.",
     "Resource/invalid-ID guards preserve state; snapshots are independent copies; changed/missing full-result canaries reject divergence.",
     "2026-11-02: all87 complete file states also pass in actual Chrome; see harness.wasm.files and evidence/browser-wasm-files-2026-11-02/manifest.json."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

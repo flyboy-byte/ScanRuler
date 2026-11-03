@@ -24,5 +24,6 @@
   "open_items": [
     "Checkpoint 2026-11-01: native/Wasm-compile workspace and bounded geometry libraries exist; engine.session.contract owns remaining session/error/revision/history interfaces. Native helper tests do not complete P05."
   ],
-  "claim_pr": null
+  "claim_pr": null,
+  "verification": "none"
 }

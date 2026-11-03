@@ -102,5 +102,6 @@
     "Rust rejects budgets/offset counts above u32 capacity; it does not emulate original malformed/out-of-range typed-array writes or oversized wrapping graphs.",
     "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
     "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

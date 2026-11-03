@@ -26,5 +26,6 @@
   "rust_paths": [],
   "soft_depends_on": [],
   "open_items": [],
-  "claim_pr": null
+  "claim_pr": null,
+  "verification": "none"
 }

@@ -107,5 +107,6 @@
   "open_items": [
     "UTC ISO formatting and the lazy millisecond adapter are implemented by engine.session.clock.utc; actual OS clock acquisition, browser preload listener and full registry execution remain separate.",
     "Clock sampling is synchronous and non-reentrant; executable JS Date constructor reentrancy is outside this boundary."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

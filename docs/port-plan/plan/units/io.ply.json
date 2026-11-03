@@ -29,5 +29,6 @@
   "open_items": [
     "Both source parser bodies and full dispatcher implemented in io.ply.ascii/io.ply.binary, with independent native evidence; this umbrella remains planned for broader native/browser import acceptance.",
     "Real browser-Wasm parsing, public scan/session integration and P03 corpus acceptance remain open."
-  ]
+  ],
+  "verification": "none"
 }

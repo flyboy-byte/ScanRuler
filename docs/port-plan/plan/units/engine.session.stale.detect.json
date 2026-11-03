@@ -349,5 +349,6 @@
   "open_items": [
     "Page stale timestamp, staleError construction and full asCommandError normalization are separate continuations.",
     "Error messages are owned UTF16 text; arbitrary mutable JS message coercion/getters and browser preload listener runtime are not represented."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

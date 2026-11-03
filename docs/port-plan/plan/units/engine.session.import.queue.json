@@ -114,5 +114,6 @@
     "Native/Wasm executor and concrete restore/import integration remain required.",
     "Abandoned Rust futures are host failures, not a source cancellation feature; engine termination policy remains required.",
     "Typed callback errors represent source exceptions; arbitrary Rust panic/OOM isolation is not exhaustive."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

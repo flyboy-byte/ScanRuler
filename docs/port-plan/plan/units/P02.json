@@ -23,5 +23,6 @@
   "open_items": [
     "Checkpoint 2026-11-01: catalog.headless and catalog.browser are baseline-captured with matching 72 core / 140 all-plugin registered schemas. Nested feature variants and complete operation execution coverage remain open; parent stays planned."
   ],
-  "claim_pr": null
+  "claim_pr": null,
+  "verification": "none"
 }

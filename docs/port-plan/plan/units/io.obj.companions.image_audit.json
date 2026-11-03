@@ -45,5 +45,6 @@
     "2026-11-02: exact 22-package PNG/JPEG/BMP/WebP candidate graph, shipped licenses, native/Wasm builds and no-import link proof reviewed; no application dependency adopted.",
     "56 independent image inputs and full original Chrome pixels captured before the candidate; fresh source recapture matches all 56 states.",
     "Candidate trial complete:8 exact images,28 pixel mismatches,18 agreed omissions,2 presence mismatches. Direct raw decoder adoption rejected; all counterexamples and mutation-sensitive audit tests retained."
-  ]
+  ],
+  "verification": "none"
 }

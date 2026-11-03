@@ -145,5 +145,6 @@
     "Real typed family-state integration, scan swapping/remeasurement and actual session commands remain required.",
     "Stable owned data and non-prototype participant keys exclude arbitrary executable JS/prototype behavior.",
     "Adapter-only exports expose private source bodies without changing their implementation."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

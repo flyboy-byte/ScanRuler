@@ -207,5 +207,6 @@
     "2026-11-02: all five original helper bodies implemented and 144 complete string/map/note/color/buffer states compare exactly; original observations precede implementation.",
     "Seeds 1/7/99/1039 unchanged; no tolerance, color normalization or missing-data fallback invented. No PLY implementation file changed.",
     "2026-11-02: harness.wasm.obj compares 144 exact complete states in actual Chrome; see evidence/browser-wasm-obj-2026-11-02/manifest.json. Both full-size OBJ progress workloads remain native-only."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

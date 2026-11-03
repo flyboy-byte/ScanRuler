@@ -65,5 +65,12 @@
     "Dispatcher and ASCII continuation tracked separately as io.stl.dispatch.",
     "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance.",
     "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
+  ],
+  "verification": "fuzzed",
+  "verification_evidence": [
+    {
+      "kind": "fuzz-campaign",
+      "location": "evidence/verification-fuzz-2026-11-03/report.json"
+    }
   ]
 }

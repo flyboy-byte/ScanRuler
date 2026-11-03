@@ -80,3 +80,10 @@ future session loads. That is how one project makes the next one cheaper.
 
 Findings from another AI are input to verify, not fact. Keep their outputs as separate
 artefacts instead of merging them into the plan.
+
+## Reading port verification
+
+The [verification guide](../port-plan/VERIFICATION.md) defines the explicit evidence
+labels shown next to lifecycle states. Read the tested snapshots and scope before
+interpreting fixed-corpus or fuzzed as a broader feature claim. Accepted requires
+reviewed coverage; current acceptance remains zero.

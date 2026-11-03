@@ -104,5 +104,6 @@
   "open_items": [
     "registerSettle function identity/live Set mutation is a separate continuation; stable callbacks cannot mutate registration during a run.",
     "The executor must retain/poll all started work. Full registry execution, platform promise turns and cancellation/termination integration remain separate."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

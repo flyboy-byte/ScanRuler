@@ -120,12 +120,16 @@ class InventoryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             shutil.copytree(report.PLAN / 'plan/units', root / 'plan/units')
+            # Isolate generated-backlog freshness from unrelated local evidence files.
+            for path in (root / 'plan/units').glob('*.json'):
+                unit = json.loads(path.read_text()); unit['verification'] = 'none'
+                path.write_text(json.dumps(unit))
             metadata = json.loads((report.PLAN / 'backlog.json').read_text())
             metadata['tasks'] = []
             (root / 'backlog.json').write_text(json.dumps(metadata))
             result = subprocess.run(['python3', str(report.PLAN / 'tools/port_plan.py'), '--root', str(root), 'check-generated'], capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0)
-            self.assertIn('stale', result.stderr)
+            self.assertIn('Generated backlog is stale', result.stderr)
 
 
 if __name__ == '__main__':

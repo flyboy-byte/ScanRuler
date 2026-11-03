@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Port verification evidence**: separate lifecycle from fixed-corpus, fuzzed and coverage-reviewed labels; reject unsupported grades and retain exact-candidate PLY/STL fuzz logs and corruption reproducers. No unit is accepted.
+
 - **Rust session subscriptions**: preserve store/listener identity, snapshot order, partial failures and repeated ordered cleanup across 144 full original traces. Native plugin registry and full engine integration remain separate.
 
 - **Rust watched-store source ownership**: preserve readonly container/member identity, duplicates/order and conditional old cleanup across 80 full original traces. Actual subscriptions remain separate.

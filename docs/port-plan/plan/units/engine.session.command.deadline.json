@@ -340,5 +340,6 @@
     "Actual native/browser timer backend policy, executor and command integration remain required.",
     "The owner must retain body work after a caller timeout; timeout does not authorize dropping partial effects or adding a new session-epoch policy.",
     "Typed clock registration/clear are trusted and serial; host timer resource failures and arbitrary Promise subclasses remain outside this admitted boundary."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

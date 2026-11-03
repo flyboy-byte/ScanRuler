@@ -184,5 +184,6 @@
   "open_items": [
     "Native plugin busy registry must supply its current ordered store-array snapshot; actual plugin registration and full engine wiring remain separate.",
     "Owned readonly store arrays and typed callbacks exclude arbitrary JS property/prototype mutation. Actual browser watch runtime remains required."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

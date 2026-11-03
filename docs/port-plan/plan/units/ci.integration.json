@@ -39,5 +39,6 @@
   "open_items": [
     "Hosted new lane outcomes pending at the local evidence checkpoint; current PR checks must be inspected.",
     "Browser-Wasm runtime, exact-base numerical ratchet and Rust replacement for Python bootstrap remain open."
-  ]
+  ],
+  "verification": "none"
 }

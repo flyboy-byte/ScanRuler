@@ -257,5 +257,6 @@
   "open_items": [
     "Global restoration, full family editor/state integration and actual browser runtime remain required.",
     "Stable typed snapshots and callbacks exclude executable JS getters and reentrant participant-list mutation."
-  ]
+  ],
+  "verification": "fixed-corpus"
 }

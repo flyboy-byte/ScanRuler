@@ -45,5 +45,6 @@
     "Reproducers are not minimized.",
     "Scheduled hosted job not added (touches .github; one PR at a time).",
     "Host-limit refusals (H1 to H3) and original timeouts are counted in their own classes and remain an owner decision."
-  ]
+  ],
+  "verification": "none"
 }
