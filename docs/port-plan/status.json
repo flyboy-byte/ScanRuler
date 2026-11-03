@@ -2,10 +2,10 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 2,
+    "baseline-captured": 3,
     "implemented": 47,
     "planned": 49,
-    "specified": 2
+    "specified": 1
   },
   "native_suites": 35,
   "native_case_identities_including_refusals": 3615,
@@ -564,9 +564,9 @@
     },
     {
       "id": "engine.session.settle.registry",
-      "status": "specified",
+      "status": "baseline-captured",
       "parent": "engine.session.contract",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/67",
       "tested_sha": null,
       "open_items": [
         "Actual executor must retain/drain started work; browser promise turns, full registry command wiring and runtime cancellation/termination remain separate.",
