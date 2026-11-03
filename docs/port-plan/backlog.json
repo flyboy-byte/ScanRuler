@@ -7230,12 +7230,12 @@
       ],
       "scope": "Complete execute orchestration over owned stop/settle/guarded providers. Preserve strict discard classification, raw busy null distinction, preflight before done construction, deferred branching, ordered waits and finally resolution. Guarded command execution remains a separately owned provider.",
       "acceptance": [
-        "Complete original registry/activity graph compares full original effects and done/caller state on independent preflight/wait/body schedules before native execution.",
+        "Complete original registry/activity graph compares orchestration effects and done/caller state on independent preflight/wait/body schedules before native execution; guarded activity/history remains provider scope.",
         "Preflight failures never create done; later faults resolve done; empty busy text still selects stop; every started wait/body remains owned and bounded native waiters stay distinct from source errors."
       ],
       "owner": "Codex",
       "branch": "codex/execute-lifecycle",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/80",
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [

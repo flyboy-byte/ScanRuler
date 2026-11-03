@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust execution lifecycle**: preserve strict discard/raw busy preflight, stop/settle/deferred ordering and shared done-finally lifetime across 1,200 complete original orchestration traces. Full guarded runtime remains separate.
+
 - **Rust scene queue**: preserve direct future identity, synchronous direct faults and serialized viewport turns with failure recovery across 120 full original schedules. Runtime/viewport integration remains separate.
 
 - **Rust plugin stopping**: preserve live check/stop mutation, shared done identity, concurrent waits and fault suppression with 227 full original traces. Command executor integration remains open.

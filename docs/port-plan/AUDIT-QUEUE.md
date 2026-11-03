@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-03: [#80](https://github.com/flyboy-byte/ScanRuler/pull/80) follows #79 and ports complete execute orchestration at the owned provider boundary, with 1,200 full source preflight/wait/done/caller traces using native stop/settle providers. Full guarded runtime remains separate; see oracle/EXECUTE.md.
+
 2026-11-03: [#79](https://github.com/flyboy-byte/ScanRuler/pull/79) follows #78 and ports inScene with 120 full source routing/identity/scheduling traces. Non-scene calls stay immediate; failed scene turns release the queue. Runtime/viewport integration remains open; see oracle/SCENE-QUEUE.md.
 
 2026-11-03: [#78](https://github.com/flyboy-byte/ScanRuler/pull/78) follows #77 and ports complete live plugin stopping with 227 full source start/wait/map/effect traces. Every started wait remains owned across a host visit refusal; see oracle/PLUGIN-STOP.md. Executor/done resolution remain separate.
