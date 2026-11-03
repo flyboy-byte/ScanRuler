@@ -10,10 +10,10 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 
 | State | Units |
 | --- | ---: |
-| baseline-captured | 2 |
+| baseline-captured | 3 |
 | implemented | 45 |
 | planned | 48 |
-| specified | 2 |
+| specified | 1 |
 
 | Unit | State | Tested implementation | PR |
 | --- | --- | --- | --- |
@@ -70,7 +70,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | [engine.session.history.record](plan/units/engine.session.history.record.json) | implemented | `b5c2c40` | [#46](https://github.com/flyboy-byte/ScanRuler/pull/46) |
 | [engine.session.history.restore](plan/units/engine.session.history.restore.json) | implemented | `84e49dd` | [#54](https://github.com/flyboy-byte/ScanRuler/pull/54) |
 | [engine.session.registry](plan/units/engine.session.registry.json) | implemented | `bdc24fe` | [#45](https://github.com/flyboy-byte/ScanRuler/pull/45) |
-| [engine.session.stale.clock](plan/units/engine.session.stale.clock.json) | specified | — | — |
+| [engine.session.stale.clock](plan/units/engine.session.stale.clock.json) | baseline-captured | — | [#61](https://github.com/flyboy-byte/ScanRuler/pull/61) |
 | [engine.session.stale.detect](plan/units/engine.session.stale.detect.json) | implemented | `7cd55a7` | [#60](https://github.com/flyboy-byte/ScanRuler/pull/60) |
 | [fit.curvature.gate](plan/units/fit.curvature.gate.json) | implemented | `f46eeb1` | [#16](https://github.com/flyboy-byte/ScanRuler/pull/16) |
 | [fit.linalg.solve](plan/units/fit.linalg.solve.json) | implemented | `46e0992` | [#7](https://github.com/flyboy-byte/ScanRuler/pull/7) |

@@ -4899,7 +4899,7 @@
       "parent": "engine.session.contract",
       "title": "Port stale-page first-clock timestamp and reset",
       "gate": "G2",
-      "status": "specified",
+      "status": "baseline-captured",
       "depends_on": [
         "engine.session.stale.detect"
       ],
@@ -4910,7 +4910,7 @@
       ],
       "owner": "Codex",
       "branch": "codex/stale-clock",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/61",
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [

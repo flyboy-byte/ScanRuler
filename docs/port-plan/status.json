@@ -2,10 +2,10 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 2,
+    "baseline-captured": 3,
     "implemented": 45,
     "planned": 48,
-    "specified": 2
+    "specified": 1
   },
   "native_suites": 32,
   "native_case_identities_including_refusals": 3403,
@@ -528,9 +528,9 @@
     },
     {
       "id": "engine.session.stale.clock",
-      "status": "specified",
+      "status": "baseline-captured",
       "parent": "engine.session.contract",
-      "pr": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/61",
       "tested_sha": null,
       "open_items": [
         "Actual platform clock and UTC ISO formatting adapter, browser preload listener and registry error normalization remain separate.",
