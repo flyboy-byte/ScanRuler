@@ -5,12 +5,12 @@
     "baseline-captured": 2,
     "implemented": 60,
     "planned": 47,
-    "specified": 1
+    "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 43,
     "fuzzed": 4,
-    "none": 63
+    "none": 64
   },
   "native_suites": 46,
   "native_case_identities_including_refusals": 7177,
@@ -770,6 +770,18 @@
         "Owned typed data only, no shared/live-mutated definition aliases or executable values. Retained repeatable cleanup handles have an explicit host cap; full session lifecycle must own/drop them.",
         "Default Node22 ICU ordering on valid ASCII names is compared on all140 names and authored/seeded order cases; broader locale/platform acceptance remains open.",
         "Independent fuzz/coverage/strict exact-base ratchet and accepted status remain open."
+      ]
+    },
+    {
+      "id": "engine.session.scene.queue",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Compare complete helper; command deadline/executor/actual viewport runtime integration remain separate."
       ]
     },
     {

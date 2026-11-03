@@ -1,0 +1,36 @@
+{
+  "id": "engine.session.scene.queue",
+  "parent": "engine.session.contract",
+  "title": "Port viewport-only command queue and direct routing",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "engine.session.import.queue"
+  ],
+  "scope": "Complete inScene helper: immediate direct factory call for non-scene commands; ordered scene promise chaining with failure recovery. Reuse the private owned queue rather than duplicate a scheduler.",
+  "acceptance": [
+    "Full pinned registry graph runs independently generated schedules first; compare factory order, direct identity/synchronous throws and all caller outcomes.",
+    "Rejected/throwing scene jobs release the next turn, non-scene jobs bypass waiting, borrowed non-Clone values remain owned and abandoned native work is an explicit host failure."
+  ],
+  "owner": "Codex",
+  "branch": "codex/scene-queue",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/registry.ts"
+  ],
+  "symbols": [
+    "inScene",
+    "sceneQueue"
+  ],
+  "rust_paths": [
+    "rust/crates/port-engine/src/scene_queue.rs",
+    "rust/crates/port-engine/tests/scene_queue.rs"
+  ],
+  "evidence": [],
+  "open_items": [
+    "Compare complete helper; command deadline/executor/actual viewport runtime integration remain separate."
+  ],
+  "verification": "none"
+}
