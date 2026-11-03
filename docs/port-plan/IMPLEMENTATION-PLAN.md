@@ -7,7 +7,7 @@ Updated 2026-11-02. This is the remaining execution sequence after the first num
 The bounded library units implement STL extraction; exact-bit welding and index-degenerate removal; complete parsed-mesh graph construction; ordered adjacency, directed components, selection remaps and hash-parity shell flags; extents/centroids/normals/orientation; dense solves; TLS/clipped/robust planes, curvature discrimination and full marked-selection plane element geometry/statistics. Reuse these modules rather than creating a second solver or graph pipeline. Every unit still has runtime/integration gaps; helper comparisons do not make `scan.open` or `element.fit` available in Rust.
 
 Original core/all browser and headless schema catalogs are captured and agree. They establish command metadata, not executed operation coverage or all feature variants. All original code/locks remain available for comparison. `port-engine` has typed errors, schema validation and owned registry/admission
-(PR #45,350 exact operation scenarios), history recording (#46), and local editor history dispatch (#52,192 exact traces). Global restoration, complete family guards and session scheduling remain next; the CLI only prints a banner. No Rust UI, persisted session or exact kernel is implemented.
+(PR #45,350 exact operation scenarios), history recording (#46), and local editor history dispatch (#52,192 exact traces). Complete history guards follow in #53 (212 exact observations). Global restoration and session scheduling remain next; the CLI only prints a banner. No Rust UI, persisted session or exact kernel is implemented.
 
 ## Ordered vertical slice
 
