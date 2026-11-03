@@ -12037,6 +12037,42 @@
       "verification": "fixed-corpus"
     },
     {
+      "id": "engine.state.workspaces",
+      "parent": "engine.session.contract",
+      "title": "Port public/internal workspace mapping and installed-workspace names",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [],
+      "scope": "Complete publicWorkspace/internalWorkspace/workspaceNames bodies over current ordered installed-plugin metadata. Preserve exact UTF16 strings, only elements/measure mapping, four base names, optional workspace presence, duplicates/empty IDs and current order. Plugin discovery/installation and full state readout remain separately owned.",
+      "acceptance": [
+        "Full pinned state/plugin graph and actual installPlugins run source-first in core/default/synthetic metadata contexts; compare mappings, complete installed metadata and name lists on independent strings/masks.",
+        "No availability guard, alias, sorting or deduplication is invented. Native bounded name-copy failures stay separate; every prior source/native case remains required."
+      ],
+      "owner": "Codex",
+      "branch": "codex/workspace-readout",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/state.ts",
+        "src/plugins/registry.ts"
+      ],
+      "symbols": [
+        "publicWorkspace",
+        "internalWorkspace",
+        "workspaceNames"
+      ],
+      "rust_paths": [
+        "rust/crates/port-engine/src/workspaces.rs",
+        "rust/crates/port-engine/tests/workspaces.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Implement complete mapping/list bodies at installed-metadata boundary; plugin discovery/installation, full state/session readout and commands remain separate."
+      ],
+      "verification": "none"
+    },
+    {
       "id": "fit.curvature.gate",
       "parent": "P07",
       "title": "Port curved-fit versus plane discrimination and residual RMS",
