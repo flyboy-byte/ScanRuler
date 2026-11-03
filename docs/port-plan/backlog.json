@@ -5510,7 +5510,7 @@
       "parent": "engine.session.contract",
       "title": "Port deferred-work settling over stable callbacks",
       "gate": "G2",
-      "status": "specified",
+      "status": "baseline-captured",
       "depends_on": [
         "engine.session.registry"
       ],
@@ -5521,7 +5521,7 @@
       ],
       "owner": "Codex",
       "branch": "codex/settle-run",
-      "claim_pr": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/66",
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [
