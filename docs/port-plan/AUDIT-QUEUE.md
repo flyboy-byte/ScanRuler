@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-03: [Cross-stack review handoff](REVIEW-HANDOFF-2026-11-03.md) records observed exact heads/checks, merge order, retained failures and the next actual execution work. It is a dated snapshot; refresh live Checks before merging.
+
 2026-11-03: [#72](https://github.com/flyboy-byte/ScanRuler/pull/72) follows #71 and ports subscription snapshot/identity/ordered teardown with 144 full source traces. Native plugin metadata wiring stays open; oracle/WATCH-SESSION.md records partial-failure and lifetime semantics.
 
 2026-11-03: [#71](https://github.com/flyboy-byte/ScanRuler/pull/71) follows #70 and ports watchSessionStores array/member identity and conditional release with 80 full source traces. Actual subscription and plugin wiring remain separate; oracle/WATCH-STORES.md records the boundary.
