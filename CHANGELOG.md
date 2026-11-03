@@ -15,6 +15,7 @@ saves carry the same number as `appVersion`. How a release is cut is in
 - Rust port: input-only sphere Wasm probe and mandatory full1560-case browser roster, preserving all earlier651 cases and budgets (PR #90); actual Chrome evidence is tracked separately.
 
 - Rust port: complete clipped free/held-radius sphere fitting and signed radial statistics with independent original comparisons (PR #89). Seeded growth, full element fields and commands remain open.
+- **Rust command labels**: preserve full Unicode lowercase, unpaired UTF-16, custom/nullish/empty fallback and lazy provider effects across a complete code-point/context census. Command/history runtime integration remains separate.
 
 - **Port review handoff**: retain current exact PR heads, open/merged dependencies and required-check states with negative snapshot controls; document remaining runtime ownership and source branch tests. No feature body or numerical policy changes.
 

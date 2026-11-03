@@ -49,3 +49,5 @@ pub mod sphere;
 pub mod marked_sphere;
 /// Shared fixed-selection marking-size guard.
 pub mod selection;
+/// Lossless Unicode command-label text and source-compatible provider ordering.
+pub mod js_string;

@@ -162,6 +162,7 @@ const ORACLE_TESTS: &[&str] = &[
     "pinned_marked_sphere_comparison",
     "pinned_fixed3_comparison",
     "pinned_sphere_comparison",
+    "pinned_command_label_comparison",
     "pinned_workspaces_comparison",
     "pinned_recent_store_comparison",
     "pinned_recent_result_comparison",

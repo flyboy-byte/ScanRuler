@@ -71,3 +71,6 @@ pub mod recent_store;
 
 /// Public/internal workspace names over current installed-plugin metadata.
 pub mod workspaces;
+
+/// Lossless Unicode command-label text and source-compatible provider ordering.
+pub mod command_label;

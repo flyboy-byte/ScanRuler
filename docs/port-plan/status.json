@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 69,
+    "implemented": 70,
     "planned": 47,
     "specified": 2
   },
   "verification_levels": {
-    "fixed-corpus": 51,
+    "fixed-corpus": 52,
     "fuzzed": 4,
     "none": 65
   },
-  "native_suites": 54,
-  "native_case_identities_including_refusals": 21850,
+  "native_suites": 55,
+  "native_case_identities_including_refusals": 22490,
   "accepted_units": [],
   "units": [
     {
@@ -641,6 +641,20 @@
         "Actual native/browser timer backend policy, executor and command integration remain required.",
         "The owner must retain body work after a caller timeout; timeout does not authorize dropping partial effects or adding a new session-epoch policy.",
         "Typed clock registration/clear are trusted and serial; host timer resource failures and arbitrary Promise subclasses remain outside this admitted boundary."
+      ]
+    },
+    {
+      "id": "engine.session.command.label",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/85",
+      "tested_sha": "eb23a9d7446c3b1e0b10df9776d93eb06d56d5c1",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "eb23a9d7446c3b1e0b10df9776d93eb06d56d5c1",
+      "open_items": [
+        "Full guarded/interrupt/history/timer/late-body execution and actual runtime integration remain required.",
+        "Actual browser-Wasm label execution and broader toolchain Unicode profiles remain open; mismatching versions fail explicitly.",
+        "Typed owned title/custom providers exclude arbitrary JS host objects/property semantics outside the declared boundary."
       ]
     },
     {

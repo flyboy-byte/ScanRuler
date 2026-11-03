@@ -1,0 +1,9 @@
+{
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "candidate_sha": "eb23a9d7446c3b1e0b10df9776d93eb06d56d5c1",
+  "identity": "reference: 2cd89c6769a10c27ee7754b477ada521c9ef5cb7\ncandidate: eb23a9d7446c3b1e0b10df9776d93eb06d56d5c1\ndirty: ",
+  "cases": 640,
+  "case_archive": "cases.json.gz",
+  "case_archive_sha256": "39fcd141bd4fe0eb7c658597c9dfd8f0551db32a917d8af2d7f7ac517d4e1e20",
+  "meaning": "Full independently constructed UTF16 inputs, complete values/status/identity/effects; native outputs never generate reference values."
+}
