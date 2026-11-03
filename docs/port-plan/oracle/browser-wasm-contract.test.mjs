@@ -115,13 +115,15 @@ test('browser roster preserves prior cases and only the declared new workload ex
       assert.throws(() => selectBrowserCases({ ...def, excluded: [{ id: ids[0], reason: 'unreviewed' }] }, ids))
     }
   }
-  assert.equal(count, 2211)
+  assert.equal(count, 4431)
   assert.throws(() => validateBrowserRoster(defs.slice(0, 5)))
   validateBrowserRoster(defs.slice(0, 5), 'browser.wasm.corpus.v2')
   assert.throws(() => validateBrowserRoster(defs.slice(0, 7)))
   validateBrowserRoster(defs.slice(0, 7), 'browser.wasm.corpus.v3')
   assert.throws(() => validateBrowserRoster(defs.slice(0, 8)))
   validateBrowserRoster(defs.slice(0, 8), 'browser.wasm.corpus.v4')
+  assert.throws(() => validateBrowserRoster(defs.slice(0, 9)))
+  validateBrowserRoster(defs.slice(0, 9), 'browser.wasm.corpus.v5')
   assert.throws(() => validateBrowserRoster(defs.slice(1)))
 })
 test('PLY mismatches retain raw sidecars and actual Wasm before failing', async () => {
@@ -340,4 +342,28 @@ test('sphere native descriptors and post-input metadata are mandatory before Chr
     const missing={...files};delete missing[name];assert.throws(()=>verifyNativeCaseFiles(8,missing,metadata))
     assert.throws(()=>verifyNativeCaseFiles(8,{...files,[name]:Buffer.from('corrupt')},metadata))
   }
+})
+
+test('all marked-sphere fields, exact FitErrors and original recipes compare',async()=>{
+  const {readFileSync}=await import('node:fs'),{gunzipSync}=await import('node:zlib')
+  const proof=JSON.parse(gunzipSync(readFileSync(new URL('../evidence/2026-11-03-marked-sphere.json.gz',import.meta.url))))
+  let successes=0
+  for(const c of proof.cases){const original=Buffer.from(c.files['original.bin'].hex,'hex'),native=Buffer.from(c.files['rust.bin'].hex,'hex');compareOutput(9,original,native);successes+=Number(successfulOutput(9,native))}
+  assert.equal(proof.cases.length,2220);assert.equal(successes,759)
+  const good=Buffer.from(proof.cases.find(c=>c.files['original.bin'].hex.startsWith('00')).files['original.bin'].hex,'hex')
+  for(const [offset,kind]of[[11,'number'],[75,'count'],[good.length-1,'identity']]){
+    const changed=Buffer.from(good);if(kind==='number')changed.writeDoubleLE(37,offset);else if(kind==='count')changed.writeUInt32LE(37,offset);else changed[offset]=0;assert.throws(()=>compareOutput(9,good,changed))
+  }
+  const sign=Buffer.from(good);sign.writeDoubleLE(-0,11);assert.throws(()=>compareOutput(9,good,sign))
+  const error=Buffer.from(proof.cases.find(c=>c.files['original.bin'].hex.startsWith('01')).files['original.bin'].hex,'hex'),changedError=Buffer.from(error);changedError[changedError.length-1]^=1;assert.throws(()=>compareOutput(9,error,changedError))
+})
+test('malformed marked-sphere output cannot pass even against itself',()=>{
+  for(const b of[Buffer.alloc(0),Buffer.from([2]),Buffer.from([0]),Buffer.from([1]),Buffer.from([1,0,0,0,0])])assert.throws(()=>compareOutput(9,b,b))
+})
+test('marked-sphere raw sidecars are mandatory, hashed, and not removable',async()=>{
+  const {createHash}=await import('node:crypto')
+  const files=Object.fromEntries(nativeFileNames(9).map(name=>[name,Buffer.from(name)]))
+  const metadata={files:Object.fromEntries(Object.entries(files).map(([name,b])=>[name,{bytes:b.length,sha256:createHash('sha256').update(b).digest('hex')}]))}
+  verifyNativeCaseFiles(9,files,metadata)
+  for(const name of nativeFileNames(9)){const missing={...files};delete missing[name];assert.throws(()=>verifyNativeCaseFiles(9,missing,metadata));assert.throws(()=>verifyNativeCaseFiles(9,{...files,[name]:Buffer.from('bad')},metadata))}
 })

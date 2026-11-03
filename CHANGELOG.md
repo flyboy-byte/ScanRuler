@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- Rust port: complete marked-sphere input-only Wasm codec and4431-case full browser roster, preserving every earlier case/budget (PR #94); actual execution proof is tracked separately.
+
 - Rust port: full marked-sphere output/refusals, known-diameter checks and exact original-region recipe identity; shared marking-size guard retains plane behavior (PR #93). Commands/seeded paths remain open.
 
 - Rust port: exact primitive Number.toFixed(3) for original sphere refusal text, with rational tie rounding and special/threshold cases (PR #92). Full marked-sphere caller remains open.

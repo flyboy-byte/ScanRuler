@@ -1,5 +1,5 @@
 {
-  "contract": "browser.wasm.corpus.v5",
+  "contract": "browser.wasm.corpus.v6",
   "suites": [
     {
       "unit": "fit.plane.tls",
@@ -70,6 +70,12 @@
       "directory": "sphere-diff",
       "mode": 8,
       "cases": 1560
+    },
+    {
+      "unit": "fit.sphere.selection",
+      "directory": "marked-sphere-diff",
+      "mode": 9,
+      "cases": 2220
     }
   ]
 }

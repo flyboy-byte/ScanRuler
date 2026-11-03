@@ -81,6 +81,7 @@ function compareSphere(expected, actual) {
 }
 
 export function successfulOutput(mode, bytes) {
+  if (mode === 9) { return validateMarkedSphere(bytes) !== null }
   if (mode === 8) { validateSphere(bytes); return bytes[0] === 1 }
   if (mode === 7) { validateFileOutput(bytes); return true }
   if (mode === 5 || mode === 6) { validateObjOutput(mode, bytes); return mode === 6 || bytes[4] === 0 }
@@ -104,7 +105,8 @@ export function compareOutput(mode, expected, actual) {
       worst = Math.max(worst, error)
     }
   }
-  if (mode === 8) { return compareSphere(expected, actual) }
+  if (mode === 9) { return compareMarkedSphere(expected, actual) }
+  else if (mode === 8) { return compareSphere(expected, actual) }
   else if (mode === 7) {
     validateFileOutput(expected); validateFileOutput(actual); exact(expected, actual)
   } else if (mode === 5 || mode === 6) {
@@ -213,6 +215,15 @@ export function negativePackets() {
   check(sphere([...emptySphere, 0]) !== 0 && a.length() === 0, 'trailing sphere data fails without output')
   const badSphereIndex = new Array(33).fill(0); badSphereIndex[0] = 3; badSphereIndex[4] = 1; badSphereIndex[29] = 1
   check(sphere(badSphereIndex) !== 0 && a.length() === 0, 'invalid sphere selection fails without output')
+  const marked = bytes => { if (a.reset(9) !== 0) throw Error('marked-sphere reset refused'); for (const byte of bytes) if (a.push(byte, 1) !== 0) throw Error('marked-sphere write refused'); return a.run() }
+  check(marked([]) !== 0 && a.length() === 0, 'truncated marked-sphere packet fails without output')
+  check(marked(emptySphere) === 0 && a.length() > 10 && (a.word(0) & 255) === 1, 'marked-sphere minimum marking FitError is completed')
+  check(marked(badHeld) !== 0 && a.length() === 0, 'unknown marked-sphere held presence poisons output')
+  const manyMarked = emptySphere.slice(); for(let i=4;i<8;i++)manyMarked[i]=255
+  check(marked(manyMarked) !== 0 && a.length() === 0, 'oversized marking count fails before allocation')
+  check(marked([...emptySphere,0]) !== 0 && a.length() === 0, 'trailing marked-sphere bytes fail without output')
+  const badMarked = new Array(109).fill(0); badMarked[0]=3;badMarked[4]=20;for(let i=29;i<109;i+=4)badMarked[i]=1
+  check(marked(badMarked) !== 0 && a.length() === 0, 'invalid marked-sphere vertex fails without output')
   return checks
 }
 
@@ -234,4 +245,25 @@ export async function retainAndCompare(directory, mode, files, wasm) {
     errorWasm: compareOutput(mode, original, wasm),
     errorPair: compareOutput(mode, native, wasm),
   }
+}
+
+function validateMarkedSphere(bytes) {
+  let at=1
+  const take=n=>{assert.ok(Number.isSafeInteger(n)&&n>=0&&at+n<=bytes.length,'truncated marked-sphere output');const v=bytes.subarray(at,at+n);at+=n;return v}
+  const byte=()=>take(1)[0],word=()=>take(4).readUInt32LE(),text=()=>new TextDecoder('utf-8',{fatal:true}).decode(take(word()))
+  assert.ok(bytes.length>0&&bytes[0]<=1,'invalid marked-sphere tag')
+  if(bytes[0]===1){assert.equal(text(),'Error');assert.equal(byte(),1,'missing FitError brand');assert.equal(text(),'FitError');assert.ok(text().length>0,'missing FitError message');assert.equal(at,bytes.length);return null}
+  assert.equal(text(),'sphere');const numbers=at;take(64);const counts=at,used=word(),size=word(),held=byte();assert.ok(held<=1,'invalid held presence');assert.ok(used<=size,'used count exceeds original region');const heldNumbers=at;if(held)take(16);const region=at,n=word();assert.equal(n,size,'lost original recipe region');assert.ok(n<=Math.floor((bytes.length-at-1)/4),'invalid region count');take(4*n);assert.equal(byte(),1,'original region identity changed');assert.equal(at,bytes.length,'trailing marked-sphere state');return {numbers,counts,heldNumbers,held,region}
+}
+function compareMarkedSphere(expected,actual){
+  const a=validateMarkedSphere(expected),b=validateMarkedSphere(actual);assert.equal(Boolean(a),Boolean(b),'marked-sphere refusal changed');if(!a){assert.ok(expected.equals(actual),'FitError fields/message changed');return 0}
+  assert.ok(expected.subarray(0,a.numbers).equals(actual.subarray(0,b.numbers)),'kind changed');assert.ok(expected.subarray(a.counts,a.heldNumbers).equals(actual.subarray(b.counts,b.heldNumbers)),'used/region/held presence changed');assert.ok(expected.subarray(a.region).equals(actual.subarray(b.region)),'region/order/identity changed')
+  let worst=0
+  for(const [start,count]of[[a.numbers,8],[a.heldNumbers,a.held?2:0]])for(let i=0;i<count;i++){
+    const x=expected.readDoubleLE(start+8*i),y=actual.readDoubleLE(start+8*i)
+    if(Number.isNaN(x))assert.ok(Number.isNaN(y))
+    else if(!Number.isFinite(x))assert.equal(x,y)
+    else if(x===0&&y===0)assert.equal(Object.is(x,-0),Object.is(y,-0),'zero sign changed')
+    else{const error=Math.abs(x-y);assert.ok(Number.isFinite(y)&&error<=1e-10+1e-10*Math.abs(x),'marked-sphere numeric field changed');worst=Math.max(worst,error)}
+  }return worst
 }

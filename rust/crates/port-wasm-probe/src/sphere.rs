@@ -7,7 +7,13 @@ fn sphere(s: port_core::sphere::Sphere, out: &mut Output) -> Result<(), ()> {
     }
     Ok(())
 }
-pub(super) fn execute(bytes: &[u8]) -> Result<Vec<u8>, ()> {
+pub(super) struct Data {
+    pub(super) positions: Vec<f32>,
+    pub(super) idx: Vec<u32>,
+    pub(super) k: f64,
+    pub(super) held: Option<f64>,
+}
+pub(super) fn decode(bytes: &[u8]) -> Result<Data, ()> {
     let mut input = Input::new(bytes);
     let n = input.word()? as usize;
     let selected = input.word()? as usize;
@@ -27,6 +33,20 @@ pub(super) fn execute(bytes: &[u8]) -> Result<Vec<u8>, ()> {
     if idx.len() != selected {
         return Err(());
     }
+    Ok(Data {
+        positions,
+        idx,
+        k,
+        held,
+    })
+}
+pub(super) fn execute(bytes: &[u8]) -> Result<Vec<u8>, ()> {
+    let Data {
+        positions,
+        idx,
+        k,
+        held,
+    } = decode(bytes)?;
     let result = port_core::sphere::fit_sphere_clipped(&positions, &idx, k, held, MAX_POINTS)
         .map_err(|_| ())?;
     let mut out = Output(vec![]);

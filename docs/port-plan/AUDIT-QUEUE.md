@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-03: [#94](https://github.com/flyboy-byte/ScanRuler/pull/94) combines #93/#90 prerequisites and extends the browser gate to all4431 inputs; see oracle/MARKED-SPHERE-WASM.md for scope and actual-execution requirements.
+
 2026-11-03: [#93](https://github.com/flyboy-byte/ScanRuler/pull/93), based on #92/#89, ports full marked-sphere output and exact refusals; see oracle/MARKED-SPHERE.md. Seeded/browser selection/engine command continuations remain explicit.
 
 2026-11-03: [#92](https://github.com/flyboy-byte/ScanRuler/pull/92) ports exact fixed3 number strings needed by marked-sphere refusals; see oracle/FIXED3.md. Claude’s separate #91 upstream drift ledger does not change the pinned baseline.
