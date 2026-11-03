@@ -35,3 +35,6 @@ pub mod activity_guard;
 
 /// Session watched-store source identity and conditional release.
 pub mod watch_stores;
+
+/// Session subscription snapshots, listener identity and ordered teardown.
+pub mod watch_session;

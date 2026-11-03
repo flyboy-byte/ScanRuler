@@ -197,6 +197,7 @@ const ORACLE_TESTS: &[&str] = &[
     "pinned_settle_registry_comparison",
     "pinned_activity_guard_comparison",
     "pinned_watch_stores_comparison",
+    "pinned_watch_session_comparison",
 ];
 
 fn validate_oracle_discovery(list: &str) -> Result<(), String> {
