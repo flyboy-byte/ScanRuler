@@ -33,3 +33,6 @@ pub mod orientation;
 pub mod plane;
 pub mod ransac;
 pub mod weld;
+
+/// Source-compatible number text shared by parser and command errors.
+pub mod js_number;
