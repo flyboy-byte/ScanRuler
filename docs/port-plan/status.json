@@ -2,13 +2,13 @@
   "contract": "port.status.v1",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
-    "baseline-captured": 3,
-    "implemented": 47,
+    "baseline-captured": 2,
+    "implemented": 48,
     "planned": 48,
     "specified": 1
   },
-  "native_suites": 34,
-  "native_case_identities_including_refusals": 3587,
+  "native_suites": 35,
+  "native_case_identities_including_refusals": 3891,
   "accepted_units": [],
   "units": [
     {
@@ -465,10 +465,10 @@
     },
     {
       "id": "engine.session.error.normalize",
-      "status": "baseline-captured",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/65",
-      "tested_sha": null,
+      "tested_sha": "6dcf191d81ffbc3c3413ee9145e29565591a8cfa",
       "open_items": [
         "General native String conversion, actual clocks and complete registry execution remain separate.",
         "Owned message boundaries exclude mutable/reentrant Error.message getters and external prototype mutation."

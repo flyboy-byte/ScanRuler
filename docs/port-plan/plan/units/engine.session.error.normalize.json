@@ -16,7 +16,7 @@
   "owner": "Codex",
   "branch": "codex/error-normalization",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/65",
-  "implemented_commit": null,
+  "implemented_commit": "6dcf191d81ffbc3c3413ee9145e29565591a8cfa",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/commands/registry.ts",
@@ -340,7 +340,8 @@
         "case-301",
         "case-302",
         "case-303"
-      ]
+      ],
+      "candidate_sha": "6dcf191d81ffbc3c3413ee9145e29565591a8cfa"
     }
   ],
   "open_items": [

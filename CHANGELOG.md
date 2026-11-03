@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust command fault normalization**: preserve typed error identity, stale-page classification/state and failed fallback across 304 full pinned-registry comparisons. General native String conversion and registry execution remain separate.
+
 - **Rust stale-page errors**: preserve exact UTF-16 envelopes and page marking before fallible message conversion, with 120 complete pinned-source state/effect comparisons. General native thrown-value conversion remains separate.
 
 - **Rust stale-page clock state**: retain the first timestamp, skip repeat sampling, reset explicitly and preserve failed-clock state across 64 exact original traces. Platform clock conversion remains separate.
