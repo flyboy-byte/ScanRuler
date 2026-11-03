@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 65,
+    "implemented": 66,
     "planned": 47,
-    "specified": 2
+    "specified": 1
   },
   "verification_levels": {
-    "fixed-corpus": 48,
+    "fixed-corpus": 49,
     "fuzzed": 4,
-    "none": 64
+    "none": 63
   },
-  "native_suites": 51,
-  "native_case_identities_including_refusals": 9578,
+  "native_suites": 52,
+  "native_case_identities_including_refusals": 9770,
   "accepted_units": [],
   "units": [
     {
@@ -895,14 +895,15 @@
     },
     {
       "id": "engine.state.sections",
-      "status": "specified",
+      "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/87",
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "tested_sha": "05406f20864b3e9f5dfabc527dc9aab0902fab9a",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "05406f20864b3e9f5dfabc527dc9aab0902fab9a",
       "open_items": [
-        "Implement and compare scoped owned-data readout; full session.state/native plugin installation and browser runtime remain open."
+        "Full session.state composition and actual native plugin installation/session ownership remain required.",
+        "Arbitrary host objects, executable inherited setters/getters, general prototype lookup and browser-Wasm readout execution remain outside this owned-data scope."
       ]
     },
     {
