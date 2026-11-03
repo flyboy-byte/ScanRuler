@@ -5,12 +5,12 @@
     "baseline-captured": 2,
     "implemented": 65,
     "planned": 47,
-    "specified": 1
+    "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 48,
     "fuzzed": 4,
-    "none": 63
+    "none": 64
   },
   "native_suites": 51,
   "native_case_identities_including_refusals": 9578,
@@ -574,6 +574,18 @@
         "Async stopPluginWork invocation and pending waits are not implemented by this unit.",
         "Native watchSession/command guard/registry integration and browser execution remain required.",
         "Typed owned callbacks exclude JS getters/prototypes; resource refusals are host limits, not original results."
+      ]
+    },
+    {
+      "id": "engine.session.activity.state",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Implement and capture original-first fixed cases; full guarded/interrupt/native owner/browser integration remains open."
       ]
     },
     {

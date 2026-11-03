@@ -1,0 +1,37 @@
+{
+  "id": "engine.session.activity.state",
+  "parent": "engine.session.contract",
+  "title": "Port command activity publication and live listener ordering",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [],
+  "scope": "Command-driven start/progress/clear patches of useCommandActivity, commandRunning, snapshot identity and live synchronous subscriptions. Preserve publication before listener callbacks, latest-state versus fixed previous-state arguments, callback identity/reentrancy/errors. Arbitrary Zustand partial functions/replace/host mutation excluded; full guarded/interrupt and native runtime integration remain separate.",
+  "acceptance": [
+    "Pinned complete activity module and actual installed Zustand reference compare full state, snapshot identities, running payload identities, listener order, unsubscribe/re-add, reentrant publication and exact faults on independent inputs.",
+    "Typed patch API preserves null versus empty and raw clock bits/UTF16. Native visit/depth/slot limits report separate errors without source fault normalization; native/Wasm and all existing suites remain required."
+  ],
+  "owner": "Codex",
+  "branch": "codex/activity-state",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/activity.ts",
+    "src/commands/registry.ts",
+    "node_modules/zustand/vanilla.js"
+  ],
+  "symbols": [
+    "useCommandActivity command-driven patches",
+    "commandRunning",
+    "activity synchronous listener delivery"
+  ],
+  "rust_paths": [
+    "rust/crates/port-engine/src/activity_state.rs",
+    "rust/crates/port-engine/tests/activity_state.rs"
+  ],
+  "evidence": [],
+  "open_items": [
+    "Implement and capture original-first fixed cases; full guarded/interrupt/native owner/browser integration remains open."
+  ],
+  "verification": "none"
+}
