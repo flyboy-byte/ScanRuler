@@ -12043,6 +12043,42 @@
       "verification": "fixed-corpus"
     },
     {
+      "id": "engine.state.sections",
+      "parent": "engine.session.contract",
+      "title": "Port live plugin state-section registration and readout",
+      "gate": "G2",
+      "status": "specified",
+      "depends_on": [],
+      "scope": "Complete registerStateSection/readStateSections/readStateBriefs/readAll over owned data callbacks and lazy fallible Error.message/String conversion boundaries. Preserve live map order, callback-identity cleanup, exact conversion faults, own-key order and __proto__ assignment semantics for owned plain data. Executable custom prototypes/getters/setters outside declared conversion providers remain separate.",
+      "acceptance": [
+        "Full pinned stateSections module compares registration, duplicate errors, old cleanup, live addition/removal/re-add, describes/briefs, returned value identities, own keys/prototype, caught messages and conversion failures.",
+        "Original-first fixed cases and independent native inputs, finite metadata/visit/depth bounds, full existing native/Wasm gates and documented runtime continuation."
+      ],
+      "owner": "Codex",
+      "branch": "codex/state-sections",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/stateSections.ts"
+      ],
+      "symbols": [
+        "registerStateSection",
+        "readStateSections",
+        "readStateBriefs",
+        "readAll"
+      ],
+      "rust_paths": [
+        "rust/crates/port-engine/src/state_sections.rs",
+        "rust/crates/port-engine/tests/state_sections.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Implement and compare scoped owned-data readout; full session.state/native plugin installation and browser runtime remain open."
+      ],
+      "verification": "none"
+    },
+    {
       "id": "engine.state.workspaces",
       "parent": "engine.session.contract",
       "title": "Port public/internal workspace mapping and installed-workspace names",
