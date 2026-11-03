@@ -3,7 +3,7 @@
   "parent": "engine.session.contract",
   "title": "Port session subscription snapshot and ordered teardown",
   "gate": "G2",
-  "status": "specified",
+  "status": "baseline-captured",
   "depends_on": [
     "engine.session.activity.stores"
   ],
@@ -14,7 +14,7 @@
   ],
   "owner": "Codex",
   "branch": "codex/watch-session",
-  "claim_pr": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/72",
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
