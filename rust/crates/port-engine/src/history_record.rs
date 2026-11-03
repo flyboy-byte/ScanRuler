@@ -553,3 +553,6 @@ impl Recorder {
         Ok(())
     }
 }
+
+/// Global restoration orchestration over owned typed capture/apply callbacks.
+pub mod restore;
