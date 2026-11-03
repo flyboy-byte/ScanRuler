@@ -5,7 +5,7 @@
     "baseline-captured": 2,
     "implemented": 47,
     "planned": 48,
-    "specified": 1
+    "specified": 2
   },
   "native_suites": 34,
   "native_case_identities_including_refusals": 3587,
@@ -461,6 +461,17 @@
         "Bounded registry, recording, local dispatch, guards and restore orchestration have source traces. Complete family capture/apply, queue/worker lifecycle and real command traces remain required; no session acceptance claim.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
+      ]
+    },
+    {
+      "id": "engine.session.error.normalize",
+      "status": "specified",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "open_items": [
+        "General native String conversion, actual clocks and complete registry execution remain separate.",
+        "Owned message boundaries exclude mutable/reentrant Error.message getters and external prototype mutation."
       ]
     },
     {

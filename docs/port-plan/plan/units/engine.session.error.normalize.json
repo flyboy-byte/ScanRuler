@@ -1,0 +1,35 @@
+{
+  "id": "engine.session.error.normalize",
+  "parent": "engine.session.contract",
+  "title": "Port command error normalization and identity preservation",
+  "gate": "G2",
+  "status": "specified",
+  "depends_on": [
+    "engine.session.stale.detect",
+    "engine.session.stale.error"
+  ],
+  "scope": "Complete asCommandError over owned typed errors, strings and a fallible host String supplier for other thrown values. Preserve typed-error identity, stale detection/marking and failed-code fallback.",
+  "acceptance": [
+    "Full original registry graph compares typed identity, exact UTF16 envelopes, page state and clock/coercion ordering.",
+    "All child predicate/clock/error cases remain required; host limits are separate and typed errors bypass message inspection."
+  ],
+  "owner": "Codex",
+  "branch": "codex/error-normalization",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/registry.ts",
+    "src/commands/stalePage.ts",
+    "src/commands/types.ts"
+  ],
+  "symbols": [
+    "asCommandError"
+  ],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "General native String conversion, actual clocks and complete registry execution remain separate.",
+    "Owned message boundaries exclude mutable/reentrant Error.message getters and external prototype mutation."
+  ]
+}

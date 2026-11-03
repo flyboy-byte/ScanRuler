@@ -31,7 +31,8 @@
         "engine.session.history.restore",
         "engine.session.stale.detect",
         "engine.session.stale.clock",
-        "engine.session.stale.error"
+        "engine.session.stale.error",
+        "engine.session.error.normalize"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },
