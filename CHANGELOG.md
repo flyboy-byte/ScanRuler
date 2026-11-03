@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Port plan CI**: fetch the immutable original Git tree for source-map provenance tests; retain every proof assertion.
+
 - **Rust import queue**: preserve serialized jobs, failure recovery, live listener identity/order and opaque outcomes with 67 complete original schedules /755 observations. Runtime integration remains required.
 
 - **Rust core history capture/apply**: preserve all 73 picked fields, shared payload identity, transient flat/deviation cleanup, scope and version ordering, with 98 complete source cases /490 observations.
