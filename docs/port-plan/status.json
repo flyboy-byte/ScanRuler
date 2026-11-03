@@ -3,12 +3,12 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 51,
+    "implemented": 52,
     "planned": 48,
     "specified": 1
   },
-  "native_suites": 38,
-  "native_case_identities_including_refusals": 4003,
+  "native_suites": 39,
+  "native_case_identities_including_refusals": 4147,
   "accepted_units": [],
   "units": [
     {
@@ -470,6 +470,17 @@
       "open_items": [
         "watchSession subscriptions, plugin busy store registration and full engine session wiring remain separate.",
         "Readonly owned arrays exclude arbitrary mutable JS array/getter/prototype behavior; actual browser runtime remains required."
+      ]
+    },
+    {
+      "id": "engine.session.activity.watch",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/72",
+      "tested_sha": "7f2c709ab20a3ad4aa131d7117f3d1665073b11a",
+      "open_items": [
+        "Native plugin busy registry must supply its current ordered store-array snapshot; actual plugin registration and full engine wiring remain separate.",
+        "Owned readonly store arrays and typed callbacks exclude arbitrary JS property/prototype mutation. Actual browser watch runtime remains required."
       ]
     },
     {

@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust session subscriptions**: preserve store/listener identity, snapshot order, partial failures and repeated ordered cleanup across 144 full original traces. Native plugin registry and full engine integration remain separate.
+
 - **Rust watched-store source ownership**: preserve readonly container/member identity, duplicates/order and conditional old cleanup across 80 full original traces. Actual subscriptions remain separate.
 
 - **Rust command guards**: preserve object identity, raw busy returns/faults and unconditional old-cleanup reset across 192 full original state traces. Plugin and registry execution integration remain separate.

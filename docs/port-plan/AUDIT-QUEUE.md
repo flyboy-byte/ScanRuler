@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-03: [#72](https://github.com/flyboy-byte/ScanRuler/pull/72) follows #71 and ports subscription snapshot/identity/ordered teardown with 144 full source traces. Native plugin metadata wiring stays open; oracle/WATCH-SESSION.md records partial-failure and lifetime semantics.
+
 2026-11-03: [#71](https://github.com/flyboy-byte/ScanRuler/pull/71) follows #70 and ports watchSessionStores array/member identity and conditional release with 80 full source traces. Actual subscription and plugin wiring remain separate; oracle/WATCH-STORES.md records the boundary.
 
 2026-11-02: [#70](https://github.com/flyboy-byte/ScanRuler/pull/70) follows #67 and ports command guard identity/configuration/unconditional cleanup with 192 full source traces. Running/progress and plugin functions stay separate; oracle/ACTIVITY-GUARD.md records the boundary.
