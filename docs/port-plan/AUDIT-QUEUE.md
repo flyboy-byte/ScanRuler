@@ -1,5 +1,7 @@
 # Port PR audit and integration queue
 
+2026-11-03: [#86](https://github.com/flyboy-byte/ScanRuler/pull/86) ports command-driven activity publication, snapshot identity and live synchronous listeners; see oracle/ACTIVITY-STATE.md. It does not port full guarded/interrupt or accept the session.
+
 2026-11-03: [#84](https://github.com/flyboy-byte/ScanRuler/pull/84) follows #83 and refreshes [the live-observed queue](REVIEW-QUEUE-2026-11-03-SECOND-PASS.md) and [next runtime implementation boundaries](NEXT-RUNTIME-IMPLEMENTATION-2026-11-03.md). Main is moving as the owner merges earlier PRs; refresh exact heads/checks before integration. This snapshot and its negative tests do not authorize merging or claim acceptance.
 
 2026-11-03: [#83](https://github.com/flyboy-byte/ScanRuler/pull/83) follows #82 and ports complete public/internal workspace mapping and current name enumeration with 306 full original state/plugin metadata cases. Discovery/full state/commands remain separate; see oracle/WORKSPACES.md and the reference-memory finding.

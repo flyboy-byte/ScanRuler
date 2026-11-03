@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- Rust port: command activity start/progress/clear publication with live listener identity, reentrant state delivery and exact faults (PR #86); full session runtime remains open.
+
 - **Port review handoff**: retain current exact PR heads, open/merged dependencies and required-check states with negative snapshot controls; document remaining runtime ownership and source branch tests. No feature body or numerical policy changes.
 
 - **Rust workspace metadata**: preserve exact public/internal names, installed ordering, empty/duplicate ids and live independent name arrays across 306 original state/plugin cases. Plugin discovery/full state runtime remain separate.

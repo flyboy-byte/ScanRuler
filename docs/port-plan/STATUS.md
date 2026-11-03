@@ -74,7 +74,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [engine.schema.validate](plan/units/engine.schema.validate.json) | implemented | fixed-corpus | `d3f9945` | `d3f9945` | [#42](https://github.com/flyboy-byte/ScanRuler/pull/42) |
 | [engine.session.activity.guard](plan/units/engine.session.activity.guard.json) | implemented | fixed-corpus | `c458f7a` | `c458f7a` | [#70](https://github.com/flyboy-byte/ScanRuler/pull/70) |
 | [engine.session.activity.plugins](plan/units/engine.session.activity.plugins.json) | implemented | fixed-corpus | `d353297` | `d353297` | [#77](https://github.com/flyboy-byte/ScanRuler/pull/77) |
-| [engine.session.activity.state](plan/units/engine.session.activity.state.json) | specified | none | — | — | — |
+| [engine.session.activity.state](plan/units/engine.session.activity.state.json) | specified | none | — | — | [#86](https://github.com/flyboy-byte/ScanRuler/pull/86) |
 | [engine.session.activity.stop](plan/units/engine.session.activity.stop.json) | implemented | fixed-corpus | `5a7b036` | `5a7b036` | [#78](https://github.com/flyboy-byte/ScanRuler/pull/78) |
 | [engine.session.activity.stores](plan/units/engine.session.activity.stores.json) | implemented | fixed-corpus | `97dcd7f` | `97dcd7f` | [#71](https://github.com/flyboy-byte/ScanRuler/pull/71) |
 | [engine.session.activity.watch](plan/units/engine.session.activity.watch.json) | implemented | fixed-corpus | `7f2c709` | `7f2c709` | [#72](https://github.com/flyboy-byte/ScanRuler/pull/72) |
