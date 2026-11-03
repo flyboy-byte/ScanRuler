@@ -10,6 +10,7 @@ def generate():
     for pattern in range(12):
         for mode in range(6):add(2,pattern,mode)
     for pattern in range(12):add(2,pattern,6)
+    for pattern in range(12):add(2,pattern,7)
     return ''.join(rows).encode()
 
 if __name__=='__main__':

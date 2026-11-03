@@ -88,18 +88,22 @@ fn observe(title: &[u16], mode: usize) -> (Vec<u8>, String, String) {
         title: Vec<u16>,
     }
     struct Input {
-        _identity: u64,
+        _identity: bool,
     }
     let command = Owner {
         title: title.to_vec(),
     };
-    let input = Input { _identity: 37 };
+    let input = Input { _identity: true };
     let log = RefCell::new(Vec::new());
-    let fault = Rc::new(String::from("opaque fault"));
+    #[derive(Debug)]
+    struct Fault {
+        _opaque: bool,
+    }
+    let fault = Rc::new(Fault { _opaque: true });
     let getter = |owner: &Owner| {
         assert!(std::ptr::eq(owner, &command));
         log.borrow_mut().push("title".into());
-        if mode == 5 || mode == 6 {
+        if mode == 5 || mode == 6 || mode == 7 {
             Err(fault.clone())
         } else {
             Ok(owner.title.clone())
@@ -117,13 +121,14 @@ fn observe(title: &[u16], mode: usize) -> (Vec<u8>, String, String) {
         Ok(match mode {
             1 | 2 | 6 => None,
             3 => Some(vec![]),
+            7 => Some([text("CuStOm"), vec![0xd800]].concat()),
             _ => Some([text("custom"), vec![0xd800]].concat()),
         })
     };
     let label = if mode == 0 {
         None
     } else {
-        Some(&mut custom as &mut command_label::Label<'_, Owner, Input, Rc<String>>)
+        Some(&mut custom as &mut command_label::Label<'_, Owner, Input, Rc<Fault>>)
     };
     let result = command_label::history_label(&command, &input, getter, label, limits());
     let (output, status) = match result {
@@ -155,7 +160,7 @@ fn lossless_context_and_provider_boundaries() {
     for line in INPUT.lines().filter(|s| s.split('\t').nth(1) == Some("2")) {
         let (_, title, mode) = model(line);
         let (_, status, effects) = observe(&title, mode);
-        if mode == 3 || mode == 5 {
+        if mode == 3 || mode == 5 || mode == 7 {
             assert_eq!(effects, "label:1:1");
             assert_eq!(status, "ok")
         }
@@ -284,7 +289,7 @@ fn pinned_command_label_comparison() {
         assert_eq!(p[3], effects, "{id}");
         count += 1;
     }
-    assert_eq!(count, 628);
+    assert_eq!(count, 640);
     std::fs::remove_file(dir.join("source.tsv")).unwrap();
     assert!(lines.next().is_none());
     println!(

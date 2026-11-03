@@ -20,14 +20,14 @@ vendored. The checked input bounds the standard lowercase temporary; this is not
 process-wide OOM isolation. Fallible span/output copies and complete output limits
 return separate host errors, with no partially transformed value published.
 
-628 source-first comparison blocks cover every code point through U+10FFFF,
+640 source-first comparison blocks cover every code point through U+10FFFF,
 including isolated surrogate units, and a complete four-position sigma-context
 census. Authored cases add combining marks, expanding lowercase, supplementary
 letters, malformed surrogate runs, empty/control titles, all custom-label modes,
 receiver/input identity, lazy access and exact callback/title faults. Original and
 Rust construct inputs independently and compare the full actual input bytes first,
 then complete output bytes, status/identity and every provider effect. Reference
-results never enter the native computation. Appended title-fault probes preserve
+results never enter the native computation. Appended title-fault and mixed-case custom probes preserve
 all bytes of the initial616-block source profile. Full compressed source transcript,
 source map/provenance and paired raw artifacts remain available.
 

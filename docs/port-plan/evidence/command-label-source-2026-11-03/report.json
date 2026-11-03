@@ -1,9 +1,9 @@
 {
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
-  "cases": 628,
+  "cases": 640,
   "unicode": "17.0",
-  "input_sha256": "c092983387a486f985b22336c44d9a578d941fc21cbe1191fc6a326661b08fe6",
-  "original_sha256": "48c29880b36d30c32c27043c27854b7ae699999ae6184697af0860837035d206",
+  "input_sha256": "b090f9cae20e07eb3376b24a8c225161aa0cd2b50ba61ba7a66dd0e41c384aab",
+  "original_sha256": "6faba96586372cd60cb1573ae7a957f9963b4b4533fa996f06867cc74dd82e4d",
   "original_log": "original.tsv.gz",
   "prior_prefix_bytes": 202407472,
   "prior_prefix_sha256": "570b4363c2d11393222b42d41cb2bcdc911a4f4648d17bc1ba2f2e2526e30084",
