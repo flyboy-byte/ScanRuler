@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Recording evidence metadata**: derive live seed labels from unchanged fixture IDs, correcting an old 1109/1039 label typo without altering any case or captured result.
+
 - **Rust DEFLATE and ZIP reader** (2026-11-03): own pure-Rust inflate and unzip that reproduces the original's `fflate` 0.8.3 `unzipSync`, including its lenient behaviour on damaged archives; 30,000 generated and mutated archives, 0 divergences. 3MF reading itself and PNG/JPEG decoding remain separate.
 
 - **Rust global restore orchestration**: preserve capture/hook/apply order, workspace, stack movement, late-epoch invalidation and partial-failure state across 216 full typed-boundary source traces. Concrete family restore and queue integration remain required.
