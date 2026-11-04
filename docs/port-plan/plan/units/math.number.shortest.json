@@ -16,7 +16,7 @@
   "owner": "Codex",
   "branch": "codex/number-shortest-main",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/103",
-  "implemented_commit": "dfb6d63a454ebd3d48be91634e156a4df47835a2",
+  "implemented_commit": "3da16bf062cc1cb235e3f47ce2822dbdfdfe724b",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/commands/registry.ts"
@@ -6277,13 +6277,13 @@
         "raw-65537-1023",
         "f32-65537-1023"
       ],
-      "candidate_sha": "dfb6d63a454ebd3d48be91634e156a4df47835a2"
+      "candidate_sha": "3da16bf062cc1cb235e3f47ce2822dbdfdfe724b"
     }
   ],
   "open_items": [
-    "Existing exact-body proof at dfb6d63 is retained unchanged. This fresh main-based PR is revalidating its complete candidate before ready; prior proof is not represented as a hosted result for the new head.",
-    "All prior 6,241 controls, two actual red reproducers and inherited parser campaigns remain. No image/zip/3MF source edits, dependency, input/seed/tolerance reduction or accepted status.",
-    "This bounded prerequisite unblocks retained source bytes in the owned scan session. Real scan/import/plane/undo/project/CLI wiring remains separate."
+    "Exact primitive Number String/JSON text has scoped fixed-corpus evidence on 6,241 stable IEEE controls. Rust std shortest digits are retained unless exact bounded integer reasoning proves the source decimal midpoint/even-digit correction. No dependency or general boxed/custom-JS coercion claim.",
+    "All earlier fixed/seeded/native/Chrome gates and every inherited PLY/STL campaign were retained. Retained parser campaign snapshot is 1a67f50; complete combined candidate is 3da16bf062cc1cb235e3f47ce2822dbdfdfe724b. No accepted status is inferred.",
+    "Draft #103 owns the bounded main-based formatting correction. Existing source proof and all parser campaigns remain; all eight campaign dependency hashes match. Scan-session claim #104 stays separate and consumes this prerequisite after Logan merges it."
   ],
   "verification": "fixed-corpus"
 }

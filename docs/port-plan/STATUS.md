@@ -153,5 +153,5 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [io.stl.dispatch](plan/units/io.stl.dispatch.json) | implemented | fuzzed | `77683bf` | `1a67f50` | [#3](https://github.com/flyboy-byte/ScanRuler/pull/3) |
 | [io.threemf](plan/units/io.threemf.json) | implemented | none | `31ebafc` | — | [#97](https://github.com/flyboy-byte/ScanRuler/pull/97) |
 | [math.number.fixed3](plan/units/math.number.fixed3.json) | implemented | fixed-corpus | `3ae1787` | `3ae1787` | [#92](https://github.com/flyboy-byte/ScanRuler/pull/92) |
-| [math.number.shortest](plan/units/math.number.shortest.json) | implemented | fixed-corpus | `dfb6d63` | `dfb6d63` | [#103](https://github.com/flyboy-byte/ScanRuler/pull/103) |
+| [math.number.shortest](plan/units/math.number.shortest.json) | implemented | fixed-corpus | `3da16bf` | `3da16bf` | [#103](https://github.com/flyboy-byte/ScanRuler/pull/103) |
 | [project.measurement.compatibility](plan/units/project.measurement.compatibility.json) | planned | none | — | — | — |
