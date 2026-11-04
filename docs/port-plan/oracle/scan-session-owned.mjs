@@ -41,9 +41,25 @@ if(!process.argv.includes('--case')){
   faces='';for(let y=0;y<n-1;y++)for(let x=0;x<n-1;x++){const a=y*n+x;faces+=facet(points[a],points[a+1],points[a+n]);faces+=facet(points[a+1],points[a+n+1],points[a+n])}
  }
  const body=shape==='malformed'?'not an STL':`solid ${id}\n`+faces+'endsolid\n'
- const bytes=Uint8Array.from(Buffer.from(body)),before=pack(Object.fromEntries(stores.map(([name,s])=>[name,s.getState()])))
+ let inputBytes=Buffer.from(body),filename=id+'.stl'
+ if(shape.startsWith('ply-')){
+  filename=id+'.ply';const encoding=shape==='ply-le'?'binary_little_endian':shape==='ply-be'?'binary_big_endian':'ascii'
+  const header=Buffer.from(`ply\nformat ${encoding} 1.0\nelement vertex 4\nproperty float x\nproperty float y\nproperty float z\nelement face 2\nproperty list uchar int vertex_indices\nend_header\n`)
+  if(shape==='ply-malformed')inputBytes=Buffer.from('ply\nnot a header\n')
+  else if(encoding==='ascii')inputBytes=Buffer.concat([header,Buffer.from('0 0 0\n1 0 0\n0 1 0\n1 1 0\n3 0 1 2\n3 1 3 2\n')])
+  else {const data=Buffer.alloc(48+26),le=shape==='ply-le';let offset=0;for(const v of [0,0,0,1,0,0,0,1,0,1,1,0]){le?data.writeFloatLE(v,offset):data.writeFloatBE(v,offset);offset+=4}for(const tri of [[0,1,2],[1,3,2]]){data[offset++]=3;for(const v of tri){le?data.writeInt32LE(v,offset):data.writeInt32BE(v,offset);offset+=4}}inputBytes=Buffer.concat([header,data])}
+ }
+ if(shape.startsWith('held-')) {
+  const held={}
+  if(['held-mixed','held-project','held-discard'].includes(shape))held.elements=[{},{}]
+  if(shape!=='held-sections')held.dimensions=[{}]
+  if(shape!=='held-dimensions')held.sections=Array.from({length:3},(_,i)=>({id:i+1,name:`Section ${i+1}`,color:'#ffffff',visible:true,frame:{origin:[0,0,0],normal:[0,0,1],basisU:[1,0,0],basisV:[0,1,0]},message:'No scan is loaded.'}))
+  if(shape==='held-project')held.projectName='Bench “A”'
+  source.useStore.setState(held)
+ }
+ const bytes=Uint8Array.from(inputBytes),before=pack(Object.fromEntries(stores.map(([name,s])=>[name,s.getState()])))
  let result,error
- try{if(shape!=='grid-staging')result=await source.runCommand('scan.open',{bytes,name:id+'.stl',units},text=>events.push(['progress',text]))}catch(e){error={code:e.code,message:e.message,name:e.name}}
+ try{if(shape!=='grid-staging')result=await source.runCommand('scan.open',{bytes,name:filename,units,...(shape==='held-discard'?{discard:true}:{})},text=>events.push(['progress',text]))}catch(e){error={code:e.code,message:e.message,name:e.name}}
  const steps=[]
  const step=async(name,args)=>{const start=events.length;let result,error;try{result=await source.runCommand(name,args,text=>events.push(['progress',text]))}catch(e){error={code:e.code,message:e.message,name:e.name}}steps.push({name,input:pack(args),result:pack(result),error:pack(error),versions:{scan:client.scanVersion,nominal:client.nominalVersion},stores:pack(Object.fromEntries(stores.map(([name,s])=>[name,s.getState()]))),eventStart:start,eventEnd:events.length,sources:pack(session.sources.current)})}
  const workerStep=async(name,args,body)=>{const start=events.length;let result,error;try{result=await body()}catch(e){error={code:e.code,message:e.message,name:e.name}}steps.push({name,input:pack(args),result:pack(result),error:pack(error),versions:{scan:client.scanVersion,nominal:client.nominalVersion},nextRequestId:client.nextId,worker:pack(workerSnapshot()),stores:pack(Object.fromEntries(stores.map(([name,s])=>[name,s.getState()]))),eventStart:start,eventEnd:events.length,sources:pack(session.sources.current)})}
@@ -64,7 +80,8 @@ if(!process.argv.includes('--case')){
   else await step('scan.open',{bytes,name:'replacement.stl',units,...(shape==='grid-fit-discard'?{discard:true}:{})})
  }else if(shape==='grid-bad-replacement')await step('scan.open',{bytes:Uint8Array.from(Buffer.from('not an STL')),name:'broken.stl',units})
  else if(shape==='grid-replacement')await step('scan.open',{bytes,name:'replacement.stl',units})
- const record={id,input:input[0],bytes:pack(bytes),before,result:pack(result),error:pack(error),...(steps.length?{steps}:{}),versions:{scan:client.scanVersion,nominal:client.nominalVersion},sources:pack(session.sources.current),stores:pack(Object.fromEntries(stores.map(([name,s])=>[name,s.getState()]))),events}
+ const inspection=process.env.SCANRULER_IMPORT_WORKER_STATE?{worker:pack(workerSnapshot()),nextRequestId:client.nextId}:{}
+ const record={id,input:input[0],bytes:pack(bytes),before,result:pack(result),error:pack(error),...(steps.length?{steps}:{}),versions:{scan:client.scanVersion,nominal:client.nominalVersion},sources:pack(session.sources.current),stores:pack(Object.fromEntries(stores.map(([name,s])=>[name,s.getState()]))),events,...inspection}
  for(const stop of stops)stop();unwatch();unhost();client.rpc.dispose()
  console.log(JSON.stringify(record))
 }

@@ -12,3 +12,4 @@ workspace = true
 
 [dependencies]
 port-core = { path = "../port-core" }
+port-io = { path = "../port-io" }
