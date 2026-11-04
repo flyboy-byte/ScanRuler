@@ -23553,8 +23553,10 @@
         "postScan render continuation"
       ],
       "open_items": [
-        "Main-based integration and exact-candidate clean/red comparison are in progress in #106. No acceptance claim.",
-        "The native roster and xtask remain held by #104; this added ignored production-module comparison is still run by the existing all-tests oracle invocation."
+        "Complete main-based prepared-array source checkpoint d4514b1e2047ba86315d7c861673caaf1424fc81 has 1309 exact source controls and full wrong-output red/clean records in evidence/2026-11-04-scan-render-main-red-green.json.gz; all earlier development records remain. No accepted/fuzzed/coverage-reviewed claim.",
+        "Canonical promotion is deliberately deferred: ci_report.py requires every differential unit in native-suites.json and the xtask discovery guard, which remain held by open PR104. Do not weaken that gate or relabel numerical evidence. After its merge, register pinned_scan_render_comparison / scan-render-diff with all 1309 IDs, restore the differential evidence link and tested SHA, then regenerate status/backlog with the tools. The existing all-tests native oracle already executes the added production comparison.",
+        "See plan/findings/2026-11-04-scan-render-main-integration.md for exact gates, saved downstream checkpoints and reassessment scope. Worker/command binding and caller-setting coercion remain separate; this unit covers typed prepared-array bodies.",
+        "M3 still needs real engine import/CLI, plane/history integration and original-compatible project save/read. No original TypeScript, seeds, tolerances or 1500 ms threshold changed."
       ]
     },
     {
