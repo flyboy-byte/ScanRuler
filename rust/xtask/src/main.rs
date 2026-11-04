@@ -159,6 +159,7 @@ fn wasm() -> Result<(), String> {
 // Existing source-comparison entrypoints. Removing/renaming one requires explicit
 // coverage review; an empty or filtered Cargo run must never appear successful.
 const ORACLE_TESTS: &[&str] = &[
+    "pinned_guarded_comparison",
     "pinned_runtime_reactions_comparison",
     "pinned_marked_sphere_comparison",
     "pinned_fixed3_comparison",

@@ -239,6 +239,10 @@ pub struct Token {
     domain: Arc<()>,
     id: u64,
 }
+// Owned capture continuation: counters have already dropped; no mutable recorder borrow
+// spans the application's after-capture callback.
+pub(crate) struct CaptureFinish(Pending);
+
 /// Dependency-free event-driven wrapper/recording state. The host always reports
 /// completion, including body failure or timeout; no automatic rollback is added.
 pub struct Recorder {
@@ -419,6 +423,17 @@ impl Recorder {
         }
         self.begin(Kind::Async, label, workspace, capture)
     }
+    // Runtime integration samples paused/restoring before calling the document's capture
+    // and workspace providers. Commit that admitted capture without rechecking the source
+    // guard after potentially reentrant providers; no RefMut spans a provider callback.
+    pub(crate) fn begin_captured_async<E>(
+        &mut self,
+        label: &[u16],
+        workspace: &[u16],
+        snapshot: Snapshot,
+    ) -> Result<Option<Token>, HistoryError<E>> {
+        self.begin(Kind::Async, label, workspace, |_| Ok(snapshot))
+    }
     fn begin<E>(
         &mut self,
         kind: Kind,
@@ -464,6 +479,14 @@ impl Recorder {
         token: Token,
         capture: impl FnOnce(&Self) -> Result<Snapshot, E>,
     ) -> Result<(), HistoryError<E>> {
+        let finishing = self.finish_begin(token)?;
+        let after = capture(self).map_err(HistoryError::Capture)?;
+        self.finish_captured(finishing, after)
+    }
+    pub(crate) fn finish_begin<E>(
+        &mut self,
+        token: Token,
+    ) -> Result<CaptureFinish, HistoryError<E>> {
         if !Arc::ptr_eq(&token.domain, &self.domain) {
             return Err(HistoryError::InvalidToken);
         }
@@ -477,8 +500,14 @@ impl Recorder {
             Kind::Sync => self.depth -= 1,
             Kind::Async => self.paused -= 1,
         };
-        let after = capture(self).map_err(HistoryError::Capture)?;
-        self.record(pending, after)
+        Ok(CaptureFinish(pending))
+    }
+    pub(crate) fn finish_captured<E>(
+        &mut self,
+        finishing: CaptureFinish,
+        after: Snapshot,
+    ) -> Result<(), HistoryError<E>> {
+        self.record(finishing.0, after)
     }
     fn record<E>(&mut self, p: Pending, after: Snapshot) -> Result<(), HistoryError<E>> {
         if p.generation != self.epoch {

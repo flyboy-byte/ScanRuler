@@ -39,6 +39,19 @@ fn copy<E>(text: &[u16], max_units: usize) -> Result<Vec<u16>, NormalizeError<E>
     out.extend_from_slice(text);
     Ok(out)
 }
+/// Normalize the original non-Error/non-string branch without borrowing stale-page state.
+/// String conversion can reenter session readouts; it never marks the page stale, even when
+/// its result resembles an import failure. The returned typed envelope retains exact UTF-16.
+pub fn normalize_other<E>(
+    message_units: usize,
+    stringify: impl FnOnce() -> Result<Vec<u16>, E>,
+) -> Result<Arc<CommandError>, NormalizeError<E>> {
+    let text = stringify().map_err(NormalizeError::Message)?;
+    CommandError::from_utf16(CommandErrorCode::Failed, &text, message_units)
+        .map(Arc::new)
+        .map_err(NormalizeError::Host)
+}
+
 /// Classify a caught fault exactly as the original registry does. Existing typed
 /// errors bypass all limits and callbacks. Non-error/non-string values cannot
 /// become stale through their String conversion. Host callbacks are synchronous.
@@ -53,12 +66,7 @@ pub fn normalize<E>(
     let text = match caught {
         Caught::Command(error) => return Ok(error),
         Caught::Error(text) | Caught::Text(text) => text,
-        Caught::Other => {
-            let text = stringify_other().map_err(NormalizeError::Message)?;
-            return CommandError::from_utf16(CommandErrorCode::Failed, &text, message_units)
-                .map(Arc::new)
-                .map_err(NormalizeError::Host);
-        }
+        Caught::Other => return normalize_other(message_units, stringify_other),
     };
     if is_stale_import(ImportFault::Text(text), message_units)
         .map_err(|_| NormalizeError::Host(EnvelopeError::MessageLimit))?
