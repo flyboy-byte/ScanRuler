@@ -21,7 +21,7 @@
   "owner": "Codex",
   "branch": "codex/runtime-readonly",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/100",
-  "implemented_commit": null,
+  "implemented_commit": "207e00b8943eb80ed4afb67fd9a8ed2e312f6f93",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/commands/registry.ts"
@@ -2632,7 +2632,8 @@
         "case-2588",
         "case-2589",
         "case-2590"
-      ]
+      ],
+      "candidate_sha": "207e00b8943eb80ed4afb67fd9a8ed2e312f6f93"
     }
   ],
   "open_items": [
@@ -2640,5 +2641,5 @@
     "Host must supply actual read-only settlers with original null-versus-ready distinction and report detached observer faults; no process/MCP transport backend is implemented here. Recent data is owned acyclic schema data, as documented in the compared recent helpers.",
     "Next engine.session.scan supplies the real scan/session document and faithful scan replacement lifecycle; then actual import/plane commands and compatible project/CLI save. No M3 or whole-session acceptance."
   ],
-  "verification": "none"
+  "verification": "fixed-corpus"
 }

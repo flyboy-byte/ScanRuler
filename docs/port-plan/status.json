@@ -8,9 +8,9 @@
     "specified": 2
   },
   "verification_levels": {
-    "fixed-corpus": 56,
+    "fixed-corpus": 57,
     "fuzzed": 4,
-    "none": 69
+    "none": 68
   },
   "native_suites": 60,
   "native_case_identities_including_refusals": 27513,
@@ -576,9 +576,9 @@
       "status": "implemented",
       "parent": "engine.session.contract",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/100",
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "tested_sha": "207e00b8943eb80ed4afb67fd9a8ed2e312f6f93",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "207e00b8943eb80ed4afb67fd9a8ed2e312f6f93",
       "open_items": [
         "Read-only/job source-provider wiring implemented; real family/session data, native event/timer ingress, global undo/apply, project compatibility and CLI remain separate. Not a general JS Promise/DOM interpreter; arbitrary thenables/host-object/proxy getters remain outside the owned typed boundary.",
         "Host must supply actual read-only settlers with original null-versus-ready distinction and report detached observer faults; no process/MCP transport backend is implemented here. Recent data is owned acyclic schema data, as documented in the compared recent helpers.",
