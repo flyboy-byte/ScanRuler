@@ -3,7 +3,7 @@
   "parent": "ci.integration",
   "title": "Preserve runtime/sphere batch union and reviewable next-work handoff",
   "gate": "contributor-harness-ci",
-  "status": "specified",
+  "status": "integrated",
   "depends_on": [
     "engine.session.command.label",
     "engine.session.activity.state",
@@ -28,7 +28,7 @@
   "owner": "Codex",
   "branch": "codex/nov03-integration",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/95",
-  "implemented_commit": null,
+  "implemented_commit": "ac60301390b511455e61159b55ef238e7a8c401d",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     ".github/workflows",
@@ -43,9 +43,15 @@
     "rust/crates/port-cli/src/main.rs",
     "rust/xtask/src/main.rs"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "kind": "integration-record",
+      "location": "evidence/2026-11-04-nov03-batch-closure.json",
+      "candidate_sha": "ac60301390b511455e61159b55ef238e7a8c401d"
+    }
+  ],
   "open_items": [
-    "Validate the combined tree and capture actual integrated outcomes; owner reviews/merges public PRs. Generic exact-base numerical ratchet, actual session and M3 remain unimplemented."
+    "Historical batch closed: PR95 merged 2026-11-03 and is an ancestor of main b37206d. Its exact-head 11 checks passed. No remaining next_task work is owned by this batch. General P37 ratchet and M3 work belong to their current units; no feature acceptance is inferred."
   ],
   "verification": "none"
 }

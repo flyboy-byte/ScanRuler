@@ -89,3 +89,6 @@ pub mod tasks;
 pub mod scan_session;
 /// Owned staged model resources and original client generations.
 pub mod scan_worker;
+
+/// Actual native registered scan import over the shared runtime and document.
+pub mod native_engine;

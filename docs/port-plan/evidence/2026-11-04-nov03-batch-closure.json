@@ -1,0 +1,144 @@
+{
+  "meaning": "Historical batch closure, not a new numerical/acceptance proof. Git ancestry verified against b37206d.",
+  "record": {
+    "mergeCommit": {
+      "oid": "ac60301390b511455e61159b55ef238e7a8c401d"
+    },
+    "mergedAt": "2026-11-03T23:15:00Z",
+    "number": 95,
+    "state": "MERGED",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-03T21:54:54Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41726072384/job/126231129541",
+        "name": "cla",
+        "startedAt": "2026-11-03T21:55:03Z",
+        "status": "COMPLETED",
+        "workflowName": "CLA"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-03T23:15:04Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41737643426/job/126270853811",
+        "name": "cla",
+        "startedAt": "2026-11-03T23:15:05Z",
+        "status": "COMPLETED",
+        "workflowName": "CLA"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-03T22:04:43Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41726077423/job/126231074914",
+        "name": "source-tests",
+        "startedAt": "2026-11-03T21:54:58Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-03T21:55:35Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41726077535/job/126231075060",
+        "name": "npm-licenses",
+        "startedAt": "2026-11-03T21:54:59Z",
+        "status": "COMPLETED",
+        "workflowName": "License check"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-03T21:55:50Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41726077253/job/126231074032",
+        "name": "plan",
+        "startedAt": "2026-11-03T21:54:58Z",
+        "status": "COMPLETED",
+        "workflowName": "Plan and status integrity (not parity)"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-03T21:56:50Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41726077702/job/126231076525",
+        "name": "fast",
+        "startedAt": "2026-11-03T21:54:59Z",
+        "status": "COMPLETED",
+        "workflowName": "Rust port validation"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-03T21:55:50Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41726077423/job/126231074973",
+        "name": "source-mcp",
+        "startedAt": "2026-11-03T21:54:58Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-03T22:02:25Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41726077702/job/126231076174",
+        "name": "native-oracle",
+        "startedAt": "2026-11-03T21:54:59Z",
+        "status": "COMPLETED",
+        "workflowName": "Rust port validation"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-03T22:00:44Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41726077423/job/126231074348",
+        "name": "source-browser",
+        "startedAt": "2026-11-03T21:54:58Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-03T21:55:09Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41726077702/job/126231075801",
+        "name": "catalog-contracts",
+        "startedAt": "2026-11-03T21:54:59Z",
+        "status": "COMPLETED",
+        "workflowName": "Rust port validation"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-03T22:04:47Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41726077423/job/126236159365",
+        "name": "test-and-build",
+        "startedAt": "2026-11-03T22:04:45Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-03T22:04:35Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41726077702/job/126234954716",
+        "name": "browser-wasm",
+        "startedAt": "2026-11-03T22:02:27Z",
+        "status": "COMPLETED",
+        "workflowName": "Rust port validation"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-03T22:04:40Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/flyboy-byte/ScanRuler/actions/runs/41726077702/job/126236097604",
+        "name": "gate",
+        "startedAt": "2026-11-03T22:04:37Z",
+        "status": "COMPLETED",
+        "workflowName": "Rust port validation"
+      }
+    ],
+    "url": "https://github.com/flyboy-byte/ScanRuler/pull/95"
+  }
+}

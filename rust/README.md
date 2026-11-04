@@ -1,16 +1,17 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # rust/: the pure-Rust port
 
-Work in progress, 2026-11-01. The binary STL triangle decoder is the first bounded port; see [the guide](../docs/guide/README.md)
-and [the plan](../docs/port-plan/HANDOFF.md).
+Work in progress, 2026-11-04. Native scan opening is available through the engine
+and `info` CLI (M3a); see [the guide](../docs/guide/README.md) and
+[the current M3 order](../docs/port-plan/ROADMAP-TO-USABLE.md).
 
 | Crate | Role | Contents today |
 |-------|------|----------------|
 | `port-core` | Pure core: no DOM, files or global state | Full mesh-graph construction, adjacency/components/selection, bounds/centroids, normals/orientation, dense solves, TLS/clipped planes and curvature discrimination; initial units/IDs/transforms and pin |
-| `port-engine` | Session, commands, jobs, history | Empty |
-| `port-io` | Formats and the `.scanruler` project reader/writer | STL binary/ASCII dispatch and triangle extraction (P06); no welding/session loader |
-| `port-cli` | `scanruler-rs`, native front end for differential runs | Prints a banner |
-| `port-wasm-probe` | Private bounded browser-runtime test ABI | Three operations, no unsafe Rust or third-party dependencies; not product integration |
+| `port-engine` | Session, commands, jobs, history | Runtime/task owner, real scan document and STL/PLY scan.open |
+| `port-io` | Formats and the `.scanruler` project reader/writer | STL, PLY, OBJ/MTL, inflate/zip and 3MF libraries; compatible project IO remains open |
+| `port-cli` | `scanruler-rs`, native front end for differential runs | `info` reads a scan through registered engine scan.open |
+| `port-wasm-probe` | Private bounded browser-runtime test ABI | Bounded original/native/browser comparison ABI; not a product UI or engine integration |
 | `xtask` | Project tasks | `ci`, `oracle`, `pin`, `plan`, `wasm`, `wasm-probe`, `env` |
 
 ```bash
@@ -18,6 +19,23 @@ cargo xtask ci     # the fast gate; same thing CI runs
 cargo xtask oracle # all native source suites; fails if a required suite disappears
 cargo xtask env    # toolchain versions to record with any result
 ```
+
+## Open a scan natively
+
+From `rust/`:
+
+```bash
+cargo run -p port-cli -- info /path/to/scan.ply
+cargo run -p port-cli -- info /path/to/scan.stl --units cm
+```
+
+STL and ASCII/little-endian/big-endian PLY are supported. JSON on stdout includes
+filename, source units, vertex/triangle/component counts, bounds, center and size
+in millimetres. Errors go to stderr with exit code 2. Node is needed only by the
+comparison oracle, not the native CLI. Input bytes and producer work are bounded.
+Plane fitting, undo/redo and compatible project save/read are later M3 steps;
+this command does not complete M3. Parent unit promotion and new native-suite
+registration remain governed by roadmap section 0.
 
 ## Rules of the workspace
 
