@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust port session (2026-11-03, PR #99)**: execute registered mutation/interrupt commands through retained queues, deadlines, history, activity and error normalization; compare 1,972 independent original command profiles and retain all earlier gates. Read-only/job dispatch and the CLI scan/plane/undo/project-save workflow remain open.
+
 - **Rust port session (2026-11-03, PRs #96–#98)**: validate merged main, enforce the 3MF decompression budget and preserve surrogate-directory texture fallback, and connect retained deadline/execute/scene reactions with timeout queue release and late-body cleanup. All prior cases remain; the CLI scan/plane/undo/project-save workflow is still unimplemented.
 
 - **Rust 3MF import** (2026-11-03): the original's `parse3MF` ported body for body (own XML scanner, units, component and build transforms, mirrored-triangle correction, slicer parts left out, colour and texture groups) on the own pure-Rust zip reader; 24,540 generated, mutated and named packages plus 107 real `.3mf` files read identically by the original and Rust (success or failure, full error and progress text, positions, indices, colours, texture notes), with a sabotage check that fails. Host limits are reported apart from the original's refusals. Not yet in the hosted native suite.

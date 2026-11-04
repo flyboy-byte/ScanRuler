@@ -262,6 +262,13 @@ impl Registry {
         self.cleanups.push(added);
         Ok(handle)
     }
+    /// Capture the admitted implementation/metadata before asynchronous scheduling.
+    pub(crate) fn definition(&self, name: &[u16]) -> Option<&Command> {
+        self.entries
+            .iter()
+            .find(|entry| entry.name == name)
+            .map(|entry| &entry.command)
+    }
     /// Invoke a prior successful cleanup again, preserving its captured names.
     pub fn cleanup(&mut self, handle: Cleanup) -> Result<(), RegistryError> {
         let names = self

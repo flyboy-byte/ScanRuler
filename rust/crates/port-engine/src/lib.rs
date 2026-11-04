@@ -76,6 +76,8 @@ pub mod workspaces;
 pub mod activity_state;
 /// Lossless Unicode command-label text and source-compatible provider ordering.
 pub mod command_label;
+/// Registered guarded/interrupt commands over retained deadlines, activity and history.
+pub mod guarded;
 /// Source-boundary reaction delivery and retained deadline/execute continuations.
 pub mod reactions;
 /// Live plugin readout sections and plain-object assignment semantics.

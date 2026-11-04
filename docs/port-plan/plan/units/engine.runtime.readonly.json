@@ -1,0 +1,44 @@
+{
+  "id": "engine.runtime.readonly",
+  "parent": "engine.session.contract",
+  "title": "Complete read-only and remembered command dispatch over the native runtime",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": [
+    "engine.runtime.guarded",
+    "engine.session.settle.registry",
+    "engine.session.recent.store",
+    "engine.session.recent.result.data",
+    "engine.session.scene.queue"
+  ],
+  "scope": "Complete start/runCommand read-only-before-interrupt routing and job remember integration using the actual registered callback runtime. Preserve eager settlement before scene admission, null/ready settlement distinction, deadline inside the scene turn, deferred contexts and error normalization without mutation history/activity. Reuse recent result/state components.",
+  "acceptance": [
+    "Independent full pinned read-only/remember command traces compare successful values, failures, state, eager factory/effect order and exact typed errors; retain every earlier registered mutation/interrupt case and wrong-value canary.",
+    "Read-only routing precedes interrupts; settling starts before scene waiting and only limited/body is timed inside its scene turn. Deferred skips settling. Late body/progress work remains owned after caller timeout.",
+    "Jobs attach once-only reactions to the captured request/receiver; ordered record/update/eviction, Date clipping/durations, omitted results and callback faults match the existing source components. No global reusable request-ID routing.",
+    "All original/native/Chrome gates remain required; real scan/session models, import/plane, global undo/project compatibility and CLI M3 remain explicit continuations."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/registry.ts"
+  ],
+  "symbols": [
+    "start readOnly branch",
+    "runCommand job routing",
+    "remember native integration"
+  ],
+  "rust_paths": [
+    "rust/crates/port-engine/src/guarded.rs",
+    "rust/crates/port-engine/src/recent_store.rs",
+    "rust/crates/port-engine/src/recent_result.rs"
+  ],
+  "evidence": [],
+  "open_items": [
+    "Next runtime continuation after #99. Read-only definitions are currently refused explicitly; no implementation/acceptance claim."
+  ],
+  "verification": "none"
+}

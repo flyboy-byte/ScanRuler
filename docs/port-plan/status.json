@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 76,
+    "implemented": 77,
     "planned": 47,
     "specified": 2
   },
   "verification_levels": {
-    "fixed-corpus": 55,
+    "fixed-corpus": 56,
     "fuzzed": 4,
     "none": 68
   },
-  "native_suites": 58,
-  "native_case_identities_including_refusals": 22950,
+  "native_suites": 59,
+  "native_case_identities_including_refusals": 24922,
   "accepted_units": [],
   "units": [
     {
@@ -546,15 +546,16 @@
     },
     {
       "id": "engine.runtime.guarded",
-      "status": "planned",
+      "status": "implemented",
       "parent": "engine.session.contract",
-      "pr": null,
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/99",
+      "tested_sha": "2b6710a9368c25d087a062bb0f6091287642fbd7",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "2b6710a9368c25d087a062bb0f6091287642fbd7",
       "open_items": [
-        "First continuation after engine.runtime.reactions; actual full guarded/interrupt body and runtime command wiring are not implemented.",
-        "Follow with one real imported scan/session model and measurement family, then undo and original-compatible project/CLI save; generic probe callbacks are not M3."
+        "Registered mutation/interrupt dispatch is implemented over real admission, execute, queues, history, activity, deadline, label and normalization components. The Host still supplies the sole application document/assets, snapshot participants, clock, trusted serial timers and installed plugin/settler services. This is not a general JS Promise/DOM interpreter; arbitrary thenables/proxy getters and platform abort-listener exception reporting remain outside the owned native boundary.",
+        "Read-only and remembered job/result dispatch are explicitly unsupported here and continue under engine.runtime.readonly; no native definition with readOnly=true is advertised as executable by this runtime.",
+        "Then integrate actual scan/session and measurement-family state and commands, native platform timer/event ingress, global undo/apply and original-compatible project/CLI save. These comparison callbacks are not the measurement families and do not close M3."
       ]
     },
     {
@@ -568,6 +569,18 @@
       "open_items": [
         "Owned caller futures now await real scene-queue turns; 12 combined pinned limited/inScene traces prove timeout/failure releases later answers before late body settlement. All 291 deadline and 1200 execute source traces also run through the owner. This boundary adapter is not a general JavaScript Promise interpreter; provider completions and nested await boundaries remain explicit.",
         "Next engine.runtime.guarded must wire the actual registry command bodies, guarded/interrupt/history/activity/current/progress, normalization and queued answers. Platform timers, actual family/session state, import, plane commands, undo/projects/CLI and browser engine runtime remain open."
+      ]
+    },
+    {
+      "id": "engine.runtime.readonly",
+      "status": "planned",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Next runtime continuation after #99. Read-only definitions are currently refused explicitly; no implementation/acceptance claim."
       ]
     },
     {
@@ -730,7 +743,7 @@
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
-        "2026-11-03: bounded stateSections registration/readout is implemented under engine.state.sections; actual session.state composition remains open. agentLink.ts and remaining host.ts still need review.",
+        "Scoped runtime libraries, retained reactions and registered mutation/interrupt dispatch now compose with history/activity/current/error normalization (engine.runtime.guarded, PR #99). Next engine.runtime.readonly completes read-only and remembered job dispatch. Real scan/family document ownership, platform timers/ingress, import/plane/undo/project/CLI and browser engine runtime remain required. No whole-session acceptance.",
         "Scoped registry/history/queues/deadline/settle/plugin/stale/error/clock/execute/recent/workspace/label/activity/readout libraries and native task ownership exist. engine.runtime.reactions now connects retained source-boundary deadline/execute/scene callers; full guarded/interrupt/history/native family ownership, real timers/late progress/commands/projects/CLI/browser runtime remain required. Next unit engine.runtime.guarded; no session acceptance.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."

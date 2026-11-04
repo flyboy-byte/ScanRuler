@@ -55,7 +55,8 @@
         "engine.state.sections",
         "engine.runtime.tasks",
         "engine.runtime.reactions",
-        "engine.runtime.guarded"
+        "engine.runtime.guarded",
+        "engine.runtime.readonly"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },

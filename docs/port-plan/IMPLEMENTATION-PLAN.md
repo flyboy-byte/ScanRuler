@@ -72,3 +72,21 @@ Executor/MCP continuations must apply drift ledger D4/D5: queued failures still
 receive an answer, and only the original requesting receiver gets that answer.
 Do not route results by a reused global request ID. All existing evidence cases,
 seeds, tolerances, source timing thresholds and gates remain required.
+
+
+## Registered guarded runtime — 2026-11-03
+
+After #96–#98 merged at `a3681cb`, #99 connects actual owned registry definitions
+and callbacks to mutation/interrupt execution, queues, history, activity/current,
+labels, normalization and retained deadlines. The paired original graph exercises
+1,972 profiles, including listener/capture failures, nested shared history,
+late progress, stale/string conversion, strict discard stopping and epoch clear.
+This metadata/runtime layer still receives its sole business document from Host;
+no real scan/measurement family or CLI workflow is substituted by those fixtures.
+
+Next canonical runtime unit: `engine.runtime.readonly`, completing read-only and
+remembered job dispatch before actual family/session integration. Read-only
+registration is refused explicitly until that branch exists. Then proceed through
+the real imported-scan/plane slice, undo/apply and original-compatible save.
+Native platform timers/ingress and browser engine runtime remain open; no M3 or
+whole-session acceptance is inferred from these library comparisons.

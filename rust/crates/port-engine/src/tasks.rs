@@ -7,7 +7,7 @@ use std::{
     collections::VecDeque,
     future::Future,
     pin::Pin,
-    rc::Rc,
+    rc::{Rc, Weak},
     sync::{
         Arc, Mutex,
         atomic::{AtomicBool, Ordering},
@@ -145,6 +145,24 @@ impl Clone for Owner<'_> {
         }
     }
 }
+/// Non-owning runtime capability for task captures. This prevents a retained future from
+/// keeping its own Owner alive through a session/core reference during host shutdown.
+pub struct WeakOwner<'a> {
+    inner: Weak<Inner<'a>>,
+}
+impl Clone for WeakOwner<'_> {
+    fn clone(&self) -> Self {
+        Self {
+            inner: self.inner.clone(),
+        }
+    }
+}
+impl<'a> WeakOwner<'a> {
+    /// Upgrade only while the external session still owns its driver.
+    pub fn upgrade(&self) -> Option<Owner<'a>> {
+        self.inner.upgrade().map(|inner| Owner { inner })
+    }
+}
 /// One finite pump's state. Waiting work is not the same as a finished owner.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Turn {
@@ -162,6 +180,12 @@ impl Drop for Depth<'_> {
     }
 }
 impl<'a> Owner<'a> {
+    /// Give retained task captures a non-owning driver reference.
+    pub fn downgrade(&self) -> WeakOwner<'a> {
+        WeakOwner {
+            inner: Rc::downgrade(&self.inner),
+        }
+    }
     /// Reserve all slot/wake metadata before accepting work. Future/Rc/Arc
     /// allocations are ordinary Rust allocations, not process-wide OOM isolation.
     pub fn new(limits: Limits) -> Result<Self, Error> {
