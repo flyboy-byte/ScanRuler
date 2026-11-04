@@ -12,7 +12,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | --- | ---: |
 | baseline-captured | 2 |
 | implemented | 80 |
-| planned | 46 |
+| planned | 47 |
 | specified | 2 |
 
 Verification labels describe scoped evidence snapshots, not whole-feature/runtime acceptance.
@@ -21,7 +21,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | --- | ---: |
 | fixed-corpus | 59 |
 | fuzzed | 4 |
-| none | 67 |
+| none | 68 |
 
 | Unit | State | Verification | Tested implementation | Verification snapshot | PR |
 | --- | --- | --- | --- | --- | --- |
@@ -120,6 +120,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [geometry.centroid](plan/units/geometry.centroid.json) | implemented | fixed-corpus | `1473fe4` | `1473fe4` | [#11](https://github.com/flyboy-byte/ScanRuler/pull/11) |
 | [geometry.closed.shells](plan/units/geometry.closed.shells.json) | implemented | fixed-corpus | `fd11f98` | `fd11f98` | [#21](https://github.com/flyboy-byte/ScanRuler/pull/21) |
 | [geometry.components](plan/units/geometry.components.json) | implemented | fixed-corpus | `66997f8` | `66997f8` | [#18](https://github.com/flyboy-byte/ScanRuler/pull/18) |
+| [geometry.mesh.crease](plan/units/geometry.mesh.crease.json) | planned | none | — | — | [#106](https://github.com/flyboy-byte/ScanRuler/pull/106) |
 | [geometry.mesh.graph](plan/units/geometry.mesh.graph.json) | implemented | fixed-corpus | `6cfda5b` | `6cfda5b` | [#20](https://github.com/flyboy-byte/ScanRuler/pull/20) |
 | [geometry.normals.compute](plan/units/geometry.normals.compute.json) | implemented | fixed-corpus | `4a5aac4` | `4a5aac4` | [#5](https://github.com/flyboy-byte/ScanRuler/pull/5) |
 | [geometry.normals.orient](plan/units/geometry.normals.orient.json) | implemented | fixed-corpus | `4c8b4cf` | `4c8b4cf` | [#6](https://github.com/flyboy-byte/ScanRuler/pull/6) |
