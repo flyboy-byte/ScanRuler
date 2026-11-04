@@ -44,12 +44,14 @@ fn value_text(s: &str) -> Value {
 fn object(v: Vec<(&str, Value)>) -> Value {
     Value::Object(v.into_iter().map(|(k, v)| (text(k), v)).collect())
 }
+// Optional JS arguments use undefined as absence, even when the own key exists.
 fn get<'a>(v: &'a Value, key: &str) -> Option<&'a Value> {
     match v {
         Value::Object(fields) => fields
             .iter()
             .find(|(k, _)| k.iter().copied().eq(key.encode_utf16()))
-            .map(|(_, v)| v),
+            .map(|(_, v)| v)
+            .filter(|value| !matches!(value, Value::Undefined)),
         _ => None,
     }
 }
