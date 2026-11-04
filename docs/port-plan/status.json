@@ -3,7 +3,7 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 80,
+    "implemented": 81,
     "integrated": 1,
     "planned": 47,
     "specified": 1
@@ -11,7 +11,7 @@
   "verification_levels": {
     "fixed-corpus": 59,
     "fuzzed": 4,
-    "none": 68
+    "none": 69
   },
   "native_suites": 62,
   "native_case_identities_including_refusals": 34603,
@@ -1566,10 +1566,28 @@
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
+        "PNG decoding is the child io.obj.companions.images.png (implemented, Chrome-judged); JPEG, BMP, WebP and the ordered readCompanions/scanCompanions continuation remain here.",
         "No application dependency adoption or decoder implementation claimed. image0.25.10 candidate audit rejects direct use:28 pixel mismatches and 2 presence mismatches on 56 original inputs.",
         "Use the fixed alpha atlas/JPEG/16-bit/truncation counterexamples. Derive faithful conversion/decoder behavior before adoption; do not loosen byte comparison or feed source pixels into Rust.",
         "Complete the ordered MTL/image continuation, strict resource limits, actual Wasm pixels and broader platform/corpus acceptance.",
         "Decoders are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md: PNG on io.inflate, then a libjpeg-faithful JPEG decoder."
+      ]
+    },
+    {
+      "id": "io.obj.companions.images.png",
+      "status": "implemented",
+      "parent": "io.obj.companions.images",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Not wired into readCompanions/scanCompanions: the decoder exists, the ordered companion continuation (MTL text, name order, omission) is still io.obj.companions.images.",
+        "Chrome only, one version (156.0.8078.79) on Linux. No Wasm runtime comparison and no other browser.",
+        "Inferred, not observed: a very large IDAT chunk may reach Chrome's decoder in pieces; the post-image rules assume the whole chunk is fed at once.",
+        "Host-limit class: images over PngLimits (default 2^26 pixels, 256 MiB input) are refused where Chrome may decode or fail differently.",
+        "Not in ci/native-suites.json and not wired to cargo xtask fuzz (rust/xtask is held by one PR at a time).",
+        "Release decode is about 155 ms for a 2048 by 2048 RGBA image; not tuned."
       ]
     },
     {

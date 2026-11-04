@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust PNG decoding** (2026-11-04): own decoder giving the RGBA the original's `decodeImage` gets in Chrome, including which damaged files are left out, APNG frame 0 and the canvas premultiply round trip; 5,532 committed Chrome-judged cases plus fresh-seed live runs match byte for byte. Not yet wired into companion reading.
+
 - **Rust port session (2026-11-04)**: preserve source-compatible number formatting, own the real scan document and worker resource lifecycle, and add complete prepared render arrays/crease splitting with independent original comparisons. Native scan/plane/history and CLI prototypes are saved separately; integrated project-compatible save/read and M3 remain open.
 
 - **Rust port session (2026-11-03, PRs #99–#100)**: connect registered mutation/interrupt and read-only/job commands through retained queues, deadlines, history, activity, recent outcomes and error handling, with independent original command profiles and every earlier gate retained. Real scan/measurement state and the CLI scan/plane/undo/project-save workflow remain open.

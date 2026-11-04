@@ -26015,12 +26015,66 @@
       ],
       "evidence": [],
       "open_items": [
+        "PNG decoding is the child io.obj.companions.images.png (implemented, Chrome-judged); JPEG, BMP, WebP and the ordered readCompanions/scanCompanions continuation remain here.",
         "No application dependency adoption or decoder implementation claimed. image0.25.10 candidate audit rejects direct use:28 pixel mismatches and 2 presence mismatches on 56 original inputs.",
         "Use the fixed alpha atlas/JPEG/16-bit/truncation counterexamples. Derive faithful conversion/decoder behavior before adoption; do not loosen byte comparison or feed source pixels into Rust.",
         "Complete the ordered MTL/image continuation, strict resource limits, actual Wasm pixels and broader platform/corpus acceptance.",
         "Decoders are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md: PNG on io.inflate, then a libjpeg-faithful JPEG decoder."
       ],
       "resolved_items": [],
+      "verification": "none"
+    },
+    {
+      "id": "io.obj.companions.images.png",
+      "parent": "io.obj.companions.images",
+      "title": "PNG decoding as the original's decodeImage sees it in Chrome",
+      "gate": "G3",
+      "status": "implemented",
+      "depends_on": [
+        "io.obj.companions.image_audit"
+      ],
+      "soft_depends_on": [
+        "P03"
+      ],
+      "scope": "PNG bytes to the RGBA that createImageBitmap (colorSpaceConversion none, premultiplyAlpha none), canvas drawImage and getImageData give in Chrome, including which damaged files are left out, APNG frame 0 and the canvas premultiply round trip.",
+      "acceptance": [
+        "Every RGBA byte, dimension and omission equals actual Chrome on fixed named probes, truncation and flip sweeps and CRC-fixed structural mutations, with host limits counted separately.",
+        "Own pure-Rust code with no dependency; a deliberately wrong pixel is rejected."
+      ],
+      "owner": "Claude",
+      "branch": "claude/io-png",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/app/scanFiles.ts"
+      ],
+      "symbols": [
+        "decodeImage"
+      ],
+      "rust_paths": [
+        "rust/crates/port-io/src/png.rs",
+        "rust/crates/port-io/tests/png.rs",
+        "docs/port-plan/oracle/image-decode.mjs",
+        "docs/port-plan/fixtures/png-chrome/generate.py",
+        "docs/port-plan/fixtures/png-chrome/capture.py"
+      ],
+      "evidence": [
+        {
+          "kind": "report",
+          "location": "plan/findings/2026-11-04-png-chrome-port.md",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "summary": "5,532 committed cases (named, sweep, structural) and the 13 audit PNG fixtures equal Chrome 156 byte for byte offline; live fresh-seed runs and about 70,000 development cases with zero divergences outside the host-limit class; sabotage rejected. No acceptance claim."
+        }
+      ],
+      "open_items": [
+        "Not wired into readCompanions/scanCompanions: the decoder exists, the ordered companion continuation (MTL text, name order, omission) is still io.obj.companions.images.",
+        "Chrome only, one version (156.0.8078.79) on Linux. No Wasm runtime comparison and no other browser.",
+        "Inferred, not observed: a very large IDAT chunk may reach Chrome's decoder in pieces; the post-image rules assume the whole chunk is fed at once.",
+        "Host-limit class: images over PngLimits (default 2^26 pixels, 256 MiB input) are refused where Chrome may decode or fail differently.",
+        "Not in ci/native-suites.json and not wired to cargo xtask fuzz (rust/xtask is held by one PR at a time).",
+        "Release decode is about 155 ms for a 2048 by 2048 RGBA image; not tuned."
+      ],
       "verification": "none"
     },
     {
