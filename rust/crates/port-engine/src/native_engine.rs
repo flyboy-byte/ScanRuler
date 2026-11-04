@@ -27,8 +27,12 @@ use std::{
     task::{Context, Poll, Waker},
     time::{Duration, Instant, SystemTime, UNIX_EPOCH},
 };
+#[path = "native_plane.rs"]
+mod plane;
 #[path = "native_scan_definition.rs"]
 mod scan_definition;
+#[path = "native_selection.rs"]
+mod selection;
 /// Bounded filesystem/engine input policy; parser-specific limits remain independent.
 pub const MAX_INPUT_BYTES: usize = 64 * 1024 * 1024;
 fn text(s: &str) -> Text {
@@ -40,12 +44,14 @@ fn value_text(s: &str) -> Value {
 fn object(v: Vec<(&str, Value)>) -> Value {
     Value::Object(v.into_iter().map(|(k, v)| (text(k), v)).collect())
 }
+// Optional JS arguments use undefined as absence, even when the own key exists.
 fn get<'a>(v: &'a Value, key: &str) -> Option<&'a Value> {
     match v {
         Value::Object(fields) => fields
             .iter()
             .find(|(k, _)| k.iter().copied().eq(key.encode_utf16()))
-            .map(|(_, v)| v),
+            .map(|(_, v)| v)
+            .filter(|value| !matches!(value, Value::Undefined)),
         _ => None,
     }
 }
@@ -258,6 +264,7 @@ struct State {
     imports: ImportQueue<Fault>,
     components: Cell<usize>,
     no_view: Rc<dyn PreparedView>,
+    command_marked: RefCell<Option<selection::Marked>>,
 }
 #[derive(Debug)]
 enum KernelError {
@@ -629,6 +636,7 @@ impl Engine {
             imports: ImportQueue::new(QueueLimits::default()),
             components: Cell::new(0),
             no_view: Rc::new(NoView),
+            command_marked: RefCell::new(None),
         });
         let host = Rc::new(NativeHost {
             state: Rc::downgrade(&state),
@@ -726,6 +734,8 @@ impl Engine {
             },
         )?;
 
+        selection::register(&runtime, &state)?;
+        plane::register(&runtime, &state)?;
         Ok(Self {
             state,
             runtime,
@@ -857,6 +867,23 @@ mod native_work_budget_tests {
             ),
             Err(Fault::Host(_))
         );
+        let plane_refused = matches!(
+            engine.execute(
+                "element.fit_marked",
+                object(vec![
+                    ("kind", value_text("plane")),
+                    (
+                        "vertices",
+                        Value::Array(vec![
+                            Value::Number(0.),
+                            Value::Number(1.),
+                            Value::Number(2.)
+                        ])
+                    )
+                ])
+            ),
+            Err(Fault::Host(_))
+        );
         let closed = matches!(engine.document().store(StoreId::App).get("draft"), C::Null);
         let unchanged = original
             .as_ref()
@@ -878,6 +905,7 @@ mod native_work_budget_tests {
                 && refused_after
                 && held
                 && import_refused
+                && plane_refused
                 && closed
                 && unchanged
                 && no_history

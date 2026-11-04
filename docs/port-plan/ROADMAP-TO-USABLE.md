@@ -8,23 +8,28 @@ possible. This file fixes the layout, workflow and pipeline. It does not change 
 
 ## 0. Where we are (2026-11-04)
 
-Status: **M2 libraries done, native scan-open/info implemented (M3a), M3 still incomplete.**
+Status: **M2 libraries done, native scan-open/info and select/fit implemented (M3a/M3b), M3 still incomplete.**
 Verify current main with `git log -1 origin/main`, `gh pr list -R flyboy-byte/scanruler`
 and `STATUS.md`. A feature PR describes the code on its tree; Logan merges it.
 
 - On this tree: STL, PLY, OBJ/MTL, inflate/zip and 3MF libraries; real scan/session
   ownership and runtime (#104), number formatting (#103), prepared rendering (#106),
-  and native `scan.open` plus `scanruler-rs info` for STL and all PLY encodings (#105).
+  native `scan.open` plus `scanruler-rs info` for STL and all PLY encodings (#105),
+  and real `scan.query`/marked/box plane fitting with CLI `fit-plane` (#108).
   Unsupported native command formats are explicit refusals; image decoding remains open.
-- **Remaining saved code, not yet integrated:** `codex/m3-plane-finishing` and
-  `codex/m3-cli-selections` contain query/marked/box selection, plane fitting, the
-  `fit-plane` frontend and global undo/redo. Their 195 original-first controls are
-  retained with raw red/green records (REPORTED by Codex, not re-run by Claude).
+- **Remaining saved code, not yet integrated:** global undo/redo and its CLI
+  switches in `codex/m3-plane-finishing` / `codex/m3-cli-selections`. Query,
+  selection and plane finishing are public in #108. The full 212-case master
+  corpus remains: 205 controls run in M3b; seven global-history controls are
+  explicitly deferred to M3c. They are not counted as passing M3b.
 - Still missing for M3 everywhere: original-compatible project save/read and the
   new-suite roster integration. No unit or milestone is accepted by this update.
 - Run the available CLI from `rust/` with
   `cargo run -p port-cli -- info /path/to/scan.ply [--units mm|cm|m|in]`.
-  The engine owns import/geometry/state; the CLI reads bounded bytes and prints JSON.
+  `cargo run -p port-cli -- fit-plane /path/to/scan.ply --sigma 0` fits a plane.
+  Box/marks, normal filtering and orientation/extension flags are in `rust/README.md`.
+  The engine owns geometry/state/history recording; the CLI only supplies inputs
+  and formats results. Global history travel is not wired until M3c.
 
 Review/merge steps, in order (each its own PR from `main`; merge the previous
 before opening its successor where they share files):
@@ -32,9 +37,12 @@ before opening its successor where they share files):
 1. ~~**M3a, open and info**~~ — actual implementation in PR #105, unit
    `engine.measurement.slice`; all 33 retained import controls, native wrong-state
    rejection, CLI tests, full fast/oracle and 62-suite exact artifact completeness
-   pass on source `326b998`. This PR is no longer a doc-only claim. Merge before M3b.
-2. **M3b, select and fit:** `scan.query`, marked/box selection,
-   `element.fit_marked` plane, CLI `fit-plane`.
+   pass on source `326b998`. Merged as `fa7fe06`; its code and original comparisons are retained in M3b.
+2. ~~**M3b, select and fit**~~ — actual public code in PR #108: `scan.query`,
+   marked/box selection, plane `element.fit_marked` with finishing, CLI `fit-plane`.
+   All 205 current controls, actual wrong-state rejection and clean rerun pass
+   on source `c4ef7e4`; the unchanged 33 import controls and full fast/oracle/
+   62-suite artifact gates pass. Merge before opening M3c.
 3. **M3c, undo and redo:** global history apply/undo through the runtime recorder;
    CLI `--undo`/`--redo`.
 4. **M3d, save and read:** project-compatible save/read for the M3 slice (overlaps
@@ -108,7 +116,7 @@ may be built ahead of its dependencies but cannot be integrated past them). Hot 
 | --- | --- | --- | --- | --- |
 | M1 | Reproducible baseline and corpus | P00 to P03, `baseline.reproducibility` | Nothing yet | Original runs reproducibly here; every fixture has a licence, generator, seed and hash; skips are listed per reason. |
 | M2 | Import breadth | P06 plus `io.ply`, `io.obj`, `io.threemf` | `scanruler-rs info scan.ply` prints bounds, counts, components | Original-versus-Rust on the corpus including malformed files, then on your own scans (section 5). *2026-11-04: reader libraries and native STL/PLY `info` available; other command formats and texture image decoding (`io.obj.companions.images`) open.* |
-| M3 | Session and commands, native CLI | P05, P08, P07, P09 | `scanruler-rs` opens a scan, fits a plane, undoes, saves | Command traces equal the original's on independent sessions. **First point you can dogfood.** *2026-11-04: native open/info implemented in #105; select/fit/history await their ordered public PRs; M3d not started (section 0).* |
+| M3 | Session and commands, native CLI | P05, P08, P07, P09 | `scanruler-rs` opens a scan, fits a plane, undoes, saves | Command traces equal the original's on independent sessions. **First point you can dogfood.** *2026-11-04: open/info implemented in #105, select/fit in #108; global history and project IO remain open (section 0).* |
 | M4 | Paired harness and ratchet | P36, P37 | n/a | A deliberately wrong Rust value is rejected; PRs are compared against the exact base. |
 | M5 | MCP | P18 (needs P02, P08, P16) | Point Claude or Codex at the Rust MCP server | Section 4. |
 | M6 | Projects and history | P16, P17 | Open an original `.scanruler` project | Original files reopen with equal results; failed load leaves the session intact. |
@@ -167,8 +175,8 @@ Licensing, trademarks and the rename (`LICENSING-AND-NAMING.md`) wait for the pr
 ## 8. What is deliberately not here
 
 No release dates, no completion percentage, no promise that a milestone is near. The honest status today
-is generated in `STATUS.md`; as of 2026-11-04 the native scan.open/info flow is implemented in #105;
-plane/history integration, project reader/writer and UI remain open (section 0). Library implementation is distinct from acceptance.
+is generated in `STATUS.md`; as of 2026-11-04 native scan.open/info and select/plane flows are implemented in #105/#108;
+global history travel, project reader/writer and UI remain open (section 0). Library implementation is distinct from acceptance.
 
 ## 9. Open owner decisions (nothing blocks the queue)
 

@@ -92,3 +92,169 @@ fn info_keeps_failures_off_stdout_and_exits_nonzero() {
             .starts_with("invalid_input:")
     );
 }
+
+#[test]
+fn fit_plane_executes_registered_fit_and_formats_result() {
+    let scratch = Scratch::new();
+    let path = scratch.0.join("grid.ply");
+    let bytes = grid_ply();
+    std::fs::write(&path, bytes).unwrap();
+    let out = Command::new(env!("CARGO_BIN_EXE_scanruler-rs"))
+        .args(["fit-plane", path.to_str().unwrap(), "--sigma", "0"])
+        .output()
+        .unwrap();
+    assert!(
+        out.status.success(),
+        "{}",
+        String::from_utf8_lossy(&out.stderr)
+    );
+    assert!(out.stderr.is_empty());
+    let json = String::from_utf8(out.stdout).unwrap();
+    assert!(json.contains("\"center\":[2,2,0],\"normal\":[0,0,1]"));
+    assert!(json.contains("\"sigmaCutoff\":0,\"cutoff\":\"all points\",\"markedPoints\":25"));
+}
+
+fn grid_ply() -> String {
+    let mut bytes = String::from(
+        "ply\nformat ascii 1.0\nelement vertex 25\nproperty float x\nproperty float y\nproperty float z\nelement face 32\nproperty list uchar int vertex_indices\nend_header\n",
+    );
+    for y in 0..5 {
+        for x in 0..5 {
+            bytes += &format!("{x} {y} 0\n")
+        }
+    }
+    for y in 0..4 {
+        for x in 0..4 {
+            let a = y * 5 + x;
+            bytes += &format!(
+                "3 {a} {} {}\n3 {} {} {}\n",
+                a + 1,
+                a + 5,
+                a + 1,
+                a + 6,
+                a + 5
+            )
+        }
+    }
+    bytes
+}
+
+#[test]
+fn box_and_marked_cli_paths_use_real_selection_and_finishing() {
+    let scratch = Scratch::new();
+    let path = scratch.0.join("part.ply");
+    std::fs::write(&path, grid_ply()).unwrap();
+    for marked in [false, true] {
+        let mut args = vec![
+            "fit-plane",
+            path.to_str().unwrap(),
+            "--box",
+            "0",
+            "0",
+            "-1",
+            "3",
+            "4",
+            "1",
+            "--normal",
+            "0",
+            "0",
+            "1",
+            "--orient",
+            "XY",
+            "--extend",
+            "1",
+            "2",
+            "3",
+            "4",
+        ];
+        if marked {
+            args.push("--marked");
+        }
+        let out = Command::new(env!("CARGO_BIN_EXE_scanruler-rs"))
+            .args(args)
+            .output()
+            .unwrap();
+        assert!(
+            out.status.success(),
+            "{}",
+            String::from_utf8_lossy(&out.stderr)
+        );
+        let json = String::from_utf8(out.stdout).unwrap();
+        assert!(json.contains("\"center\":[1.5,2,0]"), "{json}");
+        assert!(json.contains("\"markedPoints\":20"), "{json}");
+        assert!(
+            json.contains("\"orient\":{\"ref\":-1,\"relation\":\"normal\"}"),
+            "{json}"
+        );
+        assert!(
+            json.contains(
+                "\"extend\":{\"kind\":\"plane\",\"uMin\":1,\"uMax\":2,\"vMin\":3,\"vMax\":4}"
+            ),
+            "{json}"
+        );
+        if marked {
+            assert!(json.contains("\"selection\":{\"matched\":20"), "{json}");
+            assert!(
+                json.contains(
+                    "\"marked\":{\"points\":20,\"from\":\"scan.query box facing a way\"}"
+                ),
+                "{json}"
+            );
+        } else {
+            assert!(json.contains("\"points\":20"), "{json}");
+        }
+    }
+    let out = Command::new(env!("CARGO_BIN_EXE_scanruler-rs"))
+        .args(["fit-plane", path.to_str().unwrap(), "--marked"])
+        .output()
+        .unwrap();
+    assert!(
+        out.status.success(),
+        "{}",
+        String::from_utf8_lossy(&out.stderr)
+    );
+    assert!(
+        String::from_utf8(out.stdout)
+            .unwrap()
+            .contains("\"markedPoints\":25")
+    );
+}
+#[test]
+fn cli_selection_guards_and_engine_refusals_produce_no_partial_stdout() {
+    let scratch = Scratch::new();
+    let path = scratch.0.join("part.ply");
+    std::fs::write(&path, grid_ply()).unwrap();
+    for (flags, message) in [
+        (vec!["--box", "0", "0"], "--box requires 6 numbers"),
+        (
+            vec!["--extend", "a", "2", "3", "4"],
+            "--extend requires numbers",
+        ),
+        (vec!["--in-plane"], "--in-plane requires --orient"),
+        (vec!["--normal", "0", "0", "1"], "--normal requires --box"),
+        (vec!["--within-deg", "30"], "--within-deg requires --normal"),
+        (
+            vec!["--box", "3", "0", "-1", "0", "4", "1"],
+            "invalid_input: The box’s min lies past its max.",
+        ),
+        (
+            vec![
+                "--box", "0", "0", "-1", "3", "4", "1", "--normal", "0", "0", "0",
+            ],
+            "invalid_input: normal.dir: give a direction, not a zero vector.",
+        ),
+        (
+            vec!["--orient", "Missing"],
+            "not_found: There is no element named \"Missing\".",
+        ),
+    ] {
+        let out = Command::new(env!("CARGO_BIN_EXE_scanruler-rs"))
+            .args(["fit-plane", path.to_str().unwrap()])
+            .args(flags)
+            .output()
+            .unwrap();
+        assert_eq!(out.status.code(), Some(2));
+        assert!(out.stdout.is_empty());
+        assert_eq!(String::from_utf8(out.stderr).unwrap().trim(), message);
+    }
+}
