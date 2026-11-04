@@ -65,26 +65,90 @@ fn fault(f: Fault) -> String {
         Fault::Other(_) => "native command failed".into(),
     }
 }
+const USAGE: &str = "Usage: scanruler-rs <info|fit-plane> <scan.stl|scan.ply> [--units mm|cm|m|in]
+Plane options: [--sigma 0|1|2|3] [--box xmin ymin zmin xmax ymax zmax] [--marked]
+[--normal x y z] [--within-deg degrees] [--orient XY|YZ|XZ] [--in-plane]
+[--extend uMin uMax vMin vMax]
+Box coordinates and extensions are in millimetres. --marked uses scan.query.";
+fn numbers<const N: usize>(
+    args: &mut impl Iterator<Item = String>,
+    flag: &str,
+) -> Result<[f64; N], String> {
+    let mut out = [0.; N];
+    for v in &mut out {
+        *v = args
+            .next()
+            .ok_or_else(|| format!("{flag} requires {N} numbers"))?
+            .parse()
+            .map_err(|_| format!("{flag} requires numbers"))?;
+    }
+    Ok(out)
+}
+fn vector(v: [f64; 3]) -> Value {
+    Value::Array(v.into_iter().map(Value::Number).collect())
+}
 fn run() -> Result<(), String> {
     let mut args = std::env::args().skip(1);
     let Some(command) = args.next() else {
-        return Err("Usage: scanruler-rs info <scan.stl|scan.ply> [--units mm|cm|m|in]".into());
+        return Err(USAGE.into());
     };
     if command == "--help" || command == "-h" {
-        println!("Usage: scanruler-rs info <scan.stl|scan.ply> [--units mm|cm|m|in]");
+        println!("{USAGE}");
         return Ok(());
     }
-    if command != "info" {
+    if command != "info" && command != "fit-plane" {
         return Err(format!("Unknown command {command:?}. Use --help."));
     }
-    let path = args.next().ok_or("info requires a scan path")?;
+    let path = args.next().ok_or("Command requires a scan path")?;
     let mut units = "mm".to_string();
+    let mut sigma = None;
+    let mut bounds = None;
+    let mut marked = false;
+    let mut normal = None;
+    let mut within = None;
+    let mut orient = None;
+    let mut in_plane = false;
+    let mut extend = None;
     while let Some(arg) = args.next() {
         if arg == "--units" {
             units = args.next().ok_or("--units requires mm, cm, m or in")?
+        } else if command == "fit-plane" && arg == "--sigma" {
+            sigma = Some(
+                args.next()
+                    .ok_or("--sigma requires 0, 1, 2 or 3")?
+                    .parse::<f64>()
+                    .map_err(|_| "--sigma requires a number")?,
+            );
+        } else if command == "fit-plane" && arg == "--box" {
+            let v = numbers::<6>(&mut args, "--box")?;
+            bounds = Some(Value::Object(vec![
+                (text("min"), vector([v[0], v[1], v[2]])),
+                (text("max"), vector([v[3], v[4], v[5]])),
+            ]));
+        } else if command == "fit-plane" && arg == "--marked" {
+            marked = true;
+        } else if command == "fit-plane" && arg == "--normal" {
+            normal = Some(numbers::<3>(&mut args, "--normal")?);
+        } else if command == "fit-plane" && arg == "--within-deg" {
+            within = Some(numbers::<1>(&mut args, "--within-deg")?[0]);
+        } else if command == "fit-plane" && arg == "--orient" {
+            orient = Some(args.next().ok_or("--orient requires a plane reference")?);
+        } else if command == "fit-plane" && arg == "--in-plane" {
+            in_plane = true;
+        } else if command == "fit-plane" && arg == "--extend" {
+            extend = Some(numbers::<4>(&mut args, "--extend")?);
         } else {
             return Err(format!("Unknown argument {arg:?}"));
         }
+    }
+    if in_plane && orient.is_none() {
+        return Err("--in-plane requires --orient".into());
+    }
+    if within.is_some() && normal.is_none() {
+        return Err("--within-deg requires --normal".into());
+    }
+    if normal.is_some() && bounds.is_none() {
+        return Err("--normal requires --box".into());
     }
     let mut bytes = Vec::new();
     std::fs::File::open(&path)
@@ -125,7 +189,97 @@ fn run() -> Result<(), String> {
         text("components"),
         Value::Number(engine.components() as f64),
     ));
-    println!("{}", json(&Value::Object(summary)));
+    if command == "fit-plane" {
+        let vertices = summary
+            .iter()
+            .find(|(k, _)| *k == text("vertices"))
+            .and_then(|(_, v)| {
+                if let Value::Number(n) = v {
+                    Some(*n as usize)
+                } else {
+                    None
+                }
+            })
+            .ok_or("Engine returned no vertex count")?;
+        let mut input = vec![(text("kind"), Value::String(text("plane")))];
+        let normal = normal.map(|v| {
+            let mut fields = vec![(text("dir"), vector(v))];
+            if let Some(within) = within {
+                fields.push((text("withinDeg"), Value::Number(within)));
+            }
+            Value::Object(fields)
+        });
+        let mut selection = None;
+        if marked {
+            let bounds = bounds
+                .or_else(|| {
+                    summary
+                        .iter()
+                        .find(|(k, _)| *k == text("bounds"))
+                        .map(|(_, v)| v.clone())
+                })
+                .ok_or("Engine returned no scan bounds")?;
+            let mut query = vec![
+                (text("box"), bounds),
+                (text("mark"), Value::Boolean(true)),
+                (text("fields"), Value::String(text("count"))),
+            ];
+            if let Some(normal) = normal {
+                query.push((text("normal"), normal));
+            }
+            selection = Some(
+                engine
+                    .execute("scan.query", Value::Object(query))
+                    .map_err(fault)?,
+            );
+            input.push((text("marked"), Value::Boolean(true)));
+        } else if let Some(bounds) = bounds {
+            input.push((text("box"), bounds));
+            if let Some(normal) = normal {
+                input.push((text("normal"), normal));
+            }
+        } else {
+            if vertices > 1_000_000 {
+                return Err("Scan exceeds the native marked-plane input budget.".into());
+            }
+            input.push((
+                text("vertices"),
+                Value::Array((0..vertices).map(|v| Value::Number(v as f64)).collect()),
+            ));
+        }
+        if let Some(orient) = orient {
+            let mut fields = vec![(text("to"), Value::String(text(&orient)))];
+            if in_plane {
+                fields.push((text("relation"), Value::String(text("inPlane"))));
+            }
+            input.push((text("orient"), Value::Object(fields)));
+        }
+        if let Some(extend) = extend {
+            input.push((
+                text("extend"),
+                Value::Object(
+                    ["uMin", "uMax", "vMin", "vMax"]
+                        .into_iter()
+                        .zip(extend)
+                        .map(|(k, v)| (text(k), Value::Number(v)))
+                        .collect(),
+                ),
+            ));
+        }
+        if let Some(sigma) = sigma {
+            input.push((text("sigma"), Value::Number(sigma)))
+        }
+        let plane = engine
+            .execute("element.fit_marked", Value::Object(input))
+            .map_err(fault)?;
+        let mut output = vec![(text("scan"), Value::Object(summary)), (text("fit"), plane)];
+        if let Some(selection) = selection {
+            output.push((text("selection"), selection));
+        }
+        println!("{}", json(&Value::Object(output)));
+    } else {
+        println!("{}", json(&Value::Object(summary)));
+    }
     Ok(())
 }
 fn main() -> ExitCode {

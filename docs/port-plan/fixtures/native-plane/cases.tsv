@@ -1,0 +1,195 @@
+plane-0000	plane-success	mm	flat	5	0
+plane-0001	plane-success	mm	flat	5	1
+plane-0002	plane-success	mm	flat	5	2
+plane-0003	plane-success	mm	flat	5	3
+plane-0004	plane-success	cm	flat	5	0
+plane-0005	plane-success	cm	flat	5	1
+plane-0006	plane-success	cm	flat	5	2
+plane-0007	plane-success	cm	flat	5	3
+plane-0008	plane-success	m	flat	5	0
+plane-0009	plane-success	m	flat	5	1
+plane-0010	plane-success	m	flat	5	2
+plane-0011	plane-success	m	flat	5	3
+plane-0012	plane-success	in	flat	5	0
+plane-0013	plane-success	in	flat	5	1
+plane-0014	plane-success	in	flat	5	2
+plane-0015	plane-success	in	flat	5	3
+plane-0016	plane-success	mm	7	5	0
+plane-0017	plane-success	mm	7	5	1
+plane-0018	plane-success	mm	7	5	2
+plane-0019	plane-success	mm	7	5	3
+plane-0020	plane-success	cm	7	5	0
+plane-0021	plane-success	cm	7	5	1
+plane-0022	plane-success	cm	7	5	2
+plane-0023	plane-success	cm	7	5	3
+plane-0024	plane-success	m	7	5	0
+plane-0025	plane-success	m	7	5	1
+plane-0026	plane-success	m	7	5	2
+plane-0027	plane-success	m	7	5	3
+plane-0028	plane-success	in	7	5	0
+plane-0029	plane-success	in	7	5	1
+plane-0030	plane-success	in	7	5	2
+plane-0031	plane-success	in	7	5	3
+plane-0032	plane-success	mm	99	5	0
+plane-0033	plane-success	mm	99	5	1
+plane-0034	plane-success	mm	99	5	2
+plane-0035	plane-success	mm	99	5	3
+plane-0036	plane-success	cm	99	5	0
+plane-0037	plane-success	cm	99	5	1
+plane-0038	plane-success	cm	99	5	2
+plane-0039	plane-success	cm	99	5	3
+plane-0040	plane-success	m	99	5	0
+plane-0041	plane-success	m	99	5	1
+plane-0042	plane-success	m	99	5	2
+plane-0043	plane-success	m	99	5	3
+plane-0044	plane-success	in	99	5	0
+plane-0045	plane-success	in	99	5	1
+plane-0046	plane-success	in	99	5	2
+plane-0047	plane-success	in	99	5	3
+plane-0048	plane-short	mm	flat	5	0
+plane-0049	plane-reverse	mm	flat	5	0
+plane-0050	plane-duplicate	mm	flat	5	0
+plane-0051	plane-invalid	mm	flat	5	0
+plane-0052	plane-known	mm	flat	5	0
+plane-0053	plane-assumed	mm	flat	5	0
+plane-0054	plane-name	mm	flat	5	0
+plane-0055	plane-missing	mm	flat	5	0
+plane-0056	plane-two	mm	flat	5	0
+plane-0057	plane-undo	mm	flat	5	0
+plane-0058	plane-redo	mm	flat	5	0
+plane-0059	plane-two-undo	mm	flat	5	0
+plane-0060	plane-undo-new	mm	flat	5	0
+plane-0061	plane-undo-redo-twice	mm	flat	5	0
+plane-0062	plane-empty-undo	mm	flat	5	0
+plane-0063	plane-empty-redo	mm	flat	5	0
+plane-0064	plane-name-surrogate	mm	flat	5	0
+plane-0065	plane-name-bom	mm	flat	5	0
+plane-0066	plane-name-blank	mm	flat	5	0
+plane-0067	plane-name-blank-bom	mm	flat	5	0
+plane-0068	plane-box-full	mm	flat	5	0
+plane-0069	plane-box-full	mm	flat	5	3
+plane-0070	plane-box-full	cm	flat	5	0
+plane-0071	plane-box-full	cm	flat	5	3
+plane-0072	plane-box-full	m	flat	5	0
+plane-0073	plane-box-full	m	flat	5	3
+plane-0074	plane-box-full	in	flat	5	0
+plane-0075	plane-box-full	in	flat	5	3
+plane-0076	plane-box-full	mm	7	5	0
+plane-0077	plane-box-full	mm	7	5	3
+plane-0078	plane-box-full	cm	7	5	0
+plane-0079	plane-box-full	cm	7	5	3
+plane-0080	plane-box-full	m	7	5	0
+plane-0081	plane-box-full	m	7	5	3
+plane-0082	plane-box-full	in	7	5	0
+plane-0083	plane-box-full	in	7	5	3
+plane-0084	plane-box-facing	mm	flat	5	0
+plane-0085	plane-box-away	mm	flat	5	0
+plane-0086	plane-box-empty	mm	flat	5	0
+plane-0087	plane-box-short	mm	flat	5	0
+plane-0088	plane-box-inverted	mm	flat	5	0
+plane-0089	plane-box-zero-normal	mm	flat	5	0
+plane-0090	plane-box-facing-180	mm	flat	5	0
+plane-0091	plane-box-both	mm	flat	5	0
+plane-0092	plane-normal-only	mm	flat	5	0
+plane-0093	plane-query-box	mm	7	5	0	1	count
+plane-0094	plane-query-box	mm	7	5	0	1	ids
+plane-0095	plane-query-box	mm	7	5	0	1	all
+plane-0096	plane-query-box	mm	7	5	0	3	count
+plane-0097	plane-query-box	mm	7	5	0	3	ids
+plane-0098	plane-query-box	mm	7	5	0	3	all
+plane-0099	plane-query-box	mm	7	5	0	25	count
+plane-0100	plane-query-box	mm	7	5	0	25	ids
+plane-0101	plane-query-box	mm	7	5	0	25	all
+plane-0102	plane-query-ball	mm	7	5	0	1	count
+plane-0103	plane-query-ball	mm	7	5	0	1	ids
+plane-0104	plane-query-ball	mm	7	5	0	1	all
+plane-0105	plane-query-ball	mm	7	5	0	3	count
+plane-0106	plane-query-ball	mm	7	5	0	3	ids
+plane-0107	plane-query-ball	mm	7	5	0	3	all
+plane-0108	plane-query-ball	mm	7	5	0	25	count
+plane-0109	plane-query-ball	mm	7	5	0	25	ids
+plane-0110	plane-query-ball	mm	7	5	0	25	all
+plane-0111	plane-query-facing	mm	7	5	0	1	count
+plane-0112	plane-query-facing	mm	7	5	0	1	ids
+plane-0113	plane-query-facing	mm	7	5	0	1	all
+plane-0114	plane-query-facing	mm	7	5	0	3	count
+plane-0115	plane-query-facing	mm	7	5	0	3	ids
+plane-0116	plane-query-facing	mm	7	5	0	3	all
+plane-0117	plane-query-facing	mm	7	5	0	25	count
+plane-0118	plane-query-facing	mm	7	5	0	25	ids
+plane-0119	plane-query-facing	mm	7	5	0	25	all
+plane-0120	plane-query-zero-normal	mm	7	5	0	1	count
+plane-0121	plane-query-zero-normal	mm	7	5	0	1	ids
+plane-0122	plane-query-zero-normal	mm	7	5	0	1	all
+plane-0123	plane-query-zero-normal	mm	7	5	0	3	count
+plane-0124	plane-query-zero-normal	mm	7	5	0	3	ids
+plane-0125	plane-query-zero-normal	mm	7	5	0	3	all
+plane-0126	plane-query-zero-normal	mm	7	5	0	25	count
+plane-0127	plane-query-zero-normal	mm	7	5	0	25	ids
+plane-0128	plane-query-zero-normal	mm	7	5	0	25	all
+plane-0129	plane-query-empty	mm	flat	5	0	3	default
+plane-0130	plane-query-inverted	mm	flat	5	0	3	default
+plane-0131	plane-query-marked-fit	mm	flat	5	0	3	default
+plane-0132	plane-query-empty-marked-fit	mm	flat	5	0	3	default
+plane-0133	plane-query-marked-stale	mm	flat	5	0	3	default
+plane-0134	plane-marked-missing	mm	flat	5	0	3	default
+plane-0135	plane-no-scan	mm	flat	5	0	3	all
+plane-0136	plane-query-no-scan	mm	flat	5	0	3	all
+plane-0137	plane-extend-grow	mm	flat	5	0
+plane-0138	plane-extend-trim	mm	flat	5	0
+plane-0139	plane-extend-reverse	mm	flat	5	0
+plane-0140	plane-extend-grow	cm	flat	5	0
+plane-0141	plane-extend-trim	cm	flat	5	0
+plane-0142	plane-extend-reverse	cm	flat	5	0
+plane-0143	plane-extend-grow	m	flat	5	0
+plane-0144	plane-extend-trim	m	flat	5	0
+plane-0145	plane-extend-reverse	m	flat	5	0
+plane-0146	plane-extend-grow	in	flat	5	0
+plane-0147	plane-extend-trim	in	flat	5	0
+plane-0148	plane-extend-reverse	in	flat	5	0
+plane-0149	plane-extend-grow	mm	7	5	0
+plane-0150	plane-extend-trim	mm	7	5	0
+plane-0151	plane-extend-reverse	mm	7	5	0
+plane-0152	plane-extend-grow	cm	7	5	0
+plane-0153	plane-extend-trim	cm	7	5	0
+plane-0154	plane-extend-reverse	cm	7	5	0
+plane-0155	plane-extend-grow	m	7	5	0
+plane-0156	plane-extend-trim	m	7	5	0
+plane-0157	plane-extend-reverse	m	7	5	0
+plane-0158	plane-extend-grow	in	7	5	0
+plane-0159	plane-extend-trim	in	7	5	0
+plane-0160	plane-extend-reverse	in	7	5	0
+plane-0161	plane-extend-zero	mm	flat	5	0
+plane-0162	plane-extend-empty	mm	flat	5	0
+plane-0163	plane-extend-bad-side	mm	flat	5	0
+plane-0164	plane-extend-partial-bad	mm	flat	5	0
+plane-0165	plane-extend-index-key	mm	flat	5	0
+plane-0166	plane-extend-undefined	mm	flat	5	0
+plane-0167	plane-orient-xy	mm	flat	5	0
+plane-0168	plane-orient-yz	mm	flat	5	0
+plane-0169	plane-orient-xz	mm	flat	5	0
+plane-0170	plane-orient-inplane-xy	mm	flat	5	0
+plane-0171	plane-orient-inplane-yz	mm	flat	5	0
+plane-0172	plane-orient-alias	mm	flat	5	0
+plane-0173	plane-orient-bad-name	mm	flat	5	0
+plane-0174	plane-orient-bad-id	mm	flat	5	0
+plane-0175	plane-orient-bad-surrogate	mm	flat	5	0
+plane-0176	plane-orient-reference-number	mm	flat	5	0
+plane-0177	plane-orient-reference-name	mm	flat	5	0
+plane-0178	plane-orient-reference-string-id	mm	flat	5	0
+plane-0179	plane-orient-reference-unicode	mm	flat	5	0
+plane-0180	plane-orient-xy	mm	7	5	0
+plane-0181	plane-orient-yz	mm	7	5	0
+plane-0182	plane-orient-xz	mm	7	5	0
+plane-0183	plane-orient-inplane-xy	mm	7	5	0
+plane-0184	plane-orient-inplane-yz	mm	7	5	0
+plane-0185	plane-orient-alias	mm	7	5	0
+plane-0186	plane-orient-bad-name	mm	7	5	0
+plane-0187	plane-orient-bad-id	mm	7	5	0
+plane-0188	plane-orient-bad-surrogate	mm	7	5	0
+plane-0189	plane-orient-reference-number	mm	7	5	0
+plane-0190	plane-orient-reference-name	mm	7	5	0
+plane-0191	plane-orient-reference-string-id	mm	7	5	0
+plane-0192	plane-orient-reference-unicode	mm	7	5	0
+plane-0193	plane-orient-section-number	mm	flat	5	0
+plane-0194	plane-orient-section-name	mm	flat	5	0
