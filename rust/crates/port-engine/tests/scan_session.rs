@@ -1,17 +1,15 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //! Independent real scan document assets/stores, paired with the frozen complete consumer.
 #![allow(clippy::unwrap_used, clippy::expect_used, clippy::panic)]
+use port_engine::scan_session;
 use port_engine::{
     guarded::{self, Callbacks, Fault, Host, Runtime, WeakRuntime},
     history_record::{Cell as C, Compare, Section, Snapshot, State},
     schema_value::Value as V,
     tasks::{Limits as TaskLimits, Owner},
 };
-// Draft-only test binding while #103 owns the shared library module list.
-// Export this same production file through the library once that ownership is free.
-use port_engine::{history_record, schema_value};
-#[path = "../src/scan_session.rs"]
-mod scan_session;
+#[path = "support/scan_worker_profiles.rs"]
+mod worker_profiles;
 use scan_session::{
     MapValue, MeshUnits, PreparedScan, PreparedView, ScanAsset, Scene, Session, SourceFile,
     Sources, StoreId,
@@ -1139,7 +1137,12 @@ fn pinned_scan_session_commit_comparison() {
         "800 actual scan document traces; mismatches={mismatches}; raw {}",
         dir.display()
     );
+    worker_profiles::compare_into(&dir);
     assert_eq!(mismatches, 0);
+    eprintln!(
+        "849 complete scan/session controls retained in {}",
+        dir.display()
+    );
 }
 
 struct QuietView {

@@ -1,14 +1,13 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //! Independent actual geometry and prepared-worker ownership controls.
 #![allow(clippy::unwrap_used, clippy::panic)]
-#[path = "../src/scan_worker.rs"]
-mod scan_worker;
 use port_core::mesh_graph::{GraphLimits, MeshGraph, ParsedMesh, build_mesh_graph};
+use port_engine::scan_worker;
 use port_engine::schema_value::Value as V;
 use scan_worker::{Change, CommitError, Error, Limits, Resident, Worker};
 use std::sync::Arc;
 const INPUT: &str =
-    include_str!("../../../../docs/port-plan/fixtures/scan-session-owned/cases.tsv");
+    include_str!("../../../../../docs/port-plan/fixtures/scan-session-owned/cases.tsv");
 fn rows() -> impl Iterator<Item = &'static str> {
     INPUT
         .lines()
@@ -313,29 +312,13 @@ fn actual_resources_budget_identity_prefix_and_generations() {
     assert_eq!(requests.reserve_request(), Ok(1));
     assert_eq!(requests.reserve_request(), Err(Error::HostLimit));
 }
-#[test]
-#[ignore = "whole original registry/session/worker graph needs Node22"]
-fn pinned_scan_worker_ownership_comparison() {
+pub(super) fn compare_into(run: &std::path::Path) {
     use std::{
         io::Write,
         path::Path,
         process::{Command, Stdio},
     };
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../..");
-    let stamp = std::time::SystemTime::now()
-        .duration_since(std::time::UNIX_EPOCH)
-        .unwrap()
-        .as_nanos();
-    let run = root.join(format!(
-        "rust/target/scan-worker-ownership-diff/run-{stamp}"
-    ));
-    std::fs::create_dir_all(&run).unwrap();
-    let sha = Command::new("git")
-        .args(["rev-parse", "HEAD"])
-        .current_dir(&root)
-        .output()
-        .unwrap();
-    std::fs::write(run.join("candidate.txt"), &sha.stdout).unwrap();
     let build = Command::new("node")
         .arg(root.join("docs/port-plan/oracle/build-scan-session-owned.mjs"))
         .current_dir(&root)
