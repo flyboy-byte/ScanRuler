@@ -9,9 +9,9 @@ and `info` CLI (M3a); see [the guide](../docs/guide/README.md) and
 |-------|------|----------------|
 | `port-core` | Pure core: no DOM, files or global state | Full mesh-graph construction, adjacency/components/selection, bounds/centroids, normals/orientation, dense solves, TLS/clipped planes and curvature discrimination; initial units/IDs/transforms and pin |
 | `port-engine` | Session, commands, jobs, history | Runtime/task owner, real scan document and STL/PLY scan.open |
-| `port-io` | Formats and the `.scanruler` project reader/writer | STL binary/ASCII dispatch and triangle extraction (P06); no welding/session loader |
+| `port-io` | Formats and the `.scanruler` project reader/writer | STL, PLY, OBJ/MTL, inflate/zip and 3MF libraries; compatible project IO remains open |
 | `port-cli` | `scanruler-rs`, native front end for differential runs | `info` reads a scan through registered engine scan.open |
-| `port-wasm-probe` | Private bounded browser-runtime test ABI | Three operations, no unsafe Rust or third-party dependencies; not product integration |
+| `port-wasm-probe` | Private bounded browser-runtime test ABI | Bounded original/native/browser comparison ABI; not a product UI or engine integration |
 | `xtask` | Project tasks | `ci`, `oracle`, `pin`, `plan`, `wasm`, `wasm-probe`, `env` |
 
 ```bash

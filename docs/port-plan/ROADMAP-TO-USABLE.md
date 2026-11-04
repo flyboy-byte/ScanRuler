@@ -8,34 +8,49 @@ possible. This file fixes the layout, workflow and pipeline. It does not change 
 
 ## 0. Where we are (2026-11-04)
 
-Status: **M2 libraries done, M3 in progress and not runnable from `main`.** Verify with `git log -1 origin/main`,
-`gh pr list -R flyboy-byte/scanruler` and `STATUS.md` rather than trusting this paragraph.
+Status: **M2 libraries done, native scan-open/info implemented (M3a), M3 still incomplete.**
+Verify current main with `git log -1 origin/main`, `gh pr list -R flyboy-byte/scanruler`
+and `STATUS.md`. A feature PR describes the code on its tree; Logan merges it.
 
-- On `main`: STL, PLY, OBJ (with textures and MTL), inflate/zip and 3MF readers; the engine's session, history,
-  import queue, runtime (read-only and guarded commands), scan session and document owner (#104); shortest
-  number text (#103); scan render arrays and crease splits (#106). 80 units implemented, none accepted.
-- **Not yet on `main`, but written and tested on Codex's branches** (`codex/m3-plane-finishing`,
-  `codex/m3-cli-selections`, about 5,800 lines of Rust): the native engine wiring for `scan.open`, `scan.query`,
-  marked and box selections, `element.fit_marked` for planes, global undo and redo, and a `scanruler-rs` CLI with
-  `info` and `fit-plane`. Codex reports 195 original-first controls passing there (REPORTED, not re-run by
-  Claude). This is the main gap between today and M3.
-- Still missing for M3 everywhere: project save and read compatible with the original, and registering the new
-  suites in the native roster.
-- `scanruler-rs` on `main` still only prints its version.
+- On this tree: STL, PLY, OBJ/MTL, inflate/zip and 3MF libraries; real scan/session
+  ownership and runtime (#104), number formatting (#103), prepared rendering (#106),
+  and native `scan.open` plus `scanruler-rs info` for STL and all PLY encodings (#105).
+  Unsupported native command formats are explicit refusals; image decoding remains open.
+- **Remaining saved code, not yet integrated:** `codex/m3-plane-finishing` and
+  `codex/m3-cli-selections` contain query/marked/box selection, plane fitting, the
+  `fit-plane` frontend and global undo/redo. Their 195 original-first controls are
+  retained with raw red/green records (REPORTED by Codex, not re-run by Claude).
+- Still missing for M3 everywhere: original-compatible project save/read and the
+  new-suite roster integration. No unit or milestone is accepted by this update.
+- Run the available CLI from `rust/` with
+  `cargo run -p port-cli -- info /path/to/scan.ply [--units mm|cm|m|in]`.
+  The engine owns import/geometry/state; the CLI reads bounded bytes and prints JSON.
 
-Next, in order (each its own PR from `main`, merged before the next opens where they share files):
+Review/merge steps, in order (each its own PR from `main`; merge the previous
+before opening its successor where they share files):
 
-1. **M3a, open and info:** land native `scan.open` and `scanruler-rs info scan.ply` (unit `engine.measurement.slice`,
-   PR #105, today only a claim note).
-2. **M3b, select and fit:** `scan.query`, marked/box selection, `element.fit_marked` plane, CLI `fit-plane`.
-3. **M3c, undo and redo:** global history apply/undo through the runtime recorder; CLI `--undo`/`--redo`.
-4. **M3d, save and read:** project-compatible save and read for the M3 slice (overlaps M6; the original's
-   `.scanruler` format is the judge).
-5. **Roster:** register the new engine suites, plus the still-unregistered `io.inflate` and `io.threemf` suites,
-   in `ci/native-suites.json` and `cargo xtask fuzz` (one PR, since it holds `rust/xtask`).
+1. ~~**M3a, open and info**~~ — actual implementation in PR #105, unit
+   `engine.measurement.slice`; all 33 retained import controls, native wrong-state
+   rejection, CLI tests, full fast/oracle and 62-suite exact artifact completeness
+   pass on source `326b998`. This PR is no longer a doc-only claim. Merge before M3b.
+2. **M3b, select and fit:** `scan.query`, marked/box selection,
+   `element.fit_marked` plane, CLI `fit-plane`.
+3. **M3c, undo and redo:** global history apply/undo through the runtime recorder;
+   CLI `--undo`/`--redo`.
+4. **M3d, save and read:** project-compatible save/read for the M3 slice (overlaps
+   M6; the original `.scanruler` format is the judge).
+5. **Roster:** register new engine suites, prepared rendering and the still-unregistered
+   `io.inflate`/`io.threemf` suites in `ci/native-suites.json` and `cargo xtask fuzz`
+   (one PR, since it holds `rust/xtask`). The parent slice stays planned/none until
+   its full scope and required evidence are integrated. Existing gates stay intact.
 
-M3 is done when Logan can run open, fit, undo and save on his own scan from `main`, and the M4 ratchet rejects a
-wrong value (section 3). Until then every milestone row below is "not done".
+`geometry.mesh.crease` is assigned to lane D. The old `ci.integration.nov03` batch
+is integrated/closed against merged PR95; future M3/ratchet work belongs to its
+current units rather than that historical batch.
+
+M3 is done when Logan can run open, fit, undo and save on his own scan from `main`,
+and the M4 ratchet rejects a wrong value (section 3). Open/info alone does not
+complete M2 import breadth, M3, or the measurement-slice acceptance gate.
 
 ## 1. Development environment (decided 2026-11-02)
 
@@ -92,8 +107,8 @@ may be built ahead of its dependencies but cannot be integrated past them). Hot 
 | # | Milestone | Units | What you can do yourself | What proves it |
 | --- | --- | --- | --- | --- |
 | M1 | Reproducible baseline and corpus | P00 to P03, `baseline.reproducibility` | Nothing yet | Original runs reproducibly here; every fixture has a licence, generator, seed and hash; skips are listed per reason. |
-| M2 | Import breadth | P06 plus `io.ply`, `io.obj`, `io.threemf` | `scanruler-rs info scan.ply` prints bounds, counts, components | Original-versus-Rust on the corpus including malformed files, then on your own scans (section 5). *2026-11-04: reader libraries on `main`; `info` waits on M3a; texture image decoding (`io.obj.companions.images`) open.* |
-| M3 | Session and commands, native CLI | P05, P08, P07, P09 | `scanruler-rs` opens a scan, fits a plane, undoes, saves | Command traces equal the original's on independent sessions. **First point you can dogfood.** *2026-11-04: session on `main`; M3a to M3c on Codex branches; M3d not started (section 0).* |
+| M2 | Import breadth | P06 plus `io.ply`, `io.obj`, `io.threemf` | `scanruler-rs info scan.ply` prints bounds, counts, components | Original-versus-Rust on the corpus including malformed files, then on your own scans (section 5). *2026-11-04: reader libraries and native STL/PLY `info` available; other command formats and texture image decoding (`io.obj.companions.images`) open.* |
+| M3 | Session and commands, native CLI | P05, P08, P07, P09 | `scanruler-rs` opens a scan, fits a plane, undoes, saves | Command traces equal the original's on independent sessions. **First point you can dogfood.** *2026-11-04: native open/info implemented in #105; select/fit/history await their ordered public PRs; M3d not started (section 0).* |
 | M4 | Paired harness and ratchet | P36, P37 | n/a | A deliberately wrong Rust value is rejected; PRs are compared against the exact base. |
 | M5 | MCP | P18 (needs P02, P08, P16) | Point Claude or Codex at the Rust MCP server | Section 4. |
 | M6 | Projects and history | P16, P17 | Open an original `.scanruler` project | Original files reopen with equal results; failed load leaves the session intact. |
@@ -104,7 +119,7 @@ M4 is listed after M3 because the harness can start as soon as P03 lands (see th
 makes M3 trustworthy, so build it in parallel and do not call M3 done without it.
 
 ~~Import checkpoint 2026-11-02 UTC: STL and PLY only, no engine import command.~~ Superseded by section 0
-(2026-11-04): all four readers are on `main`; the engine import command is on a Codex branch.
+(2026-11-04): all four reader libraries are present; native STL/PLY scan.open and info are implemented in #105.
 
 ## 4. Getting MCP solid
 
@@ -152,8 +167,8 @@ Licensing, trademarks and the rename (`LICENSING-AND-NAMING.md`) wait for the pr
 ## 8. What is deliberately not here
 
 No release dates, no completion percentage, no promise that a milestone is near. The honest status today
-is generated in `STATUS.md`; as of 2026-11-04 `main` has no working Rust engine command flow,
-project reader or UI (section 0). Library implementation is distinct from acceptance.
+is generated in `STATUS.md`; as of 2026-11-04 the native scan.open/info flow is implemented in #105;
+plane/history integration, project reader/writer and UI remain open (section 0). Library implementation is distinct from acceptance.
 
 ## 9. Open owner decisions (nothing blocks the queue)
 

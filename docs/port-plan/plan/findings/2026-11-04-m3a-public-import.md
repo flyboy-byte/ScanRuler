@@ -31,3 +31,18 @@ D, and the historical ci.integration.nov03 batch is integrated/closed against
 PR95 merge ac60301 (an ancestor of main). Its 11 required exact-head checks were
 verified green on GitHub; the recorded closure does not claim new numerical or
 feature acceptance. Generated files are rendered by the repo tools.
+
+
+Validated source checkpoint: `326b9989a7f8c3c6ff463d33a69f19af3168519d`. All 33 registered import comparisons pass;
+the actual vertexCount=-99 mutation rejects all 33, followed by a clean unchanged
+committed-source rerun. Full `cargo xtask ci` and `cargo xtask oracle` pass. Exact
+artifact completeness/identity passes for all 62 required suites on that same
+source commit; no metadata/source commit occurred during the full run.
+
+Fresh full raw records, original recapture, hashes and development failure/gate
+logs: `evidence/2026-11-04-m3a-public-import-red-green.json.gz`.
+Full required-roster artifact hash inventory:
+`evidence/2026-11-04-m3a-native-artifact-inventory.json.gz`
+(SHA256 of the uncompressed report: `e00db45eaad30842cfe9c51d2f1480f17304e1be5008bfeeb2734d17987fd732`).
+Final evidence/docs metadata is separate from the tested source checkpoint;
+hosted checks independently validate the final PR head before it becomes ready.

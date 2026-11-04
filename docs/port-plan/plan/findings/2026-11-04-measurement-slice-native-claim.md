@@ -1,4 +1,7 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
+
+> Historical claim note, superseded by the actual public M3a code in #105.
+> See [current scope and proof](2026-11-04-m3a-public-import.md).
 # Native measurement slice claim — 2026-11-04
 
 Claim engine.measurement.slice from main 26be67a. This claim follows the owned
