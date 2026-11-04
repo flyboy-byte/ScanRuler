@@ -15,8 +15,8 @@
     "A body resolved by an abort listener can win before late rejection; both already-settled factory-time promises retain ran-first race array order. Future Ready polling alone cannot substitute for source reaction ordering.",
     "Bounded admission/wake/drain, native/Wasm compile and all57 existing native suites/4431 browser cases remain required; broader command/session integration stays explicit."
   ],
-  "owner": null,
-  "branch": null,
+  "owner": "Codex",
+  "branch": "codex/runtime-reactions",
   "claim_pr": null,
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
