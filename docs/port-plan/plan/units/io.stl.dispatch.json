@@ -142,7 +142,7 @@
   "verification_evidence": [
     {
       "kind": "fuzz-campaign",
-      "location": "evidence/verification-fuzz-2026-11-03/report.json"
+      "location": "evidence/verification-fuzz-2026-11-04-number-text/report.json"
     }
   ]
 }

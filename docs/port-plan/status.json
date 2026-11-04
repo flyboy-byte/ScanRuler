@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 78,
-    "planned": 48,
+    "implemented": 79,
+    "planned": 47,
     "specified": 2
   },
   "verification_levels": {
-    "fixed-corpus": 57,
+    "fixed-corpus": 58,
     "fuzzed": 4,
-    "none": 69
+    "none": 68
   },
-  "native_suites": 60,
-  "native_case_identities_including_refusals": 27513,
+  "native_suites": 61,
+  "native_case_identities_including_refusals": 33754,
   "accepted_units": [],
   "units": [
     {
@@ -1616,7 +1616,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/27",
       "tested_sha": "737d3c314691e1e63ddc3d517002476e382fe418",
       "verification": "fuzzed",
-      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
+      "verification_tested_sha": "1a67f50200779e43128db617a4a5c516c8c9980d",
       "open_items": [
         "Binary continuation is implemented separately in io.ply.binary; the ASCII-only convenience entrypoint retains a distinct binary boundary, and ply::read_ply dispatches all encodings.",
         "Browser-Wasm runtime comparisons and public scan/session/history integration remain unimplemented for this parser.",
@@ -1633,7 +1633,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/28",
       "tested_sha": "98d39fc4cb54ae1c523da619e54164f5d99f9105",
       "verification": "fuzzed",
-      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
+      "verification_tested_sha": "1a67f50200779e43128db617a4a5c516c8c9980d",
       "open_items": [
         "Real browser-Wasm execution for PLY remains open; native and Wasm compilation do not imply runtime acceptance.",
         "Public scan/session commands, history, projects and full P03 adversarial/corpus acceptance remain open.",
@@ -1662,7 +1662,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/2",
       "tested_sha": "5ee3881d887a4720c6a7cf5ca7a675333e6e8e62",
       "verification": "fuzzed",
-      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
+      "verification_tested_sha": "1a67f50200779e43128db617a4a5c516c8c9980d",
       "open_items": [
         "Native Node 22 comparisons were observed passing in subsequent full Rust gates; original local implementation evidence used Node 20.20.2. See AUDIT-QUEUE.md for immutable hosted run links.",
         "Browser-Wasm runtime comparison is not built; only wasm32 compile check passes. P36 general paired harness/coverage ratchet remains open.",
@@ -1679,7 +1679,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/3",
       "tested_sha": "77683bf515590ac3f5cb8a9c3552ec64700ce44a",
       "verification": "fuzzed",
-      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
+      "verification_tested_sha": "1a67f50200779e43128db617a4a5c516c8c9980d",
       "open_items": [
         "Browser-Wasm runtime comparisons remain unbuilt; wasm32 library compilation passes only.",
         "P05/G0 contracts and general P36 paired harness/coverage ratchet remain open; no promotion to accepted or full scan import.",
@@ -1719,15 +1719,16 @@
     },
     {
       "id": "math.number.shortest",
-      "status": "planned",
+      "status": "implemented",
       "parent": "P07",
-      "pr": null,
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/103",
+      "tested_sha": "dfb6d63a454ebd3d48be91634e156a4df47835a2",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "dfb6d63a454ebd3d48be91634e156a4df47835a2",
       "open_items": [
-        "Draft claim from main 26be67a for the exact primitive Number-text prerequisite exposed by the scan-session source-byte comparison. Bring forward unchanged 6,241 controls and complete earlier parser fuzz proof; validate the new exact candidate before recording implementation.",
-        "No scan implementation or M3 workflow is claimed by this bounded prerequisite. No image/zip/3MF source edits."
+        "Existing exact-body proof at dfb6d63 is retained unchanged. This fresh main-based PR is revalidating its complete candidate before ready; prior proof is not represented as a hosted result for the new head.",
+        "All prior 6,241 controls, two actual red reproducers and inherited parser campaigns remain. No image/zip/3MF source edits, dependency, input/seed/tolerance reduction or accepted status.",
+        "This bounded prerequisite unblocks retained source bytes in the owned scan session. Real scan/import/plane/undo/project/CLI wiring remains separate."
       ]
     },
     {

@@ -4,24 +4,24 @@ Generated from canonical unit files and ci/native-suites.json; do not hand-edit.
 
 Reference: `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
 
-Native coverage inventory: **60 suites / 27513 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
+Native coverage inventory: **61 suites / 33754 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
 
 No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Bounded [browser-Wasm coverage](oracle/BROWSER-WASM.md) is separate from engine/session/UI integration and the still-open exact-base numerical ratchet.
 
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 78 |
-| planned | 48 |
+| implemented | 79 |
+| planned | 47 |
 | specified | 2 |
 
 Verification labels describe scoped evidence snapshots, not whole-feature/runtime acceptance.
 
 | Verification | Units |
 | --- | ---: |
-| fixed-corpus | 57 |
+| fixed-corpus | 58 |
 | fuzzed | 4 |
-| none | 69 |
+| none | 68 |
 
 | Unit | State | Verification | Tested implementation | Verification snapshot | PR |
 | --- | --- | --- | --- | --- | --- |
@@ -146,12 +146,12 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [io.obj](plan/units/io.obj.json) | planned | none | — | — | — |
 | [io.obj.mesh](plan/units/io.obj.mesh.json) | implemented | fixed-corpus | `58aeacb` | `58aeacb` | [#32](https://github.com/flyboy-byte/ScanRuler/pull/32) |
 | [io.obj.texture](plan/units/io.obj.texture.json) | implemented | fixed-corpus | `219059c` | `219059c` | [#31](https://github.com/flyboy-byte/ScanRuler/pull/31) |
-| [io.ply.ascii](plan/units/io.ply.ascii.json) | implemented | fuzzed | `737d3c3` | `60bf04b` | [#27](https://github.com/flyboy-byte/ScanRuler/pull/27) |
-| [io.ply.binary](plan/units/io.ply.binary.json) | implemented | fuzzed | `98d39fc` | `60bf04b` | [#28](https://github.com/flyboy-byte/ScanRuler/pull/28) |
+| [io.ply.ascii](plan/units/io.ply.ascii.json) | implemented | fuzzed | `737d3c3` | `1a67f50` | [#27](https://github.com/flyboy-byte/ScanRuler/pull/27) |
+| [io.ply.binary](plan/units/io.ply.binary.json) | implemented | fuzzed | `98d39fc` | `1a67f50` | [#28](https://github.com/flyboy-byte/ScanRuler/pull/28) |
 | [io.ply](plan/units/io.ply.json) | planned | none | — | — | — |
-| [io.stl.binary](plan/units/io.stl.binary.json) | implemented | fuzzed | `5ee3881` | `60bf04b` | [#2](https://github.com/flyboy-byte/ScanRuler/pull/2) |
-| [io.stl.dispatch](plan/units/io.stl.dispatch.json) | implemented | fuzzed | `77683bf` | `60bf04b` | [#3](https://github.com/flyboy-byte/ScanRuler/pull/3) |
+| [io.stl.binary](plan/units/io.stl.binary.json) | implemented | fuzzed | `5ee3881` | `1a67f50` | [#2](https://github.com/flyboy-byte/ScanRuler/pull/2) |
+| [io.stl.dispatch](plan/units/io.stl.dispatch.json) | implemented | fuzzed | `77683bf` | `1a67f50` | [#3](https://github.com/flyboy-byte/ScanRuler/pull/3) |
 | [io.threemf](plan/units/io.threemf.json) | implemented | none | `31ebafc` | — | [#97](https://github.com/flyboy-byte/ScanRuler/pull/97) |
 | [math.number.fixed3](plan/units/math.number.fixed3.json) | implemented | fixed-corpus | `3ae1787` | `3ae1787` | [#92](https://github.com/flyboy-byte/ScanRuler/pull/92) |
-| [math.number.shortest](plan/units/math.number.shortest.json) | planned | none | — | — | — |
+| [math.number.shortest](plan/units/math.number.shortest.json) | implemented | fixed-corpus | `dfb6d63` | `dfb6d63` | [#103](https://github.com/flyboy-byte/ScanRuler/pull/103) |
 | [project.measurement.compatibility](plan/units/project.measurement.compatibility.json) | planned | none | — | — | — |
