@@ -411,6 +411,7 @@ fn pinned_native_plane_comparison() {
         .as_nanos();
     let run = root.join(format!("rust/target/native-plane-diff/run-{stamp}"));
     std::fs::create_dir_all(&run).unwrap();
+    eprintln!("raw native-plane comparison {}", run.display());
     for (name, args) in [
         ("candidate.txt", vec!["rev-parse", "HEAD"]),
         ("candidate.diff", vec!["diff", "--binary"]),

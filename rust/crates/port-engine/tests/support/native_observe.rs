@@ -252,7 +252,15 @@ pub(crate) fn outcome(out: Result<V, port_engine::guarded::Fault>) -> (V, V) {
                 ("name", string("CommandError")),
             ]),
         ),
-        Err(e) => panic!("host error: {e:?}"),
+        Err(port_engine::guarded::Fault::Host(e)) => (
+            undefined(),
+            object(vec![
+                ("code", string("$nativeHostFailure")),
+                ("message", string(&format!("{e:?}"))),
+                ("name", string("NativeHostFailure")),
+            ]),
+        ),
+        Err(e) => panic!("unexpected non-command fault: {e:?}"),
     }
 }
 pub(crate) fn frame(engine: &Engine, result: V, error: V) -> V {
