@@ -52,3 +52,30 @@ ownership/budget/weak-lifetime tests and strict Clippy pass. All earlier 800
 consumer controls remain and their Number dependency failure remains recorded.
 The full fast gate passes. Library export/mandatory aggregate roster and immutable
 candidate proof remain unfinished; the PR stays draft, and no M3 is claimed.
+
+## Integration after the prerequisite merged
+
+On 2026-11-04 Logan merged #103 into main (`ac85ebd`). This branch merges that
+base without rewriting history. The actual scan/session and worker owners are
+now public library modules; tests import those exact production modules. The
+worker controls moved into a support module called by the consumer comparator,
+so one mandatory engine.session.scan suite retains all 800 earlier consumer IDs
+and 49 distinct worker IDs. No case/seed/tolerance was removed or weakened.
+
+Clean implementation checkpoint `c32956d37678cd741d7c085b2857f470315be210`
+passes all 849 comparisons. The real wrong document nextId plus wrong native
+worker request observation reject all 800 and 49 respectively with exit 101;
+the complete clean rerun also passes. Both full red/green raw runs and the clean
+candidate run are committed as content-addressed SHA256/base64 blobs, retaining
+every original raw path without duplicating equal bytes. The mandatory inventory
+is now 62 suites and 34,603 case identities including declared refusals. Status
+and backlog are regenerated with their tools, never hand-merged.
+
+The unit is implemented with native fixed-corpus evidence, not accepted. Wasm
+compile/probe and full fast gates pass. Full original/native, catalog, Chrome and
+hosted exact-head checks remain mandatory before readiness. New session-state
+browser differential transfer is explicitly open and is not inferred from Wasm
+compilation or unrelated numeric probes. Parser/render producers, actual command
+binding and CLI/plane/global history/project/viewport services stay separate;
+#105 owns the real native command slice. Main still lacks M3. No CHANGELOG entry
+is added here; the single session entry belongs in the final feature PR.
