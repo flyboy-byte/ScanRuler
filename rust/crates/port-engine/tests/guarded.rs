@@ -105,6 +105,9 @@ impl Host for Env {
             }],
         })
     }
+    fn stale_now(&self) -> Result<f64, Fault> {
+        self.now()
+    }
     fn now(&self) -> Result<f64, Fault> {
         Ok(1234.)
     }
@@ -121,6 +124,15 @@ impl Host for Env {
     fn clear_timer(&self, id: u64) {
         self.log.borrow_mut().push("timer:clear".into());
         self.timers.borrow_mut()[id as usize - 1].active = false;
+    }
+    fn settle_readonly(
+        &self,
+        _: &[u16],
+    ) -> Result<Option<port_engine::settle::Work<'static, Fault>>, Fault> {
+        panic!("legacy matrix has no readonly")
+    }
+    fn observer_fault(&self, error: Fault) {
+        panic!("unexpected observer fault {error:?}")
     }
     fn settle(&self, _: &[u16]) -> Result<port_engine::settle::Work<'static, Fault>, Fault> {
         self.log.borrow_mut().push("settle".into());
@@ -801,6 +813,9 @@ fn session_shutdown_drops_owned_producers_without_a_runtime_owner_cycle() {
         fn capture(&self) -> Result<Snapshot, Fault> {
             Ok(Snapshot { sections: vec![] })
         }
+        fn stale_now(&self) -> Result<f64, Fault> {
+            self.now()
+        }
         fn now(&self) -> Result<f64, Fault> {
             Ok(0.)
         }
@@ -808,6 +823,15 @@ fn session_shutdown_drops_owned_producers_without_a_runtime_owner_cycle() {
             1
         }
         fn clear_timer(&self, _: u64) {}
+        fn settle_readonly(
+            &self,
+            _: &[u16],
+        ) -> Result<Option<port_engine::settle::Work<'static, Fault>>, Fault> {
+            Ok(None)
+        }
+        fn observer_fault(&self, error: Fault) {
+            panic!("unexpected observer fault {error:?}")
+        }
         fn settle(&self, _: &[u16]) -> Result<port_engine::settle::Work<'static, Fault>, Fault> {
             Ok(Box::pin(std::future::ready(Ok(()))))
         }

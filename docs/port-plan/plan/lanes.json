@@ -56,7 +56,8 @@
         "engine.runtime.tasks",
         "engine.runtime.reactions",
         "engine.runtime.guarded",
-        "engine.runtime.readonly"
+        "engine.runtime.readonly",
+        "engine.session.scan"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },

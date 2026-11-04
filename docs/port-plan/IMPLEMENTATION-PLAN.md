@@ -90,3 +90,18 @@ registration is refused explicitly until that branch exists. Then proceed throug
 the real imported-scan/plane slice, undo/apply and original-compatible save.
 Native platform timers/ingress and browser engine runtime remain open; no M3 or
 whole-session acceptance is inferred from these library comparisons.
+
+
+## Read-only and remembered dispatch — 2026-11-03
+
+After #99 merged at `7a6ae9a`, #100 completes native read-only-before-interrupt
+routing and actual runCommand job recording. Settlers start before scene waiting;
+null/ready branches, timed late work, catch/adoption continuations, captured
+receivers, 100-record eviction and observer faults retain independent source
+comparisons. Full helper/numerical/parser/Chrome corpora remain required.
+
+Next canonical unit: `engine.session.scan`. Own the actual immutable mesh/source
+assets, family/session document and scan replacement/revision/reset lifecycle
+from `scanImport.ts` and command consumers. Then wire scan import and marked-plane
+commands, global undo/apply and compatible project/CLI save. Runtime fixture
+participants and native-only provider traces do not meet M3 or browser acceptance.

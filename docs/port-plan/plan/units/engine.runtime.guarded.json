@@ -2027,7 +2027,7 @@
   ],
   "open_items": [
     "Registered mutation/interrupt dispatch is implemented over real admission, execute, queues, history, activity, deadline, label and normalization components. The Host still supplies the sole application document/assets, snapshot participants, clock, trusted serial timers and installed plugin/settler services. This is not a general JS Promise/DOM interpreter; arbitrary thenables/proxy getters and platform abort-listener exception reporting remain outside the owned native boundary.",
-    "Read-only and remembered job/result dispatch are explicitly unsupported here and continue under engine.runtime.readonly; no native definition with readOnly=true is advertised as executable by this runtime.",
+    "Read-only and remembered-job routing now continues in engine.runtime.readonly (#100). Its own fixed-corpus evidence is separate; this mutation/interrupt snapshot remains at its exact earlier implementation.",
     "Then integrate actual scan/session and measurement-family state and commands, native platform timer/event ingress, global undo/apply and original-compatible project/CLI save. These comparison callbacks are not the measurement families and do not close M3."
   ],
   "verification": "fixed-corpus"

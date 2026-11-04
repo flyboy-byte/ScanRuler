@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 77,
+    "implemented": 78,
     "planned": 47,
     "specified": 2
   },
   "verification_levels": {
-    "fixed-corpus": 56,
+    "fixed-corpus": 57,
     "fuzzed": 4,
     "none": 68
   },
-  "native_suites": 59,
-  "native_case_identities_including_refusals": 24922,
+  "native_suites": 60,
+  "native_case_identities_including_refusals": 27513,
   "accepted_units": [],
   "units": [
     {
@@ -554,7 +554,7 @@
       "verification_tested_sha": "2b6710a9368c25d087a062bb0f6091287642fbd7",
       "open_items": [
         "Registered mutation/interrupt dispatch is implemented over real admission, execute, queues, history, activity, deadline, label and normalization components. The Host still supplies the sole application document/assets, snapshot participants, clock, trusted serial timers and installed plugin/settler services. This is not a general JS Promise/DOM interpreter; arbitrary thenables/proxy getters and platform abort-listener exception reporting remain outside the owned native boundary.",
-        "Read-only and remembered job/result dispatch are explicitly unsupported here and continue under engine.runtime.readonly; no native definition with readOnly=true is advertised as executable by this runtime.",
+        "Read-only and remembered-job routing now continues in engine.runtime.readonly (#100). Its own fixed-corpus evidence is separate; this mutation/interrupt snapshot remains at its exact earlier implementation.",
         "Then integrate actual scan/session and measurement-family state and commands, native platform timer/event ingress, global undo/apply and original-compatible project/CLI save. These comparison callbacks are not the measurement families and do not close M3."
       ]
     },
@@ -573,14 +573,16 @@
     },
     {
       "id": "engine.runtime.readonly",
-      "status": "planned",
+      "status": "implemented",
       "parent": "engine.session.contract",
-      "pr": null,
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/100",
+      "tested_sha": "207e00b8943eb80ed4afb67fd9a8ed2e312f6f93",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "207e00b8943eb80ed4afb67fd9a8ed2e312f6f93",
       "open_items": [
-        "Next runtime continuation after #99. Read-only definitions are currently refused explicitly; no implementation/acceptance claim."
+        "Read-only/job source-provider wiring implemented; real family/session data, native event/timer ingress, global undo/apply, project compatibility and CLI remain separate. Not a general JS Promise/DOM interpreter; arbitrary thenables/host-object/proxy getters remain outside the owned typed boundary.",
+        "Host must supply actual read-only settlers with original null-versus-ready distinction and report detached observer faults; no process/MCP transport backend is implemented here. Recent data is owned acyclic schema data, as documented in the compared recent helpers.",
+        "Next engine.session.scan supplies the real scan/session document and faithful scan replacement lifecycle; then actual import/plane commands and compatible project/CLI save. No M3 or whole-session acceptance."
       ]
     },
     {
@@ -743,7 +745,7 @@
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
-        "Scoped runtime libraries, retained reactions and registered mutation/interrupt dispatch now compose with history/activity/current/error normalization (engine.runtime.guarded, PR #99). Next engine.runtime.readonly completes read-only and remembered job dispatch. Real scan/family document ownership, platform timers/ingress, import/plane/undo/project/CLI and browser engine runtime remain required. No whole-session acceptance.",
+        "Registered mutation/interrupt dispatch (#99) and read-only/remembered-job wiring (#100) compose over retained reactions and reviewed session providers. Next engine.session.scan supplies the real scan document/replacement lifecycle, then import/plane commands, global undo/apply, compatible projects and CLI. Platform timers/ingress and browser engine runtime remain explicit. No whole-session acceptance.",
         "Scoped registry/history/queues/deadline/settle/plugin/stale/error/clock/execute/recent/workspace/label/activity/readout libraries and native task ownership exist. engine.runtime.reactions now connects retained source-boundary deadline/execute/scene callers; full guarded/interrupt/history/native family ownership, real timers/late progress/commands/projects/CLI/browser runtime remain required. Next unit engine.runtime.guarded; no session acceptance.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
@@ -903,6 +905,18 @@
         "Owned typed data only, no shared/live-mutated definition aliases or executable values. Retained repeatable cleanup handles have an explicit host cap; full session lifecycle must own/drop them.",
         "Default Node22 ICU ordering on valid ASCII names is compared on all140 names and authored/seeded order cases; broader locale/platform acceptance remains open.",
         "Independent fuzz/coverage/strict exact-base ratchet and accepted status remain open."
+      ]
+    },
+    {
+      "id": "engine.session.scan",
+      "status": "planned",
+      "parent": "engine.session.contract",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Actual data model not implemented. Start with source closure/ownership audit, then real mesh/session independent inputs. Runtime fixtures do not supply this model."
       ]
     },
     {
