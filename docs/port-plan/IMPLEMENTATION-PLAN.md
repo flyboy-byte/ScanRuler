@@ -51,3 +51,24 @@ Read [NEXT-RUNTIME-IMPLEMENTATION-2026-11-03.md](NEXT-RUNTIME-IMPLEMENTATION-202
 ## Third-pass frontier — 2026-11-03
 
 The #95 union preserves runtime helpers and the full native/Chrome sphere/marked-sphere/formatter work. See REVIEW-QUEUE-2026-11-03-THIRD-PASS.md. M3 remains unfulfilled. First runtime unit: engine.runtime.reactions, connecting retained bodies to source-ordered completion/race/finally/abort reactions. Then complete guarded/interrupt/history/current/activity/progress over that owner, wire one actual family/session and real engine commands, and implement compatible project/CLI scan→plane→undo→save. A direct kernel call, queued generic future or corrected banner does not meet those gates. Own image codecs and other geometry families remain independent options; source pin and original formulas/cases/budgets stay fixed.
+
+
+## M3 wiring after the merged batch — 2026-11-03
+
+Main `2bf4ec7` passed the combined fast/oracle gates before implementation (#96).
+The #58 allocation/UTF-16 texture review fixes are independent #97; the reference
+remains 0.9.2 / `2cd89c6`, regardless of upstream 0.9.4. No rebaseline.
+
+`engine.runtime.reactions` (#98) connects the retained owner to all earlier
+291 limited and 1,200 execute source traces, including asynchronous cleanup,
+factory-time ties and late native-body lifetime. It does not implement a general
+JS microtask interpreter or the business session. The next canonical startable
+unit is `engine.runtime.guarded`: execute actual registered bodies with
+history/activity/current/normalization and late-progress semantics. Then real
+scan/session state, one import command, marked-plane fitting, undo and original
+project-compatible save. The CLI still prints its banner; M3 is not complete.
+
+Executor/MCP continuations must apply drift ledger D4/D5: queued failures still
+receive an answer, and only the original requesting receiver gets that answer.
+Do not route results by a reused global request ID. All existing evidence cases,
+seeds, tolerances, source timing thresholds and gates remain required.

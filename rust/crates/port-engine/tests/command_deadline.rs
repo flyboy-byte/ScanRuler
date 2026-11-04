@@ -4,8 +4,10 @@
 use port_engine::{
     command_deadline::{COMMAND_TIMEOUT_MS, Completion, Deadline},
     error::{CommandError, CommandErrorCode},
+    reactions::Limited,
+    tasks::{Limits as TaskLimits, Owner},
 };
-use std::sync::Arc;
+use std::{cell::RefCell, rc::Rc, sync::Arc};
 include!("support/value_wire.rs");
 struct Case {
     id: &'static str,
@@ -59,11 +61,12 @@ enum Body {
     Thrown(Fault),
 }
 struct Actor {
-    deadline: Deadline<Text, Fault>,
+    deadline: Limited<Text, Fault>,
+    owner: Owner<'static>,
     body: Body,
     caller: Option<Completion<Text, Fault>>,
     doc: f64,
-    log: Vec<Value>,
+    log: Rc<RefCell<Vec<Value>>>,
     value: Text,
     fallback: Text,
     body_error: Fault,
@@ -93,20 +96,41 @@ impl Actor {
                 message,
             }
         };
-        let mut deadline = Deadline::new(units(get(input, "name")), ms, 1_000_000).unwrap();
+        let owner = Owner::new(TaskLimits {
+            tasks: 2,
+            depth: 4,
+            polls_per_turn: 32,
+        })
+        .unwrap();
+        let log = Rc::new(RefCell::new(Vec::new()));
+        let cleanup_log = log.clone();
+        let deadline = Limited::new(
+            &owner,
+            units(get(input, "name")),
+            ms,
+            1_000_000,
+            move |id| {
+                cleanup_log.borrow_mut().push(obj(vec![
+                    ("event", string("timer:clear")),
+                    ("id", Value::Number(id as f64)),
+                ]));
+            },
+        )
+        .unwrap();
         deadline.registered(1).unwrap();
         let mut a = Self {
             deadline,
+            owner,
             body: Body::Pending,
             caller: None,
             doc: 0.,
-            log: vec![],
+            log,
             value: units(get(input, "value")).to_vec(),
             fallback: units(get(input, "fallback")).to_vec(),
             body_error,
             policy: String::from_utf16(units(get(input, "abort"))).unwrap(),
         };
-        a.log.push(obj(vec![
+        a.log.borrow_mut().push(obj(vec![
             ("event", string("timer:set")),
             ("id", Value::Number(1.)),
             ("ms", Value::Number(ms)),
@@ -124,7 +148,7 @@ impl Actor {
                 a.body = Body::Thrown(a.body_error.clone());
                 a.doc = -2.;
                 let error = a.error(&a.body_error);
-                a.log.push(obj(vec![
+                a.log.borrow_mut().push(obj(vec![
                     ("event", string("body:thrown")),
                     ("error", error),
                 ]));
@@ -153,7 +177,9 @@ impl Actor {
         a
     }
     fn event(&mut self, name: &str) {
-        self.log.push(obj(vec![("event", string(name))]));
+        self.log
+            .borrow_mut()
+            .push(obj(vec![("event", string(name))]));
     }
     fn error(&self, e: &Fault) -> Value {
         let mut fields = match e {
@@ -168,7 +194,7 @@ impl Actor {
             ],
         };
         let same = match (e, self.deadline.abort_reason()) {
-            (Fault::Command(e), Some(reason)) => Arc::ptr_eq(e, reason),
+            (Fault::Command(e), Some(reason)) => Arc::ptr_eq(e, &reason),
             _ => false,
         };
         fields.push(("sameReason", Value::Boolean(same)));
@@ -180,7 +206,7 @@ impl Actor {
         }
         self.body = Body::Ok(value.clone());
         self.doc = 42.;
-        self.log.push(obj(vec![
+        self.log.borrow_mut().push(obj(vec![
             ("event", string("body:resolved")),
             ("value", Value::String(value.clone())),
         ]));
@@ -193,7 +219,7 @@ impl Actor {
         let error = self.error(&e);
         self.body = Body::Error(e.clone());
         self.doc = -1.;
-        self.log.push(obj(vec![
+        self.log.borrow_mut().push(obj(vec![
             ("event", string("body:rejected")),
             ("error", error),
         ]));
@@ -204,7 +230,7 @@ impl Actor {
             self.event("timer:ignored");
             return;
         }
-        self.log.push(obj(vec![
+        self.log.borrow_mut().push(obj(vec![
             ("event", string("timer:fire")),
             ("id", Value::Number(1.)),
         ]));
@@ -212,6 +238,7 @@ impl Actor {
         let reason = event.reason().clone();
         let error = self.error(&Fault::Command(reason.clone()));
         self.log
+            .borrow_mut()
             .push(obj(vec![("event", string("abort")), ("reason", error)]));
         match self.policy.as_str() {
             "resolve" => self.resolve(self.fallback.clone()),
@@ -222,13 +249,8 @@ impl Actor {
         self.deadline.fire_end(event).unwrap();
     }
     fn flush(&mut self) {
-        if let Some(id) = self.deadline.begin_clear() {
-            self.log.push(obj(vec![
-                ("event", string("timer:clear")),
-                ("id", Value::Number(id as f64)),
-            ]));
-            self.deadline.cleared().unwrap();
-            let outcome = self.deadline.take_outcome().unwrap();
+        self.owner.turn().unwrap();
+        if let Some(outcome) = self.deadline.take_outcome().unwrap() {
             self.event(if matches!(&outcome, Completion::Body(Ok(_))) {
                 "caller:ok"
             } else {
@@ -277,7 +299,7 @@ impl Actor {
                     .unwrap_or(Value::Undefined),
             ),
             ("timerActive", Value::Boolean(self.deadline.timer_active())),
-            ("log", Value::Array(self.log.clone())),
+            ("log", Value::Array(self.log.borrow().clone())),
             ("unhandled", Value::Array(vec![])),
         ])
     }
@@ -316,6 +338,7 @@ fn payload(b: &[u8]) -> Vec<u8> {
     }
     assert!(a.caller.is_some());
     assert!(!matches!(a.body, Body::Pending));
+    a.owner.finish().unwrap();
     let mut bytes = b"CDL1".to_vec();
     encode(
         &mut bytes,

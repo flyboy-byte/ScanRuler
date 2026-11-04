@@ -1,0 +1,48 @@
+{
+  "id": "engine.runtime.guarded",
+  "parent": "engine.session.contract",
+  "title": "Execute real guarded and interrupt commands over retained reactions",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": [
+    "engine.runtime.reactions",
+    "engine.session.history.record",
+    "engine.session.history.core",
+    "engine.session.activity.state",
+    "engine.session.command.label",
+    "engine.session.error.normalize",
+    "engine.session.scene.queue"
+  ],
+  "scope": "Wire actual registry bodies to guarded/interrupt/execute scheduling over the retained runtime; activity/current/progress, history, deadline and normalization use reviewed providers, not duplicate business state. Required next M3 wiring step before actual import/plane family session composition.",
+  "acceptance": [
+    "Run the full pinned guarded/interrupt command bodies on independent sessions, comparing successful/refused/faulted state traces, exact typed errors and reason identity, history capture, queue release and ordered effects. Retain prior deadline/execute corpora and wrong-value controls.",
+    "Preserve pre-try busy/activity/current effects, exact catch/finally override order, truthy guarded busy vs execute null checks, deferred contexts, interrupted shared history and late progress (caller callback still runs, aborted strip updates suppressed).",
+    "Every admitted queued request receives one outcome on failure too; capture the requesting receiver/connection, not a globally reused request ID. Native owner keeps late body work alive after timeout or observation loss. Real platform timers remain explicit until tested.",
+    "Keep all original/native/browser gates and exact reference pin. Real scan/session/measurement models, import, plane fit, undo and compatible project save remain separate explicit M3 continuations."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/registry.ts",
+    "src/state/historyStore.ts",
+    "src/commands/activity.ts"
+  ],
+  "symbols": [
+    "guarded",
+    "interrupt",
+    "start/runCommand and execute provider integration"
+  ],
+  "rust_paths": [
+    "rust/crates/port-engine/src/registry.rs",
+    "rust/crates/port-engine/src/reactions.rs"
+  ],
+  "evidence": [],
+  "open_items": [
+    "First continuation after engine.runtime.reactions; actual full guarded/interrupt body and runtime command wiring are not implemented.",
+    "Follow with one real imported scan/session model and measurement family, then undo and original-compatible project/CLI save; generic probe callbacks are not M3."
+  ],
+  "verification": "none"
+}

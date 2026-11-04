@@ -3,14 +3,14 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 75,
+    "implemented": 76,
     "planned": 47,
     "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 54,
     "fuzzed": 4,
-    "none": 68
+    "none": 69
   },
   "native_suites": 57,
   "native_case_identities_including_refusals": 22938,
@@ -545,7 +545,7 @@
       ]
     },
     {
-      "id": "engine.runtime.reactions",
+      "id": "engine.runtime.guarded",
       "status": "planned",
       "parent": "engine.session.contract",
       "pr": null,
@@ -553,8 +553,21 @@
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
-        "First runtime continuation after #95: claim and implement against existing original deadline/execute corpora; generic task ownership alone is not paired JS promise semantics.",
-        "Full guarded/interrupt/history/activity/current/progress integration, real platform timers, actual family state/commands/projects/CLI and browser engine runtime remain required."
+        "First continuation after engine.runtime.reactions; actual full guarded/interrupt body and runtime command wiring are not implemented.",
+        "Follow with one real imported scan/session model and measurement family, then undo and original-compatible project/CLI save; generic probe callbacks are not M3."
+      ]
+    },
+    {
+      "id": "engine.runtime.reactions",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/98",
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Limited now uses the real retained owner for asynchronous cleanup and late body lifetime; all 291 deadline and 1200 execute source traces run through that owner. This boundary adapter is not a general JavaScript promise interpreter; provider completions and nested await boundaries must be delivered explicitly, not inferred from arbitrary Future polling.",
+        "Next engine.runtime.guarded must wire the actual registry command bodies, guarded/interrupt/history/activity/current/progress, normalization and queued answers. Platform timers, actual family/session state, import, plane commands, undo/projects/CLI and browser engine runtime remain open."
       ]
     },
     {

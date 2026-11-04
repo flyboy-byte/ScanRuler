@@ -5,8 +5,10 @@ use port_engine::{
     execute::{self, Body, Done, DoneWait, ExecuteError, Host},
     plugin_busy::{Limits as PluginLimits, Plugins},
     plugin_stop::Stop,
+    reactions,
     settle::Work,
     settle_registry::{Limits as SettleLimits, Settlers},
+    tasks::{Limits as TaskLimits, Owner},
 };
 use std::{
     cell::{Cell, RefCell},
@@ -36,19 +38,22 @@ struct Value;
 struct Wait<T> {
     ready: Rc<Cell<bool>>,
     result: Option<Result<T, E>>,
+    wake: Rc<RefCell<Option<Waker>>>,
 }
 impl<T: Unpin> Future for Wait<T> {
     type Output = Result<T, E>;
-    fn poll(mut self: Pin<&mut Self>, _: &mut Context<'_>) -> Poll<Self::Output> {
+    fn poll(mut self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output> {
         if self.ready.get() {
             Poll::Ready(self.result.take().unwrap())
         } else {
+            *self.wake.borrow_mut() = Some(cx.waker().clone());
             Poll::Pending
         }
     }
 }
 struct Job {
     ready: Rc<Cell<bool>>,
+    wake: Rc<RefCell<Option<Waker>>>,
     done: bool,
     clear: bool,
 }
@@ -89,18 +94,21 @@ impl Env {
         let ready = Rc::new(Cell::new(
             self.wait == 0 || self.wait == 1 || self.wait == 5,
         ));
+        let wake = Rc::new(RefCell::new(None));
         if self.wait == 0 || self.wait == 5 {
             self.cleared.set(true)
         }
         if self.wait == 2 || self.wait == 3 {
             self.jobs.borrow_mut().push(Job {
                 ready: ready.clone(),
+                wake: wake.clone(),
                 done: false,
                 clear: self.wait == 2,
             })
         }
         Ok(Some(Box::pin(Wait {
             ready,
+            wake,
             result: Some(if self.wait == 1 || self.wait == 3 {
                 Err(fault("Error", "", "wait"))
             } else {
@@ -185,15 +193,18 @@ impl Host<'static> for Provider {
             .push(format!("body:{}", usize::from(deferred)));
         let mode = self.0.body;
         let ready = Rc::new(Cell::new(mode <= 1 || mode == 4));
+        let wake = Rc::new(RefCell::new(None));
         if mode == 2 || mode == 3 {
             self.0.jobs.borrow_mut().push(Job {
                 ready: ready.clone(),
+                wake: wake.clone(),
                 done: false,
                 clear: false,
             })
         }
         Box::pin(Wait {
             ready,
+            wake,
             result: Some(if mode == 0 || mode == 2 {
                 Ok(self.0.value.clone())
             } else {
@@ -267,29 +278,47 @@ fn observe(line: &str) -> String {
             }))
             .unwrap(),
     );
-    let mut run = execute::execute(Provider(env.clone()), deferred != 0, 32);
-    let mut state = String::from("pending");
-    let mut frames = vec![env.frame(&state)];
+    let owner = Owner::new(TaskLimits {
+        tasks: 8,
+        depth: 8,
+        polls_per_turn: 64,
+    })
+    .unwrap();
+    let state = Rc::new(RefCell::new(String::from("pending")));
+    let receiver = state.clone();
+    let host = env.clone();
+    let output_env = env.clone();
+    // Drop the ticket before the first asynchronous continuation. Owner still drains execute.
+    drop(
+        reactions::retain(
+            &owner,
+            move || execute::execute(Provider(host), deferred != 0, 32),
+            move |result| {
+                *receiver.borrow_mut() = match result {
+                    Ok(value) => {
+                        format!("ok:{}", usize::from(Rc::ptr_eq(&value, &output_env.value)))
+                    }
+                    Err(ExecuteError::Callback(e)) => {
+                        format!("err:{}:{}:{}", hex(e.name), hex(e.code), hex(e.message))
+                    }
+                    _ => panic!("host error"),
+                };
+            },
+        )
+        .unwrap(),
+    );
+    let mut frames = vec![env.frame(&state.borrow())];
     let mut cx = Context::from_waker(Waker::noop());
-    let flush = |state: &mut String,
-                 run: &mut execute::Execution<'static, Provider>,
-                 cx: &mut Context<'_>| {
-        if state == "pending" {
-            match Pin::new(run).poll(cx) {
-                Poll::Pending => {}
-                Poll::Ready(Ok(value)) => {
-                    *state = format!("ok:{}", usize::from(Rc::ptr_eq(&value, &env.value)))
-                }
-                Poll::Ready(Err(ExecuteError::Callback(e))) => {
-                    *state = format!("err:{}:{}:{}", hex(e.name), hex(e.code), hex(e.message))
-                }
-                _ => panic!("host error"),
-            }
-        }
-        env.observe_done(cx);
+    let mut flush = || {
+        let turn = owner.turn().unwrap();
+        assert_eq!(
+            turn.ready, 0,
+            "fixture must reach reaction quiescence within its admitted turn"
+        );
+        env.observe_done(&mut cx);
     };
-    flush(&mut state, &mut run, &mut cx);
-    frames.push(env.frame(&state));
+    flush();
+    frames.push(env.frame(&state.borrow()));
     for _ in 0..3 {
         let mut j = 0;
         while j < env.jobs.borrow().len() {
@@ -299,25 +328,29 @@ fn observe(line: &str) -> String {
                     None
                 } else {
                     jobs[j].done = true;
-                    Some((jobs[j].ready.clone(), jobs[j].clear))
+                    Some((jobs[j].ready.clone(), jobs[j].clear, jobs[j].wake.clone()))
                 }
             };
-            if let Some((ready, clear)) = job {
+            if let Some((ready, clear, wake)) = job {
                 if clear {
                     env.cleared.set(true)
                 }
                 ready.set(true);
+                if let Some(waker) = wake.borrow_mut().take() {
+                    waker.wake();
+                }
                 env.log.borrow_mut().push(format!("finish:{j}"));
-                frames.push(env.frame(&state));
-                flush(&mut state, &mut run, &mut cx);
-                frames.push(env.frame(&state));
+                frames.push(env.frame(&state.borrow()));
+                flush();
+                frames.push(env.frame(&state.borrow()));
             }
             j += 1;
         }
     }
-    flush(&mut state, &mut run, &mut cx);
-    frames.push(env.frame(&state));
-    assert_ne!(state, "pending");
+    flush();
+    frames.push(env.frame(&state.borrow()));
+    assert_ne!(*state.borrow(), "pending");
+    owner.finish().unwrap();
     format!("{}\t{}\n", p[0], frames.join(";"))
 }
 #[test]
@@ -534,6 +567,20 @@ fn pinned_execute_comparison() {
             std::fs::write(case.join(name), data).unwrap();
         }
         assert_eq!(actual, expected, "{id}");
+        if id == INPUT.lines().next().unwrap().split('\t').next().unwrap() {
+            let mut wrong = actual.clone().into_bytes();
+            *wrong.last_mut().unwrap() ^= 1;
+            assert_ne!(
+                wrong,
+                expected.as_bytes(),
+                "wrong execution outcome must fail"
+            );
+            assert_ne!(
+                &actual.as_bytes()[..actual.len() - 1],
+                expected.as_bytes(),
+                "missing execution results must fail"
+            );
+        }
     }
     println!(
         "1200 complete execute preflight/wait/done observations; {}",

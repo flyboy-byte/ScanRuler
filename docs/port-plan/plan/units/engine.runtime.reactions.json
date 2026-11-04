@@ -3,7 +3,7 @@
   "parent": "engine.session.contract",
   "title": "Connect source-ordered reactions to retained native command bodies",
   "gate": "G2",
-  "status": "planned",
+  "status": "implemented",
   "depends_on": [
     "engine.runtime.tasks",
     "engine.session.command.deadline",
@@ -17,7 +17,7 @@
   ],
   "owner": "Codex",
   "branch": "codex/runtime-reactions",
-  "claim_pr": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/98",
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
@@ -32,12 +32,15 @@
   "rust_paths": [
     "rust/crates/port-engine/src/reactions.rs",
     "rust/crates/port-engine/src/tasks.rs",
-    "rust/crates/port-engine/src/command_deadline.rs"
+    "rust/crates/port-engine/src/command_deadline.rs",
+    "rust/crates/port-engine/tests/reactions.rs",
+    "rust/crates/port-engine/tests/command_deadline.rs",
+    "rust/crates/port-engine/tests/execute.rs"
   ],
   "evidence": [],
   "open_items": [
-    "First runtime continuation after #95: claim and implement against existing original deadline/execute corpora; generic task ownership alone is not paired JS promise semantics.",
-    "Full guarded/interrupt/history/activity/current/progress integration, real platform timers, actual family state/commands/projects/CLI and browser engine runtime remain required."
+    "Limited now uses the real retained owner for asynchronous cleanup and late body lifetime; all 291 deadline and 1200 execute source traces run through that owner. This boundary adapter is not a general JavaScript promise interpreter; provider completions and nested await boundaries must be delivered explicitly, not inferred from arbitrary Future polling.",
+    "Next engine.runtime.guarded must wire the actual registry command bodies, guarded/interrupt/history/activity/current/progress, normalization and queued answers. Platform timers, actual family/session state, import, plane commands, undo/projects/CLI and browser engine runtime remain open."
   ],
   "verification": "none"
 }
