@@ -2904,7 +2904,7 @@
       "owner": "Codex",
       "branch": "codex/runtime-reactions",
       "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/98",
-      "implemented_commit": null,
+      "implemented_commit": "415b4ed4828ec96346a45068550004b2e0341b2c",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [
         "src/commands/registry.ts",
@@ -2944,14 +2944,22 @@
             "queue-2-0-1",
             "queue-2-1-0",
             "queue-2-1-1"
-          ]
+          ],
+          "candidate_sha": "415b4ed4828ec96346a45068550004b2e0341b2c"
+        },
+        {
+          "kind": "report",
+          "location": "plan/findings/2026-11-03-owned-runtime-reactions.md",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "candidate_sha": "415b4ed4828ec96346a45068550004b2e0341b2c",
+          "summary": "Retained deadline/execute/scene ownership: all 291 earlier deadline and 1200 execute traces, twelve new mandatory combined queue traces, eight native lifetime tests, real wrong-value and destructor red runs, full 58-suite raw inventory and 4431-case Chrome gate. Scoped library boundary, no M3/session acceptance."
         }
       ],
       "open_items": [
         "Owned caller futures now await real scene-queue turns; 12 combined pinned limited/inScene traces prove timeout/failure releases later answers before late body settlement. All 291 deadline and 1200 execute source traces also run through the owner. This boundary adapter is not a general JavaScript Promise interpreter; provider completions and nested await boundaries remain explicit.",
         "Next engine.runtime.guarded must wire the actual registry command bodies, guarded/interrupt/history/activity/current/progress, normalization and queued answers. Platform timers, actual family/session state, import, plane commands, undo/projects/CLI and browser engine runtime remain open."
       ],
-      "verification": "none"
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.runtime.tasks",
@@ -8069,7 +8077,7 @@
       ],
       "open_items": [
         "2026-11-03: bounded stateSections registration/readout is implemented under engine.state.sections; actual session.state composition remains open. agentLink.ts and remaining host.ts still need review.",
-        "Scoped registry/history/queues/deadline/settle/plugin/stale/error/clock/execute/recent/workspace/label/activity/readout libraries and native task ownership exist. Complete source-ordered reactions (engine.runtime.reactions), guarded/interrupt/history/native family ownership, real timers/late progress/commands/projects/CLI/browser runtime remain required; no session acceptance.",
+        "Scoped registry/history/queues/deadline/settle/plugin/stale/error/clock/execute/recent/workspace/label/activity/readout libraries and native task ownership exist. engine.runtime.reactions now connects retained source-boundary deadline/execute/scene callers; full guarded/interrupt/history/native family ownership, real timers/late progress/commands/projects/CLI/browser runtime remain required. Next unit engine.runtime.guarded; no session acceptance.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
       ],
