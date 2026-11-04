@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 79,
-    "planned": 47,
+    "implemented": 80,
+    "planned": 46,
     "specified": 2
   },
   "verification_levels": {
-    "fixed-corpus": 58,
+    "fixed-corpus": 59,
     "fuzzed": 4,
-    "none": 68
+    "none": 67
   },
-  "native_suites": 61,
-  "native_case_identities_including_refusals": 33754,
+  "native_suites": 62,
+  "native_case_identities_including_refusals": 34603,
   "accepted_units": [],
   "units": [
     {
@@ -909,14 +909,17 @@
     },
     {
       "id": "engine.session.scan",
-      "status": "planned",
+      "status": "implemented",
       "parent": "engine.session.contract",
-      "pr": null,
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/104",
+      "tested_sha": "c32956d37678cd741d7c085b2857f470315be210",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "c32956d37678cd741d7c085b2857f470315be210",
       "open_items": [
-        "Actual data model not implemented. Start with source closure/ownership audit, then real mesh/session independent inputs. Runtime fixtures do not supply this model."
+        "Owned document and complete prepared commit consumer plus staged logical-worker resources are implemented; parser/render preparation, actual engine command/CLI, plane and global restore/project/viewport platform services remain separate continuations. #105 owns the real native command/measurement slice. No M3 or unit acceptance.",
+        "Native fixed corpus compares every original field/buffer/error/request/revision on 849 independent controls; no seed/tolerance/case was reduced. Wasm compilation is required; new session-state browser differential transfer remains open, not inferred from compilation.",
+        "Nominal/solid resource types are supplied by native services; their geometry kernels and worker/RPC recovery after a callback throws are not supplied by these owners. Preserve source partial-prefix effects rather than inventing rollback.",
+        "Earlier Number-format failure and every original-first source/negative trace remain retained. No original TypeScript, image/zip/3MF implementation, dependency, tolerance, seed or 1500 ms threshold is changed."
       ]
     },
     {
