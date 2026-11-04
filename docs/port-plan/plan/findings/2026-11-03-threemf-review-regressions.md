@@ -50,8 +50,10 @@ independent inputs; no original result enters Rust.
   packages reported position divergences, 14,267 equal refusals and 19 host
   refusals. The harness self-check expects detection; it is not a clean parity run.
 - `cargo xtask ci` passed (including all 168 Python tests, formatting, Clippy,
-  workspace tests and Wasm compilation). Full candidate oracle result is reported
-  in the PR body after the committed implementation is tested.
+  workspace tests and Wasm compilation). Committed candidate `31ebafcce734cecd265e756823caf285a15412a4` also
+  passed `cargo xtask ci` and the complete `cargo xtask oracle` with the full
+  six-seed 3MF corpus. Raw identity/completeness passed for all 57 registered
+  suites / 22,938 case identities; 3MF is still outside that formal inventory.
 
 Commands from `rust/`:
 

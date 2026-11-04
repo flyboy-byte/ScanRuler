@@ -1651,8 +1651,8 @@
       "id": "io.threemf",
       "status": "implemented",
       "parent": "P06",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/97",
+      "tested_sha": "31ebafcce734cecd265e756823caf285a15412a4",
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
@@ -1660,7 +1660,8 @@
         "Host-limit class: an archive entry whose declared size exceeds the caller's cap is refused where the original reads it (io.inflate allocates the declared size); owner decision with H1 to H3.",
         "Packed texture images are read by a second unzip in src/app/scanFiles.ts and belong to io.obj.companions.images (own PNG, then JPEG decoder).",
         "Only Node 22 ran the original; no Chrome execution. No real package from Bambu, Orca, PrusaSlic3r or 3D Builder was available locally.",
-        "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate."
+        "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate.",
+        "Historical first-run report retained at plan/findings/2026-11-03-threemf-first-run.md; its 107-file private corpus was not rerun on this follow-up. Current six-seed generated results and raw identities are in #97."
       ]
     },
     {
