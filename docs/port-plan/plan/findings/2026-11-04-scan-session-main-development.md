@@ -30,3 +30,25 @@ binding, real native command execution and CLI remain required continuations.
 
 No original TypeScript, port-io image/zip/inflate/3MF implementation, dependency,
 seed, tolerance or 1500 ms threshold changed. Logan merges; no main push/PR merge.
+
+## Actual prepared-worker owner
+
+The same unit now owns actual committed/prepared logical MeshGraph resources,
+nominal/cache resource handles, client request IDs and independent scan/nominal
+generations. Both prepared IDs validate before mutation; consumed IDs fail;
+discard keeps current resources; callbacks see the source scan-prefix and cache
+release before nominal replacement. Callback failure remains a distinct worker
+failure with already-applied state, requiring platform/RPC recovery, not rollback.
+Resource accounting and discard bounds reject before mutating retained slots.
+Nominal/cache types are supplied by pure-Rust services; this does not port their
+kernels, parser/render preparation or platform failure recovery.
+
+49 real original worker profiles (flat plus fixed seeded grids) compare complete
+logical positions, indices, normals, adjacency, bounds, ordered staged resources,
+request counters, errors and versions. All match. A real wrong native generation
+observation rejects all 49 with exit 101. Full passing/red controls and complete
+unprojected original command/worker records are archived separately. Native
+ownership/budget/weak-lifetime tests and strict Clippy pass. All earlier 800
+consumer controls remain and their Number dependency failure remains recorded.
+The full fast gate passes. Library export/mandatory aggregate roster and immutable
+candidate proof remain unfinished; the PR stays draft, and no M3 is claimed.
