@@ -161,6 +161,7 @@ fn wasm() -> Result<(), String> {
 const ORACLE_TESTS: &[&str] = &[
     "pinned_number_string_comparison",
     "pinned_readonly_comparison",
+    "pinned_scan_session_commit_comparison",
     "pinned_guarded_comparison",
     "pinned_runtime_reactions_comparison",
     "pinned_marked_sphere_comparison",
