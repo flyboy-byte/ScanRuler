@@ -196,3 +196,52 @@ fn exhausted_owner_cannot_start_factory_or_acquire_timer_side_effects() {
     assert_eq!(owner.active(), 0);
     owner.finish().unwrap();
 }
+
+#[test]
+fn completed_nonclone_result_can_be_awaited_once_after_driver_retirement() {
+    use std::{
+        future::Future,
+        pin::Pin,
+        task::{Context, Waker},
+    };
+    struct Value(Box<u32>);
+    let owner = owner(1);
+    let limited = Limited::<Value, ()>::new(&owner, &[65], 1., 1024, |_| {}).unwrap();
+    limited.registered(1).unwrap();
+    let value = Value(Box::new(42));
+    let ptr = &*value.0 as *const u32;
+    limited.body_settled(Ok(value));
+    limited.factory_returned().unwrap();
+    owner.turn().unwrap();
+    owner.finish().unwrap();
+    let mut observer = limited.observe().unwrap();
+    assert!(limited.observe().is_err());
+    assert!(limited.take_outcome().is_err());
+    let mut cx = Context::from_waker(Waker::noop());
+    let Poll::Ready(Ok(Completion::Body(Ok(value)))) = Pin::new(&mut observer).poll(&mut cx) else {
+        panic!("lost owned value")
+    };
+    assert_eq!(&*value.0 as *const u32, ptr);
+    assert!(matches!(
+        Pin::new(&mut observer).poll(&mut cx),
+        Poll::Ready(Err(_))
+    ));
+}
+
+#[test]
+fn dropping_the_caller_future_does_not_cancel_or_leak_a_late_error() {
+    let owner = owner(1);
+    let drops = Rc::new(Cell::new(0));
+    let limited = Limited::<(), Fault>::new(&owner, &[65], 1., 1024, |_| {}).unwrap();
+    limited.registered(1).unwrap();
+    limited.factory_returned().unwrap();
+    drop(limited.observe().unwrap());
+    let event = limited.fire_begin().unwrap().unwrap();
+    limited.fire_end(event).unwrap();
+    owner.turn().unwrap();
+    assert_eq!(owner.active(), 1);
+    limited.body_settled(Err(Fault(drops.clone())));
+    owner.turn().unwrap();
+    owner.finish().unwrap();
+    assert_eq!(drops.get(), 1);
+}

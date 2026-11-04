@@ -2909,7 +2909,9 @@
       "source_paths": [
         "src/commands/registry.ts",
         "src/state/historyStore.ts",
-        "src/commands/activity.ts"
+        "src/commands/activity.ts",
+        "docs/port-plan/oracle/runtime-reactions.mjs",
+        "docs/port-plan/oracle/build-reactions.mjs"
       ],
       "symbols": [
         "limited native ownership/reaction bridge",
@@ -2921,11 +2923,32 @@
         "rust/crates/port-engine/src/command_deadline.rs",
         "rust/crates/port-engine/tests/reactions.rs",
         "rust/crates/port-engine/tests/command_deadline.rs",
-        "rust/crates/port-engine/tests/execute.rs"
+        "rust/crates/port-engine/tests/execute.rs",
+        "rust/crates/port-engine/tests/runtime_reactions.rs"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-03-runtime-reactions.json.gz",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "queue-0-0-0",
+            "queue-0-0-1",
+            "queue-0-1-0",
+            "queue-0-1-1",
+            "queue-1-0-0",
+            "queue-1-0-1",
+            "queue-1-1-0",
+            "queue-1-1-1",
+            "queue-2-0-0",
+            "queue-2-0-1",
+            "queue-2-1-0",
+            "queue-2-1-1"
+          ]
+        }
+      ],
       "open_items": [
-        "Limited now uses the real retained owner for asynchronous cleanup and late body lifetime; all 291 deadline and 1200 execute source traces run through that owner. This boundary adapter is not a general JavaScript promise interpreter; provider completions and nested await boundaries must be delivered explicitly, not inferred from arbitrary Future polling.",
+        "Owned caller futures now await real scene-queue turns; 12 combined pinned limited/inScene traces prove timeout/failure releases later answers before late body settlement. All 291 deadline and 1200 execute source traces also run through the owner. This boundary adapter is not a general JavaScript Promise interpreter; provider completions and nested await boundaries remain explicit.",
         "Next engine.runtime.guarded must wire the actual registry command bodies, guarded/interrupt/history/activity/current/progress, normalization and queued answers. Platform timers, actual family/session state, import, plane commands, undo/projects/CLI and browser engine runtime remain open."
       ],
       "verification": "none"

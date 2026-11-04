@@ -18,9 +18,10 @@ use crate::{
 use std::{
     cell::{Cell, RefCell},
     future::{Future, poll_fn},
+    pin::Pin,
     rc::Rc,
     sync::Arc,
-    task::{Poll, Waker},
+    task::{Context, Poll, Waker},
 };
 /// Host admission failures, distinct from application faults/timeouts.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -36,6 +37,9 @@ struct Shared<T, E> {
     cleared: Cell<bool>,
     wake: RefCell<Option<Waker>>,
     failure: Cell<Option<DeadlineError>>,
+    caller: RefCell<Option<Waker>>,
+    claimed: Cell<bool>,
+    consumed: Cell<bool>,
 }
 impl<T, E> Shared<T, E> {
     fn wake(&self) {
@@ -79,6 +83,9 @@ impl<T, E> Limited<T, E> {
             cleared: Cell::new(false),
             wake: RefCell::new(None),
             failure: Cell::new(None),
+            caller: RefCell::new(None),
+            claimed: Cell::new(false),
+            consumed: Cell::new(false),
         });
         let task = shared.clone();
         // Drop the observation ticket immediately: only Owner owns task lifetime.
@@ -94,6 +101,10 @@ impl<T, E> Limited<T, E> {
                             task.failure.set(Some(e));
                         }
                         task.cleared.set(true);
+                        let caller = task.caller.borrow_mut().take();
+                        if let Some(caller) = caller {
+                            caller.wake()
+                        }
                     }
                     if task.cleared.get() && task.body_done.get() {
                         task.wake.borrow_mut().take();
@@ -144,10 +155,57 @@ impl<T, E> Limited<T, E> {
     }
     /// Transfer caller outcome once, after owned finally cleanup. This cannot cancel body work.
     pub fn take_outcome(&self) -> Result<Option<Completion<T, E>>, DeadlineError> {
+        if self.shared.claimed.get() {
+            return Err(DeadlineError::InvalidState);
+        }
         if let Some(e) = self.shared.failure.get() {
             return Err(e);
         }
-        Ok(self.shared.deadline.borrow_mut().take_outcome())
+        let result = self.shared.deadline.borrow_mut().take_outcome();
+        if result.is_some() {
+            self.shared.consumed.set(true);
+        }
+        Ok(result)
+    }
+    /// Admit the sole owned caller future, allowing real queues/execute to await cleanup.
+    /// This excludes manual take_outcome and a second observer (outputs need not be Clone).
+    /// Dropping this observer cannot cancel the owner or late body work.
+    pub fn observe(&self) -> Result<Outcome<T, E>, DeadlineError> {
+        if self.shared.consumed.get() || self.shared.claimed.replace(true) {
+            return Err(DeadlineError::InvalidState);
+        }
+        Ok(Outcome {
+            shared: self.shared.clone(),
+            done: false,
+        })
+    }
+}
+/// One owned caller continuation. Its waker is distinct from the retained body's driver.
+pub struct Outcome<T, E> {
+    shared: Rc<Shared<T, E>>,
+    done: bool,
+}
+impl<T, E> Future for Outcome<T, E> {
+    type Output = Result<Completion<T, E>, DeadlineError>;
+    fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output> {
+        let this = self.get_mut();
+        if this.done {
+            return Poll::Ready(Err(DeadlineError::InvalidState));
+        }
+        let result = if let Some(error) = this.shared.failure.get() {
+            Some(Err(error))
+        } else {
+            this.shared.deadline.borrow_mut().take_outcome().map(Ok)
+        };
+        if let Some(result) = result {
+            this.done = true;
+            this.shared.consumed.set(true);
+            this.shared.caller.borrow_mut().take();
+            Poll::Ready(result)
+        } else {
+            *this.shared.caller.borrow_mut() = Some(cx.waker().clone());
+            Poll::Pending
+        }
     }
 }
 /// Eagerly invoke an admitted provider factory, asynchronously resume its returned work.

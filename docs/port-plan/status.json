@@ -12,8 +12,8 @@
     "fuzzed": 4,
     "none": 69
   },
-  "native_suites": 57,
-  "native_case_identities_including_refusals": 22938,
+  "native_suites": 58,
+  "native_case_identities_including_refusals": 22950,
   "accepted_units": [],
   "units": [
     {
@@ -566,7 +566,7 @@
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
-        "Limited now uses the real retained owner for asynchronous cleanup and late body lifetime; all 291 deadline and 1200 execute source traces run through that owner. This boundary adapter is not a general JavaScript promise interpreter; provider completions and nested await boundaries must be delivered explicitly, not inferred from arbitrary Future polling.",
+        "Owned caller futures now await real scene-queue turns; 12 combined pinned limited/inScene traces prove timeout/failure releases later answers before late body settlement. All 291 deadline and 1200 execute source traces also run through the owner. This boundary adapter is not a general JavaScript Promise interpreter; provider completions and nested await boundaries remain explicit.",
         "Next engine.runtime.guarded must wire the actual registry command bodies, guarded/interrupt/history/activity/current/progress, normalization and queued answers. Platform timers, actual family/session state, import, plane commands, undo/projects/CLI and browser engine runtime remain open."
       ]
     },
