@@ -23,6 +23,9 @@ An AGPL port can proceed while the licensing enquiry is pending. Source-informed
 
 ## Current implementation and evidence — 2026-11-03
 
+> **2026-11-04:** the short current state and the M3 order are in section 0 of [ROADMAP-TO-USABLE.md](ROADMAP-TO-USABLE.md).
+> #85–#106 are merged or open there; the "awaiting owner integration of #85–#95" note below is history.
+
 Read [STATUS.md](STATUS.md) for the generated unit inventory, [AUDIT-QUEUE.md](AUDIT-QUEUE.md) for PR order and hosted outcomes, and [IMPLEMENTATION-PLAN.md](IMPLEMENTATION-PLAN.md) for the next bounded increments. These are different views: canonical `plan/units/*.json` own lifecycle state; an inventory is not a runtime report or a completion percentage.
 
 The pinned baseline remains `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`, app 0.9.2. `main` is the port trunk, `upstream-main` the upstream mirror, and `.oracle` the frozen checkout; see UPSTREAM-SYNC.md. The original TypeScript source/tests and npm locks remain unchanged by the numerical port queue.
