@@ -20,7 +20,7 @@
 //! cap on archive, model or placement size, so a refusal for size is [`ThreeMfError::Limit`], never
 //! a source message.
 
-use crate::inflate::{InflateError, ZipLimits, is_threemf_part, unzip_filtered};
+use crate::inflate::{InflateError, ZipLimits, is_threemf_part, unzip_filtered_bounded};
 use crate::obj::number as js_number;
 use crate::obj_texture::{
     ObjCompanions, TextureError, TextureImage, TextureLimits, TextureNote, base_name,
@@ -35,7 +35,7 @@ use std::collections::{HashMap, HashSet};
 pub struct ThreeMfLimits {
     /// Zip entry size and entry count.
     pub zip: ZipLimits,
-    /// Total bytes of all kept parts (`.model`, `.rels`, `.config`).
+    /// Cumulative kept-part allocation budget, before decompression; duplicates count too.
     pub max_part_bytes: usize,
     /// Vertices read from one model file, and placed in the output.
     pub max_vertices: usize,
@@ -1046,16 +1046,34 @@ impl Placer<'_> {
         if let Some(found) = self.textures.get(path) {
             return Ok(*found);
         }
-        let found = match String::from_utf16(path) {
-            Ok(p) => match self.by_part.get(&part_name(&p)) {
-                Some(&i) => Some(i),
-                None => {
-                    let base = base_name(&p, self.limits.texture).map_err(ThreeMfError::Texture)?;
+        let full = String::from_utf16(path).ok();
+        let exact = full
+            .as_ref()
+            .and_then(|p| self.by_part.get(&part_name(p)))
+            .copied();
+        let found = if exact.is_some() {
+            exact
+        } else if let Some(p) = full {
+            let base = base_name(&p, self.limits.texture).map_err(ThreeMfError::Texture)?;
+            self.by_base.get(&base).copied()
+        } else {
+            // JS strings can hold lone surrogates. An invalid directory cannot match a supplied
+            // UTF-8 full name, but baseName splits first and can still match a valid basename.
+            let start = path
+                .iter()
+                .rposition(|&c| c == 47 || c == 92)
+                .map_or(0, |i| i + 1);
+            match String::from_utf16(&path[start..]) {
+                Ok(_) => {
+                    // Replacement occurs only in the discarded directory. Keep the full-name
+                    // host budget check; never use replacement characters to match a basename.
+                    let full_for_budget = String::from_utf16_lossy(path);
+                    let base = base_name(&full_for_budget, self.limits.texture)
+                        .map_err(ThreeMfError::Texture)?;
                     self.by_base.get(&base).copied()
                 }
-            },
-            // A name holding a lone surrogate equals no given file name.
-            Err(_) => None,
+                Err(_) => None, // A lone surrogate in the basename matches no UTF-8 image name.
+            }
         };
         self.textures.insert(path.clone(), found);
         match found {
@@ -1244,25 +1262,26 @@ pub fn read_3mf(
     mut on_progress: impl FnMut(&str),
 ) -> Result<ThreeMfMesh, ThreeMfError> {
     on_progress("Reading 3MF…");
-    let zipped = match unzip_filtered(bytes, is_threemf_part, limits.zip) {
-        Ok(z) => z,
-        Err(InflateError::ResourceLimit) => return Err(ThreeMfError::Limit(LimitKind::Archive)),
-        Err(_) => {
-            return Err(source(
-                "This 3MF could not be unzipped — the file is damaged or not a 3MF.",
-            ));
-        }
-    };
-    let mut total = 0usize;
+    let zipped =
+        match unzip_filtered_bounded(bytes, is_threemf_part, limits.zip, limits.max_part_bytes) {
+            Ok(z) => z,
+            Err(InflateError::ResourceLimit) => {
+                return Err(ThreeMfError::Limit(LimitKind::Archive));
+            }
+            Err(InflateError::AggregateLimit) => {
+                return Err(ThreeMfError::Limit(LimitKind::PartBytes));
+            }
+            Err(_) => {
+                return Err(source(
+                    "This 3MF could not be unzipped — the file is damaged or not a 3MF.",
+                ));
+            }
+        };
     let mut files = Files {
         entries: Vec::new(),
         index: HashMap::new(),
     };
     for (name, data) in zipped {
-        total = total.saturating_add(data.len());
-        if total > limits.max_part_bytes {
-            return Err(ThreeMfError::Limit(LimitKind::PartBytes));
-        }
         let key = part_name(&name);
         match files.index.get(&key) {
             Some(&i) => files.entries[i].1 = data,

@@ -367,3 +367,112 @@ fn a_large_mesh_reads_in_linear_time() {
 fn pinned_threemf_comparison() {
     corpus::run_comparison();
 }
+
+// Reduced review fixtures: budgets stay in bytes, never gigabytes.
+#[test]
+fn aggregate_part_budget_precedes_each_stored_copy() {
+    let xml = model("millimeter", TRIANGLE);
+    let zip = stored_zip(&[
+        ("a.model", xml.as_bytes()),
+        ("a.config", b"1234"),
+        ("b.config", b"56789"),
+    ]);
+    let mut cap = limits();
+    cap.max_part_bytes = xml.len() + 8;
+    assert_eq!(
+        read_3mf(&zip, None, cap, |_| {}).unwrap_err(),
+        ThreeMfError::Limit(LimitKind::PartBytes)
+    );
+    cap.max_part_bytes += 1;
+    assert!(read_3mf(&zip, None, cap, |_| {}).is_ok());
+}
+
+fn declared_deflate_zip(duplicate: bool, invalid_second: bool) -> Vec<u8> {
+    // Empty fixed-Huffman stream, but each central entry declares eight output bytes.
+    // inflate_into retains that allocation even though the returned length is zero.
+    let second = if invalid_second {
+        &[7u8][..]
+    } else {
+        &[3u8, 0][..]
+    };
+    let mut zip = stored_zip(&[
+        ("a.config", &[3, 0]),
+        (if duplicate { "a.config" } else { "b.config" }, second),
+    ]);
+    let mut pos = 0;
+    while pos + 46 <= zip.len() {
+        if zip[pos..].starts_with(&0x0201_4b50u32.to_le_bytes()) {
+            zip[pos + 10..pos + 12].copy_from_slice(&8u16.to_le_bytes());
+            zip[pos + 24..pos + 28].copy_from_slice(&8u32.to_le_bytes());
+            pos += 46;
+        } else {
+            pos += 1;
+        }
+    }
+    zip
+}
+
+#[test]
+fn aggregate_part_budget_counts_declared_capacity_before_inflate() {
+    for duplicate in [false, true] {
+        for invalid_second in [false, true] {
+            let zip = declared_deflate_zip(duplicate, invalid_second);
+            let mut cap = limits();
+            cap.max_part_bytes = 12;
+            assert_eq!(
+                read_3mf(&zip, None, cap, |_| {}).unwrap_err(),
+                ThreeMfError::Limit(LimitKind::PartBytes),
+                "duplicate={duplicate}, invalid_second={invalid_second}"
+            );
+        }
+    }
+}
+
+#[test]
+fn filtered_entries_do_not_spend_the_part_budget() {
+    let xml = model("millimeter", TRIANGLE);
+    let zip = stored_zip(&[("a.model", xml.as_bytes()), ("ignored.png", &[0; 1024])]);
+    let mut cap = limits();
+    cap.max_part_bytes = xml.len();
+    assert!(read_3mf(&zip, None, cap, |_| {}).is_ok());
+}
+
+#[test]
+fn lone_surrogate_in_directory_keeps_texture_basename_fallback() {
+    let companions = ObjCompanions {
+        materials: vec![],
+        images: vec![TextureImage {
+            name: "skin.png".into(),
+            width: 1,
+            height: 1,
+            rgba: vec![10, 20, 30, 255],
+        }],
+    };
+    for path in [
+        "&#xD800;/Skin.PNG",
+        "&#xDC00;\\Skin.PNG",
+        "&#xD800;/ Skin.PNG ",
+    ] {
+        let body = TRIANGLE.replace("<resources>", &format!("<resources><texture2d id=\"7\" path=\"{path}\"/><texture2dgroup id=\"8\" texid=\"7\"><tex2coord u=\"0\" v=\"0\"/></texture2dgroup>"))
+            .replace("type=\"model\"", "type=\"model\" pid=\"8\" pindex=\"0\"");
+        let zip = stored_zip(&[("a.model", model("millimeter", &body).as_bytes())]);
+        let mesh = read_3mf(&zip, Some(&companions), limits(), |_| {}).unwrap();
+        assert_eq!(
+            mesh.texture,
+            Some(TextureNote::Applied(vec!["skin.png".into()])),
+            "{path}"
+        );
+        assert_eq!(mesh.colors, Some(vec![10, 20, 30, 10, 20, 30, 10, 20, 30]));
+    }
+}
+
+#[test]
+fn stored_entries_obey_the_per_entry_limit_before_copying() {
+    let zip = stored_zip(&[("a.config", b"12345")]);
+    let mut cap = limits();
+    cap.zip.max_entry_bytes = 4;
+    assert_eq!(
+        read_3mf(&zip, None, cap, |_| {}).unwrap_err(),
+        ThreeMfError::Limit(LimitKind::Archive)
+    );
+}

@@ -21419,10 +21419,10 @@
         "Generated and adversarial 3MF corpus (zip bombs, bad paths, missing parts, unit variants) compares original against Rust on geometry, units, refusals and limits.",
         "The inflate/zip implementation is pure Rust and passes the P35 purity audit; the choice is a recorded decision, not an assumption."
       ],
-      "owner": "Claude",
-      "branch": "claude/io-threemf",
-      "claim_pr": null,
-      "implemented_commit": null,
+      "owner": "Codex",
+      "branch": "codex/threemf-review-fixes",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/97",
+      "implemented_commit": "31ebafcce734cecd265e756823caf285a15412a4",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [
         "src/core/parsers/threemf.ts"
@@ -21439,9 +21439,10 @@
       "evidence": [
         {
           "kind": "report",
-          "location": "plan/findings/2026-11-03-threemf-first-run.md",
+          "location": "plan/findings/2026-11-03-threemf-review-regressions.md",
           "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
-          "summary": "parse3MF vs Rust: 24,540 generated, mutated and named packages (6 seeds) and 107 real .3mf files, 0 divergences; success/refusal, full error and progress text, positions, indices, colours and texture notes compared; sabotage check reports divergences"
+          "summary": "#58 follow-up: pre-allocation aggregate ZIP budget and UTF-16 directory basename fallback; retained six seeds and all earlier cases, 24,564 packages, zero divergences; red runs and complete-corpus wrong-value canary retained. No acceptance claim.",
+          "candidate_sha": "31ebafcce734cecd265e756823caf285a15412a4"
         }
       ],
       "open_items": [
@@ -21449,7 +21450,8 @@
         "Host-limit class: an archive entry whose declared size exceeds the caller's cap is refused where the original reads it (io.inflate allocates the declared size); owner decision with H1 to H3.",
         "Packed texture images are read by a second unzip in src/app/scanFiles.ts and belong to io.obj.companions.images (own PNG, then JPEG decoder).",
         "Only Node 22 ran the original; no Chrome execution. No real package from Bambu, Orca, PrusaSlic3r or 3D Builder was available locally.",
-        "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate."
+        "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate.",
+        "Historical first-run report retained at plan/findings/2026-11-03-threemf-first-run.md; its 107-file private corpus was not rerun on this follow-up. Current six-seed generated results and raw identities are in #97."
       ],
       "verification": "none"
     },
