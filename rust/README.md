@@ -1,16 +1,16 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # rust/: the pure-Rust port
 
-Work in progress, 2026-11-04. Native scan opening is available through the engine
-and `info` CLI (M3a); see [the guide](../docs/guide/README.md) and
+Work in progress, 2026-11-04. Native scan opening and plane fitting are available through the engine
+and `info` / `fit-plane` CLI (M3a/M3b); see [the guide](../docs/guide/README.md) and
 [the current M3 order](../docs/port-plan/ROADMAP-TO-USABLE.md).
 
 | Crate | Role | Contents today |
 |-------|------|----------------|
 | `port-core` | Pure core: no DOM, files or global state | Full mesh-graph construction, adjacency/components/selection, bounds/centroids, normals/orientation, dense solves, TLS/clipped planes and curvature discrimination; initial units/IDs/transforms and pin |
-| `port-engine` | Session, commands, jobs, history | Runtime/task owner, real scan document and STL/PLY scan.open |
+| `port-engine` | Session, commands, jobs, history | Runtime/task owner, real scan document, STL/PLY scan.open, queries/marks and plane fitting |
 | `port-io` | Formats and the `.scanruler` project reader/writer | STL, PLY, OBJ/MTL, inflate/zip and 3MF libraries; compatible project IO remains open |
-| `port-cli` | `scanruler-rs`, native front end for differential runs | `info` reads a scan through registered engine scan.open |
+| `port-cli` | `scanruler-rs`, native front end for differential runs | `info` and `fit-plane` use registered engine commands |
 | `port-wasm-probe` | Private bounded browser-runtime test ABI | Bounded original/native/browser comparison ABI; not a product UI or engine integration |
 | `xtask` | Project tasks | `ci`, `oracle`, `pin`, `plan`, `wasm`, `wasm-probe`, `env` |
 
@@ -33,9 +33,19 @@ STL and ASCII/little-endian/big-endian PLY are supported. JSON on stdout include
 filename, source units, vertex/triangle/component counts, bounds, center and size
 in millimetres. Errors go to stderr with exit code 2. Node is needed only by the
 comparison oracle, not the native CLI. Input bytes and producer work are bounded.
-Plane fitting, undo/redo and compatible project save/read are later M3 steps;
-this command does not complete M3. Parent unit promotion and new native-suite
-registration remain governed by roadmap section 0.
+Fit a scan's full surface, or query/mark a box before fitting:
+
+```bash
+cargo run -p port-cli -- fit-plane /path/to/scan.ply --sigma 0
+cargo run -p port-cli -- fit-plane /path/to/scan.ply --box 0 0 -1 3 4 1 --marked --orient XY --extend 1 2 3 4
+```
+
+Box coordinates and extensions use mm. `--normal x y z` and `--within-deg` filter
+box/query selections. `--in-plane` changes the relation used with `--orient`.
+The engine owns all selection, fitting, finishing and history recording. Global
+undo/redo and compatible project save/read are subsequent M3 steps; no `--undo`
+or `--redo` switches are exposed yet. Required suite registration and broader
+acceptance remain open under roadmap section 0.
 
 ## Rules of the workspace
 

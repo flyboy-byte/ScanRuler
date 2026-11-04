@@ -54,3 +54,34 @@ pub mod selection;
 
 /// Prepared scan rendering and source corner-slot/crease continuation.
 pub mod crease;
+
+/// Source Math.hypot boundary shared by native query/command adapters.
+/// Reuses the existing scaled compensated implementation used by the kernels.
+pub fn hypot3(v: [f64; 3]) -> f64 {
+    numeric::norm3(v)
+}
+
+/// Four-component source Math.hypot boundary for quaternion normalization.
+pub fn hypot4(v: [f64; 4]) -> f64 {
+    let abs = v.map(f64::abs);
+    if abs.iter().any(|v| v.is_infinite()) {
+        return f64::INFINITY;
+    }
+    if abs.iter().any(|v| v.is_nan()) {
+        return f64::NAN;
+    }
+    let max = abs[0].max(abs[1]).max(abs[2]).max(abs[3]);
+    if max == 0. {
+        return 0.;
+    }
+    let mut sum = 0.;
+    let mut compensation = 0.;
+    for v in abs {
+        let scaled = v / max;
+        let summand = scaled * scaled - compensation;
+        let preliminary = sum + summand;
+        compensation = (preliminary - sum) - summand;
+        sum = preliminary;
+    }
+    sum.sqrt() * max
+}
