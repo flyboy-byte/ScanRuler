@@ -7,6 +7,8 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
+- **Rust port session (2026-11-04)**: preserve source-compatible number formatting, own the real scan document and worker resource lifecycle, and add complete prepared render arrays/crease splitting with independent original comparisons. Native scan/plane/history and CLI prototypes are saved separately; integrated project-compatible save/read and M3 remain open.
+
 - **Rust port session (2026-11-03, PRs #99–#100)**: connect registered mutation/interrupt and read-only/job commands through retained queues, deadlines, history, activity, recent outcomes and error handling, with independent original command profiles and every earlier gate retained. Real scan/measurement state and the CLI scan/plane/undo/project-save workflow remain open.
 
 - **Rust port session (2026-11-03, PRs #96–#98)**: validate merged main, enforce the 3MF decompression budget and preserve surrogate-directory texture fallback, and connect retained deadline/execute/scene reactions with timeout queue release and late-body cleanup. All prior cases remain; the CLI scan/plane/undo/project-save workflow is still unimplemented.

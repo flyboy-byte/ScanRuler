@@ -4,13 +4,13 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 79,
-    "planned": 47,
+    "planned": 48,
     "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 58,
     "fuzzed": 4,
-    "none": 68
+    "none": 69
   },
   "native_suites": 61,
   "native_case_identities_including_refusals": 33754,
@@ -1230,6 +1230,19 @@
         "Factory uses a conservative i32::MAX vertex cap plus caller budget. Standalone u32 parent chains are validated before source path halving.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
+      ]
+    },
+    {
+      "id": "geometry.mesh.crease",
+      "status": "planned",
+      "parent": "P06",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/106",
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Main-based integration and exact-candidate clean/red comparison are in progress in #106. No acceptance claim.",
+        "The native roster and xtask remain held by #104; this added ignored production-module comparison is still run by the existing all-tests oracle invocation."
       ]
     },
     {

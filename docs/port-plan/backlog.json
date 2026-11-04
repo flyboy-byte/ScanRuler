@@ -23516,6 +23516,48 @@
       "verification": "fixed-corpus"
     },
     {
+      "gate": "G2",
+      "status": "planned",
+      "owner": "Codex",
+      "branch": "codex/scan-render-main",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/106",
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "rust_paths": [
+        "rust/crates/port-core/src/crease.rs",
+        "rust/crates/port-core/tests/crease.rs"
+      ],
+      "evidence": [],
+      "verification": "none",
+      "id": "geometry.mesh.crease",
+      "parent": "P06",
+      "title": "Port complete scan render wire-slot and crease continuation",
+      "depends_on": [
+        "geometry.mesh.graph",
+        "geometry.adjacency",
+        "geometry.normals.compute"
+      ],
+      "scope": "Complete wireSlots/scanRender/creaseFor/splitCreases with original mode/noise/edge/fan/budget decisions, render copies, indices/normals/wireSlots/copyOf and reports. Required by real scan import; logical graph correctness is not render preparation.",
+      "acceptance": [
+        "Independent original/native full render buffers and reports compare default/auto/on/off, scanned/smooth/sharp, degenerate/non-manifold/welded/mirrored and bounded large meshes. Retain every case/seed/tolerance and source timing thresholds; wrong-value must fail.",
+        "Do not skip a continuation, force mode off, loosen the 1500 ms gate or feed original buffers into Rust. Host workload refusal is distinct from source behavior. Native/Wasm and prior complete gates remain."
+      ],
+      "source_paths": [
+        "src/core/geometry/crease.ts",
+        "src/core/geometry/wireSlots.ts",
+        "src/core/meshWorker.ts"
+      ],
+      "symbols": [
+        "wireSlots",
+        "scanRender/creaseFor/splitCreases",
+        "postScan render continuation"
+      ],
+      "open_items": [
+        "Main-based integration and exact-candidate clean/red comparison are in progress in #106. No acceptance claim.",
+        "The native roster and xtask remain held by #104; this added ignored production-module comparison is still run by the existing all-tests oracle invocation."
+      ]
+    },
+    {
       "id": "geometry.mesh.graph",
       "parent": "P06",
       "title": "Port complete parsed mesh graph construction pipeline",
