@@ -23,7 +23,7 @@
   "owner": "Codex",
   "branch": "codex/runtime-guarded",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/99",
-  "implemented_commit": null,
+  "implemented_commit": "2b6710a9368c25d087a062bb0f6091287642fbd7",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/commands/registry.ts",
@@ -2021,7 +2021,8 @@
         "case-1969",
         "case-1970",
         "case-1971"
-      ]
+      ],
+      "candidate_sha": "2b6710a9368c25d087a062bb0f6091287642fbd7"
     }
   ],
   "open_items": [
@@ -2029,5 +2030,5 @@
     "Read-only and remembered job/result dispatch are explicitly unsupported here and continue under engine.runtime.readonly; no native definition with readOnly=true is advertised as executable by this runtime.",
     "Then integrate actual scan/session and measurement-family state and commands, native platform timer/event ingress, global undo/apply and original-compatible project/CLI save. These comparison callbacks are not the measurement families and do not close M3."
   ],
-  "verification": "none"
+  "verification": "fixed-corpus"
 }

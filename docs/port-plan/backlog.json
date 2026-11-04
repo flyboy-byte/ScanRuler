@@ -2861,7 +2861,7 @@
       "owner": "Codex",
       "branch": "codex/runtime-guarded",
       "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/99",
-      "implemented_commit": null,
+      "implemented_commit": "2b6710a9368c25d087a062bb0f6091287642fbd7",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [
         "src/commands/registry.ts",
@@ -4859,7 +4859,8 @@
             "case-1969",
             "case-1970",
             "case-1971"
-          ]
+          ],
+          "candidate_sha": "2b6710a9368c25d087a062bb0f6091287642fbd7"
         }
       ],
       "open_items": [
@@ -4867,7 +4868,7 @@
         "Read-only and remembered job/result dispatch are explicitly unsupported here and continue under engine.runtime.readonly; no native definition with readOnly=true is advertised as executable by this runtime.",
         "Then integrate actual scan/session and measurement-family state and commands, native platform timer/event ingress, global undo/apply and original-compatible project/CLI save. These comparison callbacks are not the measurement families and do not close M3."
       ],
-      "verification": "none"
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.runtime.reactions",
@@ -10105,7 +10106,7 @@
         }
       ],
       "open_items": [
-        "2026-11-03: bounded stateSections registration/readout is implemented under engine.state.sections; actual session.state composition remains open. agentLink.ts and remaining host.ts still need review.",
+        "Scoped runtime libraries, retained reactions and registered mutation/interrupt dispatch now compose with history/activity/current/error normalization (engine.runtime.guarded, PR #99). Next engine.runtime.readonly completes read-only and remembered job dispatch. Real scan/family document ownership, platform timers/ingress, import/plane/undo/project/CLI and browser engine runtime remain required. No whole-session acceptance.",
         "Scoped registry/history/queues/deadline/settle/plugin/stale/error/clock/execute/recent/workspace/label/activity/readout libraries and native task ownership exist. engine.runtime.reactions now connects retained source-boundary deadline/execute/scene callers; full guarded/interrupt/history/native family ownership, real timers/late progress/commands/projects/CLI/browser runtime remain required. Next unit engine.runtime.guarded; no session acceptance.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."

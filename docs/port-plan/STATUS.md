@@ -19,9 +19,9 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 
 | Verification | Units |
 | --- | ---: |
-| fixed-corpus | 55 |
+| fixed-corpus | 56 |
 | fuzzed | 4 |
-| none | 69 |
+| none | 68 |
 
 | Unit | State | Verification | Tested implementation | Verification snapshot | PR |
 | --- | --- | --- | --- | --- | --- |
@@ -72,7 +72,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [ci.integration.nov03](plan/units/ci.integration.nov03.json) | specified | none | — | — | [#95](https://github.com/flyboy-byte/ScanRuler/pull/95) |
 | [engine.error.envelope](plan/units/engine.error.envelope.json) | implemented | fixed-corpus | `f509ae2` | `f509ae2` | [#30](https://github.com/flyboy-byte/ScanRuler/pull/30) |
 | [engine.measurement.slice](plan/units/engine.measurement.slice.json) | planned | none | — | — | — |
-| [engine.runtime.guarded](plan/units/engine.runtime.guarded.json) | implemented | none | — | — | [#99](https://github.com/flyboy-byte/ScanRuler/pull/99) |
+| [engine.runtime.guarded](plan/units/engine.runtime.guarded.json) | implemented | fixed-corpus | `2b6710a` | `2b6710a` | [#99](https://github.com/flyboy-byte/ScanRuler/pull/99) |
 | [engine.runtime.reactions](plan/units/engine.runtime.reactions.json) | implemented | fixed-corpus | `415b4ed` | `415b4ed` | [#98](https://github.com/flyboy-byte/ScanRuler/pull/98) |
 | [engine.runtime.readonly](plan/units/engine.runtime.readonly.json) | planned | none | — | — | — |
 | [engine.runtime.tasks](plan/units/engine.runtime.tasks.json) | implemented | none | `b1a1f36` | — | [#88](https://github.com/flyboy-byte/ScanRuler/pull/88) |
