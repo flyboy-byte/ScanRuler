@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-//! Bounded registry/history/deadline/queue libraries and retained native reactions.
-//! The application session and complete guarded commands remain unimplemented. Contracts are in
+//! Registered native command dispatch, history/deadlines/queues and retained reactions.
+//! Concrete application scan/measurement state and the CLI remain unimplemented. Contracts are in
 //! `docs/port-plan/ARCHITECTURE.md` ("Commands, history and background work").
 
 pub mod error;

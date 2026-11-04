@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //! Native registered mutation/interrupt execution over the reviewed session providers.
-//! Read-only/recent-result dispatch and concrete family state are explicit continuations.
+//! Read-only and remembered jobs share this owner; concrete family state remains separate.
 use crate::{
     activity_state::{Activity, Patch, Running},
     command_deadline::{COMMAND_TIMEOUT_MS, Completion},
@@ -82,14 +82,23 @@ pub trait Host {
     fn workspace(&self) -> Result<Text, Fault>;
     /// Capture the actual application's registered history sections.
     fn capture(&self) -> Result<Snapshot, Fault>;
-    /// Raw Date.now sample; stale ISO conversion is lazy.
+    /// Raw Date.now sample for activity/recent timestamps.
     fn now(&self) -> Result<f64, Fault>;
+    /// Independent new Date() sample for lazy stale-page ISO construction.
+    /// Date.now overrides/faults do not change the Date constructor's own clock.
+    fn stale_now(&self) -> Result<f64, Fault>;
     /// Trusted serial timer backend. Invoke callback on the owning session thread.
     fn timer(&self, ms: f64, callback: Rc<dyn Fn() -> Result<(), Fault>>) -> u64;
     /// Trusted synchronous clearTimeout equivalent.
     fn clear_timer(&self, id: u64);
     /// Eager source settle factory, including ready work for the null-await branch.
     fn settle(&self, name: &[u16]) -> Result<Work<'static, Fault>, Fault>;
+    /// Eager original settle(name, {readOnly:true}); None preserves its null branch.
+    /// Use the reviewed settle registry: callback failures are suppressed there.
+    fn settle_readonly(&self, name: &[u16]) -> Result<Option<Work<'static, Fault>>, Fault>;
+    /// Detached promise/recent-observer failures. They never replace the caller's run.
+    /// The native host must report these on its owning session thread.
+    fn observer_fault(&self, error: Fault);
     /// Eager plugin stopping; done is resolved by execute's own finally.
     fn stop(&self, done: Done) -> Work<'static, Fault>;
 }
@@ -134,6 +143,8 @@ pub struct Limits {
     pub text: usize,
     /// Maximum abort listeners per body.
     pub abort_listeners: usize,
+    /// Independent recent-record/data host bounds; source retention and size policy stay fixed.
+    pub recent: crate::recent_store::Limits,
 }
 impl Default for Limits {
     fn default() -> Self {
@@ -143,6 +154,16 @@ impl Default for Limits {
             pending: 1024,
             text: 1_000_000,
             abort_listeners: 128,
+            recent: crate::recent_store::Limits {
+                pending: 1024,
+                text_units: 1_000_000,
+                data: crate::recent_result::Limits {
+                    nodes: 1_000_000,
+                    depth: 64,
+                    input_units: 1_000_000,
+                    json_units: 1_000_000,
+                },
+            },
         }
     }
 }
@@ -158,6 +179,7 @@ struct Core {
     mutations: crate::scene_queue::SceneQueue<Fault>,
     scene: crate::scene_queue::SceneQueue<Fault>,
     limits: Limits,
+    recent: crate::recent_store::Recent,
 }
 /// Session-owned executor, separate from its application's sole document.
 #[derive(Clone)]
@@ -199,7 +221,7 @@ pub struct Context {
     state: Rc<BodyState>,
 }
 impl Context {
-    /// Source ctx.deferred is absent unless guarded runs deferred; interrupts never carry it.
+    /// Source ctx.deferred is present for deferred mutation/read-only runs; never interrupts.
     pub fn deferred(&self) -> Option<bool> {
         self.state.deferred
     }
@@ -328,6 +350,7 @@ impl Runtime {
             mutations: crate::scene_queue::SceneQueue::new(limits.pending),
             scene: crate::scene_queue::SceneQueue::new(limits.pending),
             limits,
+            recent: crate::recent_store::Recent::new(limits.recent),
         });
         Self { owner, core }
     }
@@ -347,19 +370,13 @@ impl Runtime {
     pub fn list(&self) -> Result<Value, Fault> {
         self.core.registry.borrow().list().map_err(registry_fault)
     }
-    /// Register a real callback and the original owned schema/metadata. Read-only dispatch is a
-    /// separate continuation; this bounded executor exposes mutation/interrupt registration only.
+    /// Register a real callback and the original owned schema/metadata for any routing branch.
     pub fn register(
         &self,
         namespace: &[u16],
         definition: Value,
         callbacks: Callbacks,
     ) -> Result<Cleanup, Fault> {
-        if truthy(definition.get("readOnly")) {
-            return Err(Fault::host(
-                "read-only runtime continuation is not implemented",
-            ));
-        }
         let mut bodies = self.core.bodies.borrow_mut();
         if bodies.len() >= self.core.limits.bodies {
             return Err(Fault::host("implementation budget"));
@@ -427,6 +444,103 @@ impl Runtime {
         )
     }
 }
+/// Synchronous submission failure; a remember fault leaves the already-started run owned.
+#[derive(Debug)]
+pub enum SubmitError {
+    /// No task was admitted and no command was started.
+    Owner(crate::tasks::Error),
+    /// Source remember/Date provider failure after start; no caller promise was returned.
+    Remember(Fault),
+}
+impl Runtime {
+    /// Original recentOutcomes: newest first, with exact optional job filtering and shallow copies.
+    pub fn recent_outcomes(
+        &self,
+        job: Option<&[u16]>,
+    ) -> Result<Vec<crate::recent_store::Snapshot>, Fault> {
+        self.core.recent.outcomes(job).map_err(Fault::host)
+    }
+    /// runCommand's optional job wrapper. Empty/absent names bypass remember completely.
+    /// A synchronous Remember error does not cancel the started run. Its otherwise unobserved
+    /// failure and any failed recent reaction are reported through Host::observer_fault.
+    pub fn submit_job(
+        &self,
+        name: Text,
+        input: Value,
+        progress: Option<Progress>,
+        job: Option<Text>,
+        deferred: bool,
+        receive: impl FnOnce(Result<Value, Fault>) + 'static,
+    ) -> Result<Ticket, SubmitError> {
+        let Some(job) = job.filter(|job| !job.is_empty()) else {
+            return self
+                .submit(name, input, progress, deferred, receive)
+                .map_err(SubmitError::Owner);
+        };
+        let recording = Rc::new(RefCell::new(None::<crate::recent_store::Ticket>));
+        let observing = Rc::new(Cell::new(true));
+        let record = recording.clone();
+        let observed = observing.clone();
+        let core = self.core.clone();
+        let task = self
+            .submit(name.clone(), input, progress, deferred, move |result| {
+                if !observed.get() {
+                    if let Err(error) = result {
+                        core.host.observer_fault(error);
+                    }
+                    return;
+                }
+                let recording = record.borrow_mut().take();
+                if let Some(mut ticket) = recording {
+                    let update = match &result {
+                        Ok(value) => ticket.complete(value, || core.host.now()),
+                        Err(error) => ticket.fail(
+                            || core.host.now(),
+                            || match core.normalize(error.clone()) {
+                                Fault::Command(error) => Ok(error),
+                                error => Err(error),
+                            },
+                        ),
+                    };
+                    if let Err(error) = update {
+                        core.host.observer_fault(recent_fault(error));
+                    }
+                }
+                receive(result);
+            })
+            .map_err(SubmitError::Owner)?;
+        let (_, record) = self
+            .core
+            .recent
+            .remember(&job, &name, (), || self.core.host.now());
+        match record {
+            Ok(record) => {
+                *recording.borrow_mut() = Some(record);
+                Ok(task)
+            }
+            Err(error) => {
+                observing.set(false);
+                Err(SubmitError::Remember(recent_fault(error)))
+            }
+        }
+    }
+}
+fn recent_fault(error: crate::recent_store::Error<Fault>) -> Fault {
+    match error {
+        crate::recent_store::Error::Clock(error) | crate::recent_store::Error::Normalize(error) => {
+            error
+        }
+        crate::recent_store::Error::Date(error) => match error.source_error() {
+            Some((name, message)) => Fault::Error {
+                name: name.encode_utf16().collect(),
+                message: message.encode_utf16().collect(),
+            },
+            None => Fault::host(error),
+        },
+        error => Fault::host(error),
+    }
+}
+
 fn registry_fault(error: registry::RegistryError) -> Fault {
     match error {
         registry::RegistryError::Command(error) => Fault::Command(Arc::new(error)),
@@ -479,6 +593,9 @@ impl Core {
             progress,
             deferred,
         };
+        if truthy(call.definition.get("readOnly")) {
+            return self.readonly(call);
+        }
         if truthy(call.definition.get("interrupts")) {
             return self.guarded(call, true);
         }
@@ -506,6 +623,46 @@ impl Core {
             Err(e) => ready(Err(queue_fault(e))),
         }
     }
+    fn readonly(self: Rc<Self>, call: Call) -> ResultWork {
+        let settling = if call.deferred {
+            None
+        } else {
+            match self.host.settle_readonly(&call.name) {
+                Ok(work) => work,
+                Err(error) => return ready(Err(error)),
+            }
+        };
+        let scene = self.scene.clone();
+        let is_scene = truthy(call.definition.get("scene"));
+        let core = self.clone();
+        let routed = scene.run(is_scene, move || {
+            Ok(core.timed_inner(call, true, true, settling))
+        });
+        Box::pin(async move {
+            let result = match routed {
+                Ok(route) => route.await.map_err(queue_fault),
+                Err(error) => Err(queue_fault(error)),
+            };
+            let result = result.map_err(|error| self.normalize(error));
+            // start's read-only .catch returns a distinct promise. Its receiver runs
+            // after scene release/other already-queued cleanup, never inline with it.
+            // The rejection handler returns Promise.reject(asCommandError(e));
+            // adoption adds a reaction beyond successful catch passthrough.
+            for _ in 0..if result.is_err() { 2 } else { 1 } {
+                let mut later = false;
+                std::future::poll_fn(move |cx| {
+                    if std::mem::replace(&mut later, true) {
+                        std::task::Poll::Ready(())
+                    } else {
+                        cx.waker().wake_by_ref();
+                        std::task::Poll::Pending
+                    }
+                })
+                .await;
+            }
+            result
+        })
+    }
     fn normalize(&self, fault: Fault) -> Fault {
         if matches!(fault, Fault::Host(_)) {
             return fault;
@@ -530,7 +687,7 @@ impl Core {
             self.limits.text,
             self.limits.text,
             || {
-                let ms = self.host.now()?;
+                let ms = self.host.stale_now()?;
                 port_core::js_date::utc_iso_millis(ms).map_err(|_| Fault::Error {
                     name: "RangeError".encode_utf16().collect(),
                     message: "Invalid time value".encode_utf16().collect(),
@@ -684,6 +841,15 @@ impl Core {
             .map_err(history_fault)
     }
     fn timed(self: &Rc<Self>, call: Call, interrupt: bool) -> ResultWork {
+        self.timed_inner(call, interrupt, !interrupt, None)
+    }
+    fn timed_inner(
+        self: &Rc<Self>,
+        call: Call,
+        quiet: bool,
+        allow_deferred: bool,
+        settling: Option<Work<'static, Fault>>,
+    ) -> ResultWork {
         let Some(owner) = self.owner.upgrade() else {
             return ready(Err(Fault::host("closed runtime")));
         };
@@ -705,13 +871,13 @@ impl Core {
                 factory: Cell::new(true),
                 completed: Cell::new(false),
                 staged: RefCell::new(None),
-                activity: if interrupt {
+                activity: if quiet {
                     None
                 } else {
                     Some(self.activity.clone())
                 },
                 progress: call.progress.clone(),
-                deferred: if !interrupt && call.deferred {
+                deferred: if allow_deferred && call.deferred {
                     Some(true)
                 } else {
                     None
@@ -735,20 +901,26 @@ impl Core {
         if let Err(e) = limited.registered(timer) {
             return ready(Err(Fault::host(e)));
         }
-        let result = (call.callbacks.run)(&call.input, context.clone());
-        let staged = context.state.staged.borrow_mut().take();
-        context.state.factory.set(false);
-        match result {
-            Err(e) => {
-                drop(staged);
-                context.state.completed.set(true);
-                limited.body_settled(Err(e));
+        if let Some(settling) = settling {
+            let pending = context.clone();
+            if let Err(error) = reactions::retain(
+                &owner,
+                move || settling,
+                move |result| match result {
+                    Ok(()) => invoke_body(&call, &pending),
+                    Err(error) => {
+                        pending.complete(Err(error));
+                    }
+                },
+            ) {
+                context.complete(Err(Fault::host(error)));
             }
-            Ok(()) => {
-                if let Some(result) = staged {
-                    limited.body_settled(result);
-                }
+            context.state.factory.set(false);
+            if let Some(result) = context.state.staged.borrow_mut().take() {
+                limited.body_settled(result);
             }
+        } else {
+            invoke_body(&call, &context);
         }
         if let Err(e) = limited.factory_returned() {
             return ready(Err(Fault::host(e)));
@@ -767,6 +939,25 @@ impl Core {
         })
     }
 }
+fn invoke_body(call: &Call, context: &Context) {
+    context.state.factory.set(true);
+    let result = (call.callbacks.run)(&call.input, context.clone());
+    let staged = context.state.staged.borrow_mut().take();
+    context.state.factory.set(false);
+    match result {
+        Err(error) => {
+            drop(staged);
+            context.state.completed.set(true);
+            context.state.limited.body_settled(Err(error));
+        }
+        Ok(()) => {
+            if let Some(result) = staged {
+                context.state.limited.body_settled(result);
+            }
+        }
+    }
+}
+
 struct Provider {
     core: Rc<Core>,
     call: Call,

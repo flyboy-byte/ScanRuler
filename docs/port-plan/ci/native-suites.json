@@ -673,6 +673,17 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "engine.runtime.readonly",
+      "test": "pinned_readonly_comparison",
+      "directory": "readonly-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

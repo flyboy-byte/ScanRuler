@@ -1,0 +1,43 @@
+{
+  "id": "engine.session.scan",
+  "parent": "engine.session.contract",
+  "title": "Own the actual scan session and source replacement lifecycle",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": [
+    "engine.runtime.readonly",
+    "geometry.mesh.graph",
+    "io.stl.dispatch",
+    "engine.session.import.queue",
+    "engine.session.history.core"
+  ],
+  "scope": "Implement the sole actual scan/session document, immutable mesh/source assets, revisions and scan replacement/reset lifecycle needed by scan.open and marked-plane commands. Reuse owned runtime/history/import components; do not substitute a fixture scalar or duplicate business store. Source audit names every captured family/plugin/reference continuation before exposing a command.",
+  "acceptance": [
+    "Original-first independent real mesh/session traces compare buffers, IDs/revisions, named source metadata, exact units/poses, held measurements, reference preservation/drop and all invalidated maps/marks/history. Retain every earlier case and actual wrong-value rejection.",
+    "Failed/stale preparation leaves committed session intact; old asynchronous work cannot overwrite a replaced scan. Preserve commit/clear/dispose/discard and provider fault order. Native/Wasm builds remain required; platform viewer side effects stay explicit until integrated.",
+    "Then wire the complete supported scan import command, marked-plane fit, global undo/apply and original-compatible project/CLI save. Explicitly refuse unported formats/paths; no partial command body or generic callback counts as M3."
+  ],
+  "owner": null,
+  "branch": null,
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/app/scanImport.ts",
+    "src/core/workerClient.ts",
+    "src/state/store.ts",
+    "src/commands/core/scan.ts",
+    "src/commands/core/element.ts"
+  ],
+  "symbols": [
+    "scanImport/commitScan/openScan",
+    "scanVersion and immutable source assets",
+    "measurement/reference invalidation and history reset"
+  ],
+  "rust_paths": [],
+  "evidence": [],
+  "open_items": [
+    "Actual data model not implemented. Start with source closure/ownership audit, then real mesh/session independent inputs. Runtime fixtures do not supply this model."
+  ],
+  "verification": "none"
+}
