@@ -4967,8 +4967,8 @@
         "Jobs attach once-only reactions to the captured request/receiver; ordered record/update/eviction, Date clipping/durations, omitted results and callback faults match the existing source components. No global reusable request-ID routing.",
         "All original/native/Chrome gates remain required; real scan/session models, import/plane, global undo/project compatibility and CLI M3 remain explicit continuations."
       ],
-      "owner": null,
-      "branch": null,
+      "owner": "Codex",
+      "branch": "codex/runtime-readonly",
       "claim_pr": null,
       "implemented_commit": null,
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
