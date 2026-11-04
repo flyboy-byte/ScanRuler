@@ -1,0 +1,38 @@
+{
+  "id": "math.number.shortest",
+  "parent": "P07",
+  "title": "Preserve exact primitive ECMAScript shortest Number text",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": [
+    "baseline.reproducibility"
+  ],
+  "scope": "Fix source primitive Number String/JSON text ties used by error/command/file metadata. Keep existing exponent thresholds/special/signed-zero behavior and shortest digits; exact dyadic-versus-decimal midpoint checks select the original even final digit. No general JS objects/coercion or arbitrary-fraction toFixed claim.",
+  "acceptance": [
+    "Original registry asCommandError numeric branch and Node22 JSON.stringify compare input/category/full message/JSON exactly on stable authored IEEE inputs and seeds; wrong native text and missing output must fail. No source outputs enter Rust.",
+    "Retain every earlier parser/geometry/engine/fixed3/native/Chrome case and tolerance. Real source-byte scan counterexample remains unchanged; fix formatter instead of regenerating raw inputs.",
+    "Pure Rust owned bounded integer reasoning, no dependency or foreign formatter; no accepted/fuzzed/coverage-reviewed claim from a fixed corpus."
+  ],
+  "owner": "Codex",
+  "branch": "codex/number-shortest-main",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/commands/registry.ts"
+  ],
+  "symbols": [
+    "asCommandError Number String conversion",
+    "original Node22 primitive Number::toString/JSON.stringify"
+  ],
+  "rust_paths": [
+    "rust/crates/port-core/src/js_number.rs",
+    "rust/crates/port-core/tests/number_string.rs"
+  ],
+  "evidence": [],
+  "open_items": [
+    "Draft claim from main 26be67a for the exact primitive Number-text prerequisite exposed by the scan-session source-byte comparison. Bring forward unchanged 6,241 controls and complete earlier parser fuzz proof; validate the new exact candidate before recording implementation.",
+    "No scan implementation or M3 workflow is claimed by this bounded prerequisite. No image/zip/3MF source edits."
+  ],
+  "verification": "none"
+}

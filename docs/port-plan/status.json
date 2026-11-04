@@ -4,13 +4,13 @@
   "unit_states": {
     "baseline-captured": 2,
     "implemented": 78,
-    "planned": 47,
+    "planned": 48,
     "specified": 2
   },
   "verification_levels": {
     "fixed-corpus": 57,
     "fuzzed": 4,
-    "none": 68
+    "none": 69
   },
   "native_suites": 60,
   "native_case_identities_including_refusals": 27513,
@@ -1715,6 +1715,19 @@
       "open_items": [
         "2026-11-03: fixed3 executes through2220 actual Chrome marked-sphere cases, including exact tie/threshold refusals (harness.wasm.marked.sphere). The standalone8492-case formatter browser corpus and full command/session/CLI remain unimplemented.",
         "General fraction-count toFixed and arbitrary boxed/prototype JS method semantics are outside this owned primitive boundary."
+      ]
+    },
+    {
+      "id": "math.number.shortest",
+      "status": "planned",
+      "parent": "P07",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Draft claim from main 26be67a for the exact primitive Number-text prerequisite exposed by the scan-session source-byte comparison. Bring forward unchanged 6,241 controls and complete earlier parser fuzz proof; validate the new exact candidate before recording implementation.",
+        "No scan implementation or M3 workflow is claimed by this bounded prerequisite. No image/zip/3MF source edits."
       ]
     },
     {
