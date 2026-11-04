@@ -684,6 +684,28 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "math.number.shortest",
+      "test": "pinned_number_string_comparison",
+      "directory": "number-string-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
+    },
+    {
+      "unit": "engine.session.scan",
+      "test": "pinned_scan_session_commit_comparison",
+      "directory": "scan-session-commit-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

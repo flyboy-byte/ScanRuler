@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 78,
+    "implemented": 80,
     "planned": 47,
     "specified": 2
   },
   "verification_levels": {
-    "fixed-corpus": 57,
+    "fixed-corpus": 59,
     "fuzzed": 4,
     "none": 68
   },
-  "native_suites": 60,
-  "native_case_identities_including_refusals": 27513,
+  "native_suites": 62,
+  "native_case_identities_including_refusals": 34603,
   "accepted_units": [],
   "units": [
     {
@@ -909,14 +909,17 @@
     },
     {
       "id": "engine.session.scan",
-      "status": "planned",
+      "status": "implemented",
       "parent": "engine.session.contract",
-      "pr": null,
-      "tested_sha": null,
-      "verification": "none",
-      "verification_tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/104",
+      "tested_sha": "c32956d37678cd741d7c085b2857f470315be210",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "c32956d37678cd741d7c085b2857f470315be210",
       "open_items": [
-        "Actual data model not implemented. Start with source closure/ownership audit, then real mesh/session independent inputs. Runtime fixtures do not supply this model."
+        "Owned document and complete prepared commit consumer plus staged logical-worker resources are implemented; parser/render preparation, actual engine command/CLI, plane and global restore/project/viewport platform services remain separate continuations. #105 owns the real native command/measurement slice. No M3 or unit acceptance.",
+        "Native fixed corpus compares every original field/buffer/error/request/revision on 849 independent controls; no seed/tolerance/case was reduced. Wasm compilation is required; new session-state browser differential transfer remains open, not inferred from compilation.",
+        "Nominal/solid resource types are supplied by native services; their geometry kernels and worker/RPC recovery after a callback throws are not supplied by these owners. Preserve source partial-prefix effects rather than inventing rollback.",
+        "Earlier Number-format failure and every original-first source/negative trace remain retained. No original TypeScript, image/zip/3MF implementation, dependency, tolerance, seed or 1500 ms threshold is changed."
       ]
     },
     {
@@ -1230,6 +1233,21 @@
         "Factory uses a conservative i32::MAX vertex cap plus caller budget. Standalone u32 parent chains are validated before source path halving.",
         "Original source coverage remains unmapped for stripped/concatenated helper adapters; source locations are unknown, not fully covered. See plan/findings/2026-11-02-original-coverage.md and the generated unmappedSources list.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
+      ]
+    },
+    {
+      "id": "geometry.mesh.crease",
+      "status": "planned",
+      "parent": "P06",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/106",
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Complete main-based prepared-array source checkpoint d4514b1e2047ba86315d7c861673caaf1424fc81 has 1309 exact source controls and full wrong-output red/clean records in evidence/2026-11-04-scan-render-main-red-green.json.gz; all earlier development records remain. No accepted/fuzzed/coverage-reviewed claim.",
+        "Canonical promotion is deliberately deferred: ci_report.py requires every differential unit in native-suites.json and the xtask discovery guard, which remain held by open PR104. Do not weaken that gate or relabel numerical evidence. After its merge, register pinned_scan_render_comparison / scan-render-diff with all 1309 IDs, restore the differential evidence link and tested SHA, then regenerate status/backlog with the tools. The existing all-tests native oracle already executes the added production comparison.",
+        "See plan/findings/2026-11-04-scan-render-main-integration.md for exact gates, saved downstream checkpoints and reassessment scope. Worker/command binding and caller-setting coercion remain separate; this unit covers typed prepared-array bodies.",
+        "M3 still needs real engine import/CLI, plane/history integration and original-compatible project save/read. No original TypeScript, seeds, tolerances or 1500 ms threshold changed."
       ]
     },
     {
@@ -1616,7 +1634,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/27",
       "tested_sha": "737d3c314691e1e63ddc3d517002476e382fe418",
       "verification": "fuzzed",
-      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
+      "verification_tested_sha": "1a67f50200779e43128db617a4a5c516c8c9980d",
       "open_items": [
         "Binary continuation is implemented separately in io.ply.binary; the ASCII-only convenience entrypoint retains a distinct binary boundary, and ply::read_ply dispatches all encodings.",
         "Browser-Wasm runtime comparisons and public scan/session/history integration remain unimplemented for this parser.",
@@ -1633,7 +1651,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/28",
       "tested_sha": "98d39fc4cb54ae1c523da619e54164f5d99f9105",
       "verification": "fuzzed",
-      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
+      "verification_tested_sha": "1a67f50200779e43128db617a4a5c516c8c9980d",
       "open_items": [
         "Real browser-Wasm execution for PLY remains open; native and Wasm compilation do not imply runtime acceptance.",
         "Public scan/session commands, history, projects and full P03 adversarial/corpus acceptance remain open.",
@@ -1662,7 +1680,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/2",
       "tested_sha": "5ee3881d887a4720c6a7cf5ca7a675333e6e8e62",
       "verification": "fuzzed",
-      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
+      "verification_tested_sha": "1a67f50200779e43128db617a4a5c516c8c9980d",
       "open_items": [
         "Native Node 22 comparisons were observed passing in subsequent full Rust gates; original local implementation evidence used Node 20.20.2. See AUDIT-QUEUE.md for immutable hosted run links.",
         "Browser-Wasm runtime comparison is not built; only wasm32 compile check passes. P36 general paired harness/coverage ratchet remains open.",
@@ -1679,7 +1697,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/3",
       "tested_sha": "77683bf515590ac3f5cb8a9c3552ec64700ce44a",
       "verification": "fuzzed",
-      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
+      "verification_tested_sha": "1a67f50200779e43128db617a4a5c516c8c9980d",
       "open_items": [
         "Browser-Wasm runtime comparisons remain unbuilt; wasm32 library compilation passes only.",
         "P05/G0 contracts and general P36 paired harness/coverage ratchet remain open; no promotion to accepted or full scan import.",
@@ -1715,6 +1733,20 @@
       "open_items": [
         "2026-11-03: fixed3 executes through2220 actual Chrome marked-sphere cases, including exact tie/threshold refusals (harness.wasm.marked.sphere). The standalone8492-case formatter browser corpus and full command/session/CLI remain unimplemented.",
         "General fraction-count toFixed and arbitrary boxed/prototype JS method semantics are outside this owned primitive boundary."
+      ]
+    },
+    {
+      "id": "math.number.shortest",
+      "status": "implemented",
+      "parent": "P07",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/103",
+      "tested_sha": "3da16bf062cc1cb235e3f47ce2822dbdfdfe724b",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "3da16bf062cc1cb235e3f47ce2822dbdfdfe724b",
+      "open_items": [
+        "Exact primitive Number String/JSON text has scoped fixed-corpus evidence on 6,241 stable IEEE controls. Rust std shortest digits are retained unless exact bounded integer reasoning proves the source decimal midpoint/even-digit correction. No dependency or general boxed/custom-JS coercion claim.",
+        "All earlier fixed/seeded/native/Chrome gates and every inherited PLY/STL campaign were retained. Retained parser campaign snapshot is 1a67f50; complete combined candidate is 3da16bf062cc1cb235e3f47ce2822dbdfdfe724b. No accepted status is inferred.",
+        "Draft #103 owns the bounded main-based formatting correction. Existing source proof and all parser campaigns remain; all eight campaign dependency hashes match. Scan-session claim #104 stays separate and consumes this prerequisite after Logan merges it."
       ]
     },
     {

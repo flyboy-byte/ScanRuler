@@ -84,3 +84,8 @@ pub mod reactions;
 pub mod state_sections;
 /// Bounded native cooperative task ownership and wake delivery.
 pub mod tasks;
+
+/// Sole actual scan document and immutable source/mesh asset ownership.
+pub mod scan_session;
+/// Owned staged model resources and original client generations.
+pub mod scan_worker;

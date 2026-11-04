@@ -57,7 +57,8 @@
         "engine.runtime.reactions",
         "engine.runtime.guarded",
         "engine.runtime.readonly",
-        "engine.session.scan"
+        "engine.session.scan",
+        "math.number.shortest"
       ],
       "touches": "spec doc, then rust/crates/port-engine"
     },

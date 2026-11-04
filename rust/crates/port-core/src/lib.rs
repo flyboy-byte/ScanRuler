@@ -51,3 +51,6 @@ pub mod js_string;
 pub mod marked_sphere;
 /// Shared fixed-selection marking-size guard.
 pub mod selection;
+
+/// Prepared scan rendering and source corner-slot/crease continuation.
+pub mod crease;

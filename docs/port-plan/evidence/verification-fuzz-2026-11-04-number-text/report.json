@@ -1,0 +1,358 @@
+{
+  "schema": "port.verification.fuzz.v1",
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "scope_units": [
+    "io.ply.ascii",
+    "io.ply.binary",
+    "io.stl.binary",
+    "io.stl.dispatch"
+  ],
+  "observations": [
+    "success",
+    "progress",
+    "error",
+    "output-bytes"
+  ],
+  "unit_families": {
+    "io.ply.ascii": "ply",
+    "io.ply.binary": "ply",
+    "io.stl.binary": "stl",
+    "io.stl.dispatch": "stl"
+  },
+  "hash_scope": "PLY/STL implementation dependency closure, formatter, and campaign generator/comparator; unrelated modules excluded. All files unchanged from tested candidate.",
+  "candidate_sha": "1a67f50200779e43128db617a4a5c516c8c9980d",
+  "node": "v22.23.4",
+  "observed_at": "2026-11-04T08:16:26.744561+00:00",
+  "source_hashes": {
+    "rust/crates/port-io/src/stl.rs": "3b84aa0ad0a55204b4fa0c619b493818f0db5f55793d0fca39b0bdb04e4f2936",
+    "rust/crates/port-io/src/stl_dispatch.rs": "ef2cdf113a230324b4f8b6b14c47c7a377e5336fe712f9220ae886f5cffc92b1",
+    "rust/crates/port-io/src/ply.rs": "990280838328d91dbb39e006bcab664cfe554e3781f493f03e3f488a812cdd9c",
+    "rust/crates/port-io/src/ply_ascii.rs": "df816b0eebcee8aaac785094bf3eeec2f45c1e7b420130fd09e5cb35b23afc25",
+    "rust/crates/port-io/src/ply_binary.rs": "39003c947716c71202718166e1e3252ee15949432d0556b584b6aa1fe3e95637",
+    "rust/crates/port-core/src/js_number.rs": "3fc01553d489cb26fed70cac84b4cde3153f5561902a948fe2b0b653a301d757",
+    "rust/crates/port-io/tests/fuzz_standing.rs": "e7d2cbd3b4bfb0994d54d79ce914a0281dc04152e8be98e017f2a783f9c99d63",
+    "docs/port-plan/oracle/fuzz-batch.cjs": "0c1c7b24bcd15c3c4bf1791ff0ac2cf4f2017e353199b6dbf8c03bd4cd2666eb"
+  },
+  "records": [
+    {
+      "unit": "ply",
+      "sabotage": false,
+      "command": [
+        "fnm",
+        "exec",
+        "--using=22",
+        "cargo",
+        "xtask",
+        "fuzz",
+        "ply",
+        "--seed",
+        "1",
+        "--cases",
+        "1000",
+        "--out",
+        "/home/logan/projects/scanruler/.port-run-artifacts/number-string-fuzz/ply-1-normal"
+      ],
+      "log": "ply-1-normal.log.gz",
+      "log_sha256": "e4490bd5119c1c7a922bbe592326ad0d93029fd5d207991e619f258f05a71c05",
+      "seed": 1,
+      "cases": 1000,
+      "identical_success": 354,
+      "identical_refusal": 637,
+      "host_limit": 5,
+      "original_timeout": 4,
+      "divergences": 0
+    },
+    {
+      "unit": "ply",
+      "sabotage": false,
+      "command": [
+        "fnm",
+        "exec",
+        "--using=22",
+        "cargo",
+        "xtask",
+        "fuzz",
+        "ply",
+        "--seed",
+        "7",
+        "--cases",
+        "1000",
+        "--out",
+        "/home/logan/projects/scanruler/.port-run-artifacts/number-string-fuzz/ply-7-normal"
+      ],
+      "log": "ply-7-normal.log.gz",
+      "log_sha256": "f0bdadd7b74b173f22b832f01cc2c3db3f80c6af6fc1e35564313ce60f6126f6",
+      "seed": 7,
+      "cases": 1000,
+      "identical_success": 360,
+      "identical_refusal": 622,
+      "host_limit": 11,
+      "original_timeout": 7,
+      "divergences": 0
+    },
+    {
+      "unit": "ply",
+      "sabotage": false,
+      "command": [
+        "fnm",
+        "exec",
+        "--using=22",
+        "cargo",
+        "xtask",
+        "fuzz",
+        "ply",
+        "--seed",
+        "99",
+        "--cases",
+        "1000",
+        "--out",
+        "/home/logan/projects/scanruler/.port-run-artifacts/number-string-fuzz/ply-99-normal"
+      ],
+      "log": "ply-99-normal.log.gz",
+      "log_sha256": "a0dddc0f791b68eef41088883172004315a8724f94bffeb0c659d1ecd3142852",
+      "seed": 99,
+      "cases": 1000,
+      "identical_success": 405,
+      "identical_refusal": 580,
+      "host_limit": 10,
+      "original_timeout": 5,
+      "divergences": 0
+    },
+    {
+      "unit": "ply",
+      "sabotage": true,
+      "command": [
+        "fnm",
+        "exec",
+        "--using=22",
+        "cargo",
+        "xtask",
+        "fuzz",
+        "ply",
+        "--seed",
+        "1",
+        "--cases",
+        "300",
+        "--out",
+        "/home/logan/projects/scanruler/.port-run-artifacts/number-string-fuzz/ply-1-canary",
+        "--selfcheck",
+        "--minimize"
+      ],
+      "log": "ply-1-canary.log.gz",
+      "log_sha256": "09af724985a93ef843d064c81bc29079e5bb24767a35d89e25848dcdea0c2596",
+      "seed": 1,
+      "cases": 300,
+      "identical_success": 0,
+      "identical_refusal": 191,
+      "host_limit": 0,
+      "original_timeout": 1,
+      "divergences": 108
+    },
+    {
+      "unit": "stl",
+      "sabotage": false,
+      "command": [
+        "fnm",
+        "exec",
+        "--using=22",
+        "cargo",
+        "xtask",
+        "fuzz",
+        "stl",
+        "--seed",
+        "1",
+        "--cases",
+        "1000",
+        "--out",
+        "/home/logan/projects/scanruler/.port-run-artifacts/number-string-fuzz/stl-1-normal"
+      ],
+      "log": "stl-1-normal.log.gz",
+      "log_sha256": "44628193af345c6074d9a7e275d01908a2a9a1fc549e901de4f53fd9dc5d40ad",
+      "seed": 1,
+      "cases": 1000,
+      "identical_success": 701,
+      "identical_refusal": 299,
+      "host_limit": 0,
+      "original_timeout": 0,
+      "divergences": 0
+    },
+    {
+      "unit": "stl",
+      "sabotage": false,
+      "command": [
+        "fnm",
+        "exec",
+        "--using=22",
+        "cargo",
+        "xtask",
+        "fuzz",
+        "stl",
+        "--seed",
+        "7",
+        "--cases",
+        "1000",
+        "--out",
+        "/home/logan/projects/scanruler/.port-run-artifacts/number-string-fuzz/stl-7-normal"
+      ],
+      "log": "stl-7-normal.log.gz",
+      "log_sha256": "5e131ce5c5013c582ad0b403d3e21c373b96f31a21ec5f4739063086ffb7a4f4",
+      "seed": 7,
+      "cases": 1000,
+      "identical_success": 714,
+      "identical_refusal": 286,
+      "host_limit": 0,
+      "original_timeout": 0,
+      "divergences": 0
+    },
+    {
+      "unit": "stl",
+      "sabotage": false,
+      "command": [
+        "fnm",
+        "exec",
+        "--using=22",
+        "cargo",
+        "xtask",
+        "fuzz",
+        "stl",
+        "--seed",
+        "99",
+        "--cases",
+        "1000",
+        "--out",
+        "/home/logan/projects/scanruler/.port-run-artifacts/number-string-fuzz/stl-99-normal"
+      ],
+      "log": "stl-99-normal.log.gz",
+      "log_sha256": "afd5133e130fe496224ec2058d249196aa84a9c935e80d94a89eff6541c1a6c5",
+      "seed": 99,
+      "cases": 1000,
+      "identical_success": 697,
+      "identical_refusal": 303,
+      "host_limit": 0,
+      "original_timeout": 0,
+      "divergences": 0
+    },
+    {
+      "unit": "stl",
+      "sabotage": true,
+      "command": [
+        "fnm",
+        "exec",
+        "--using=22",
+        "cargo",
+        "xtask",
+        "fuzz",
+        "stl",
+        "--seed",
+        "1",
+        "--cases",
+        "300",
+        "--out",
+        "/home/logan/projects/scanruler/.port-run-artifacts/number-string-fuzz/stl-1-canary",
+        "--selfcheck",
+        "--minimize"
+      ],
+      "log": "stl-1-canary.log.gz",
+      "log_sha256": "969001e007c090308d8b68291a5ee9e433ce3a24b7ad6845d93d66a9f29116b1",
+      "seed": 1,
+      "cases": 300,
+      "identical_success": 6,
+      "identical_refusal": 100,
+      "host_limit": 0,
+      "original_timeout": 0,
+      "divergences": 194
+    }
+  ],
+  "canary_reproductions": [
+    {
+      "unit": "ply",
+      "files": {
+        "input.bin": {
+          "hex": "706c790a666f726d61742062696e6172795f6269675f656e6469616e0a63670a656c656d656e74207665727465780a70726f7065727479207220780a70726f7065727479207520790a70726f7065727479207563686172207a0a656c656d656e74206661636520340a730a656e645f6865616465720a82c46b57da78eae6139c8e1d4aa50d9a73486296e9886304",
+          "sha256": "cd8cacac7967e46384738e292a641a0811eddbfa8120cbb1c3b294f15670f4b5"
+        },
+        "original.bin": {
+          "hex": "504c5931000000000000000000000000",
+          "sha256": "f27fd08e7da3bfe4beddaa42570c4c763539cf6462b3b604d42e2d4646ba9003"
+        },
+        "original.message.txt": {
+          "hex": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "original.progress.txt": {
+          "hex": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "original.status.txt": {
+          "hex": "6f6b3d747275652074696d656f75743d66616c73650a",
+          "sha256": "abcec0a250aa8b6fe9fb5fcdecc857268fde2bf89e7b608b0bdad5eb98f2f492"
+        },
+        "reduction.txt": {
+          "hex": "736565643d3120636173653d30206f726967696e616c5f62797465733d33303220726564756365645f62797465733d31343220617474656d7074733d313238206275646765743d313238207369676e61747572653d28747275652c20747275652c203829207361626f746167653d747275650a",
+          "sha256": "d59dc9894a9144b528bb7b710a17cf2f9f7d645b7af306c364a682af04925bd1"
+        },
+        "rust.bin": {
+          "hex": "504c5931000000000000000000000001",
+          "sha256": "a6870efa285ad91d8e2870298259eb72d7cb933ade536b5721ad168ad082a955"
+        },
+        "rust.message.txt": {
+          "hex": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "rust.progress.txt": {
+          "hex": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "rust.status.txt": {
+          "hex": "6f6b3d747275652074696d656f75743d66616c73650a",
+          "sha256": "abcec0a250aa8b6fe9fb5fcdecc857268fde2bf89e7b608b0bdad5eb98f2f492"
+        }
+      }
+    },
+    {
+      "unit": "stl",
+      "files": {
+        "input.bin": {
+          "hex": "782039392e3430363939393939393939393933203639372e393433202d38382e35333730303030303030303030330a766572746578203537322e37343439393939393939393939202d35332e3730313030303030303030303032203930332e313436393939393939393939390a656e646c6f6f700a656e6466616365740a656e64736f6c6964",
+          "sha256": "87e56d91dcc359d5e967d0c2686aaf8832ba883b2a888fd15b906e61c812f070"
+        },
+        "original.bin": {
+          "hex": "3436393939393939393939390a656e646c6f6f700a656e6466616365740a656e64736f6c",
+          "sha256": "d213eee365cb910978adf1c457068b524b6f18d9025fd1e340acd400eaf9d3bb"
+        },
+        "original.message.txt": {
+          "hex": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "original.progress.txt": {
+          "hex": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "original.status.txt": {
+          "hex": "6f6b3d747275652074696d656f75743d66616c73650a",
+          "sha256": "abcec0a250aa8b6fe9fb5fcdecc857268fde2bf89e7b608b0bdad5eb98f2f492"
+        },
+        "reduction.txt": {
+          "hex": "736565643d3120636173653d31206f726967696e616c5f62797465733d34313420726564756365645f62797465733d31333420617474656d7074733d313238206275646765743d313238207369676e61747572653d28747275652c20747275652c203829207361626f746167653d747275650a",
+          "sha256": "79c40bc13224c94f1702a8285885d658e3d9c9bb35eacef88b47969a6f6e5aa1"
+        },
+        "rust.bin": {
+          "hex": "3436393939393939393939390a656e646c6f6f700a656e6466616365740a656e64736f6d",
+          "sha256": "19074c534944836f63cc9e0dade8f2f188d8013899c29324af7a7f894587378a"
+        },
+        "rust.message.txt": {
+          "hex": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "rust.progress.txt": {
+          "hex": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "rust.status.txt": {
+          "hex": "6f6b3d747275652074696d656f75743d66616c73650a",
+          "sha256": "abcec0a250aa8b6fe9fb5fcdecc857268fde2bf89e7b608b0bdad5eb98f2f492"
+        }
+      }
+    }
+  ]
+}
