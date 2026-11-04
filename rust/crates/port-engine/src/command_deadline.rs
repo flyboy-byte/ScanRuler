@@ -127,19 +127,24 @@ impl<T, E> Deadline<T, E> {
     /// true only when the value participates in the race; late/duplicate results
     /// are consumed without becoming another answer or an unhandled rejection.
     pub fn body_settled(&mut self, result: Result<T, E>) -> bool {
+        self.settle_owned(result).is_ok()
+    }
+    // Return an unused payload to the owner so its destructor runs AFTER releasing any
+    // interior deadline borrow. Native resources may perform reentrant cleanup on Drop.
+    pub(crate) fn settle_owned(&mut self, result: Result<T, E>) -> Result<(), Result<T, E>> {
         if self.body_done {
-            return false;
+            return Err(result);
         }
         self.body_done = true;
         if self.phase == Phase::Register || self.phase == Phase::Factory {
             self.body = Some(result);
-            true
+            Ok(())
         } else if self.phase == Phase::Racing {
             self.winner = Some(Completion::Body(result));
             self.phase = Phase::Won;
-            true
+            Ok(())
         } else {
-            false
+            Err(result)
         }
     }
     /// run() returned its ordinary promise (or threw and was converted to a

@@ -124,9 +124,13 @@ impl<T, E> Limited<T, E> {
     /// Actual body settlement, including late faults; a wake is NOT settlement.
     /// Duplicate values are consumed without another caller response.
     pub fn body_settled(&self, result: Result<T, E>) -> bool {
-        let accepted = self.shared.deadline.borrow_mut().body_settled(result);
+        let disposition = self.shared.deadline.borrow_mut().settle_owned(result);
+        let accepted = disposition.is_ok();
         self.shared.body_done.set(true);
         self.shared.wake();
+        // A late/duplicate fault may release resources that inspect the runtime.
+        // Its destructor must never run with a RefMut<Deadline> still live.
+        drop(disposition);
         accepted
     }
     /// Attach the race after the factory returns, including converted synchronous throws.

@@ -245,3 +245,34 @@ fn dropping_the_caller_future_does_not_cancel_or_leak_a_late_error() {
     owner.finish().unwrap();
     assert_eq!(drops.get(), 1);
 }
+
+#[test]
+fn late_fault_destructor_can_read_the_runtime_without_an_overlapping_borrow() {
+    struct Reentrant(Box<dyn Fn()>);
+    impl Drop for Reentrant {
+        fn drop(&mut self) {
+            (self.0)();
+        }
+    }
+    let owner = owner(1);
+    let limited = Limited::<(), Reentrant>::new(&owner, &[65], 1., 1024, |_| {}).unwrap();
+    limited.registered(1).unwrap();
+    limited.factory_returned().unwrap();
+    let event = limited.fire_begin().unwrap().unwrap();
+    limited.fire_end(event).unwrap();
+    owner.turn().unwrap();
+    assert!(matches!(
+        limited.take_outcome().unwrap(),
+        Some(Completion::Timeout(_))
+    ));
+    let inspect = limited.clone();
+    let seen = Rc::new(Cell::new(false));
+    let mark = seen.clone();
+    assert!(!limited.body_settled(Err(Reentrant(Box::new(move || {
+        assert!(inspect.abort_reason().is_some());
+        mark.set(true);
+    })))));
+    assert!(seen.get());
+    owner.turn().unwrap();
+    owner.finish().unwrap();
+}
