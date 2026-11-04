@@ -10,7 +10,8 @@
 //!   result is the first `min(written, declared)` bytes (an empty stream yields all zeros);
 //! - distance symbol 31 copies zeros, and a stored block that does not fit is a JS `RangeError`.
 //!
-//! Rust-side host limits are reported as [`InflateError::ResourceLimit`], never as a source error.
+//! Rust-side host limits are reported as [`InflateError::ResourceLimit`] or
+//! [`InflateError::AggregateLimit`], never as a source error.
 
 use std::sync::OnceLock;
 
@@ -28,6 +29,8 @@ pub enum InflateError {
     OffsetOutOfBounds,
     /// The caller's output or entry budget was exceeded.
     ResourceLimit,
+    /// Cumulative retained-entry allocation budget exceeded before allocating the next entry.
+    AggregateLimit,
 }
 
 impl std::fmt::Display for InflateError {
@@ -35,7 +38,9 @@ impl std::fmt::Display for InflateError {
         match self {
             Self::Fflate { message, .. } => f.write_str(message),
             Self::OffsetOutOfBounds => f.write_str("offset is out of bounds"),
-            Self::ResourceLimit => f.write_str("Input exceeds the caller's resource budget."),
+            Self::ResourceLimit | Self::AggregateLimit => {
+                f.write_str("Input exceeds the caller's resource budget.")
+            }
         }
     }
 }
@@ -414,6 +419,24 @@ pub fn unzip_filtered(
     keep: impl Fn(&str) -> bool,
     limits: ZipLimits,
 ) -> Result<Vec<(String, Vec<u8>)>, InflateError> {
+    unzip_filtered_bounded(data, keep, limits, usize::MAX)
+}
+
+/// Filtered ZIP read with a cumulative output-allocation budget.
+///
+/// Charges each kept entry before copying or inflating: actual stored bytes or declared DEFLATE
+/// output capacity, including duplicate names. Truncating an inflated vector does not release its
+/// capacity. Charging duplicates also bounds cumulative decompression work rather than allowing a
+/// last-value-wins archive to reuse the budget. Filtered entries spend nothing. This is an explicit
+/// host limit, absent from the source; [`InflateError::AggregateLimit`] distinguishes it from the
+/// per-entry and entry-count limits. No entry is allocated before both checks pass.
+pub fn unzip_filtered_bounded(
+    data: &[u8],
+    keep: impl Fn(&str) -> bool,
+    limits: ZipLimits,
+    max_total_bytes: usize,
+) -> Result<Vec<(String, Vec<u8>)>, InflateError> {
+    let mut remaining = max_total_bytes;
     let len = data.len() as i128;
     let mut e = len - 22;
     while b4(data, e) != 0x06054B50 {
@@ -489,14 +512,22 @@ pub fn unzip_filtered(
         if !keep(&name) {
             continue;
         }
+        let input = subarray(data, body, body + sc);
+        let allocation = match method {
+            0 => input.len() as i128,
+            8 => su,
+            _ => 0, // Preserve the source's unknown-method error below.
+        };
+        if allocation > limits.max_entry_bytes as i128 {
+            return Err(InflateError::ResourceLimit);
+        }
+        if allocation > remaining as i128 {
+            return Err(InflateError::AggregateLimit);
+        }
+        remaining -= allocation as usize;
         let bytes = match method {
-            0 => subarray(data, body, body + sc).to_vec(),
-            8 => {
-                if su > limits.max_entry_bytes as i128 {
-                    return Err(InflateError::ResourceLimit);
-                }
-                inflate_into(subarray(data, body, body + sc), su as usize)?
-            }
+            0 => input.to_vec(),
+            8 => inflate_into(input, su as usize)?,
             m => {
                 return Err(InflateError::Fflate {
                     code: 14,

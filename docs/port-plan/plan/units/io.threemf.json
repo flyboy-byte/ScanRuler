@@ -16,8 +16,8 @@
     "Generated and adversarial 3MF corpus (zip bombs, bad paths, missing parts, unit variants) compares original against Rust on geometry, units, refusals and limits.",
     "The inflate/zip implementation is pure Rust and passes the P35 purity audit; the choice is a recorded decision, not an assumption."
   ],
-  "owner": "Claude",
-  "branch": "claude/io-threemf",
+  "owner": "Codex",
+  "branch": "codex/threemf-review-fixes",
   "claim_pr": null,
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
@@ -39,6 +39,12 @@
       "location": "plan/findings/2026-11-03-threemf-first-run.md",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "summary": "parse3MF vs Rust: 24,540 generated, mutated and named packages (6 seeds) and 107 real .3mf files, 0 divergences; success/refusal, full error and progress text, positions, indices, colours and texture notes compared; sabotage check reports divergences"
+    },
+    {
+      "kind": "report",
+      "location": "plan/findings/2026-11-03-threemf-review-regressions.md",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "summary": "#58 follow-up: pre-allocation aggregate ZIP budget and UTF-16 directory basename fallback; retained six seeds and all earlier cases, 24,564 packages, zero divergences; red runs and complete-corpus wrong-value canary retained. No acceptance claim."
     }
   ],
   "open_items": [

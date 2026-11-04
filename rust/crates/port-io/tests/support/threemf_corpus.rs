@@ -851,6 +851,22 @@ fn named() -> Vec<Package> {
             V3.replace("v3=\"2\"", "v3=\"2\" p1=\"0\" p2=\"1\" p3=\"2\"")
         )));
     }
+    // #58 review: preserve basename matching after malformed UTF-16 directories.
+    // Appended so every earlier named index and every generated input stays intact.
+    for path in [
+        "&#xD800;/Skin.PNG",
+        "&#xDC00;\\Skin.PNG",
+        "&#xD800;/ Skin.PNG ",
+        "dir/&#xD800;.png",
+    ] {
+        out.push(Package {
+            parts: vec![(main.to_string(), doc("", &format!(
+                "<resources><texture2d id=\"7\" path=\"{path}\"/><texture2dgroup id=\"8\" texid=\"7\"><tex2coord u=\"0\" v=\"0\"/></texture2dgroup><object id=\"1\" pid=\"8\" pindex=\"0\"><mesh>{V3}</mesh></object></resources><build><item objectid=\"1\"/></build>"
+            )))],
+            images: vec![Img { name: "skin.png".into(), width: 1, height: 1, rgba: vec![10, 20, 30, 255] }],
+            level: 0,
+        });
+    }
     out
 }
 
