@@ -20,8 +20,8 @@
     "Every admitted queued request receives one outcome on failure too; capture the requesting receiver/connection, not a globally reused request ID. Native owner keeps late body work alive after timeout or observation loss. Real platform timers remain explicit until tested.",
     "Keep all original/native/browser gates and exact reference pin. Real scan/session/measurement models, import, plane fit, undo and compatible project save remain separate explicit M3 continuations."
   ],
-  "owner": null,
-  "branch": null,
+  "owner": "Codex",
+  "branch": "codex/runtime-guarded",
   "claim_pr": null,
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
