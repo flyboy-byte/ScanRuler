@@ -144,7 +144,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [io.obj.companions.files](plan/units/io.obj.companions.files.json) | implemented | fixed-corpus | `f0a3e9e` | `f0a3e9e` | [#36](https://github.com/flyboy-byte/ScanRuler/pull/36) |
 | [io.obj.companions.image_audit](plan/units/io.obj.companions.image_audit.json) | implemented | none | `87d2318` | — | [#39](https://github.com/flyboy-byte/ScanRuler/pull/39) |
 | [io.obj.companions.images](plan/units/io.obj.companions.images.json) | planned | none | — | — | — |
-| [io.obj.companions.images.png](plan/units/io.obj.companions.images.png.json) | implemented | none | — | — | — |
+| [io.obj.companions.images.png](plan/units/io.obj.companions.images.png.json) | implemented | none | `f04be85` | — | — |
 | [io.obj.companions](plan/units/io.obj.companions.json) | planned | none | — | — | — |
 | [io.obj](plan/units/io.obj.json) | planned | none | — | — | — |
 | [io.obj.mesh](plan/units/io.obj.mesh.json) | implemented | fixed-corpus | `58aeacb` | `58aeacb` | [#32](https://github.com/flyboy-byte/ScanRuler/pull/32) |

@@ -26044,7 +26044,7 @@
       "owner": "Claude",
       "branch": "claude/io-png",
       "claim_pr": null,
-      "implemented_commit": null,
+      "implemented_commit": "f04be853cefe0812a3b4b91afad714e182e9e706",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [
         "src/app/scanFiles.ts"
@@ -26064,7 +26064,8 @@
           "kind": "report",
           "location": "plan/findings/2026-11-04-png-chrome-port.md",
           "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
-          "summary": "5,532 committed cases (named, sweep, structural) and the 13 audit PNG fixtures equal Chrome 156 byte for byte offline; live fresh-seed runs and about 70,000 development cases with zero divergences outside the host-limit class; sabotage rejected. No acceptance claim."
+          "summary": "5,532 committed cases (named, sweep, structural) and the 13 audit PNG fixtures equal Chrome 156 byte for byte offline; live fresh-seed runs and about 70,000 development cases with zero divergences outside the host-limit class; sabotage rejected. No acceptance claim.",
+          "candidate_sha": "f04be853cefe0812a3b4b91afad714e182e9e706"
         }
       ],
       "open_items": [

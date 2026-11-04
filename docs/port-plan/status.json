@@ -1578,7 +1578,7 @@
       "status": "implemented",
       "parent": "io.obj.companions.images",
       "pr": null,
-      "tested_sha": null,
+      "tested_sha": "f04be853cefe0812a3b4b91afad714e182e9e706",
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
