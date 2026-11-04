@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-//! Session, commands, jobs and history. Typed error envelopes exist; session
-//! ownership, registry execution and history remain unimplemented. Contracts are in
+//! Bounded registry/history/deadline/queue libraries and retained native reactions.
+//! The application session and complete guarded commands remain unimplemented. Contracts are in
 //! `docs/port-plan/ARCHITECTURE.md` ("Commands, history and background work").
 
 pub mod error;
@@ -76,6 +76,8 @@ pub mod workspaces;
 pub mod activity_state;
 /// Lossless Unicode command-label text and source-compatible provider ordering.
 pub mod command_label;
+/// Source-boundary reaction delivery and retained deadline/execute continuations.
+pub mod reactions;
 /// Live plugin readout sections and plain-object assignment semantics.
 pub mod state_sections;
 /// Bounded native cooperative task ownership and wake delivery.

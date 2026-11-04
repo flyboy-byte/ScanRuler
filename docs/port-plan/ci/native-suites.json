@@ -651,6 +651,17 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "engine.runtime.reactions",
+      "test": "pinned_runtime_reactions_comparison",
+      "directory": "runtime-reactions-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin",
+        "original.stderr.txt"
+      ]
     }
   ]
 }

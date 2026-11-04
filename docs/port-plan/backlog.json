@@ -2837,21 +2837,26 @@
       "verification": "none"
     },
     {
-      "id": "engine.runtime.reactions",
+      "id": "engine.runtime.guarded",
       "parent": "engine.session.contract",
-      "title": "Connect source-ordered reactions to retained native command bodies",
+      "title": "Execute real guarded and interrupt commands over retained reactions",
       "gate": "G2",
       "status": "planned",
       "depends_on": [
-        "engine.runtime.tasks",
-        "engine.session.command.deadline",
-        "engine.session.execute.lifecycle"
+        "engine.runtime.reactions",
+        "engine.session.history.record",
+        "engine.session.history.core",
+        "engine.session.activity.state",
+        "engine.session.command.label",
+        "engine.session.error.normalize",
+        "engine.session.scene.queue"
       ],
-      "scope": "Source-connected native reaction ownership and deadline/body continuation over the existing task owner. Preserve eager factory start, asynchronous await/race/finally ordering, factory-time array ties, synchronous abort resolution priority and late body effects/fault consumption. No duplicate business store or generic Rust async select that drops losing bodies.",
+      "scope": "Wire actual registry bodies to guarded/interrupt/execute scheduling over the retained runtime; activity/current/progress, history, deadline and normalization use reviewed providers, not duplicate business state. Required next M3 wiring step before actual import/plane family session composition.",
       "acceptance": [
-        "Full pinned limited/execute traces compare independently generated values/state/effects/errors and exact reason identity through the real native task owner, including observation drop, timeout queue release and later body success/failure.",
-        "A body resolved by an abort listener can win before late rejection; both already-settled factory-time promises retain ran-first race array order. Future Ready polling alone cannot substitute for source reaction ordering.",
-        "Bounded admission/wake/drain, native/Wasm compile and all57 existing native suites/4431 browser cases remain required; broader command/session integration stays explicit."
+        "Run the full pinned guarded/interrupt command bodies on independent sessions, comparing successful/refused/faulted state traces, exact typed errors and reason identity, history capture, queue release and ordered effects. Retain prior deadline/execute corpora and wrong-value controls.",
+        "Preserve pre-try busy/activity/current effects, exact catch/finally override order, truthy guarded busy vs execute null checks, deferred contexts, interrupted shared history and late progress (caller callback still runs, aborted strip updates suppressed).",
+        "Every admitted queued request receives one outcome on failure too; capture the requesting receiver/connection, not a globally reused request ID. Native owner keeps late body work alive after timeout or observation loss. Real platform timers remain explicit until tested.",
+        "Keep all original/native/browser gates and exact reference pin. Real scan/session/measurement models, import, plane fit, undo and compatible project save remain separate explicit M3 continuations."
       ],
       "owner": null,
       "branch": null,
@@ -2864,20 +2869,97 @@
         "src/commands/activity.ts"
       ],
       "symbols": [
+        "guarded",
+        "interrupt",
+        "start/runCommand and execute provider integration"
+      ],
+      "rust_paths": [
+        "rust/crates/port-engine/src/registry.rs",
+        "rust/crates/port-engine/src/reactions.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "First continuation after engine.runtime.reactions; actual full guarded/interrupt body and runtime command wiring are not implemented.",
+        "Follow with one real imported scan/session model and measurement family, then undo and original-compatible project/CLI save; generic probe callbacks are not M3."
+      ],
+      "verification": "none"
+    },
+    {
+      "id": "engine.runtime.reactions",
+      "parent": "engine.session.contract",
+      "title": "Connect source-ordered reactions to retained native command bodies",
+      "gate": "G2",
+      "status": "implemented",
+      "depends_on": [
+        "engine.runtime.tasks",
+        "engine.session.command.deadline",
+        "engine.session.execute.lifecycle"
+      ],
+      "scope": "Source-connected native reaction ownership and deadline/body continuation over the existing task owner. Preserve eager factory start, asynchronous await/race/finally ordering, factory-time array ties, synchronous abort resolution priority and late body effects/fault consumption. No duplicate business store or generic Rust async select that drops losing bodies.",
+      "acceptance": [
+        "Full pinned limited/execute traces compare independently generated values/state/effects/errors and exact reason identity through the real native task owner, including observation drop, timeout queue release and later body success/failure.",
+        "A body resolved by an abort listener can win before late rejection; both already-settled factory-time promises retain ran-first race array order. Future Ready polling alone cannot substitute for source reaction ordering.",
+        "Bounded admission/wake/drain, native/Wasm compile and all57 existing native suites/4431 browser cases remain required; broader command/session integration stays explicit."
+      ],
+      "owner": "Codex",
+      "branch": "codex/runtime-reactions",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/98",
+      "implemented_commit": "415b4ed4828ec96346a45068550004b2e0341b2c",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/registry.ts",
+        "src/state/historyStore.ts",
+        "src/commands/activity.ts",
+        "docs/port-plan/oracle/runtime-reactions.mjs",
+        "docs/port-plan/oracle/build-reactions.mjs"
+      ],
+      "symbols": [
         "limited native ownership/reaction bridge",
         "execute runtime provider integration"
       ],
       "rust_paths": [
         "rust/crates/port-engine/src/reactions.rs",
         "rust/crates/port-engine/src/tasks.rs",
-        "rust/crates/port-engine/src/command_deadline.rs"
+        "rust/crates/port-engine/src/command_deadline.rs",
+        "rust/crates/port-engine/tests/reactions.rs",
+        "rust/crates/port-engine/tests/command_deadline.rs",
+        "rust/crates/port-engine/tests/execute.rs",
+        "rust/crates/port-engine/tests/runtime_reactions.rs"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "differential",
+          "location": "evidence/2026-11-03-runtime-reactions.json.gz",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "case_ids": [
+            "queue-0-0-0",
+            "queue-0-0-1",
+            "queue-0-1-0",
+            "queue-0-1-1",
+            "queue-1-0-0",
+            "queue-1-0-1",
+            "queue-1-1-0",
+            "queue-1-1-1",
+            "queue-2-0-0",
+            "queue-2-0-1",
+            "queue-2-1-0",
+            "queue-2-1-1"
+          ],
+          "candidate_sha": "415b4ed4828ec96346a45068550004b2e0341b2c"
+        },
+        {
+          "kind": "report",
+          "location": "plan/findings/2026-11-03-owned-runtime-reactions.md",
+          "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+          "candidate_sha": "415b4ed4828ec96346a45068550004b2e0341b2c",
+          "summary": "Retained deadline/execute/scene ownership: all 291 earlier deadline and 1200 execute traces, twelve new mandatory combined queue traces, eight native lifetime tests, real wrong-value and destructor red runs, full 58-suite raw inventory and 4431-case Chrome gate. Scoped library boundary, no M3/session acceptance."
+        }
+      ],
       "open_items": [
-        "First runtime continuation after #95: claim and implement against existing original deadline/execute corpora; generic task ownership alone is not paired JS promise semantics.",
-        "Full guarded/interrupt/history/activity/current/progress integration, real platform timers, actual family state/commands/projects/CLI and browser engine runtime remain required."
+        "Owned caller futures now await real scene-queue turns; 12 combined pinned limited/inScene traces prove timeout/failure releases later answers before late body settlement. All 291 deadline and 1200 execute source traces also run through the owner. This boundary adapter is not a general JavaScript Promise interpreter; provider completions and nested await boundaries remain explicit.",
+        "Next engine.runtime.guarded must wire the actual registry command bodies, guarded/interrupt/history/activity/current/progress, normalization and queued answers. Platform timers, actual family/session state, import, plane commands, undo/projects/CLI and browser engine runtime remain open."
       ],
-      "verification": "none"
+      "verification": "fixed-corpus"
     },
     {
       "id": "engine.runtime.tasks",
@@ -7995,7 +8077,7 @@
       ],
       "open_items": [
         "2026-11-03: bounded stateSections registration/readout is implemented under engine.state.sections; actual session.state composition remains open. agentLink.ts and remaining host.ts still need review.",
-        "Scoped registry/history/queues/deadline/settle/plugin/stale/error/clock/execute/recent/workspace/label/activity/readout libraries and native task ownership exist. Complete source-ordered reactions (engine.runtime.reactions), guarded/interrupt/history/native family ownership, real timers/late progress/commands/projects/CLI/browser runtime remain required; no session acceptance.",
+        "Scoped registry/history/queues/deadline/settle/plugin/stale/error/clock/execute/recent/workspace/label/activity/readout libraries and native task ownership exist. engine.runtime.reactions now connects retained source-boundary deadline/execute/scene callers; full guarded/interrupt/history/native family ownership, real timers/late progress/commands/projects/CLI/browser runtime remain required. Next unit engine.runtime.guarded; no session acceptance.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
       ],

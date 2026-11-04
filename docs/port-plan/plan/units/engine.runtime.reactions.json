@@ -3,7 +3,7 @@
   "parent": "engine.session.contract",
   "title": "Connect source-ordered reactions to retained native command bodies",
   "gate": "G2",
-  "status": "planned",
+  "status": "implemented",
   "depends_on": [
     "engine.runtime.tasks",
     "engine.session.command.deadline",
@@ -15,15 +15,17 @@
     "A body resolved by an abort listener can win before late rejection; both already-settled factory-time promises retain ran-first race array order. Future Ready polling alone cannot substitute for source reaction ordering.",
     "Bounded admission/wake/drain, native/Wasm compile and all57 existing native suites/4431 browser cases remain required; broader command/session integration stays explicit."
   ],
-  "owner": null,
-  "branch": null,
-  "claim_pr": null,
-  "implemented_commit": null,
+  "owner": "Codex",
+  "branch": "codex/runtime-reactions",
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/98",
+  "implemented_commit": "415b4ed4828ec96346a45068550004b2e0341b2c",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/commands/registry.ts",
     "src/state/historyStore.ts",
-    "src/commands/activity.ts"
+    "src/commands/activity.ts",
+    "docs/port-plan/oracle/runtime-reactions.mjs",
+    "docs/port-plan/oracle/build-reactions.mjs"
   ],
   "symbols": [
     "limited native ownership/reaction bridge",
@@ -32,12 +34,44 @@
   "rust_paths": [
     "rust/crates/port-engine/src/reactions.rs",
     "rust/crates/port-engine/src/tasks.rs",
-    "rust/crates/port-engine/src/command_deadline.rs"
+    "rust/crates/port-engine/src/command_deadline.rs",
+    "rust/crates/port-engine/tests/reactions.rs",
+    "rust/crates/port-engine/tests/command_deadline.rs",
+    "rust/crates/port-engine/tests/execute.rs",
+    "rust/crates/port-engine/tests/runtime_reactions.rs"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "kind": "differential",
+      "location": "evidence/2026-11-03-runtime-reactions.json.gz",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "case_ids": [
+        "queue-0-0-0",
+        "queue-0-0-1",
+        "queue-0-1-0",
+        "queue-0-1-1",
+        "queue-1-0-0",
+        "queue-1-0-1",
+        "queue-1-1-0",
+        "queue-1-1-1",
+        "queue-2-0-0",
+        "queue-2-0-1",
+        "queue-2-1-0",
+        "queue-2-1-1"
+      ],
+      "candidate_sha": "415b4ed4828ec96346a45068550004b2e0341b2c"
+    },
+    {
+      "kind": "report",
+      "location": "plan/findings/2026-11-03-owned-runtime-reactions.md",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "candidate_sha": "415b4ed4828ec96346a45068550004b2e0341b2c",
+      "summary": "Retained deadline/execute/scene ownership: all 291 earlier deadline and 1200 execute traces, twelve new mandatory combined queue traces, eight native lifetime tests, real wrong-value and destructor red runs, full 58-suite raw inventory and 4431-case Chrome gate. Scoped library boundary, no M3/session acceptance."
+    }
+  ],
   "open_items": [
-    "First runtime continuation after #95: claim and implement against existing original deadline/execute corpora; generic task ownership alone is not paired JS promise semantics.",
-    "Full guarded/interrupt/history/activity/current/progress integration, real platform timers, actual family state/commands/projects/CLI and browser engine runtime remain required."
+    "Owned caller futures now await real scene-queue turns; 12 combined pinned limited/inScene traces prove timeout/failure releases later answers before late body settlement. All 291 deadline and 1200 execute source traces also run through the owner. This boundary adapter is not a general JavaScript Promise interpreter; provider completions and nested await boundaries remain explicit.",
+    "Next engine.runtime.guarded must wire the actual registry command bodies, guarded/interrupt/history/activity/current/progress, normalization and queued answers. Platform timers, actual family/session state, import, plane commands, undo/projects/CLI and browser engine runtime remain open."
   ],
-  "verification": "none"
+  "verification": "fixed-corpus"
 }

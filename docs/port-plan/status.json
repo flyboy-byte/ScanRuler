@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 75,
+    "implemented": 76,
     "planned": 47,
     "specified": 2
   },
   "verification_levels": {
-    "fixed-corpus": 54,
+    "fixed-corpus": 55,
     "fuzzed": 4,
     "none": 68
   },
-  "native_suites": 57,
-  "native_case_identities_including_refusals": 22938,
+  "native_suites": 58,
+  "native_case_identities_including_refusals": 22950,
   "accepted_units": [],
   "units": [
     {
@@ -545,7 +545,7 @@
       ]
     },
     {
-      "id": "engine.runtime.reactions",
+      "id": "engine.runtime.guarded",
       "status": "planned",
       "parent": "engine.session.contract",
       "pr": null,
@@ -553,8 +553,21 @@
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
-        "First runtime continuation after #95: claim and implement against existing original deadline/execute corpora; generic task ownership alone is not paired JS promise semantics.",
-        "Full guarded/interrupt/history/activity/current/progress integration, real platform timers, actual family state/commands/projects/CLI and browser engine runtime remain required."
+        "First continuation after engine.runtime.reactions; actual full guarded/interrupt body and runtime command wiring are not implemented.",
+        "Follow with one real imported scan/session model and measurement family, then undo and original-compatible project/CLI save; generic probe callbacks are not M3."
+      ]
+    },
+    {
+      "id": "engine.runtime.reactions",
+      "status": "implemented",
+      "parent": "engine.session.contract",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/98",
+      "tested_sha": "415b4ed4828ec96346a45068550004b2e0341b2c",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "415b4ed4828ec96346a45068550004b2e0341b2c",
+      "open_items": [
+        "Owned caller futures now await real scene-queue turns; 12 combined pinned limited/inScene traces prove timeout/failure releases later answers before late body settlement. All 291 deadline and 1200 execute source traces also run through the owner. This boundary adapter is not a general JavaScript Promise interpreter; provider completions and nested await boundaries remain explicit.",
+        "Next engine.runtime.guarded must wire the actual registry command bodies, guarded/interrupt/history/activity/current/progress, normalization and queued answers. Platform timers, actual family/session state, import, plane commands, undo/projects/CLI and browser engine runtime remain open."
       ]
     },
     {
@@ -718,7 +731,7 @@
       "verification_tested_sha": null,
       "open_items": [
         "2026-11-03: bounded stateSections registration/readout is implemented under engine.state.sections; actual session.state composition remains open. agentLink.ts and remaining host.ts still need review.",
-        "Scoped registry/history/queues/deadline/settle/plugin/stale/error/clock/execute/recent/workspace/label/activity/readout libraries and native task ownership exist. Complete source-ordered reactions (engine.runtime.reactions), guarded/interrupt/history/native family ownership, real timers/late progress/commands/projects/CLI/browser runtime remain required; no session acceptance.",
+        "Scoped registry/history/queues/deadline/settle/plugin/stale/error/clock/execute/recent/workspace/label/activity/readout libraries and native task ownership exist. engine.runtime.reactions now connects retained source-boundary deadline/execute/scene callers; full guarded/interrupt/history/native family ownership, real timers/late progress/commands/projects/CLI/browser runtime remain required. Next unit engine.runtime.guarded; no session acceptance.",
         "Reuse the implemented engine.error.envelope; do not duplicate codes or replace UTF16 wire messages with lossy Display text.",
         "2026-11-02: owner handed implementation to Codex after #42/#43/#44 integration. First bounded child engine.session.registry ports actual registration/catalog/admission; parent remains specified until complete scheduling/history/worker/staged-import traces exist."
       ]
