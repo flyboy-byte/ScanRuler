@@ -65,3 +65,10 @@ controls 0057–0063 for the next ordered PR. They are deferred, not passing M3b
 commands. No previously passing main comparison is removed: all 33 M3a import
 controls and all 62 mandatory suites remain. M3b still compares actual history
 record patches produced by plane creation; command-level travel is M3c.
+
+
+Controls 0195–0211 preregister explicitly undefined optional plane/query inputs.
+The original validator skips such fields and command guards/defaults treat them
+as absent. Every previous row remains unchanged. The master now has 212 controls:
+205 current M3b and the same seven deferred M3c controls. Original captures must
+precede correction of the native presence/default mismatch; keep the real red.

@@ -186,3 +186,20 @@ plane-0191	plane-orient-reference-string-id	mm	7	5	0
 plane-0192	plane-orient-reference-unicode	mm	7	5	0
 plane-0193	plane-orient-section-number	mm	flat	5	0
 plane-0194	plane-orient-section-name	mm	flat	5	0
+plane-0195	plane-undefined-sigma	mm	flat	5	0	3	all
+plane-0196	plane-undefined-knownDiameter	mm	flat	5	0	3	all
+plane-0197	plane-undefined-assumed	mm	flat	5	0	3	all
+plane-0198	plane-undefined-name	mm	flat	5	0	3	all
+plane-0199	plane-undefined-normal	mm	flat	5	0	3	all
+plane-0200	plane-undefined-orient	mm	flat	5	0	3	all
+plane-0201	plane-undefined-extend	mm	flat	5	0	3	all
+plane-0202	plane-undefined-box	mm	flat	5	0	3	all
+plane-0203	plane-undefined-vertices	mm	flat	5	0	3	all
+plane-0204	plane-undefined-vertices-box	mm	flat	5	0	3	all
+plane-0205	plane-undefined-marked	mm	flat	5	0	3	all
+plane-0206	plane-query-undefined-box	mm	flat	5	0	3	all
+plane-0207	plane-query-undefined-near	mm	flat	5	0	3	all
+plane-0208	plane-query-undefined-normal	mm	flat	5	0	3	all
+plane-0209	plane-query-undefined-fields	mm	flat	5	0	3	all
+plane-0210	plane-query-undefined-limit	mm	flat	5	0	3	all
+plane-0211	plane-query-undefined-mark	mm	flat	5	0	3	all

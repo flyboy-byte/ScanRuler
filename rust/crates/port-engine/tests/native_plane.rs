@@ -96,6 +96,28 @@ fn observe_plane(row: &str) -> V {
         _ => {}
     }
     let shape = c[1];
+    if let Some(key) = shape.strip_prefix("plane-undefined-") {
+        let key = if key == "vertices-box" {
+            "vertices"
+        } else {
+            key
+        };
+        if let Some((_, value)) = args.iter_mut().find(|(k, _)| *k == key) {
+            *value = V::Undefined;
+        } else {
+            args.push((key, V::Undefined));
+        }
+        if shape == "plane-undefined-vertices-box" {
+            let xyz = |v: [f64; 3]| V::Array(v.into_iter().map(V::Number).collect());
+            args.push((
+                "box",
+                object(vec![
+                    ("min", xyz([-100000.; 3])),
+                    ("max", xyz([100000.; 3])),
+                ]),
+            ));
+        }
+    }
     if shape.starts_with("plane-extend-") {
         let fields = match shape {
             "plane-extend-grow" => vec![
@@ -305,6 +327,19 @@ fn observe_plane(row: &str) -> V {
         if shape.contains("marked") {
             query.push(("mark", V::Boolean(true)))
         }
+        if let Some(key) = shape.strip_prefix("plane-query-undefined-") {
+            if let Some((_, value)) = query.iter_mut().find(|(k, _)| *k == key) {
+                *value = V::Undefined;
+            } else {
+                query.push((key, V::Undefined));
+            }
+            if key == "box" {
+                query.push((
+                    "near",
+                    object(vec![("at", xyz([2., 2., 0.])), ("radius", V::Number(100.))]),
+                ));
+            }
+        }
         actions.push(("scan.query", object(query)));
         if shape == "plane-query-marked-stale" {
             actions.push((
@@ -423,7 +458,7 @@ fn pinned_native_plane_comparison() {
         String::from_utf8_lossy(&out.stderr)
     );
     let source = String::from_utf8(out.stdout).unwrap();
-    assert_eq!(source.lines().count(), 188);
+    assert_eq!(source.lines().count(), 205);
     let mut failures = 0;
     for (row, line) in INPUT.lines().zip(source.lines()) {
         let (id, h) = line.split_once('\t').unwrap();
@@ -460,7 +495,7 @@ fn pinned_native_plane_comparison() {
         }
     }
     eprintln!(
-        "188 actual registered select/plane controls, with history record patches, existing kernel tolerance; mismatches={failures}; raw {}",
+        "205 actual registered select/plane controls, with history record patches, existing kernel tolerance; mismatches={failures}; raw {}",
         run.display()
     );
     assert_eq!(failures, 0)

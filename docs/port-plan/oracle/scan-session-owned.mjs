@@ -78,6 +78,11 @@ if(!process.argv.includes('--case')){
   if(shape==='plane-name-blank')args.name=' \t '
   if(shape==='plane-name-blank-bom')args.name='\ufeff\ufeff'
   if(shape==='plane-missing')delete args.vertices
+  if(shape.startsWith('plane-undefined-')) {
+   const key=shape.slice('plane-undefined-'.length)
+   args[key==='vertices-box'?'vertices':key]=undefined
+   if(key==='vertices-box')args.box={min:[-100000,-100000,-100000],max:[100000,100000,100000]}
+  }
   if(shape.startsWith('plane-extend-')){
    args.extend=shape==='plane-extend-grow'?{uMin:1,uMax:2,vMin:3,vMax:4}:shape==='plane-extend-trim'?{uMin:-100,uMax:-100,vMin:-100,vMax:-100}:shape==='plane-extend-reverse'?{uMax:-100,uMin:-100,vMax:-100,vMin:-100}:shape==='plane-extend-zero'?{uMin:0,uMax:0,vMin:0,vMax:0}:shape==='plane-extend-empty'?{}:shape==='plane-extend-bad-side'?{start:2}:shape==='plane-extend-partial-bad'?{uMin:3,start:2}:shape==='plane-extend-index-key'?{uMin:3,'0':2}:{uMin:undefined}
   }
@@ -113,6 +118,11 @@ if(!process.argv.includes('--case')){
    if(shape==='plane-query-empty'||shape==='plane-query-empty-marked-fit')query.box={min:[10000,10000,10000],max:[10001,10001,10001]}
    if(shape==='plane-query-inverted')query.box={min:[1,0,0],max:[0,1,1]}
    if(shape.includes('marked'))query.mark=true
+   if(shape.startsWith('plane-query-undefined-')) {
+    const key=shape.slice('plane-query-undefined-'.length)
+    query[key]=undefined
+    if(key==='box')query.near={at:[2,2,0],radius:100}
+   }
    await step('scan.query',query)
    if(shape==='plane-query-marked-stale')await step('scan.open',{bytes,name:'replacement.stl',units})
    if(shape.includes('marked'))await step('element.fit_marked',{kind:'plane',marked:true,sigma:args.sigma})
