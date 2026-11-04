@@ -3,17 +3,17 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 78,
+    "implemented": 79,
     "planned": 47,
     "specified": 2
   },
   "verification_levels": {
-    "fixed-corpus": 57,
+    "fixed-corpus": 58,
     "fuzzed": 4,
     "none": 68
   },
-  "native_suites": 60,
-  "native_case_identities_including_refusals": 27513,
+  "native_suites": 61,
+  "native_case_identities_including_refusals": 33754,
   "accepted_units": [],
   "units": [
     {
@@ -1616,7 +1616,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/27",
       "tested_sha": "737d3c314691e1e63ddc3d517002476e382fe418",
       "verification": "fuzzed",
-      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
+      "verification_tested_sha": "1a67f50200779e43128db617a4a5c516c8c9980d",
       "open_items": [
         "Binary continuation is implemented separately in io.ply.binary; the ASCII-only convenience entrypoint retains a distinct binary boundary, and ply::read_ply dispatches all encodings.",
         "Browser-Wasm runtime comparisons and public scan/session/history integration remain unimplemented for this parser.",
@@ -1633,7 +1633,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/28",
       "tested_sha": "98d39fc4cb54ae1c523da619e54164f5d99f9105",
       "verification": "fuzzed",
-      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
+      "verification_tested_sha": "1a67f50200779e43128db617a4a5c516c8c9980d",
       "open_items": [
         "Real browser-Wasm execution for PLY remains open; native and Wasm compilation do not imply runtime acceptance.",
         "Public scan/session commands, history, projects and full P03 adversarial/corpus acceptance remain open.",
@@ -1662,7 +1662,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/2",
       "tested_sha": "5ee3881d887a4720c6a7cf5ca7a675333e6e8e62",
       "verification": "fuzzed",
-      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
+      "verification_tested_sha": "1a67f50200779e43128db617a4a5c516c8c9980d",
       "open_items": [
         "Native Node 22 comparisons were observed passing in subsequent full Rust gates; original local implementation evidence used Node 20.20.2. See AUDIT-QUEUE.md for immutable hosted run links.",
         "Browser-Wasm runtime comparison is not built; only wasm32 compile check passes. P36 general paired harness/coverage ratchet remains open.",
@@ -1679,7 +1679,7 @@
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/3",
       "tested_sha": "77683bf515590ac3f5cb8a9c3552ec64700ce44a",
       "verification": "fuzzed",
-      "verification_tested_sha": "60bf04b91d8ee0e304dcb4c22e27e91b9c1b63b8",
+      "verification_tested_sha": "1a67f50200779e43128db617a4a5c516c8c9980d",
       "open_items": [
         "Browser-Wasm runtime comparisons remain unbuilt; wasm32 library compilation passes only.",
         "P05/G0 contracts and general P36 paired harness/coverage ratchet remain open; no promotion to accepted or full scan import.",
@@ -1715,6 +1715,20 @@
       "open_items": [
         "2026-11-03: fixed3 executes through2220 actual Chrome marked-sphere cases, including exact tie/threshold refusals (harness.wasm.marked.sphere). The standalone8492-case formatter browser corpus and full command/session/CLI remain unimplemented.",
         "General fraction-count toFixed and arbitrary boxed/prototype JS method semantics are outside this owned primitive boundary."
+      ]
+    },
+    {
+      "id": "math.number.shortest",
+      "status": "implemented",
+      "parent": "P07",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/103",
+      "tested_sha": "3da16bf062cc1cb235e3f47ce2822dbdfdfe724b",
+      "verification": "fixed-corpus",
+      "verification_tested_sha": "3da16bf062cc1cb235e3f47ce2822dbdfdfe724b",
+      "open_items": [
+        "Exact primitive Number String/JSON text has scoped fixed-corpus evidence on 6,241 stable IEEE controls. Rust std shortest digits are retained unless exact bounded integer reasoning proves the source decimal midpoint/even-digit correction. No dependency or general boxed/custom-JS coercion claim.",
+        "All earlier fixed/seeded/native/Chrome gates and every inherited PLY/STL campaign were retained. Retained parser campaign snapshot is 1a67f50; complete combined candidate is 3da16bf062cc1cb235e3f47ce2822dbdfdfe724b. No accepted status is inferred.",
+        "Draft #103 owns the bounded main-based formatting correction. Existing source proof and all parser campaigns remain; all eight campaign dependency hashes match. Scan-session claim #104 stays separate and consumes this prerequisite after Logan merges it."
       ]
     },
     {
