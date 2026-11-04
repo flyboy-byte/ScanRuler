@@ -10,3 +10,8 @@ case-0008	malformed	mm
 case-0009	malformed	cm
 case-0010	malformed	m
 case-0011	malformed	in
+case-0012	grid-fit-undo	mm
+case-0013	grid-fit-held	mm
+case-0014	grid-fit-discard	mm
+case-0015	grid-bad-replacement	mm
+case-0016	grid-replacement	mm

@@ -15,3 +15,9 @@ Capture all store data, original source bytes, messages, status/progress, versio
 and result/error. Replacement/reference, held/discard, stale/disposal/provider
 faults, seeded real geometry, native/Wasm and the earlier 800 prepared-consumer
 controls remain required before implementation promotion. No prior case is dropped.
+
+Append-only profiles 0012–0016 open a real 25-vertex grid, fit a real marked
+plane, undo, exercise held-state refusal and explicit discard, and compare
+successful versus malformed replacement. Both complete source replays match
+byte for byte. The earlier twelve profiles and their full observations remain
+byte-identical; their original archive is retained. No Rust or M3 claim follows.
