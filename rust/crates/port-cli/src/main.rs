@@ -5,7 +5,11 @@ use port_engine::{
     native_engine::{Engine, MAX_INPUT_BYTES},
     schema_value::Value,
 };
-use std::{io::Read, path::Path, process::ExitCode};
+use std::{
+    io::{Read, Write},
+    path::Path,
+    process::ExitCode,
+};
 fn text(s: &str) -> Vec<u16> {
     s.encode_utf16().collect()
 }
@@ -66,7 +70,7 @@ fn fault(f: Fault) -> String {
     }
 }
 const USAGE: &str =
-    "Usage: scanruler-rs <info|fit-plane> <scan.stl|scan.ply|scan.obj> [--units mm|cm|m|in]
+    "Usage: scanruler-rs <info|fit-plane> <scan.stl|scan.ply|scan.obj> [--units mm|cm|m|in] [--save project.scanruler]
 Plane options: [--sigma 0|1|2|3] [--box xmin ymin zmin xmax ymax zmax] [--marked]
 [--normal x y z] [--within-deg degrees] [--orient XY|YZ|XZ] [--in-plane]
 [--extend uMin uMax vMin vMax] [--undo] [--redo]
@@ -101,6 +105,7 @@ fn run() -> Result<(), String> {
         return Err(format!("Unknown command {command:?}. Use --help."));
     }
     let path = args.next().ok_or("Command requires a scan path")?;
+    let mut save = None;
     let mut units = "mm".to_string();
     let mut sigma = None;
     let mut undo = false;
@@ -113,7 +118,9 @@ fn run() -> Result<(), String> {
     let mut in_plane = false;
     let mut extend = None;
     while let Some(arg) = args.next() {
-        if arg == "--units" {
+        if arg == "--save" {
+            save = Some(args.next().ok_or("--save requires a project path")?);
+        } else if arg == "--units" {
             units = args.next().ok_or("--units requires mm, cm, m or in")?
         } else if command == "fit-plane" && arg == "--sigma" {
             sigma = Some(
@@ -161,10 +168,16 @@ fn run() -> Result<(), String> {
     let mut bytes = Vec::new();
     std::fs::File::open(&path)
         .map_err(|e| format!("{path}: {e}"))?
-        .take((MAX_INPUT_BYTES + 1) as u64)
+        .take((port_engine::project::MAX_NATIVE_PROJECT + 1) as u64)
         .read_to_end(&mut bytes)
         .map_err(|e| format!("{path}: {e}"))?;
-    if bytes.len() > MAX_INPUT_BYTES {
+    if bytes.len()
+        > if path.to_lowercase().ends_with(".scanruler") {
+            port_engine::project::MAX_NATIVE_PROJECT
+        } else {
+            MAX_INPUT_BYTES
+        }
+    {
         return Err("Scan exceeds the native input byte budget.".into());
     }
     let name = Path::new(&path)
@@ -174,12 +187,21 @@ fn run() -> Result<(), String> {
     let engine = Engine::new().map_err(fault)?;
     let result = engine
         .execute(
-            "scan.open",
-            Value::Object(vec![
-                (text("bytes"), Value::Bytes(bytes)),
-                (text("name"), Value::String(text(name))),
-                (text("units"), Value::String(text(&units))),
-            ]),
+            if path.to_lowercase().ends_with(".scanruler") {
+                "project.load"
+            } else {
+                "scan.open"
+            },
+            Value::Object({
+                let mut input = vec![
+                    (text("bytes"), Value::Bytes(bytes)),
+                    (text("name"), Value::String(text(name))),
+                ];
+                if !path.to_lowercase().ends_with(".scanruler") {
+                    input.push((text("units"), Value::String(text(&units))));
+                }
+                input
+            }),
         )
         .map_err(fault)?;
     let Value::Object(fields) = result else {
@@ -190,8 +212,16 @@ fn run() -> Result<(), String> {
         .find(|(k, _)| *k == text("scan"))
         .map(|(_, v)| v)
         .ok_or("Engine returned no scan summary")?;
+    if matches!(scan, Value::Null) && command == "info" {
+        save_project(&engine, save.as_deref())?;
+        println!(
+            "{}",
+            json(&Value::Object(vec![(text("scan"), Value::Null)]))
+        );
+        return Ok(());
+    }
     let Value::Object(mut summary) = scan else {
-        return Err("Engine returned invalid scan metadata".into());
+        return Err("The project holds no scan to fit.".into());
     };
     summary.push((
         text("components"),
@@ -300,11 +330,59 @@ fn run() -> Result<(), String> {
                     .map_err(fault)?,
             ))
         }
+        save_project(&engine, save.as_deref())?;
         println!("{}", json(&Value::Object(output)));
     } else {
+        save_project(&engine, save.as_deref())?;
         println!("{}", json(&Value::Object(summary)));
     }
     Ok(())
+}
+fn save_project(engine: &Engine, path: Option<&str>) -> Result<(), String> {
+    let Some(path) = path else {
+        return Ok(());
+    };
+    let result = engine
+        .execute("project.save", Value::Object(vec![]))
+        .map_err(fault)?;
+    let Value::Object(result) = result else {
+        return Err("Engine returned invalid project".into());
+    };
+    let file = result
+        .into_iter()
+        .find(|(k, _)| *k == text("file"))
+        .map(|(_, v)| v)
+        .ok_or("Engine returned no project file")?;
+    let Value::Object(file) = file else {
+        return Err("Engine returned invalid project file".into());
+    };
+    let bytes = file
+        .into_iter()
+        .find(|(k, _)| *k == text("bytes"))
+        .map(|(_, v)| v)
+        .ok_or("Engine returned no project bytes")?;
+    let Value::Bytes(bytes) = bytes else {
+        return Err("Engine returned invalid project bytes".into());
+    };
+    let target = Path::new(path);
+    let filename = target
+        .file_name()
+        .ok_or("--save requires a filename")?
+        .to_string_lossy();
+    let temporary = target.with_file_name(format!(".{filename}.tmp-{}", std::process::id()));
+    let mut file = std::fs::OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(&temporary)
+        .map_err(|e| format!("{path}: {e}"))?;
+    let result = file
+        .write_all(&bytes)
+        .and_then(|()| file.sync_all())
+        .and_then(|()| std::fs::rename(&temporary, target));
+    if result.is_err() {
+        let _ = std::fs::remove_file(&temporary);
+    }
+    result.map_err(|e| format!("{path}: {e}"))
 }
 fn main() -> ExitCode {
     match run() {
