@@ -30,3 +30,25 @@ Dropped from extraction: old copies of scan IO, query/plane/finishing bodies,
 core helpers, input/default logic, other tests, docs, inventory and dependency
 edits already landed in #105/#108. No old-branch merge. No project/roster/image
 work is included. Current main's optional-undefined fix is retained.
+
+
+Validated source: `e6e90b20abb7c621556208a19969f0b3dabf6621`. All **212/212** master controls pass together (205 prior
+cases plus every one of the seven global-history cases); no skip/relabel or input
+change. Six CLI tests pass. Full cargo xtask ci, full cargo xtask oracle and exact
+artifact identity/completeness for all 62 required suites pass on that source;
+no commit or source/metadata edit occurred during the full run.
+
+Undo wrong-state red: all 212 exercised, five affected scenarios rejected after
+seven actual successful undo operations. Redo wrong-state red: all 212 exercised,
+two affected scenarios rejected after three actual successful redo operations.
+Both returned exit 101 with document-elements mismatches; both complete red logs
+were read. Command results and recorder bookkeeping remain intact in the test
+mutation, proving that the checker examines the actual restored state. The clean
+full-oracle run follows both red runs on unchanged source and passes all 212.
+
+Raw original/native/case records, canary counts, source hashes and complete logs:
+`evidence/2026-11-04-m3c-history-red-green.json.gz`. Required artifact hash report:
+`evidence/2026-11-04-m3c-native-artifact-inventory.json.gz`
+(uncompressed SHA256 `5f9078deb6c273f8c8a614c1a66fc63dc18e43290b7c5affd52490571cd649ee`). Final metadata/tool
+checks and final-head hosted checks are separate; no feature acceptance inferred.
+No roster, fuzz, crease-promotion, project or image files were changed.
