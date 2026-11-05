@@ -59,11 +59,11 @@ Phases: P05, P07, P08, P09.
 | Piece | % | Weight | Basis | Left |
 | --- | ---: | ---: | --- | --- |
 | Session contracts and runtime | 78% | 4 | computed: 35/36 units implemented or better | engine.session.contract parent (specified only); acceptance. |
-| Plane and sphere fitting libraries | 80% | 3 | computed: 11/11 units implemented or better | Cylinder element and command (split, seeded fit, CLI); acceptance. |
+| Plane and sphere fitting libraries | 80% | 3 | computed: 11/11 units implemented or better | Seeded cylinder fit and splitTwoCylinders; acceptance. |
 | M3a native open and info | 75% | 1 | estimate: Merged in #105 (fa7fe06); part of engine.measurement.slice, which stays planned until the whole slice lands. | Slice acceptance. |
 | M3b select and fit-plane | 75% | 2 | estimate: Merged in #108 (a058172); 205 of 212 master controls. | Slice acceptance. |
 | M3c global undo and redo | 75% | 2 | estimate: Merged in #110 (ac754d7); 212/212 controls. | Slice acceptance. |
-| Measurement slice unit | 75% | 1 | computed: 1/1 units implemented or better | Accept once M3a-M3d and roster are integrated. |
+| Measurement slice units | 75% | 1 | computed: 2/2 units implemented or better | Accept once M3a-M3d, the cylinder branch and roster are integrated. |
 | M3d project save and read | 75% | 3 | computed: 1/1 units implemented or better | M3d native scan/marked-plane slice in PR113; full M6 and scheduled milestone verification remain open. |
 | Roster: register new suites | 0% | 1 | computed: 0/1 units implemented or better | Scheduled milestone batch in PR114; exact-base ratchet and acceptance remain separate. |
 | Browser/Wasm measurement slice (P09) | 10% | 2 | estimate: Bounded Wasm harness coverage exists (harness.wasm.*); no browser command flow. | Same slice running in the browser build. |

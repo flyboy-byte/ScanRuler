@@ -2,6 +2,7 @@
 //! Real no-viewport marked-plane continuation. Unsupported family/finishing
 //! paths are explicit; the public slice remains draft until all continuations land.
 use super::*;
+use port_core::marked_cylinder::{self, MarkedCylinder};
 use port_core::marked_plane::{self, MarkedPlane, MarkedPlaneError};
 #[path = "native_plane_definition.rs"]
 mod definition;
@@ -134,9 +135,98 @@ pub(super) fn measure_free(doc: &Session) -> Result<(), Fault> {
         ))
     }
 }
-fn draft(settings: C) -> C {
+/// The kinds the native marked fit carries so far.
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum Kind {
+    Plane,
+    Cylinder,
+}
+impl Kind {
+    fn of(name: &str) -> Option<Self> {
+        match name {
+            "plane" => Some(Self::Plane),
+            "cylinder" => Some(Self::Cylinder),
+            _ => None,
+        }
+    }
+    fn id(self) -> &'static str {
+        match self {
+            Self::Plane => "plane",
+            Self::Cylinder => "cylinder",
+        }
+    }
+    fn label(self) -> &'static str {
+        match self {
+            Self::Plane => "Plane",
+            Self::Cylinder => "Cylinder",
+        }
+    }
+    /// construct.ts creation-method hint for the kind's `fit` method.
+    fn hint(self) -> &'static str {
+        match self {
+            Self::Plane => "Click a point on the flat surface in the 3D view.",
+            Self::Cylinder => "Click a point on the cylindrical surface in the 3D view.",
+        }
+    }
+}
+/// A marked fit of either kind.
+pub(super) enum Fitted {
+    Plane(MarkedPlane),
+    Cylinder(MarkedCylinder),
+}
+impl Fitted {
+    fn cell(&self) -> C {
+        match self {
+            Self::Plane(f) => fit_cell(f),
+            Self::Cylinder(f) => cylinder_cell(f),
+        }
+    }
+    fn region(&self) -> Vec<u32> {
+        match self {
+            Self::Plane(f) => f.region.clone(),
+            Self::Cylinder(f) => f.region.to_vec(),
+        }
+    }
+    fn region_size(&self) -> usize {
+        match self {
+            Self::Plane(f) => f.region_size,
+            Self::Cylinder(f) => f.region_size,
+        }
+    }
+}
+/// fitCylinderOnSelection's CylinderFit without its region, in source key order.
+pub(super) fn cylinder_cell(f: &MarkedCylinder) -> C {
+    let xyz = |v: [f64; 3]| arr(v.into_iter().map(C::Number).collect());
     obj(vec![
-        ("kind", st("plane")),
+        ("kind", st("cylinder")),
+        ("center", xyz(f.center)),
+        ("axis", xyz(f.axis)),
+        ("radius", C::Number(f.radius)),
+        ("length", C::Number(f.length)),
+        ("coverage", C::Number(f.coverage)),
+        ("sigma", C::Number(f.sigma)),
+        ("usedPoints", num(f.used_points)),
+        ("regionSize", num(f.region_size)),
+        ("formError", C::Number(f.form_error)),
+        ("residualMin", C::Number(f.residual_min)),
+        ("residualMax", C::Number(f.residual_max)),
+    ])
+}
+/// `toLocaleString('en-US')` for a count.
+fn grouped(n: usize) -> String {
+    let digits = n.to_string();
+    let mut out = String::new();
+    for (i, c) in digits.chars().enumerate() {
+        if i > 0 && (digits.len() - i).is_multiple_of(3) {
+            out.push(',')
+        }
+        out.push(c)
+    }
+    out
+}
+fn draft(kind: Kind, settings: C) -> C {
+    obj(vec![
+        ("kind", st(kind.id())),
         ("method", st("fit")),
         ("picks", arr(vec![])),
         ("pickPoints", arr(vec![])),
@@ -172,6 +262,10 @@ fn close(doc: &Session) -> Result<(), Fault> {
         return Ok(());
     }
     let n = count(&field(&d, "selection"));
+    let noun = match field(&d, "kind") {
+        C::String(k) => String::from_utf16_lossy(&k),
+        _ => "plane".into(),
+    };
     let kept = if n > 0 { d } else { C::Null };
     patch(
         doc,
@@ -182,8 +276,8 @@ fn close(doc: &Session) -> Result<(), Fault> {
                 "statusText",
                 st(&if n > 0 {
                     format!(
-                        "The plane was discarded with {} marked points on it — Restore in the panel brings it back.",
-                        n
+                        "The {noun} was discarded with {} marked points on it — Restore in the panel brings it back.",
+                        grouped(n)
                     )
                 } else {
                     String::new()
@@ -263,12 +357,12 @@ fn start(state: Rc<State>, input: &Value, ctx: CommandContext) -> Result<(), Fau
         .borrow()
         .graph()
         .ok_or_else(|| Fault::host("missing owned scan graph"))?;
-    if kind != "plane" {
+    let Some(kind) = Kind::of(&kind) else {
         return Err(command_error(
             CommandErrorCode::Unavailable,
-            "Native non-plane and orientation/extension continuations are not implemented.",
+            "Native sphere, cone and torus marked fits are not implemented.",
         ));
-    }
+    };
     if let Some(bounds) = get(input, "box") {
         let work = selection::box_query(&state, graph.clone(), bounds, get(input, "normal"))?;
         let input = input.clone();
@@ -285,7 +379,7 @@ fn start(state: Rc<State>, input: &Value, ctx: CommandContext) -> Result<(), Fau
                     ),
                 ));
             }
-            let (settings, scan, work) = begin(&state, &input, graph, vertices)?;
+            let (settings, scan, work) = begin(&state, kind, &input, graph, vertices)?;
             finish(state, input, settings, scan, work).await
         })?;
         return Ok(());
@@ -317,16 +411,17 @@ fn start(state: Rc<State>, input: &Value, ctx: CommandContext) -> Result<(), Fau
         }
         _ => selection::require_marked(&state)?,
     };
-    let (settings, scan, work) = begin(&state, input, graph, vertices)?;
+    let (settings, scan, work) = begin(&state, kind, input, graph, vertices)?;
     ctx.spawn(finish(state, input.clone(), settings, scan, work))?;
     Ok(())
 }
 fn begin(
     state: &Rc<State>,
+    kind: Kind,
     input: &Value,
     graph: Arc<MeshGraph>,
     vertices: Vec<u32>,
-) -> Result<(C, u64, KernelWork<MarkedPlane>), Fault> {
+) -> Result<(C, u64, KernelWork<Fitted>), Fault> {
     let app = state.document.store(StoreId::App);
     let mut settings = app.get("settings");
     if let Some(v) = get(input, "sigma") {
@@ -347,7 +442,7 @@ fn begin(
         C::Number(n) => n,
         _ => 3.,
     };
-    let mut d = draft(settings.clone());
+    let mut d = draft(kind, settings.clone());
     d = put(&d, "selection", C::Words(Arc::new(vertices.clone())));
     d = put(&d, "fit", C::Undefined);
     d = put(&d, "message", C::Undefined);
@@ -365,10 +460,7 @@ fn begin(
             ("alignDraft", C::Null),
             ("sectionDraft", C::Null),
             ("errorText", C::Null),
-            (
-                "statusText",
-                st("Click a point on the flat surface in the 3D view."),
-            ),
+            ("statusText", st(kind.hint())),
         ],
     )?;
 
@@ -378,18 +470,32 @@ fn begin(
         .reserve_request()
         .map_err(Fault::host)?;
     let scan = state.worker.borrow().versions().scan;
-    let work = start_job("scanruler-plane", move || {
-        marked_plane::fit_plane_on_selection(
+    let work = start_job("scanruler-plane", move || match kind {
+        Kind::Plane => marked_plane::fit_plane_on_selection(
             &graph.positions,
             &graph.normals,
             &vertices,
             sigma,
             1_000_000,
         )
+        .map(Fitted::Plane)
         .map_err(|e| match e {
             MarkedPlaneError::Source(s) => KernelError::Source(s),
             _ => KernelError::Host(format!("{e:?}")),
-        })
+        }),
+        Kind::Cylinder => marked_cylinder::fit_cylinder_on_selection(
+            &graph.positions,
+            &graph.normals,
+            vertices.into(),
+            sigma,
+            None,
+            1_000_000,
+        )
+        .map(Fitted::Cylinder)
+        .map_err(|e| match e {
+            marked_cylinder::Error::Source(s) => KernelError::Source(s),
+            _ => KernelError::Host(format!("{e:?}")),
+        }),
     });
     let work = match work {
         Ok(work) => work,
@@ -414,7 +520,7 @@ async fn finish(
     input: Value,
     settings: C,
     scan: u64,
-    work: KernelWork<MarkedPlane>,
+    work: KernelWork<Fitted>,
 ) -> Result<Value, Fault> {
     let boxed = get(&input, "box").is_some();
     let mut result = apply(state.clone(), input, settings, scan, work).await;
@@ -436,7 +542,7 @@ async fn apply(
     input: Value,
     settings: C,
     scan: u64,
-    work: KernelWork<MarkedPlane>,
+    work: KernelWork<Fitted>,
 ) -> Result<Value, Fault> {
     let sigma = match field(&settings, "sigma") {
         C::Number(n) => n,
@@ -465,17 +571,36 @@ async fn apply(
         Err(e) => return Err(e.fault()),
     };
 
-    let fit = fit_cell(&fitted);
+    let kind = if matches!(fitted, Fitted::Cylinder(_)) {
+        Kind::Cylinder
+    } else {
+        Kind::Plane
+    };
+    let fit = fitted.cell();
     d = put(&d, "status", st("ready"));
     d = put(&d, "fit", fit.clone());
     d = put(&d, "message", C::Undefined);
     patch(&state.document, vec![("draft", d)])?;
-    if get(&input, "assumed").is_some() {
-        return Err(command_error(
-            CommandErrorCode::InvalidInput,
-            "A plane has no diameter to assume.",
-        ));
-    }
+    // finishAndCreate: setDraftAssumed, then the orientation, then the sides.
+    let assumed = match (kind, get(&input, "assumed")) {
+        (_, None) => C::Undefined,
+        (Kind::Plane, Some(_)) => {
+            return Err(command_error(
+                CommandErrorCode::InvalidInput,
+                "A plane has no diameter to assume.",
+            ));
+        }
+        (Kind::Cylinder, Some(Value::Number(v))) => {
+            if v.is_finite() && *v > 0. {
+                let d = put(&app.get("draft"), "assumed", C::Number(*v));
+                patch(&state.document, vec![("draft", d)])?;
+                C::Number(*v)
+            } else {
+                C::Undefined
+            }
+        }
+        (Kind::Cylinder, Some(_)) => return Err(Fault::host("admitted assumed number")),
+    };
     let (oriented, orient) = finishing::orient(&state.document, get(&input, "orient"), &fit)?;
     let extend = finishing::extension(&state.document, get(&input, "extend"), &fit)?;
     let measured = if matches!(orient, C::Undefined) {
@@ -490,12 +615,12 @@ async fn apply(
     let id = read("nextId")?;
     let number = read("nextNumber")?;
     let counts = app.get("nextOfKind");
-    let of_kind = match field(&counts, "plane") {
+    let of_kind = match field(&counts, kind.id()) {
         C::Number(n) if (1. ..9_007_199_254_740_991.).contains(&n) => n as usize,
-        _ => return Err(Fault::host("plane counter limit")),
+        _ => return Err(Fault::host("element kind counter limit")),
     };
 
-    let default = text(&format!("Plane {of_kind}"));
+    let default = text(&format!("{} {of_kind}", kind.label()));
     let name = match get(&input, "name") {
         Some(Value::String(s)) => {
             let whitespace = |v: &u16| matches!(*v,0x9..=0xd|0x20|0xa0|0x1680|0x2000..=0x200a|0x2028|0x2029|0x202f|0x205f|0x3000|0xfeff);
@@ -518,12 +643,12 @@ async fn apply(
     let source = obj(vec![
         ("type", st("fitted")),
         ("seeds", arr(vec![])),
-        ("selection", C::Words(Arc::new(fitted.region.clone()))),
+        ("selection", C::Words(Arc::new(fitted.region()))),
         ("settings", settings.clone()),
     ]);
     let mut element = obj(vec![
         ("id", num(id)),
-        ("kind", st("plane")),
+        ("kind", st(kind.id())),
         ("name", C::String(name.clone())),
         ("color", st(PALETTE[(number - 1) % 8])),
         ("source", source),
@@ -533,7 +658,7 @@ async fn apply(
         ("measured", measured.clone()),
         ("orient", orient.clone()),
         ("extend", extend.clone()),
-        ("assumed", C::Undefined),
+        ("assumed", assumed.clone()),
     ]);
 
     let renamed = get(&input, "name").is_some();
@@ -550,14 +675,14 @@ async fn apply(
         vec![
             ("nextId", num(id + 1)),
             ("nextNumber", num(number + 1)),
-            ("nextOfKind", put(&counts, "plane", num(of_kind + 1))),
-            ("draft", draft(settings.clone())),
+            ("nextOfKind", put(&counts, kind.id(), num(of_kind + 1))),
+            ("draft", draft(kind, settings.clone())),
             ("elements", arr(elements)),
         ],
     )?;
     state
         .document
-        .remember_surface(id as u64, Arc::new(fitted.region))?;
+        .remember_surface(id as u64, Arc::new(fitted.region()))?;
     if renamed {
         patch(
             &state.document,
@@ -586,7 +711,7 @@ async fn apply(
     let mut description = vec![
         ("id", Value::Number(id as f64)),
         ("name", Value::String(name.clone())),
-        ("kind", value_text("plane")),
+        ("kind", value_text(kind.id())),
         ("status", value_text("done")),
         ("visible", Value::Boolean(true)),
         ("fit", cell_value(&oriented)),
@@ -598,12 +723,15 @@ async fn apply(
                 ("method", cell_value(&field(&settings, "method"))),
                 ("sigmaCutoff", Value::Number(sigma)),
                 ("cutoff", value_text(&cutoff)),
-                ("markedPoints", Value::Number(fitted.region_size as f64)),
+                ("markedPoints", Value::Number(fitted.region_size() as f64)),
             ]),
         ),
     ];
     if matches!(measured, C::Undefined) {
         description.retain(|(k, _)| *k != "measured")
+    }
+    if !matches!(assumed, C::Undefined) {
+        description.push(("assumed", cell_value(&assumed)))
     }
     if !matches!(orient, C::Undefined) {
         description.push(("orient", cell_value(&orient)))

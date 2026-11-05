@@ -50,6 +50,7 @@ if(!process.argv.includes('--case')){
   else {const data=Buffer.alloc(48+26),le=shape==='ply-le';let offset=0;for(const v of [0,0,0,1,0,0,0,1,0,1,1,0]){le?data.writeFloatLE(v,offset):data.writeFloatBE(v,offset);offset+=4}for(const tri of [[0,1,2],[1,3,2]]){data[offset++]=3;for(const v of tri){le?data.writeInt32LE(v,offset):data.writeInt32BE(v,offset);offset+=4}}inputBytes=Buffer.concat([header,data])}
  }
  if(shape.startsWith('obj-')){filename=id+'.obj';inputBytes=readFileSync(new URL('../fixtures/native-import/obj/'+shape.slice(4)+'.obj',import.meta.url))}
+ if(shape.startsWith('cyl-')){filename=id+'.stl';inputBytes=readFileSync(new URL('../fixtures/native-cylinder/'+seedText+'.stl',import.meta.url))}
  if(shape.startsWith('3mf-')){filename=id+'.3mf';inputBytes=readFileSync(new URL('../fixtures/native-import/3mf/'+shape.slice(4)+'.3mf',import.meta.url))}
  if(shape.startsWith('held-')) {
   const held={}
@@ -140,6 +141,20 @@ if(!process.argv.includes('--case')){
   if(['plane-redo','plane-undo-redo-twice','plane-empty-redo'].includes(shape))await step('history.redo',{})
   if(shape==='plane-undo-new')await step('element.fit_marked',args)
   if(shape==='plane-undo-redo-twice'){await step('history.undo',{});await step('history.redo',{})}
+ } else if(shape.startsWith('cyl-')) {
+  const k=shape.slice(4),args={kind:'cylinder',vertices:Array.from({length:Number(nText)},(_,i)=>i),sigma:Number(input[0].split('\t')[5])}
+  if(k==='assumed')args.assumed=20
+  if(k.startsWith('orient-'))args.orient={to:k.endsWith('xy')?'XY':'XZ',...(k.includes('inplane')?{relation:'inPlane'}:{})}
+  if(k.startsWith('extend-'))args.extend=k==='extend-grow'?{start:1,end:2}:k==='extend-trim'?{start:-1000,end:-1000}:k==='extend-zero'?{start:0,end:0}:k==='extend-empty'?{}:k==='extend-bad-side'?{uMin:1}:{start:3,vMax:2}
+  if(k==='name')args.name='  Bore A  '
+  if(k==='known')args.knownDiameter=20
+  if(k.startsWith('box')){delete args.vertices;args.box={min:[-100000,-100000,-100000],max:[100000,100000,100000]}}
+  if(k==='box-facing')args.normal={dir:[1,0,0],withinDeg:60}
+  await step('element.fit_marked',args)
+  if(k==='two')await step('element.fit_marked',args)
+  if(['undo','redo','undo-redo-twice','fail-undo'].includes(k))await step('history.undo',{})
+  if(['redo','undo-redo-twice'].includes(k))await step('history.redo',{})
+  if(k==='undo-redo-twice'){await step('history.undo',{});await step('history.redo',{})}
  } else if(shape==='grid-staging'){
   let first,second
   await workerStep('prepareScan',{units:'mm'},async()=>first=await client.prepareScan('first.stl',Uint8Array.from(bytes).buffer,{mode:'on',angleDeg:30},undefined,'mm'))

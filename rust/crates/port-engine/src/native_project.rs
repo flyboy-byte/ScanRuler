@@ -654,13 +654,14 @@ fn prepare(bytes: Vec<u8>, mode: Mode, angle: f64) -> Result<Candidate, Fault> {
     for e in items(s.get("elements")) {
         let mut e = e.clone();
         let mut source = vget(&e, "source");
-        if !e.get("kind").is("plane")
+        let round = e.get("kind").is("cylinder");
+        if !(e.get("kind").is("plane") || round)
             || !source.get("type").is("fitted")
             || source.get("selection").list().is_none()
         {
             return Err(command_error(
                 CommandErrorCode::Unavailable,
-                "Native project restore currently supports marked-plane recipes only.",
+                "Native project restore currently supports marked plane and cylinder recipes only.",
             ));
         }
         if matches!(e.get("fit"), Value::Undefined)
@@ -685,27 +686,46 @@ fn prepare(bytes: Vec<u8>, mode: Mode, angle: f64) -> Result<Candidate, Fault> {
         let l = loaded
             .as_ref()
             .ok_or_else(|| archive_fault("Malformed project: scan entry.".into()))?;
-        let measured = port_core::marked_plane::fit_plane_on_selection(
-            &l.graph.positions,
-            &l.graph.normals,
-            &vertices,
-            settings.get("sigma").number().unwrap_or(3.),
-            1_000_000,
-        );
+        let sigma = settings.get("sigma").number().unwrap_or(3.);
+        let measured = if round {
+            match port_core::marked_cylinder::fit_cylinder_on_selection(
+                &l.graph.positions,
+                &l.graph.normals,
+                vertices.into(),
+                sigma,
+                None,
+                1_000_000,
+            ) {
+                Ok(f) => Ok((f.region.to_vec(), plane::cylinder_cell(&f))),
+                Err(port_core::marked_cylinder::Error::Source(msg)) => Err(msg),
+                Err(e) => return Err(Fault::host(format!("{e:?}"))),
+            }
+        } else {
+            match port_core::marked_plane::fit_plane_on_selection(
+                &l.graph.positions,
+                &l.graph.normals,
+                &vertices,
+                sigma,
+                1_000_000,
+            ) {
+                Ok(f) => Ok((f.region.clone(), plane::fit_cell(&f))),
+                Err(port_core::marked_plane::MarkedPlaneError::Source(msg)) => Err(msg),
+                Err(e) => return Err(Fault::host(format!("{e:?}"))),
+            }
+        };
         match measured {
-            Ok(f) => {
-                regions.push((e.get("id").number().unwrap_or(0.) as u64, f.region.clone()));
+            Ok((region, fit)) => {
+                regions.push((e.get("id").number().unwrap_or(0.) as u64, region));
                 if matches!(e.get("fit"), Value::Undefined) {
-                    put(&mut e, "fit", cell_value(&plane::fit_cell(&f)));
+                    put(&mut e, "fit", cell_value(&fit));
                     put(&mut e, "status", value_text("done"));
                     remove(&mut e, "message")
                 }
             }
-            Err(port_core::marked_plane::MarkedPlaneError::Source(msg)) => {
+            Err(msg) => {
                 put(&mut e, "status", value_text("failed"));
                 put(&mut e, "message", value_text(&msg))
             }
-            Err(e) => return Err(Fault::host(format!("{e:?}"))),
         }
         put(&mut e, "source", source);
         elements.push(e);

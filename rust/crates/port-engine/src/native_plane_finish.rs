@@ -243,8 +243,13 @@ fn normalize(v: [f64; 3]) -> Option<[f64; 3]> {
         Some(v.map(|x| x / len))
     }
 }
+fn cylinder(fit: &C) -> bool {
+    matches!(field(fit, "kind"), C::String(k) if k == text("cylinder"))
+}
 fn rotate_fit(fit: &C, normal: [f64; 3], in_plane: bool) -> Result<C, Fault> {
-    let dir = vector(&field(fit, "normal"))?;
+    // orient.ts directionOf: a plane's normal, a cylinder's axis.
+    let key = if cylinder(fit) { "axis" } else { "normal" };
+    let dir = vector(&field(fit, key))?;
     let target = if !in_plane {
         if dot(dir, normal) < 0. {
             normal.map(|x| -x)
@@ -266,9 +271,11 @@ fn rotate_fit(fit: &C, normal: [f64; 3], in_plane: bool) -> Result<C, Fault> {
     let axis = cross(dir, target);
     let sin = port_core::hypot3(axis);
     let cos = dot(dir, target);
-    let angle = sin.atan2(cos);
+    let angle = port_core::js_atan2(sin, cos);
     let mut turned = fit.clone();
-    if angle > 1e-12 {
+    // transformFit turns a cylinder's centre and axis only, and withDirection
+    // then puts both back exactly: nothing of the rotation survives.
+    if angle > 1e-12 && key == "normal" {
         let rot_axis = if sin > 1e-12 {
             axis
         } else {
@@ -321,7 +328,7 @@ fn rotate_fit(fit: &C, normal: [f64; 3], in_plane: bool) -> Result<C, Fault> {
         }
     }
     // Source pins the direction and restores the exact measured center after rotation.
-    turned = put(&turned, "normal", xyz(target));
+    turned = put(&turned, key, xyz(target));
     turned = put(&turned, "center", field(fit, "center"));
     Ok(turned)
 }
@@ -374,7 +381,29 @@ pub(super) fn extension(doc: &Session, input: Option<&Value>, fit: &C) -> Result
     if fields.is_empty() {
         return Ok(C::Undefined);
     }
-    let sides = ["uMin", "uMax", "vMin", "vMax"];
+    let round = cylinder(fit);
+    let sides: &[&str] = if round {
+        &["start", "end"]
+    } else {
+        &["uMin", "uMax", "vMin", "vMax"]
+    };
+    let shape = |values: &[f64; 4]| {
+        if round {
+            obj(vec![
+                ("kind", st("cylinder")),
+                ("start", C::Number(values[0])),
+                ("end", C::Number(values[1])),
+            ])
+        } else {
+            obj(vec![
+                ("kind", st("plane")),
+                ("uMin", C::Number(values[0])),
+                ("uMax", C::Number(values[1])),
+                ("vMin", C::Number(values[2])),
+                ("vMax", C::Number(values[3])),
+            ])
+        }
+    };
     let mut values = [0.; 4];
     let mut changed = false;
     for i in crate::schema_value::order(fields) {
@@ -385,43 +414,53 @@ pub(super) fn extension(doc: &Session, input: Option<&Value>, fit: &C) -> Result
         let Some(side) = sides.iter().position(|side| *key == text(side)) else {
             return Err(error(
                 CommandErrorCode::InvalidInput,
-                "A plane has no side \"",
+                if round {
+                    "A cylinder has no side \""
+                } else {
+                    "A plane has no side \""
+                },
                 key,
-                "\" — it has uMin, uMax, vMin, vMax.",
+                if round {
+                    "\" — it has start, end."
+                } else {
+                    "\" — it has uMin, uMax, vMin, vMax."
+                },
             ));
         };
         let Value::Number(value) = value else {
             return Err(Fault::host("admitted extension number"));
         };
-        let extent = match field(fit, if side < 2 { "extentU" } else { "extentV" }) {
-            C::Number(n) => n,
-            _ => return Err(Fault::host("plane extent")),
+        // extend.ts fittedSpan: a cylinder's length, a plane's full width.
+        let span = match field(
+            fit,
+            if round {
+                "length"
+            } else if side < 2 {
+                "extentU"
+            } else {
+                "extentV"
+            },
+        ) {
+            C::Number(n) if round => n,
+            C::Number(n) => 2. * n,
+            _ => return Err(Fault::host("extendable span")),
         };
-        let min = 0.001 - 2. * extent - values[side ^ 1];
+        let min = 0.001 - span - values[side ^ 1];
         values[side] = if value.is_finite() {
             max(*value, min)
         } else {
             0.
         };
         changed = true;
-        let ext = obj(vec![
-            ("kind", st("plane")),
-            ("uMin", C::Number(values[0])),
-            ("uMax", C::Number(values[1])),
-            ("vMin", C::Number(values[2])),
-            ("vMax", C::Number(values[3])),
-        ]);
-        let d = put(&doc.store(StoreId::App).get("draft"), "extend", ext);
+        let d = put(
+            &doc.store(StoreId::App).get("draft"),
+            "extend",
+            shape(&values),
+        );
         patch(doc, vec![("draft", d)])?;
     }
     if changed && values.iter().any(|n| *n != 0.) {
-        Ok(obj(vec![
-            ("kind", st("plane")),
-            ("uMin", C::Number(values[0])),
-            ("uMax", C::Number(values[1])),
-            ("vMin", C::Number(values[2])),
-            ("vMax", C::Number(values[3])),
-        ]))
+        Ok(shape(&values))
     } else {
         Ok(C::Undefined)
     }
