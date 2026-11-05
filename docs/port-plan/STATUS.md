@@ -109,6 +109,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [engine.state.sections](plan/units/engine.state.sections.json) | implemented | fixed-corpus | `05406f2` | `05406f2` | [#87](https://github.com/flyboy-byte/ScanRuler/pull/87) |
 | [engine.state.workspaces](plan/units/engine.state.workspaces.json) | implemented | fixed-corpus | `af44b28` | `af44b28` | [#83](https://github.com/flyboy-byte/ScanRuler/pull/83) |
 | [fit.curvature.gate](plan/units/fit.curvature.gate.json) | implemented | fixed-corpus | `f46eeb1` | `f46eeb1` | [#16](https://github.com/flyboy-byte/ScanRuler/pull/16) |
+| [fit.cylinder](plan/units/fit.cylinder.json) | implemented | none | — | — | [#116](https://github.com/flyboy-byte/ScanRuler/pull/116) |
 | [fit.linalg.solve](plan/units/fit.linalg.solve.json) | implemented | fixed-corpus | `46e0992` | `46e0992` | [#7](https://github.com/flyboy-byte/ScanRuler/pull/7) |
 | [fit.plane.clip](plan/units/fit.plane.clip.json) | implemented | fixed-corpus | `4c8b4cf` | `4c8b4cf` | [#9](https://github.com/flyboy-byte/ScanRuler/pull/9) |
 | [fit.plane.ransac](plan/units/fit.plane.ransac.json) | implemented | fixed-corpus | `2490952` | `2490952` | [#12](https://github.com/flyboy-byte/ScanRuler/pull/12) |

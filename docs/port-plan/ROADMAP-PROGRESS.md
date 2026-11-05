@@ -8,7 +8,7 @@ Estimates as of **2026-11-05**. Regenerate with `python3 docs/port-plan/tools/ro
 > average their units' state credit; *estimate* pieces are dated judgements with a stated basis.
 > Weights are effort shares and are judgement too. Edit `plan/roadmap.json`, never this file.
 
-**Overall: 16%**
+**Overall: 17%**
 
 | Milestone | Progress | % | Weight | Computed share |
 | --- | --- | ---: | ---: | ---: |
@@ -18,7 +18,7 @@ Estimates as of **2026-11-05**. Regenerate with `python3 docs/port-plan/tools/ro
 | M4 Paired harness and ratchet | `████░░░░░░` | 40% | 5 | 50% |
 | M5 MCP | `░░░░░░░░░░` | 0% | 5 | 0% |
 | M6 Projects and history | `█░░░░░░░░░` | 6% | 7 | 0% |
-| M7 Measurement families, then workspaces | `░░░░░░░░░░` | 1% | 35 | 0% |
+| M7 Measurement families, then workspaces | `░░░░░░░░░░` | 2% | 35 | 0% |
 | M8 Pure-Rust kernels and purity | `░░░░░░░░░░` | 1% | 22 | 0% |
 | X1 Contributor CI and canonical docs | `███████░░░` | 73% | 2 | 67% |
 | X2 Release and integration | `░░░░░░░░░░` | 0% | 3 | 0% |
@@ -59,7 +59,7 @@ Phases: P05, P07, P08, P09.
 | Piece | % | Weight | Basis | Left |
 | --- | ---: | ---: | --- | --- |
 | Session contracts and runtime | 78% | 4 | computed: 35/36 units implemented or better | engine.session.contract parent (specified only); acceptance. |
-| Plane and sphere fitting libraries | 80% | 3 | computed: 10/10 units implemented or better | Cylinder (P07 second half); acceptance. |
+| Plane and sphere fitting libraries | 80% | 3 | computed: 11/11 units implemented or better | Cylinder element and command (split, seeded fit, CLI); acceptance. |
 | M3a native open and info | 75% | 1 | estimate: Merged in #105 (fa7fe06); part of engine.measurement.slice, which stays planned until the whole slice lands. | Slice acceptance. |
 | M3b select and fit-plane | 75% | 2 | estimate: Merged in #108 (a058172); 205 of 212 master controls. | Slice acceptance. |
 | M3c global undo and redo | 75% | 2 | estimate: Merged in #110 (ac754d7); 212/212 controls. | Slice acceptance. |
@@ -96,13 +96,13 @@ Phases: P16, P17.
 | Full legacy project compatibility (P16) | 0% | 5 | estimate: Not started beyond M3d's slice. | Every original .scanruler reopens with equal results. |
 | History, edited-copy adoption and recovery (P17) | 15% | 3 | estimate: Session history core/guards/local/record/restore implemented (counted in M3); adoption and recovery not started. | Edited copies, recovery, failed-load safety. |
 
-## M7 — Measurement families, then workspaces (1%)
+## M7 — Measurement families, then workspaces (2%)
 
 Phases: P10, P11, P12, P13, P14, P15, P20, P21, P22, P23, P24, P25, P28.
 
 | Piece | % | Weight | Basis | Left |
 | --- | ---: | ---: | --- | --- |
-| Primitive fits and region selection (P10) | 15% | 3 | estimate: Plane and sphere libraries done (M3); cylinder, cone, torus, line, circle and region growing not. | Remaining primitives. |
+| Primitive fits and region selection (P10) | 25% | 3 | estimate: Plane, sphere and cylinder libraries and the 2D circle kernel done; cone, torus, line, 3D circle and region growing not. | Remaining primitives. |
 | Datum, symmetry and ICP alignment (P11) | 0% | 3 | estimate: Not started. | Everything. |
 | Deviation fields and volume-error reports (P12) | 0% | 3 | estimate: Not started. | Everything. |
 | Thickness and tolerances (P13) | 0% | 2 | estimate: Not started. | Everything. |
