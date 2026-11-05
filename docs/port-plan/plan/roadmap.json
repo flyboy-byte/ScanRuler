@@ -1,6 +1,6 @@
 {
   "_about": "Roadmap breakdown for docs/port-plan/tools/roadmap.py. Milestones M1-M8 from ROADMAP-TO-USABLE.md section 3, plus two cross-cutting groups, each split into pieces. A piece with `units` is computed from unit status; a piece with `estimate` is a dated judgement with its basis. Weights are effort shares (judgement, not measurement). Every non-phase unit must sit in exactly one piece and every phase P00-P39 in exactly one milestone; the tool fails otherwise. Percentages are progress estimates, never acceptance or parity.",
-  "as_of": "2026-11-04",
+  "as_of": "2026-11-05",
   "status_credit": {
     "planned": 0.0,
     "specified": 0.1,
@@ -54,7 +54,7 @@
         {"id": "m3.fit", "title": "Plane and sphere fitting libraries", "weight": 3, "units": ["fit.curvature.gate", "fit.linalg.solve", "fit.plane.clip", "fit.plane.ransac", "fit.plane.selection", "fit.plane.tls", "fit.sphere.clipped", "fit.sphere.selection", "math.number.fixed3", "math.number.shortest"], "left": "Cylinder (P07 second half); acceptance."},
         {"id": "m3.open", "title": "M3a native open and info", "weight": 1, "estimate": 75, "basis": "Merged in #105 (fa7fe06); part of engine.measurement.slice, which stays planned until the whole slice lands.", "left": "Slice acceptance."},
         {"id": "m3.select", "title": "M3b select and fit-plane", "weight": 2, "estimate": 75, "basis": "Merged in #108 (a058172); 205 of 212 master controls.", "left": "Slice acceptance."},
-        {"id": "m3.history", "title": "M3c global undo and redo", "weight": 2, "estimate": 65, "basis": "PR #110 open, 11 checks green on 74d9e90, 212/212 controls; not merged.", "left": "Merge #110."},
+        {"id": "m3.history", "title": "M3c global undo and redo", "weight": 2, "estimate": 75, "basis": "Merged in #110 (ac754d7); 212/212 controls.", "left": "Slice acceptance."},
         {"id": "m3.slice", "title": "Measurement slice unit", "weight": 1, "units": ["engine.measurement.slice"], "left": "Accept once M3a-M3d and roster are integrated."},
         {"id": "m3.save", "title": "M3d project save and read", "weight": 3, "units": ["project.measurement.compatibility"], "left": "Not started; original .scanruler format is the judge."},
         {"id": "m3.roster", "title": "Roster: register new suites", "weight": 1, "estimate": 0, "basis": "Engine, render, inflate, 3MF and PNG suites run in CI but are not in ci/native-suites.json.", "left": "One PR holding rust/xtask."},
