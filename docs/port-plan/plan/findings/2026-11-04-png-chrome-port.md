@@ -71,8 +71,8 @@ Run it again:
 ```bash
 cd rust
 cargo test -p port-io --test png                       # offline, no Chrome
-cargo test --release -p port-io --test png pinned_png_comparison -- --ignored --nocapture
-SCANRULER_PNG_SABOTAGE=1 cargo test --release -p port-io --test png pinned_png_comparison -- --ignored
+SCANRULER_PNG_LIVE=1 cargo test --release -p port-io --test png pinned_png_comparison -- --ignored --nocapture
+SCANRULER_PNG_LIVE=1 SCANRULER_PNG_SABOTAGE=1 cargo test --release -p port-io --test png pinned_png_comparison -- --ignored
 ```
 
 ## Host classes and open items
@@ -83,5 +83,7 @@ SCANRULER_PNG_SABOTAGE=1 cargo test --release -p port-io --test png pinned_png_c
   the data decodes to.
 - Inferred: a very large IDAT chunk could reach Chrome's decoder in several pieces, which would
   move the post-image cut-off; untested.
+- The live run is opt-in (`SCANRULER_PNG_LIVE=1`): CI runs every ignored test but has no Chrome, so
+  without the variable it reports that it did not run.
 - Not yet wired into `readCompanions`/`scanCompanions`; JPEG, BMP, WebP and the ordered companion
   continuation remain in the parent unit. One Chrome version, no Wasm run.
