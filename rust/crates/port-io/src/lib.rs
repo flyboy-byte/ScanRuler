@@ -25,3 +25,5 @@ pub mod drop_files;
 
 /// 3MF import (zip container, units, components, slicer parts, colour and textures).
 pub mod threemf;
+
+pub mod png;

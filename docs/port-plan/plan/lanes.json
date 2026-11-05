@@ -100,7 +100,8 @@
         "io.obj.companions.files",
         "io.obj.companions.drop",
         "io.obj.companions.image_audit",
-        "io.obj.companions.images"
+        "io.obj.companions.images",
+        "io.obj.companions.images.png"
       ],
       "touches": "rust/crates/port-io"
     },
