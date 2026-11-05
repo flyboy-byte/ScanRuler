@@ -17,8 +17,8 @@
     "Original archives reopen equivalent pose/units/IDs/recipes/results; unknown plugin content survives disabled-plugin round trips.",
     "Missing/corrupt/oversized archive and cancellation leave the current session intact; no invented replacement format."
   ],
-  "owner": null,
-  "branch": null,
+  "owner": "Codex",
+  "branch": "codex/m3d-project",
   "claim_pr": null,
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
@@ -31,7 +31,7 @@
   "rust_paths": [],
   "evidence": [],
   "open_items": [
-    "Scoped next work from IMPLEMENTATION-PLAN.md; no implementation/acceptance claim."
+    "M3d in progress from main 54dbd5f: engine/CLI schema-1 project save/read, atomic preparation and unknown-part preservation. No image wiring, roster or milestone promotion."
   ],
   "verification": "none"
 }
