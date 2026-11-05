@@ -12,3 +12,5 @@ workspace = true
 
 [dependencies]
 port-core = { path = "../crates/port-core" }
+port-io = { path = "../crates/port-io" }
+port-engine = { path = "../crates/port-engine" }

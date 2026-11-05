@@ -4,16 +4,16 @@ Generated from canonical unit files and ci/native-suites.json; do not hand-edit.
 
 Reference: `2cd89c6769a10c27ee7754b477ada521c9ef5cb7`.
 
-Native coverage inventory: **62 suites / 34603 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
+Native coverage inventory: **69 suites / 54040 case identities including refusals**. This counts declared cases, not successful measurements or feature completion.
 
 No aggregate percentage establishes parity. Unit states describe evidence scope; hosted run outcomes are in [AUDIT-QUEUE.md](AUDIT-QUEUE.md). Bounded [browser-Wasm coverage](oracle/BROWSER-WASM.md) is separate from engine/session/UI integration and the still-open exact-base numerical ratchet.
 
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 86 |
+| implemented | 88 |
 | integrated | 1 |
-| planned | 46 |
+| planned | 45 |
 | specified | 1 |
 
 Verification labels describe scoped evidence snapshots, not whole-feature/runtime acceptance.
@@ -22,7 +22,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | --- | ---: |
 | fixed-corpus | 59 |
 | fuzzed | 4 |
-| none | 73 |
+| none | 74 |
 
 | Unit | State | Verification | Tested implementation | Verification snapshot | PR |
 | --- | --- | --- | --- | --- | --- |
@@ -71,9 +71,10 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [catalog.headless](plan/units/catalog.headless.json) | baseline-captured | none | `8b9084f` | — | [#13](https://github.com/flyboy-byte/ScanRuler/pull/13) |
 | [ci.integration](plan/units/ci.integration.json) | implemented | none | `f43ffae` | — | [#22](https://github.com/flyboy-byte/ScanRuler/pull/22) |
 | [ci.integration.nov03](plan/units/ci.integration.nov03.json) | integrated | none | `ac60301` | — | [#95](https://github.com/flyboy-byte/ScanRuler/pull/95) |
+| [ci.m3.batch](plan/units/ci.m3.batch.json) | planned | none | — | — | [#114](https://github.com/flyboy-byte/ScanRuler/pull/114) |
 | [engine.error.envelope](plan/units/engine.error.envelope.json) | implemented | fixed-corpus | `f509ae2` | `f509ae2` | [#30](https://github.com/flyboy-byte/ScanRuler/pull/30) |
 | [engine.measurement.cylinder](plan/units/engine.measurement.cylinder.json) | implemented | none | — | — | [#117](https://github.com/flyboy-byte/ScanRuler/pull/117) |
-| [engine.measurement.slice](plan/units/engine.measurement.slice.json) | planned | none | — | — | [#110](https://github.com/flyboy-byte/ScanRuler/pull/110) |
+| [engine.measurement.slice](plan/units/engine.measurement.slice.json) | implemented | none | `602e9fa` | — | [#110](https://github.com/flyboy-byte/ScanRuler/pull/110) |
 | [engine.runtime.guarded](plan/units/engine.runtime.guarded.json) | implemented | fixed-corpus | `2b6710a` | `2b6710a` | [#99](https://github.com/flyboy-byte/ScanRuler/pull/99) |
 | [engine.runtime.reactions](plan/units/engine.runtime.reactions.json) | implemented | fixed-corpus | `415b4ed` | `415b4ed` | [#98](https://github.com/flyboy-byte/ScanRuler/pull/98) |
 | [engine.runtime.readonly](plan/units/engine.runtime.readonly.json) | implemented | fixed-corpus | `207e00b` | `207e00b` | [#100](https://github.com/flyboy-byte/ScanRuler/pull/100) |
@@ -123,7 +124,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [geometry.centroid](plan/units/geometry.centroid.json) | implemented | fixed-corpus | `1473fe4` | `1473fe4` | [#11](https://github.com/flyboy-byte/ScanRuler/pull/11) |
 | [geometry.closed.shells](plan/units/geometry.closed.shells.json) | implemented | fixed-corpus | `fd11f98` | `fd11f98` | [#21](https://github.com/flyboy-byte/ScanRuler/pull/21) |
 | [geometry.components](plan/units/geometry.components.json) | implemented | fixed-corpus | `66997f8` | `66997f8` | [#18](https://github.com/flyboy-byte/ScanRuler/pull/18) |
-| [geometry.mesh.crease](plan/units/geometry.mesh.crease.json) | planned | none | — | — | [#106](https://github.com/flyboy-byte/ScanRuler/pull/106) |
+| [geometry.mesh.crease](plan/units/geometry.mesh.crease.json) | implemented | none | `602e9fa` | — | [#106](https://github.com/flyboy-byte/ScanRuler/pull/106) |
 | [geometry.mesh.graph](plan/units/geometry.mesh.graph.json) | implemented | fixed-corpus | `6cfda5b` | `6cfda5b` | [#20](https://github.com/flyboy-byte/ScanRuler/pull/20) |
 | [geometry.normals.compute](plan/units/geometry.normals.compute.json) | implemented | fixed-corpus | `4a5aac4` | `4a5aac4` | [#5](https://github.com/flyboy-byte/ScanRuler/pull/5) |
 | [geometry.normals.orient](plan/units/geometry.normals.orient.json) | implemented | fixed-corpus | `4c8b4cf` | `4c8b4cf` | [#6](https://github.com/flyboy-byte/ScanRuler/pull/6) |
@@ -140,25 +141,25 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [harness.wasm.ply](plan/units/harness.wasm.ply.json) | implemented | none | `8bc7363` | — | [#29](https://github.com/flyboy-byte/ScanRuler/pull/29) |
 | [harness.wasm.runtime](plan/units/harness.wasm.runtime.json) | implemented | none | `00fd1a6` | — | [#24](https://github.com/flyboy-byte/ScanRuler/pull/24) |
 | [harness.wasm.sphere](plan/units/harness.wasm.sphere.json) | implemented | none | `c33011c` | — | [#90](https://github.com/flyboy-byte/ScanRuler/pull/90) |
-| [io.inflate](plan/units/io.inflate.json) | implemented | none | — | — | — |
+| [io.inflate](plan/units/io.inflate.json) | implemented | none | `602e9fa` | — | — |
 | [io.mesh.weld](plan/units/io.mesh.weld.json) | implemented | fixed-corpus | `53d6408` | `53d6408` | [#4](https://github.com/flyboy-byte/ScanRuler/pull/4) |
 | [io.obj.companions.drop](plan/units/io.obj.companions.drop.json) | implemented | fixed-corpus | `a4cb8de` | `a4cb8de` | [#40](https://github.com/flyboy-byte/ScanRuler/pull/40) |
 | [io.obj.companions.files](plan/units/io.obj.companions.files.json) | implemented | fixed-corpus | `f0a3e9e` | `f0a3e9e` | [#36](https://github.com/flyboy-byte/ScanRuler/pull/36) |
 | [io.obj.companions.image_audit](plan/units/io.obj.companions.image_audit.json) | implemented | none | `87d2318` | — | [#39](https://github.com/flyboy-byte/ScanRuler/pull/39) |
 | [io.obj.companions.images](plan/units/io.obj.companions.images.json) | planned | none | — | — | — |
-| [io.obj.companions.images.png](plan/units/io.obj.companions.images.png.json) | implemented | none | `f04be85` | — | — |
+| [io.obj.companions.images.png](plan/units/io.obj.companions.images.png.json) | implemented | none | `602e9fa` | — | — |
 | [io.obj.companions](plan/units/io.obj.companions.json) | planned | none | — | — | — |
 | [io.obj](plan/units/io.obj.json) | planned | none | — | — | — |
 | [io.obj.mesh](plan/units/io.obj.mesh.json) | implemented | fixed-corpus | `58aeacb` | `58aeacb` | [#32](https://github.com/flyboy-byte/ScanRuler/pull/32) |
-| [io.obj.native](plan/units/io.obj.native.json) | implemented | none | `6963e68` | — | [#112](https://github.com/flyboy-byte/ScanRuler/pull/112) |
+| [io.obj.native](plan/units/io.obj.native.json) | implemented | none | `602e9fa` | — | [#112](https://github.com/flyboy-byte/ScanRuler/pull/112) |
 | [io.obj.texture](plan/units/io.obj.texture.json) | implemented | fixed-corpus | `219059c` | `219059c` | [#31](https://github.com/flyboy-byte/ScanRuler/pull/31) |
 | [io.ply.ascii](plan/units/io.ply.ascii.json) | implemented | fuzzed | `737d3c3` | `1a67f50` | [#27](https://github.com/flyboy-byte/ScanRuler/pull/27) |
 | [io.ply.binary](plan/units/io.ply.binary.json) | implemented | fuzzed | `98d39fc` | `1a67f50` | [#28](https://github.com/flyboy-byte/ScanRuler/pull/28) |
 | [io.ply](plan/units/io.ply.json) | planned | none | — | — | — |
 | [io.stl.binary](plan/units/io.stl.binary.json) | implemented | fuzzed | `5ee3881` | `1a67f50` | [#2](https://github.com/flyboy-byte/ScanRuler/pull/2) |
 | [io.stl.dispatch](plan/units/io.stl.dispatch.json) | implemented | fuzzed | `77683bf` | `1a67f50` | [#3](https://github.com/flyboy-byte/ScanRuler/pull/3) |
-| [io.threemf](plan/units/io.threemf.json) | implemented | none | `31ebafc` | — | [#97](https://github.com/flyboy-byte/ScanRuler/pull/97) |
+| [io.threemf](plan/units/io.threemf.json) | implemented | none | `602e9fa` | — | [#97](https://github.com/flyboy-byte/ScanRuler/pull/97) |
 | [io.threemf.native](plan/units/io.threemf.native.json) | implemented | none | `de040fe` | — | [#115](https://github.com/flyboy-byte/ScanRuler/pull/115) |
 | [math.number.fixed3](plan/units/math.number.fixed3.json) | implemented | fixed-corpus | `3ae1787` | `3ae1787` | [#92](https://github.com/flyboy-byte/ScanRuler/pull/92) |
 | [math.number.shortest](plan/units/math.number.shortest.json) | implemented | fixed-corpus | `3da16bf` | `3da16bf` | [#103](https://github.com/flyboy-byte/ScanRuler/pull/103) |
-| [project.measurement.compatibility](plan/units/project.measurement.compatibility.json) | implemented | none | `6b0280b` | — | [#113](https://github.com/flyboy-byte/ScanRuler/pull/113) |
+| [project.measurement.compatibility](plan/units/project.measurement.compatibility.json) | implemented | none | `602e9fa` | — | [#113](https://github.com/flyboy-byte/ScanRuler/pull/113) |

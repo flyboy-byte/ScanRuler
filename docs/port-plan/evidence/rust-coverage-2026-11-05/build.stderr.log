@@ -1,0 +1,5 @@
+   Compiling port-core v0.0.0 (/home/logan/projects/scanruler/.port-worktrees/nov05-m3-batch/rust/crates/port-core)
+   Compiling xtask v0.0.0 (/home/logan/projects/scanruler/.port-worktrees/nov05-m3-batch/rust/xtask)
+   Compiling port-io v0.0.0 (/home/logan/projects/scanruler/.port-worktrees/nov05-m3-batch/rust/crates/port-io)
+   Compiling port-engine v0.0.0 (/home/logan/projects/scanruler/.port-worktrees/nov05-m3-batch/rust/crates/port-engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 18.83s

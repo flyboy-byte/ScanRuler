@@ -8,13 +8,13 @@ Estimates as of **2026-11-05**. Regenerate with `python3 docs/port-plan/tools/ro
 > average their units' state credit; *estimate* pieces are dated judgements with a stated basis.
 > Weights are effort shares and are judgement too. Edit `plan/roadmap.json`, never this file.
 
-**Overall: 17%**
+**Overall: 18%**
 
 | Milestone | Progress | % | Weight | Computed share |
 | --- | --- | ---: | ---: | ---: |
 | M1 Reproducible baseline and corpus | `█████░░░░░` | 48% | 3 | 40% |
-| M2 Import breadth | `██████░░░░` | 57% | 8 | 85% |
-| M3 Session and commands, native CLI (first dogfood) | `██████░░░░` | 60% | 10 | 55% |
+| M2 Import breadth | `██████░░░░` | 65% | 8 | 85% |
+| M3 Session and commands, native CLI (first dogfood) | `██████░░░░` | 62% | 10 | 60% |
 | M4 Paired harness and ratchet | `████░░░░░░` | 40% | 5 | 50% |
 | M5 MCP | `░░░░░░░░░░` | 0% | 5 | 0% |
 | M6 Projects and history | `█░░░░░░░░░` | 6% | 7 | 0% |
@@ -36,7 +36,7 @@ Phases: P00, P01, P02, P03.
 | Command and feature catalogs | 50% | 2 | computed: 0/2 units implemented or better | Catalogs captured; P02 acceptance. |
 | Parity corpus and source dependency map | 35% | 3 | estimate: Unit corpora and generators exist (fixtures/, tools/generate_*); no global corpus licence/hash index or dependency map (P03). | Corpus index with licence, generator, seed and hash per fixture; skip reasons; source map. |
 
-## M2 — Import breadth (57%)
+## M2 — Import breadth (65%)
 
 Phases: P06.
 
@@ -48,11 +48,11 @@ Phases: P06.
 | Texture image decoding | 38% | 3 | computed: 1/2 units implemented or better | Wire PNG into readCompanions; JPEG, BMP, WebP. |
 | Inflate, zip and 3MF | 75% | 2 | computed: 3/3 units implemented or better | Zip entry cap (Logan's decision); roster registration. |
 | Geometry indexing | 80% | 3 | computed: 10/10 units implemented or better | Acceptance. |
-| Scan render preparation (crease) | 0% | 2 | computed: 0/1 units implemented or better | Roster registration of its 1309 controls, then promotion (Codex). |
+| Scan render preparation (crease) | 75% | 2 | computed: 1/1 units implemented or better | Roster registration of its 1309 controls, then promotion (Codex). |
 | Native import commands for every format | 90% | 2 | estimate: Native scan.open/info cover STL, all PLY encodings (#105), standalone OBJ (#112) and 3MF (claude/threemf-native); STEP is an explicit refusal. | STEP (needs the kernel, M8); OBJ companion files. |
 | Original-versus-Rust on real scans | 0% | 1 | estimate: No real scan in fixtures/private/ yet. | Logan supplies a scan; run section 5 comparisons. |
 
-## M3 — Session and commands, native CLI (first dogfood) (60%)
+## M3 — Session and commands, native CLI (first dogfood) (62%)
 
 Phases: P05, P07, P08, P09.
 
@@ -63,9 +63,9 @@ Phases: P05, P07, P08, P09.
 | M3a native open and info | 75% | 1 | estimate: Merged in #105 (fa7fe06); part of engine.measurement.slice, which stays planned until the whole slice lands. | Slice acceptance. |
 | M3b select and fit-plane | 75% | 2 | estimate: Merged in #108 (a058172); 205 of 212 master controls. | Slice acceptance. |
 | M3c global undo and redo | 75% | 2 | estimate: Merged in #110 (ac754d7); 212/212 controls. | Slice acceptance. |
-| Measurement slice units | 38% | 1 | computed: 1/2 units implemented or better | Accept once M3a-M3d, the cylinder branch and roster are integrated. |
+| Measurement slice units | 75% | 1 | computed: 2/2 units implemented or better | Accept once M3a-M3d, the cylinder branch and roster are integrated. |
 | M3d project save and read | 75% | 3 | computed: 1/1 units implemented or better | M3d native scan/marked-plane slice in PR113; full M6 and scheduled milestone verification remain open. |
-| Roster: register new suites | 0% | 1 | estimate: Engine, render, inflate, 3MF and PNG suites run in CI but are not in ci/native-suites.json. | One PR holding rust/xtask. |
+| Roster: register new suites | 0% | 1 | computed: 0/1 units implemented or better | Scheduled milestone batch in PR114; exact-base ratchet and acceptance remain separate. |
 | Browser/Wasm measurement slice (P09) | 10% | 2 | estimate: Bounded Wasm harness coverage exists (harness.wasm.*); no browser command flow. | Same slice running in the browser build. |
 | Logan runs open-fit-undo-save on his scan | 0% | 1 | estimate: Needs M3d and a real scan. | The M3 exit condition. |
 

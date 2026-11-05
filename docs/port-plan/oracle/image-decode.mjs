@@ -9,7 +9,6 @@
 //   stderr: the Chrome version, once.
 // Chrome comes from $CHROME or /opt/google/chrome/chrome. No Rust output participates.
 import { execFileSync } from 'node:child_process'
-import { readFileSync } from 'node:fs'
 import { createServer } from 'node:http'
 import { fileURLToPath } from 'node:url'
 import { resolve } from 'node:path'
@@ -28,7 +27,11 @@ const bundle = await build({
   } }],
 })
 
-const data = readFileSync(0)
+// Rust/Node transports can hand stdin a nonblocking pipe. Await all chunks;
+// readFileSync(0) can fail with EAGAIN before the producer finishes writing.
+const chunks = []
+for await (const chunk of process.stdin) chunks.push(chunk)
+const data = Buffer.concat(chunks)
 let at = 0
 const word = () => { const v = data.readUInt32LE(at); at += 4; return v }
 const cases = []

@@ -706,6 +706,76 @@
         "original.bin",
         "original.stderr.txt"
       ]
+    },
+    {
+      "unit": "engine.measurement.slice",
+      "test": "pinned_native_plane_comparison",
+      "directory": "native-plane-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin"
+      ]
+    },
+    {
+      "unit": "io.obj.native",
+      "test": "pinned_native_import_comparison",
+      "directory": "native-import-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin"
+      ]
+    },
+    {
+      "unit": "project.measurement.compatibility",
+      "test": "pinned_native_project_comparison",
+      "directory": "native-project-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin"
+      ]
+    },
+    {
+      "unit": "geometry.mesh.crease",
+      "test": "pinned_scan_render_comparison",
+      "directory": "scan-render-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin"
+      ]
+    },
+    {
+      "unit": "io.inflate",
+      "test": "pinned_zip_inflate_comparison",
+      "directory": "zip-inflate-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin"
+      ]
+    },
+    {
+      "unit": "io.threemf",
+      "test": "pinned_threemf_comparison",
+      "directory": "threemf-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin"
+      ]
+    },
+    {
+      "unit": "io.obj.companions.images.png",
+      "test": "pinned_png_fixed_comparison",
+      "directory": "png-fixed-diff",
+      "refusals_without_rust_bin": [],
+      "required_files": [
+        "input.bin",
+        "original.bin"
+      ]
     }
   ]
 }

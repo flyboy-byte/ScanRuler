@@ -3,18 +3,18 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 86,
+    "implemented": 88,
     "integrated": 1,
-    "planned": 46,
+    "planned": 45,
     "specified": 1
   },
   "verification_levels": {
     "fixed-corpus": 59,
     "fuzzed": 4,
-    "none": 73
+    "none": 74
   },
-  "native_suites": 62,
-  "native_case_identities_including_refusals": 34603,
+  "native_suites": 69,
+  "native_case_identities_including_refusals": 54040,
   "accepted_units": [],
   "units": [
     {
@@ -518,6 +518,18 @@
       ]
     },
     {
+      "id": "ci.m3.batch",
+      "status": "planned",
+      "parent": "P36",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/114",
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Scheduled M3 milestone batch; owns xtask/native roster/workflows while Claude implements native 3MF, project element listing and cylinder fit."
+      ]
+    },
+    {
       "id": "engine.error.envelope",
       "status": "implemented",
       "parent": "P05",
@@ -550,13 +562,14 @@
     },
     {
       "id": "engine.measurement.slice",
-      "status": "planned",
+      "status": "implemented",
       "parent": "P08",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/110",
-      "tested_sha": null,
+      "tested_sha": "602e9fa2b2d27863089e12e78d05d3370aa57ad8",
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
+        "M3 milestone batch (#114): pinned_native_plane_comparison ran all 212 cases at 602e9fa2b2d27863089e12e78d05d3370aa57ad8 with zero mismatches inside the full native oracle (75 test binaries, 0 failed); artifact inventory evidence/2026-11-05-m3-batch-native-artifact-inventory.json.gz. Verification level unchanged (none); no acceptance claim.",
         "M3c PR110 source e6e90b20abb7c621556208a19969f0b3dabf6621 passes all 212/212 unchanged master controls, including all 7 former deferrals, six CLI tests, full fast/oracle and exact 62-suite artifact completeness. Actual undo/redo wrong-state red controls fail in 5/2 affected scenarios after 7/3 successful travels, then the clean run passes. Proof: evidence/2026-11-04-m3c-history-red-green.json.gz and evidence/2026-11-04-m3c-native-artifact-inventory.json.gz. No roster/crease/project/image changes; parent broader scope/promotion remains open.",
         "M3a merged in fa7fe06. M3b public PR108 source c4ef7e4d590ea0c07d88cff3a0e11e4bd1eccdc8 passes all 205 current select/fit controls, a real wrong-state red run and clean rerun, retained 33 import cases and full fast/oracle plus 62-suite exact artifact completeness. All 212 master rows remain; 7 global-history controls were deferred by M3b and now run in M3c. Proof: evidence/2026-11-04-m3b-optional-guards-proof.json.gz and evidence/2026-11-04-m3b-native-artifact-inventory.json.gz. No parent acceptance/promotion; M3c opens only after this merge.",
         "M3a actual native scan.open and CLI info are public in PR105, based on main b37206d; source 326b9989a7f8c3c6ff463d33a69f19af3168519d. All 33 exact original import controls pass, actual wrong-state canary rejects all 33, and full fast/oracle plus exact artifact completeness for all 62 required suites pass. Raw proof: evidence/2026-11-04-m3a-public-import-red-green.json.gz; artifact report: evidence/2026-11-04-m3a-native-artifact-inventory.json.gz. M3b is implemented in PR108; M3c is implemented in PR110; no parent implementation/acceptance claim.",
@@ -1272,13 +1285,14 @@
     },
     {
       "id": "geometry.mesh.crease",
-      "status": "planned",
+      "status": "implemented",
       "parent": "P06",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/106",
-      "tested_sha": null,
+      "tested_sha": "602e9fa2b2d27863089e12e78d05d3370aa57ad8",
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
+        "M3 milestone batch (#114): pinned_scan_render_comparison ran all 1309 cases at 602e9fa2b2d27863089e12e78d05d3370aa57ad8 with zero mismatches inside the full native oracle (75 test binaries, 0 failed); artifact inventory evidence/2026-11-05-m3-batch-native-artifact-inventory.json.gz. Verification level unchanged (none); no acceptance claim.",
         "Complete main-based prepared-array source checkpoint d4514b1e2047ba86315d7c861673caaf1424fc81 has 1309 exact source controls and full wrong-output red/clean records in evidence/2026-11-04-scan-render-main-red-green.json.gz; all earlier development records remain. No accepted/fuzzed/coverage-reviewed claim.",
         "Canonical promotion is deliberately deferred: ci_report.py requires every differential unit in native-suites.json and the xtask discovery guard, which remain held by open PR104. Do not weaken that gate or relabel numerical evidence. After its merge, register pinned_scan_render_comparison / scan-render-diff with all 1309 IDs, restore the differential evidence link and tested SHA, then regenerate status/backlog with the tools. The existing all-tests native oracle already executes the added production comparison.",
         "See plan/findings/2026-11-04-scan-render-main-integration.md for exact gates, saved downstream checkpoints and reassessment scope. Worker/command binding and caller-setting coercion remain separate; this unit covers typed prepared-array bodies.",
@@ -1517,10 +1531,12 @@
       "status": "implemented",
       "parent": "P06",
       "pr": null,
-      "tested_sha": null,
+      "tested_sha": "602e9fa2b2d27863089e12e78d05d3370aa57ad8",
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
+        "M3 milestone batch (#114): pinned_zip_inflate_comparison ran all 9000 cases at 602e9fa2b2d27863089e12e78d05d3370aa57ad8 with zero mismatches inside the full native oracle (75 test binaries, 0 failed); artifact inventory evidence/2026-11-05-m3-batch-native-artifact-inventory.json.gz. Verification level unchanged (none); no acceptance claim.",
+        "Earlier report evidence (plan/findings/2026-11-03-inflate-zip-first-run.md, tested at no recorded SHA): fflate 0.8.3 unzipSync vs Rust: 30,000 archives (seeds 1,7,99), 0 divergences; sabotage check reports 721",
         "Not in ci/native-suites.json: no registered case inventory; runs as an extra ignored test under cargo xtask oracle.",
         "Not wired to cargo xtask fuzz; zip64 and encrypted entries reached only by random mutation.",
         "Per-entry limits only; io.threemf adds the original's own limits.",
@@ -1609,10 +1625,12 @@
       "status": "implemented",
       "parent": "io.obj.companions.images",
       "pr": null,
-      "tested_sha": "f04be853cefe0812a3b4b91afad714e182e9e706",
+      "tested_sha": "602e9fa2b2d27863089e12e78d05d3370aa57ad8",
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
+        "M3 milestone batch (#114): pinned_png_fixed_comparison ran all 5549 cases at 602e9fa2b2d27863089e12e78d05d3370aa57ad8 with zero mismatches inside the full native oracle (75 test binaries, 0 failed); artifact inventory evidence/2026-11-05-m3-batch-native-artifact-inventory.json.gz. Verification level unchanged (none); no acceptance claim.",
+        "Earlier report evidence (plan/findings/2026-11-04-png-chrome-port.md, tested at f04be853cefe0812a3b4b91afad714e182e9e706): 5,532 committed cases (named, sweep, structural) and the 13 audit PNG fixtures equal Chrome 156 byte for byte offline; live fresh-seed runs and about 70,000 development cases with zero divergences outside the host-limit class; sabotage rejected. No acceptance claim.",
         "Not wired into readCompanions/scanCompanions: the decoder exists, the ordered companion continuation (MTL text, name order, omission) is still io.obj.companions.images.",
         "Chrome only, one version (156.0.8078.79) on Linux. No Wasm runtime comparison and no other browser.",
         "Inferred, not observed: a very large IDAT chunk may reach Chrome's decoder in pieces; the post-image rules assume the whole chunk is fed at once.",
@@ -1668,10 +1686,11 @@
       "status": "implemented",
       "parent": "io.obj",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/112",
-      "tested_sha": "6963e68f0a52dcc3a24bcdb763c56d0296bb4425",
+      "tested_sha": "602e9fa2b2d27863089e12e78d05d3370aa57ad8",
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
+        "M3 milestone batch (#114): pinned_native_import_comparison ran all 62 cases at 602e9fa2b2d27863089e12e78d05d3370aa57ad8 with zero mismatches inside the full native oracle (75 test binaries, 0 failed); artifact inventory evidence/2026-11-05-m3-batch-native-artifact-inventory.json.gz. Verification level unchanged (none); no acceptance claim.",
         "Native OBJ implemented on main ed5170c, source 6963e68f0a52dcc3a24bcdb763c56d0296bb4425, PR112. All 48 existing-corpus import controls pass (33 retained + 15 OBJ); wrong-state vertexCount=-99 rejects all 48. Raw comparison output: evidence/2026-11-05-native-obj-comparison.json.gz. Six ordinary CLI tests pass.",
         "Verification label/roster registration deferred to the owner-scheduled M3 milestone batch per the 2026-11-05 verification budget. No acceptance or fixed-corpus promotion is claimed; the existing ci_report.py requirement is unchanged.",
         "Standalone geometry only: scan.open has no companion-file input. Original missing-texture notice is preserved. Image wiring, native 3MF/STEP and compatible project IO remain separate."
@@ -1777,10 +1796,12 @@
       "status": "implemented",
       "parent": "P06",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/97",
-      "tested_sha": "31ebafcce734cecd265e756823caf285a15412a4",
+      "tested_sha": "602e9fa2b2d27863089e12e78d05d3370aa57ad8",
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
+        "M3 milestone batch (#114): pinned_threemf_comparison ran all 3282 cases at 602e9fa2b2d27863089e12e78d05d3370aa57ad8 with zero mismatches inside the full native oracle (75 test binaries, 0 failed); artifact inventory evidence/2026-11-05-m3-batch-native-artifact-inventory.json.gz. Verification level unchanged (none); no acceptance claim.",
+        "Earlier report evidence (plan/findings/2026-11-03-threemf-review-regressions.md, tested at 31ebafcce734cecd265e756823caf285a15412a4): #58 follow-up: pre-allocation aggregate ZIP budget and UTF-16 directory basename fallback; retained six seeds and all earlier cases, 24,564 packages, zero divergences; red runs and complete-corpus wrong-value canary retained. No acceptance claim.",
         "Not in ci/native-suites.json: no registered case inventory; runs locally as an ignored test (see the finding for the command). Not wired to cargo xtask fuzz (rust/xtask is held by other open PRs).",
         "Host-limit class: an archive entry whose declared size exceeds the caller's cap is refused where the original reads it (io.inflate allocates the declared size); owner decision with H1 to H3.",
         "Packed texture images are read by a second unzip in src/app/scanFiles.ts and belong to io.obj.companions.images (own PNG, then JPEG decoder).",
@@ -1835,10 +1856,11 @@
       "status": "implemented",
       "parent": "P16",
       "pr": "https://github.com/flyboy-byte/ScanRuler/pull/113",
-      "tested_sha": "6b0280b3ad6c35a82c90bf20dd4272884919a2ab",
+      "tested_sha": "602e9fa2b2d27863089e12e78d05d3370aa57ad8",
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
+        "M3 milestone batch (#114): pinned_native_project_comparison ran all 23 cases at 602e9fa2b2d27863089e12e78d05d3370aa57ad8 with zero mismatches inside the full native oracle (75 test binaries, 0 failed); artifact inventory evidence/2026-11-05-m3-batch-native-artifact-inventory.json.gz. Verification level unchanged (none); no acceptance claim.",
         "M3d native scan/marked-plane save/read implemented from main 54dbd5f in PR113, source 6b0280b3ad6c35a82c90bf20dd4272884919a2ab. One corpus passes 23/23 original/Rust controls (13 successful loads, 10 refusals); actual nextId=-99 red run rejects all 23, then clean rerun passes. Comparison output: evidence/2026-11-05-m3d-project-comparison.json.gz. Original project hook runs under SSR with original archive functions over an adapted worker transport; no reference geometry is fed to Rust. Authored DEFLATE input is read by both implementations; the original reader also accepts Rust-written archives.",
         "M3 supported slice: standalone STL/PLY/OBJ, marked-plane recipes and saved fits, pose/units/source bytes/IDs, old per-element settings defaults, unknown root plugin parts and their unowned members. Engine owns IO/state/history; CLI supplies --save/files and writes atomically. Native cancellation test forces a deadline then releases late preparation, preserving source/graph/elements/history.",
         "Broader M6 remains open: reference/image/companion reconstruction, measured maps, other fitted/constructed/seeded families, dimensions/sections, 2D work, workspaces beyond Measure, finishing rebuilds without a saved fit and ZIP64 are explicit pre-commit Unavailable paths. Writer uses interoperable ZIP stored members, so files may be larger than the original deflated writer.",
