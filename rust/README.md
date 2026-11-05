@@ -29,7 +29,11 @@ cargo run -p port-cli -- info /path/to/scan.ply
 cargo run -p port-cli -- info /path/to/scan.stl --units cm
 ```
 
-STL and ASCII/little-endian/big-endian PLY are supported. JSON on stdout includes
+STL, ASCII/little-endian/big-endian PLY and standalone OBJ are supported.
+OBJ faces (including polygon fans and negative indices) use the real engine
+import path; `fit-plane` also accepts OBJ. Companion images are not loaded by
+`scan.open`; an OBJ that names a missing texture retains the original notice.
+3MF and STEP command wiring remain unavailable. JSON on stdout includes
 filename, source units, vertex/triangle/component counts, bounds, center and size
 in millimetres. Errors go to stderr with exit code 2. Node is needed only by the
 comparison oracle, not the native CLI. Input bytes and producer work are bounded.

@@ -141,6 +141,14 @@ fn source(s: &SourceFile) -> V {
 }
 fn bytes(row: &str) -> Vec<u8> {
     let c = row.split('\t').collect::<Vec<_>>();
+    if let Some(name) = c[1].strip_prefix("obj-") {
+        return std::fs::read(
+            Path::new(env!("CARGO_MANIFEST_DIR"))
+                .join("../../../docs/port-plan/fixtures/native-import/obj")
+                .join(format!("{name}.obj")),
+        )
+        .unwrap();
+    }
     if c[1].starts_with("ply-") {
         return ply_bytes(c[1]);
     }
@@ -229,6 +237,8 @@ fn observe(row: &str) -> V {
                     c[0],
                     if c[1].starts_with("ply-") {
                         "ply"
+                    } else if c[1].starts_with("obj-") {
+                        "obj"
                     } else {
                         "stl"
                     }
@@ -427,7 +437,7 @@ fn pinned_native_import_comparison() {
     );
     std::fs::write(run.join("original.stderr"), out.stderr).unwrap();
     let original = String::from_utf8(out.stdout).unwrap();
-    assert_eq!(original.lines().count(), 33);
+    assert_eq!(original.lines().count(), 48);
     let mut failures = 0;
     for (row, line) in input.lines().zip(original.lines()) {
         let (id, h) = line.split_once('\t').unwrap();
@@ -453,7 +463,7 @@ fn pinned_native_import_comparison() {
         }
     }
     eprintln!(
-        "33 native registered-command comparisons; mismatches={failures}; raw {}",
+        "48 native registered-command comparisons; mismatches={failures}; raw {}",
         run.display()
     );
     assert_eq!(failures, 0)

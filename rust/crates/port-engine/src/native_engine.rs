@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-//! Native no-viewport command integration. Initial supported imports: STL/PLY.
+//! Native no-viewport command integration. Supported standalone imports: STL/PLY/OBJ.
 //! The shared runtime, import queue, actual document and staged graph owner are reused.
 //! Other format/measurement/project commands remain explicit unported capabilities.
 use crate::{
@@ -289,6 +289,7 @@ struct Loaded {
     report: crease::Report,
     source: Arc<SourceFile>,
     components: usize,
+    file_note: String,
 }
 fn load(source: Arc<SourceFile>, mode: Mode, angle: f64) -> Result<Loaded, KernelError> {
     let name = String::from_utf16_lossy(&source.name).to_ascii_lowercase();
@@ -296,6 +297,7 @@ fn load(source: Arc<SourceFile>, mode: Mode, angle: f64) -> Result<Loaded, Kerne
     if bytes.len() > MAX_INPUT_BYTES {
         return Err(KernelError::Host("native import byte limit".into()));
     }
+    let mut file_note = String::new();
     let mut parsed = if name.ends_with(".stl") {
         let positions = port_io::stl_dispatch::read_stl(
             bytes,
@@ -339,8 +341,52 @@ fn load(source: Arc<SourceFile>, mode: Mode, angle: f64) -> Result<Loaded, Kerne
             indices: Some(p.indices),
             keep_winding: p.keep_winding,
         }
+    } else if name.ends_with(".obj") {
+        let p = port_io::obj::read_obj(
+            bytes,
+            port_io::obj::ObjLimits {
+                max_bytes: MAX_INPUT_BYTES,
+                max_vertices: 1_000_000,
+                max_uvs: 1_000_000,
+                max_indices: 3_000_000,
+                max_face_vertices: 1_000_000,
+                max_materials: 100_000,
+                max_libraries: 4096,
+                max_work: 100_000_000,
+                texture: port_io::obj_texture::TextureLimits {
+                    max_bytes: MAX_INPUT_BYTES,
+                    max_vertices: 1_000_000,
+                    max_files: 4096,
+                    max_materials: 100_000,
+                    max_name_bytes: 4096,
+                    max_work: 100_000_000,
+                },
+            },
+            |_| {},
+            None,
+        )
+        .map_err(|e| match e {
+            port_io::obj::ObjError::Limit
+            | port_io::obj::ObjError::Allocation
+            | port_io::obj::ObjError::Texture(_) => KernelError::Host(e.to_string()),
+            _ => KernelError::Source(e.to_string()),
+        })?;
+        // scan.open has no companion-file input. Preserve the source's missing
+        // texture notice rather than silently claiming a coloured import.
+        if let Some(port_io::obj_texture::TextureNote::Missing(files)) = p.texture {
+            file_note = format!(
+                "This OBJ has a texture ({}) that did not come with it — open the OBJ, its .mtl and the image together (select all three, or drop their folder) to see the scan in colour. ",
+                files.join(", ")
+            );
+        }
+        ParsedMesh {
+            positions: p.positions,
+            soup: false,
+            indices: Some(p.indices),
+            keep_winding: false,
+        }
     } else {
-        return Err(KernelError::Unavailable("This native engine currently opens STL and PLY; other import commands are not implemented.".into()));
+        return Err(KernelError::Unavailable("This native engine currently opens STL, PLY and OBJ; other import commands are not implemented.".into()));
     };
     let scale = match source.units.unwrap_or(MeshUnits::Mm) {
         MeshUnits::Mm => 1.,
@@ -392,6 +438,7 @@ fn load(source: Arc<SourceFile>, mode: Mode, angle: f64) -> Result<Loaded, Kerne
         report,
         source,
         components,
+        file_note,
     })
 }
 struct Reply<T> {
@@ -583,7 +630,7 @@ impl State {
                 let note = if loaded.report.skipped == Some(crease::Skipped::Budget) {
                     format!(" Sharp edges are shaded smooth: drawing every edge from {}° on sharp would add more vertices than the scan has — try a larger angle.",port_core::js_number::number_string(angle))
                 } else { String::new() };
-                patch(&self.document,vec![("statusText",C::String(text(&format!("{prefix}Pick an element type in the panel to start measuring.{note}"))))])
+                patch(&self.document,vec![("statusText",C::String(text(&format!("{prefix}{}Pick an element type in the panel to start measuring.{note}",loaded.file_note))))])
             })();
             prepared.view.dispose()?;
             self.worker.borrow_mut().reserve_request().map_err(Fault::host)?;

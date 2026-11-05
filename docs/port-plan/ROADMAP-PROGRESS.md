@@ -13,7 +13,7 @@ Estimates as of **2026-11-05**. Regenerate with `python3 docs/port-plan/tools/ro
 | Milestone | Progress | % | Weight | Computed share |
 | --- | --- | ---: | ---: | ---: |
 | M1 Reproducible baseline and corpus | `█████░░░░░` | 48% | 3 | 40% |
-| M2 Import breadth | `█████░░░░░` | 53% | 8 | 85% |
+| M2 Import breadth | `██████░░░░` | 56% | 8 | 85% |
 | M3 Session and commands, native CLI (first dogfood) | `█████░░░░░` | 47% | 10 | 55% |
 | M4 Paired harness and ratchet | `████░░░░░░` | 40% | 5 | 50% |
 | M5 MCP | `░░░░░░░░░░` | 0% | 5 | 0% |
@@ -36,7 +36,7 @@ Phases: P00, P01, P02, P03.
 | Command and feature catalogs | 50% | 2 | computed: 0/2 units implemented or better | Catalogs captured; P02 acceptance. |
 | Parity corpus and source dependency map | 35% | 3 | estimate: Unit corpora and generators exist (fixtures/, tools/generate_*); no global corpus licence/hash index or dependency map (P03). | Corpus index with licence, generator, seed and hash per fixture; skip reasons; source map. |
 
-## M2 — Import breadth (53%)
+## M2 — Import breadth (56%)
 
 Phases: P06.
 
@@ -44,12 +44,12 @@ Phases: P06.
 | --- | ---: | ---: | --- | --- |
 | STL reader | 85% | 2 | computed: 2/2 units implemented or better | Acceptance. |
 | PLY reader | 57% | 2 | computed: 2/3 units implemented or better | H1-H3 host limits (Logan's decision), parent acceptance. |
-| OBJ/MTL reader and companions | 56% | 3 | computed: 5/7 units implemented or better | Companion parent and OBJ parent integration. |
+| OBJ/MTL reader and companions | 59% | 3 | computed: 6/8 units implemented or better | Companion parent and OBJ parent integration. |
 | Texture image decoding | 38% | 3 | computed: 1/2 units implemented or better | Wire PNG into readCompanions; JPEG, BMP, WebP. |
 | Inflate, zip and 3MF | 75% | 2 | computed: 2/2 units implemented or better | Zip entry cap (Logan's decision); roster registration. |
 | Geometry indexing | 80% | 3 | computed: 10/10 units implemented or better | Acceptance. |
 | Scan render preparation (crease) | 0% | 2 | computed: 0/1 units implemented or better | Roster registration of its 1309 controls, then promotion (Codex). |
-| Native import commands for every format | 50% | 2 | estimate: Native scan.open/info cover STL and all PLY encodings (#105); OBJ and 3MF are explicit refusals. | OBJ and 3MF through scan.open. |
+| Native import commands for every format | 75% | 2 | estimate: Native scan.open/info cover STL, all PLY encodings (#105) and standalone OBJ (#112); 3MF is an explicit refusal. | 3MF through scan.open. |
 | Original-versus-Rust on real scans | 0% | 1 | estimate: No real scan in fixtures/private/ yet. | Logan supplies a scan; run section 5 comparisons. |
 
 ## M3 — Session and commands, native CLI (first dogfood) (47%)

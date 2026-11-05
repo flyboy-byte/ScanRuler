@@ -3,7 +3,7 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 81,
+    "implemented": 82,
     "integrated": 1,
     "planned": 47,
     "specified": 1
@@ -11,7 +11,7 @@
   "verification_levels": {
     "fixed-corpus": 59,
     "fuzzed": 4,
-    "none": 69
+    "none": 70
   },
   "native_suites": 62,
   "native_case_identities_including_refusals": 34603,
@@ -1632,6 +1632,20 @@
         "Broader large-file/performance/corpus and filename ingress acceptance remain open; caller limits are explicit host refusals, not source errors.",
         "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
+      ]
+    },
+    {
+      "id": "io.obj.native",
+      "status": "implemented",
+      "parent": "io.obj",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/112",
+      "tested_sha": "6963e68f0a52dcc3a24bcdb763c56d0296bb4425",
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Native OBJ implemented on main ed5170c, source 6963e68f0a52dcc3a24bcdb763c56d0296bb4425, PR112. All 48 existing-corpus import controls pass (33 retained + 15 OBJ); wrong-state vertexCount=-99 rejects all 48. Raw comparison output: evidence/2026-11-05-native-obj-comparison.json.gz. Six ordinary CLI tests pass.",
+        "Verification label/roster registration deferred to the owner-scheduled M3 milestone batch per the 2026-11-05 verification budget. No acceptance or fixed-corpus promotion is claimed; the existing ci_report.py requirement is unchanged.",
+        "Standalone geometry only: scan.open has no companion-file input. Original missing-texture notice is preserved. Image wiring, native 3MF/STEP and compatible project IO remain separate."
       ]
     },
     {

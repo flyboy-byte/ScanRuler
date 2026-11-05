@@ -26312,6 +26312,50 @@
       "verification": "fixed-corpus"
     },
     {
+      "id": "io.obj.native",
+      "parent": "io.obj",
+      "title": "Open and measure standalone OBJ through the native engine",
+      "gate": "G2",
+      "status": "implemented",
+      "depends_on": [
+        "io.obj.mesh",
+        "engine.session.scan"
+      ],
+      "soft_depends_on": [],
+      "scope": "Wire standalone OBJ into the real scan.open worker/session and native info/fit-plane CLI, preserving missing-texture notices and bounded source refusals. Companion image loading is excluded.",
+      "acceptance": [
+        "Standalone OBJ opens through the engine with original-equivalent mesh, summary, source and session state on success and refusal; a wrong Rust state fails the comparison.",
+        "CLI supplies files and formats results while the engine owns parsing, state and measurements."
+      ],
+      "owner": "Codex",
+      "branch": "codex/native-obj",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/112",
+      "implemented_commit": "6963e68f0a52dcc3a24bcdb763c56d0296bb4425",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/meshWorker.ts",
+        "src/core/parsers/obj.ts",
+        "src/app/scanImport.ts"
+      ],
+      "symbols": [
+        "parseByName",
+        "scanFileNote"
+      ],
+      "rust_paths": [
+        "rust/crates/port-engine/src/native_engine.rs",
+        "rust/crates/port-engine/tests/native_import.rs",
+        "rust/crates/port-cli/src/main.rs",
+        "rust/crates/port-cli/tests/info.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Native OBJ implemented on main ed5170c, source 6963e68f0a52dcc3a24bcdb763c56d0296bb4425, PR112. All 48 existing-corpus import controls pass (33 retained + 15 OBJ); wrong-state vertexCount=-99 rejects all 48. Raw comparison output: evidence/2026-11-05-native-obj-comparison.json.gz. Six ordinary CLI tests pass.",
+        "Verification label/roster registration deferred to the owner-scheduled M3 milestone batch per the 2026-11-05 verification budget. No acceptance or fixed-corpus promotion is claimed; the existing ci_report.py requirement is unchanged.",
+        "Standalone geometry only: scan.open has no companion-file input. Original missing-texture notice is preserved. Image wiring, native 3MF/STEP and compatible project IO remain separate."
+      ],
+      "verification": "none"
+    },
+    {
       "parent": "io.obj",
       "gate": "G3",
       "status": "implemented",
