@@ -89,7 +89,7 @@ def run(out):
  env=os.environ.copy()
  if env.get('RUSTFLAGS') or env.get('CARGO_ENCODED_RUSTFLAGS'):raise ValueError('Explicit coverage environment required; inherited RUSTFLAGS refused')
  env.update(RUSTFLAGS='-C instrument-coverage -C link-dead-code',CARGO_INCREMENTAL='0',CARGO_TARGET_DIR=str(ROOT/'rust/target/coverage-build'),LLVM_PROFILE_FILE=str(profiles/'%m-%p.profraw'))
- build=['cargo','test','-p','port-core','-p','port-io','-p','port-engine','--tests','--no-run','--message-format=json']
+ build=['cargo','test','-p','port-core','-p','port-io','-p','port-engine','-p','xtask','--tests','--no-run','--message-format=json']
  with (out/'build.stderr.log').open('w')as err:
   result=subprocess.run(build,cwd=ROOT/'rust',env=env,text=True,stdout=subprocess.PIPE,stderr=err,check=True)
  (out/'build-messages.jsonl').write_text(result.stdout);executables=[]

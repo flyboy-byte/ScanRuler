@@ -77,6 +77,7 @@ jobs:
           name: native-source-${{ github.sha }}
           path: |
             rust/target/*-diff/
+            !rust/target/private-vase-diff/**
             rust/target/ci/
           if-no-files-found: error
           retention-days: 30

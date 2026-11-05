@@ -221,6 +221,13 @@ const ORACLE_TESTS: &[&str] = &[
     "pinned_stale_error_comparison",
     "pinned_error_normalize_comparison",
     "pinned_clock_utc_comparison",
+    "pinned_native_plane_comparison",
+    "pinned_native_import_comparison",
+    "pinned_native_project_comparison",
+    "pinned_scan_render_comparison",
+    "pinned_zip_inflate_comparison",
+    "pinned_threemf_comparison",
+    "pinned_png_fixed_comparison",
 ];
 
 fn validate_oracle_discovery(list: &str) -> Result<(), String> {
@@ -292,6 +299,8 @@ fn oracle_args() -> Vec<&'static str> {
         "port-io",
         "-p",
         "port-engine",
+        "-p",
+        "xtask",
         "--tests",
     ]
 }
@@ -321,10 +330,14 @@ fn oracle() -> Result<(), String> {
     env();
     let mut args = oracle_args();
     args.extend(["--no-fail-fast", "--", "--ignored", "--nocapture"]);
-    run("cargo", &args, &workspace())
+    run("cargo", &args, &workspace())?;
+    xtask::capture_zip();
+    xtask::capture_threemf();
+    xtask::capture_project();
+    Ok(())
 }
 
-const FUZZ_USAGE: &str = "usage: cargo xtask fuzz <ply|stl> [--seed N] [--cases N] [--out DIR] [--selfcheck] [--minimize]";
+const FUZZ_USAGE: &str = "usage: cargo xtask fuzz <ply|stl|zip|threemf|png> [--seed N] [--cases N] [--out DIR] [--selfcheck] [--minimize]";
 
 /// Standing seeded mutation fuzz of a parser against the frozen original. `--selfcheck`
 /// deliberately corrupts the Rust output and requires the comparison to report divergences.
@@ -399,6 +412,71 @@ fn fuzz(args: &[String]) -> Result<(), String> {
     }
 }
 
+/// Run the existing corpus campaigns without replacing their default seed sets.
+fn fuzz_milestone(args: &[String]) -> Result<(), String> {
+    let unit = &args[0];
+    let (test, prefix) = match unit.as_str() {
+        "zip" => ("zip_inflate", "SCANRULER_ZIP"),
+        "threemf" => ("threemf", "SCANRULER_3MF"),
+        "png" => ("png", "SCANRULER_PNG"),
+        _ => return Err(FUZZ_USAGE.into()),
+    };
+    let mut campaign = Command::new("cargo");
+    campaign
+        .args([
+            "test",
+            "-p",
+            "port-io",
+            "--test",
+            test,
+            "pinned_",
+            "--",
+            "--ignored",
+            "--nocapture",
+        ])
+        .current_dir(workspace());
+    if unit == "png" {
+        campaign.env("SCANRULER_PNG_LIVE", "1");
+    }
+    let mut rest = args[1..].iter();
+    while let Some(flag) = rest.next() {
+        match flag.as_str() {
+            "--selfcheck" => {
+                campaign.env(format!("{prefix}_SABOTAGE"), "1");
+            }
+            "--seed" | "--seeds" | "--cases" | "--flips" | "--images" => {
+                let value = rest.next().ok_or(FUZZ_USAGE)?;
+                if value.split(',').any(|s| s.parse::<u64>().is_err())
+                    || (flag != "--seed" && flag != "--seeds" && value.contains(','))
+                {
+                    return Err(format!("invalid numeric campaign option {flag}={value}"));
+                }
+                let key = match flag.as_str() {
+                    "--seed" | "--seeds" => "SEEDS",
+                    "--cases" if unit != "png" => "CASES",
+                    "--flips" if unit == "png" => "FLIPS",
+                    "--images" if unit == "png" => "IMAGES",
+                    _ => return Err(format!("option {flag} does not apply to {unit}")),
+                };
+                campaign.env(format!("{prefix}_{key}"), value);
+            }
+            _ => return Err(format!("unknown {unit} campaign option {flag}")),
+        }
+    }
+    let mut task = vec!["fuzz".to_owned()];
+    task.extend_from_slice(args);
+    if ensure_oracle_node(&task)? {
+        return Ok(());
+    }
+    pin()?;
+    let status = campaign.status().map_err(|e| e.to_string())?;
+    if status.success() {
+        Ok(())
+    } else {
+        Err(format!("{unit} campaign failed: {status}"))
+    }
+}
+
 fn wasm_probe() -> Result<(), String> {
     let w = workspace();
     run(
@@ -445,6 +523,13 @@ fn main() -> ExitCode {
         "plan" => plan(),
         "wasm" => wasm(),
         "wasm-probe" => wasm_probe(),
+        "fuzz"
+            if args
+                .get(1)
+                .is_some_and(|s| ["zip", "threemf", "png"].contains(&s.as_str())) =>
+        {
+            fuzz_milestone(&args[1..])
+        }
         "fuzz" => fuzz(&args[1..]),
         "env" => {
             env();
@@ -497,5 +582,25 @@ mod oracle_tests {
             validate_oracle_discovery(&(complete() + &format!("{}: test\n", ORACLE_TESTS[0])))
                 .is_err()
         );
+    }
+}
+
+#[cfg(test)]
+mod milestone_fuzz_tests {
+    use super::fuzz_milestone;
+    #[test]
+    fn rejects_wrong_campaign_options_before_starting_tools() {
+        for args in [
+            vec!["zip", "--flips", "1"],
+            vec!["png", "--cases", "1"],
+            vec!["threemf", "--seeds", "1,bad"],
+            vec!["zip", "--cases", "1,7"],
+            vec!["zip", "--seeds"],
+            vec!["zip", "--minimize"],
+        ] {
+            assert!(
+                fuzz_milestone(&args.into_iter().map(str::to_owned).collect::<Vec<_>>()).is_err()
+            );
+        }
     }
 }
