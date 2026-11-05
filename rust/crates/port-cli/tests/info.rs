@@ -307,3 +307,29 @@ fn standalone_obj_reaches_info_and_plane_fit_and_reports_parser_refusal() {
         "failed: This OBJ contains no faces — point clouds are not supported yet.\n"
     );
 }
+
+#[test]
+fn cli_history_switches_apply_real_engine_undo_and_redo() {
+    let scratch = Scratch::new();
+    let path = scratch.0.join("history.ply");
+    std::fs::write(&path, grid_ply()).unwrap();
+    for flag in ["--undo", "--redo"] {
+        let out = Command::new(env!("CARGO_BIN_EXE_scanruler-rs"))
+            .args(["fit-plane", path.to_str().unwrap(), "--sigma", "0", flag])
+            .output()
+            .unwrap();
+        assert!(
+            out.status.success(),
+            "{}",
+            String::from_utf8_lossy(&out.stderr)
+        );
+        assert!(out.stderr.is_empty());
+        let json = String::from_utf8(out.stdout).unwrap();
+        assert!(json.contains("\"undo\":{\"undone\":\"Agent: fit plane to a marked surface\",\"workspace\":\"measure\",\"after\":{\"elements\":0"),"{json}");
+        if flag == "--redo" {
+            assert!(json.contains("\"redo\":{\"redone\":\"Agent: fit plane to a marked surface\",\"workspace\":\"measure\",\"after\":{\"elements\":1"),"{json}");
+        } else {
+            assert!(!json.contains("\"redone\":"), "{json}");
+        }
+    }
+}

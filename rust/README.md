@@ -46,10 +46,11 @@ cargo run -p port-cli -- fit-plane /path/to/scan.ply --box 0 0 -1 3 4 1 --marked
 
 Box coordinates and extensions use mm. `--normal x y z` and `--within-deg` filter
 box/query selections. `--in-plane` changes the relation used with `--orient`.
-The engine owns all selection, fitting, finishing and history recording. Global
-undo/redo and compatible project save/read are subsequent M3 steps; no `--undo`
-or `--redo` switches are exposed yet. Required suite registration and broader
-acceptance remain open under roadmap section 0.
+The engine owns all selection, fitting, finishing and history. `fit-plane --undo`
+applies the recorded undo step; `fit-plane --redo` fits, undoes and redoes through
+that same runtime recorder. The CLI only sends commands and formats results.
+Compatible project save/read, suite registration and broader acceptance remain
+separate steps under roadmap section 0.
 
 ## Rules of the workspace
 

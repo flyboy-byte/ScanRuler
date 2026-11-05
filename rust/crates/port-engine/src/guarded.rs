@@ -366,6 +366,35 @@ impl Runtime {
     pub fn clear_history(&self) -> Result<(), Fault> {
         self.core.history.borrow_mut().clear().map_err(Fault::host)
     }
+    /// Travel on this runtime's sole recorder through the native document host.
+    /// The native adapter's supported hooks complete without re-entering history;
+    /// broader asynchronous family restoration remains a separate continuation.
+    pub(crate) fn restore_native_history<H>(
+        &self,
+        host: &mut H,
+        redo: bool,
+    ) -> Result<crate::history_record::restore::Outcome, Fault>
+    where
+        H: crate::history_record::restore::RestoreHost<Error = Text>,
+    {
+        let mut recorder = self.core.history.try_borrow_mut().map_err(Fault::host)?;
+        // This adapter supports only hooks that resolve synchronously. Poll the
+        // existing restore body once, releasing the recorder before any command
+        // response or subsequent owner turn. Async family hooks need the owned
+        // continuation API; never hold a RefCell borrow across an owner await.
+        let mut work = std::pin::pin!(crate::history_record::restore::travel(
+            &mut recorder,
+            host,
+            redo
+        ));
+        let mut context = std::task::Context::from_waker(std::task::Waker::noop());
+        match std::future::Future::poll(work.as_mut(), &mut context) {
+            std::task::Poll::Ready(result) => result.map_err(Fault::host),
+            std::task::Poll::Pending => Err(Fault::host(
+                "native asynchronous restore hook is not implemented",
+            )),
+        }
+    }
     /// Enumerate only definitions whose native implementations were registered.
     pub fn list(&self) -> Result<Value, Fault> {
         self.core.registry.borrow().list().map_err(registry_fault)
