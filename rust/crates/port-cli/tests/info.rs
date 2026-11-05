@@ -384,11 +384,14 @@ fn m3_project_save_reopen_and_undo_redo_use_engine_state() {
             "{}",
             String::from_utf8_lossy(&out.stderr)
         );
-        assert!(
-            String::from_utf8(out.stdout)
-                .unwrap()
-                .contains("\"fileName\":\"scan.ply\"")
-        );
+        let stdout = String::from_utf8(out.stdout).unwrap();
+        assert!(stdout.contains("\"fileName\":\"scan.ply\""));
+        let listed = if count == 1 {
+            "\"elements\":[{\"id\":1,\"kind\":\"plane\",\"name\":\"Plane 1\",\"status\":\"done\"}]"
+        } else {
+            "\"elements\":[]"
+        };
+        assert!(stdout.contains(listed), "{stdout}");
     }
 }
 #[test]

@@ -51,6 +51,7 @@ if(!process.argv.includes('--case')){
  }
  if(shape.startsWith('obj-')){filename=id+'.obj';inputBytes=readFileSync(new URL('../fixtures/native-import/obj/'+shape.slice(4)+'.obj',import.meta.url))}
  if(shape.startsWith('cyl-')){filename=id+'.stl';inputBytes=readFileSync(new URL('../fixtures/native-cylinder/'+seedText+'.stl',import.meta.url))}
+ if(shape.startsWith('3mf-')){filename=id+'.3mf';inputBytes=readFileSync(new URL('../fixtures/native-import/3mf/'+shape.slice(4)+'.3mf',import.meta.url))}
  if(shape.startsWith('held-')) {
   const held={}
   if(['held-mixed','held-project','held-discard'].includes(shape))held.elements=[{},{}]
