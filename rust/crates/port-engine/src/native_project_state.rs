@@ -370,7 +370,7 @@ pub(super) fn state(state: &State, runtime: &Runtime) -> Result<Value, Fault> {
             ]),
         ),
         ("workspace", value_text("measure")),
-        ("busy", Value::Boolean(false)),
+        ("busy", Value::Null),
         ("running", Value::Null),
         ("scan", scan),
         ("elements", array(elements.iter().map(element).collect())),

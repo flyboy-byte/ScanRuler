@@ -153,6 +153,19 @@ impl Store {
             .find(|(k, _)| k.iter().copied().eq(key.encode_utf16()))
             .map_or(C::Undefined, |(_, v)| v.clone())
     }
+    /// Check a candidate patch without publication, for prepare-before-commit loads.
+    pub(crate) fn preflight(&self, patch: &Fields) -> Result<(), Fault> {
+        check_fields(patch, self.inner.limits)?;
+        let mut next = (*self.snapshot()).clone();
+        for (key, value) in patch {
+            if let Some((_, old)) = next.iter_mut().find(|(k, _)| k == key) {
+                *old = value.clone()
+            } else {
+                next.push((key.clone(), value.clone()))
+            }
+        }
+        check_fields(&next, self.inner.limits)
+    }
     /// Source partial-object publication. Even an empty partial creates a root and notifies.
     pub fn patch(&self, patch: Fields) -> Result<(), Fault> {
         check_fields(&patch, self.inner.limits)?;

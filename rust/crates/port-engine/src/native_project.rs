@@ -72,6 +72,14 @@ fn flat_saved(mut f: Value) -> Value {
         }
     }
 
+    if let Some(active) = get(f.get("sheets"), "image").cloned() {
+        for k in "pxPerMm calSource elements nextId nameCounts dimensions nextDimId dimCounts datum counts nextCountId notes nextNoteId turns mirror".split(' '){let default=match k{"turns"=>Value::Number(0.),"mirror"=>Value::Boolean(false),_=>Value::Undefined};put(&mut f,k,if matches!(k,"turns"|"mirror"){coalesce(get(&active,k),default)}else{vget(&active,k)});}
+    }
+    put(
+        &mut f,
+        "subject",
+        object(vec![("kind", value_text("image"))]),
+    );
     let mut sheet = object(vec![]);
     for k in "pxPerMm calSource elements nextId nameCounts dimensions nextDimId dimCounts datum counts nextCountId notes nextNoteId turns mirror".split(' '){let default=match k{"notes"=>array(vec![]),"nextNoteId"=>Value::Number(1.),"turns"=>Value::Number(0.),"mirror"=>Value::Boolean(false),_=>Value::Undefined};let x=get(&f,k).cloned().unwrap_or(default);put(&mut sheet,k,x)}
     let mut sheets = vget(&f, "sheets");
@@ -261,7 +269,7 @@ fn file_stem(doc: &Session) -> String {
                 }
             })
             .collect::<String>();
-        let n = n.trim_matches(|c: char| c == '.' || c.is_whitespace() || c == '\u{feff}');
+        let n = n.trim_matches(|c: char| c == '.' || js_space(c));
         if !n.is_empty() {
             return n.into();
         }
@@ -303,6 +311,7 @@ fn definition(load: bool) -> Value {
                 object(vec![
                     ("type", value_text("string")),
                     ("format", value_text("binary")),
+                    ("description", value_text("The project file’s contents.")),
                 ]),
             ),
             (
@@ -310,9 +319,21 @@ fn definition(load: bool) -> Value {
                 object(vec![
                     ("type", value_text("string")),
                     ("minLength", Value::Number(1.)),
+                    ("description", value_text("Its name, for the status line.")),
                 ]),
             ),
-            ("discard", object(vec![("type", value_text("boolean"))])),
+            (
+                "discard",
+                object(vec![
+                    ("type", value_text("boolean")),
+                    (
+                        "description",
+                        value_text(
+                            "true: replace the session though it holds measurements (lost unless saved as a project first). Refused otherwise when there is work to lose.",
+                        ),
+                    ),
+                ]),
+            ),
         ];
         required.push(value_text("bytes"))
     }
@@ -329,9 +350,9 @@ fn definition(load: bool) -> Value {
         (
             "description",
             value_text(if load {
-                "Open a .scanruler project in place of the session."
+                "Open a .scanruler project in place of the session — its models, then every measurement in it, remeasured, each fit as it was saved. Refuses while the session holds measurements unless discard is true. Needs the browser. Returns the session. Not undoable: an opened project starts a new history."
             } else {
-                "The session as a .scanruler project file."
+                "The session as a .scanruler project file, as Save Project downloads it: the scan, the reference, the image and every measurement, each rebuilt when it is opened. Needs the browser. Returns the file’s bytes and its name, holds (what is in it, counted — read it before calling the file a revision: a page reset holds no model), aligned (whether the scan stands in an aligned frame) and says (what a workspace wants said of the work saved)."
             }),
         ),
         (
@@ -340,9 +361,16 @@ fn definition(load: bool) -> Value {
                 ("type", value_text("object")),
                 ("properties", object(properties)),
                 ("required", array(required)),
+                ("additionalProperties", Value::Boolean(false)),
             ]),
         ),
     ]);
+    if !load
+        && let Value::Object(f) = &mut d
+        && let Some((_, v)) = f.iter_mut().find(|(k, _)| *k == text("input"))
+    {
+        remove(v, "required");
+    }
     if load {
         put(&mut d, "history", Value::Boolean(false))
     } else {
@@ -400,13 +428,17 @@ pub(super) fn register(runtime: &Runtime, state: &Rc<State>) -> Result<(), Fault
                         let job = state
                             .imports
                             .run(move || async move {
-                                load_project(copy, runtime, bytes, filename, abort).await
+                                let previous=copy.document.store(StoreId::App).get("statusText");
+                                patch(&copy.document,vec![("busy",C::Boolean(true)),("errorText",C::Null),("statusText",C::String(text("Reading project…")))])?;
+                                let result=load_project(copy.clone(),runtime,bytes,filename,abort).await;
+                                if let Err(e)=&result {patch(&copy.document,vec![("statusText",previous)])?;report_load_failure(&copy,e)?;}
+                                result
                             })
                             .map_err(Fault::host)?;
                         ctx.spawn(async move {
                             match job.await {
                                 Ok(v) => Ok(v),
-                                Err(QueueError::Callback(e)) => Err(e),
+                                Err(QueueError::Callback(e))=>Err(e),
                                 Err(e) => Err(Fault::host(e)),
                             }
                         })?;
@@ -418,27 +450,23 @@ pub(super) fn register(runtime: &Runtime, state: &Rc<State>) -> Result<(), Fault
                             .run(move || async move {
                                 let p = collect(&copy)?;
                                 if matches!(p.manifest.get("scan"), Value::Null)
-                                    && copy.saved_project.borrow().is_none()
+                                    && !matches!(&p.manifest,Value::Object(f) if f.iter().any(|(k,_)|!CORE.iter().any(|n|*k==text(n))))
                                 {
                                     return Err(command_error(
                                         CommandErrorCode::Failed,
                                         "There is nothing to save yet — no scan, image or work.",
                                     ));
                                 }
-                                patch(&copy.document, vec![("errorText", C::Null)])?;
-                                let bytes = start_job("scanruler-project-save", move || {
-                                    archive::pack(&p).map_err(|e| kernel_fault(archive_fault(e)))
-                                })?
-                                .await
-                                .map_err(KernelError::fault)?;
-                                if let Some(e) = abort.abort_reason() {
-                                    return Err(Fault::Command(e));
-                                }
-                                let status =
-                                    format!("Project saved — {:.1} MB.", bytes.len() as f64 / 1e6);
+                                let previous=copy.document.store(StoreId::App).get("statusText");
+                                patch(&copy.document,vec![("errorText",C::Null),("busy",C::Boolean(true)),("statusText",C::String(text("Saving project…")))])?;
+                                let pending=start_job("scanruler-project-save",move||archive::pack(&p).map_err(|e|kernel_fault(archive_fault(e))));
+                                let packed=match pending{Ok(work)=>work.await.map_err(KernelError::fault),Err(e)=>Err(e)};
+                                let bytes=match packed{Ok(b)=>b,Err(e)=>{let message=match &e{Fault::Command(e)=>String::from_utf16_lossy(e.message_units()),_=>format!("{e:?}")};let message=format!("The project could not be saved — {message}");patch(&copy.document,vec![("busy",C::Boolean(false)),("statusText",C::String(vec![])),("errorText",C::String(text(&message)))])?;return Err(if matches!(e,Fault::Host(_)){e}else{command_error(CommandErrorCode::Failed,&message)});}};
+                                if let Some(e)=abort.abort_reason(){patch(&copy.document,vec![("busy",C::Boolean(false)),("statusText",previous)])?;return Err(Fault::Command(e));}
+                                let status = format!("Project saved — {} MB.", size_text(bytes.len()));
                                 patch(
                                     &copy.document,
-                                    vec![("statusText", C::String(text(&status)))],
+                                    vec![("statusText", C::String(text(&status))),("busy",C::Boolean(false))],
                                 )?;
                                 Ok(object(vec![
                                     (
@@ -531,6 +559,20 @@ fn prepare(bytes: Vec<u8>, mode: Mode, angle: f64) -> Result<Candidate, Fault> {
             "Native project workspaces beyond Measure are not implemented.",
         ));
     }
+    if let Value::Object(sheets) = m.get("flat").get("sheets") {
+        for (_, sheet) in sheets {
+            if ["elements", "dimensions", "counts", "notes"]
+                .iter()
+                .any(|k| !items(sheet.get(k)).is_empty())
+                || !matches!(sheet.get("datum"), Value::Null)
+            {
+                return Err(command_error(
+                    CommandErrorCode::Unavailable,
+                    "Native project 2D sheet reconstruction is not implemented.",
+                ));
+            }
+        }
+    }
     let loaded = if matches!(s, Value::Null) {
         None
     } else {
@@ -602,6 +644,16 @@ fn prepare(bytes: Vec<u8>, mode: Mode, angle: f64) -> Result<Candidate, Fault> {
                 "Native project restore currently supports marked-plane recipes only.",
             ));
         }
+        if matches!(e.get("fit"), Value::Undefined)
+            && ["orient", "extend", "assumed"]
+                .iter()
+                .any(|k| get(&e, k).is_some())
+        {
+            return Err(command_error(
+                CommandErrorCode::Unavailable,
+                "Native project finishing rebuild without a saved fit is not implemented.",
+            ));
+        }
         let settings = get(&source, "settings")
             .filter(|v| !matches!(v, Value::Null))
             .cloned()
@@ -663,7 +715,14 @@ async fn load_project(
         C::Number(n) if n.is_finite() => n.clamp(5., 120.),
         _ => 30.,
     };
+    #[cfg(test)]
+    let test_gate = LOAD_TEST_GATE.lock().map_err(Fault::host)?.take();
     let c = start_job("scanruler-project", move || {
+        #[cfg(test)]
+        if let Some(gate) = test_gate {
+            gate.wait();
+        }
+
         prepare(bytes, mode, angle).map_err(|e| match e {
             Fault::Command(e) => KernelError::Project(e.code(), e.message_units().to_vec()),
             Fault::Host(e) => KernelError::Host(format!("{e:?}")),
@@ -680,6 +739,63 @@ async fn load_project(
     }
     let m = &c.project.manifest;
     let s = m.get("scan");
+    let mut patches = vec![];
+    if !matches!(s, Value::Null) {
+        let mut patch_fields = vec![];
+        for k in "nextId nextNumber nextOfKind nextDimensionId nextOfDimGroup settings selectMode appliedAlignment".split(' '){patch_fields.push((text(k),plane::cell(vget(s,k))))}
+        patch_fields.extend([
+            (text("elements"), restore_elements(c.elements.clone())),
+            (text("dimensions"), C::Array(Arc::new(vec![]))),
+            (text("sections"), C::Array(Arc::new(vec![]))),
+            (text("showLabels"), plane::cell(vget(s, "showOverlays"))),
+            (
+                text("showBackfaces"),
+                plane::cell(coalesce(get(s, "showBackfaces"), Value::Boolean(true))),
+            ),
+            (
+                text("nextSectionNumber"),
+                plane::cell(coalesce(get(s, "nextSectionNumber"), Value::Number(1.))),
+            ),
+            (text("fileName"), plane::cell(vget(s, "fileName"))),
+        ]);
+        patches.push((StoreId::App, patch_fields));
+    }
+    for (id, part, keys) in [
+        (
+            StoreId::Deviation,
+            "deviation",
+            "source align globalAlign pairs localMaxDistance targetId targetSide targetFacingDeg targetScope showElement range rangeAuto maxDistance maxDistanceAuto bands tolerance showHistogram showNominal showScan showMap split probes nextProbeId",
+        ),
+        (
+            StoreId::Thickness,
+            "thickness",
+            "method maxThickness maxThicknessAuto coneRays coneAngleDeg normalDeviationDeg low high scaleAuto bands limit showHistogram probes nextProbeId",
+        ),
+    ] {
+        patches.push((
+            id,
+            keys.split(' ')
+                .map(|k| (text(k), plane::cell(vget(m.get(part), k))))
+                .collect(),
+        ));
+    }
+    let project_name = name(m.get("name"))
+        .trim_matches(|c: char| js_space(c))
+        .to_string();
+    patches.push((
+        StoreId::App,
+        vec![(
+            text("projectName"),
+            if project_name.is_empty() {
+                C::Null
+            } else {
+                C::String(text(&project_name))
+            },
+        )],
+    ));
+    for (store, fields) in &patches {
+        state.document.store(*store).preflight(fields)?;
+    }
     let id = state
         .worker
         .borrow_mut()
@@ -726,54 +842,12 @@ async fn load_project(
         )
         .map_err(Fault::host)?;
     state.document.commit_scan(prepared.as_ref())?;
-    if !matches!(s, Value::Null) {
-        let mut patch_fields = vec![];
-        for k in "nextId nextNumber nextOfKind nextDimensionId nextOfDimGroup settings selectMode appliedAlignment".split(' '){patch_fields.push((text(k),plane::cell(vget(s,k))))}
-        patch_fields.extend([
-            (text("elements"), restore_elements(c.elements)),
-            (text("dimensions"), C::Array(Arc::new(vec![]))),
-            (text("sections"), C::Array(Arc::new(vec![]))),
-            (text("showLabels"), plane::cell(vget(s, "showOverlays"))),
-            (
-                text("showBackfaces"),
-                plane::cell(
-                    get(s, "showBackfaces")
-                        .cloned()
-                        .unwrap_or(Value::Boolean(true)),
-                ),
-            ),
-            (
-                text("nextSectionNumber"),
-                plane::cell(
-                    get(s, "nextSectionNumber")
-                        .cloned()
-                        .unwrap_or(Value::Number(1.)),
-                ),
-            ),
-            (text("fileName"), plane::cell(vget(s, "fileName"))),
-        ]);
-        state.document.store(StoreId::App).patch(patch_fields)?;
+    runtime.clear_history()?;
+    for (store, fields) in patches {
+        state.document.store(store).patch(fields)?;
     }
     for (id, region) in c.regions {
         state.document.remember_surface(id, Arc::new(region))?
-    }
-    for (id, part, keys) in [
-        (
-            StoreId::Deviation,
-            "deviation",
-            "source align globalAlign pairs localMaxDistance targetId targetSide targetFacingDeg targetScope showElement range rangeAuto maxDistance maxDistanceAuto bands tolerance showHistogram showNominal showScan showMap split probes nextProbeId",
-        ),
-        (
-            StoreId::Thickness,
-            "thickness",
-            "method maxThickness maxThicknessAuto coneRays coneAngleDeg normalDeviationDeg low high scaleAuto bands limit showHistogram probes nextProbeId",
-        ),
-    ] {
-        state.document.store(id).patch(
-            keys.split(' ')
-                .map(|k| (text(k), plane::cell(vget(m.get(part), k))))
-                .collect(),
-        )?;
     }
     let d = m.get("deviation");
     let scope = if matches!(d.get("scope"), Value::Null) {
@@ -790,7 +864,12 @@ async fn load_project(
         "elementScope",
         scope.clone().map(scan_session::MapValue::Words),
     )?;
+    let scope_version = match state.document.store(StoreId::Deviation).get("scopeVersion") {
+        C::Number(v) => v,
+        _ => 0.,
+    };
     state.document.store(StoreId::Deviation).patch(vec![
+        (text("scopeVersion"), C::Number(scope_version + 1.)),
         (
             text("scopeCount"),
             C::Number(scope.as_ref().map_or(0, |s| s.len()) as f64),
@@ -805,7 +884,7 @@ async fn load_project(
         ),
     ])?;
     let project_name = name(m.get("name"))
-        .trim_matches(|c: char| c.is_whitespace() || c == '\u{feff}')
+        .trim_matches(|c: char| js_space(c))
         .to_string();
     let unknown = if let Value::Object(f) = m {
         f.iter().any(|(k, _)| !CORE.iter().any(|n| *k == text(n)))
@@ -890,5 +969,128 @@ fn kernel_fault(e: Fault) -> KernelError {
             KernelError::Source(String::from_utf16_lossy(&message))
         }
         _ => KernelError::Host("native project worker failed".into()),
+    }
+}
+
+fn report_load_failure(state: &State, e: &Fault) -> Result<(), Fault> {
+    let message = match e {
+        Fault::Command(e) => e.message_units().to_vec(),
+        Fault::Error { message, .. } | Fault::Text(message) => message.clone(),
+        _ => text(&format!("{e:?}")),
+    };
+    patch(
+        &state.document,
+        vec![
+            ("busy", C::Boolean(false)),
+            ("errorText", C::String(message)),
+        ],
+    )
+}
+
+// The source's toFixed(1): integer rounding of the exact binary64 input,
+// choosing the larger integer on a tie (Rust formatting chooses even).
+fn size_text(bytes: usize) -> String {
+    let v = bytes as f64 / 1e6;
+    if v == 0. {
+        return "0.0".into();
+    }
+    let bits = v.to_bits();
+    let m = (bits & ((1u64 << 52) - 1)) | (1u64 << 52);
+    let power = ((bits >> 52) & 0x7ff) as i32 - 1023 - 52 + 1;
+    let n = u128::from(m) * 5;
+    let r = if power >= 0 {
+        n << (power as u32)
+    } else {
+        let shift = (-power) as u32;
+        if shift >= 128 {
+            0
+        } else {
+            (n >> shift) + u128::from((n & ((1u128 << shift) - 1)) >= (1u128 << (shift - 1)))
+        }
+    };
+    format!("{}.{}", r / 10, r % 10)
+}
+fn js_space(c: char) -> bool {
+    matches!(c as u32,9..=13|32|160|0x1680|0x2000..=0x200a|0x2028|0x2029|0x202f|0x205f|0x3000|0xfeff)
+}
+fn coalesce(v: Option<&Value>, fallback: Value) -> Value {
+    v.filter(|v| !matches!(v, Value::Null))
+        .cloned()
+        .unwrap_or(fallback)
+}
+
+#[cfg(test)]
+static LOAD_TEST_GATE: std::sync::Mutex<Option<Arc<std::sync::Barrier>>> =
+    std::sync::Mutex::new(None);
+#[cfg(test)]
+mod tests {
+    #![allow(clippy::unwrap_used, clippy::panic)]
+    use super::*;
+    #[test]
+    fn expired_load_never_commits_the_late_prepared_scan() {
+        let e = Engine::new().unwrap();
+        let scan = include_bytes!("../../../../docs/port-plan/fixtures/native-project/scan.ply");
+        e.execute(
+            "scan.open",
+            object(vec![
+                ("bytes", Value::Bytes(scan.to_vec())),
+                ("name", value_text("scan.ply")),
+            ]),
+        )
+        .unwrap();
+        e.execute(
+            "element.fit_marked",
+            object(vec![
+                ("kind", value_text("plane")),
+                (
+                    "vertices",
+                    array((0..25).map(|n| Value::Number(n as f64)).collect()),
+                ),
+                ("sigma", Value::Number(0.)),
+            ]),
+        )
+        .unwrap();
+        let bytes = archive::pack(&collect(&e.state).unwrap()).unwrap();
+        let source = e.document().sources().scan.unwrap();
+        let graph = e.logical_graph().unwrap();
+        let elements = e.document().store(StoreId::App).get("elements");
+        let history = e.history().past.len();
+        let gate = Arc::new(std::sync::Barrier::new(2));
+        *LOAD_TEST_GATE.lock().unwrap() = Some(gate.clone());
+        let result = Rc::new(RefCell::new(None));
+        let receive = result.clone();
+        let ticket = e
+            .submit(
+                "project.load",
+                object(vec![
+                    ("bytes", Value::Bytes(bytes)),
+                    ("discard", Value::Boolean(true)),
+                ]),
+                move |v| *receive.borrow_mut() = Some(v),
+            )
+            .unwrap();
+        // Advance the test host's timer, leaving production deadlines unchanged.
+        e.poll().unwrap();
+        for timer in e.host.timers.borrow_mut().iter_mut() {
+            timer.at = Instant::now();
+        }
+        e.poll().unwrap();
+        gate.wait();
+        let until = Instant::now() + Duration::from_secs(5);
+        while !ticket.complete() || e.state.imports.busy() {
+            assert!(Instant::now() < until);
+            e.poll().unwrap();
+            std::thread::sleep(Duration::from_millis(1));
+        }
+        assert!(
+            matches!(result.borrow().as_ref(),Some(Err(Fault::Command(e))) if e.code()==CommandErrorCode::Timeout)
+        );
+        assert!(Arc::ptr_eq(&source, &e.document().sources().scan.unwrap()));
+        assert!(Arc::ptr_eq(&graph, &e.logical_graph().unwrap()));
+        assert_eq!(
+            cell_value(&elements),
+            cell_value(&e.document().store(StoreId::App).get("elements"))
+        );
+        assert_eq!(history, e.history().past.len());
     }
 }

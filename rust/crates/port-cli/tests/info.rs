@@ -333,3 +333,61 @@ fn cli_history_switches_apply_real_engine_undo_and_redo() {
         }
     }
 }
+
+#[test]
+fn m3_project_save_reopen_and_undo_redo_use_engine_state() {
+    let scratch = Scratch::new();
+    let scan = scratch.0.join("scan.ply");
+    let saved = scratch.0.join("work.scanruler");
+    let undone = scratch.0.join("undone.scanruler");
+    std::fs::write(&scan, grid_ply()).unwrap();
+    for (flag, path, count) in [("--redo", &saved, 1), ("--undo", &undone, 0)] {
+        let out = Command::new(env!("CARGO_BIN_EXE_scanruler-rs"))
+            .args([
+                "fit-plane",
+                scan.to_str().unwrap(),
+                "--sigma",
+                "0",
+                flag,
+                "--save",
+                path.to_str().unwrap(),
+            ])
+            .output()
+            .unwrap();
+        assert!(
+            out.status.success(),
+            "{}",
+            String::from_utf8_lossy(&out.stderr)
+        );
+        let p = port_engine::project::unpack(&std::fs::read(path).unwrap()).unwrap();
+        let field = |v: &port_engine::schema_value::Value, k: &str| {
+            if let port_engine::schema_value::Value::Object(f) = v {
+                f.iter()
+                    .find(|(key, _)| *key == k.encode_utf16().collect::<Vec<_>>())
+                    .map(|(_, v)| v.clone())
+                    .unwrap()
+            } else {
+                panic!("expected object")
+            }
+        };
+        let elements = field(&field(&p.manifest, "scan"), "elements");
+        assert!(
+            matches!(elements,port_engine::schema_value::Value::Array(ref a) if a.len()==count)
+        );
+        assert_eq!(p.members[0].1, grid_ply().as_bytes());
+        let out = Command::new(env!("CARGO_BIN_EXE_scanruler-rs"))
+            .args(["info", path.to_str().unwrap()])
+            .output()
+            .unwrap();
+        assert!(
+            out.status.success(),
+            "{}",
+            String::from_utf8_lossy(&out.stderr)
+        );
+        assert!(
+            String::from_utf8(out.stdout)
+                .unwrap()
+                .contains("\"fileName\":\"scan.ply\"")
+        );
+    }
+}

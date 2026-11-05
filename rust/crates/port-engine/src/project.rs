@@ -237,5 +237,8 @@ pub fn pack(p: &Project) -> Result<Vec<u8>, String> {
     put32(&mut out, len);
     put32(&mut out, off);
     put16(&mut out, 0);
+    if out.len() > MAX_NATIVE_PROJECT {
+        return Err("Native project byte budget exceeded.".into());
+    }
     Ok(out)
 }

@@ -64,7 +64,7 @@ Phases: P05, P07, P08, P09.
 | M3b select and fit-plane | 75% | 2 | estimate: Merged in #108 (a058172); 205 of 212 master controls. | Slice acceptance. |
 | M3c global undo and redo | 75% | 2 | estimate: Merged in #110 (ac754d7); 212/212 controls. | Slice acceptance. |
 | Measurement slice unit | 0% | 1 | computed: 0/1 units implemented or better | Accept once M3a-M3d and roster are integrated. |
-| M3d project save and read | 0% | 3 | computed: 0/1 units implemented or better | Not started; original .scanruler format is the judge. |
+| M3d project save and read | 0% | 3 | computed: 0/1 units implemented or better | M3d native scan/marked-plane slice in PR113; full M6 and scheduled milestone verification remain open. |
 | Roster: register new suites | 0% | 1 | estimate: Engine, render, inflate, 3MF and PNG suites run in CI but are not in ci/native-suites.json. | One PR holding rust/xtask. |
 | Browser/Wasm measurement slice (P09) | 10% | 2 | estimate: Bounded Wasm harness coverage exists (harness.wasm.*); no browser command flow. | Same slice running in the browser build. |
 | Logan runs open-fit-undo-save on his scan | 0% | 1 | estimate: Needs M3d and a real scan. | The M3 exit condition. |

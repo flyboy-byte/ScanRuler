@@ -183,7 +183,12 @@ pub(super) fn validate(m: &V) -> Result<(), String> {
     }
     if ["deviation", "thickness", "flat"]
         .iter()
-        .any(|k| matches!(m.get(k), V::Undefined | V::Null | V::Boolean(false)))
+        .any(|k| match m.get(k) {
+            V::Undefined | V::Null | V::Boolean(false) => true,
+            V::Number(n) => *n == 0. || n.is_nan(),
+            V::String(s) => s.is_empty(),
+            _ => false,
+        })
     {
         return invalid("missing parts");
     }

@@ -102,7 +102,7 @@ impl Parser<'_> {
     fn value(&mut self, depth: usize) -> Result<V, String> {
         self.nodes += 1;
         if depth > 128 {
-            return Err("Malformed project: nesting depth.".into());
+            return Err("Native project JSON depth budget exceeded.".into());
         }
         if self.nodes > 2_000_000 {
             return Err("Native project JSON node budget exceeded.".into());

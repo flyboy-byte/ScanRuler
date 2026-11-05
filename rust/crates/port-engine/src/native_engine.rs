@@ -728,8 +728,8 @@ impl Engine {
         })
         .map_err(Fault::host)?;
         let mut limits = guarded::Limits::default();
-        limits.registry.schema.units = MAX_INPUT_BYTES + 1_000_000;
-        limits.registry.schema.work = MAX_INPUT_BYTES * 2 + 2_000_000;
+        limits.registry.schema.units = crate::project::MAX_NATIVE_PROJECT + 1_000_000;
+        limits.registry.schema.work = crate::project::MAX_NATIVE_PROJECT * 2 + 2_000_000;
         let runtime = Runtime::new(owner.clone(), host.clone(), limits);
         *link.borrow_mut() = Some(runtime.downgrade());
         let weak = Rc::downgrade(&state);

@@ -70,7 +70,7 @@ fn fault(f: Fault) -> String {
     }
 }
 const USAGE: &str =
-    "Usage: scanruler-rs <info|fit-plane> <scan.stl|scan.ply|scan.obj> [--units mm|cm|m|in] [--save project.scanruler]
+    "Usage: scanruler-rs <info|fit-plane> <scan.stl|scan.ply|scan.obj|project.scanruler> [--units mm|cm|m|in] [--save project.scanruler]
 Plane options: [--sigma 0|1|2|3] [--box xmin ymin zmin xmax ymax zmax] [--marked]
 [--normal x y z] [--within-deg degrees] [--orient XY|YZ|XZ] [--in-plane]
 [--extend uMin uMax vMin vMax] [--undo] [--redo]

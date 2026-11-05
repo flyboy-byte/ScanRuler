@@ -49,8 +49,34 @@ box/query selections. `--in-plane` changes the relation used with `--orient`.
 The engine owns all selection, fitting, finishing and history. `fit-plane --undo`
 applies the recorded undo step; `fit-plane --redo` fits, undoes and redoes through
 that same runtime recorder. The CLI only sends commands and formats results.
-Compatible project save/read, suite registration and broader acceptance remain
-separate steps under roadmap section 0.
+The M3 project slice can save and reopen the original schema-1 `.scanruler` format:
+
+```bash
+cargo run -p port-cli -- fit-plane /path/to/scan.ply --sigma 0 --redo --save work.scanruler
+cargo run -p port-cli -- info work.scanruler
+cargo run -p port-cli -- fit-plane /path/to/scan.ply --undo --save without-plane.scanruler
+```
+
+`--save` also works with `info`; the CLI writes the engine's archive through a
+temporary file and atomic rename. A `.scanruler` input supplies its own saved
+units; `--units` applies to raw scans. Loading starts fresh history and restores
+IDs, recipes, stored fits and pose. Unknown plugin JSON and their archive members
+survive a load/save cycle, and opening another raw scan drops those kept parts.
+
+This slice restores standalone STL/PLY/OBJ and marked-plane recipes. Projects
+requiring references, images/companions, measured maps, other element families,
+dimensions/sections, 2D work, or finishing rebuilds without a saved fit are
+refused before replacement. Full M6 compatibility
+remains open. Loading validates and prepares before committing; malformed files,
+resource refusal and an expired load leave the prior scan and history intact.
+
+The writer uses standard ZIP **stored** members; the original app reads them,
+and Rust reads the original's deflated archives. Stored archives can be larger.
+The source's 16-member, 64 MiB manifest and 1 GiB aggregate checks remain; native
+policy additionally caps the archive/decompressed total at 128 MiB, raw scan at
+64 MiB, JSON at two million nodes/128 parser levels (schema nesting remains 64),
+and the existing mesh/store budgets. ZIP64 loading is explicitly unavailable.
+Suite registration and milestone acceptance remain roadmap section 0's separate batch.
 
 ## Rules of the workspace
 
