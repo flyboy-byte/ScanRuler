@@ -10,7 +10,7 @@ M3 project slice are available through the engine and `info` / `fit-plane` CLI; 
 | `port-core` | Pure core: no DOM, files or global state | Full mesh-graph construction, adjacency/components/selection, bounds/centroids, normals/orientation, dense solves, TLS/clipped planes and curvature discrimination; initial units/IDs/transforms and pin |
 | `port-engine` | Session, commands, jobs, history | Runtime/task owner, real scan document, STL/PLY/OBJ scan.open, queries/marks, plane fitting, undo/redo and M3 project save/read |
 | `port-io` | Formats and the `.scanruler` project reader/writer | STL, PLY, OBJ/MTL, inflate/zip and 3MF libraries; M3 project orchestration currently lives in port-engine; full project compatibility remains open |
-| `port-cli` | `scanruler-rs`, native front end for differential runs | `info` and `fit-plane` use registered engine commands |
+| `port-cli` | `scanruler-rs`, native front end for differential runs | `info`, `fit-plane` and `fit-cylinder` use registered engine commands |
 | `port-wasm-probe` | Private bounded browser-runtime test ABI | Bounded original/native/browser comparison ABI; not a product UI or engine integration |
 | `xtask` | Project tasks | `ci`, `oracle`, `pin`, `plan`, `wasm`, `wasm-probe`, `env` |
 
@@ -42,6 +42,7 @@ Fit a scan's full surface, or query/mark a box before fitting:
 ```bash
 cargo run -p port-cli -- fit-plane /path/to/scan.ply --sigma 0
 cargo run -p port-cli -- fit-plane /path/to/scan.ply --box 0 0 -1 3 4 1 --marked --orient XY --extend 1 2 3 4
+cargo run -p port-cli -- fit-cylinder /path/to/bore.stl --assumed 20 --orient XY --extend 1 2
 ```
 
 Box coordinates and extensions use mm. `--normal x y z` and `--within-deg` filter

@@ -32,7 +32,7 @@ fn rigid(v: &Value) -> Value {
         ("translation", vget(v, "t")),
         (
             "rotationDeg",
-            Value::Number(sin.atan2(cos) * 180. / std::f64::consts::PI),
+            Value::Number(port_core::js_atan2(sin, cos) * 180. / std::f64::consts::PI),
         ),
         (
             "distanceMm",

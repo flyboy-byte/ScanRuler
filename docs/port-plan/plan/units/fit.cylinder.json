@@ -51,8 +51,7 @@
   "evidence": [],
   "open_items": [
     "pinned_cylinder_comparison: 170/170 bit-identical against the pinned original (133 fitted, 17 refused with the original's FitError text, 20 refinements), corpus fixtures/cylinder/generate.py, oracle oracle/cylinder.cjs. Wrong values fail it: damping 0.3 -> 0.31 (kernels) and coverage 360 -> 359.999 (marked body).",
-    "js_atan2 (port-core numeric, fdlibm as V8): 300,289 pairs bit-identical with Node 22 Math.atan2 (atan2_matches_node). Rust f64::atan2 differs for about 1 in 6 inputs; native_plane_finish.rs and native_project_state.rs still use f64::atan2 and should switch.",
-    "Next: element.fit_marked kind cylinder in the engine (draft text, assumed/orient/extend finishing, describeElement, project recipe) and CLI fit-cylinder.",
+    "js_atan2 (port-core numeric, fdlibm as V8): 300,289 pairs bit-identical with Node 22 Math.atan2 (atan2_matches_node). Rust f64::atan2 differs for about 1 in 6 inputs; native_plane_finish.rs and native_project_state.rs switch to it in engine.measurement.cylinder.",
     "Verification label and roster registration wait for the owner-scheduled milestone batch (2026-11-05 verification budget)."
   ],
   "verification": "none"

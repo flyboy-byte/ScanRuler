@@ -2803,6 +2803,62 @@
       "verification": "fixed-corpus"
     },
     {
+      "id": "engine.measurement.cylinder",
+      "parent": "P08",
+      "title": "Native element.fit_marked for cylinders, project restore and CLI fit-cylinder",
+      "gate": "G2",
+      "status": "implemented",
+      "depends_on": [
+        "engine.measurement.slice",
+        "fit.cylinder"
+      ],
+      "soft_depends_on": [],
+      "scope": "The cylinder branch of element.fit_marked in the native engine: draft hint, assumed diameter, orient (axis), extend (start/end), describeElement, discard text, per-kind counters and one history step; marked-cylinder recipes refitted on project.load; CLI fit-cylinder. Seeded element.fit, fitInside windows set from the panel, and sphere/cone/torus stay unavailable.",
+      "acceptance": [
+        "Original and Rust command results and full store state after every step are byte-identical on fixed tube meshes (closed, noisy, tilted, partial arc, flat refusal, 1,600-point refusal) across sigma, units, assumed, orient, extend, name, box, undo/redo; a wrong radius fails the comparison."
+      ],
+      "owner": "Claude",
+      "branch": "claude/marked-cylinder-engine",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/commands/core/element.ts",
+        "src/app/measureWorkspace.ts",
+        "src/state/store.ts",
+        "src/core/elements/extend.ts",
+        "src/core/elements/orient.ts",
+        "src/core/elements/assumed.ts",
+        "src/commands/state.ts"
+      ],
+      "symbols": [
+        "fitMarked",
+        "finishAndCreate",
+        "runDraftPaintFit",
+        "orientFit",
+        "withSide",
+        "setDraftAssumed",
+        "describeElement"
+      ],
+      "rust_paths": [
+        "rust/crates/port-engine/src/native_plane.rs",
+        "rust/crates/port-engine/src/native_plane_finish.rs",
+        "rust/crates/port-engine/src/native_project.rs",
+        "rust/crates/port-engine/src/native_project_state.rs",
+        "rust/crates/port-engine/tests/native_cylinder.rs",
+        "rust/crates/port-cli/src/main.rs",
+        "rust/crates/port-cli/tests/info.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "pinned_native_cylinder_comparison: 45/45 byte-identical (results and full stores after every step), fixtures/native-cylinder/generate.py, oracle branch cyl- in oracle/scan-session-owned.mjs. Wrong values fail it: radius x(1+1e-9) and the nextId store canary (SCANRULER_NATIVE_CYLINDER_CANARY) both turn all 45 red.",
+        "Plane regressions after switching orient to js_atan2 and fixing the discard count's thousands separator: native plane 212/212 and M3d project 23/23 still pass.",
+        "saved_cylinder_reopens_unchanged: an assumed/oriented/extended cylinder saves and reloads to identical element state (plain test; no oracle project trace for cylinders yet).",
+        "Verification label and roster registration wait for the owner-scheduled milestone batch (2026-11-05 verification budget)."
+      ],
+      "verification": "none"
+    },
+    {
       "id": "engine.measurement.slice",
       "parent": "P08",
       "title": "Integrate scan/session and marked-plane command slice",
@@ -19601,8 +19657,7 @@
       "evidence": [],
       "open_items": [
         "pinned_cylinder_comparison: 170/170 bit-identical against the pinned original (133 fitted, 17 refused with the original's FitError text, 20 refinements), corpus fixtures/cylinder/generate.py, oracle oracle/cylinder.cjs. Wrong values fail it: damping 0.3 -> 0.31 (kernels) and coverage 360 -> 359.999 (marked body).",
-        "js_atan2 (port-core numeric, fdlibm as V8): 300,289 pairs bit-identical with Node 22 Math.atan2 (atan2_matches_node). Rust f64::atan2 differs for about 1 in 6 inputs; native_plane_finish.rs and native_project_state.rs still use f64::atan2 and should switch.",
-        "Next: element.fit_marked kind cylinder in the engine (draft text, assumed/orient/extend finishing, describeElement, project recipe) and CLI fit-cylinder.",
+        "js_atan2 (port-core numeric, fdlibm as V8): 300,289 pairs bit-identical with Node 22 Math.atan2 (atan2_matches_node). Rust f64::atan2 differs for about 1 in 6 inputs; native_plane_finish.rs and native_project_state.rs switch to it in engine.measurement.cylinder.",
         "Verification label and roster registration wait for the owner-scheduled milestone batch (2026-11-05 verification budget)."
       ],
       "verification": "none"

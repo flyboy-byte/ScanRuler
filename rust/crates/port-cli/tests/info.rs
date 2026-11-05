@@ -391,3 +391,55 @@ fn m3_project_save_reopen_and_undo_redo_use_engine_state() {
         );
     }
 }
+#[test]
+fn fit_cylinder_finishes_saves_and_refuses() {
+    let scratch = Scratch::new();
+    let fixtures = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../../../docs/port-plan/fixtures/native-cylinder");
+    let project = scratch.0.join("bore.scanruler");
+    let out = Command::new(env!("CARGO_BIN_EXE_scanruler-rs"))
+        .arg("fit-cylinder")
+        .arg(fixtures.join("noisy.stl"))
+        .args([
+            "--assumed",
+            "20",
+            "--extend",
+            "1",
+            "2",
+            "--orient",
+            "XY",
+            "--save",
+        ])
+        .arg(&project)
+        .output()
+        .unwrap();
+    assert!(
+        out.status.success(),
+        "{}",
+        String::from_utf8_lossy(&out.stderr)
+    );
+    let stdout = String::from_utf8(out.stdout).unwrap();
+    for part in [
+        r#""name":"Cylinder 1","kind":"cylinder""#,
+        r#""axis":[0,0,1]"#,
+        r#""assumed":20,"orient":{"ref":-1,"relation":"normal"},"extend":{"kind":"cylinder","start":1,"end":2}"#,
+    ] {
+        assert!(stdout.contains(part), "{part} not in {stdout}");
+    }
+    assert!(project.exists());
+    let out = Command::new(env!("CARGO_BIN_EXE_scanruler-rs"))
+        .arg("fit-cylinder")
+        .arg(fixtures.join("flat.stl"))
+        .output()
+        .unwrap();
+    assert_eq!(out.status.code(), Some(2));
+    assert!(out.stdout.is_empty());
+    assert!(String::from_utf8_lossy(&out.stderr).contains("Couldn't find an axis"));
+    let out = Command::new(env!("CARGO_BIN_EXE_scanruler-rs"))
+        .arg("fit-plane")
+        .arg(fixtures.join("noisy.stl"))
+        .args(["--assumed", "20"])
+        .output()
+        .unwrap();
+    assert!(!out.status.success());
+}

@@ -70,11 +70,11 @@ fn fault(f: Fault) -> String {
     }
 }
 const USAGE: &str =
-    "Usage: scanruler-rs <info|fit-plane> <scan.stl|scan.ply|scan.obj|project.scanruler> [--units mm|cm|m|in] [--save project.scanruler]
-Plane options: [--sigma 0|1|2|3] [--box xmin ymin zmin xmax ymax zmax] [--marked]
-[--normal x y z] [--within-deg degrees] [--orient XY|YZ|XZ] [--in-plane]
-[--extend uMin uMax vMin vMax] [--undo] [--redo]
-Box coordinates and extensions are in millimetres. --marked uses scan.query. --redo first undoes.";
+    "Usage: scanruler-rs <info|fit-plane|fit-cylinder> <scan.stl|scan.ply|scan.obj|project.scanruler> [--units mm|cm|m|in] [--save project.scanruler]
+Fit options: [--sigma 0|1|2|3] [--box xmin ymin zmin xmax ymax zmax] [--marked]
+[--normal x y z] [--within-deg degrees] [--orient XY|YZ|XZ] [--in-plane] [--undo] [--redo]
+Plane: [--extend uMin uMax vMin vMax]. Cylinder: [--extend start end] [--assumed diameter]
+Box coordinates, extensions and diameters are in millimetres. --marked uses scan.query. --redo first undoes.";
 fn numbers<const N: usize>(
     args: &mut impl Iterator<Item = String>,
     flag: &str,
@@ -101,9 +101,13 @@ fn run() -> Result<(), String> {
         println!("{USAGE}");
         return Ok(());
     }
-    if command != "info" && command != "fit-plane" {
-        return Err(format!("Unknown command {command:?}. Use --help."));
-    }
+    let kind = match command.as_str() {
+        "info" => None,
+        "fit-plane" => Some("plane"),
+        "fit-cylinder" => Some("cylinder"),
+        _ => return Err(format!("Unknown command {command:?}. Use --help.")),
+    };
+    let fit = kind.is_some();
     let path = args.next().ok_or("Command requires a scan path")?;
     let mut save = None;
     let mut units = "mm".to_string();
@@ -117,39 +121,44 @@ fn run() -> Result<(), String> {
     let mut orient = None;
     let mut in_plane = false;
     let mut extend = None;
+    let mut assumed = None;
     while let Some(arg) = args.next() {
         if arg == "--save" {
             save = Some(args.next().ok_or("--save requires a project path")?);
         } else if arg == "--units" {
             units = args.next().ok_or("--units requires mm, cm, m or in")?
-        } else if command == "fit-plane" && arg == "--sigma" {
+        } else if fit && arg == "--sigma" {
             sigma = Some(
                 args.next()
                     .ok_or("--sigma requires 0, 1, 2 or 3")?
                     .parse::<f64>()
                     .map_err(|_| "--sigma requires a number")?,
             );
-        } else if command == "fit-plane" && arg == "--box" {
+        } else if fit && arg == "--box" {
             let v = numbers::<6>(&mut args, "--box")?;
             bounds = Some(Value::Object(vec![
                 (text("min"), vector([v[0], v[1], v[2]])),
                 (text("max"), vector([v[3], v[4], v[5]])),
             ]));
-        } else if command == "fit-plane" && arg == "--marked" {
+        } else if fit && arg == "--marked" {
             marked = true;
-        } else if command == "fit-plane" && arg == "--normal" {
+        } else if fit && arg == "--normal" {
             normal = Some(numbers::<3>(&mut args, "--normal")?);
-        } else if command == "fit-plane" && arg == "--within-deg" {
+        } else if fit && arg == "--within-deg" {
             within = Some(numbers::<1>(&mut args, "--within-deg")?[0]);
-        } else if command == "fit-plane" && arg == "--orient" {
+        } else if fit && arg == "--orient" {
             orient = Some(args.next().ok_or("--orient requires a plane reference")?);
-        } else if command == "fit-plane" && arg == "--in-plane" {
+        } else if fit && arg == "--in-plane" {
             in_plane = true;
-        } else if command == "fit-plane" && arg == "--extend" {
-            extend = Some(numbers::<4>(&mut args, "--extend")?);
-        } else if command == "fit-plane" && arg == "--undo" {
+        } else if kind == Some("plane") && arg == "--extend" {
+            extend = Some(numbers::<4>(&mut args, "--extend")?.to_vec());
+        } else if kind == Some("cylinder") && arg == "--extend" {
+            extend = Some(numbers::<2>(&mut args, "--extend")?.to_vec());
+        } else if kind == Some("cylinder") && arg == "--assumed" {
+            assumed = Some(numbers::<1>(&mut args, "--assumed")?[0]);
+        } else if fit && arg == "--undo" {
             undo = true;
-        } else if command == "fit-plane" && arg == "--redo" {
+        } else if fit && arg == "--redo" {
             redo = true;
             undo = true;
         } else {
@@ -227,7 +236,7 @@ fn run() -> Result<(), String> {
         text("components"),
         Value::Number(engine.components() as f64),
     ));
-    if command == "fit-plane" {
+    if let Some(kind) = kind {
         let vertices = summary
             .iter()
             .find(|(k, _)| *k == text("vertices"))
@@ -239,7 +248,7 @@ fn run() -> Result<(), String> {
                 }
             })
             .ok_or("Engine returned no vertex count")?;
-        let mut input = vec![(text("kind"), Value::String(text("plane")))];
+        let mut input = vec![(text("kind"), Value::String(text(kind)))];
         let normal = normal.map(|v| {
             let mut fields = vec![(text("dir"), vector(v))];
             if let Some(within) = within {
@@ -278,7 +287,7 @@ fn run() -> Result<(), String> {
             }
         } else {
             if vertices > 1_000_000 {
-                return Err("Scan exceeds the native marked-plane input budget.".into());
+                return Err("Scan exceeds the native marked-fit input budget.".into());
             }
             input.push((
                 text("vertices"),
@@ -296,13 +305,20 @@ fn run() -> Result<(), String> {
             input.push((
                 text("extend"),
                 Value::Object(
-                    ["uMin", "uMax", "vMin", "vMax"]
-                        .into_iter()
-                        .zip(extend)
-                        .map(|(k, v)| (text(k), Value::Number(v)))
-                        .collect(),
+                    if kind == "cylinder" {
+                        &["start", "end"][..]
+                    } else {
+                        &["uMin", "uMax", "vMin", "vMax"][..]
+                    }
+                    .iter()
+                    .zip(extend)
+                    .map(|(k, v)| (text(k), Value::Number(v)))
+                    .collect(),
                 ),
             ));
+        }
+        if let Some(assumed) = assumed {
+            input.push((text("assumed"), Value::Number(assumed)))
         }
         if let Some(sigma) = sigma {
             input.push((text("sigma"), Value::Number(sigma)))
