@@ -7,6 +7,7 @@ use port_core::{
         Cylinder, axis_from_normals, fit_cylinder_clipped, fit_cylinder_on_axis, ransac_cylinder,
         refine_cylinder_geometric,
     },
+    marked_cylinder::{AxialWindow, Error, fit_cylinder_on_selection},
     ransac::{RansacLimits, RansacOptions},
 };
 use std::{
@@ -153,6 +154,47 @@ fn run(c: &Case) -> Vec<u8> {
                 ids(&mut b, &r.inliers)
             }
         },
+        "marked" => {
+            let window = (c.params.len() > 1).then(|| AxialWindow {
+                start: c.params[1],
+                end: c.params[2],
+            });
+            match fit_cylinder_on_selection(
+                &c.p,
+                &c.n,
+                c.idx.clone().into(),
+                c.params[0],
+                window,
+                100_000,
+            ) {
+                Ok(r) => {
+                    b.push(1);
+                    for x in r.center.into_iter().chain(r.axis).chain([
+                        r.radius,
+                        r.length,
+                        r.coverage,
+                        r.sigma,
+                        r.form_error,
+                        r.residual_min,
+                        r.residual_max,
+                    ]) {
+                        b.extend(x.to_le_bytes())
+                    }
+                    b.extend((r.used_points as u32).to_le_bytes());
+                    b.extend((r.region_size as u32).to_le_bytes());
+                    ids(&mut b, &r.region)
+                }
+                Err(Error::Source(m)) => {
+                    b.push(2);
+                    let units: Vec<u16> = m.encode_utf16().collect();
+                    b.extend((units.len() as u32).to_le_bytes());
+                    for u in units {
+                        b.extend(u.to_le_bytes())
+                    }
+                }
+                Err(e) => panic!("host error {e:?}"),
+            }
+        }
         "circle" => {
             let pu: Vec<f64> = c
                 .idx

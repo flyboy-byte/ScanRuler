@@ -95,6 +95,9 @@ fn cross(a: [f64; 3], b: [f64; 3]) -> [f64; 3] {
 }
 
 /// linalg.ts::orthoBasis: two unit vectors completing `n` into a right-handed frame.
+pub(crate) fn basis(n: [f64; 3]) -> ([f64; 3], [f64; 3]) {
+    ortho_basis(n)
+}
 fn ortho_basis(n: [f64; 3]) -> ([f64; 3], [f64; 3]) {
     let ax = n[0].abs();
     let ay = n[1].abs();

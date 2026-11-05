@@ -29,6 +29,8 @@ pub mod mesh_graph;
 pub mod mesh_selection;
 pub mod normals;
 mod numeric;
+/// V8's Math.atan and Math.atan2 (fdlibm), bit-for-bit.
+pub use numeric::{js_atan, js_atan2};
 pub mod orientation;
 pub mod plane;
 pub mod ransac;
@@ -51,6 +53,8 @@ pub mod sphere;
 
 /// Lossless Unicode command-label text and source-compatible provider ordering.
 pub mod js_string;
+/// fitCylinderOnSelection: the hand-painted cylinder element body.
+pub mod marked_cylinder;
 /// Complete marked-sphere element output/refusal continuation.
 pub mod marked_sphere;
 /// Shared fixed-selection marking-size guard.

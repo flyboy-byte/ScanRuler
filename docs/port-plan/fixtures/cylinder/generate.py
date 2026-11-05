@@ -110,6 +110,22 @@ def main():
     add("clipped", [0, 0, 0, 0, 0, 1, 10, 3.0], on_axis)
     add("refine", [0, 0, 0, 0, 0, 1, 10, 60.0], on_axis)
     add("clipped", [0, 0, 0, 0, 0, 1, 10, 3.0], p, idx=[i for i in range(50) if i % 3] + [1, 1, 2])
+    # fitCylinderOnSelection (the marked element body): params are sigma, then
+    # an optional axial window (start, end).
+    for p, nn, r, axis, centre in shapes:
+        add("marked", [3.0], p, nn)
+        add("marked", [0.0], p, nn)
+        add("marked", [3.0, -2.0, -3.0], p, nn)
+        add("marked", [2.0, 1.0, 1.0], p, nn)
+        add("marked", [3.0, -1e6, 0.0], p, nn)
+    p, nn = cylinder(rng, 300, 15, (0.1, 0.2, 1), (2, 2, 2), 150, noise=0.05, nnoise=0.1)
+    add("marked", [3.0], p, nn)
+    p, nn = plane(rng, 300, 0.01)
+    add("marked", [3.0], p, nn)
+    p, nn = cylinder(rng, 19, 10)
+    add("marked", [3.0], p, nn)
+    p, nn = cylinder(rng, 60, 10, noise=0.01)
+    add("marked", [3.0], p, nn, idx=[i for i in range(60) if i % 4] + [5, 5])
     # The circle kernel on its own: x and y as plane coordinates.
     for pts in ([[1, 0, 0], [0, 1, 0], [-1, 0, 0]], [[0, 0, 0], [1, 1, 0], [2, 2, 0]], [[0, 0, 0], [1, 0, 0]],
                 [[5000 + 3 * math.cos(t / 10), 4000 + 3 * math.sin(t / 10), 0] for t in range(12)]):

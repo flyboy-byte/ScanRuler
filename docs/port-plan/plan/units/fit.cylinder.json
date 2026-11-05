@@ -1,7 +1,7 @@
 {
   "id": "fit.cylinder",
   "parent": "P07",
-  "title": "Port fixed-selection, clipped and robust cylinder fitting",
+  "title": "Port cylinder fitting kernels and the marked-cylinder element body",
   "gate": "G2",
   "status": "implemented",
   "depends_on": [
@@ -11,19 +11,21 @@
     "fit.curvature.gate"
   ],
   "soft_depends_on": [],
-  "scope": "cylinder.ts radial/cylinderResidual, axisFromNormals, fitCylinderOnAxis, refineCylinderGeometric, fitCylinderClipped, cylinderFrom2 and ransacCylinder, plus circle2d.ts fitCircle2d and the linalg orthoBasis/projection helpers they use. splitTwoCylinders, fitCylinderFromSeed, region growing and the cylinder element/command shell are not in this unit.",
+  "scope": "cylinder.ts radial/cylinderResidual, axisFromNormals, fitCylinderOnAxis, refineCylinderGeometric, fitCylinderClipped, cylinderFrom2 and ransacCylinder; circle2d.ts fitCircle2d; fitCylinderFromSeed.ts fitCylinderOnSelection with cylinderResult and fitInsideWindow; extents.ts axialExtents; V8's Math.atan2 (fdlibm) for the coverage angles. splitTwoCylinders, seeded fitting/region growing and the engine command/CLI are not in this unit.",
   "acceptance": [
     "Original and Rust give bit-identical results (floats, used/inlier order, fitted/refused shape) on an independent corpus covering full and partial arcs, tilted axes, noise, outliers, offset coordinates, tiny and huge radii, planes, too few points, NaN and on-axis points; a wrong Rust value fails the comparison."
   ],
   "owner": "Claude",
   "branch": "claude/fit-cylinder",
   "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/116",
-  "implemented_commit": "632e168f58ae1eb7c334f57e600ed9e8ac2f67d7",
+  "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/core/fit/cylinder.ts",
     "src/core/fit/circle2d.ts",
-    "src/core/fit/linalg.ts"
+    "src/core/fit/linalg.ts",
+    "src/core/fit/fitCylinderFromSeed.ts",
+    "src/core/fit/extents.ts"
   ],
   "symbols": [
     "cylinderResidual",
@@ -33,18 +35,24 @@
     "fitCylinderClipped",
     "ransacCylinder",
     "fitCircle2d",
-    "orthoBasis"
+    "orthoBasis",
+    "fitCylinderOnSelection",
+    "axialExtents",
+    "Math.atan2"
   ],
   "rust_paths": [
     "rust/crates/port-core/src/cylinder.rs",
     "rust/crates/port-core/src/circle2d.rs",
+    "rust/crates/port-core/src/marked_cylinder.rs",
     "rust/crates/port-core/src/numeric.rs",
-    "rust/crates/port-core/tests/cylinder.rs"
+    "rust/crates/port-core/tests/cylinder.rs",
+    "rust/crates/port-core/tests/js_math.rs"
   ],
   "evidence": [],
   "open_items": [
-    "pinned_cylinder_comparison: 121/121 bit-identical against the pinned original (94 fitted, 7 refused, 20 refinements), corpus from fixtures/cylinder/generate.py, oracle oracle/cylinder.cjs. A wrong damping factor (0.3 -> 0.31) fails most fitted and refined cases.",
-    "Next for the cylinder element: splitTwoCylinders, fitCylinderFromSeed and the marked/seeded cylinder command through the engine and CLI (fit-cylinder).",
+    "pinned_cylinder_comparison: 170/170 bit-identical against the pinned original (133 fitted, 17 refused with the original's FitError text, 20 refinements), corpus fixtures/cylinder/generate.py, oracle oracle/cylinder.cjs. Wrong values fail it: damping 0.3 -> 0.31 (kernels) and coverage 360 -> 359.999 (marked body).",
+    "js_atan2 (port-core numeric, fdlibm as V8): 300,289 pairs bit-identical with Node 22 Math.atan2 (atan2_matches_node). Rust f64::atan2 differs for about 1 in 6 inputs; native_plane_finish.rs and native_project_state.rs still use f64::atan2 and should switch.",
+    "Next: element.fit_marked kind cylinder in the engine (draft text, assumed/orient/extend finishing, describeElement, project recipe) and CLI fit-cylinder.",
     "Verification label and roster registration wait for the owner-scheduled milestone batch (2026-11-05 verification budget)."
   ],
   "verification": "none"
