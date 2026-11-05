@@ -65,7 +65,8 @@ fn fault(f: Fault) -> String {
         Fault::Other(_) => "native command failed".into(),
     }
 }
-const USAGE: &str = "Usage: scanruler-rs <info|fit-plane> <scan.stl|scan.ply> [--units mm|cm|m|in]
+const USAGE: &str =
+    "Usage: scanruler-rs <info|fit-plane> <scan.stl|scan.ply|scan.obj> [--units mm|cm|m|in]
 Plane options: [--sigma 0|1|2|3] [--box xmin ymin zmin xmax ymax zmax] [--marked]
 [--normal x y z] [--within-deg degrees] [--orient XY|YZ|XZ] [--in-plane]
 [--extend uMin uMax vMin vMax]

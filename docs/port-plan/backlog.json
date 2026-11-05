@@ -26308,6 +26308,49 @@
       "verification": "fixed-corpus"
     },
     {
+      "id": "io.obj.native",
+      "parent": "io.obj",
+      "title": "Open and measure standalone OBJ through the native engine",
+      "gate": "G2",
+      "status": "planned",
+      "depends_on": [
+        "io.obj.mesh",
+        "engine.session.scan"
+      ],
+      "soft_depends_on": [],
+      "scope": "Wire standalone OBJ into the real scan.open worker/session and native info/fit-plane CLI, preserving missing-texture notices and bounded source refusals. Companion image loading is excluded.",
+      "acceptance": [
+        "Standalone OBJ opens through the engine with original-equivalent mesh, summary, source and session state on success and refusal; a wrong Rust state fails the comparison.",
+        "CLI supplies files and formats results while the engine owns parsing, state and measurements."
+      ],
+      "owner": "Codex",
+      "branch": "codex/native-obj",
+      "claim_pr": null,
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/meshWorker.ts",
+        "src/core/parsers/obj.ts",
+        "src/app/scanImport.ts"
+      ],
+      "symbols": [
+        "parseByName",
+        "scanFileNote"
+      ],
+      "rust_paths": [
+        "rust/crates/port-engine/src/native_engine.rs",
+        "rust/crates/port-engine/tests/native_import.rs",
+        "rust/crates/port-cli/src/main.rs",
+        "rust/crates/port-cli/tests/info.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Work in progress from main ed5170c, independent of PR110. Existing 33 import comparisons retained; 15 OBJ controls added to the same corpus.",
+        "No roster or verification-level promotion in this PR; those remain the owner-scheduled M3 batch. Image wiring, 3MF/STEP native commands and compatible project IO remain separate."
+      ],
+      "verification": "none"
+    },
+    {
       "parent": "io.obj",
       "gate": "G3",
       "status": "implemented",

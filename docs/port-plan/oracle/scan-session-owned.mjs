@@ -49,6 +49,7 @@ if(!process.argv.includes('--case')){
   else if(encoding==='ascii')inputBytes=Buffer.concat([header,Buffer.from('0 0 0\n1 0 0\n0 1 0\n1 1 0\n3 0 1 2\n3 1 3 2\n')])
   else {const data=Buffer.alloc(48+26),le=shape==='ply-le';let offset=0;for(const v of [0,0,0,1,0,0,0,1,0,1,1,0]){le?data.writeFloatLE(v,offset):data.writeFloatBE(v,offset);offset+=4}for(const tri of [[0,1,2],[1,3,2]]){data[offset++]=3;for(const v of tri){le?data.writeInt32LE(v,offset):data.writeInt32BE(v,offset);offset+=4}}inputBytes=Buffer.concat([header,data])}
  }
+ if(shape.startsWith('obj-')){filename=id+'.obj';inputBytes=readFileSync(new URL('../fixtures/native-import/obj/'+shape.slice(4)+'.obj',import.meta.url))}
  if(shape.startsWith('held-')) {
   const held={}
   if(['held-mixed','held-project','held-discard'].includes(shape))held.elements=[{},{}]

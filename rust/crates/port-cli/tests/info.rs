@@ -258,3 +258,52 @@ fn cli_selection_guards_and_engine_refusals_produce_no_partial_stdout() {
         assert_eq!(String::from_utf8(out.stderr).unwrap().trim(), message);
     }
 }
+
+#[test]
+fn standalone_obj_reaches_info_and_plane_fit_and_reports_parser_refusal() {
+    let scratch = Scratch::new();
+    let path = scratch.0.join("scan.obj");
+    let mut obj = String::new();
+    for y in 0..5 {
+        for x in 0..5 {
+            obj.push_str(&format!("v {x} {y} 0\n"));
+        }
+    }
+    for y in 0..4 {
+        for x in 0..4 {
+            let a = y * 5 + x + 1;
+            obj.push_str(&format!("f {a} {} {} {}\n", a + 1, a + 6, a + 5));
+        }
+    }
+    std::fs::write(&path, obj).unwrap();
+    let info = Command::new(env!("CARGO_BIN_EXE_scanruler-rs"))
+        .args(["info", path.to_str().unwrap(), "--units", "cm"])
+        .output()
+        .unwrap();
+    assert!(info.status.success(), "{:?}", info.stderr);
+    assert!(info.stderr.is_empty());
+    assert_eq!(
+        String::from_utf8(info.stdout).unwrap(),
+        "{\"fileName\":\"scan.obj\",\"units\":\"cm\",\"vertices\":25,\"triangles\":32,\"bounds\":{\"min\":[0,0,0],\"max\":[40,40,0]},\"center\":[20,20,0],\"size\":56.568542494923804,\"components\":1}\n"
+    );
+    let fit = Command::new(env!("CARGO_BIN_EXE_scanruler-rs"))
+        .args(["fit-plane", path.to_str().unwrap(), "--sigma", "0"])
+        .output()
+        .unwrap();
+    assert!(fit.status.success(), "{:?}", fit.stderr);
+    assert!(fit.stderr.is_empty());
+    let result = String::from_utf8(fit.stdout).unwrap();
+    assert!(result.contains("\"kind\":\"plane\""), "{result}");
+    assert!(result.contains("\"status\":\"done\""), "{result}");
+    std::fs::write(&path, b"v 0 0 0\n").unwrap();
+    let refused = Command::new(env!("CARGO_BIN_EXE_scanruler-rs"))
+        .args(["info", path.to_str().unwrap()])
+        .output()
+        .unwrap();
+    assert_eq!(refused.status.code(), Some(2));
+    assert!(refused.stdout.is_empty());
+    assert_eq!(
+        String::from_utf8(refused.stderr).unwrap(),
+        "failed: This OBJ contains no faces — point clouds are not supported yet.\n"
+    );
+}
