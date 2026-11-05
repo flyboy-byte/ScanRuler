@@ -1,20 +1,20 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # Roadmap to a Rust build you can use and bug-test
 
-Written 2026-11-02; refreshed 2026-11-04 (section 0). There is no issue queue or outside contributor pool here; the owner will rarely use
+Written 2026-11-02; refreshed 2026-11-05 (section 0). There is no issue queue or outside contributor pool here; the owner will rarely use
 the app and bug-test it by hand. So the project must prove itself: the work queue is the plan units, the
 bug finder is the comparison against the original, and real use is staged so it starts as early as
 possible. This file fixes the layout, workflow and pipeline. It does not change any rule in `HANDOFF.md`.
 
-## 0. Where we are (2026-11-04)
+## 0. Where we are (2026-11-05)
 
-Status: **M2 libraries done, native open/info, select/fit and global undo/redo implemented (M3a–M3c), M3 still incomplete.**
+Status: **M2 libraries and M3a–M3d native functionality implemented; M3 milestone acceptance still open.**
 Verify current main with `git log -1 origin/main`, `gh pr list -R flyboy-byte/scanruler`
 and `STATUS.md`. A feature PR describes the code on its tree; Logan merges it.
 
 - On this tree: STL, PLY, OBJ/MTL, inflate/zip and 3MF libraries; real scan/session
   ownership and runtime (#104), number formatting (#103), prepared rendering (#106),
-  native `scan.open` plus `scanruler-rs info` for STL and all PLY encodings (#105),
+  native `scan.open` plus `scanruler-rs info` for STL/all PLY encodings (#105) and standalone OBJ (#112),
   and real `scan.query`/marked/box plane fitting with CLI `fit-plane` (#108).
   Unsupported native command formats are explicit refusals; image decoding remains open.
 - **Global history:** PR #110 wires undo/redo through the same runtime recorder
@@ -23,8 +23,13 @@ and `STATUS.md`. A feature PR describes the code on its tree; Logan merges it.
   history deferrals, with no skips or relabeling. Source `e6e90b2` passes the full
   matrix; opt-in wrong-undo and wrong-redo state mutations are rejected and a
   subsequent clean run passes. No roster or broader acceptance promotion.
-- Still missing for M3 everywhere: original-compatible project save/read and the
-  new-suite roster integration. No unit or milestone is accepted by this update.
+- M3d project save/read for the native marked-plane slice is implemented in
+  PR #113: `fit-plane scan.ply --redo --save work.scanruler`, then
+  `info work.scanruler`. It uses schema-1 archives the original can read,
+  preserves unknown plugin data and refuses unsupported reconstruction before
+  replacing the session. See `rust/README.md` for the supported slice and bounds.
+- Still missing for M3 acceptance: the scheduled new-suite roster integration
+  and milestone/ratchet checks. No unit or milestone is accepted by this update.
 - Run the available CLI from `rust/` with
   `cargo run -p port-cli -- info /path/to/scan.ply [--units mm|cm|m|in]`.
   `cargo run -p port-cli -- fit-plane /path/to/scan.ply --sigma 0` fits a plane.
@@ -45,12 +50,16 @@ before opening its successor where they share files):
    All 205 current controls, actual wrong-state rejection and clean rerun pass
    on source `c4ef7e4`; the unchanged 33 import controls and full fast/oracle/
    62-suite artifact gates pass. Merged before M3c was opened.
-3. **M3c, undo and redo: PR #110, ready for Logan.** Global history apply/undo/redo
+3. ~~**M3c, undo and redo**~~ — merged in PR #110. Global history apply/undo/redo
    uses the runtime recorder; CLI `--undo`/`--redo` only supply inputs and format
    output. All 212/212 controls, both wrong-state red runs and the clean rerun are
    reported in the PR. No M3d, roster, crease promotion or image work included.
-4. **M3d, save and read:** project-compatible save/read for the M3 slice (overlaps
-   M6; the original `.scanruler` format is the judge).
+4. **M3d, save and read: PR #113, in review.** Engine-owned `project.save` and
+   `project.load`, CLI `--save` and `.scanruler` input. Restores the native scan/
+   marked-plane slice; unknown plugin JSON/member bytes survive, and failed or
+   expired preparation preserves the current scan/history. Full M6 remains open;
+   source schema/ZIP comparison and ordinary CLI/cancellation tests accompany
+   the implementation. Logan merges; the roster/milestone batch follows.
 5. **Roster:** register new engine suites, prepared rendering and the still-unregistered
    `io.inflate`/`io.threemf` suites in `ci/native-suites.json` and `cargo xtask fuzz`
    (one PR, since it holds `rust/xtask`). The parent slice stays planned/none until

@@ -7,7 +7,7 @@ use port_core::marked_plane::{self, MarkedPlane, MarkedPlaneError};
 mod definition;
 #[path = "native_plane_finish.rs"]
 mod finishing;
-fn cell(v: Value) -> C {
+pub(super) fn cell(v: Value) -> C {
     match v {
         Value::Undefined => C::Undefined,
         Value::Null => C::Null,
@@ -40,7 +40,7 @@ fn field(v: &C, k: &str) -> C {
         C::Undefined
     }
 }
-fn put(v: &C, key: &str, value: C) -> C {
+pub(super) fn put(v: &C, key: &str, value: C) -> C {
     let mut fields = match v {
         C::Object(f) => (**f).clone(),
         _ => vec![],
@@ -147,7 +147,7 @@ fn draft(settings: C) -> C {
         ("pickSlot", C::Null),
     ])
 }
-fn fit_cell(f: &MarkedPlane) -> C {
+pub(super) fn fit_cell(f: &MarkedPlane) -> C {
     let xyz = |v: [f64; 3]| arr(v.into_iter().map(C::Number).collect());
     obj(vec![
         ("kind", st("plane")),

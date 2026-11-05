@@ -92,3 +92,6 @@ pub mod scan_worker;
 
 /// Actual native registered scan import over the shared runtime and document.
 pub mod native_engine;
+
+/// Original-compatible bounded schema-1 project archives and manifest validation.
+pub mod project;

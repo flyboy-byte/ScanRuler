@@ -31,6 +31,8 @@ use std::{
 mod history;
 #[path = "native_plane.rs"]
 mod plane;
+#[path = "native_project.rs"]
+mod project;
 #[path = "native_scan_definition.rs"]
 mod scan_definition;
 #[path = "native_selection.rs"]
@@ -267,16 +269,21 @@ struct State {
     components: Cell<usize>,
     no_view: Rc<dyn PreparedView>,
     command_marked: RefCell<Option<selection::Marked>>,
+    saved_project: RefCell<Option<crate::project::Project>>,
 }
 #[derive(Debug)]
 enum KernelError {
     Source(String),
     Host(String),
     Unavailable(String),
+    Project(CommandErrorCode, Text),
 }
 impl KernelError {
     fn fault(self) -> Fault {
         match self {
+            Self::Project(code, message) => CommandError::from_utf16(code, &message, 1_000_000)
+                .map(|e| Fault::Command(Arc::new(e)))
+                .unwrap_or_else(Fault::host),
             Self::Source(s) => Fault::error(&s),
             Self::Host(s) => Fault::host(s),
             Self::Unavailable(s) => command_error(CommandErrorCode::Unavailable, &s),
@@ -292,6 +299,14 @@ struct Loaded {
     file_note: String,
 }
 fn load(source: Arc<SourceFile>, mode: Mode, angle: f64) -> Result<Loaded, KernelError> {
+    load_aligned(source, mode, angle, None)
+}
+fn load_aligned(
+    source: Arc<SourceFile>,
+    mode: Mode,
+    angle: f64,
+    alignment: Option<([f64; 9], [f64; 3])>,
+) -> Result<Loaded, KernelError> {
     let name = String::from_utf16_lossy(&source.name).to_ascii_lowercase();
     let bytes = &*source.bytes;
     if bytes.len() > MAX_INPUT_BYTES {
@@ -399,7 +414,7 @@ fn load(source: Arc<SourceFile>, mode: Mode, angle: f64) -> Result<Loaded, Kerne
             *value = (f64::from(*value) * scale) as f32
         }
     }
-    let graph = mesh_graph::build_mesh_graph(
+    let mut graph = mesh_graph::build_mesh_graph(
         parsed,
         GraphLimits {
             vertices: 3_000_000,
@@ -412,6 +427,23 @@ fn load(source: Arc<SourceFile>, mode: Mode, angle: f64) -> Result<Loaded, Kerne
         mesh_graph::GraphError::Source(s) => KernelError::Source(s.into()),
         _ => KernelError::Host(format!("{e:?}")),
     })?;
+    if let Some((r, t)) = alignment {
+        for (values, translation) in [(&mut graph.positions, Some(t)), (&mut graph.normals, None)] {
+            for p in values.as_chunks_mut::<3>().0 {
+                let [x, y, z] = [f64::from(p[0]), f64::from(p[1]), f64::from(p[2])];
+                for i in 0..3 {
+                    let rotated = r[i * 3] * x + r[i * 3 + 1] * y + r[i * 3 + 2] * z;
+                    // Source normals are rotated without adding translation,
+                    // including an extra +0 which would change signed zero.
+                    p[i] = if let Some(t) = translation {
+                        rotated + t[i]
+                    } else {
+                        rotated
+                    } as f32;
+                }
+            }
+        }
+    }
     let groups =
         port_core::components::vertex_components(&graph.indices, graph.vertex_count, 1_000_000)
             .map_err(|e| KernelError::Host(format!("{e:?}")))?;
@@ -620,6 +652,7 @@ impl State {
                 ).map_err(Fault::host)?;
                 self.components.set(loaded.components);
                 self.document.commit_scan(Some(&prepared))?;
+                *self.saved_project.borrow_mut() = None;
                 let units = prepared.asset.source.units.unwrap_or(MeshUnits::Mm);
                 let prefix = match units {
                     MeshUnits::Mm => "",
@@ -686,6 +719,7 @@ impl Engine {
             components: Cell::new(0),
             no_view: Rc::new(NoView),
             command_marked: RefCell::new(None),
+            saved_project: RefCell::new(None),
         });
         let host = Rc::new(NativeHost {
             state: Rc::downgrade(&state),
@@ -700,8 +734,8 @@ impl Engine {
         })
         .map_err(Fault::host)?;
         let mut limits = guarded::Limits::default();
-        limits.registry.schema.units = MAX_INPUT_BYTES + 1_000_000;
-        limits.registry.schema.work = MAX_INPUT_BYTES * 2 + 2_000_000;
+        limits.registry.schema.units = crate::project::MAX_NATIVE_PROJECT + 1_000_000;
+        limits.registry.schema.work = crate::project::MAX_NATIVE_PROJECT * 2 + 2_000_000;
         let runtime = Runtime::new(owner.clone(), host.clone(), limits);
         *link.borrow_mut() = Some(runtime.downgrade());
         let weak = Rc::downgrade(&state);
@@ -786,6 +820,7 @@ impl Engine {
         selection::register(&runtime, &state)?;
         plane::register(&runtime, &state)?;
         history::register(&runtime, &state, &host)?;
+        project::register(&runtime, &state)?;
         Ok(Self {
             state,
             runtime,
@@ -860,11 +895,19 @@ impl Drop for Engine {
     }
 }
 
+// Unit tests that deliberately occupy the process-wide producer pool must
+// own it exclusively; this does not change the production eight-job limit.
+#[cfg(test)]
+static NATIVE_KERNEL_TEST_LOCK: std::sync::Mutex<()> = std::sync::Mutex::new(());
 #[cfg(test)]
 mod native_work_budget_tests {
     use super::*;
     #[test]
     fn dropping_waiters_keeps_work_and_assets_charged_until_producers_finish() {
+        let _exclusive = match super::NATIVE_KERNEL_TEST_LOCK.lock() {
+            Ok(guard) => guard,
+            Err(e) => panic!("kernel test lock: {e}"),
+        };
         let engine = match Engine::new() {
             Ok(engine) => engine,
             Err(e) => panic!("native engine init: {e:?}"),
