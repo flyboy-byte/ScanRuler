@@ -1,0 +1,28 @@
+{
+  "id": "ci.m3.batch",
+  "parent": "P36",
+  "title": "Register M3 comparisons and execute the scheduled milestone batch",
+  "gate": "G2",
+  "status": "planned",
+  "depends_on": [],
+  "scope": "Missing native suite roster and fuzz dispatch, prepared rendering promotion, opt-in private Artec scan comparison and scheduled coverage/fuzz verification. No engine/CLI/IO implementation edits.",
+  "acceptance": [
+    "All existing comparisons retain cases, seeds and tolerances; registered suites have complete per-case source/Rust evidence at the tested candidate.",
+    "Private real-scan open/info and base plane fitting compare independent original/Rust runs, opt-in and absent-file safe; private inputs are never committed."
+  ],
+  "owner": "Codex",
+  "branch": "codex/m3-milestone-batch",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [],
+  "symbols": [],
+  "rust_paths": [
+    "rust/xtask/src/main.rs"
+  ],
+  "evidence": [],
+  "open_items": [
+    "Scheduled M3 milestone batch; owns xtask/native roster/workflows while Claude implements native 3MF, project element listing and cylinder fit."
+  ],
+  "verification": "none"
+}

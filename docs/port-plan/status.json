@@ -5,13 +5,13 @@
     "baseline-captured": 2,
     "implemented": 83,
     "integrated": 1,
-    "planned": 46,
+    "planned": 47,
     "specified": 1
   },
   "verification_levels": {
     "fixed-corpus": 59,
     "fuzzed": 4,
-    "none": 70
+    "none": 71
   },
   "native_suites": 62,
   "native_case_identities_including_refusals": 34603,
@@ -515,6 +515,18 @@
       "verification_tested_sha": null,
       "open_items": [
         "Historical batch closed: PR95 merged 2026-11-03 and is an ancestor of main b37206d. Its exact-head 11 checks passed. No remaining next_task work is owned by this batch. General P37 ratchet and M3 work belong to their current units; no feature acceptance is inferred."
+      ]
+    },
+    {
+      "id": "ci.m3.batch",
+      "status": "planned",
+      "parent": "P36",
+      "pr": null,
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Scheduled M3 milestone batch; owns xtask/native roster/workflows while Claude implements native 3MF, project element listing and cylinder fit."
       ]
     },
     {

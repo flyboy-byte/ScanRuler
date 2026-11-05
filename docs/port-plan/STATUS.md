@@ -13,7 +13,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | baseline-captured | 2 |
 | implemented | 83 |
 | integrated | 1 |
-| planned | 46 |
+| planned | 47 |
 | specified | 1 |
 
 Verification labels describe scoped evidence snapshots, not whole-feature/runtime acceptance.
@@ -22,7 +22,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | --- | ---: |
 | fixed-corpus | 59 |
 | fuzzed | 4 |
-| none | 70 |
+| none | 71 |
 
 | Unit | State | Verification | Tested implementation | Verification snapshot | PR |
 | --- | --- | --- | --- | --- | --- |
@@ -71,6 +71,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [catalog.headless](plan/units/catalog.headless.json) | baseline-captured | none | `8b9084f` | — | [#13](https://github.com/flyboy-byte/ScanRuler/pull/13) |
 | [ci.integration](plan/units/ci.integration.json) | implemented | none | `f43ffae` | — | [#22](https://github.com/flyboy-byte/ScanRuler/pull/22) |
 | [ci.integration.nov03](plan/units/ci.integration.nov03.json) | integrated | none | `ac60301` | — | [#95](https://github.com/flyboy-byte/ScanRuler/pull/95) |
+| [ci.m3.batch](plan/units/ci.m3.batch.json) | planned | none | — | — | — |
 | [engine.error.envelope](plan/units/engine.error.envelope.json) | implemented | fixed-corpus | `f509ae2` | `f509ae2` | [#30](https://github.com/flyboy-byte/ScanRuler/pull/30) |
 | [engine.measurement.slice](plan/units/engine.measurement.slice.json) | planned | none | — | — | [#110](https://github.com/flyboy-byte/ScanRuler/pull/110) |
 | [engine.runtime.guarded](plan/units/engine.runtime.guarded.json) | implemented | fixed-corpus | `2b6710a` | `2b6710a` | [#99](https://github.com/flyboy-byte/ScanRuler/pull/99) |
