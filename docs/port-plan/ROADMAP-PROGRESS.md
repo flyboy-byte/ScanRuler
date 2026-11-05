@@ -14,7 +14,7 @@ Estimates as of **2026-11-05**. Regenerate with `python3 docs/port-plan/tools/ro
 | --- | --- | ---: | ---: | ---: |
 | M1 Reproducible baseline and corpus | `█████░░░░░` | 48% | 3 | 40% |
 | M2 Import breadth | `██████░░░░` | 56% | 8 | 85% |
-| M3 Session and commands, native CLI (first dogfood) | `██████░░░░` | 59% | 10 | 55% |
+| M3 Session and commands, native CLI (first dogfood) | `██████░░░░` | 59% | 10 | 60% |
 | M4 Paired harness and ratchet | `████░░░░░░` | 40% | 5 | 50% |
 | M5 MCP | `░░░░░░░░░░` | 0% | 5 | 0% |
 | M6 Projects and history | `█░░░░░░░░░` | 6% | 7 | 0% |
@@ -65,7 +65,7 @@ Phases: P05, P07, P08, P09.
 | M3c global undo and redo | 75% | 2 | estimate: Merged in #110 (ac754d7); 212/212 controls. | Slice acceptance. |
 | Measurement slice unit | 0% | 1 | computed: 0/1 units implemented or better | Accept once M3a-M3d and roster are integrated. |
 | M3d project save and read | 75% | 3 | computed: 1/1 units implemented or better | M3d native scan/marked-plane slice in PR113; full M6 and scheduled milestone verification remain open. |
-| Roster: register new suites | 0% | 1 | estimate: Engine, render, inflate, 3MF and PNG suites run in CI but are not in ci/native-suites.json. | One PR holding rust/xtask. |
+| Roster: register new suites | 0% | 1 | computed: 0/1 units implemented or better | Scheduled milestone batch in PR114; exact-base ratchet and acceptance remain separate. |
 | Browser/Wasm measurement slice (P09) | 10% | 2 | estimate: Bounded Wasm harness coverage exists (harness.wasm.*); no browser command flow. | Same slice running in the browser build. |
 | Logan runs open-fit-undo-save on his scan | 0% | 1 | estimate: Needs M3d and a real scan. | The M3 exit condition. |
 
