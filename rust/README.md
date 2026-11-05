@@ -8,7 +8,7 @@ M3 project slice are available through the engine and `info` / `fit-plane` CLI; 
 | Crate | Role | Contents today |
 |-------|------|----------------|
 | `port-core` | Pure core: no DOM, files or global state | Full mesh-graph construction, adjacency/components/selection, bounds/centroids, normals/orientation, dense solves, TLS/clipped planes and curvature discrimination; initial units/IDs/transforms and pin |
-| `port-engine` | Session, commands, jobs, history | Runtime/task owner, real scan document, STL/PLY/OBJ scan.open, queries/marks, plane fitting, undo/redo and M3 project save/read |
+| `port-engine` | Session, commands, jobs, history | Runtime/task owner, real scan document, STL/PLY/OBJ/3MF scan.open, queries/marks, plane fitting, undo/redo and M3 project save/read |
 | `port-io` | Formats and the `.scanruler` project reader/writer | STL, PLY, OBJ/MTL, inflate/zip and 3MF libraries; M3 project orchestration currently lives in port-engine; full project compatibility remains open |
 | `port-cli` | `scanruler-rs`, native front end for differential runs | `info` and `fit-plane` use registered engine commands |
 | `port-wasm-probe` | Private bounded browser-runtime test ABI | Bounded original/native/browser comparison ABI; not a product UI or engine integration |
@@ -29,7 +29,10 @@ cargo run -p port-cli -- info /path/to/scan.ply
 cargo run -p port-cli -- info /path/to/scan.stl --units cm
 ```
 
-STL, ASCII/little-endian/big-endian PLY and standalone OBJ are supported.
+STL, ASCII/little-endian/big-endian PLY, standalone OBJ and 3MF are supported.
+A 3MF is read in millimetres whatever `--units` says (as the original does) and
+keeps its vertex colours; its packed texture images are not decoded, matching the
+headless original. `info` on a `.scanruler` project also lists its elements.
 OBJ faces (including polygon fans and negative indices) use the real engine
 import path; `fit-plane` also accepts OBJ. Companion images are not loaded by
 `scan.open`; an OBJ that names a missing texture retains the original notice.

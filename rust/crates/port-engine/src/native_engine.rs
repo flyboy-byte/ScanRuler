@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-//! Native no-viewport command integration. Supported standalone imports: STL/PLY/OBJ.
+//! Native no-viewport command integration. Supported standalone imports: STL/PLY/OBJ/3MF.
 //! The shared runtime, import queue, actual document and staged graph owner are reused.
 //! Other format/measurement/project commands remain explicit unported capabilities.
 use crate::{
@@ -297,6 +297,7 @@ struct Loaded {
     source: Arc<SourceFile>,
     components: usize,
     file_note: String,
+    colors: Option<Arc<Vec<u8>>>,
 }
 fn load(source: Arc<SourceFile>, mode: Mode, angle: f64) -> Result<Loaded, KernelError> {
     load_aligned(source, mode, angle, None)
@@ -313,6 +314,7 @@ fn load_aligned(
         return Err(KernelError::Host("native import byte limit".into()));
     }
     let mut file_note = String::new();
+    let mut colors: Option<Vec<u8>> = None;
     let mut parsed = if name.ends_with(".stl") {
         let positions = port_io::stl_dispatch::read_stl(
             bytes,
@@ -386,14 +388,49 @@ fn load_aligned(
             | port_io::obj::ObjError::Texture(_) => KernelError::Host(e.to_string()),
             _ => KernelError::Source(e.to_string()),
         })?;
-        // scan.open has no companion-file input. Preserve the source's missing
-        // texture notice rather than silently claiming a coloured import.
-        if let Some(port_io::obj_texture::TextureNote::Missing(files)) = p.texture {
-            file_note = format!(
-                "This OBJ has a texture ({}) that did not come with it — open the OBJ, its .mtl and the image together (select all three, or drop their folder) to see the scan in colour. ",
-                files.join(", ")
-            );
+        // scan.open has no companion-file input, so a standalone OBJ can only
+        // report a missing texture, never an applied one.
+        file_note = texture_note(p.texture.as_ref());
+        colors = p.colors;
+        ParsedMesh {
+            positions: p.positions,
+            soup: false,
+            indices: Some(p.indices),
+            keep_winding: false,
         }
+    } else if name.ends_with(".3mf") {
+        // scanCompanions decodes a 3MF's packed images with createImageBitmap,
+        // which a no-viewport original (headless/Node) does not have: every
+        // decode is caught and dropped, so the reader gets no companions.
+        let p = port_io::threemf::read_3mf(
+            bytes,
+            None,
+            port_io::threemf::ThreeMfLimits {
+                zip: port_io::inflate::ZipLimits {
+                    max_entry_bytes: MAX_INPUT_BYTES,
+                    max_entries: 65_536,
+                },
+                max_part_bytes: 4 * MAX_INPUT_BYTES,
+                max_vertices: 3_000_000,
+                max_triangles: 3_000_000,
+                max_work: 400_000_000,
+                texture: port_io::obj_texture::TextureLimits {
+                    max_bytes: 4 * MAX_INPUT_BYTES,
+                    max_vertices: 3_000_000,
+                    max_files: 4096,
+                    max_materials: 100_000,
+                    max_name_bytes: 4096,
+                    max_work: 400_000_000,
+                },
+            },
+            |_| {},
+        )
+        .map_err(|e| match e {
+            port_io::threemf::ThreeMfError::Source(_) => KernelError::Source(e.to_string()),
+            _ => KernelError::Host(e.to_string()),
+        })?;
+        file_note = texture_note(p.texture.as_ref());
+        colors = p.colors;
         ParsedMesh {
             positions: p.positions,
             soup: false,
@@ -401,7 +438,7 @@ fn load_aligned(
             keep_winding: false,
         }
     } else {
-        return Err(KernelError::Unavailable("This native engine currently opens STL, PLY and OBJ; other import commands are not implemented.".into()));
+        return Err(KernelError::Unavailable("This native engine currently opens STL, PLY, OBJ and 3MF; other import commands are not implemented.".into()));
     };
     let scale = match source.units.unwrap_or(MeshUnits::Mm) {
         MeshUnits::Mm => 1.,
@@ -464,6 +501,10 @@ fn load_aligned(
         },
     )
     .map_err(|e| KernelError::Host(format!("{e:?}")))?;
+    // postScan keeps colours only when there is one per graph vertex.
+    let colors = colors
+        .filter(|c| c.len() == graph.vertex_count * 3)
+        .map(Arc::new);
     Ok(Loaded {
         graph: Arc::new(graph),
         render,
@@ -471,8 +512,23 @@ fn load_aligned(
         source,
         components,
         file_note,
+        colors,
     })
 }
+/// `scanFileNote`'s texture part (`src/app/scanImport.ts`). The missing text
+/// names an OBJ even for a 3MF, as the original's does.
+fn texture_note(note: Option<&port_io::obj_texture::TextureNote>) -> String {
+    use port_io::obj_texture::TextureNote;
+    match note {
+        Some(TextureNote::Applied(images)) => format!("Coloured from {}. ", images.join(", ")),
+        Some(TextureNote::Missing(files)) => format!(
+            "This OBJ has a texture ({}) that did not come with it — open the OBJ, its .mtl and the image together (select all three, or drop their folder) to see the scan in colour. ",
+            files.join(", ")
+        ),
+        None => String::new(),
+    }
+}
+
 struct Reply<T> {
     value: Option<Result<T, KernelError>>,
     waker: Option<Waker>,
@@ -607,7 +663,7 @@ impl State {
             ("size", Value::Number(size)),
         ]))
     }
-    async fn import(&self, source: Arc<SourceFile>) -> Result<(), Fault> {
+    async fn import(&self, source: Arc<SourceFile>, given: MeshUnits) -> Result<(), Fault> {
         let app = self.document.store(StoreId::App);
         let previous = app.get("statusText");
         patch(
@@ -638,7 +694,7 @@ impl State {
                     indices: Arc::new(loaded.render.indices),
                     vertex_count: loaded.graph.vertex_count,
                     triangle_count: loaded.graph.triangle_count,
-                    colors: None,
+                    colors: loaded.colors.clone(),
                 }),
                 view: self.no_view.clone(),
             };
@@ -653,8 +709,8 @@ impl State {
                 self.components.set(loaded.components);
                 self.document.commit_scan(Some(&prepared))?;
                 *self.saved_project.borrow_mut() = None;
-                let units = prepared.asset.source.units.unwrap_or(MeshUnits::Mm);
-                let prefix = match units {
+                // The status names the units given, even for a 3MF read as millimetres.
+                let prefix = match given {
                     MeshUnits::Mm => "",
                     MeshUnits::Cm => "Read in centimetres and converted to millimetres. ",
                     MeshUnits::M => "Read in metres and converted to millimetres. ",
@@ -757,11 +813,17 @@ impl Engine {
                     if name.encode_utf16().count() > 4096 {
                         return Err(Fault::host("native filename limit"));
                     }
-                    let units = match get(input, "units") {
+                    let given = match get(input, "units") {
                         Some(Value::String(u)) if *u == text("cm") => MeshUnits::Cm,
                         Some(Value::String(u)) if *u == text("m") => MeshUnits::M,
                         Some(Value::String(u)) if *u == text("in") => MeshUnits::In,
                         _ => MeshUnits::Mm,
+                    };
+                    // prepareScan: a 3MF says its own units (millimetres) whatever is given.
+                    let units = if name.to_ascii_lowercase().ends_with(".3mf") {
+                        MeshUnits::Mm
+                    } else {
+                        given
                     };
                     let discard = matches!(get(input, "discard"), Some(Value::Boolean(true)));
                     require_discardable(&state.document, discard)?;
@@ -776,7 +838,7 @@ impl Engine {
                     let job_state = state.clone();
                     let run = state
                         .imports
-                        .run(move || async move { job_state.import(source).await })
+                        .run(move || async move { job_state.import(source, given).await })
                         .map_err(Fault::host)?;
                     ctx.spawn(async move {
                         let result = run.await;
@@ -881,6 +943,26 @@ impl Engine {
         self.runtime.history()
     }
     /// Already-computed connected components of the current logical graph.
+    /// The session's measured elements, as `id`, `name`, `kind` and `status`
+    /// (the fields a reopened project's summary needs; full state is `session.state`, unported).
+    #[must_use]
+    pub fn elements_summary(&self) -> Value {
+        let keep = ["id", "name", "kind", "status"].map(text);
+        let C::Array(items) = self.state.document.store(StoreId::App).get("elements") else {
+            return Value::Array(Vec::new());
+        };
+        Value::Array(
+            items
+                .iter()
+                .map(|e| match cell_value(e) {
+                    Value::Object(f) => {
+                        Value::Object(f.into_iter().filter(|(k, _)| keep.contains(k)).collect())
+                    }
+                    other => other,
+                })
+                .collect(),
+        )
+    }
     pub fn components(&self) -> usize {
         self.state.components.get()
     }
