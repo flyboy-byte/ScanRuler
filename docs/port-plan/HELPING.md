@@ -41,11 +41,15 @@ time.
 
 ## How a unit gets done
 
+How much proof a unit needs is set by the verification budget in `PORTING-PROCESS.md` (2026-11-05): a
+comparison against the original for anything a user sees, plain Rust tests for internal plumbing, and heavy
+checks (fuzzing, sweeps, coverage) batched at milestone gates rather than in your PR.
+
 1. Read the original's code for the unit (its `source_paths`) and its own tests.
-2. Write the test cases first, from the original's behaviour, including bad input.
+2. Write the comparison cases first, from the original's behaviour, including bad input.
 3. Port the whole body, not just the cases you thought of.
-4. Run the original and your Rust on separate copies of the same input and compare success or failure,
-   full error text, progress text and output bytes.
+4. For a user-visible result, run the original and your Rust on separate copies of the same input and compare
+   success or failure, full error text and output. Internal plumbing needs ordinary Rust tests only.
 5. Show that the comparison fails when you deliberately make the Rust value wrong.
 6. Record the result in the unit's JSON and regenerate the generated files:
    `python3 docs/port-plan/tools/port_plan.py --root docs/port-plan render` and

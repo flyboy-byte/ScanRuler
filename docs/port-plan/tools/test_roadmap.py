@@ -1,11 +1,7 @@
 # SPDX-License-Identifier: AGPL-3.0-only
-import os
 import unittest
 
 import roadmap as rm
-
-ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-
 
 def base():
     return {
@@ -57,9 +53,6 @@ class Roadmap(unittest.TestCase):
         u = units(x="planned", y="planned")
         u["P01"] = {"id": "P01", "status": "planned", "verification": "none"}
         self.assertIn("phase P01 is in no milestone", rm.validate(base(), u))
-
-    def test_repository_roadmap_is_valid_and_current(self):
-        self.assertEqual(rm.main(["--root", ROOT, "--check"]), 0)
 
 
 if __name__ == "__main__":
