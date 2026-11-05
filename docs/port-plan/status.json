@@ -1054,8 +1054,8 @@
       "id": "fit.cylinder",
       "status": "implemented",
       "parent": "P07",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/116",
+      "tested_sha": "632e168f58ae1eb7c334f57e600ed9e8ac2f67d7",
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [

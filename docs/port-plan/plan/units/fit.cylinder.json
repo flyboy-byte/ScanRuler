@@ -17,8 +17,8 @@
   ],
   "owner": "Claude",
   "branch": "claude/fit-cylinder",
-  "claim_pr": null,
-  "implemented_commit": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/116",
+  "implemented_commit": "632e168f58ae1eb7c334f57e600ed9e8ac2f67d7",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/core/fit/cylinder.ts",
