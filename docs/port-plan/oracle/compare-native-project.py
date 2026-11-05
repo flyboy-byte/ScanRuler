@@ -3,7 +3,7 @@
 import json,sys,math
 from pathlib import Path
 p=Path(sys.argv[1]);old=[json.loads(x)for x in(p/'original.jsonl').read_text().splitlines()];new=[json.loads(x)for x in(p/'rust.jsonl').read_text().splitlines()];ids=[x.split('\t')[0]for x in(p/'cases.tsv').read_text().splitlines()]
-assert len(old)==len(new)==len(ids)==22 and [x['id']for x in old]==[x['id']for x in new]==ids
+assert len(old)==len(new)==len(ids)==23 and [x['id']for x in old]==[x['id']for x in new]==ids
 errors=[]
 def compare(a,b,path,geometry=False):
  if type(a)!=type(b) and not isinstance(a,(int,float)) and not isinstance(b,(int,float)):return path+': types'

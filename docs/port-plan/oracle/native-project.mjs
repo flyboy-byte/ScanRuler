@@ -29,6 +29,7 @@ if(!process.argv.includes('--case')){
  if(id==='redo')await s.runCommand('history.redo',{})
  const initial=await s.runCommand('project.save',{}),p=s.unpackProject(initial.file.bytes),m=p.manifest,files=[...p.members].map(([name,bytes])=>({name,bytes}))
  if(['unknown','empty-unknown'].includes(id)){m.futurePlugin={text:'kept\ud800',nested:{answer:42}};files.push({name:'plugin.bin',bytes:Uint8Array.from([0,255,17,0])});m.name='  Bench / one  ';m.workspace='future-workspace'}
+ if(id==='utf16-name')m.name='  Bench \ud800 / one  '
  if(id==='legacy'){delete m.scan.elements[0].source.settings;delete m.scan.showBackfaces;delete m.scan.sections;delete m.scan.nextSectionNumber;delete m.deviation.mapFacingDeg;for(const k of ['notes','nextNoteId','turns','mirror','sheets','subject'])delete m.flat[k]}
  if(id==='pose')m.scan.appliedAlignment={r:[0,-1,0,1,0,0,0,0,1],t:[10,20,30]}
  if(id==='read-as')m.scan.fileName='previous.stl'

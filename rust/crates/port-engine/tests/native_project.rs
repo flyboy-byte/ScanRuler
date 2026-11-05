@@ -199,6 +199,12 @@ fn observe(row: &str, dir: &Path) -> V {
         put(m, "name", st("  Bench / one  "));
         put(m, "workspace", st("future-workspace"));
     }
+    if id == "utf16-name" {
+        let mut name = t("  Bench ");
+        name.push(0xd800);
+        name.extend(t(" / one  "));
+        put(m, "name", V::String(name));
+    }
     if id == "legacy" {
         let mut scan = get(m, "scan").clone();
         let V::Array(mut els) = get(&scan, "elements").clone() else {

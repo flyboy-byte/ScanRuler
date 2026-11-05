@@ -257,28 +257,50 @@ fn stem(s: &str) -> String {
     s.rsplit_once('.')
         .map_or_else(|| s.into(), |(a, _)| a.into())
 }
-fn file_stem(doc: &Session) -> String {
+fn trim_text(v: &[u16], dots: bool) -> Text {
+    let blank = |c: u16| (dots && c == 46) || char::from_u32(u32::from(c)).is_some_and(js_space);
+    let start = v.iter().position(|c| !blank(*c)).unwrap_or(v.len());
+    let end = v.iter().rposition(|c| !blank(*c)).map_or(start, |i| i + 1);
+    v[start..end].to_vec()
+}
+fn project_name_text(v: &Value) -> Text {
+    trim_text(v.text().unwrap_or_default(), false)
+}
+fn file_stem(doc: &Session) -> Text {
     if let C::String(n) = doc.store(StoreId::App).get("projectName") {
-        let n = String::from_utf16_lossy(&n)
-            .chars()
+        let safe = n
+            .iter()
             .map(|c| {
-                if c <= '\u{1f}' || "\\/:*?\"<>|".contains(c) {
-                    '-'
+                if *c < 32 || [92, 47, 58, 42, 63, 34, 60, 62, 124].contains(c) {
+                    45
                 } else {
-                    c
+                    *c
                 }
             })
-            .collect::<String>();
-        let n = n.trim_matches(|c: char| c == '.' || js_space(c));
-        if !n.is_empty() {
-            return n.into();
+            .collect::<Vec<_>>();
+        let named = trim_text(&safe, true);
+        if !named.is_empty() {
+            return named;
         }
     }
-    match doc.store(StoreId::App).get("fileName") {
-        C::String(n) if !n.is_empty() => stem(&String::from_utf16_lossy(&n)),
-        _ => "project".into(),
+    if let C::String(n) = doc.store(StoreId::App).get("fileName")
+        && !n.is_empty()
+    {
+        if let Some(dot) = n.iter().rposition(|c| *c == 46)
+            && dot + 1 < n.len()
+        {
+            return n[..dot].to_vec();
+        }
+        return n;
     }
+    text("project")
 }
+fn file_name(doc: &Session) -> Value {
+    let mut n = file_stem(doc);
+    n.extend(text(".scanruler"));
+    Value::String(n)
+}
+
 fn holds(doc: &Session) -> Value {
     let mut h = object(vec![]);
     for k in ["elements", "dimensions", "sections"] {
@@ -474,10 +496,7 @@ pub(super) fn register(runtime: &Runtime, state: &Rc<State>) -> Result<(), Fault
                                         object(vec![
                                             (
                                                 "name",
-                                                value_text(&format!(
-                                                    "{}.scanruler",
-                                                    file_stem(&copy.document)
-                                                )),
+                                                file_name(&copy.document),
                                             ),
                                             ("mimeType", value_text("application/zip")),
                                             ("bytes", Value::Bytes(bytes)),
@@ -779,9 +798,7 @@ async fn load_project(
                 .collect(),
         ));
     }
-    let project_name = name(m.get("name"))
-        .trim_matches(|c: char| js_space(c))
-        .to_string();
+    let project_name = project_name_text(m.get("name"));
     patches.push((
         StoreId::App,
         vec![(
@@ -789,7 +806,7 @@ async fn load_project(
             if project_name.is_empty() {
                 C::Null
             } else {
-                C::String(text(&project_name))
+                C::String(project_name)
             },
         )],
     ));
@@ -883,9 +900,7 @@ async fn load_project(
             ),
         ),
     ])?;
-    let project_name = name(m.get("name"))
-        .trim_matches(|c: char| js_space(c))
-        .to_string();
+    let project_name = project_name_text(m.get("name"));
     let unknown = if let Value::Object(f) = m {
         f.iter().any(|(k, _)| !CORE.iter().any(|n| *k == text(n)))
     } else {
@@ -899,7 +914,7 @@ async fn load_project(
                 if project_name.is_empty() {
                     C::Null
                 } else {
-                    C::String(text(&project_name))
+                    C::String(project_name)
                 },
             ),
             (
