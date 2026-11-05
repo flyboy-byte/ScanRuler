@@ -72,3 +72,19 @@ The original validator skips such fields and command guards/defaults treat them
 as absent. Every previous row remains unchanged. The master now has 212 controls:
 205 current M3b and the same seven deferred M3c controls. Original captures must
 precede correction of the native presence/default mismatch; keep the real red.
+
+
+## Public M3c global history
+
+The comparison now consumes `cases.tsv` directly and reports all 212 master rows:
+205 previously landed cases plus all seven history-travel cases, with no filters,
+skips or relabeling. The master bytes, seeds and comparison policy are unchanged.
+The older partition files remain historical inputs only, not current exclusions.
+
+Manual wrong-state checks are opt-in through
+`SCANRULER_NATIVE_HISTORY_CANARY=undo` or `=redo`. After a successful actual engine
+travel, the test restores the pre-travel element payload while leaving recorder
+bookkeeping and command results alone. The same state comparer must reject it.
+Empty-history refusals are still compared normally and never mutated. No new
+ignored Chrome/local-tool tests are added; the existing Node oracle entrypoint
+continues to be invoked by the established oracle lane.
