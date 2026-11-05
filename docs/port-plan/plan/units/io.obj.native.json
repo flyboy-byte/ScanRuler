@@ -3,7 +3,7 @@
   "parent": "io.obj",
   "title": "Open and measure standalone OBJ through the native engine",
   "gate": "G2",
-  "status": "planned",
+  "status": "implemented",
   "depends_on": [
     "io.obj.mesh",
     "engine.session.scan"
@@ -16,8 +16,8 @@
   ],
   "owner": "Codex",
   "branch": "codex/native-obj",
-  "claim_pr": null,
-  "implemented_commit": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/112",
+  "implemented_commit": "6963e68f0a52dcc3a24bcdb763c56d0296bb4425",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/core/meshWorker.ts",
@@ -36,8 +36,9 @@
   ],
   "evidence": [],
   "open_items": [
-    "Work in progress from main ed5170c, independent of PR110. Existing 33 import comparisons retained; 15 OBJ controls added to the same corpus.",
-    "No roster or verification-level promotion in this PR; those remain the owner-scheduled M3 batch. Image wiring, 3MF/STEP native commands and compatible project IO remain separate."
+    "Native OBJ implemented on main ed5170c, source 6963e68f0a52dcc3a24bcdb763c56d0296bb4425, PR112. All 48 existing-corpus import controls pass (33 retained + 15 OBJ); wrong-state vertexCount=-99 rejects all 48. Raw comparison output: evidence/2026-11-05-native-obj-comparison.json.gz. Six ordinary CLI tests pass.",
+    "Verification label/roster registration deferred to the owner-scheduled M3 milestone batch per the 2026-11-05 verification budget. No acceptance or fixed-corpus promotion is claimed; the existing ci_report.py requirement is unchanged.",
+    "Standalone geometry only: scan.open has no companion-file input. Original missing-texture notice is preserved. Image wiring, native 3MF/STEP and compatible project IO remain separate."
   ],
   "verification": "none"
 }

@@ -11,9 +11,9 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 81 |
+| implemented | 82 |
 | integrated | 1 |
-| planned | 48 |
+| planned | 47 |
 | specified | 1 |
 
 Verification labels describe scoped evidence snapshots, not whole-feature/runtime acceptance.
@@ -148,7 +148,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [io.obj.companions](plan/units/io.obj.companions.json) | planned | none | — | — | — |
 | [io.obj](plan/units/io.obj.json) | planned | none | — | — | — |
 | [io.obj.mesh](plan/units/io.obj.mesh.json) | implemented | fixed-corpus | `58aeacb` | `58aeacb` | [#32](https://github.com/flyboy-byte/ScanRuler/pull/32) |
-| [io.obj.native](plan/units/io.obj.native.json) | planned | none | — | — | — |
+| [io.obj.native](plan/units/io.obj.native.json) | implemented | none | `6963e68` | — | [#112](https://github.com/flyboy-byte/ScanRuler/pull/112) |
 | [io.obj.texture](plan/units/io.obj.texture.json) | implemented | fixed-corpus | `219059c` | `219059c` | [#31](https://github.com/flyboy-byte/ScanRuler/pull/31) |
 | [io.ply.ascii](plan/units/io.ply.ascii.json) | implemented | fuzzed | `737d3c3` | `1a67f50` | [#27](https://github.com/flyboy-byte/ScanRuler/pull/27) |
 | [io.ply.binary](plan/units/io.ply.binary.json) | implemented | fuzzed | `98d39fc` | `1a67f50` | [#28](https://github.com/flyboy-byte/ScanRuler/pull/28) |
