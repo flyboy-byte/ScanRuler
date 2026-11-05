@@ -118,6 +118,10 @@ family.
    Logan's own fork.)
 5. Before the first public release, is a lawyer's read worth the cost? Recommended for the name and the
    compatibility questions, not for the AGPL basics.
+6. Keep the AGPL port, build an independent implementation for a permissive licence, or seek permission?
+   An outside review (ChatGPT, 2026-11-04, recorded with Claude's notes in
+   `plan/findings/2026-11-04-licensing-review-chatgpt.md`) argues section 2's reasoning is too categorical
+   and that the timing matters if Tangency integration is the goal. Recorded only; still parked.
 
 Nothing in this file authorises a rename of the remote, a release, or any contact. It is the checklist for when
 Logan decides to, after Stefan's reply.
