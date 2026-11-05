@@ -149,6 +149,14 @@ fn bytes(row: &str) -> Vec<u8> {
         )
         .unwrap();
     }
+    if let Some(name) = c[1].strip_prefix("3mf-") {
+        return std::fs::read(
+            Path::new(env!("CARGO_MANIFEST_DIR"))
+                .join("../../../docs/port-plan/fixtures/native-import/3mf")
+                .join(format!("{name}.3mf")),
+        )
+        .unwrap();
+    }
     if c[1].starts_with("ply-") {
         return ply_bytes(c[1]);
     }
@@ -239,6 +247,8 @@ fn observe(row: &str) -> V {
                         "ply"
                     } else if c[1].starts_with("obj-") {
                         "obj"
+                    } else if c[1].starts_with("3mf-") {
+                        "3mf"
                     } else {
                         "stl"
                     }
@@ -437,7 +447,7 @@ fn pinned_native_import_comparison() {
     );
     std::fs::write(run.join("original.stderr"), out.stderr).unwrap();
     let original = String::from_utf8(out.stdout).unwrap();
-    assert_eq!(original.lines().count(), 48);
+    assert_eq!(original.lines().count(), input.lines().count());
     let mut failures = 0;
     for (row, line) in input.lines().zip(original.lines()) {
         let (id, h) = line.split_once('\t').unwrap();
@@ -463,7 +473,8 @@ fn pinned_native_import_comparison() {
         }
     }
     eprintln!(
-        "48 native registered-command comparisons; mismatches={failures}; raw {}",
+        "{} native registered-command comparisons; mismatches={failures}; raw {}",
+        input.lines().count(),
         run.display()
     );
     assert_eq!(failures, 0)

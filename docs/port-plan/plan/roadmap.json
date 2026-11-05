@@ -37,10 +37,10 @@
         {"id": "m2.ply", "title": "PLY reader", "weight": 2, "units": ["io.ply", "io.ply.ascii", "io.ply.binary"], "left": "H1-H3 host limits (Logan's decision), parent acceptance."},
         {"id": "m2.obj", "title": "OBJ/MTL reader and companions", "weight": 3, "units": ["io.obj", "io.obj.mesh", "io.obj.texture", "io.obj.companions", "io.obj.companions.drop", "io.obj.companions.files", "io.obj.companions.image_audit", "io.obj.native"], "left": "Companion parent and OBJ parent integration."},
         {"id": "m2.images", "title": "Texture image decoding", "weight": 3, "units": ["io.obj.companions.images", "io.obj.companions.images.png"], "left": "Wire PNG into readCompanions; JPEG, BMP, WebP."},
-        {"id": "m2.zip", "title": "Inflate, zip and 3MF", "weight": 2, "units": ["io.inflate", "io.threemf"], "left": "Zip entry cap (Logan's decision); roster registration."},
+        {"id": "m2.zip", "title": "Inflate, zip and 3MF", "weight": 2, "units": ["io.inflate", "io.threemf", "io.threemf.native"], "left": "Zip entry cap (Logan's decision); roster registration."},
         {"id": "m2.geometry", "title": "Geometry indexing", "weight": 3, "units": ["geometry.adjacency", "geometry.bounds", "geometry.centroid", "geometry.closed.shells", "geometry.components", "geometry.mesh.graph", "geometry.normals.compute", "geometry.normals.orient", "geometry.selection", "io.mesh.weld"], "left": "Acceptance."},
         {"id": "m2.render", "title": "Scan render preparation (crease)", "weight": 2, "units": ["geometry.mesh.crease"], "left": "Roster registration of its 1309 controls, then promotion (Codex)."},
-        {"id": "m2.native", "title": "Native import commands for every format", "weight": 2, "estimate": 75, "basis": "Native scan.open/info cover STL, all PLY encodings (#105) and standalone OBJ (#112); 3MF is an explicit refusal.", "left": "3MF through scan.open."},
+        {"id": "m2.native", "title": "Native import commands for every format", "weight": 2, "estimate": 90, "basis": "Native scan.open/info cover STL, all PLY encodings (#105), standalone OBJ (#112) and 3MF (claude/threemf-native); STEP is an explicit refusal.", "left": "STEP (needs the kernel, M8); OBJ companion files."},
         {"id": "m2.real", "title": "Original-versus-Rust on real scans", "weight": 1, "estimate": 0, "basis": "No real scan in fixtures/private/ yet.", "left": "Logan supplies a scan; run section 5 comparisons."}
       ]
     },
