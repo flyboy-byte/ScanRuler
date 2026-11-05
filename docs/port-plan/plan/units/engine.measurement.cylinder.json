@@ -15,7 +15,7 @@
   ],
   "owner": "Claude",
   "branch": "claude/marked-cylinder-engine",
-  "claim_pr": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/117",
   "implemented_commit": null,
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
