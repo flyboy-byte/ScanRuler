@@ -3,7 +3,7 @@
   "parent": "P16",
   "title": "Round-trip legacy measurement projects without losing unknown data",
   "gate": "G2",
-  "status": "planned",
+  "status": "implemented",
   "depends_on": [
     "engine.session.contract",
     "engine.measurement.slice"
@@ -19,19 +19,49 @@
   ],
   "owner": "Codex",
   "branch": "codex/m3d-project",
-  "claim_pr": null,
-  "implemented_commit": null,
+  "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/113",
+  "implemented_commit": "3fe64e69956faad4e1c3d901a305f49ff17bee5f",
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "source_paths": [
     "src/core/project/archive.ts",
     "src/core/project/manifest.ts",
-    "src/core/project/validation.ts"
+    "src/core/project/validation.ts",
+    "src/app/project.ts",
+    "src/app/projectSections.ts",
+    "src/app/useProject.ts",
+    "src/commands/core/files.ts",
+    "src/commands/state.ts"
   ],
-  "symbols": [],
-  "rust_paths": [],
+  "symbols": [
+    "packProject",
+    "unpackProject",
+    "validateManifest",
+    "validateProjectParts",
+    "collectProject",
+    "prepareProjectState",
+    "useProject",
+    "sessionState"
+  ],
+  "rust_paths": [
+    "rust/crates/port-engine/src/project.rs",
+    "rust/crates/port-engine/src/project_json.rs",
+    "rust/crates/port-engine/src/project_validation.rs",
+    "rust/crates/port-engine/src/native_project.rs",
+    "rust/crates/port-engine/src/native_project_state.rs",
+    "rust/crates/port-engine/src/native_engine.rs",
+    "rust/crates/port-engine/src/native_plane.rs",
+    "rust/crates/port-engine/src/scan_session.rs",
+    "rust/crates/port-engine/tests/native_project.rs",
+    "rust/crates/port-cli/src/main.rs",
+    "rust/crates/port-cli/tests/info.rs"
+  ],
   "evidence": [],
   "open_items": [
-    "M3d in progress from main 54dbd5f: engine/CLI schema-1 project save/read, atomic preparation and unknown-part preservation. No image wiring, roster or milestone promotion."
+    "M3d native scan/marked-plane save/read implemented from main 54dbd5f in PR113, source 3fe64e69956faad4e1c3d901a305f49ff17bee5f. One corpus passes 22/22 original/Rust controls (12 successful loads, 10 refusals); actual nextId=-99 red run rejects all 22, then clean rerun passes. Comparison output: evidence/2026-11-05-m3d-project-comparison.json.gz. Original project hook runs under SSR with original archive functions over an adapted worker transport; no reference geometry is fed to Rust. Authored DEFLATE input is read by both implementations; the original reader also accepts Rust-written archives.",
+    "M3 supported slice: standalone STL/PLY/OBJ, marked-plane recipes and saved fits, pose/units/source bytes/IDs, old per-element settings defaults, unknown root plugin parts and their unowned members. Engine owns IO/state/history; CLI supplies --save/files and writes atomically. Native cancellation test forces a deadline then releases late preparation, preserving source/graph/elements/history.",
+    "Broader M6 remains open: reference/image/companion reconstruction, measured maps, other fitted/constructed/seeded families, dimensions/sections, 2D work, workspaces beyond Measure, finishing rebuilds without a saved fit and ZIP64 are explicit pre-commit Unavailable paths. Writer uses interoperable ZIP stored members, so files may be larger than the original deflated writer.",
+    "Source size/name/schema checks are retained. Additional native bounds: 128 MiB archive/aggregate decompression, existing 64 MiB source/mesh/store budgets, two million JSON nodes and 128 parser levels; original schema nesting remains 64. Host resource refusals are distinct from source errors.",
+    "Verification label and roster registration remain the owner-scheduled M3 batch under the 2026-11-05 budget. Existing acceptance text, ci_report.py and native roster are unchanged; no acceptance or fixed-corpus promotion is claimed."
   ],
   "verification": "none"
 }

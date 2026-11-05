@@ -1,20 +1,20 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # Roadmap to a Rust build you can use and bug-test
 
-Written 2026-11-02; refreshed 2026-11-04 (section 0). There is no issue queue or outside contributor pool here; the owner will rarely use
+Written 2026-11-02; refreshed 2026-11-05 (section 0). There is no issue queue or outside contributor pool here; the owner will rarely use
 the app and bug-test it by hand. So the project must prove itself: the work queue is the plan units, the
 bug finder is the comparison against the original, and real use is staged so it starts as early as
 possible. This file fixes the layout, workflow and pipeline. It does not change any rule in `HANDOFF.md`.
 
-## 0. Where we are (2026-11-04)
+## 0. Where we are (2026-11-05)
 
-Status: **M2 libraries done, native open/info, select/fit and global undo/redo implemented (M3a–M3c), M3 still incomplete.**
+Status: **M2 libraries and M3a–M3d native functionality implemented; M3 milestone acceptance still open.**
 Verify current main with `git log -1 origin/main`, `gh pr list -R flyboy-byte/scanruler`
 and `STATUS.md`. A feature PR describes the code on its tree; Logan merges it.
 
 - On this tree: STL, PLY, OBJ/MTL, inflate/zip and 3MF libraries; real scan/session
   ownership and runtime (#104), number formatting (#103), prepared rendering (#106),
-  native `scan.open` plus `scanruler-rs info` for STL and all PLY encodings (#105),
+  native `scan.open` plus `scanruler-rs info` for STL/all PLY encodings (#105) and standalone OBJ (#112),
   and real `scan.query`/marked/box plane fitting with CLI `fit-plane` (#108).
   Unsupported native command formats are explicit refusals; image decoding remains open.
 - **Global history:** PR #110 wires undo/redo through the same runtime recorder
@@ -50,7 +50,7 @@ before opening its successor where they share files):
    All 205 current controls, actual wrong-state rejection and clean rerun pass
    on source `c4ef7e4`; the unchanged 33 import controls and full fast/oracle/
    62-suite artifact gates pass. Merged before M3c was opened.
-3. **M3c, undo and redo: PR #110, ready for Logan.** Global history apply/undo/redo
+3. ~~**M3c, undo and redo**~~ — merged in PR #110. Global history apply/undo/redo
    uses the runtime recorder; CLI `--undo`/`--redo` only supply inputs and format
    output. All 212/212 controls, both wrong-state red runs and the clean rerun are
    reported in the PR. No M3d, roster, crease promotion or image work included.
