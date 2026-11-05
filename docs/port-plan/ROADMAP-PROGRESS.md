@@ -8,17 +8,17 @@ Estimates as of **2026-11-05**. Regenerate with `python3 docs/port-plan/tools/ro
 > average their units' state credit; *estimate* pieces are dated judgements with a stated basis.
 > Weights are effort shares and are judgement too. Edit `plan/roadmap.json`, never this file.
 
-**Overall: 16%**
+**Overall: 17%**
 
 | Milestone | Progress | % | Weight | Computed share |
 | --- | --- | ---: | ---: | ---: |
 | M1 Reproducible baseline and corpus | `█████░░░░░` | 48% | 3 | 40% |
-| M2 Import breadth | `██████░░░░` | 56% | 8 | 85% |
-| M3 Session and commands, native CLI (first dogfood) | `██████░░░░` | 59% | 10 | 60% |
+| M2 Import breadth | `██████░░░░` | 57% | 8 | 85% |
+| M3 Session and commands, native CLI (first dogfood) | `██████░░░░` | 59% | 10 | 55% |
 | M4 Paired harness and ratchet | `████░░░░░░` | 40% | 5 | 50% |
 | M5 MCP | `░░░░░░░░░░` | 0% | 5 | 0% |
 | M6 Projects and history | `█░░░░░░░░░` | 6% | 7 | 0% |
-| M7 Measurement families, then workspaces | `░░░░░░░░░░` | 1% | 35 | 0% |
+| M7 Measurement families, then workspaces | `░░░░░░░░░░` | 2% | 35 | 0% |
 | M8 Pure-Rust kernels and purity | `░░░░░░░░░░` | 1% | 22 | 0% |
 | X1 Contributor CI and canonical docs | `███████░░░` | 73% | 2 | 67% |
 | X2 Release and integration | `░░░░░░░░░░` | 0% | 3 | 0% |
@@ -36,7 +36,7 @@ Phases: P00, P01, P02, P03.
 | Command and feature catalogs | 50% | 2 | computed: 0/2 units implemented or better | Catalogs captured; P02 acceptance. |
 | Parity corpus and source dependency map | 35% | 3 | estimate: Unit corpora and generators exist (fixtures/, tools/generate_*); no global corpus licence/hash index or dependency map (P03). | Corpus index with licence, generator, seed and hash per fixture; skip reasons; source map. |
 
-## M2 — Import breadth (56%)
+## M2 — Import breadth (57%)
 
 Phases: P06.
 
@@ -46,10 +46,10 @@ Phases: P06.
 | PLY reader | 57% | 2 | computed: 2/3 units implemented or better | H1-H3 host limits (Logan's decision), parent acceptance. |
 | OBJ/MTL reader and companions | 59% | 3 | computed: 6/8 units implemented or better | Companion parent and OBJ parent integration. |
 | Texture image decoding | 38% | 3 | computed: 1/2 units implemented or better | Wire PNG into readCompanions; JPEG, BMP, WebP. |
-| Inflate, zip and 3MF | 75% | 2 | computed: 2/2 units implemented or better | Zip entry cap (Logan's decision); roster registration. |
+| Inflate, zip and 3MF | 75% | 2 | computed: 3/3 units implemented or better | Zip entry cap (Logan's decision); roster registration. |
 | Geometry indexing | 80% | 3 | computed: 10/10 units implemented or better | Acceptance. |
 | Scan render preparation (crease) | 0% | 2 | computed: 0/1 units implemented or better | Roster registration of its 1309 controls, then promotion (Codex). |
-| Native import commands for every format | 75% | 2 | estimate: Native scan.open/info cover STL, all PLY encodings (#105) and standalone OBJ (#112); 3MF is an explicit refusal. | 3MF through scan.open. |
+| Native import commands for every format | 90% | 2 | estimate: Native scan.open/info cover STL, all PLY encodings (#105), standalone OBJ (#112) and 3MF (claude/threemf-native); STEP is an explicit refusal. | STEP (needs the kernel, M8); OBJ companion files. |
 | Original-versus-Rust on real scans | 0% | 1 | estimate: No real scan in fixtures/private/ yet. | Logan supplies a scan; run section 5 comparisons. |
 
 ## M3 — Session and commands, native CLI (first dogfood) (59%)
@@ -59,13 +59,13 @@ Phases: P05, P07, P08, P09.
 | Piece | % | Weight | Basis | Left |
 | --- | ---: | ---: | --- | --- |
 | Session contracts and runtime | 78% | 4 | computed: 35/36 units implemented or better | engine.session.contract parent (specified only); acceptance. |
-| Plane and sphere fitting libraries | 80% | 3 | computed: 10/10 units implemented or better | Cylinder (P07 second half); acceptance. |
+| Plane and sphere fitting libraries | 80% | 3 | computed: 11/11 units implemented or better | Cylinder element and command (split, seeded fit, CLI); acceptance. |
 | M3a native open and info | 75% | 1 | estimate: Merged in #105 (fa7fe06); part of engine.measurement.slice, which stays planned until the whole slice lands. | Slice acceptance. |
 | M3b select and fit-plane | 75% | 2 | estimate: Merged in #108 (a058172); 205 of 212 master controls. | Slice acceptance. |
 | M3c global undo and redo | 75% | 2 | estimate: Merged in #110 (ac754d7); 212/212 controls. | Slice acceptance. |
 | Measurement slice unit | 0% | 1 | computed: 0/1 units implemented or better | Accept once M3a-M3d and roster are integrated. |
 | M3d project save and read | 75% | 3 | computed: 1/1 units implemented or better | M3d native scan/marked-plane slice in PR113; full M6 and scheduled milestone verification remain open. |
-| Roster: register new suites | 0% | 1 | computed: 0/1 units implemented or better | Scheduled milestone batch in PR114; exact-base ratchet and acceptance remain separate. |
+| Roster: register new suites | 0% | 1 | estimate: Engine, render, inflate, 3MF and PNG suites run in CI but are not in ci/native-suites.json. | One PR holding rust/xtask. |
 | Browser/Wasm measurement slice (P09) | 10% | 2 | estimate: Bounded Wasm harness coverage exists (harness.wasm.*); no browser command flow. | Same slice running in the browser build. |
 | Logan runs open-fit-undo-save on his scan | 0% | 1 | estimate: Needs M3d and a real scan. | The M3 exit condition. |
 
@@ -96,13 +96,13 @@ Phases: P16, P17.
 | Full legacy project compatibility (P16) | 0% | 5 | estimate: Not started beyond M3d's slice. | Every original .scanruler reopens with equal results. |
 | History, edited-copy adoption and recovery (P17) | 15% | 3 | estimate: Session history core/guards/local/record/restore implemented (counted in M3); adoption and recovery not started. | Edited copies, recovery, failed-load safety. |
 
-## M7 — Measurement families, then workspaces (1%)
+## M7 — Measurement families, then workspaces (2%)
 
 Phases: P10, P11, P12, P13, P14, P15, P20, P21, P22, P23, P24, P25, P28.
 
 | Piece | % | Weight | Basis | Left |
 | --- | ---: | ---: | --- | --- |
-| Primitive fits and region selection (P10) | 15% | 3 | estimate: Plane and sphere libraries done (M3); cylinder, cone, torus, line, circle and region growing not. | Remaining primitives. |
+| Primitive fits and region selection (P10) | 25% | 3 | estimate: Plane, sphere and cylinder libraries and the 2D circle kernel done; cone, torus, line, 3D circle and region growing not. | Remaining primitives. |
 | Datum, symmetry and ICP alignment (P11) | 0% | 3 | estimate: Not started. | Everything. |
 | Deviation fields and volume-error reports (P12) | 0% | 3 | estimate: Not started. | Everything. |
 | Thickness and tolerances (P13) | 0% | 2 | estimate: Not started. | Everything. |

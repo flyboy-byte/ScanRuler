@@ -19577,6 +19577,65 @@
       "verification": "fixed-corpus"
     },
     {
+      "id": "fit.cylinder",
+      "parent": "P07",
+      "title": "Port cylinder fitting kernels and the marked-cylinder element body",
+      "gate": "G2",
+      "status": "implemented",
+      "depends_on": [
+        "fit.linalg.solve",
+        "fit.plane.clip",
+        "fit.plane.ransac",
+        "fit.curvature.gate"
+      ],
+      "soft_depends_on": [],
+      "scope": "cylinder.ts radial/cylinderResidual, axisFromNormals, fitCylinderOnAxis, refineCylinderGeometric, fitCylinderClipped, cylinderFrom2 and ransacCylinder; circle2d.ts fitCircle2d; fitCylinderFromSeed.ts fitCylinderOnSelection with cylinderResult and fitInsideWindow; extents.ts axialExtents; V8's Math.atan2 (fdlibm) for the coverage angles. splitTwoCylinders, seeded fitting/region growing and the engine command/CLI are not in this unit.",
+      "acceptance": [
+        "Original and Rust give bit-identical results (floats, used/inlier order, fitted/refused shape) on an independent corpus covering full and partial arcs, tilted axes, noise, outliers, offset coordinates, tiny and huge radii, planes, too few points, NaN and on-axis points; a wrong Rust value fails the comparison."
+      ],
+      "owner": "Claude",
+      "branch": "claude/fit-cylinder",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/116",
+      "implemented_commit": null,
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/fit/cylinder.ts",
+        "src/core/fit/circle2d.ts",
+        "src/core/fit/linalg.ts",
+        "src/core/fit/fitCylinderFromSeed.ts",
+        "src/core/fit/extents.ts"
+      ],
+      "symbols": [
+        "cylinderResidual",
+        "axisFromNormals",
+        "fitCylinderOnAxis",
+        "refineCylinderGeometric",
+        "fitCylinderClipped",
+        "ransacCylinder",
+        "fitCircle2d",
+        "orthoBasis",
+        "fitCylinderOnSelection",
+        "axialExtents",
+        "Math.atan2"
+      ],
+      "rust_paths": [
+        "rust/crates/port-core/src/cylinder.rs",
+        "rust/crates/port-core/src/circle2d.rs",
+        "rust/crates/port-core/src/marked_cylinder.rs",
+        "rust/crates/port-core/src/numeric.rs",
+        "rust/crates/port-core/tests/cylinder.rs",
+        "rust/crates/port-core/tests/js_math.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "pinned_cylinder_comparison: 170/170 bit-identical against the pinned original (133 fitted, 17 refused with the original's FitError text, 20 refinements), corpus fixtures/cylinder/generate.py, oracle oracle/cylinder.cjs. Wrong values fail it: damping 0.3 -> 0.31 (kernels) and coverage 360 -> 359.999 (marked body).",
+        "js_atan2 (port-core numeric, fdlibm as V8): 300,289 pairs bit-identical with Node 22 Math.atan2 (atan2_matches_node). Rust f64::atan2 differs for about 1 in 6 inputs; native_plane_finish.rs and native_project_state.rs still use f64::atan2 and should switch.",
+        "Next: element.fit_marked kind cylinder in the engine (draft text, assumed/orient/extend finishing, describeElement, project recipe) and CLI fit-cylinder.",
+        "Verification label and roster registration wait for the owner-scheduled milestone batch (2026-11-05 verification budget)."
+      ],
+      "verification": "none"
+    },
+    {
       "id": "fit.linalg.solve",
       "parent": "P07",
       "title": "Port Cholesky and partial-pivot dense solvers",
@@ -27275,6 +27334,57 @@
         "Only Node 22 ran the original; no Chrome execution. No real package from Bambu, Orca, PrusaSlic3r or 3D Builder was available locally.",
         "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate.",
         "Historical first-run report retained at plan/findings/2026-11-03-threemf-first-run.md; its 107-file private corpus was not rerun on this follow-up. Current six-seed generated results and raw identities are in #97."
+      ],
+      "verification": "none"
+    },
+    {
+      "id": "io.threemf.native",
+      "parent": "io.threemf",
+      "title": "Open and measure 3MF through the native engine",
+      "gate": "G2",
+      "status": "implemented",
+      "depends_on": [
+        "io.threemf",
+        "engine.session.scan"
+      ],
+      "soft_depends_on": [
+        "io.obj.native"
+      ],
+      "scope": "Wire 3MF into the real scan.open worker/session and native info/fit-plane CLI: millimetre units whatever is given (prepareScan), status prefix from the given units, vertex colours kept when there is one per graph vertex (postScan, scanColors), texture notes (scanFileNote) and bounded source refusals. Matches the no-viewport original, where scanCompanions' createImageBitmap decode is unavailable so packed images never reach the reader. Also: CLI info on a .scanruler lists the reopened elements (id, kind, name, status).",
+      "acceptance": [
+        "3MF opens through the engine with original-equivalent mesh, summary, source and session state on success and refusal; a wrong Rust value fails the comparison.",
+        "CLI supplies files and formats results while the engine owns parsing, state and measurements."
+      ],
+      "owner": "Claude",
+      "branch": "claude/threemf-native",
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/115",
+      "implemented_commit": "de040fe0605edfd8ff68afdce4f29484e709ab0f",
+      "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+      "source_paths": [
+        "src/core/meshWorker.ts",
+        "src/core/parsers/threemf.ts",
+        "src/app/imports.ts",
+        "src/app/scanFiles.ts",
+        "src/app/scanImport.ts"
+      ],
+      "symbols": [
+        "parseByName",
+        "prepareScan",
+        "scanCompanions",
+        "postScan",
+        "scanFileNote"
+      ],
+      "rust_paths": [
+        "rust/crates/port-engine/src/native_engine.rs",
+        "rust/crates/port-engine/tests/native_import.rs",
+        "rust/crates/port-cli/src/main.rs",
+        "rust/crates/port-cli/tests/info.rs"
+      ],
+      "evidence": [],
+      "open_items": [
+        "Native-import comparison: 62/62 pass against the pinned original (48 existing + 14 new 3MF cases: units mm/cm/in, deflated, inch/centimeter model units, build transforms, components, base-material colours, packed texture, no model, no triangles, bad index, damaged). Fixtures from fixtures/native-import/generate-3mf.py. A wrong Rust value (3MF position +0.5 before scaling) fails all 10 geometry cases; the 4 refusal cases are rightly unaffected.",
+        "Packed images are not decoded natively, matching the headless original. A browser build that has createImageBitmap would decode them (port-io png.rs is ready for PNG; JPEG is not ported).",
+        "Verification label and roster registration wait for the owner-scheduled M3 milestone batch (2026-11-05 verification budget)."
       ],
       "verification": "none"
     },

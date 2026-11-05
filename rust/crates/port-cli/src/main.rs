@@ -227,6 +227,9 @@ fn run() -> Result<(), String> {
         text("components"),
         Value::Number(engine.components() as f64),
     ));
+    if path.to_lowercase().ends_with(".scanruler") {
+        summary.push((text("elements"), engine.elements_summary()));
+    }
     if command == "fit-plane" {
         let vertices = summary
             .iter()

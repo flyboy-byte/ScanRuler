@@ -11,7 +11,7 @@ No aggregate percentage establishes parity. Unit states describe evidence scope;
 | State | Units |
 | --- | ---: |
 | baseline-captured | 2 |
-| implemented | 83 |
+| implemented | 84 |
 | integrated | 1 |
 | planned | 47 |
 | specified | 1 |
@@ -110,6 +110,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [engine.state.sections](plan/units/engine.state.sections.json) | implemented | fixed-corpus | `05406f2` | `05406f2` | [#87](https://github.com/flyboy-byte/ScanRuler/pull/87) |
 | [engine.state.workspaces](plan/units/engine.state.workspaces.json) | implemented | fixed-corpus | `af44b28` | `af44b28` | [#83](https://github.com/flyboy-byte/ScanRuler/pull/83) |
 | [fit.curvature.gate](plan/units/fit.curvature.gate.json) | implemented | fixed-corpus | `f46eeb1` | `f46eeb1` | [#16](https://github.com/flyboy-byte/ScanRuler/pull/16) |
+| [fit.cylinder](plan/units/fit.cylinder.json) | implemented | none | — | — | [#116](https://github.com/flyboy-byte/ScanRuler/pull/116) |
 | [fit.linalg.solve](plan/units/fit.linalg.solve.json) | implemented | fixed-corpus | `46e0992` | `46e0992` | [#7](https://github.com/flyboy-byte/ScanRuler/pull/7) |
 | [fit.plane.clip](plan/units/fit.plane.clip.json) | implemented | fixed-corpus | `4c8b4cf` | `4c8b4cf` | [#9](https://github.com/flyboy-byte/ScanRuler/pull/9) |
 | [fit.plane.ransac](plan/units/fit.plane.ransac.json) | implemented | fixed-corpus | `2490952` | `2490952` | [#12](https://github.com/flyboy-byte/ScanRuler/pull/12) |
@@ -157,6 +158,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [io.stl.binary](plan/units/io.stl.binary.json) | implemented | fuzzed | `5ee3881` | `1a67f50` | [#2](https://github.com/flyboy-byte/ScanRuler/pull/2) |
 | [io.stl.dispatch](plan/units/io.stl.dispatch.json) | implemented | fuzzed | `77683bf` | `1a67f50` | [#3](https://github.com/flyboy-byte/ScanRuler/pull/3) |
 | [io.threemf](plan/units/io.threemf.json) | implemented | none | `31ebafc` | — | [#97](https://github.com/flyboy-byte/ScanRuler/pull/97) |
+| [io.threemf.native](plan/units/io.threemf.native.json) | implemented | none | `de040fe` | — | [#115](https://github.com/flyboy-byte/ScanRuler/pull/115) |
 | [math.number.fixed3](plan/units/math.number.fixed3.json) | implemented | fixed-corpus | `3ae1787` | `3ae1787` | [#92](https://github.com/flyboy-byte/ScanRuler/pull/92) |
 | [math.number.shortest](plan/units/math.number.shortest.json) | implemented | fixed-corpus | `3da16bf` | `3da16bf` | [#103](https://github.com/flyboy-byte/ScanRuler/pull/103) |
 | [project.measurement.compatibility](plan/units/project.measurement.compatibility.json) | implemented | none | `6b0280b` | — | [#113](https://github.com/flyboy-byte/ScanRuler/pull/113) |

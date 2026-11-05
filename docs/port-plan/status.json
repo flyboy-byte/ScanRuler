@@ -3,7 +3,7 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 83,
+    "implemented": 84,
     "integrated": 1,
     "planned": 47,
     "specified": 1
@@ -1063,6 +1063,21 @@
       ]
     },
     {
+      "id": "fit.cylinder",
+      "status": "implemented",
+      "parent": "P07",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/116",
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "pinned_cylinder_comparison: 170/170 bit-identical against the pinned original (133 fitted, 17 refused with the original's FitError text, 20 refinements), corpus fixtures/cylinder/generate.py, oracle oracle/cylinder.cjs. Wrong values fail it: damping 0.3 -> 0.31 (kernels) and coverage 360 -> 359.999 (marked body).",
+        "js_atan2 (port-core numeric, fdlibm as V8): 300,289 pairs bit-identical with Node 22 Math.atan2 (atan2_matches_node). Rust f64::atan2 differs for about 1 in 6 inputs; native_plane_finish.rs and native_project_state.rs still use f64::atan2 and should switch.",
+        "Next: element.fit_marked kind cylinder in the engine (draft text, assumed/orient/extend finishing, describeElement, project recipe) and CLI fit-cylinder.",
+        "Verification label and roster registration wait for the owner-scheduled milestone batch (2026-11-05 verification budget)."
+      ]
+    },
+    {
       "id": "fit.linalg.solve",
       "status": "implemented",
       "parent": "P07",
@@ -1770,6 +1785,20 @@
         "Only Node 22 ran the original; no Chrome execution. No real package from Bambu, Orca, PrusaSlic3r or 3D Builder was available locally.",
         "Zip and inflate are our own code, decided in plan/decisions/2026-11-03-own-inflate-zip-png-jpeg.md and delivered by io.inflate.",
         "Historical first-run report retained at plan/findings/2026-11-03-threemf-first-run.md; its 107-file private corpus was not rerun on this follow-up. Current six-seed generated results and raw identities are in #97."
+      ]
+    },
+    {
+      "id": "io.threemf.native",
+      "status": "implemented",
+      "parent": "io.threemf",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/115",
+      "tested_sha": "de040fe0605edfd8ff68afdce4f29484e709ab0f",
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "Native-import comparison: 62/62 pass against the pinned original (48 existing + 14 new 3MF cases: units mm/cm/in, deflated, inch/centimeter model units, build transforms, components, base-material colours, packed texture, no model, no triangles, bad index, damaged). Fixtures from fixtures/native-import/generate-3mf.py. A wrong Rust value (3MF position +0.5 before scaling) fails all 10 geometry cases; the 4 refusal cases are rightly unaffected.",
+        "Packed images are not decoded natively, matching the headless original. A browser build that has createImageBitmap would decode them (port-io png.rs is ready for PNG; JPEG is not ported).",
+        "Verification label and roster registration wait for the owner-scheduled M3 milestone batch (2026-11-05 verification budget)."
       ]
     },
     {
