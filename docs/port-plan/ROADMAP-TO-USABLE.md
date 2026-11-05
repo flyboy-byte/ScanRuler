@@ -96,9 +96,11 @@ may be built ahead of its dependencies but cannot be integrated past them). Hot 
 1. **Claim** by opening a draft PR from `origin/main` titled with the unit id; check open PRs first.
 2. **Compare before porting:** write the independent cases and tolerances first (from the original's own tests),
    port the whole body, run original and Rust on independent copies, compare values and state, and show the
-   comparison fails on a deliberately wrong Rust value.
+   comparison fails on a deliberately wrong Rust value. **Verification budget (2026-11-05,
+   `PORTING-PROCESS.md`):** that comparison is for user-visible results only; plumbing gets plain Rust tests;
+   fuzzing, sweeps, coverage and roster work are batched at milestone gates; units are feature-sized.
 3. **Record in the unit JSON** (tested SHA, evidence, open scope), then `port_plan.py render` and
-   `ci_report.py status`. Findings and decisions are new uniquely named files. The PR body is the report.
+   `ci_report.py status`. A finding file only when something surprising affects others. The PR body is the report.
    No separate handoff file. Regenerate generated files, never hand-merge them.
 4. **Stacking:** one unit per PR from `main`. An unattended multi-PR session may stack its own PRs in order and
    says so in the first PR body. **Land work, don't hoard it (2026-11-04):** a private integration or workbench
@@ -115,6 +117,10 @@ may be built ahead of its dependencies but cannot be integrated past them). Hot 
    the rename are parked (`LICENSING-AND-NAMING.md`).
 
 ## 3. The ladder to "I can try it" (milestones, in order)
+
+Each milestone is split into smaller pieces with a progress estimate in the generated
+[`ROADMAP-PROGRESS.md`](ROADMAP-PROGRESS.md). Edit `plan/roadmap.json` and run `tools/roadmap.py --write`
+when convenient; it is advisory, so CI does not fail when the page is stale (`--check` reports it).
 
 | # | Milestone | Units | What you can do yourself | What proves it |
 | --- | --- | --- | --- | --- |
@@ -194,12 +200,14 @@ global history is wired in #110; project reader/writer and UI remain open (secti
   over its host cap that the original reads. Same choice as the PLY host limits: keep, document per class or match.
 - **Parent units** `io.ply` and `io.obj` stay `planned` until their P03 corpus entries exist; their children are implemented.
 - **Independent fuzz is the standard second check for an import unit**: seeded mutation of header, truncation and body
-  against the original, in a scratch directory, before the unit leaves `implemented`.
+  against the original, in a scratch directory, before the unit leaves `implemented`. Since 2026-11-05 it runs in the
+  milestone-gate batch, not in the unit's PR.
 
 ## 10. Verifying a large amount of ported code (decided 2026-11-02)
 
 The original is the judge; the risk is input it was never asked about. Strategy, in the order to build it
-(units in lane C):
+(units in lane C). Since 2026-11-05 items 1-4 and 6 run as a batch at milestone gates when Logan schedules it,
+not in every PR (verification budget, `PORTING-PROCESS.md`):
 
 1. **Standing fuzz** (`harness.fuzz.standing`): seeded mutation of every parser against the original, a repeatable
    command plus a scheduled job. The scratch PLY/STL run found a bug that about 1,300 fixed cases missed.

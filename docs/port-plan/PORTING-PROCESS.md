@@ -6,6 +6,31 @@ Stefan's pinned ScanRuler code, mathematics, defaults, refusals and observable r
 
 Run the original and Rust implementation on equivalent independent copies of the same input. Compare outputs; never feed reference results, shapes, intermediate state or expected answers into the Rust implementation. A discrepancy is an open port divergence until explained. Analytic fixtures and metamorphic checks diagnose the port or its harness and broaden coverage; they do not authorize replacing Stefan's output. If an apparent source problem is found, record the reproduction separately and retain the pinned reference contract. A reference update or intentional behavior change requires a separate reviewed decision, never a relaxed expectation in the fixing PR.
 
+## Verification budget (owner decision, 2026-11-05)
+
+**Why:** recent PRs spent most of their effort on verification runs, corpora and paperwork rather than ported
+code (#103-#110), and each PR kept adding more tests. Logan set this budget on 2026-11-05. It governs how much
+proof *new* work needs at PR time; it removes no existing test, gate, tolerance or seed.
+
+1. **Tier 1, user-visible results** (numbers and geometry, imported meshes, errors and messages a user sees,
+   saved files): one original-versus-Rust comparison on one corpus covering success and refusal paths, plus one
+   deliberately wrong Rust value that fails it. That is the whole PR-time requirement.
+2. **Tier 2, internal plumbing** (session runtime, queues, guards, scheduling, glue, CLI formatting): ordinary
+   Rust tests only. It is covered by the Tier 1 comparison of the feature that uses it. No own corpus or oracle.
+3. **Feature-sized units.** One unit is one capability a user would name (cylinder fit, deviation map, project
+   save). Do not split plumbing into sub-units. Existing small units stay as they are.
+4. **Heavy verification is batched at milestone gates**, when Logan schedules it, never per PR: fuzzing, large
+   sweeps, coverage review, mutation audits, verification-level promotion and roster registration.
+5. **Paperwork per PR:** the unit JSON, the regenerated files and the PR body. A finding file only when something
+   surprising was learned that affects others. Evidence files only for oracle comparison output; no separate
+   gate, inventory or rerun records.
+6. **Budget check:** if a PR's verification work is growing past its code, stop and ask Logan before adding more.
+   Do not add tests these rules do not require.
+
+Unchanged: the original is the judge; never loosen a tolerance or seed, never take expected values from Rust,
+never raise the 1500 ms threshold; acceptance still needs the full verification levels, done at the milestone
+gate.
+
 ## Single source of work status
 
 `plan/units/<id>.json` is authoritative for each work item. The initial P00–P39 files are roadmap workstreams; add smaller dotted child IDs for bounded tasks such as `fit.plane.residuals` with `parent: "P07"`. A child records hard/soft dependencies, source paths/symbols, intended Rust paths, claimed edit boundary, baseline/case IDs, acceptance, evidence, open items and owner/PR. Do not claim a whole kernel or workflow when working on one function group.
