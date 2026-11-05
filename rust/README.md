@@ -1,15 +1,15 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # rust/: the pure-Rust port
 
-Work in progress, 2026-11-04. Native scan opening and plane fitting are available through the engine
-and `info` / `fit-plane` CLI (M3a/M3b); see [the guide](../docs/guide/README.md) and
+Work in progress, 2026-11-05. Native scan opening, plane fitting, global history and the
+M3 project slice are available through the engine and `info` / `fit-plane` CLI; see [the guide](../docs/guide/README.md) and
 [the current M3 order](../docs/port-plan/ROADMAP-TO-USABLE.md).
 
 | Crate | Role | Contents today |
 |-------|------|----------------|
 | `port-core` | Pure core: no DOM, files or global state | Full mesh-graph construction, adjacency/components/selection, bounds/centroids, normals/orientation, dense solves, TLS/clipped planes and curvature discrimination; initial units/IDs/transforms and pin |
-| `port-engine` | Session, commands, jobs, history | Runtime/task owner, real scan document, STL/PLY scan.open, queries/marks and plane fitting |
-| `port-io` | Formats and the `.scanruler` project reader/writer | STL, PLY, OBJ/MTL, inflate/zip and 3MF libraries; compatible project IO remains open |
+| `port-engine` | Session, commands, jobs, history | Runtime/task owner, real scan document, STL/PLY/OBJ scan.open, queries/marks, plane fitting, undo/redo and M3 project save/read |
+| `port-io` | Formats and the `.scanruler` project reader/writer | STL, PLY, OBJ/MTL, inflate/zip and 3MF libraries; M3 project orchestration currently lives in port-engine; full project compatibility remains open |
 | `port-cli` | `scanruler-rs`, native front end for differential runs | `info` and `fit-plane` use registered engine commands |
 | `port-wasm-probe` | Private bounded browser-runtime test ABI | Bounded original/native/browser comparison ABI; not a product UI or engine integration |
 | `xtask` | Project tasks | `ci`, `oracle`, `pin`, `plan`, `wasm`, `wasm-probe`, `env` |

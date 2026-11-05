@@ -44,6 +44,7 @@ if(!process.argv.includes('--case')){
  if(id==='corrupt')bytes=Uint8Array.from([0,1,2,3])
  if(id==='duplicate'){const a=Buffer.from('another.json'),b=Buffer.from('project.json');for(let i=0;i<=bytes.length-a.length;i++)if(Buffer.from(bytes.subarray(i,i+a.length)).equals(a))bytes.set(b,i)}
  if(id==='big-manifest'){for(let i=0;i<bytes.length-28;i++)if(new DataView(bytes.buffer,bytes.byteOffset+i,4).getUint32(0,true)===0x02014b50){new DataView(bytes.buffer).setUint32(i+24,64*1024*1024+1,true);break}}
+ if(id==='original-deflate')bytes=Uint8Array.from(readFileSync(new URL('../fixtures/native-project/authored-deflated.scanruler',import.meta.url)))
  let result=null,error=null
  try{result=await s.runCommand('project.load',{bytes,name:'project.scanruler',discard:id!=='held'})}catch(e){error={code:e.code,message:e.message,name:e.name}}
  // Only independent wall-clock readings are excluded; all result/state data remain.

@@ -292,6 +292,12 @@ fn observe(row: &str, dir: &Path) -> V {
             .unwrap();
         bytes[i + 24..i + 28].copy_from_slice(&(64u32 * 1024 * 1024 + 1).to_le_bytes());
     }
+    if id == "original-deflate" {
+        bytes = include_bytes!(
+            "../../../../docs/port-plan/fixtures/native-project/authored-deflated.scanruler"
+        )
+        .to_vec();
+    }
     let (mut result, err) = match e.execute(
         "project.load",
         obj(vec![
