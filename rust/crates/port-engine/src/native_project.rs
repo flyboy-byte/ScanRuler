@@ -1028,6 +1028,7 @@ mod tests {
     use super::*;
     #[test]
     fn expired_load_never_commits_the_late_prepared_scan() {
+        let _exclusive = NATIVE_KERNEL_TEST_LOCK.lock().unwrap();
         let e = Engine::new().unwrap();
         let scan = include_bytes!("../../../../docs/port-plan/fixtures/native-project/scan.ply");
         e.execute(

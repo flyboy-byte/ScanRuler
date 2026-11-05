@@ -428,12 +428,18 @@ fn load_aligned(
         _ => KernelError::Host(format!("{e:?}")),
     })?;
     if let Some((r, t)) = alignment {
-        for (values, translation) in [(&mut graph.positions, t), (&mut graph.normals, [0.; 3])] {
+        for (values, translation) in [(&mut graph.positions, Some(t)), (&mut graph.normals, None)] {
             for p in values.as_chunks_mut::<3>().0 {
                 let [x, y, z] = [f64::from(p[0]), f64::from(p[1]), f64::from(p[2])];
                 for i in 0..3 {
-                    p[i] = (r[i * 3] * x + r[i * 3 + 1] * y + r[i * 3 + 2] * z + translation[i])
-                        as f32;
+                    let rotated = r[i * 3] * x + r[i * 3 + 1] * y + r[i * 3 + 2] * z;
+                    // Source normals are rotated without adding translation,
+                    // including an extra +0 which would change signed zero.
+                    p[i] = if let Some(t) = translation {
+                        rotated + t[i]
+                    } else {
+                        rotated
+                    } as f32;
                 }
             }
         }
@@ -889,11 +895,19 @@ impl Drop for Engine {
     }
 }
 
+// Unit tests that deliberately occupy the process-wide producer pool must
+// own it exclusively; this does not change the production eight-job limit.
+#[cfg(test)]
+static NATIVE_KERNEL_TEST_LOCK: std::sync::Mutex<()> = std::sync::Mutex::new(());
 #[cfg(test)]
 mod native_work_budget_tests {
     use super::*;
     #[test]
     fn dropping_waiters_keeps_work_and_assets_charged_until_producers_finish() {
+        let _exclusive = match super::NATIVE_KERNEL_TEST_LOCK.lock() {
+            Ok(guard) => guard,
+            Err(e) => panic!("kernel test lock: {e}"),
+        };
         let engine = match Engine::new() {
             Ok(engine) => engine,
             Err(e) => panic!("native engine init: {e:?}"),
