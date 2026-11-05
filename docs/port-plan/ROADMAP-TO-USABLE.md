@@ -112,6 +112,10 @@ may be built ahead of its dependencies but cannot be integrated past them). Hot 
 
 ## 3. The ladder to "I can try it" (milestones, in order)
 
+Each milestone is split into smaller pieces with a progress estimate in the generated
+[`ROADMAP-PROGRESS.md`](ROADMAP-PROGRESS.md). Edit `plan/roadmap.json`; a new unit must be placed in a piece,
+and `tools/roadmap.py --write` regenerates the page (plan-integrity CI checks it is current).
+
 | # | Milestone | Units | What you can do yourself | What proves it |
 | --- | --- | --- | --- | --- |
 | M1 | Reproducible baseline and corpus | P00 to P03, `baseline.reproducibility` | Nothing yet | Original runs reproducibly here; every fixture has a licence, generator, seed and hash; skips are listed per reason. |
