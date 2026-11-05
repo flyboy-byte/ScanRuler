@@ -942,7 +942,6 @@ impl Engine {
     pub fn history(&self) -> crate::history_record::State {
         self.runtime.history()
     }
-    /// Already-computed connected components of the current logical graph.
     /// The session's measured elements, as `id`, `name`, `kind` and `status`
     /// (the fields a reopened project's summary needs; full state is `session.state`, unported).
     #[must_use]
@@ -963,6 +962,7 @@ impl Engine {
                 .collect(),
         )
     }
+    /// Already-computed connected components of the current logical graph.
     pub fn components(&self) -> usize {
         self.state.components.get()
     }
