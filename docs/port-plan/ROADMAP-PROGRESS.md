@@ -14,7 +14,7 @@ Estimates as of **2026-11-05**. Regenerate with `python3 docs/port-plan/tools/ro
 | --- | --- | ---: | ---: | ---: |
 | M1 Reproducible baseline and corpus | `█████░░░░░` | 48% | 3 | 40% |
 | M2 Import breadth | `██████░░░░` | 57% | 8 | 85% |
-| M3 Session and commands, native CLI (first dogfood) | `██████░░░░` | 59% | 10 | 55% |
+| M3 Session and commands, native CLI (first dogfood) | `██████░░░░` | 60% | 10 | 55% |
 | M4 Paired harness and ratchet | `████░░░░░░` | 40% | 5 | 50% |
 | M5 MCP | `░░░░░░░░░░` | 0% | 5 | 0% |
 | M6 Projects and history | `█░░░░░░░░░` | 6% | 7 | 0% |
@@ -52,18 +52,18 @@ Phases: P06.
 | Native import commands for every format | 90% | 2 | estimate: Native scan.open/info cover STL, all PLY encodings (#105), standalone OBJ (#112) and 3MF (claude/threemf-native); STEP is an explicit refusal. | STEP (needs the kernel, M8); OBJ companion files. |
 | Original-versus-Rust on real scans | 0% | 1 | estimate: No real scan in fixtures/private/ yet. | Logan supplies a scan; run section 5 comparisons. |
 
-## M3 — Session and commands, native CLI (first dogfood) (59%)
+## M3 — Session and commands, native CLI (first dogfood) (60%)
 
 Phases: P05, P07, P08, P09.
 
 | Piece | % | Weight | Basis | Left |
 | --- | ---: | ---: | --- | --- |
 | Session contracts and runtime | 78% | 4 | computed: 35/36 units implemented or better | engine.session.contract parent (specified only); acceptance. |
-| Plane and sphere fitting libraries | 80% | 3 | computed: 11/11 units implemented or better | Cylinder element and command (split, seeded fit, CLI); acceptance. |
+| Plane and sphere fitting libraries | 80% | 3 | computed: 11/11 units implemented or better | Seeded cylinder fit and splitTwoCylinders; acceptance. |
 | M3a native open and info | 75% | 1 | estimate: Merged in #105 (fa7fe06); part of engine.measurement.slice, which stays planned until the whole slice lands. | Slice acceptance. |
 | M3b select and fit-plane | 75% | 2 | estimate: Merged in #108 (a058172); 205 of 212 master controls. | Slice acceptance. |
 | M3c global undo and redo | 75% | 2 | estimate: Merged in #110 (ac754d7); 212/212 controls. | Slice acceptance. |
-| Measurement slice unit | 0% | 1 | computed: 0/1 units implemented or better | Accept once M3a-M3d and roster are integrated. |
+| Measurement slice units | 38% | 1 | computed: 1/2 units implemented or better | Accept once M3a-M3d, the cylinder branch and roster are integrated. |
 | M3d project save and read | 75% | 3 | computed: 1/1 units implemented or better | M3d native scan/marked-plane slice in PR113; full M6 and scheduled milestone verification remain open. |
 | Roster: register new suites | 0% | 1 | estimate: Engine, render, inflate, 3MF and PNG suites run in CI but are not in ci/native-suites.json. | One PR holding rust/xtask. |
 | Browser/Wasm measurement slice (P09) | 10% | 2 | estimate: Bounded Wasm harness coverage exists (harness.wasm.*); no browser command flow. | Same slice running in the browser build. |

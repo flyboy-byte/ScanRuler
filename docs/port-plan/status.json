@@ -3,7 +3,7 @@
   "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
   "unit_states": {
     "baseline-captured": 2,
-    "implemented": 84,
+    "implemented": 86,
     "integrated": 1,
     "planned": 46,
     "specified": 1
@@ -11,7 +11,7 @@
   "verification_levels": {
     "fixed-corpus": 59,
     "fuzzed": 4,
-    "none": 71
+    "none": 73
   },
   "native_suites": 62,
   "native_case_identities_including_refusals": 34603,
@@ -531,6 +531,21 @@
         "Session ownership, commands, jobs/history and project integration remain unimplemented; 52 observations do not mean 52 working commands.",
         "Original coverage 2026-11-02: retain generated zero-count block/function and unreached line targets in evidence/original-coverage-2026-11-02/report.json; see plan/findings/2026-11-02-original-coverage.md. Line reach alone is not branch/state acceptance.",
         "Rust comparison-only coverage 2026-11-02: preserve explicit zero-count DA lines and LLVM DA-versus-summary discrepancies for owned files in evidence/rust-coverage-2026-11-02/report.json. Branch reach remains unknown; see plan/findings/2026-11-02-rust-coverage.md."
+      ]
+    },
+    {
+      "id": "engine.measurement.cylinder",
+      "status": "implemented",
+      "parent": "P08",
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/117",
+      "tested_sha": null,
+      "verification": "none",
+      "verification_tested_sha": null,
+      "open_items": [
+        "pinned_native_cylinder_comparison: 45/45 byte-identical (results and full stores after every step), fixtures/native-cylinder/generate.py, oracle branch cyl- in oracle/scan-session-owned.mjs. Wrong values fail it: radius x(1+1e-9) and the nextId store canary (SCANRULER_NATIVE_CYLINDER_CANARY) both turn all 45 red.",
+        "Plane regressions after switching orient to js_atan2 and fixing the discard count's thousands separator: native plane 212/212 and M3d project 23/23 still pass.",
+        "saved_cylinder_reopens_unchanged: an assumed/oriented/extended cylinder saves and reloads to identical element state (plain test; no oracle project trace for cylinders yet).",
+        "Verification label and roster registration wait for the owner-scheduled milestone batch (2026-11-05 verification budget)."
       ]
     },
     {
@@ -1060,8 +1075,7 @@
       "verification_tested_sha": null,
       "open_items": [
         "pinned_cylinder_comparison: 170/170 bit-identical against the pinned original (133 fitted, 17 refused with the original's FitError text, 20 refinements), corpus fixtures/cylinder/generate.py, oracle oracle/cylinder.cjs. Wrong values fail it: damping 0.3 -> 0.31 (kernels) and coverage 360 -> 359.999 (marked body).",
-        "js_atan2 (port-core numeric, fdlibm as V8): 300,289 pairs bit-identical with Node 22 Math.atan2 (atan2_matches_node). Rust f64::atan2 differs for about 1 in 6 inputs; native_plane_finish.rs and native_project_state.rs still use f64::atan2 and should switch.",
-        "Next: element.fit_marked kind cylinder in the engine (draft text, assumed/orient/extend finishing, describeElement, project recipe) and CLI fit-cylinder.",
+        "js_atan2 (port-core numeric, fdlibm as V8): 300,289 pairs bit-identical with Node 22 Math.atan2 (atan2_matches_node). Rust f64::atan2 differs for about 1 in 6 inputs; native_plane_finish.rs and native_project_state.rs switch to it in engine.measurement.cylinder.",
         "Verification label and roster registration wait for the owner-scheduled milestone batch (2026-11-05 verification budget)."
       ]
     },
