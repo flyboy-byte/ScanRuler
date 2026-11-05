@@ -40,6 +40,10 @@ pub mod js_number;
 /// Own Date millisecond clipping and Gregorian UTC timestamp conversion.
 pub mod js_date;
 
+/// circle2d.ts: the shared 2D circle kernel.
+pub mod circle2d;
+/// cylinder.ts: fixed-selection, clipped and robust cylinder fitting.
+pub mod cylinder;
 /// Exact source fixed-three-decimal number text.
 pub mod js_fixed;
 /// Complete fixed-selection free/held-radius sphere fitting.

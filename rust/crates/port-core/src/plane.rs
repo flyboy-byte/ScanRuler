@@ -20,14 +20,14 @@ impl Plane {
 pub struct InvalidPlaneInput;
 
 // Pure-Rust scaled compensated norm at the source Math.hypot boundary.
-fn normalize_or_z(v: [f64; 3]) -> [f64; 3] {
+pub(crate) fn normalize_or_z(v: [f64; 3]) -> [f64; 3] {
     let len = crate::numeric::norm3(v);
     if len.partial_cmp(&1e-20) != Some(std::cmp::Ordering::Greater) {
         return [0., 0., 1.];
     }
     [v[0] / len, v[1] / len, v[2] / len]
 }
-fn eigen3(mut a: [f64; 9]) -> ([f64; 3], [[f64; 3]; 3]) {
+pub(crate) fn eigen3(mut a: [f64; 9]) -> ([f64; 3], [[f64; 3]; 3]) {
     let mut v = [1., 0., 0., 0., 1., 0., 0., 0., 1.];
     for _ in 0..32 {
         let off = a[1].abs() + a[2].abs() + a[5].abs();

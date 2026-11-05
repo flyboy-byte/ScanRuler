@@ -1,0 +1,51 @@
+{
+  "id": "fit.cylinder",
+  "parent": "P07",
+  "title": "Port fixed-selection, clipped and robust cylinder fitting",
+  "gate": "G2",
+  "status": "implemented",
+  "depends_on": [
+    "fit.linalg.solve",
+    "fit.plane.clip",
+    "fit.plane.ransac",
+    "fit.curvature.gate"
+  ],
+  "soft_depends_on": [],
+  "scope": "cylinder.ts radial/cylinderResidual, axisFromNormals, fitCylinderOnAxis, refineCylinderGeometric, fitCylinderClipped, cylinderFrom2 and ransacCylinder, plus circle2d.ts fitCircle2d and the linalg orthoBasis/projection helpers they use. splitTwoCylinders, fitCylinderFromSeed, region growing and the cylinder element/command shell are not in this unit.",
+  "acceptance": [
+    "Original and Rust give bit-identical results (floats, used/inlier order, fitted/refused shape) on an independent corpus covering full and partial arcs, tilted axes, noise, outliers, offset coordinates, tiny and huge radii, planes, too few points, NaN and on-axis points; a wrong Rust value fails the comparison."
+  ],
+  "owner": "Claude",
+  "branch": "claude/fit-cylinder",
+  "claim_pr": null,
+  "implemented_commit": null,
+  "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
+  "source_paths": [
+    "src/core/fit/cylinder.ts",
+    "src/core/fit/circle2d.ts",
+    "src/core/fit/linalg.ts"
+  ],
+  "symbols": [
+    "cylinderResidual",
+    "axisFromNormals",
+    "fitCylinderOnAxis",
+    "refineCylinderGeometric",
+    "fitCylinderClipped",
+    "ransacCylinder",
+    "fitCircle2d",
+    "orthoBasis"
+  ],
+  "rust_paths": [
+    "rust/crates/port-core/src/cylinder.rs",
+    "rust/crates/port-core/src/circle2d.rs",
+    "rust/crates/port-core/src/numeric.rs",
+    "rust/crates/port-core/tests/cylinder.rs"
+  ],
+  "evidence": [],
+  "open_items": [
+    "pinned_cylinder_comparison: 121/121 bit-identical against the pinned original (94 fitted, 7 refused, 20 refinements), corpus from fixtures/cylinder/generate.py, oracle oracle/cylinder.cjs. A wrong damping factor (0.3 -> 0.31) fails most fitted and refined cases.",
+    "Next for the cylinder element: splitTwoCylinders, fitCylinderFromSeed and the marked/seeded cylinder command through the engine and CLI (fit-cylinder).",
+    "Verification label and roster registration wait for the owner-scheduled milestone batch (2026-11-05 verification budget)."
+  ],
+  "verification": "none"
+}

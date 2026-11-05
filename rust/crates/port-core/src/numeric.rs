@@ -24,3 +24,37 @@ pub(crate) fn norm3(v: [f64; 3]) -> f64 {
         sum.sqrt() * max
     }
 }
+
+/// Scaled compensated norm of any number of components at the source Math.hypot
+/// boundary (the two-argument calls in the circle and cylinder kernels).
+pub(crate) fn hypot(v: &[f64]) -> f64 {
+    let mut max = 0f64;
+    let mut nan = false;
+    for &x in v {
+        let a = x.abs();
+        if a.is_infinite() {
+            return f64::INFINITY;
+        }
+        if a.is_nan() {
+            nan = true;
+        } else if a > max {
+            max = a;
+        }
+    }
+    if nan {
+        return f64::NAN;
+    }
+    if max == 0. {
+        return 0.;
+    }
+    let mut sum = 0.;
+    let mut compensation = 0.;
+    for &x in v {
+        let scaled = x.abs() / max;
+        let summand = scaled * scaled - compensation;
+        let preliminary = sum + summand;
+        compensation = (preliminary - sum) - summand;
+        sum = preliminary;
+    }
+    sum.sqrt() * max
+}
