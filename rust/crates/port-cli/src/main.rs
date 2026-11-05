@@ -68,8 +68,8 @@ fn fault(f: Fault) -> String {
 const USAGE: &str = "Usage: scanruler-rs <info|fit-plane> <scan.stl|scan.ply> [--units mm|cm|m|in]
 Plane options: [--sigma 0|1|2|3] [--box xmin ymin zmin xmax ymax zmax] [--marked]
 [--normal x y z] [--within-deg degrees] [--orient XY|YZ|XZ] [--in-plane]
-[--extend uMin uMax vMin vMax]
-Box coordinates and extensions are in millimetres. --marked uses scan.query.";
+[--extend uMin uMax vMin vMax] [--undo] [--redo]
+Box coordinates and extensions are in millimetres. --marked uses scan.query. --redo first undoes.";
 fn numbers<const N: usize>(
     args: &mut impl Iterator<Item = String>,
     flag: &str,
@@ -102,6 +102,8 @@ fn run() -> Result<(), String> {
     let path = args.next().ok_or("Command requires a scan path")?;
     let mut units = "mm".to_string();
     let mut sigma = None;
+    let mut undo = false;
+    let mut redo = false;
     let mut bounds = None;
     let mut marked = false;
     let mut normal = None;
@@ -137,6 +139,11 @@ fn run() -> Result<(), String> {
             in_plane = true;
         } else if command == "fit-plane" && arg == "--extend" {
             extend = Some(numbers::<4>(&mut args, "--extend")?);
+        } else if command == "fit-plane" && arg == "--undo" {
+            undo = true;
+        } else if command == "fit-plane" && arg == "--redo" {
+            redo = true;
+            undo = true;
         } else {
             return Err(format!("Unknown argument {arg:?}"));
         }
@@ -275,6 +282,22 @@ fn run() -> Result<(), String> {
         let mut output = vec![(text("scan"), Value::Object(summary)), (text("fit"), plane)];
         if let Some(selection) = selection {
             output.push((text("selection"), selection));
+        }
+        if undo {
+            output.push((
+                text("undo"),
+                engine
+                    .execute("history.undo", Value::Object(vec![]))
+                    .map_err(fault)?,
+            ))
+        }
+        if redo {
+            output.push((
+                text("redo"),
+                engine
+                    .execute("history.redo", Value::Object(vec![]))
+                    .map_err(fault)?,
+            ))
         }
         println!("{}", json(&Value::Object(output)));
     } else {

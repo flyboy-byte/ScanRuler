@@ -27,6 +27,8 @@ use std::{
     task::{Context, Poll, Waker},
     time::{Duration, Instant, SystemTime, UNIX_EPOCH},
 };
+#[path = "native_history.rs"]
+mod history;
 #[path = "native_plane.rs"]
 mod plane;
 #[path = "native_scan_definition.rs"]
@@ -736,6 +738,7 @@ impl Engine {
 
         selection::register(&runtime, &state)?;
         plane::register(&runtime, &state)?;
+        history::register(&runtime, &state, &host)?;
         Ok(Self {
             state,
             runtime,

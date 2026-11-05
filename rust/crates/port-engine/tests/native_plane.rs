@@ -11,7 +11,9 @@ use std::{
     path::Path,
     process::{Command, Stdio},
 };
-const INPUT: &str = include_str!("../../../../docs/port-plan/fixtures/native-plane/cases-m3b.tsv");
+static HISTORY_CANARY_MUTATIONS: std::sync::atomic::AtomicUsize =
+    std::sync::atomic::AtomicUsize::new(0);
+const INPUT: &str = include_str!("../../../../docs/port-plan/fixtures/native-plane/cases.tsv");
 fn scan_bytes(row: &str) -> Vec<u8> {
     let c = row.split('\t').collect::<Vec<_>>();
     let n = c[4].parse::<usize>().unwrap();
@@ -278,8 +280,33 @@ fn observe_plane(row: &str) -> V {
     if !shape.starts_with("plane-empty-") && !shape.starts_with("plane-query-") {
         actions.push(("element.fit_marked", input.clone()))
     }
-    if shape == "plane-two" {
+    if shape == "plane-two" || shape == "plane-two-undo" {
         actions.push(("element.fit_marked", input.clone()))
+    }
+    if [
+        "plane-undo",
+        "plane-redo",
+        "plane-two-undo",
+        "plane-undo-new",
+        "plane-undo-redo-twice",
+        "plane-empty-undo",
+    ]
+    .contains(&shape)
+    {
+        actions.push(("history.undo", object(vec![])))
+    }
+    if shape == "plane-two-undo" {
+        actions.push(("history.undo", object(vec![])))
+    }
+    if ["plane-redo", "plane-undo-redo-twice", "plane-empty-redo"].contains(&shape) {
+        actions.push(("history.redo", object(vec![])))
+    }
+    if shape == "plane-undo-new" {
+        actions.push(("element.fit_marked", input.clone()))
+    }
+    if shape == "plane-undo-redo-twice" {
+        actions.push(("history.undo", object(vec![])));
+        actions.push(("history.redo", object(vec![])))
     }
     if shape.starts_with("plane-query-") {
         let xyz = |v: [f64; 3]| V::Array(v.into_iter().map(V::Number).collect());
@@ -363,7 +390,27 @@ fn observe_plane(row: &str) -> V {
         }
     }
     for (name, input) in actions {
-        let (result, error) = outcome(engine.execute(name, input));
+        let before_elements = engine
+            .document()
+            .store(port_engine::scan_session::StoreId::App)
+            .get("elements");
+        let executed = engine.execute(name, input);
+        if executed.is_ok()
+            && ((name == "history.undo"
+                && std::env::var("SCANRULER_NATIVE_HISTORY_CANARY").as_deref() == Ok("undo"))
+                || (name == "history.redo"
+                    && std::env::var("SCANRULER_NATIVE_HISTORY_CANARY").as_deref() == Ok("redo")))
+        {
+            // Simulate a travel operation moving bookkeeping but restoring the wrong
+            // document contents. Command results and the recorder stay untouched.
+            engine
+                .document()
+                .store(port_engine::scan_session::StoreId::App)
+                .patch(vec![(text("elements"), before_elements)])
+                .unwrap();
+            HISTORY_CANARY_MUTATIONS.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+        }
+        let (result, error) = outcome(executed);
         let f = frame(&engine, result, error);
         let V::Object(fields) = f else {
             panic!("frame")
@@ -404,6 +451,13 @@ fn observe_plane(row: &str) -> V {
 #[test]
 #[ignore = "complete pinned registry/session/worker requires Node22"]
 fn pinned_native_plane_comparison() {
+    HISTORY_CANARY_MUTATIONS.store(0, std::sync::atomic::Ordering::Relaxed);
+    if let Ok(mode) = std::env::var("SCANRULER_NATIVE_HISTORY_CANARY") {
+        assert!(
+            matches!(mode.as_str(), "undo" | "redo"),
+            "history canary mode must be undo or redo"
+        );
+    }
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../..");
     let stamp = std::time::SystemTime::now()
         .duration_since(std::time::UNIX_EPOCH)
@@ -459,7 +513,7 @@ fn pinned_native_plane_comparison() {
         String::from_utf8_lossy(&out.stderr)
     );
     let source = String::from_utf8(out.stdout).unwrap();
-    assert_eq!(source.lines().count(), 205);
+    assert_eq!(source.lines().count(), 212);
     let mut failures = 0;
     for (row, line) in INPUT.lines().zip(source.lines()) {
         let (id, h) = line.split_once('\t').unwrap();
@@ -496,8 +550,18 @@ fn pinned_native_plane_comparison() {
         }
     }
     eprintln!(
-        "205 actual registered select/plane controls, with history record patches, existing kernel tolerance; mismatches={failures}; raw {}",
+        "212 actual registered select/plane/history controls, existing kernel tolerance; mismatches={failures}; raw {}",
         run.display()
     );
+    if let Ok(mode) = std::env::var("SCANRULER_NATIVE_HISTORY_CANARY") {
+        let changed = HISTORY_CANARY_MUTATIONS.load(std::sync::atomic::Ordering::Relaxed);
+        eprintln!(
+            "history wrong-state control mode={mode}; actual successful travel mutations={changed}"
+        );
+        assert!(
+            changed > 0,
+            "history canary did not exercise successful travel"
+        );
+    }
     assert_eq!(failures, 0)
 }
