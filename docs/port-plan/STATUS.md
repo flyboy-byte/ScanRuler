@@ -156,7 +156,7 @@ Verification labels describe scoped evidence snapshots, not whole-feature/runtim
 | [io.stl.binary](plan/units/io.stl.binary.json) | implemented | fuzzed | `5ee3881` | `1a67f50` | [#2](https://github.com/flyboy-byte/ScanRuler/pull/2) |
 | [io.stl.dispatch](plan/units/io.stl.dispatch.json) | implemented | fuzzed | `77683bf` | `1a67f50` | [#3](https://github.com/flyboy-byte/ScanRuler/pull/3) |
 | [io.threemf](plan/units/io.threemf.json) | implemented | none | `31ebafc` | — | [#97](https://github.com/flyboy-byte/ScanRuler/pull/97) |
-| [io.threemf.native](plan/units/io.threemf.native.json) | implemented | none | — | — | — |
+| [io.threemf.native](plan/units/io.threemf.native.json) | implemented | none | `de040fe` | — | [#115](https://github.com/flyboy-byte/ScanRuler/pull/115) |
 | [math.number.fixed3](plan/units/math.number.fixed3.json) | implemented | fixed-corpus | `3ae1787` | `3ae1787` | [#92](https://github.com/flyboy-byte/ScanRuler/pull/92) |
 | [math.number.shortest](plan/units/math.number.shortest.json) | implemented | fixed-corpus | `3da16bf` | `3da16bf` | [#103](https://github.com/flyboy-byte/ScanRuler/pull/103) |
 | [project.measurement.compatibility](plan/units/project.measurement.compatibility.json) | implemented | none | `6b0280b` | — | [#113](https://github.com/flyboy-byte/ScanRuler/pull/113) |

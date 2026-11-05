@@ -27270,8 +27270,8 @@
       ],
       "owner": "Claude",
       "branch": "claude/threemf-native",
-      "claim_pr": null,
-      "implemented_commit": null,
+      "claim_pr": "https://github.com/flyboy-byte/ScanRuler/pull/115",
+      "implemented_commit": "de040fe0605edfd8ff68afdce4f29484e709ab0f",
       "reference_sha": "2cd89c6769a10c27ee7754b477ada521c9ef5cb7",
       "source_paths": [
         "src/core/meshWorker.ts",

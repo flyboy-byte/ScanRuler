@@ -1764,8 +1764,8 @@
       "id": "io.threemf.native",
       "status": "implemented",
       "parent": "io.threemf",
-      "pr": null,
-      "tested_sha": null,
+      "pr": "https://github.com/flyboy-byte/ScanRuler/pull/115",
+      "tested_sha": "de040fe0605edfd8ff68afdce4f29484e709ab0f",
       "verification": "none",
       "verification_tested_sha": null,
       "open_items": [
