@@ -1,7 +1,0 @@
-{
-  "contract": "image.audit.wasm-build.v1",
-  "module_sha256": "4284be8505238a4bac4ce3b6369fe79e124f7647331be2b680ce64e041c80a75",
-  "bytes": 34174094,
-  "imports": [],
-  "scope": "compiled and linked candidate only; actual decoder Wasm runtime pixels not yet compared"
-}

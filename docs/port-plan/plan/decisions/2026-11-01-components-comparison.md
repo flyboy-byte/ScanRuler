@@ -1,3 +1,0 @@
-# Connected components comparison — 2026-11-01
-
-Before implementation: port full unionFind.ts::findRoot/makeUnionFind/vertexComponents bodies, preserving path halving and root direction. Compare every query result and complete parent array before/after operations byte-for-byte; no sorting/canonicalization. Explicit seeds 1/7/99/1039, fixed chains, repeated corners and disconnected/nonmanifold meshes. Rust guards invalid indices, cycles, signed parent capacity and allocation; malformed standalone parents fail before mutation. No reference result may enter Rust execution. Native evidence does not close browser-Wasm/P06 or downstream traversal acceptance.

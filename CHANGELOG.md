@@ -7,184 +7,79 @@ saves carry the same number as `appVersion`. How a release is cut is in
 
 ## Unreleased
 
-- **Rust PNG decoding** (2026-11-04): own decoder giving the RGBA the original's `decodeImage` gets in Chrome, including which damaged files are left out, APNG frame 0 and the canvas premultiply round trip; 5,532 committed Chrome-judged cases plus fresh-seed live runs match byte for byte. Not yet wired into companion reading.
-
-- **Rust port session (2026-11-04)**: preserve source-compatible number formatting, own the real scan document and worker resource lifecycle, and add complete prepared render arrays/crease splitting with independent original comparisons. Native scan/plane/history and CLI prototypes are saved separately; integrated project-compatible save/read and M3 remain open.
-
-- **Rust port session (2026-11-03, PRs #99–#100)**: connect registered mutation/interrupt and read-only/job commands through retained queues, deadlines, history, activity, recent outcomes and error handling, with independent original command profiles and every earlier gate retained. Real scan/measurement state and the CLI scan/plane/undo/project-save workflow remain open.
-
-- **Rust port session (2026-11-03, PRs #96–#98)**: validate merged main, enforce the 3MF decompression budget and preserve surrogate-directory texture fallback, and connect retained deadline/execute/scene reactions with timeout queue release and late-body cleanup. All prior cases remain; the CLI scan/plane/undo/project-save workflow is still unimplemented.
-
-- **Rust 3MF import** (2026-11-03): the original's `parse3MF` ported body for body (own XML scanner, units, component and build transforms, mirrored-triangle correction, slicer parts left out, colour and texture groups) on the own pure-Rust zip reader; 24,540 generated, mutated and named packages plus 107 real `.3mf` files read identically by the original and Rust (success or failure, full error and progress text, positions, indices, colours, texture notes), with a sabotage check that fails. Host limits are reported apart from the original's refusals. Not yet in the hosted native suite.
-
-
-- Rust port: complete marked-sphere input-only Wasm codec and4431-case full browser roster, preserving every earlier case/budget (PR #94); actual execution proof is tracked separately.
-
-- Rust port: full marked-sphere output/refusals, known-diameter checks and exact original-region recipe identity; shared marking-size guard retains plane behavior (PR #93). Commands/seeded paths remain open.
-
-- Rust port: exact primitive Number.toFixed(3) for original sphere refusal text, with rational tie rounding and special/threshold cases (PR #92). Full marked-sphere caller remains open.
-- Rust port: input-only sphere Wasm probe and mandatory full1560-case browser roster, preserving all earlier651 cases and budgets (PR #90); actual Chrome evidence is tracked separately.
-
-- Rust port: complete clipped free/held-radius sphere fitting and signed radial statistics with independent original comparisons (PR #89). Seeded growth, full element fields and commands remain open.
-- **Rust command labels**: preserve full Unicode lowercase, unpaired UTF-16, custom/nullish/empty fallback and lazy provider effects across a complete code-point/context census. Command/history runtime integration remains separate.
-- Rust port: command activity start/progress/clear publication with live listener identity, reentrant state delivery and exact faults (PR #86); full session runtime remains open.
-- Rust port: plugin state-section registration and live full/brief readout with exact conversion faults and plain-object prototype behavior (PR #87); native session composition remains open.
-- Rust port: bounded native cooperative owner retains pending work independently of caller tickets, with FIFO thread-safe wake tokens and finite turns (PR #88). Command/timer/history integration remains open.
-
-- **Port review handoff**: retain current exact PR heads, open/merged dependencies and required-check states with negative snapshot controls; document remaining runtime ownership and source branch tests. No feature body or numerical policy changes.
-
-- **Rust workspace metadata**: preserve exact public/internal names, installed ordering, empty/duplicate ids and live independent name arrays across 306 original state/plugin cases. Plugin discovery/full state runtime remain separate.
-
-- **Rust recent outcome state**: preserve 100-entry eviction, clocks, observer failures and shallow snapshot/payload semantics across 362 complete original schedules. Executor reaction attachment remains separate.
-
-- **Rust retained result data**: preserve normalized copies, byte summaries, UTF-16 JSON sizes and exact omission thresholds across 413 full original data cases. General host-object/non-JSON conversion remains separate.
-
-- **Rust execution lifecycle**: preserve strict discard/raw busy preflight, stop/settle/deferred ordering and shared done-finally lifetime across 1,200 complete original orchestration traces. Full guarded runtime remains separate.
-
-- **Rust scene queue**: preserve direct future identity, synchronous direct faults and serialized viewport turns with failure recovery across 120 full original schedules. Runtime/viewport integration remains separate.
-
-- **Rust plugin stopping**: preserve live check/stop mutation, shared done identity, concurrent waits and fault suppression with 227 full original traces. Command executor integration remains open.
-
-- **Rust plugin busy metadata**: preserve duplicate errors, function/array/stop identity, old cleanup and live first-busy lookup with 96 full original comparisons. Async stop invocation remains separate.
-
-- **Port verification evidence**: separate lifecycle from fixed-corpus, fuzzed and coverage-reviewed labels; reject unsupported grades and retain exact-candidate PLY/STL fuzz logs and corruption reproducers. No unit is accepted.
-
-- **Rust session subscriptions**: preserve store/listener identity, snapshot order, partial failures and repeated ordered cleanup across 144 full original traces. Native plugin registry and full engine integration remain separate.
-
-- **Rust watched-store source ownership**: preserve readonly container/member identity, duplicates/order and conditional old cleanup across 80 full original traces. Actual subscriptions remain separate.
-
-- **Rust command guards**: preserve object identity, raw busy returns/faults and unconditional old-cleanup reset across 192 full original state traces. Plugin and registry execution integration remain separate.
-
-
-- **Recording evidence metadata**: derive live seed labels from unchanged fixture IDs, correcting an old 1109/1039 label typo without altering any case or captured result.
-
-- **Source CI scheduling**: run the entire unchanged unit suite in one worker to reduce contention around the existing timing assertion; every check, threshold and job budget stays required.
-
-- **Port plan CI**: fetch the immutable original Git tree for source-map provenance tests; retain every proof assertion.
-
-- **UTC regression census**: compare a complete negative Gregorian period against the original Date converter, adding 1,600 cases while preserving all 311 prior records and leaving production code unchanged.
-
-- **Rust UTC timestamps**: own bounded Date clipping and Gregorian ISO formatting, including extended years and lazy stale-page conversion; 311 full original timestamp/error/state comparisons. OS current-time acquisition remains separate.
-
-- **Rust command fault normalization**: preserve typed error identity, stale-page classification/state and failed fallback across 304 full pinned-registry comparisons. General native String conversion and registry execution remain separate.
-
-- **Rust stale-page errors**: preserve exact UTF-16 envelopes and page marking before fallible message conversion, with 120 complete pinned-source state/effect comparisons. General native thrown-value conversion remains separate.
-
-- **Rust stale-page clock state**: retain the first timestamp, skip repeat sampling, reset explicitly and preserve failed-clock state across 64 exact original traces. Platform clock conversion remains separate.
-
-- **Port plan CI**: fetch the immutable original Git tree for source-map provenance tests; retain every proof assertion.
-
-- **Rust stale-import classification**: preserve all four messages, ASCII case semantics, typed-error exclusion and unchanged page state in 308 exact pinned-source comparisons. Page timestamp and error normalization remain separate.
-
-- **Source CI scheduling**: run the entire unchanged unit suite in one worker to reduce contention around the existing timing assertion; every check, threshold and job budget stays required.
-
-- **Recording evidence metadata**: derive live seed labels from unchanged fixture IDs, correcting an old 1109/1039 label typo without altering any case or captured result.
-- **Rust DEFLATE and ZIP reader** (2026-11-03): own pure-Rust inflate and unzip that reproduces the original's `fflate` 0.8.3 `unzipSync`, including its lenient behaviour on damaged archives; 30,000 generated and mutated archives, 0 divergences. 3MF reading itself and PNG/JPEG decoding remain separate.
-
-- **Rust live settlement registration**: preserve function identity, old unsubscribe handles, deletion/addition/re-addition during iteration and concurrent waits in 116 exact original comparisons. Executor integration remains separate.
-
-- **Rust deferred-work settling**: call every stable callback, preserve exact next-command metadata, suppress failures and await all concurrent work in 64 full original comparisons. Registration mutation and executor wiring remain separate.
-
-- **Port plan CI**: fetch the immutable original Git tree for source-map provenance tests; retain every proof assertion.
-
-- **Rust command deadlines**: preserve race ordering, shared abort reasons, timer cleanup and late outcomes with291 original schedules /2037 full observations. Reuse the existing number formatter without changing parser behavior.
-
-- **Rust import queue**: preserve serialized jobs, failure recovery, live listener identity/order and opaque outcomes with 67 complete original schedules /755 observations. Runtime integration remains required.
-
-- **Rust core history capture/apply**: preserve all 73 picked fields, shared payload identity, transient flat/deviation cleanup, scope and version ordering, with 98 complete source cases /490 observations.
-
-- **Rust global restore orchestration**: preserve capture/hook/apply order, workspace, stack movement, late-epoch invalidation and partial-failure state across 216 full typed-boundary source traces. Concrete family restore and queue integration remain required.
-
-- **Rust history guards**: preserve running-job and held-editor blocking, empty draft behavior, callback order and opaque errors with 212 complete original comparisons.
-
-- **Rust local editor undo/redo**: preserve first-active selection, workspace-before-action and opaque callback failures with 192 exact original traces. Global restoration and full family guards remain separate.
-- **Fuzz reproducer reduction**: opt-in bounded PLY/STL shrinking preserves mismatch categories and retains original inputs and complete reduced outcomes.
-
-- **Rust standing fuzz** (2026-11-03): `cargo xtask fuzz <ply|stl> --seed N --cases M` compares seeded mutated inputs against the frozen original (success, progress and error text, output bytes) with host-limit refusals and original timeouts counted apart; first run 120,000 cases, 0 divergences. OBJ, minimized reproducers and a scheduled job remain open.
-
-- **Rust history recording** (2026-11-02): preserve identity-aware changes, grouped steps, clear, sync/async wrappers, typed capture faults and late epoch drops across 110 exact source scenarios and 1,095 full observations. Undo/redo restoration and complete session integration remain separate.
-
-- **Rust registry and admission** (2026-11-02): preserve complete command registration/catalog/headless behavior, partial failures and coerced arguments on refusal, with350 exact source scenarios across all140 definitions. Session scheduling/history and public feature bodies remain separate.
-
-- **Rust comparison coverage** (2026-11-02): retain LLVM line/region evidence from all26 native suites, with per-file/unit unreached lines, raw exports and explicit unknown branch reach; preserve observed LLVM summary discrepancies and inline-test scope.
-
-- **Original corpus coverage** (2026-11-02): archive Node22 precise V8/source-map reach for 1422 unchanged original replays across eight full modules; retain every unreached block and eighteen unmapped source paths as explicit follow-ups. No static branch denominator or acceptance claim.
-
-- **Rust command schema validation** (2026-11-02): preserve exact ordered refusals, sequential boolean coercion, names/id guidance and UTF-16 schema weights, with 697 complete source comparisons across every core/plugin command schema. Session/registry and actual browser runtime remain separate.
-
-- **Rust dropped-folder traversal** (2026-11-02): preserve complete asynchronous getter/batch/file ordering, browser fallback and opaque platform failures, with 40 exact source traces and bounded resource/pending-future tests. Actual DOM adapter runtime remains open.
-
-- **Image codec audit** (2026-11-02): freeze 56 original Chrome image observations and an exact pure-Rust candidate graph; retain 28 pixel and two omission mismatches, reject direct decoder adoption, and keep application dependencies unchanged.
-
-- **Companion file state in actual Rust Wasm** (2026-11-02): compare all 87 file-state cases in Chrome, preserving every earlier case for 651 complete comparisons and 24 protocol checks, with full raw evidence and strict state/identity/byte mutation tests.
-
-- **Rust companion file selection** (2026-11-02): preserve complete file classification, first-model selection, companion identity across repeated bundles and ordered original bytes, with 87 exact source-state comparisons. Directory traversal, codecs and public imports remain separate.
-
-- **OBJ in actual Rust browser Wasm** (2026-11-02): compare complete parser and material/decoded-image helpers in Chrome, retaining all earlier cases for 564 total comparisons and 18 protocol checks; record full raw evidence and two unchanged large native-only OBJ workloads.
-
-- **Rust OBJ mesh parser** (2026-11-02): port the complete geometry/UV/material body and decoded texture continuation, comparing 81 source cases exactly, including first-corner binding and full progress boundaries. File/image ingress and commands remain open.
-
-- **Rust OBJ material/texture helpers** (2026-11-02): port complete MTL lookup, filename matching and decoded-RGBA baking with 144 exact source comparisons. Mesh parsing, image decoding and command integration remain separate.
-- **PLY negative-count error text** (2026-11-02): an independent 282,000-file fuzz against the original found one divergence, the typed-array length in the error printed with Rust instead of JavaScript number formatting; fixed with a regression test. The other host-limit differences are recorded as open findings.
-
-- **Rust engine error envelopes** (2026-11-02): preserve the twelve original command codes and lossless message/JSON fields, with 52 exact source comparisons including lone UTF-16 surrogates; session, registry and job/history integration remain open.
-
-- **PLY in actual Rust browser Wasm** (2026-11-02): extend the bounded source/native/Chrome comparisons to 341 cases, retaining exact PLY data/progress/IEEE bits and all previous cases; record the sole large native-only workload and complete raw evidence.
-
-- **Rust binary PLY import** (2026-11-02): complete both byte orders and the full PLY dispatcher, with 168 exact source comparisons including every scalar alias, two-pass faces, IEEE edge cases and real progress boundaries. Keep all existing ASCII comparisons.
-
-- **Rust ASCII PLY import** (2026-11-02): port complete header and ASCII mesh decoding with winding preservation, face fans and source numeric/property behavior; compare 60 independent cases exactly. Binary PLY and session integration remain open.
-
-- **Original baseline inventory** (2026-11-02): retain complete local/hosted reference observations, explain every excluded test, verify six repeatable generated fixtures and reject missing evidence without hiding original failures.
-
-- **Actual Rust in browser Wasm** (2026-11-01): require Chrome execution of existing TLS/mesh-graph/marked-plane inputs, comparing full source/native/Wasm results through a safe bounded private test ABI; 114 cases and memory/codec checks verified.
-
-- **Rust marked-plane elements** (2026-11-01): complete the selected-plane continuation with surface normal voting, minimum-area patch extents, projected center, oriented residual extremes and original region/statistics; fifty-one independent source comparisons.
-
-- **Port CI/status integration** (2026-11-01): separate fast/native/catalog and original unit/MCP/browser results, require complete current-run evidence and generated status, reconcile implemented scope and define the remaining measurement/runtime plan. Source thresholds and numerical contracts are unchanged.
-
-- **Rust closed-shell parity** (2026-11-01): port complete source closure flags with original signed-zero bit welding, disjoint sets and edge hashes; sixty-four exact flag/private-state comparisons.
-
-- **Rust complete mesh graphs** (2026-11-01): integrate the original validation, welding/filtering, adjacency, normals/orientation and bounds pipeline; compare full graph state, progress and refusal text on fifty source cases.
-
-- **Rust mesh selections** (2026-11-01): port triangle membership filtering and vertex selection remapping with original order, duplicate, tail and out-of-range behavior; sixty-two exact source comparisons.
-
-- **Rust connected components** (2026-11-01): port directed disjoint sets, path halving and triangle components with exact parent-state/query comparisons and bounded host guards.
-
-- **Rust mesh adjacency** (2026-11-01): port complete ordered vertex-neighbor CSR arrays with bounded storage, exact duplicate handling and fifty-six independent source comparisons.
-
-- **Rust curvature discrimination** (2026-11-01): port finite-residual RMS and the original curved-fit versus plane decision with exact threshold, nonfinite and callback-order comparisons.
-
-- **Rust native regression gate** (2026-11-01): one discovery-guarded command runs all eleven existing source suites; CI retains all raw evidence and fails if a required suite disappears.
-
-- **Rust robust plane estimation** (2026-11-01): port deterministic mulberry32 sampling, shared median consensus and clipped robust planes, with fifty independent PRNG/value/inlier comparisons and unchanged source thresholds.
-
-- **Rust mesh centroids** (2026-11-01): port surface-area sums, area/volume centroids and the original two-origin closure heuristic, with twenty-three independent value/state comparisons and updated partial-port orientation docs.
-
-- **Rust mesh bounds** (2026-11-01): port complete prefix/indexed extents and center/radius bounds, reuse shared pure-Rust numeric primitives, and recompare all affected fitting/orientation callers.
-
-- **Rust used-point clipping** (2026-11-01): port shared iterative clipping and clipped-plane statistics, preserving used-point identities, failed-refit continuations and source guards, with nineteen independent value/state comparisons.
-
-- **Rust fixed-selection plane fit** (2026-11-01): port covariance/TLS fitting and signed residuals with private Jacobi dependencies, pre-registered numerical comparisons and explicit unported robust-fitting continuations.
-
-- **Rust dense linear solvers** (2026-11-01): port Cholesky and partial-pivot elimination with exact solution and mutated-matrix comparisons, explicit shape/resource errors and unchanged source thresholds.
-
-- **Rust winding correction** (2026-11-01): port the source signed-volume orientation heuristic, flipping normals and triangle winding together; fifteen independent full-state comparisons.
-
-- **Rust vertex normals** (2026-11-01): port area-weighted normal computation with source float32 accumulation, fallback behavior, explicit mesh guards and ten independent source comparisons. Outward orientation remains open.
-
-- **Rust mesh welding** (2026-11-01): preserve exact-bit vertex identity, stable indices and index-degenerate filtering, with 15 live original/native comparisons including the two-million-vertex progress boundary.
-
-- **Rust STL format reader** (2026-11-01): add binary/ASCII format detection, ASCII numeric-prefix and Unicode handling, explicit resource limits, and 82 comparisons against the pinned original. Mesh welding and session loading remain open.
-
-- **Rust binary STL decoder** (2026-11-01): port triangle coordinate decoding and progress callbacks with bounded resource errors, seeded comparisons against the frozen original, and retained raw CI evidence. Full STL dispatch and scan loading remain in progress.
-- **Rust port planning** (2026-11-01): refresh the contributor handoff and CI guidance to reflect the existing workspace, hosted original baseline and remaining comparison prerequisites.
+- **Contributors are credited** (2026-11-01). Each publish to this repository now
+  names the people whose work it brings as co-authors, starting with Jozkah and
+  Starzrng. CONTRIBUTING.md says how it works.
+
+## 0.9.4 — 2026-11-01
+
+- **A Notes key on the view bar** (2026-11-01, Reverse engineer, from issue 21).
+  While there are notes for the agent, the key puts their pins away and brings
+  them back. Only agents could do that before. The notes stay and the agent still
+  reads them, and pinning or opening a note brings the pins back.
+- **Small features stay visible on a large scan** (2026-11-01, issue 47). What is
+  drawn at a size of its own was sized to the whole scan: on a frame two metres
+  across, the arrows on a cylinder being made were wider than the Ø32 bore they
+  stood on, and a point was a ball 200 pixels across. These marks are now a fixed
+  size on the screen at any zoom, so they leave the feature in view zoomed in and
+  can be clicked zoomed out: the grips of the element being made, points, the
+  thickness of lines and circles, centre dots, selection strokes, angle arcs and
+  pinned readings. Cylinders, spheres, cones, tori and plane patches keep their true
+  size. While you brush, the grips are put away, as they cannot be taken hold of
+  then, and the ghost of the fit is drawn faint.
+- **OBJ, ASCII STL and ASCII PLY files of any size open** (2026-11-01). Above
+  about 512 MB, a file of text came up as having no triangles, because a browser
+  cannot hold that much text in one piece and says nothing when it cannot. They
+  are now read a piece at a time. 3MF and STEP files that large still cannot be
+  read, and now say that they are too large, in place of the false message.
+
+## 0.9.3 — 2026-11-01
 
 - **Ask your agent to update its connector** (2026-10-31). The banner that says
   your ScanRuler connector is out of date now starts with a sentence to copy and
   paste into your AI agent's chat, and the agent changes the setting for you. All
   that is left for you is to quit the app and open it again. The steps by hand
   are still below it.
+- **A sample scan on the start page** (2026-11-01). No scanner, no scan to hand?
+  **Open a sample scan** opens a fridge bracket that ships with the app, from the
+  start page of every workspace that has one, on self-hosted copies too.
+- **Notes from a project file are no longer taken as your requests** (2026-11-01,
+  Reverse engineer). A shared project can hold notes anyone wrote, and the agent
+  read them as what you had asked for. They now reach the agent marked as the
+  file's and apart from yours, with word to treat their text as content, not
+  instructions. The panel says **From the project file** on each; keep one or
+  answer it in its box to make it yours. The mark is for the session and is never
+  saved, so your own saved notes are marked too when you open the project again.
+  Notes you type in the session work as before.
+- **`scanruler_write` refuses files agents and tools act on** (2026-11-01,
+  scanruler-mcp 0.6.1). It no longer writes into hidden folders or agents' folders
+  such as `.claude`, nor files such as `CLAUDE.md`, `AGENTS.md` or `package.json`,
+  and it judges a link by where it leads. Reports under ordinary names go through
+  as before.
+- **Command works as the additive modifier on a Mac** (2026-11-01, thanks to
+  Starzrng). macOS takes Ctrl+click as a right click, so adding to a selection
+  could not be done there at all. Command now does what Ctrl does: picks and
+  selection boxes on the 3D view and the 2D sheet, the sketch network, dragging a
+  sketch without snapping. The undo and redo tips print ⌘.
+- **Fixes from Jozkah's code review** (2026-11-01):
+  - A 3MF whose components multiply without end is refused instead of running
+    out of memory (past a million objects or 30 million vertices).
+  - A mesh-worker request that throws while the queue drains is now answered, so
+    it no longer leaves an import waiting forever.
+  - An agent command's answer goes only on the connection it came on, so a server
+    started again cannot take it for another request.
+- **Fixes in scanruler-mcp from Jozkah's code review** (2026-11-01):
+  - A connection may send only 16 MB until its hello is taken, not 1 GB, with at
+    most eight waiting, and a frame past the limit no longer ends the server.
+  - A malformed URL path gets a 400, and any other failed request a 500, rather
+    than crashing `--serve`.
+  - Binary frames with paths such as `__proto__` are refused, in the page and in
+    the server.
+  - The lockfile takes the patched versions of five reported dependency
+    vulnerabilities.
+- **Development** (2026-11-01, thanks to Jozkah). The setup steps install the
+  agent server's dependencies, and the plugin boundary check now reads
+  `src/plugins/` too.
 
 ## 0.9.2 — 2026-10-31
 

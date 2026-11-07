@@ -1,4 +1,0 @@
-# SPDX-License-Identifier: AGPL-3.0-only
-allow-unwrap-in-tests = true
-allow-expect-in-tests = true
-allow-panic-in-tests = true
