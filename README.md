@@ -1,80 +1,3 @@
-# ScanRuler in pure Rust
-
-A personal port of [ScanRuler](https://github.com/CNCKitchen/ScanRuler), CNC Kitchen's in-browser tool
-for checking 3D scans against CAD, to **pure Rust** with the geometry kernels included, so it can run
-natively and in the browser through WebAssembly. It is a faithful port, not a redesign: the original
-TypeScript stays in this repository, frozen, and judges every result.
-
-> [!IMPORTANT]
-> **There is nothing to run yet.** The file readers, geometry maths and the comparison harness are
-> built and checked. The session, commands, project files, MCP server and UI are not. This fork is
-> **not** the official ScanRuler, is not endorsed by its author, is AGPL-derived and is **not** a
-> clean-room reimplementation. The name belongs to the original author and this fork will need
-> different branding before anything is released.
-
-## What is verified, versus what merely compiles
-
-"Implemented" means the Rust code exists and was compared with the original on fixed cases. Nothing
-is marked *accepted* yet. Live numbers are generated in [`STATUS.md`](docs/port-plan/STATUS.md).
-
-| | Area | Notes |
-|---|---|---|
-| ✅ | **File readers: STL, PLY, OBJ** | Compared with the original on error text, progress text and output bytes. STL and PLY also fuzzed (120,000 inputs, no differences). |
-| ✅ | **OBJ textures, companion files, drag-and-drop** | Material and file-set handling compared natively. Image decoding is **not** done. |
-| ✅ | **Mesh maths** | Bounds, centroid, welding, adjacency, components, normals, orientation, plane fitting, RANSAC, closed shells. |
-| ✅ | **Command layer pieces** | Input validation, error envelope, command registry and history recording, compared with the original. |
-| ✅ | **Checking harness** | Native and Chrome-WebAssembly comparisons, coverage reports for the original and the Rust code, and `cargo xtask fuzz`. |
-| 🚧 | **Session** | Undo and redo, command scheduling and the full session flow are specified, not built. |
-| 🚧 | **Wasm in the browser** | A bounded set of comparisons runs in real Chrome; most of the code is only compile-checked for `wasm32`. |
-| ❌ | **Commands, project files, MCP server, UI** | Not started. The first point you can use it is a command-line tool that opens a scan, fits a plane, undoes and saves. |
-| ❌ | **3MF, PNG/JPEG decoding** | Waiting on a decision about pure-Rust zip and image decoders. |
-| ❌ | **CAD kernel, STEP, solids** | Planned last. A wrapper around C or C++ does not count as pure Rust. |
-
-## How it is checked
-
-```
-        same input, two independent copies
-       +------------------+   +------------------+
-       |  original (TS)   |   |   Rust port      |
-       |  frozen @2cd89c6 |   |   rust/crates/   |
-       +--------+---------+   +---------+--------+
-                |                       |
-        success or failure ─ progress text ─ error text ─ output bytes
-                \                     /
-                 +-----  compare -----+
-```
-
-A green build is not parity. The comparison is. A skipped test is reported as skipped, never as passed,
-and expected values come from the original, never from the Rust code.
-
-## Try the checks
-
-```bash
-cd rust
-cargo xtask ci       # fast gate: format, lints, tests, plan checks, wasm32 compile (not parity)
-cargo xtask oracle   # every native comparison against the original (needs Node 22)
-cargo xtask fuzz ply --seed 1 --cases 2000   # seeded fuzz of a parser against the original
-```
-
-Toolchain: the system Rust (no rustup) and the `wasm32-unknown-unknown` target. Node 22 is needed only
-to run the original.
-
-## Where to look
-
-| You want | Go to |
-| --- | --- |
-| The story and the ideas, in order | [Guide](docs/guide/README.md) |
-| Help with the port | [`HELPING.md`](docs/port-plan/HELPING.md) |
-| What is done and what is next | [`STATUS.md`](docs/port-plan/STATUS.md), [`ROADMAP-TO-USABLE.md`](docs/port-plan/ROADMAP-TO-USABLE.md) |
-| How results are proven | [`CI-AND-REGRESSIONS.md`](docs/port-plan/CI-AND-REGRESSIONS.md), [`VALIDATION.md`](docs/port-plan/VALIDATION.md) |
-| Agent instructions | [`AGENTS.md`](AGENTS.md), [`CLAUDE.md`](CLAUDE.md) |
-
----
-
-## Upstream README (unchanged below)
-
-Everything from here on describes the original app, which this repository still contains.
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/brand/scanruler-logo-horizontal-on-dark.svg" />
   <img src="docs/brand/scanruler-logo-horizontal.svg" alt="ScanRuler by CNC Kitchen" width="420" />
@@ -423,9 +346,6 @@ npm test          # unit tests, plus acceptance tests on the local scans if pres
 npm run build     # type-check + production build to dist/
 npm run e2e:ci    # browser tests on generated fixtures; run after building
 ```
-
-The Rust port lives in [`rust/`](rust/README.md) (`cd rust && cargo xtask ci`); its contributor
-process is [CONTRIBUTING-RUST.md](CONTRIBUTING-RUST.md).
 
 The app is a static Vite + React + three.js build, with heavy geometry in a
 Web Worker. Tests, the browser checks, releases and deployment are described

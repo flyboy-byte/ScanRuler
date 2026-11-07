@@ -1,3 +1,0 @@
-# Mesh selection comparison — 2026-11-01
-
-Before implementation: port complete region.ts::trianglesWithin and remap.ts::remapVertices as one selection-preservation unit. Compare full ordered output indices byte-for-byte on independently supplied input; no sorting, deduplication or triangle-tail rejection. Preserve out-of-range selection filtering, negative-map removal, duplicate/order semantics and original incomplete-tail skipping. Fixed seeds 1/7/99/1039. Rust adds fallible storage and explicit vertex/output budgets. Native source evidence does not imply undo/project/engine/region-search caller or browser-Wasm acceptance.

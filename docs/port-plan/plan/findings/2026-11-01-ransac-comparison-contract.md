@@ -1,3 +1,0 @@
-# Robust plane consensus contract — pre-registered 2026-11-01
-
-Target complete mulberry32, ransacConsensus and ransacPlane, reusing clipped plane fitting and indexed extents. PRNG draws must match bit-for-bit. Compare fit presence, full ordered inliers and lengths exactly; compare plane fields/sigma under the existing fixed 1e-12*(1+abs(original)) budget, no sign normalization. Preserve every candidate draw, first-best tie order, 512-point striding/upper median, minimum area, 30-point guards, noise estimate and threshold floors. No zero-median early exit, reordered sampling or threshold relaxation. Fixed clean/noisy/edge/outlier/collapsed/insufficient patches and multiple seeds/iteration counts required. Browser-Wasm and broad adversarial corpus remain open.
